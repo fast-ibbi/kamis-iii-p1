@@ -1,0 +1,20 @@
+{
+  "name": "kamis-iii-p1",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Slide kuliah Frontend Development & Web Design — 16 bab, dipublikasikan via GitHub Pages",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build:pdf": "marp -I slides -o dist",
+    "build:html": "node scripts/build-pages.mjs",
+    "build": "npm run clean && npm run build:pdf && node scripts/build-pages.mjs",
+    "serve": "marp -s slides"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@marp-team/marp-cli": "^4.2.3"
+  }
+}

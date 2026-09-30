@@ -1,0 +1,9 @@
+# dependensi
+node_modules/
+
+# hasil render (dibangun ulang oleh `npm run build`)
+dist/
+out/
+
+# sistem
+.DS_Store

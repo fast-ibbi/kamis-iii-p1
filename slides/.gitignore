@@ -1,0 +1,7 @@
+# hasil render
+out/
+
+# sistem
+.DS_Store
+
+node_modules/

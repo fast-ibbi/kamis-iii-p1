@@ -1,0 +1,4 @@
+graph LR
+  U["Pengunjung kafe"] --> F["Ruang kafe = FRONTEND<br/>menu, kasir, tata ruang"]
+  F -- "pelayan: permintaan" --> B["Dapur dan stok = BACKEND<br/>resep, persediaan, pembukuan"]
+  B -- "pelayan: hasil" --> F
