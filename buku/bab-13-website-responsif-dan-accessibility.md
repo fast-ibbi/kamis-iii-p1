@@ -60,7 +60,7 @@ Tabel berikut merangkum perbedaannya dalam konteks proyek Tokosaya.
 | Arah media query | `min-width`, menaik | `max-width`, menurun |
 | Prioritas konten | Wajib sejak awal | Sering muncul belakangan |
 | Cocok buat | Website pelanggan umum, Tokosaya | Dashboard staf, data padat |
-| Risiko utama | Layar besar "kosong" | HP jadi tumpangan |
+| Risiko utama | Layar besar "kosong" | HP jadi tambalan |
 | Kompensasi | Desain ruang buat layar lebar | Uji 320–576 px sejak awal |
 
 ### 13.2 Breakpoint Strategy yang Konsisten
@@ -164,7 +164,7 @@ Pola kerja yang dilatih: (1) uji responsif manual per breakpoint, (2) jalankan L
 | 4 | Breakpoint strategy | Tetapkan 2–3 breakpoint, sejajarkan Bootstrap (768/992), hindari angka ajaib. |
 | 5 | `srcset` + `sizes` | Menyediakan variasi lebar file buat satu gambar yang sama. |
 | 6 | `<picture>` | Mengganti komposisi gambar per kondisi media; pilih `source` pertama yang cocok. |
-| 7 | `clamp()` | Ukuran bergengsi antara minimum dan maksimum: `clamp(min, ideal, max)`. |
+| 7 | `clamp()` | Ukuran yang dibatasi antara minimum dan maksimum: `clamp(min, ideal, max)`. |
 | 8 | Perlindungan luber | `img-fluid`, `overflow-wrap`, `min-width: 0`, hindari lebar tetap. |
 | 9 | Pola navigasi responsif | Menumpuk di mobile, melipat (*flex-wrap*), atau *footer-nav*. |
 | 10 | POUR | Perceivable, Operable, Understandable, Robust — kerangka WCAG. |
@@ -309,7 +309,7 @@ Audit ini bukan latihan teoretis: seluruh proyek **tokosaya-bootstrap/** kamu be
 
 ### Tujuan Praktikum
 
-Mengaudit kelima halaman proyek tokosaya-bootstrap dan merapikannya jadi responsif penuh dengan strategi *breakpoint* konsisten (base/m 768/lg 992), disertai perbaikan aksesibilitas nyata: `alt` yang bermakna, urutan heading benar, kontras memenuhi AA, *focus state* yang tampak, *skip link* CSS murni, dan form ramah keyboard — semuanya terdokumentasi pada daftar periksa yang dicoret secara jujur.
+Mengaudit kelima halaman proyek tokosaya-bootstrap dan merapikannya jadi responsif penuh dengan strategi *breakpoint* konsisten (base/md 768/lg 992), disertai perbaikan aksesibilitas nyata: `alt` yang bermakna, urutan heading benar, kontras memenuhi AA, *focus state* yang tampak, *skip link* CSS murni, dan form ramah keyboard — semuanya terdokumentasi pada daftar periksa yang dicoret secara jujur.
 
 ### Kebutuhan
 

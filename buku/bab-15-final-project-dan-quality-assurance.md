@@ -564,7 +564,7 @@ Di akhir praktikum, lima bukti terlihat: (1) `qa-checklist.html` menampilkan sel
 - Checklist pra-publikasi dua belas titik mengunci versi `v1.0.0-rc1`; laporan temuan profesional berformat ID/reproduksi/severitas/status/bukti.
 - Presentasi tujuh menit + tiga menit QA demo responsif disusun sebagai skrip (masalah → solusi → demo → bukti QA → refleksi) dengan cadangan tangkapan layar.
 
-Jembatan ke bab berikutnya: setiap artefak yang kamu kunci di bab ini — QA checklist yang terisi, laporan temuan yang menunjukkan sejarah perbaikan, paket rilis kandidat, dan skrip presentasi tujuh menit — adalah bahan mentah ujian akhir semester. **Bab 16 (UAS: Final Project Website)** menyambutnya dengan pedoman ujian resmi: delapan pilihan studi kasus, persyaratan minimum empat halaman, rubrik penilaian berbobot yang dinormalisasikan ke 100 poin, format pengumpulan (ZIP/repo + README + tangkapan layar responsif), serta presentasi tujuh menit dengan tiga menit QA demo responsif. Website kamu udah jadi; pada bab berikutnya, website itu menyamai gelar dan nilaimu.
+Jembatan ke bab berikutnya: setiap artefak yang kamu kunci di bab ini — QA checklist yang terisi, laporan temuan yang menunjukkan sejarah perbaikan, paket rilis kandidat, dan skrip presentasi tujuh menit — adalah bahan mentah ujian akhir semester. **Bab 16 (UAS: Final Project Website)** menyambutnya dengan pedoman ujian resmi: delapan pilihan studi kasus, persyaratan minimum empat halaman, rubrik penilaian berbobot yang dinormalisasikan ke 100 poin, format pengumpulan (ZIP/repo + README + tangkapan layar responsif), serta presentasi tujuh menit dengan tiga menit QA demo responsif. Website kamu udah jadi; pada bab berikutnya, website itu menentukan gelar dan nilaimu.
 
 ## Evaluasi
 

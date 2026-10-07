@@ -1042,7 +1042,7 @@ Pelajaran dari kasus ini terasa lewat proyek Tokosaya kamu sendiri: halaman `kon
 - Status visual statis (`is-valid`/`is-invalid` + pesan `valid-feedback`/`invalid-feedback`) dipelajari sebagai *styling*; verifikasi form sungguhan memakai JavaScript Bootstrap yang berada di luar cakupan mata kuliah ini.
 - Fokus harusnya selalu terlihat; `:focus-visible` dan urutan dokumen yang logis menyediakan dasarnya tanpa perlu `tabindex` khusus.
 
-**Jembatan ke Bab 12.** Dalam bab ini kamu membuat banyak keputusan kecil yang kini tercerai pada beberapa file: warna aksen, font heading, jarak `mb-3`, bentuk medan, bahasa pesan status. Kalau keputusan-keputusan itu nggak terdokumentasi, dua orang pembuat halaman berbeda akan menghasilkan dua Tokosaya yang berbeda pula. Bab 12 mengambil seluruh keputusan itu dan menaikinya satu tangga: jadi sebuah **design system** — token formal, komponen dengan varian, dan halaman *styleguide* Tokosaya yang terdokumentasi. Yang hari ini kamu tulis berulang-ulang, di bab berikutnya akan ditulis satu kali dan dipakai di mana-mana.
+**Jembatan ke Bab 12.** Dalam bab ini kamu membuat banyak keputusan kecil yang kini tersebar pada beberapa file: warna aksen, font heading, jarak `mb-3`, bentuk medan, bahasa pesan status. Kalau keputusan-keputusan itu nggak terdokumentasi, dua orang pembuat halaman berbeda akan menghasilkan dua Tokosaya yang berbeda pula. Bab 12 mengambil seluruh keputusan itu dan menaikinya satu tangga: jadi sebuah **design system** — token formal, komponen dengan varian, dan halaman *styleguide* Tokosaya yang terdokumentasi. Yang hari ini kamu tulis berulang-ulang, di bab berikutnya akan ditulis satu kali dan dipakai di mana-mana.
 
 ## Evaluasi
 

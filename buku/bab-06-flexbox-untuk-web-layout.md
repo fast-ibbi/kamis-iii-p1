@@ -19,7 +19,7 @@ Bab ini mendukung **CPMK 4** — Menggunakan Flexbox dan CSS Grid untuk membangu
 
 ## Kata Kunci
 
-*flexbox* (model layout CSS satu dimensi buat mendistribusikan ruang), *flex container* (element induk dengan `display: flex` yang mengatur anak-anaknya), *flex item* (element anak langsung di dalam flex container), *main axis* (sumbu utama tempat item tersusun, ditentukan `flex-direction`), *cross axis* (sumbu silang tegak lurus main axis, tempat penyelarasan), *media object* (pola antarmuka ikon di sisi kiri dan teks di sisi kanan), *card layout* (susunan kartu konten yang mengalir antar-baris), *gap* (jarak antar-flex item tanpa margin ganda), *hero section* (banner pembuka halaman berisi judul, subjudul, dan CTA).
+*flexbox* (model layout CSS satu dimensi buat mendistribusikan ruang), *flex container* (elemen induk dengan `display: flex` yang mengatur anak-anaknya), *flex item* (elemen anak langsung di dalam flex container), *main axis* (sumbu utama tempat item tersusun, ditentukan `flex-direction`), *cross axis* (sumbu silang tegak lurus main axis, tempat penyelarasan), *media object* (pola antarmuka ikon di sisi kiri dan teks di sisi kanan), *card layout* (susunan kartu konten yang mengalir antar-baris), *gap* (jarak antar-flex item tanpa margin ganda), *hero section* (banner pembuka halaman berisi judul, subjudul, dan CTA).
 
 ## Apersepsi
 

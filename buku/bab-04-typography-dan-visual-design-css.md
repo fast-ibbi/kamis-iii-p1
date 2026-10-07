@@ -132,7 +132,7 @@ Hierarki visual sebagai piramida perhatian
 makin ke bawah: makin kecil, makin redup, makin pendukung
 ```
 
-CSS membuat hierarki ini hidup dengan satu trik: `clamp()`. Fungsi `clamp(min, preferred, max)` mengeket kunci ukuran sehingga teks nggak pernah terlalu kecil di HP maupun terlalu raksasa di monitor lebar. `font-size: clamp(2.25rem, 5vw, 3rem)` berarti: minimal 2,25rem, idealnya 5 persen lebar layar (pilih tengah keduanya yang tercapai), maksimal 3rem. Pola ini membumikan skala pada berbagai layar tanpa perlu penuh media query — media query dibedah penuh di Bab 7, dan pengembangannya di Bab 13.
+CSS membuat hierarki ini hidup dengan satu trik: `clamp()`. Fungsi `clamp(min, preferred, max)` mengekang ukuran sehingga teks nggak pernah terlalu kecil di HP maupun terlalu raksasa di monitor lebar. `font-size: clamp(2.25rem, 5vw, 3rem)` berarti: minimal 2,25rem, idealnya 5 persen lebar layar (pilih tengah keduanya yang tercapai), maksimal 3rem. Pola ini membumikan skala pada berbagai layar tanpa perlu penuh media query — media query dibedah penuh di Bab 7, dan pengembangannya di Bab 13.
 
 Dua disiplin turut menopang hierarki, meskipun terdengar teknis: heading HTML nggak melompat level (`h1` ke `h2` ke `h3`) dan cuma ada satu `h1` per halaman — aturan yang udah kamu terapkan di Bab 2. Perlu diingat: skala dan heading bukanlah hal yang sama; skala mengatur ukuran tampilan, sedangkan heading menyatakan makna. Mereka bekerja berpasangan kayak gelar jabatan dan seragamnya: gelar tetap benar walau seragamnya diganti, dan seragam tetap rapi selama ukurannya berasal dari skala.
 
@@ -868,7 +868,7 @@ Amati ciri-cirinya berikut secara sejajar. Versi A memakai hampir semua teks 14p
 | Aspek | Versi A (buruk) | Versi B (baik) |
 |---|---|---|
 | Ukuran | Satu ukuran semua (14px) | Skala bertingkat 0.75–2.25rem |
-| Keluarga huruf | Empat font campur adok | Poppins (heading) + Inter (isi) |
+| Keluarga huruf | Empat font campur aduk | Poppins (heading) + Inter (isi) |
 | Line-height | 1.0–1.1, terlalu sesak | 1.6 isi, 1.2 judul |
 | Emphasis | Tebal acak | Tebal hanya pada angka tarif; sisanya via warna/ukuran |
 | Badge | Kapsul putih-kecil samar | Amber + teks gelap, kontras ± 6,8:1 |
@@ -1023,7 +1023,7 @@ File: latihan/eval-04-2.css
 4. **C** — `--clr-primary: #4F46E5` adalah indigo utama untuk tombol dan link; opsi lain adalah aksen, semantik, dan font.
 5. **B** — 4,5:1 untuk teks normal; 3:1 (A) berlaku untuk teks besar; 7:1 (C) adalah target level AAA.
 6. **B** — teks hijau murni di latar terang ± 3,3:1 (< 4,5:1); solusinya tint hijau + teks gelap yang kontrasnya jauh di atas ambang.
-7. **C** — `clamp()` mengeket min/preferred/max sehingga ukuran adaptif (5vw) tanpa keluar dari batas rem.
+7. **C** — `clamp()` mengekang min/preferred/max sehingga ukuran adaptif (5vw) tanpa keluar dari batas rem.
 8. **A** — inilah gunanya token: nilai diubah di satu tempat, semua komponen `var()` ikut berubah.
 
 **Benar atau Salah:**
