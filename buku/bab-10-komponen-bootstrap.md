@@ -379,7 +379,7 @@ Penjelasan: Ikon bersifat dekorasi (kata "Keranjang" udah menyampaikan makna), j
 
 ## Contoh Kode
 
-Tiga file demo kecil di folder `tokosaya-bootstrap/` membantu kamu mencoba komponen satu per satu tanpa harus menyusun halaman penuh. Masing-masing adalah halaman lengkap yang bisa dibuka langsung di Chrome. Ketiganya menambah file demo pada proyek; silakan dihapus setelah kamu paham isinya.
+Tiga file demo kecil di folder `tokosaya-bootstrap/` membantumu mencoba komponen satu per satu tanpa harus menyusun halaman penuh. Masing-masing adalah halaman lengkap yang bisa dibuka langsung di Chrome. Ketiganya menambah file demo pada proyek; silakan dihapus setelah kamu paham isinya.
 
 File: tokosaya-bootstrap/demo-komponen.html
 

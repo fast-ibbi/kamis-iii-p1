@@ -36,7 +36,7 @@ Bayangkan tim tiga mahasiswa Sistem Informasi yang menyelesaikan magang di Tokos
 
 Cerita di atas adalah kasus klasik pada pengembangan sistem informasi: kualitas nggak pernah tinggal, ia harus dirawat. Layanan informasi publik yang diluncurkan tanpa perawatan kualitas kerap mengecewakan pengguna justru di hari yang paling penting, walaupun seluruh fitur "terasa selesai". Analoginya kayak kalibrasi alat laboratorium: data nggak boleh diumumkan sebelum tim memastikan alat pengukurnya akurat, sebab kesalahan alat mengkontaminasi seluruh kesimpulan. Kualitas *diperiksa ulang* (recheck), bukan diasumsikan.
 
-Karena itu semester ini kamu nggak berhenti di "website jadi". Pertemuan 15 adalah milestone M7. Isinya satu putaran QA + penyempurnaan seluruh proyek dengan tiga mesin yang saling menguatkan: checklist QA (biar audit terukur dan setara buat semua orang), peer review (biar mata segar menemukan yang terlewat), dan rilis kandidat (biar perubahan berhenti pada satu titik yang bisa dibuktikan). Bab ini memandu kamu menjalankan putaran itu secara utuh, memakai alat yang udah kamu kenal — DevTools, W3C validator, dan checklist aksesibilitas Bab 13 — lalu menyerahkan hasilnya dalam laporan yang profesional. Setelah rilis kandidat terbentuk, bab berikutnya akan menuntut kamu membawanya ke forum ujian: Bab 16.
+Karena itu semester ini kamu nggak berhenti di "website jadi". Pertemuan 15 adalah milestone M7. Isinya satu putaran QA + penyempurnaan seluruh proyek dengan tiga mesin yang saling menguatkan: checklist QA (biar audit terukur dan setara buat semua orang), peer review (biar mata segar menemukan yang terlewat), dan rilis kandidat (biar perubahan berhenti pada satu titik yang bisa dibuktikan). Bab ini memandumu menjalankan putaran itu secara utuh, memakai alat yang udah kamu kenal — DevTools, W3C validator, dan checklist aksesibilitas Bab 13 — lalu menyerahkan hasilnya dalam laporan yang profesional. Setelah rilis kandidat terbentuk, bab berikutnya akan menuntut kamu membawanya ke forum ujian: Bab 16.
 
 ## Materi Pembelajaran
 
@@ -163,11 +163,11 @@ Kenapa porsi ini dianggarkan begitu besar? Karena layanan informasi publik adala
 
 *Debugging* CSS adalah proses menjawab satu pertanyaan secara terarah: kenapa elemen ini tampil kayak ini, padahal seharusnya begitu? Pemula biasanya menjawabnya dengan menebak: menambah aturan di sana, mengubah angka di sini, dan kalau tampilan belum berubah, menambah `!important`. Cara menebak itu buang-buang waktu dan menyimpan *regression* di mana-mana. QA profesional menjawab pertanyaan itu dengan membaca kaskade: aturan mana yang menang, kenapa menang, dan di file mana aturan itu berasal. Prasyaratnya udah kamu punya sejak Bab 3: kaskade, inheritance, dan specificity.
 
-Alatnya adalah inspector elemen di Chrome DevTools. Buka panel Elements, pilih elemen yang bermasalah, lalu baca dua informasi sebelum menulis satu baris perbaikan apa pun. Panel *Styles* menampilkan seluruh aturan yang menyentuh elemen: yang membatalkan lainnya tampil dengan garis coret, dan urutannya menunjukkan pemenang kaskade — beginilah cara kamu membuktikan bahwa `style.css` kalah oleh utilitas Bootstrap atau sebaliknya. Panel *Computed* menampilkan hasil akhir yang benar-benar menyala setelah seluruh aturan bertanding (misalnya nilai `font-size` final dan warna final), sehingga hipotesis kamu bisa diverifikasi, bukan dipakai sebagai tebakan. Diagram kotak dan nilai *box model* di panel yang sama membantu melacak jarak tak terduga (Bab 5).
+Alatnya adalah inspector elemen di Chrome DevTools. Buka panel Elements, pilih elemen yang bermasalah, lalu baca dua informasi sebelum menulis satu baris perbaikan apa pun. Panel *Styles* menampilkan seluruh aturan yang menyentuh elemen: yang membatalkan lainnya tampil dengan garis coret, dan urutannya menunjukkan pemenang kaskade — beginilah caramu membuktikan bahwa `style.css` kalah oleh utilitas Bootstrap atau sebaliknya. Panel *Computed* menampilkan hasil akhir yang benar-benar menyala setelah seluruh aturan bertanding (misalnya nilai `font-size` final dan warna final), sehingga hipotesis kamu bisa diverifikasi, bukan dipakai sebagai tebakan. Diagram kotak dan nilai *box model* di panel yang sama membantu melacak jarak tak terduga (Bab 5).
 
 Metode kerja yang disiplin punya empat langkah yang tegas. Pertama, reproduksi: temukan syarat tampilan cacat (lebar layar, kombinasi elemen) dan buat tangkapan layar sebelum/sesudah. Kedua, isolasi: pilih elemen terkecil yang gagal, bukan halaman yang gagal. Ketiga, hipotesis tunggal: satu penjelasan terkuat ("aturan `.daftar-produk .card` memberi radius 12 px, tapi aturan lama `.card` memberi 8 px dan muncul di bawahnya") — dan satu perubahan saja yang diterapkan. Keempat, verifikasi: muat ulang halaman, lalu jalankan uji regresi mini pada satu halaman lain yang memakai komponen yang sama. Empat langkah ini terasa berat pada cacat pertama dan jadi instan pada cacat sepuluh.
 
-Konsistensi visual akhirnya dihasilkan bukan oleh penglihatan, melainkan oleh pembanding yang sah: styleguide `styleguide.html` yang kamu bangun di Bab 12. Bandingkan setiap komponen halaman produksi dengan sampel styleguide-nya: radius kartu (`--radius: 12px`), jarak mengikuti kelipatan 8 px (8/16/24/32/48/64), warna semantik badge (hijau `--clr-success` buat "Tersedia", amber `--clr-accent` buat "Stok Terbatas"), serta pasangan font Poppins (heading) dan Inter (teks). Setiap penyimpangan adalah temuan QA dengan lokasi, bukan perbedaan selera yang bisa ditoleransi. Di proyek besar, subbab ini jadi bagian paling sering dipakai: sebagian besar jam pengembangan web dihabiskan bukan buat menambah fitur, melainkan buat men-debug dan menjaga konsistensi.
+Konsistensi visual akhirnya dihasilkan bukan oleh penglihatan, melainkan oleh pembanding yang sah: styleguide `styleguide.html` yang kamu bangun di Bab 12. Bandingkan setiap komponen halaman produksi dengan sampel styleguidenya: radius kartu (`--radius: 12px`), jarak mengikuti kelipatan 8 px (8/16/24/32/48/64), warna semantik badge (hijau `--clr-success` buat "Tersedia", amber `--clr-accent` buat "Stok Terbatas"), serta pasangan font Poppins (heading) dan Inter (teks). Setiap penyimpangan adalah temuan QA dengan lokasi, bukan perbedaan selera yang bisa ditoleransi. Di proyek besar, subbab ini jadi bagian paling sering dipakai: sebagian besar jam pengembangan web dihabiskan bukan buat menambah fitur, melainkan buat men-debug dan menjaga konsistensi.
 
 ### 15.8 Checklist Sebelum Deployment & Presentasi
 
@@ -394,7 +394,7 @@ Melatih QA sprint lengkap atas draft final project: melakukan audit mandiri bera
 ### Persiapan
 
 1. Simpan `qa-checklist.html` dan `laporan-temuan.html` (bagian Kode di bawah) di akar folder `tokosaya-bootstrap/` berdampingan dengan halaman-halaman produksi; pastikan keduanya terbuka di Chrome.
-2. Salin isi laporan temuan dengan baris contoh (F-01–F-03) dulu — lalu hapus dan ganti dengan temuan milik proyek kamu; baris contoh ada biar formatnya terdemonstrasi.
+2. Salin isi laporan temuan dengan baris contoh (F-01–F-03) dulu — lalu hapus dan ganti dengan temuan milik proyekmu; baris contoh ada biar formatnya terdemonstrasi.
 3. Siapkan tiga jendela kerja di DevTools: tab browser utama, tab yang memanggil laporan-temuan (buat menyalin temuan), dan satu tab validator daring. Tetapkan satu file ringkasan QA bernama `laporan-qa.md` di luar folder proyek buat bukti M7.
 
 ### Langkah Kerja
@@ -403,7 +403,7 @@ Melatih QA sprint lengkap atas draft final project: melakukan audit mandiri bera
 2. **Audit struktur (QA mandiri I).** Jalankan pengujian `qa-checklist.html` secara top-down pada bagian "Struktur dan HTML": lakukan proses validasi satu per satu halaman utama (index, katalog, produk, kontak) pada validator W3C, catat setiap kesalahan dan peringatan berikut halamannya. Catat ke `laporan-temuan.html` dengan ID naik.
 3. **Audit responsif (QA mandiri II).** Buka setiap halaman pada mode responsif device toolbar Chrome; jalankan pemindai lima titik (nav, hero, grid kartu, form, footer) pada lebar 360/768/992 px; isi test matrix di lembar ringkasan: sel yang ada temuan diberi catatan singkat dan tangkapan layar.
 4. **Audit aksesibilitas (QA mandiri III).** Uji tiap halaman dengan checklist lima pemeriksaan subbab 15.6: alt bermakna, kontras 4,5:1 pada teks utama, heading nggak melompat, form bisa dijelajahi tab tanpa mouse, dan indikator fokus terlihat. Catat temuan.
-5. **Peer review silang.** Tukar website dengan satu rekan sekelas selama 45 menit: reviewer menjalankan langkah 2–4 yang sama pada proyek kamu, menemukan temuan baru dengan format sama, dan menandai setiap temuan yang terkonfirmasi. Kamu secara bersamaan men-review miliknya. Perjanjian yang setara mencegah review satu arah.
+5. **Peer review silang.** Tukar website dengan satu rekan sekelas selama 45 menit: reviewer menjalankan langkah 2–4 yang sama pada proyekmu, menemukan temuan baru dengan format sama, dan menandai setiap temuan yang terkonfirmasi. Kamu secara bersamaan men-review miliknya. Perjanjian yang setara mencegah review satu arah.
 6. **Konsolidasi dan prioritas temuan.** Gabungkan temuan mandiri dan peer review; beri severitas (*severity*): Kritis (menghalangi penggunaan — link mati, form tak berlabel, gulir horizontal), Mayor (memperburuk penggunaan — kontras kurang, kartu tak sejajar), Minor (kesalahan kecil — radius, jarak nggak sesuai styleguide). Urutkan tabel dari Kritis.
 7. **Perbaikan terarah.** Mulai dari Kritis. Di setiap perbaikan, jalankan metode debugging empat langkah subbab 15.7: pastikan reproduksinya → isolasi elemen terkecil → terapkan satu perubahan → verifikasi muat ulang. Jangan melipatgandakan perubahan dalam satu putaran.
 8. **Uji ulang regresi.** Setelah setiap perbaikan, jalankan penyapuan cepat: tekan setiap link nav pada halaman sebelumnya, buka satu halaman katalog pada tiga breakpoint, dan periksa styleguide: pastikan tak ada komponen yang ikut berubah tak terduga.
@@ -412,7 +412,7 @@ Melatih QA sprint lengkap atas draft final project: melakukan audit mandiri bera
 
 ### Kode
 
-Berikut halaman `laporan-temuan.html` — tabel temuan profesional yang memuat kolom: ID, halaman, temuan, langkah reproduksi, severitas, dan status. Isi baris berikut menggambarkan formatnya; ganti baris contoh dengan temuan proyek kamu sendiri.
+Berikut halaman `laporan-temuan.html` — tabel temuan profesional yang memuat kolom: ID, halaman, temuan, langkah reproduksi, severitas, dan status. Isi baris berikut menggambarkan formatnya; ganti baris contoh dengan temuan proyekmu sendiri.
 
 File: tokosaya-bootstrap/laporan-temuan.html
 
@@ -531,11 +531,11 @@ Di akhir praktikum, lima bukti terlihat: (1) `qa-checklist.html` menampilkan sel
 ## Latihan Mandiri
 
 1. Jelaskan perbedaan *quality assurance*, pengujian (testing), dan UAT dengan masing-masing satu paragraf pendek, lalu temukan satu contoh aktivitas pada Bab 15 yang termasuk masing-masing kategori.
-2. Buat test matrix sendiri untuk empat halaman Tokosaya (index, katalog, produk, kontak) × tiga breakpoint (360, 768, 992) berbentuk tabel; isi kolom status dengan asumsi proyek kamu saat ini, dan tandai tiga sel yang paling berisiko beserta alasannya.
+2. Buat test matrix sendiri untuk empat halaman Tokosaya (index, katalog, produk, kontak) × tiga breakpoint (360, 768, 992) berbentuk tabel; isi kolom status dengan asumsi proyekmu saat ini, dan tandai tiga sel yang paling berisiko beserta alasannya.
 3. Dibentangkan blok CSS berikut yang ditemukan reviewer pada `css/style.css` proyek: `/* kustom */ .daftar-produk { font-size: 1rem; }`, `/* kustom */ div .daftar-produk { font-size: 0.9rem !important; }`, `/* kustom */ .daftar-produk { border-radius: 9px; }`. Tuliskan tiga cacat, urutkan dari yang paling menyebar bahayanya, dan susun satu file CSS penggantinya yang mengikuti kaidah subbab 15.3–15.4.
-4. Jalankan audit aksesibilitas mandiri pada satu halaman `kontak.html` proyek kamu memakai kaidah lima pemeriksaan (alt, kontras, heading, label-tab, fokus); tuliskan hasilnya sebagai daftar temuan berkategori severitas pada format tabel temuan, lengkap dengan langkah reproduksi.
+4. Jalankan audit aksesibilitas mandiri pada satu halaman `kontak.html` proyekmu memakai kaidah lima pemeriksaan (alt, kontras, heading, label-tab, fokus); tuliskan hasilnya sebagai daftar temuan berkategori severitas pada format tabel temuan, lengkap dengan langkah reproduksi.
 5. Buat skrip presentasi tujuh menit untuk final project kamu (masalah → solusi → demo responsif → bukti QA → refleksi) yang memakai tabel alokasi waktu per detik; tuliskan bagian satu paragraf pembuka yang menutup dengan kalimat "mengapa website ini siap dirilis".
-6. Jelaskan satu situasi pada proyek kamu pas peer review menemukan cacat yang nggak kamu temukan sendiri. Analisa alasan (kelebihan mata segar, asumsi tersamar, kebiasaan melihat sendiri), dan tulis satu langkah proses yang mencegahnya berulang.
+6. Jelaskan satu situasi pada proyekmu pas peer review menemukan cacat yang nggak kamu temukan sendiri. Analisa alasan (kelebihan mata segar, asumsi tersamar, kebiasaan melihat sendiri), dan tulis satu langkah proses yang mencegahnya berulang.
 
 ## Tugas
 
@@ -545,7 +545,7 @@ Di akhir praktikum, lima bukti terlihat: (1) `qa-checklist.html` menampilkan sel
 
 ## Refleksi
 
-1. Bagian mana dari QA sprint yang paling banyak mengubah cara kamu membaca kode sendiri — dan kenapa itu terjadi di fase ini, bukan di awal semester?
+1. Bagian mana dari QA sprint yang paling banyak mengubah caramu membaca kode sendiri — dan kenapa itu terjadi di fase ini, bukan di awal semester?
 2. Apa temuan yang hanya bisa ditemukan oleh peer review (bukan pengujian mandiri), dan apa batas kemampuan yang jujur pada review teman sekelas?
 3. Pas kamu memperbaiki temuan, seberapa sering kamu mengikuti metode empat langkah (reproduksi → isolasi → hipotesis → verifikasi) dibandingkan langsung mengubah kode — dan apa harga dari setiap menebak?
 4. Gimana laporan QA kamu diganggu oleh suara "ini bukan pekerjaan penting, selesaikan fiturnya saja"? Apa yang kamu jawab ke diri sendiri pada situasi itu?
@@ -564,7 +564,7 @@ Di akhir praktikum, lima bukti terlihat: (1) `qa-checklist.html` menampilkan sel
 - Checklist pra-publikasi dua belas titik mengunci versi `v1.0.0-rc1`; laporan temuan profesional berformat ID/reproduksi/severitas/status/bukti.
 - Presentasi tujuh menit + tiga menit QA demo responsif disusun sebagai skrip (masalah → solusi → demo → bukti QA → refleksi) dengan cadangan tangkapan layar.
 
-Jembatan ke bab berikutnya: setiap artefak yang kamu kunci di bab ini — QA checklist yang terisi, laporan temuan yang menunjukkan sejarah perbaikan, paket rilis kandidat, dan skrip presentasi tujuh menit — adalah bahan mentah ujian akhir semester. **Bab 16 (UAS: Final Project Website)** menyambutnya dengan pedoman ujian resmi: delapan pilihan studi kasus, persyaratan minimum empat halaman, rubrik penilaian berbobot yang dinormalisasikan ke 100 poin, format pengumpulan (ZIP/repo + README + tangkapan layar responsif), serta presentasi tujuh menit dengan tiga menit QA demo responsif. Website kamu udah jadi; pada bab berikutnya, website itu menyamai gelar dan nilai kamu.
+Jembatan ke bab berikutnya: setiap artefak yang kamu kunci di bab ini — QA checklist yang terisi, laporan temuan yang menunjukkan sejarah perbaikan, paket rilis kandidat, dan skrip presentasi tujuh menit — adalah bahan mentah ujian akhir semester. **Bab 16 (UAS: Final Project Website)** menyambutnya dengan pedoman ujian resmi: delapan pilihan studi kasus, persyaratan minimum empat halaman, rubrik penilaian berbobot yang dinormalisasikan ke 100 poin, format pengumpulan (ZIP/repo + README + tangkapan layar responsif), serta presentasi tujuh menit dengan tiga menit QA demo responsif. Website kamu udah jadi; pada bab berikutnya, website itu menyamai gelar dan nilaimu.
 
 ## Evaluasi
 

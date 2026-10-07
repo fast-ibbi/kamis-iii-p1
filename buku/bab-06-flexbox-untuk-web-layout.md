@@ -201,7 +201,7 @@ Dalam praktik nyata, keduanya justru sering dipakai bareng: Grid menangani rangk
 
 ## Contoh Kode
 
-Tiga contoh berikut memberi kamu laboratorium berukuran kecil sebelum praktikum. Contoh 6-1 membuka kembali wawasan properti container; Contoh 6-2 menunjukkan perilaku item dan trik `margin-top: auto` pada kartu; keduanya file *standalone* sehingga aman dicoba tanpa menyentuh proyek utama. Semua contoh memakai token warna Bab 4 supaya tampilannya konsisten dengan Tokosaya.
+Tiga contoh berikut memberimu laboratorium berukuran kecil sebelum praktikum. Contoh 6-1 membuka kembali wawasan properti container; Contoh 6-2 menunjukkan perilaku item dan trik `margin-top: auto` pada kartu; keduanya file *standalone* sehingga aman dicoba tanpa menyentuh proyek utama. Semua contoh memakai token warna Bab 4 supaya tampilannya konsisten dengan Tokosaya.
 
 ### Contoh 6-1: Halaman Demonstrasi Properti Container
 
@@ -843,7 +843,7 @@ Ada detail teknis yang menarik di sini: fitur pencarian itu cukup berupa `<form 
 ## Latihan Mandiri
 
 1. Dalam satu paragraf (3-5 kalimat), jelaskan perbedaan *main axis* dan *cross axis* menggunakan analogi lorong asrama dari 6.1, lalu tunjukkan apa yang bergeser pas `flex-direction` berubah ke `column`.
-2. Pada `.produk-row` proyek kamu, ganti `flex: 0 1 250px` jadi `flex: 0 1 200px`. Susutkan jendela dan catat lebar pas jumlah kartu per baris berganti; jelaskan kenapa basis mengubah momen penekukan.
+2. Pada `.produk-row` proyekmu, ganti `flex: 0 1 250px` jadi `flex: 0 1 200px`. Susutkan jendela dan catat lebar pas jumlah kartu per baris berganti; jelaskan kenapa basis mengubah momen penekukan.
 3. Ubah footer praktikum jadi tiga kolom ala 6.5: kolom pertama merek dan tagline, kolom kedua menu `ul`, kolom ketiga *media object* email dan telepon Tokosaya. Kumpulkan kode CSS lengkapnya.
 4. Buat *media object* baru (komponen `berita-item`) buat dua pengumuman perpustakaan: ikon bulat di kiri, judul dan tanggal di kanan. Kumpulkan potongan HTML dan CSS-nya.
 5. Di halaman hero, tambahkan link teks "Lihat harga terbaru" di bawah CTA dengan kelas `hero-link` dan jarak `gap`; pastikan cuma satu CTA utama yang tetap menonjol. Jelaskan alasannya satu-dua kalimat.
@@ -860,7 +860,7 @@ Ada detail teknis yang menarik di sini: fitur pencarian itu cukup berupa `<form 
 2. Kapan kamu akan memilih `margin-left: auto` alih-alih `justify-content: space-between`? Apa beda perilakunya pas anak berjumlah tiga?
 3. Apa risiko moral `order` terhadap pengguna *screen reader*, dan batas kecil mana yang membuatnya tetap layak dipakai?
 4. Setelah mengerjakan kartu 8 produk, kapan kamu menyimpulkan butuh Grid? Apa sinyal desain yang memberi tahu itu?
-5. Gimana kebiasaan mengubah ukuran jendela mengubah cara kamu menilai kualitas layout sendiri?
+5. Gimana kebiasaan mengubah ukuran jendela mengubah caramu menilai kualitas layout sendiri?
 
 ## Rangkuman
 

@@ -1076,7 +1076,7 @@ pembaca layar (`header`, `nav`, `main`, `aside`, `footer`), hierarki heading
 (`article` menyediakan judulnya sendiri melalui `h2`, karena `h1` disediakan oleh
 konteks halaman), dan sinyal SEO dasar (bot pencari menandai `article` sebagai
 unit konten bermakna, judul `h2`-nya sebagai judul berita). Latihan mandiri nomor
-6 meminta kamu menganalisis portal berita pilihan sendiri dengan kerangka yang sama.
+6 memintamu menganalisis portal berita pilihan sendiri dengan kerangka yang sama.
 
 ## Latihan Mandiri
 
@@ -1095,8 +1095,8 @@ unit konten bermakna, judul `h2`-nya sebagai judul berita). Latihan mandiri nomo
    pengguna *screen reader* kalau elemen-elemen itu nggak ada?
 5. Buat markup `<img>` buat foto produk "Headphone Studio HS-15" (nama file
    `produk-headphone-hs15.svg`), lengkap dengan teks alternatif dan ukuran
-   400×400 piksel. Jelaskan alasan kamu memilih teks `alt` tersebut.
-6. Buka halaman portal berita atau website layanan informasi pilihan kamu. Baca
+   400×400 piksel. Jelaskan alasanmu memilih teks `alt` tersebut.
+6. Buka halaman portal berita atau website layanan informasi pilihanmu. Baca
    strukturnya dari atas ke bawah, lalu buat peta semantiknya dalam daftar
    bertingkat. Tunjukkan bagian yang menjadi `header`, `nav`, `main`, `section`,
    `article`, `aside`, dan `footer`. Catat juga satu bagian yang masih memakai
@@ -1108,7 +1108,7 @@ unit konten bermakna, judul `h2`-nya sebagai judul berita). Latihan mandiri nomo
    Tambahkan satu `section` baru, "Jam Layanan" (Senin–Sabtu, 09.00–17.00 WIB), pada
    `tentang.html`. Gunakan `section` dan tabel (atau `dl`) semantik.
    Kumpulkan file `tentang.html` final dan satu paragraf (maksimal 150 kata) yang
-   menjelaskan pilihan elemen kamu. Kriterianya: satu `h1`,
+   menjelaskan pilihan elemenmu. Kriterianya: satu `h1`,
    hierarki heading nggak melompat, tabel/`dl` semantik benar, nggak ada
    style/kelas styling yang belum diajarkan.
 2. **Tugas kelompok (2–3 orang) — peta semantik kampus.** Pilih dua jenis halaman
@@ -1127,9 +1127,9 @@ unit konten bermakna, judul `h2`-nya sebagai judul berita). Latihan mandiri nomo
 2. Kapan kamu memilih `section`, dan kapan memakai `div`? Berikan satu contoh
    dari proyek Tokosaya pas keduanya bisa terlihat sama, tetapi maknanya berbeda.
 3. Dari tiga manfaat semantik (aksesibilitas, SEO, dan pemeliharaan kode), mana
-   yang paling memengaruhi keputusan kamu pas menyusun halaman? Kenapa?
+   yang paling memengaruhi keputusanmu pas menyusun halaman? Kenapa?
 4. Kalau orang lain melanjutkan pengembangan Tokosaya, gimana struktur semantik
-   membantu mereka memahami halaman tanpa perlu penjelasan panjang dari kamu?
+   membantu mereka memahami halaman tanpa perlu penjelasan panjang darimu?
 
 ## Rangkuman
 
@@ -1154,7 +1154,7 @@ unit konten bermakna, judul `h2`-nya sebagai judul berita). Latihan mandiri nomo
   dan layanan, lalu `footer` berisi kontak dan tagline.
 
 Struktur semantik yang kamu buat hari ini masih tampil polos: belum ada warna,
-tipografi, atau layout khusus. Bab 3 akan mengajak kamu mengenal dasar-dasar CSS
+tipografi, atau layout khusus. Bab 3 akan mengajakmu mengenal dasar-dasar CSS
 dan menambahkan `css/style.css` ke proyek Tokosaya. Pertama kalinya, kamu akan
 mewarnai dan menata struktur yang baru saja dibuat.
 

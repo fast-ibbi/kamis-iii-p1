@@ -31,7 +31,7 @@ Kedua sub-capaian berpijak pada CPMK 3 "Menerapkan CSS untuk membangun visual an
 
 ## Apersepsi
 
-Kini bayangkan posisi kamu sebagai mahasiswa magang di bagian pengembangan website Tokosaya. Di Bab 3 kamu berhasil menulis `style.css` versi pertama: teks berwarna, link berubah warna, dan halaman terbaca. Tapi pas rapat pekanan, manajer konten menyampaikan sesuatu yang mengubah cara kamu melihat pekerjaan ini. Ia memaparkan dua tampilan beranda yang isinya persis sama, lalu menanyakan versi mana yang bikin pelanggan percaya. Versi pertama memakai font dan warna acak: judul kecil, paragraf besar, tombol abu-abu tipis. Versi kedua judulnya besar dan tegas, paragrafnya tenang, tombolnya indigo tegas dengan tagline "Belanja Tepat, Kirim Cepat". Hampir seluruh ruangan memilih versi kedua tanpa ragu.
+Kini bayangkan posisimu sebagai mahasiswa magang di bagian pengembangan website Tokosaya. Di Bab 3 kamu berhasil menulis `style.css` versi pertama: teks berwarna, link berubah warna, dan halaman terbaca. Tapi pas rapat pekanan, manajer konten menyampaikan sesuatu yang mengubah caramu melihat pekerjaan ini. Ia memaparkan dua tampilan beranda yang isinya persis sama, lalu menanyakan versi mana yang bikin pelanggan percaya. Versi pertama memakai font dan warna acak: judul kecil, paragraf besar, tombol abu-abu tipis. Versi kedua judulnya besar dan tegas, paragrafnya tenang, tombolnya indigo tegas dengan tagline "Belanja Tepat, Kirim Cepat". Hampir seluruh ruangan memilih versi kedua tanpa ragu.
 
 Kenapa begitu, padahal kedua halaman menyampaikan teks yang sama? Sebab pembaca nggak cuma membaca kata; ia membaca bentuknya. Ukuran yang seimbang, jarak baris yang lega, dan warna yang konsisten memberi sinyal "website ini rapi, produknya pun jujur dan teratur". Dalam dunia sistem informasi, sinyal ini bukan kosmetik belaka. Website layanan akademik, portal rumah sakit, dan katalog UMKM memuat informasi penting yang kekeliruan membacanya berakibat nyata; tipografi dan warna yang baik menurunkan beban kognitif pembaca dan mempercepat keputusan.
 
@@ -41,7 +41,7 @@ Masalahnya, tanpa aturan main, tampilan rapi begitu mudah luruh: satu pengembang
 
 ### 4.1 Typography dan Perannya dalam Web Design
 
-*Typography* (tipografi) adalah seni dan teknik menyusun huruf — memilih jenisnya, menata ukuran, jarak, dan bobotnya — supaya teks mudah dibaca dan menyampaikan karakter. Dua istilah sering tertukar: *typeface* adalah keluarga desain huruf (misalnya Poppins), sedangkan *font* adalah wujud spesifik dari typeface dengan berat dan gaya tertentu (misalnya Poppins *Bold* 700). Dalam percakapan sehari-hari keduanya kerap dipakai saling menggantikan, tapi membedakannya membantu kamu berbicara tepat dengan desainer.
+*Typography* (tipografi) adalah seni dan teknik menyusun huruf — memilih jenisnya, menata ukuran, jarak, dan bobotnya — supaya teks mudah dibaca dan menyampaikan karakter. Dua istilah sering tertukar: *typeface* adalah keluarga desain huruf (misalnya Poppins), sedangkan *font* adalah wujud spesifik dari typeface dengan berat dan gaya tertentu (misalnya Poppins *Bold* 700). Dalam percakapan sehari-hari keduanya kerap dipakai saling menggantikan, tapi membedakannya membantumu berbicara tepat dengan desainer.
 
 Kenapa tipografi begitu penting dalam *web design*? Alasannya sederhana tapi kuat: mayoritas antarmuka web adalah teks. Judul produk, deskripsi, label form, pesan status, dan link semuanya huruf. Pas teks ditata buruk — ukuran nggak beraturan, jarak baris sesak, semua kata dicetak tebal — pembaca lelah sebelum menemukan informasi yang ia cari. Prinsip desain produk Norman (2013) berbunyi: desain yang baik jujur mengkomunikasikan fungsinya. Pada teks, kejujuran itu diwujudkan lewat hierarki: judul tampak kayak judul, penjelasan tampak kayak penjelasan, tombol tampak kayak barang yang bisa ditekan.
 
@@ -84,7 +84,7 @@ Browser membaca daftar itu dari kiri ke kanan. Kalau Inter tersedia, semua teks 
 
 ### 4.3 Properti Tipografi
 
-Dengan font terpasang, tugas kamu berikutnya adalah "menyetir" tampilannya. CSS menyediakan sekelompok properti bertema teks yang jadi alat harian kamu. Tabel berikut merangkum yang paling kerap dipakai, kaitannya dengan konteks Tokosaya:
+Dengan font terpasang, tugasmu berikutnya adalah "menyetir" tampilannya. CSS menyediakan sekelompok properti bertema teks yang jadi alat harian kamu. Tabel berikut merangkum yang paling kerap dipakai, kaitannya dengan konteks Tokosaya:
 
 | Properti | Fungsi | Praktik umum di Tokosaya |
 |---|---|---|
@@ -99,7 +99,7 @@ Dengan font terpasang, tugas kamu berikutnya adalah "menyetir" tampilannya. CSS 
 
 *Line-height* layak diberi perhatian khusus karena paling menentukan kenyamanan membaca. Nilai tanpa satuan kayak `1.6` berarti "1,6 × ukuran font", sehingga ikut membesar kalau font dibesarkan — inilah alasan menuliskan `1.6` lebih andal daripada `24px`. Aturan praktis: teks panjang butuh baris yang longgar (1,5–1,7), sedangkan judul justru terlihat lebih kompak dan kuat dengan baris ketat (1,1–1,25). Coba rasakan bedanya pas membaca paragraf di Tokosaya dan di portal berita: perbedaan nyamannya bukan magis, melainkan pilihan angka yang disiplin.
 
-*Letter-spacing* bekerja berlawanan arah pada dua ujung tangga ukuran: judul raksasa jadi lebih "bernapas" kalau jaraknya dirapatkan (`-0.02em`), sementara label kapital kecil butuh jarak yang direnggangkan (`0.08em`) biar nggak menyerupai gumpalan. Dua properti sering dilupakan pemula: `text-transform` yang menyelamatkan kamu dari mengetik kapital manual (KONTEN tetap ditulis "Konten" di HTML lalu diubah tampilannya), dan `text-decoration` yang perlu dinetralkan pada menu biar link nggak semua bergaris bawah.
+*Letter-spacing* bekerja berlawanan arah pada dua ujung tangga ukuran: judul raksasa jadi lebih "bernapas" kalau jaraknya dirapatkan (`-0.02em`), sementara label kapital kecil butuh jarak yang direnggangkan (`0.08em`) biar nggak menyerupai gumpalan. Dua properti sering dilupakan pemula: `text-transform` yang menyelamatkanmu dari mengetik kapital manual (KONTEN tetap ditulis "Konten" di HTML lalu diubah tampilannya), dan `text-decoration` yang perlu dinetralkan pada menu biar link nggak semua bergaris bawah.
 
 Ingat pula konsep *inheritance* (warisan) dari Bab 3: properti teks kayak `font-family`, `color`, dan `line-height` diwariskan secara alami ke turunannya, sedangkan `font-size` dan jarak nggak. Karena itu pola praktik buku ini meletakkan warna dan *font-family* pada `html` atau `body`, baru mengecualikan elemen yang memang beda — kebiasaan yang menekan jumlah baris CSS dan konflik *kaskade* (*cascade*).
 
@@ -174,7 +174,7 @@ File: tokosaya-css/css/style.css
 
 `to bottom right` memulai warna dari pojok kiri atas (indigo) lalu menggesernya diagonal ke pojok kanan bawah (indigo gelap). Kamu bisa meminta tiga titik batas warna (*color stops*) buat kesan lebih kaya, tapi gradien dua warna yang senada biasanya cukup dan lebih mudah dirawat. Gradien pun nggak harus mencolok: kombinasi `#1E293B` ke `#334155` berarah ke bawah sering dipakai buat *footer* biar kaki halaman terasa berat dan memegang perhatian sesaat.
 
-Dua aturan penggunaan perlu kamu pegang. Pertama, gunakan gradien kayak bumbu: satu-dua titik per halaman (hero, CTA), bukan pada setiap kartu; permukaan membaca kayak kartu produk tetap solid putih. Kedua, amati kontras teks di atasnya: putih di atas gradien indigo adalah ± 6,3:1 sampai 7,9:1 — aman, karena ujung paling terang pun masih di atas 4,5:1. Kalau gradien kamu lebih terang di salah sisi, pergelapkan warna mulainya atau tambahkan lapisan gelap tipis di belakang teks. Banner pendaftaran pelatihan di portal kampus bekerja dengan prinsip sama: area bersemangat, teks tetap terbaca.
+Dua aturan penggunaan perlu kamu pegang. Pertama, gunakan gradien kayak bumbu: satu-dua titik per halaman (hero, CTA), bukan pada setiap kartu; permukaan membaca kayak kartu produk tetap solid putih. Kedua, amati kontras teks di atasnya: putih di atas gradien indigo adalah ± 6,3:1 sampai 7,9:1 — aman, karena ujung paling terang pun masih di atas 4,5:1. Kalau gradienmu lebih terang di salah sisi, pergelapkan warna mulainya atau tambahkan lapisan gelap tipis di belakang teks. Banner pendaftaran pelatihan di portal kampus bekerja dengan prinsip sama: area bersemangat, teks tetap terbaca.
 
 ### 4.7 Membulat dan Melembutkan
 
@@ -215,7 +215,7 @@ File: tokosaya-css/css/style.css
 
 Blok ini valid CSS utuh yang bisa diketik dan disimpan. Perhatikan penamaannya: kebab-case, berawalan `--clr-` buat warna dan `--font-` buat tipografi. Nama mengungkap makna (`--clr-primary`), bukan nilai (`--indigo`): kalau suatu saat warna brand bergeser dari indigo ke biru, cuma satu baris yang berubah. Token jarak `--space-unit` bekerja lewat `calc()`: `padding: calc(var(--space-unit) * 3)` menghasilkan 24px, dan seluruh jarak halaman mengikuti kelipatan 8px — skala 8/16/24/32/48/64 yang akan kamu kunci pada Bab 12.
 
-Kapan memakai token? Setiap nilai yang harus konsisten: warna brand, warna semantik, font, radius, bayangan, satuan jarak. Kapan nggak? Nilai yang memang sekali pakai — token yang terlalu banyak sama buruknya dengan warna yang berantakan. Di proyek ini token jadi dasar: Bab 5 memakainya buat mengatur jarak komponen, Bab 12 menaikkan statusnya jadi *design system*, dan pas Bootstrap tiba di Bab 9 kamu akan menyadari framework itu pun menyimpan keputusannya sebagai custom properties — buku ini mengajarkan kamu menuliskannya sendiri lebih dulu.
+Kapan memakai token? Setiap nilai yang harus konsisten: warna brand, warna semantik, font, radius, bayangan, satuan jarak. Kapan nggak? Nilai yang memang sekali pakai — token yang terlalu banyak sama buruknya dengan warna yang berantakan. Di proyek ini token jadi dasar: Bab 5 memakainya buat mengatur jarak komponen, Bab 12 menaikkan statusnya jadi *design system*, dan pas Bootstrap tiba di Bab 9 kamu akan menyadari framework itu pun menyimpan keputusannya sebagai custom properties — buku ini mengajarkanmu menuliskannya sendiri lebih dulu.
 
 ```text
 Ilustrasi alir token (bukan kode):
@@ -411,9 +411,9 @@ Membangun awal *landing page* Tokosaya (`tokosaya-css/index.html`) yang terdiri 
 
 ### Persiapan
 
-1. Pastikan struktur folder kamu sebagai berikut: `tokosaya-css/index.html` dan `tokosaya-css/css/style.css`. Kalau folder proyek belum ada, buat dua folder: `tokosaya-css/` beserta subfolder `css/`.
+1. Pastikan struktur foldermu sebagai berikut: `tokosaya-css/index.html` dan `tokosaya-css/css/style.css`. Kalau folder proyek belum ada, buat dua folder: `tokosaya-css/` beserta subfolder `css/`.
 2. Buka `index.html` lama kamu. Kita akan menimpa isinya dengan versi landing page baru; kalau ingin menyimpan versi Bab 2, salin dulu sebagai `index-lama.html`.
-3. Buka `css/style.css` dan perhatikan aturan yang ada di sana dari Bab 3. Praktikum ini menimpa isi file dengan struktur yang lebih rapi; pindahkan dulu apa pun yang ingin dijaga ke catatan kamu.
+3. Buka `css/style.css` dan perhatikan aturan yang ada di sana dari Bab 3. Praktikum ini menimpa isi file dengan struktur yang lebih rapi; pindahkan dulu apa pun yang ingin dijaga ke catatanmu.
 4. Siapkan satu jendela bertuliskan token Tokosaya (4.8) buat keperluan pemeriksaan silang.
 
 ### Langkah Kerja
@@ -861,7 +861,7 @@ File terbuka di browser sebagai halaman *landing page* Tokosaya satu kolom. Amat
 
 ## Studi Kasus
 
-Sebuah dinas pelayanan publik kota meminta kelas magang Sistem Informasi meninjau halaman "Pemberitahuan Penyesuaian Tarif Retribusi" di portalnya. Halaman ini penting: warga harus memahami tabel tarif, jadwal pemberlakuan, dan jalur pengaduan. Tim meminta kamu, sebagai orang yang baru berlatih tipografi di Bab 4, menilai dua versi halaman yang mereka siapkan — versi A (lama) dan versi B (usulan) — lalu menjelaskan mana yang hierarkinya baik dan kenapa. Seluruhnya berupa HTML + CSS murni, sehingga setiap temuan bisa kamu terapkan lewat ilmu bab ini.
+Sebuah dinas pelayanan publik kota meminta kelas magang Sistem Informasi meninjau halaman "Pemberitahuan Penyesuaian Tarif Retribusi" di portalnya. Halaman ini penting: warga harus memahami tabel tarif, jadwal pemberlakuan, dan jalur pengaduan. Tim memintamu, sebagai orang yang baru berlatih tipografi di Bab 4, menilai dua versi halaman yang mereka siapkan — versi A (lama) dan versi B (usulan) — lalu menjelaskan mana yang hierarkinya baik dan kenapa. Seluruhnya berupa HTML + CSS murni, sehingga setiap temuan bisa kamu terapkan lewat ilmu bab ini.
 
 Amati ciri-cirinya berikut secara sejajar. Versi A memakai hampir semua teks 14px: judul halaman, isi, tabel tarif, dan catatan kaki; satu-satunya penanda penting adalah penebalan acak — beberapa kalimat dicetak tebal karena "tampak penting pas ditulis dulu". Ia memakai empat jenis font (font berbeda dari tiap penulis konten pas ditempel dari dokumen Word), semua link berwarna abu-abu gelap sama kayak teks, dan banner perhatian memakai teks putih 10px di atas latar kuning-amber pekat. Versi B menerapkan satu skala tipografi: judul `h1` memakai Poppins 2.25rem, subjudul lead 1.25rem, isi Inter 1rem dengan `line-height` 1.6, tabel 0.875rem, dan label "Baru Berlaku" berbentuk badge 0.75rem berlatar amber dengan teks gelap. Perbedaannya bisa kamu ringkas dalam tabel berikut:
 
@@ -880,7 +880,7 @@ Kaitannya dengan materi dan profesi SI: halaman layanan publik adalah antarmuka 
 
 ## Latihan Mandiri
 
-1. Jelaskan dengan kalimat kamu sendiri perbedaan *typeface* dan *font*, lalu sebutkan satu contoh pasangan keduanya di luar buku ini (bukan Poppins). Sertakan kenapa kombinasi "font heading + font isi" yang berbeda lebih baik daripada satu font buat semuanya.
+1. Jelaskan dengan kalimatmu sendiri perbedaan *typeface* dan *font*, lalu sebutkan satu contoh pasangan keduanya di luar buku ini (bukan Poppins). Sertakan kenapa kombinasi "font heading + font isi" yang berbeda lebih baik daripada satu font buat semuanya.
 2. Seorang teman menulis `font-family: Poppins;` (tanpa tanda kutip dan tanpa fallback). Jelaskan dua masalah pada penulisan itu dan tulis versi perbaikannya lengkap dengan alasan setiap bagian.
 3. Hitung nilai piksel dari skala Tokosaya pada basis 16px: 3rem, 1.875rem, 1.25rem, dan 0.75rem. Kemudian nyatakan dalam satu kalimat kenapa memakai `rem` bikin skala ini lebih mudah disesuaikan di Bab 13 dibanding memakai `px` di setiap aturan.
 4. Gunakan data tabel kontras pada 4.5: manakah yang dari pasangan berikut yang lolos ambang AA buat teks kecil di atas latar putih — (a) teks `#4F46E5`, (b) teks `#16A34A`, (c) teks `#1E293B`? Untuk pilihan yang gagal, nyatakan satu teknik perbaikan (misalnya tint + teks gelap) dan jelaskan kenapa teknik itu bekerja.
@@ -889,16 +889,16 @@ Kaitannya dengan materi dan profesi SI: halaman layanan publik adalah antarmuka 
 
 ## Tugas
 
-**Tugas 1 (individu) — Laporan Analisis Tipografi.** Pilih satu halaman informasi nyata (informasi akademik, portal layanan publik, atau halaman katalog UMKM, selain halaman latihan buku ini). Analisis hierarki tipografinya dalam laporan 2–3 halaman: ukuran/jarak/keluarga font yang teramati, penilaian hierarki baik/buruk, dan satu usulan perbaikan disertai potongan CSS (token + skala) versi kamu. Keluaran yang dikumpulkan: dokumen laporan (PDF/DOCX) dan `latihan/analisis-4.css`. Kriteria ringkas: ada pengukuran nyata (bukan perkiraan), merujuk ambang kontras WCAG dengan benar, potongan CSS valid dan memakai token.
+**Tugas 1 (individu) — Laporan Analisis Tipografi.** Pilih satu halaman informasi nyata (informasi akademik, portal layanan publik, atau halaman katalog UMKM, selain halaman latihan buku ini). Analisis hierarki tipografinya dalam laporan 2–3 halaman: ukuran/jarak/keluarga font yang teramati, penilaian hierarki baik/buruk, dan satu usulan perbaikan disertai potongan CSS (token + skala) versimu. Keluaran yang dikumpulkan: dokumen laporan (PDF/DOCX) dan `latihan/analisis-4.css`. Kriteria ringkas: ada pengukuran nyata (bukan perkiraan), merujuk ambang kontras WCAG dengan benar, potongan CSS valid dan memakai token.
 
 **Tugas 2 (kelompok 3–4 orang) — Palet alternatif buat Tokosaya.** Susun satu varian palet baru (tetap memakai struktur token `:root` yang sama, cuma nilai yang berubah: misalnya keluarga hijau-teal buat *primary*, amber tetap) dan buat `index.html` landing page versi kelompok yang seluruh warnanya lewat token. Keluaran: folder `latihan/palet-kelompok/` berisi 2 file tersebut + tabel kontras pasangan teks-latarnya (minimal 4 baris). Kriteria singkat: semua pasangan teks utama lolos 4,5:1; cuma satu-dua titik gradien; keluarga warna nggak lebih dari 3 di luar netral dan semantik.
 
 ## Refleksi
 
 1. Sebelum membaca bab ini, gimana kamu biasanya memilih ukuran font? Setelah mengenal skala tipografi, keputusan mana dari kebiasaan lama yang kini ingin kamu perbaiki lebih dahulu?
-2. Token mengubah cara kamu menulis CSS (nilai → makna). Menurut kamu, perubahan pola pikir ini paling dirasakan pas bekerja sendiri, atau pas bekerja dalam tim? Jelaskan.
+2. Token mengubah caramu menulis CSS (nilai → makna). Menurutmu, perubahan pola pikir ini paling dirasakan pas bekerja sendiri, atau pas bekerja dalam tim? Jelaskan.
 3. Dari studi kasus layanan publik: keterbacaan itu soal keadilan akses informasi. Pernahkah kamu gagal membaca sesuatu di layar karena tipografinya? Apa yang seharusnya dilakukan penyajiannya?
-4. Kalau besok website Tokosaya harus tampil di HP pelanggan dengan kualitas jaringan buruk (font gagal diunduh), apa yang menolong halaman kamu tetap terlihat baik? Kaitkan dengan *fallback stack* dan pilihan font sistem.
+4. Kalau besok website Tokosaya harus tampil di HP pelanggan dengan kualitas jaringan buruk (font gagal diunduh), apa yang menolong halamanmu tetap terlihat baik? Kaitkan dengan *fallback stack* dan pilihan font sistem.
 
 ## Rangkuman
 

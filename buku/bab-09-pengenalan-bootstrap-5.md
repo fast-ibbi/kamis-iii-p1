@@ -202,7 +202,7 @@ Penjelasan: overlay bekerja lewat dua mekanisme kaskade. Pertama, urutan pemuata
 
 ### 9.8 Wawasan Industri: Bootstrap vs Tailwind CSS
 
-Supaya gambaran industri kamu lebih utuh, kamu juga perlu mengenal rival utama Bootstrap: **Tailwind CSS** (versi 3.x). Keduanya sama-sama *framework* CSS populer, tetapi berbeda filosofi. Bootstrap lahir sebagai pustaka **komponen-siaw**: kelas kayak `.card` atau `.btn-primary` mendandani satu kesatuan utuh sekaligus, sehingga antarmuka cepat jadi namun rupa cenderung seragam. Tailwind memilih arah **utility-first**: antarmuka disusun dari kelas-kelas atomik yang banget kecil dan dikomposisi langsung di HTML, memberi kebebasan bentuk besar namun menuntut penggabungan banyak kelas pada tiap elemen — dan pada pemakaian penuhnya lazim ditemani alat perakit (*build tool*) buat mengurus file CSS akhir. Keduanya pada inti paling murni adalah sekumpulan CSS; perilaku interaktif di dunia industri tetap datang dari kode JavaScript terpisah di luar cakupan buku ini. Buku ini memilih Bootstrap karena komponen siap pakai dan dokumentasinya ramah buat pemula, sementara Tailwind cukup dikenal namanya tanpa contoh kode — sebagaimana ketentuan kontrak buku ini. ⚠ *version-sensitive*: periksa dokumentasi resmi terbaru (getbootstrap.com / tailwindcss.com).
+Supaya gambaran industrimu lebih utuh, kamu juga perlu mengenal rival utama Bootstrap: **Tailwind CSS** (versi 3.x). Keduanya sama-sama *framework* CSS populer, tetapi berbeda filosofi. Bootstrap lahir sebagai pustaka **komponen-siaw**: kelas kayak `.card` atau `.btn-primary` mendandani satu kesatuan utuh sekaligus, sehingga antarmuka cepat jadi namun rupa cenderung seragam. Tailwind memilih arah **utility-first**: antarmuka disusun dari kelas-kelas atomik yang banget kecil dan dikomposisi langsung di HTML, memberi kebebasan bentuk besar namun menuntut penggabungan banyak kelas pada tiap elemen — dan pada pemakaian penuhnya lazim ditemani alat perakit (*build tool*) buat mengurus file CSS akhir. Keduanya pada inti paling murni adalah sekumpulan CSS; perilaku interaktif di dunia industri tetap datang dari kode JavaScript terpisah di luar cakupan buku ini. Buku ini memilih Bootstrap karena komponen siap pakai dan dokumentasinya ramah buat pemula, sementara Tailwind cukup dikenal namanya tanpa contoh kode — sebagaimana ketentuan kontrak buku ini. ⚠ *version-sensitive*: periksa dokumentasi resmi terbaru (getbootstrap.com / tailwindcss.com).
 
 | Aspek | Bootstrap 5.3 | Tailwind CSS 3.x |
 |---|---|---|
@@ -763,14 +763,14 @@ Keputusan akhirnya begini: **Bootstrap 5.3.3 via CDN CSS + lapisan *design token
 
 ## Tugas
 
-**Tugas 1 (individu) — Laporan Pemilihan Pola Gaya.** Buka `index.html` hasil Praktikum dan buat tabel berisi 10 pilihan gaya yang kamu temukan di sana (misal `mb-3`, `text-center`, `py-5`, `h-100`, `badge text-bg-warning`, `btn-tokosaya`, `produk-card`, `hero-cta`). Tentukan buat setiap pilihan: pemakaiannya sekali pakai atau berulang, dan keputusan kamu *utility* vs kelas kustom — dengan satu kalimat alasan berbasis tiga aturan 9.6. **Keluaran:** file PDF atau dokumen berisi tabel 2 kolom + satu paragraf simpulan. **Kriteria:** keputusan nggak boleh seragam semua satu tipe; minimal 3 argumen harus mengutip alasan konsistensi token Tokosaya.
+**Tugas 1 (individu) — Laporan Pemilihan Pola Gaya.** Buka `index.html` hasil Praktikum dan buat tabel berisi 10 pilihan gaya yang kamu temukan di sana (misal `mb-3`, `text-center`, `py-5`, `h-100`, `badge text-bg-warning`, `btn-tokosaya`, `produk-card`, `hero-cta`). Tentukan buat setiap pilihan: pemakaiannya sekali pakai atau berulang, dan keputusanmu *utility* vs kelas kustom — dengan satu kalimat alasan berbasis tiga aturan 9.6. **Keluaran:** file PDF atau dokumen berisi tabel 2 kolom + satu paragraf simpulan. **Kriteria:** keputusan nggak boleh seragam semua satu tipe; minimal 3 argumen harus mengutip alasan konsistensi token Tokosaya.
 
 **Tugas 2 (kelompok 3 orang) — Brief Final Project (Milestone M1).** Sesuai peta milestone Bab 9–16, tuliskan brief 1 halaman buat proyek final kelompokmu: tema terpilih (salah satu dari 8 pilihan kasus Bab 16), audiens utama, tujuan website, daftar halaman awal, dan tiga keputusan teknologi awal (contoh: pustaka gaya, strategi responsif, lapisan token kustom) beserta alasannya masing-masing. Brief memanfaatkan kerangka berpikir 9.1 dan studi kasus bab ini. **Keluaran:** satu halaman brief baku berformat PDF, dikumpulkan pada pertemuan 9. **Kriteria:** kelengkapan 5 bagian, kejelasan alasan tiap keputusan (bukan tren melulu), dan konsistensi tema dengan pilihan kasus.
 
 ## Refleksi
 
 1. Sebelum bab ini, pernahkah kamu merasa "waktu habis buat menulis CSS yang sama berulang"? Setelah menguji grid Bootstrap, bagian mana dari kerja yang kini terasa bisa diserahkan ke pustaka — dan bagian mana yang justru harus tetap di tanganmu?
-2. Komentar "tanpa bundle JavaScript" pada tiap `head` halaman adalah jejak keputusan, bukan tanda lupa. Gimana cara kamu menjelaskan keputusan itu kepada klien UMKM yang bertanya "kenapa menunya tak bisa dilipat?" — dengan bahasa awam yang jujur?
+2. Komentar "tanpa bundle JavaScript" pada tiap `head` halaman adalah jejak keputusan, bukan tanda lupa. Gimana caramu menjelaskan keputusan itu kepada klien UMKM yang bertanya "kenapa menunya tak bisa dilipat?" — dengan bahasa awam yang jujur?
 3. Kalau overlay CSS kustom dihapus, tampilan Tokosaya akan balik ke rupa bawaan pustaka. Apa arti itu bagi pemisahan tanggung jawab antara "sistem" (pustaka) dan "identitas" (token)? Apa peran *design token* dari Bab 4 dalam pemandangan tersebut?
 4. Pas timmu kelak memilih antara pustaka komponen-siaw dan pustaka utility-first, data apa yang harus dikumpulkan sebelum memutuskan? Susun tiga pertanyaan berbasis kebutuhan yang akan kamu tanyakan kepada klien terlebih dahulu.
 
@@ -865,7 +865,7 @@ File: latihan/analisis-01.html
 </div>
 ```
 
-Pertanyaan: (a) Apa cacat struktur pada layout grid di atas? (b) Bagaimana dampaknya pada jarak antar panel dan penggaris kolom? (c) Bagaimana perbaikan minimal markup-nya?
+Pertanyaan: (a) Apa cacat struktur pada layout grid di atas? (b) Bagaimana dampaknya pada jarak antar panel dan penggaris kolom? (c) Bagaimana perbaikan minimal markupnya?
 
 **2.** Perhatikan potongan berikut pada halaman katalog UMKM:
 

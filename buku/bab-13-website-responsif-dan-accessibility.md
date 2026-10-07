@@ -84,15 +84,15 @@ Strategi *breakpoint* yang konsisten memberi tiga keuntungan. Pertama, pengujian
 
 Gambar sering jadi elemen paling berat dan paling mudah bikin layout berantakan pas layar berubah. CSS memberi fondasi: `img { max-width: 100%; }` (atau utilitas `img-fluid` Bootstrap) supaya gambar nggak meluber keluar wadah. Tapi itu belum benar-benar "responsif": file yang sama tetap dimuat buat semua layar. Karena itu, HTML menyediakan dua mekanisme lanjutan yang dibahas singkat di sini: atribut `srcset` dan elemen `<picture>`.
 
-Atribut `srcset` dipakai buat **menyediakan beberapa file gambar dengan lebar berbeda** (misalnya 480 px, 960 px, dan 1440 px) dari satu konten yang sama, lalu browser memilih mana yang paling pas. Pasangannya, `sizes`, menjelaskan lebar area yang akan ditempati gambar pada kondisi layar berbeda. Bentuknya bisa kayak gini: `srcset="hero-480.svg 480w, hero-1200.svg 1200w"` dengan `sizes="(min-width: 992px) 50vw, 92vw"`. Sementara itu, elemen `<picture>` punya tugas berbeda: dipakai buat **mengganti komposisi gambar** (misalnya gambar lebar di desktop, versi potret di HP) lewat elemen `source` yang memakai atribut `media`. Di dalam `<picture>`, browser memilih *source* pertama yang kondisi media-nya cocok. Jadi, kalau kamu memakai `min-width`, tulis urutannya dari kondisi terlebar ke yang lebih sempit, lalu `img` sebagai pilihan terakhir. Detail lengkapnya bisa kamu lihat lagi di MDN; yang penting diingat, `alt` tetap wajib dan tetap harus memakai bahasa pengguna.
+Atribut `srcset` dipakai buat **menyediakan beberapa file gambar dengan lebar berbeda** (misalnya 480 px, 960 px, dan 1440 px) dari satu konten yang sama, lalu browser memilih mana yang paling pas. Pasangannya, `sizes`, menjelaskan lebar area yang akan ditempati gambar pada kondisi layar berbeda. Bentuknya bisa kayak gini: `srcset="hero-480.svg 480w, hero-1200.svg 1200w"` dengan `sizes="(min-width: 992px) 50vw, 92vw"`. Sementara itu, elemen `<picture>` punya tugas berbeda: dipakai buat **mengganti komposisi gambar** (misalnya gambar lebar di desktop, versi potret di HP) lewat elemen `source` yang memakai atribut `media`. Di dalam `<picture>`, browser memilih *source* pertama yang kondisi medianya cocok. Jadi, kalau kamu memakai `min-width`, tulis urutannya dari kondisi terlebar ke yang lebih sempit, lalu `img` sebagai pilihan terakhir. Detail lengkapnya bisa kamu lihat lagi di MDN; yang penting diingat, `alt` tetap wajib dan tetap harus memakai bahasa pengguna.
 
 Tipografi juga perlu ikut menyesuaikan diri. Kalau ukuran judul dipatok dalam piksel tetap, hasilnya sering terlalu kecil di HP dan baru terasa pas di desktop. Fungsi `clamp(nilai-minimum, nilai-ideal, nilai-maksimum)` menyelesaikan masalah ini dalam satu baris: `font-size: clamp(1.75rem, 4vw + 1rem, 2.75rem)` artinya ukuran judul nggak akan lebih kecil dari 1,75rem, tumbuh mengikuti lebar layar lewat `4vw`, lalu berhenti di 2,75rem. Nilai tengahnya boleh berupa kombinasi satuan; pola yang umum adalah menambahkan `vw` (satuan dari lebar *viewport*) ke ukuran dasar yang statis. Jadi, skala tipografi dari Bab 4 tetap dipakai, cuma sekarang mengalir mengikuti layar.
 
-Hal yang sering terlupa adalah **perlindungan terhadap luber (*overflow*)**. Layout biasanya rusak bukan karena media query-nya salah, tetapi karena ada satu elemen yang "bandel": nama produk panjang tanpa spasi, URL panjang di tabel, atau gambar berukuran tetap di dalam baris *flex*. Perlindungan praktisnya meliputi `img-fluid` pada gambar, `overflow-wrap: break-word` atau `overflow-wrap: anywhere` pada teks yang berpotensi panjang, `min-width: 0` pada anak langsung kontainer *flex* supaya bisa ikut menyempit, dan menghindari lebar piksel tetap pada elemen yang seharusnya mengalir. Empat kebiasaan kecil ini menjaga halaman Tokosaya tetap rapi dari 320 px sampai 1400 px; tanpa itu, satu kata panjang saja bisa memunculkan penggeser horizontal di seluruh halaman.
+Hal yang sering terlupa adalah **perlindungan terhadap luber (*overflow*)**. Layout biasanya rusak bukan karena media querynya salah, tetapi karena ada satu elemen yang "bandel": nama produk panjang tanpa spasi, URL panjang di tabel, atau gambar berukuran tetap di dalam baris *flex*. Perlindungan praktisnya meliputi `img-fluid` pada gambar, `overflow-wrap: break-word` atau `overflow-wrap: anywhere` pada teks yang berpotensi panjang, `min-width: 0` pada anak langsung kontainer *flex* supaya bisa ikut menyempit, dan menghindari lebar piksel tetap pada elemen yang seharusnya mengalir. Empat kebiasaan kecil ini menjaga halaman Tokosaya tetap rapi dari 320 px sampai 1400 px; tanpa itu, satu kata panjang saja bisa memunculkan penggeser horizontal di seluruh halaman.
 
 ### 13.4 Responsive Navigation Patterns
 
-Navigasi adalah komponen pertama yang "retak" pas layar menyempit, karena daftar link horizontal butuh lebar yang tumbuh bareng banyak item. Buku ini mengajarkan pola **CSS murni**, tanpa memandalkan skrip apa pun, dan mahasiswa diarahkan mengenali pola industri yang aslinya butuh JavaScript (di luar cakupan mata kuliah; contohnya menu *collapse* resmi Bootstrap yang mengandalkan file skripnya sendiri — di proyek kita markup-nya diabaikan dan tampilan mobile diatur CSS kustom). Tiga pola berikut praktis dan tahan uji.
+Navigasi adalah komponen pertama yang "retak" pas layar menyempit, karena daftar link horizontal butuh lebar yang tumbuh bareng banyak item. Buku ini mengajarkan pola **CSS murni**, tanpa memandalkan skrip apa pun, dan mahasiswa diarahkan mengenali pola industri yang aslinya butuh JavaScript (di luar cakupan mata kuliah; contohnya menu *collapse* resmi Bootstrap yang mengandalkan file skripnya sendiri — di proyek kita markupnya diabaikan dan tampilan mobile diatur CSS kustom). Tiga pola berikut praktis dan tahan uji.
 
 **Pola A — *flex-wrap***: daftar link dibiarkan melipat ke baris baru pas sempit (`flex-wrap: wrap` pada `ul` kaskade). Sederhana, tanpa media query; cocok kalau jumlah link sedikit (3–5). Tokosaya punya empat link sehingga pola ini layak, tapi pas melipat, link terakhir menempel kiri dan terlihat "berantakan" kalau tanpa jarak seragam.
 
@@ -104,7 +104,7 @@ Ada dua kaidah yang berlaku buat semua pola. Pertama, ukuran *target* sentuh har
 
 ### 13.5 Aksesibilitas Dasar (WCAG)
 
-Aksesibilitas (*accessibility*) berarti halaman kamu bisa dipakai oleh orang dengan kondisi dan kebutuhan yang beragam: pengguna *screen reader*, pengguna yang cuma mengandalkan keyboard, pengguna dengan penglihatan terbatas, pengguna di bawah sinar matahari, sampai pengguna dengan koneksi lambat. Jadi, aksesibilitas bukan fitur tambahan. Di layanan publik dan sistem informasi organisasi, aksesibilitas menyangkut hak pengguna sekaligus memperluas jangkauan layanan. Tokosaya yang ramah *screen reader* juga biasanya lebih mudah diindeks mesin pencari karena struktur maknanya lebih jelas.
+Aksesibilitas (*accessibility*) berarti halamanmu bisa dipakai oleh orang dengan kondisi dan kebutuhan yang beragam: pengguna *screen reader*, pengguna yang cuma mengandalkan keyboard, pengguna dengan penglihatan terbatas, pengguna di bawah sinar matahari, sampai pengguna dengan koneksi lambat. Jadi, aksesibilitas bukan fitur tambahan. Di layanan publik dan sistem informasi organisasi, aksesibilitas menyangkut hak pengguna sekaligus memperluas jangkauan layanan. Tokosaya yang ramah *screen reader* juga biasanya lebih mudah diindeks mesin pencari karena struktur maknanya lebih jelas.
 
 Standar acuannya adalah WCAG (*Web Content Accessibility Guidelines*), saat ini versi 2.2, diterbitkan W3C. Inti prinsipnya dirangkum empat kata **POUR**: **Perceivable** (dapat dipersepsi — konten punya alternatif, misal `alt` buat gambar dan teks buat audio), **Operable** (dapat dioperasikan — navigasi dan formulir bisa difungsikan lewat keyboard), **Understandable** (dapat dipahami — bahasa jelas, prediksi perilaku konsisten, label input jelas), dan **Robust** (teguh — markup benar sehingga dibaca penuh oleh beragam *assistive technology*). WCAG mendefinisikan tiga tingkat kepatuhan: **A** (dasar), **AA** (standar yang lazim diwajibkan di banyak sektor), dan **AAA** (tertinggi). Buku ini melatih bagian level A dan AA yang paling sering masalahnya sederhana tapi dampaknya besar, dan sisa bab ini membahasnya satu per satu.
 
@@ -122,13 +122,13 @@ Sikap paling penting di bab ini adalah: aksesibilitas **bukan soal skor saja**. 
 
 ### 13.6 Alt Text, Heading, dan Link yang Bermakna
 
-Tiga elemen kecil ini berpengaruh banget ke pengalaman pengguna *screen reader*, dan semuanya sepenuhnya bergantung pada cara kamu menulis HTML. Aturannya memang singkat, tapi penilaiannya tetap perlu konteks.
+Tiga elemen kecil ini berpengaruh banget ke pengalaman pengguna *screen reader*, dan semuanya sepenuhnya bergantung pada caramu menulis HTML. Aturannya memang singkat, tapi penilaiannya tetap perlu konteks.
 
 **Alt text**: setiap `<img>` wajib menyertakan `alt`. Alt yang baik menggambarkan **kegunaan gambar dalam konteks halaman**, bukan filenya; "keyboard-mekanis.svg" bukan alt, "Keyboard Mekanis KX-210 dengan 87 tombol" ya. Gambar dekoratif — pembatas, ilustrasi murni hiasan — memakai `alt=""` (disebut juga alt kosong): *screen reader* akan melewatkannya kayak orang tanpa kelainan penglihatan melewati hiasan. Kesalahan umum: mengulang nama produk di alt **dan** di judul kartu sehingga pengguna "mendengar dua kali"; cukup satu tempat yang paling bermakna. Jangan menulis "gambar keyboard" di awal alt karena *screen reader* udah mengumumkan "gambar".
 
 **Heading**: satu `<h1>` per halaman, lalu turun bertingkat tanpa melompat (h1 ke h2, bukan h1 ke h4). Bagi pengguna *screen reader*, heading itu kayak peta daftar isi karena mereka sering menelusuri halaman dari heading ke heading. Ukuran tampilannya nggak menentukan level; judul kartu produk yang kecil tetap boleh `h2` lalu dikecilkan pakai kelas, karena level itu soal semantik, bukan gaya visual. Urutan heading yang benar juga bikin halaman lebih mudah dipindai oleh siapa pun, bukan cuma pengguna *screen reader*.
 
-**Link**: teks link harus tetap masuk akal pas dibaca terpisah dari kalimatnya, karena pengguna *screen reader* sering menelusuri halaman lewat daftar link saja. Teks kayak "Klik di sini", "baca", atau "selengkapnya >>" nggak cukup jelas; jauh lebih baik kalau tujuannya disebut langsung, misalnya "Lihat katalog keyboard" atau "Unduh panduan pesanan". Cara cek sederhananya begini: kalau semua teks link di halaman kamu dikumpulkan jadi satu daftar, apakah orang masih bisa menebak tujuan masing-masing? Di Tokosaya, link ikon kayak keranjang wajib punya `aria-label` karena nggak menampilkan teks yang terlihat.
+**Link**: teks link harus tetap masuk akal pas dibaca terpisah dari kalimatnya, karena pengguna *screen reader* sering menelusuri halaman lewat daftar link saja. Teks kayak "Klik di sini", "baca", atau "selengkapnya >>" nggak cukup jelas; jauh lebih baik kalau tujuannya disebut langsung, misalnya "Lihat katalog keyboard" atau "Unduh panduan pesanan". Cara cek sederhananya begini: kalau semua teks link di halamanmu dikumpulkan jadi satu daftar, apakah orang masih bisa menebak tujuan masing-masing? Di Tokosaya, link ikon kayak keranjang wajib punya `aria-label` karena nggak menampilkan teks yang terlihat.
 
 ### 13.7 Kontras Warna dan Focus State
 
@@ -229,7 +229,7 @@ File: tokosaya-bootstrap/demo-gambar-responsif.html
 <body>
   <!-- khusus demonstrasi: aset svg di folder img/ -->
   <picture>
-    <!-- browser memilih source pertama yang media-nya cocok -->
+    <!-- browser memilih source pertama yang medianya cocok -->
     <source media="(min-width: 992px)" srcset="img/hero-1200.svg">
     <source media="(min-width: 576px)" srcset="img/hero-768.svg">
     <img src="img/hero-480.svg"
@@ -897,7 +897,7 @@ Perhatikan pula dua kebiasaan kecil yang menyelamatkan proyek: (1) `img` selalu 
 
 ### Hasil yang Diharapkan
 
-Setelah refactor, kondisi berikut **teramati** pada proyek kamu:
+Setelah refactor, kondisi berikut **teramati** pada proyekmu:
 
 1. Semua halaman bebas penggeser horizontal pada lebar 320 px hingga 1400 px (uji per panel perangkat; area kosong boleh ada, geseran wajib tidak).
 2. Katalog berubah 2 → 3 → 4 kolom tepat pada 768 px dan 992 px, bukan di lebar acak lain.
@@ -959,12 +959,12 @@ Hasil audit nggak boleh berhenti pada daftar; ia harus jadi urutan kerja. Tim me
 
 ## Latihan Mandiri
 
-1. Jelaskan dengan kalimat kamu sendiri perbedaan strategi *mobile-first* dan *desktop-first*, lalu tentukan strategi yang lebih cocok buat sistem informasi *back office* yang utamanya dipakai operator desktop, dengan dua alasan.
+1. Jelaskan dengan kalimatmu sendiri perbedaan strategi *mobile-first* dan *desktop-first*, lalu tentukan strategi yang lebih cocok buat sistem informasi *back office* yang utamanya dipakai operator desktop, dengan dua alasan.
 2. Tuliskan media query untuk navigasi Tokosaya yang menyusun link menumpuk pada layar di bawah 768 px dan jadi horizontal satu baris mulai 768 px, dan sertakan komentar `/* kustom */` yang menjelaskan breakpoint proyek.
 3. Sebuah halaman memakai tiga breakpoint: `578px`, `693px`, `941px`. Jelaskan mengapa nilai-nilai itu tergolong "angka ajaib" dan berikan strategi perbaikan yang kamu usulkan.
 4. Susun keputusan `alt` buat lima gambar ini: (a) logo Tokosaya di header; (b) foto produk keyboard KX-210; (c) garis pemisah ornamen; (d) grafik laporan di halaman tentang; (e) ikon panah di samping teks "Selengkapnya di halaman katalog keyboard". Tulis nilai `alt` yang tepat beserta alasannya.
 5. Potongan halaman memuat dua `h1` dan urutan `h1 → h4 → h2`. Sebutkan dua risiko yang ditimbulkan pada pengguna *screen reader*, lalu tuliskan urutan heading yang benar.
-6. Uji halaman `index.html` proyek kamu dengan Tab sepuluh kali (tanpa mouse). Catat urutan fokus yang terjadi dan identifikasi satu cacat urutan atau fokus yang hilang, lengkap dengan usulan perbaikan CSS yang spesifik.
+6. Uji halaman `index.html` proyekmu dengan Tab sepuluh kali (tanpa mouse). Catat urutan fokus yang terjadi dan identifikasi satu cacat urutan atau fokus yang hilang, lengkap dengan usulan perbaikan CSS yang spesifik.
 
 ## Tugas
 
@@ -974,7 +974,7 @@ Hasil audit nggak boleh berhenti pada daftar; ia harus jadi urutan kerja. Tim me
 ## Refleksi
 
 1. Kesulitan terbesar yang kamu temui pas mengaudit proyek sendiri itu apa — mengenali masalah, atau memutuskan prioritas perbaikan? Kenapa?
-2. Setelah mengetahui bahwa sebagian browser pengguna layanan publik memakai *screen reader*, aspek mana dari proyek Tokosaya yang menurut kamu paling nggak siap kalau dibuka oleh kelompok itu?
+2. Setelah mengetahui bahwa sebagian browser pengguna layanan publik memakai *screen reader*, aspek mana dari proyek Tokosaya yang menurutmu paling nggak siap kalau dibuka oleh kelompok itu?
 3. Apakah penggunaan Lighthouse bikin pemeriksaan manual jadi nggak perlu? Uraikan hal yang **tetap perlu dilakukan manual** meski skornya tinggi.
 4. Kapan seseorang layak mempertahankan strategi *desktop-first* pada pekerjaan yang nyata? Contoh konteks SI apa yang mendukung keputusan itu?
 
@@ -1084,7 +1084,7 @@ Sepanjang bab ini proyek Tokosaya udah melewati audit dan keluar dengan layout y
 2. **B** — Desktop-first dirancang untuk kepadatan layar besar; layar kecil akhirnya dikempiskan lewat tambalan `max-width`.
 3. **B** — Nilai tengah clamp adalah ukuran ideal yang bergantung lebar layar, terkurung antara minimum dan maksimum.
 4. **A** — `srcset` melayangkan pilihan file lebar berbeda dari satu konten gambar; perambah yang memilih pas.
-5. **C** — Perambah mengambil *source* pertama yang syarat media-nya terpenuhi, sehingga `min-width` ditulis dari terbesar.
+5. **C** — Perambah mengambil *source* pertama yang syarat medianya terpenuhi, sehingga `min-width` ditulis dari terbesar.
 6. **C** — POUR adalah Perceivable, Operable, Understandable, Robust; "Underlined" bukan prinsip WCAG.
 7. **C** — Level AA menetapkan 4,5:1 untuk teks normal; teks besar dan elemen non-teks 3:1.
 8. **C** — Tombol menu *collapse* resminya membutuhkan file skrip Bootstrap; di buku ini navigasi mobile diatur CSS kustom tanpa skrip.

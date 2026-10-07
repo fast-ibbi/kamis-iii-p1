@@ -30,7 +30,7 @@ Bayangkan kamu magang di tim digital Tokosaya, toko daring UMKM aksesori dan ele
 
 Ketiga gejala itu bukan kesalahan HTML, melainkan satu akar yang sama: **kotak**. Elemen HTML bukan teks mengambang; ia adalah kotak yang punya lapisan-lapisan, dan browser menghitung lebar serta tinggi kotak itu dengan aturan baku. Begitu aturan itu diabaikan, padding menambah lebar tanpa disadari, elemen *inline* menolak dimensi, dan elemen diposisikan melemparkan dirinya ke induk yang salah. Kebalikannya juga benar: setelah mahasiswa paham *box model*, banyak "keajaiban" layout jadi keputusan yang bisa dihitung — inilah keahlian yang diminta pas kamu menerjemahkan desain menjadi kode.
 
-Bab ini membawa kamu dari "CSS terlihat bekerja" menuju "CSS bisa dihitung". Di akhir bab, komponen kartu produk Tokosaya akan kamu bangun dari nol dengan diagram kotak yang bisa kamu inspeksi sendiri di DevTools.
+Bab ini membawamu dari "CSS terlihat bekerja" menuju "CSS bisa dihitung". Di akhir bab, komponen kartu produk Tokosaya akan kamu bangun dari nol dengan diagram kotak yang bisa kamu inspeksi sendiri di DevTools.
 
 ## Materi Pembelajaran
 
@@ -959,7 +959,7 @@ Remidiasinya memakai lima keputusan bab ini. (1) `box-sizing: border-box` global
 
 ## Latihan Mandiri
 
-1. Dengan analogi kamu sendiri (bukan menyalin bab), jelaskan urutan *content → padding → border → margin* dalam lima kalimat, lalu gambar diagram kotak ASCII buat kartu produk MW-88.
+1. Dengan analogimu sendiri (bukan menyalin bab), jelaskan urutan *content → padding → border → margin* dalam lima kalimat, lalu gambar diagram kotak ASCII buat kartu produk MW-88.
 2. Hitung lebar keseluruhan dua kotak berikut dan nyatakan perbedaannya: kotak A `width: 260px; padding: 16px; border: 4px;` (content-box) dan kotak B angka identik (border-box). Tuliskan perhitunganmu baris per baris.
 3. Dua kartu bertetangga memakai `margin-bottom: 28px` dan `margin-top: 20px`. Berapa jarak nyata di layar, dan properti apa yang diperjuangkan kalau kamu ingin jarangnya menjadi 20 px tanpa mengubah urutan aturan?
 4. Ubah `.nav-item` pada style.css menjadi `display: block`, amati hasilnya di browser, jelaskan kenapa navigasi berantakan, lalu kembalikan ke `inline-block`. Sertakan kesimpulan satu paragraf tentang kapan *inline* tak cukup buat komponen interaktif.
@@ -974,7 +974,7 @@ Remidiasinya memakai lima keputusan bab ini. (1) `box-sizing: border-box` global
 
 ## Refleksi
 
-1. Sebelum bab ini, keputusan jarakmu kemungkinan berupa tebakan ("coba 20 px"). Setelah paham *box model*, gimana cara kamu kini menjelaskan pilihan jarak kepada diri sendiri atau rekan desain?
+1. Sebelum bab ini, keputusan jarakmu kemungkinan berupa tebakan ("coba 20 px"). Setelah paham *box model*, gimana caramu kini menjelaskan pilihan jarak kepada diri sendiri atau rekan desain?
 2. Kapan kamu akan memilih `overflow: hidden` daripada `auto`? Adakah resiko menghilangkan informasi yang penting bagi pengguna sistem informasi yang membutuhkan teks penuh (misal nama mata kuliah)?
 3. Aturan "padding = bagian komponen, margin = jarak antar komponen" sering dilang di proyek awal. Apa akibat memakai keduannya di tempat yang salah terhadap ritme halaman?
 4. Gimana pengalamanmu pas memanfaatkan `max-width: 100%` pada kartu? Kapan pendekatan ini memadai dan kalau perlu diganti pola responsif di Bab 7?

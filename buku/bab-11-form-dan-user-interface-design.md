@@ -86,7 +86,7 @@ Sebelum membahas gaya tampilannya, kamu perlu paham dulu bahan penyusun form: el
 
 **`button`.** Di dalam sebuah `form`, tombol tanpa atribut *type* otomatis dianggap sebagai tombol kirim (submit) — itulah perilaku bawaan HTML. Jadi, kalau tombolnya cuma dipakai buat aksi visual atau pendamping, beri `type="button"` supaya form nggak terkirim tanpa sengaja.
 
-Contoh berikut merangkai semua elemen dasar itu ke dalam satu halaman latihan mandiri. Halaman ini sengaja ditulis dengan HTML murni tanpa gaya Bootstrap supaya perhatian kamu tetap ke struktur elemennya.
+Contoh berikut merangkai semua elemen dasar itu ke dalam satu halaman latihan mandiri. Halaman ini sengaja ditulis dengan HTML murni tanpa gaya Bootstrap supaya perhatianmu tetap ke struktur elemennya.
 
 File: tokosaya-bootstrap/latihan/elemen-form.html
 
@@ -163,7 +163,7 @@ File: tokosaya-bootstrap/latihan/elemen-form.html
 </html>
 ```
 
-Penjelasan: dari contoh ini, ada tiga hal yang paling penting buat kamu perhatikan. Pertama, setiap `label` terhubung ke medan lewat pasangan `for`–`id`, termasuk pada radio dan checkbox — hubungan inilah yang membuat klik pada label dan pembacaan layar bekerja benar. Kedua, kedua radio memakai `name="prodi"` yang sama sehingga browser membacanya sebagai satu kelompok pilihan tunggal. Ketiga, pemilihan atribut `type` yang tepat (`email`, `tel`) cukup dilakukan sekali di markup tanpa skrip apa pun.
+Penjelasan: dari contoh ini, ada tiga hal yang paling penting buatmu perhatikan. Pertama, setiap `label` terhubung ke medan lewat pasangan `for`–`id`, termasuk pada radio dan checkbox — hubungan inilah yang membuat klik pada label dan pembacaan layar bekerja benar. Kedua, kedua radio memakai `name="prodi"` yang sama sehingga browser membacanya sebagai satu kelompok pilihan tunggal. Ketiga, pemilihan atribut `type` yang tepat (`email`, `tel`) cukup dilakukan sekali di markup tanpa skrip apa pun.
 
 ### 11.3 Bootstrap Form
 
@@ -292,7 +292,7 @@ File: tokosaya-bootstrap/latihan/status-form.html
 
 Penjelasan: kedua medan memakai struktur kelompok yang sama; yang berubah cuma kelas status dan pembungkus pesannya. Perhatikan bahwa `invalid-feedback` dan `form-text` bisa muncul berdampingan: `form-text` tetap ada sebagai bantuan, sedangkan `invalid-feedback` baru tampil karena `is-invalid` menandai medan. Nilai `value` di sini sengaja diisi langsung di markup supaya statusnya terlihat masuk akal.
 
-Sekarang masuk ke catatan penting yang udah disinggung sejak awal bab. Kelas-kelas di atas hanyalah *styling statis*: kamu menuliskannya sendiri buat mempelajari bentuk visualnya. Dalam website produksi, kelas kayak ini biasanya ditambah dan dilepas otomatis oleh JavaScript Bootstrap sesuai isi pengguna, lengkap dengan kelas pembungkus kayak `was-validated` yang aktif setelah tombol kirim ditekan. Karena mata kuliah ini belum membahas JavaScript, mekanisme verifikasi aslinya nggak kita pakai dulu. Yang penting buat kamu pahami sekarang adalah bentuk akhirnya dan kapan elemen-elemen itu muncul. Dua hal yang masih relevan dalam cakupan bab ini: atribut `required` membuat browser menampilkan pesan bawaan pas medan kosong dikirim, dan pesan status di dekat medan tetap jadi penjelas utama — warna saja nggak cukup, kayak dibahas lagi pada 11.7.
+Sekarang masuk ke catatan penting yang udah disinggung sejak awal bab. Kelas-kelas di atas hanyalah *styling statis*: kamu menuliskannya sendiri buat mempelajari bentuk visualnya. Dalam website produksi, kelas kayak ini biasanya ditambah dan dilepas otomatis oleh JavaScript Bootstrap sesuai isi pengguna, lengkap dengan kelas pembungkus kayak `was-validated` yang aktif setelah tombol kirim ditekan. Karena mata kuliah ini belum membahas JavaScript, mekanisme verifikasi aslinya nggak kita pakai dulu. Yang penting buatmu pahami sekarang adalah bentuk akhirnya dan kapan elemen-elemen itu muncul. Dua hal yang masih relevan dalam cakupan bab ini: atribut `required` membuat browser menampilkan pesan bawaan pas medan kosong dikirim, dan pesan status di dekat medan tetap jadi penjelas utama — warna saja nggak cukup, kayak dibahas lagi pada 11.7.
 
 ### 11.6 Focus dan Keyboard
 
@@ -320,7 +320,7 @@ Aksesibilitas (*accessibility*) adalah kemampuan antarmuka buat dipakai oleh sem
 
 **Pesan status yang dibaca.** Pesan valid atau nggak valid yang tampil sebagai teks di dekat medan memenuhi prinsip penting WCAG: informasi nggak boleh disampaikan lewat warna saja. Bingkai merah pada `is-invalid` nggak banyak membantu pengguna buta warna kalau nggak ada teks pendamping; sebaliknya, pesan `invalid-feedback` yang tertulis membuat masalahnya langsung jelas. Karena itulah desain Tokosaya selalu memasangkan status visual dengan pesan kata-kata, bukan menggantinya.
 
-Kalau seluruh praktik ini terpenuhi, form kamu udah memenuhi fondasi WCAG 2.2 yang paling sering dicek: label, tujuan medan, kontras status, dan navigasi keyboard. Pengukuran yang lebih formal — kayak kontras, urutan dokumen, atau pengujian *device* — akan dibahas lagi dengan alatnya sendiri pada Bab 13, pas kamu mengaudit seluruh proyek Tokosaya.
+Kalau seluruh praktik ini terpenuhi, formmu udah memenuhi fondasi WCAG 2.2 yang paling sering dicek: label, tujuan medan, kontras status, dan navigasi keyboard. Pengukuran yang lebih formal — kayak kontras, urutan dokumen, atau pengujian *device* — akan dibahas lagi dengan alatnya sendiri pada Bab 13, pas kamu mengaudit seluruh proyek Tokosaya.
 
 ## Konsep Penting
 
@@ -505,7 +505,7 @@ Penjelasan singkat: halaman ini memadukan keempat status medan — valid, nggak 
 
 **Contoh 2 — panel status.** Empat unit pada halaman ini disusun berurutan supaya perbedaannya bisa dibaca berdampingan, kayak galeri status. Kelas `is-valid` dan `is-invalid` mengambil alih warna bingkai medan dan mengaktifkan pembungkus pesan masing-masing; `form-text` tetap hidup di bawahnya sebagai bantuan permanen. Atribut `readonly` dipilih buat nomor pesanan karena isiannya harus tetap terkirim bersama form, sedangkan `disabled` dipakai pada promo yang udah kedaluwarsa dan memang nggak disertakan. Dalam website nyata, penandaan status ini akan dilakukan oleh JavaScript Bootstrap menurut isian pengguna; di sini kelas ditulis manual supaya bentuk visualnya bisa dipelajari — dan itu penuh sesuai tujuan latihan ini.
 
-Kedua contoh mengikuti satu pola yang kini jadi refleks kamu: kelompok per medan, label selalu terpasang, kelas utilitas Bootstrap yang dipilih karena perannya, dan CSS kustom diberi komentar `/* kustom */` kalau benar-benar diperlukan. Pola ini akan terlihat lagi pada tiga file Praktikum berikut.
+Kedua contoh mengikuti satu pola yang kini jadi refleksmu: kelompok per medan, label selalu terpasang, kelas utilitas Bootstrap yang dipilih karena perannya, dan CSS kustom diberi komentar `/* kustom */` kalau benar-benar diperlukan. Pola ini akan terlihat lagi pada tiga file Praktikum berikut.
 
 ## Praktikum
 
@@ -520,7 +520,7 @@ Sesudah praktikum ini, mahasiswa bisa: (1) membangun halaman checkout visual sta
 ### Kebutuhan
 
 - Folder `tokosaya-bootstrap/` hasil Bab 9–10 yang memuat `index.html`, `katalog.html`, `tentang.html`, dan `kontak.html` (akan dibangun ulang), serta folder `css/` dan `img/`.
-- Visual Studio Code (atau editor pilihan kamu) dan Google Chrome dengan DevTools.
+- Visual Studio Code (atau editor pilihanmu) dan Google Chrome dengan DevTools.
 - Koneksi internet pas pertama kali membuka halaman, buat memuat CDN Bootstrap 5.3.3, Bootstrap Icons 1.11.3, dan Google Fonts sesuai kontrak bab ini.
 - Daftar produk baku Tokosaya (Bab 4): pada praktikum ini dipakai KX-210, MW-88, dan FD-64.
 
@@ -541,7 +541,7 @@ Sesudah praktikum ini, mahasiswa bisa: (1) membangun halaman checkout visual sta
 6. **Periksa status visual kontak.** Di `kontak.html`, pastikan medan nama bertanda hijau dengan pesan `valid-feedback` yang tampil, dan medan email bertanda merah dengan pesan `invalid-feedback` yang tampil keduanya sekaligus hasil kelas yang ditulis manual.
 7. **Periksa aliran fokus.** Tekan Tab dari awal dokumen pada kontak.html; catat urutan medan yang dilalui tombol Tab dan bandingkan dengan urutan visualnya.
 8. **Kirim uji coba.** Klik tombol "Kirim Pesan" setelah mengisi nama dan email; lihat perubahan URL di address bar (berisi parameter `?nama=...`) — perhatikan bahwa halaman memuat ulang karena belum ada pengolah data (perilaku bawaan `form`).
-9. **Rekam pengamatan.** Tuliskan hasil pengamatan langkah 4–8 pada catatan belajar kamu; halaman ini akan dipakai ulang pada audit Bab 13.
+9. **Rekam pengamatan.** Tuliskan hasil pengamatan langkah 4–8 pada catatan belajarmu; halaman ini akan dipakai ulang pada audit Bab 13.
 
 ### Kode
 
@@ -551,7 +551,7 @@ File: tokosaya-bootstrap/css/style.css
 
 ```css
 /* kustom — css/style.css versi ringkas buat Bab 11.
-   Kalau style.css Bab 9–10 kamu udah lengkap, pertahankan versi kamu;
+   Kalau style.css Bab 9–10 kamu udah lengkap, pertahankan versimu;
    cukup pastikan bagian :root dan aturan font/latar di bawah tersedia. */
 
 :root {
@@ -1005,7 +1005,7 @@ Masalah-masalah itu bukan kegagalan teknologi, melainkan kegagalan *desain form*
 
 Berikut perbaikannya yang didemokan dengan data kampus yang sama. Penyusunan ulang satu kolom membagi 18 medan menjadi tiga kelompok `fieldset` bertajuk: "Data Mahasiswa", "Pilihan Ujian", "Persetujuan". Label permanen menggantikan *placeholder*; tanggal memakai `type="date"` sehingga formatnya terkunci; sesi memakai satu pasang radio dalam `fieldset` sehingga satu pilihan menghilangkan yang lain; medan `autocomplete="name"` membantu isi ulang; dan tombolnya diberi label "Kirim Pendaftaran" sebagai aksi yang menyatakan akibatnya. Hasilnya: petugas penerimaan mendapatkan data yang konsisten, mahasiswa menyelesaikan proses lebih cepat, dan form itu sendiri menjadi lebih mudah dipakai pengguna pembaca layar — karena label, pengelompokan, dan urutan tab kini tertata.
 
-Pelajaran dari kasus ini terasa lewat proyek Tokosaya kamu sendiri: halaman `kontak.html` yang sama tadi memakai prinsip yang persis sama. Perbedaannya cuma skala: Tokosaya 7 medan, form kampus 18 medan. Prinsip desain form memang nggak berubah skalanya; yang berubah adalah jumlah kelompok `fieldset` dan ketegasan kamu mengelolanya.
+Pelajaran dari kasus ini terasa lewat proyek Tokosaya kamu sendiri: halaman `kontak.html` yang sama tadi memakai prinsip yang persis sama. Perbedaannya cuma skala: Tokosaya 7 medan, form kampus 18 medan. Prinsip desain form memang nggak berubah skalanya; yang berubah adalah jumlah kelompok `fieldset` dan ketegasanmu mengelolanya.
 
 ## Latihan Mandiri
 
@@ -1014,20 +1014,20 @@ Pelajaran dari kasus ini terasa lewat proyek Tokosaya kamu sendiri: halaman `kon
 3. Tulislah cuplikan HTML medan "Kode Promo" lengkap memakai pola Bootstrap: pembungkus `mb-3`, `label`/`form-label`, `input-group` dengan tombol lampiran `type="button"`, dan `form-text` berisi petunjuk format. Sertakan atribut `autocomplete="off"` dan jelaskan alasannya.
 4. Jelaskan perbedaan peran `form-text` dan `invalid-feedback`. Berikan satu contoh pesan yang pantas berada di `form-text` dan satu contoh yang pantas berada di `invalid-feedback` pada form kontak Tokosaya.
 5. Buka `kontak.html` hasil Praktikum di Chrome, tekan tombol Tab dari awal halaman, dan catat urutan fokus yang terjadi. Jelaskan kenapa urutan itu mengikuti urutan HTML, dan tuliskan satu perubahan urutan dokumen yang (kalau diperlukan) akan membuat urutan fokusnya lebih logis.
-6. Praktik tambahan: salin pola `keranjang.html`, ganti datasetnya jadi 3 produk pilihan kamu dari tabel katalog baku (bisa bervariasi jumlahnya), lalu pastikan angka subtotal dan total yang kamu hitung benar. Laporkan angka yang kamu dapatkan.
+6. Praktik tambahan: salin pola `keranjang.html`, ganti datasetnya jadi 3 produk pilihanmu dari tabel katalog baku (bisa bervariasi jumlahnya), lalu pastikan angka subtotal dan total yang kamu hitung benar. Laporkan angka yang kamu dapatkan.
 
 ## Tugas
 
 **Tugas 1 (individu): footer berlangganan Tokosaya.** Tambahkan blok "Berlangganan Info Produk" di atas `<footer>` pada `kontak.html` memakai pola `input-group`: satu `input type="email"` berlabel `form-label`, tombol lampiran "Daftar", satu kolom `form-text` penjelasan, dan satu `form-check` persetujuan. Kumpulkan: file `kontak.html` terbaru dan paragraf 4–6 kalimat yang menjelaskan alasan tiap kelas yang dipakai. Kriteria: seluruh label terhubung, ada teks bantuan, tombol menyatakan aksinya, dan nggak ada bagian JavaScript.
 
-**Tugas 2 (kelompok 2–3 mahasiswa): audit form acara kampus.** Pilih satu form nyata di lingkungan kampus kamu (pendaftaran seminar, organisasi, atau laboratorium), dokumentasikan bentuknya (screenshot/tabel medan), uji dengan checklist bab ini (label eksplisit, pengelompokan, kontrol yang tepat, CTA, status, fokus, `autocomplete`), lalu tulis tabel rekomendasi perbaikan: Temuan → Prinsip bab ini → Form perbaikannya (cuplikan HTML). Kumpulkan laporan 3–5 halaman + tabel itu. Kriteria: setiap temuan diikat pada prinsip yang tepat, dan seluruh rekomendasi bisa diimplementasikan dengan HTML/CSS/Bootstrap tanpa JavaScript. Tugas ini menyiapkan milestone M3 (Bab 12) yang meminta halaman form utama kelompok kamu.
+**Tugas 2 (kelompok 2–3 mahasiswa): audit form acara kampus.** Pilih satu form nyata di lingkungan kampusmu (pendaftaran seminar, organisasi, atau laboratorium), dokumentasikan bentuknya (screenshot/tabel medan), uji dengan checklist bab ini (label eksplisit, pengelompokan, kontrol yang tepat, CTA, status, fokus, `autocomplete`), lalu tulis tabel rekomendasi perbaikan: Temuan → Prinsip bab ini → Form perbaikannya (cuplikan HTML). Kumpulkan laporan 3–5 halaman + tabel itu. Kriteria: setiap temuan diikat pada prinsip yang tepat, dan seluruh rekomendasi bisa diimplementasikan dengan HTML/CSS/Bootstrap tanpa JavaScript. Tugas ini menyiapkan milestone M3 (Bab 12) yang meminta halaman form utama kelompokmu.
 
 ## Refleksi
 
 1. Prinsip "satu kolom" terasa melambat bagi form panjang. Kapan pengecualiannya benar-benar wajar? Kapan pasangan medan pendek boleh bersebelahan, dan konsekuensinya apa pada HP?
 2. Kamu jauh lebih sering mengetik di HP daripada di komputer. Hubungan apa yang kamu temukan antara atribut `type` pada `input` dan pengalaman mengetik kamu sendiri, yang baru kamu sadari setelah 11.2?
-3. Pada Praktikum, kelas status ditulis manual demi mempelajari bentuk visualnya. Menurut kamu, apa risiko kalau sebuah tim produksi terus menulis kelas itu dengan tangan tanpa pemverifikasi sungguhan yang dijalankan JavaScript — dan desain apa yang meminimalkan risiko itu?
-4. Bab 13 adalah audit seluruh proyek Tokosaya. Dari tiga checklist (label, urutan tab, `autocomplete`), mana yang menurut kamu paling mudah terlewat pas membangun cepat, dan kenapa?
+3. Pada Praktikum, kelas status ditulis manual demi mempelajari bentuk visualnya. Menurutmu, apa risiko kalau sebuah tim produksi terus menulis kelas itu dengan tangan tanpa pemverifikasi sungguhan yang dijalankan JavaScript — dan desain apa yang meminimalkan risiko itu?
+4. Bab 13 adalah audit seluruh proyek Tokosaya. Dari tiga checklist (label, urutan tab, `autocomplete`), mana yang menurutmu paling mudah terlewat pas membangun cepat, dan kenapa?
 
 ## Rangkuman
 

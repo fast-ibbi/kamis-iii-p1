@@ -40,7 +40,7 @@ Masalah Rara sebenarnya bukan soal kemampuan—semua orang bisa menata tampilan�
 
 ### 12.1 Prinsip Dasar UI: Hierarki, Konsistensi, Usability, dan Affordance
 
-Antarmuka pengguna, atau *user interface* (UI), adalah seluruh wajah visual yang dilihat dan disentuh pengguna: layout, warna, huruf, tombol, sampai ikon kecil di bilah navigasi. Sementara itu, pengalaman pengguna, atau *user experience* (UX), cakupannya lebih luas: seluruh rasa dan hasil yang dialami pengguna dari awal membuka halaman sampai selesai berbelanja. Hubungan keduanya mirip restoran dan makanannya: UI adalah suasana ruangan, menu, dan desain piring; UX adalah keseluruhan pengalaman makan, termasuk kecepatan pelayanan dan rasa lega setelah kenyang. Prinsip dasar UI/UX pada subbab ini membantu kamu merancang keduanya sekaligus. Dalam konteks sistem informasi, keduanya menentukan apakah portal akademik, sistem rekam medis, atau toko daring benar-benar dipakai orang—bukan sekadar selesai dibangun.
+Antarmuka pengguna, atau *user interface* (UI), adalah seluruh wajah visual yang dilihat dan disentuh pengguna: layout, warna, huruf, tombol, sampai ikon kecil di bilah navigasi. Sementara itu, pengalaman pengguna, atau *user experience* (UX), cakupannya lebih luas: seluruh rasa dan hasil yang dialami pengguna dari awal membuka halaman sampai selesai berbelanja. Hubungan keduanya mirip restoran dan makanannya: UI adalah suasana ruangan, menu, dan desain piring; UX adalah keseluruhan pengalaman makan, termasuk kecepatan pelayanan dan rasa lega setelah kenyang. Prinsip dasar UI/UX pada subbab ini membantumu merancang keduanya sekaligus. Dalam konteks sistem informasi, keduanya menentukan apakah portal akademik, sistem rekam medis, atau toko daring benar-benar dipakai orang—bukan sekadar selesai dibangun.
 
 Prinsip pertama adalah **hierarki visual** (*visual hierarchy*): menata informasi menurut tingkat pentingnya, dari yang paling menonjol sampai yang pelengkap. Alasannya sederhana: pengguna nggak membaca halaman kata demi kata, melainkan memindai layar dalam hitungan detik lalu memutuskan ke mana perhatian mereka bergerak. Hierarki yang jelas mengarahkan pemindaian itu, kayak papan pengumuman kampus yang judulnya dicetak besar dan tebal, lalu rincian tanggalnya diletakkan lebih kecil di bawah. Mirip juga dengan surat resmi: kop besar di atas, isi paragraf di tengah, tanda tangan di bawah—pembaca tahu urutan membacanya tanpa perlu diarahkan.
 
@@ -98,7 +98,7 @@ BENAR BAGI (dua kelompok jelas):
   Propinsi       [________]
 ```
 
-Lima konsep ini akan jadi kacamata kamu sepanjang bab. Pas meninjau satu halaman, kamu nggak lagi sekadar bertanya, "kelihatannya bagus atau nggak?" melainkan "hierarkinya jelas, konsisten, mudah dipakai, affordance-nya benar, dan kelompok elemennya terbaca?" Pertanyaan kayak gini nanti akan memandu kamu pas membuat `styleguide.html` di Praktikum.
+Lima konsep ini akan jadi kacamatamu sepanjang bab. Pas meninjau satu halaman, kamu nggak lagi sekadar bertanya, "kelihatannya bagus atau nggak?" melainkan "hierarkinya jelas, konsisten, mudah dipakai, affordancenya benar, dan kelompok elemennya terbaca?" Pertanyaan kayak gini nanti akan memandumu pas membuat `styleguide.html` di Praktikum.
 
 ### 12.2 Whitespace, Alignment, Contrast, Repetition — Empat Alat Visual Utama
 
@@ -137,7 +137,7 @@ BERNAFAS (jarak sesuai skala):
 
 **Repetition** adalah pengulangan wujud yang serupa biar pola cepat terbentuk dan keputusan pengguna jadi lebih mudah. Delapan kartu produk memakai kelas `produk-card` yang sama; bilah header muncul dengan bentuk yang sama di semua halaman; badge status selalu berupa kapsul kecil di pojok kiri atas kartu. Pengulangan mengubah halaman yang beragam menjadi satu bahasa. Di sinilah empat alat tadi saling mengunci: alignment menjaga semua kartu tetap berada pada grid yang sama, whitespace memberi jarak yang konsisten, contrast menonjolkan bagian penting di kartu, dan repetition membuat semuanya terasa satu keluarga.
 
-Pas memeriksa halaman, biasakan mata kamu menyebut alat di balik setiap keputusan: "kartu ini punya padding 16 piksel" (whitespace), "judul dan harga rata kiri" (alignment), "tombol utama indigo ada di tengah tombol netral" (contrast), dan "badge status selalu berbentuk bulat kecil" (repetition). Bahasa kayak gini akan jadi obrolan sehari-hari tim desain Tokosaya.
+Pas memeriksa halaman, biasakan matamu menyebut alat di balik setiap keputusan: "kartu ini punya padding 16 piksel" (whitespace), "judul dan harga rata kiri" (alignment), "tombol utama indigo ada di tengah tombol netral" (contrast), dan "badge status selalu berbentuk bulat kecil" (repetition). Bahasa kayak gini akan jadi obrolan sehari-hari tim desain Tokosaya.
 
 ### 12.3 Design System: Definisi, Manfaat, dan Komponen Utama
 
@@ -198,7 +198,7 @@ Lalu gimana token ini berdampingan dengan Bootstrap? Bootstrap 5.3 udah membawa 
 Aturan pakai (do and don't) berikut menjadi batu bata design system:
 
 - **Do:** satu warna utama (indigo) dipakai di mana pun aksi penting tampil; warna semantik justru tak menyulitkan (hijau buat sukses, merah buat bahaya, kuning buat sorotan); teks utama selalu warna gelap di atas latar terang; semua pasangan warna-teks pada komponen tercatat di styleguide.
-- **Don't:** jangan membuat warna pembeda kedua yang mirip (merah bata baru, merah oranye, merah tua — pilih satu merah, yaitu `--clr-danger`); jangan gunakan warna sebagai penyampai makna satu-satunya (tambahkan ikon atau teks) karena pengguna dengan penglihatan warna terbatas akan kehilangan makna — topik lanjut Bab 13; jangan tempatkan teks kuning `#F59E0B` di atas putih buat teks paragraf karena contrast-nya lemah; jangan menempatkan gaya mentah `#4F46E5` di halaman — selalu lewat `var(--clr-primary)`.
+- **Don't:** jangan membuat warna pembeda kedua yang mirip (merah bata baru, merah oranye, merah tua — pilih satu merah, yaitu `--clr-danger`); jangan gunakan warna sebagai penyampai makna satu-satunya (tambahkan ikon atau teks) karena pengguna dengan penglihatan warna terbatas akan kehilangan makna — topik lanjut Bab 13; jangan tempatkan teks kuning `#F59E0B` di atas putih buat teks paragraf karena contrastnya lemah; jangan menempatkan gaya mentah `#4F46E5` di halaman — selalu lewat `var(--clr-primary)`.
 
 Aturan terakhir ini penting karena di situlah design system benar-benar diuji: kalau satu halaman memakai nilai mentah dan halaman lain memakai token, perubahan warna utama nanti hanya akan memengaruhi sebagian tombol. Disiplin memakai `var()` adalah tanda bahwa sistem desain kamu benar-benar hidup.
 
@@ -206,7 +206,7 @@ Aturan terakhir ini penting karena di situlah design system benar-benar diuji: k
 
 **Sistem tipografi** (*typography system*) adalah kumpulan aturan tentang keluarga huruf, ukuran, dan peran tiap tipe teks di seluruh antarmuka. Tokosaya memakai dua keluarga huruf: **Poppins** (geometris, bulat, tegas di ujung) buat judul, dan **Inter** yang dirancang nyaman dibaca di layar buat teks paragraf. Pembagian peran ini bukan sekadar soal selera; idenya sederhana: "peran berbeda, suara berbeda". Judul dengan Poppins 700 terasa kayak berbicara, sementara paragraf dengan Inter 400 terasa kayak bercerita. Pas pengguna memindai halaman, pergantian keluarga huruf ini sendiri udah jadi sinyal hierarki, bahkan tanpa mengubah hal lain.
 
-Selain itu, sistem tipografi juga menetapkan **skala ukuran** dari judul terbesar sampai keterangan terkecil. Bootstrap udah menyediakan dasarnya: kelas `display-*` buat tampilan besar, `h1` sampai `h6` buat jenjang judul, dan `lead` buat paragraf pengantar. Tugas kamu adalah menambahkan peran khas Tokosaya di atas skala Bootstrap itu:
+Selain itu, sistem tipografi juga menetapkan **skala ukuran** dari judul terbesar sampai keterangan terkecil. Bootstrap udah menyediakan dasarnya: kelas `display-*` buat tampilan besar, `h1` sampai `h6` buat jenjang judul, dan `lead` buat paragraf pengantar. Tugasmu adalah menambahkan peran khas Tokosaya di atas skala Bootstrap itu:
 
 | Peran di Tokosaya | Elemen/kelas | Huruf & bobot |
 |---|---|---|
@@ -1200,11 +1200,11 @@ Kaitkan kasus ini dengan materi bab: hukum kedekatan dan kemiripan memandu penat
 ## Latihan Mandiri
 
 1. Amati satu website layanan kampus (portal akademik, perpustakaan, atau e-ujian). Identifikasi empat prinsip 12.1 di dalamnya dan tulis satu paragraf per prinsip: satu contoh penerapan yang baik dan satu cacat yang ditemukan.
-2. Buat tabel matrix varian buat komponen badge Tokosaya: baris = empat badge dataset (Best Seller, Tersedia, Stok Terbatas, Baru), kolom = token, makna, dan kelas varian yang diusulkan. Bandingkan usulan kamu dengan bagian 12.7.
-3. Cari tiga nilai jarak yang menyimpang dari kelipatan 8 piksel pada halaman web pilihan kamu (pakai inspektur elemen browser) dan susun proposal perbaikannya memakai utilitas Bootstrap pada tabel 12.6.
+2. Buat tabel matrix varian buat komponen badge Tokosaya: baris = empat badge dataset (Best Seller, Tersedia, Stok Terbatas, Baru), kolom = token, makna, dan kelas varian yang diusulkan. Bandingkan usulanmu dengan bagian 12.7.
+3. Cari tiga nilai jarak yang menyimpang dari kelipatan 8 piksel pada halaman web pilihanmu (pakai inspektur elemen browser) dan susun proposal perbaikannya memakai utilitas Bootstrap pada tabel 12.6.
 4. Rancang perpanjangan token semantik buat aplikasi perpustakaan kampus: kebutuhan warna "buku tersedia", "sedang dipinjam", dan "terlambat". Tulis nama token, nilai yang diusulkan (dari palet Tokosaya atau tint dari token yang ada), dan alasannya.
-5. Perbaiki satu halaman profil pribadi kamu sendiri memakai empat alat visual pada 12.2 dan dokumentasikan tiga perubahan: apa yang diubah, alat apa yang dipakai, dan kenapa hierarkinya membaik.
-6. Tulis halaman styleguide mini (dua token warna + satu komponen tombol dua varian + satu kartu produk sederhana) buat proyek toko buku sekolah kamu sendiri, dari awal sampai akhir, memakai pola dua file (token CSS + halaman HTML).
+5. Perbaiki satu halaman profil pribadimu sendiri memakai empat alat visual pada 12.2 dan dokumentasikan tiga perubahan: apa yang diubah, alat apa yang dipakai, dan kenapa hierarkinya membaik.
+6. Tulis halaman styleguide mini (dua token warna + satu komponen tombol dua varian + satu kartu produk sederhana) buat proyek toko buku sekolahmu sendiri, dari awal sampai akhir, memakai pola dua file (token CSS + halaman HTML).
 
 ## Tugas
 
@@ -1214,7 +1214,7 @@ Kaitkan kasus ini dengan materi bab: hukum kedekatan dan kemiripan memandu penat
 ## Refleksi
 
 1. Sebelum bab ini, kapan terakhir kamu merasa "halaman ini kurang nyaman" tapi nggak mampu menjelaskan sebabnya; sekarang, bisa nggak kamu menunjukkan penyebabnya dengan istilah bab ini?
-2. Di titik mana tim kamu terdorong menambah token baru? Apakah token itu benar-benar peran baru, atau nilai lama yang belum dinamai?
+2. Di titik mana timmu terdorong menambah token baru? Apakah token itu benar-benar peran baru, atau nilai lama yang belum dinamai?
 3. Styleguide yang nggak dipelihara berubah jadi dokumen yang menyesatkan. Siapa yang sebaiknya bertugas memelihara styleguide di proyek Tokosaya kamu, dan dengan ritme yang kayak apa?
 4. Pas satu pihak meminta halaman yang seharusnya seragam tampil berbeda, argumen desain apa yang kamu pakai buat menolak atau menyetujuinya — dan di mana batas fleksibilitas yang sehat?
 
@@ -1231,7 +1231,7 @@ Kaitkan kasus ini dengan materi bab: hukum kedekatan dan kemiripan memandu penat
 9. Styleguide adalah satu halaman yang menampilkan semua token dan semua komponen — konsumen pertama `css/style.css` dan pembanding setiap halaman produksi.
 10. Kejujuran sistem: varian baru lahir bersama dokumentasinya, dan token yang tak dikonsumsi lewat `var()` adalah token yang nggak berlaku.
 
-Bab ini menuntaskan bangunan visual kamu; Bab 13 mengujinya pada dua dimensi yang belum diuji: apakah halaman tetap baik di layar sempit (responsive web design) dan apakah semua tombol dan pesan benar-benar terakses oleh semua pengguna (aksesibilitas, WCAG 2.2). Token dan komponen yang tersusun dalam styleguide hari ini adalah alat utama buat kedua audit itu: kontras yang dihitung dari token, jenjang heading yang disiplin, dan label yang terikat pada input adalah pintu masuknya — audit responsif dan aksesibilitas penuh atas seluruh proyek Tokosaya.
+Bab ini menuntaskan bangunan visualmu; Bab 13 mengujinya pada dua dimensi yang belum diuji: apakah halaman tetap baik di layar sempit (responsive web design) dan apakah semua tombol dan pesan benar-benar terakses oleh semua pengguna (aksesibilitas, WCAG 2.2). Token dan komponen yang tersusun dalam styleguide hari ini adalah alat utama buat kedua audit itu: kontras yang dihitung dari token, jenjang heading yang disiplin, dan label yang terikat pada input adalah pintu masuknya — audit responsif dan aksesibilitas penuh atas seluruh proyek Tokosaya.
 
 ## Evaluasi
 
@@ -1249,7 +1249,7 @@ Bab ini menuntaskan bangunan visual kamu; Bab 13 mengujinya pada dua dimensi yan
    C. affordance
    D. contrast
 
-3. Contoh elemen yang affordance-nya benar untuk aksi "unduh file akademik" adalah…
+3. Contoh elemen yang affordancenya benar untuk aksi "unduh file akademik" adalah…
    A. teks abu-abu 12 piksel tanpa garis bawah di dalam paragraf
    B. tombol berlatar indigo dengan ikon unduhan dan teks "Unduh File"
    C. judul Poppins 700 tanpa pembeda apa pun
@@ -1328,7 +1328,7 @@ Tugas Anda: (a) sebutkan cacat struktur heading pada potongan ini dan mengapa it
 ### Soal Praktik
 
 1. Dengan mengikuti struktur styleguide Tokosaya, tambahkan section baru "Do & Don't Warna" ke `styleguide.html` yang berisi dua pasangan contoh (satu pasangan disarankan, satu pasangan terlarang) beserta penjelasan satu kalimat. Tulis markup lengkap yang akan Anda tempel dan tentukan posisi section itu dalam urutan halaman.
-2. Anda diminta menyusun styleguide mini (satu halaman) untuk aplikasi perpustakaan kampus: dua token warna semantik, satu skala jarak, dan satu tombol utama. Tulis blok `:root`, satu blok komponen tombol yang mengonsumsi token, dan kerangka HTML halaman styleguide-nya.
+2. Anda diminta menyusun styleguide mini (satu halaman) untuk aplikasi perpustakaan kampus: dua token warna semantik, satu skala jarak, dan satu tombol utama. Tulis blok `:root`, satu blok komponen tombol yang mengonsumsi token, dan kerangka HTML halaman styleguidenya.
 
 ### Kunci Jawaban
 

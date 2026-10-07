@@ -33,7 +33,7 @@ Kegiatan pengujian di DevTools pada bab ini menjadi kontribusi awal bagi CPMK 11
 
 Di akhir pertemuan minggu lalu, pemilik Tokosaya mengirim pesan: "Saya ingin satu ruang kerja tempat saya bisa lihat kondisi toko sekilas — penjualan hari ini, pesanan yang belum diproses, dan stok yang menipis." Intinya, yang diminta itu **dashboard admin**: satu halaman yang menggabungkan panel navigasi, kartu-kartu angka ringkasan, dan tabel pesanan terbaru.
 
-Kebutuhan kedua datang dari sisi pelanggan. Pas kamu membuka `katalog.html` yang dibangun pada Bab 5 dan Bab 6 di monitor kantor, tampilannya rapi. Tetapi rekan kamu membukanya dari HP dengan layar selebar 380 piksel, dan kartu produk tumpang tindih serta teksnya menyempit berantakan. Dua kebutuhan ini menunjukkan dua masalah yang berbeda: (1) mengatur banyak komponen pada **dua dimensi** sekaligus — baris dan kolom — yang ditangani CSS Grid, dan (2) memastikan halaman yang sama tetap layak dibaca di **berbagai ukuran layar** yang ditangani responsive web design.
+Kebutuhan kedua datang dari sisi pelanggan. Pas kamu membuka `katalog.html` yang dibangun pada Bab 5 dan Bab 6 di monitor kantor, tampilannya rapi. Tetapi rekanmu membukanya dari HP dengan layar selebar 380 piksel, dan kartu produk tumpang tindih serta teksnya menyempit berantakan. Dua kebutuhan ini menunjukkan dua masalah yang berbeda: (1) mengatur banyak komponen pada **dua dimensi** sekaligus — baris dan kolom — yang ditangani CSS Grid, dan (2) memastikan halaman yang sama tetap layak dibaca di **berbagai ukuran layar** yang ditangani responsive web design.
 
 Pegang dua frasa kunci bab ini: layout dua dimensi itu soal *struktur*, sedangkan desain responsif itu soal *strategi beradaptasi*. Keduanya saling menguatkan: grid menyusun denah, media query mengubah denah pas layar berubah. Ayo kuasai dua hal ini, lalu bangun dashboard admin Tokosaya sebagai buktinya.
 
@@ -145,7 +145,7 @@ Penjelasan: pola di atas adalah tulang punggung mobile-first. Gaya dasar menetap
 
 ### 7.5 Media Query, clamp(), dan Gambar Responsif
 
-Sebuah *media query* punya bentuk yang sederhana: `@media` diikuti satu atau lebih kondisi, lalu blok kurung kurawal berisi aturan yang cuma berlaku kalau kondisi terpenuhi. Kondisi paling lazim adalah `min-width`; kondisi lain yang bermanfaat: `orientation: portrait` atau `landscape`, dan `prefers-color-scheme` (pengaturan tema gelap perangkat). Lebih dari satu kondisi dihubungkan `and` — misalnya `@media (min-width: 768px) and (orientation: portrait)` memberi gaya khusus tablet berdiri. Koma berarti "atau". Di dalam blok query, kamu menulis aturan kayak biasa; nilai yang nggak disebut kembali akan **diwariskan dari gaya dasar**, dan di situlah enaknya mobile-first: media query kamu pendek-pendek karena cuma memuat perbedaannya.
+Sebuah *media query* punya bentuk yang sederhana: `@media` diikuti satu atau lebih kondisi, lalu blok kurung kurawal berisi aturan yang cuma berlaku kalau kondisi terpenuhi. Kondisi paling lazim adalah `min-width`; kondisi lain yang bermanfaat: `orientation: portrait` atau `landscape`, dan `prefers-color-scheme` (pengaturan tema gelap perangkat). Lebih dari satu kondisi dihubungkan `and` — misalnya `@media (min-width: 768px) and (orientation: portrait)` memberi gaya khusus tablet berdiri. Koma berarti "atau". Di dalam blok query, kamu menulis aturan kayak biasa; nilai yang nggak disebut kembali akan **diwariskan dari gaya dasar**, dan di situlah enaknya mobile-first: media querymu pendek-pendek karena cuma memuat perbedaannya.
 
 Buat tipografi, `clamp()` adalah alat yang paling praktis. Fungsi ini menerima tiga argumen — nilai minimum, nilai *dipilih* (biasanya beranda campuran satuan rem dan vw), dan nilai maksimum — lalu memilih nilai tengah selama ia berada di antara tepiannya. Artinya, ukuran huruf **ikut menyesuaikan lebar layar tetapi tetap tertahan** di dua batas, persis kayak termostat: dingin dijaga nggak terlalu dingin, panas dijaga nggak meledak. Contoh: `font-size: clamp(1.5rem, 1.1rem + 1.5vw, 2rem);` — pada layar 375 piksel, ter hitung `1.1rem + 1.5vw` ≈ `17,6 + 5,6` = 23,2 piksel, di bawah minimum 24 piksel, sehingga browser memakai 24 piksel; pada layar 1440 piksel nilai tengah ≈ 17,6 + 21,6 = 39,2 piksel, melebihi maksimum 32 piksel, sehingga terpotong ke 32 piksel.
 
@@ -186,13 +186,13 @@ Desktop (≥ 768 px)                    Ponsel (< 768 px)
 
 Diagram di atas merangkum transformasi dua arah yang sama yang akan kamu tulis pada `css/admin.css`. Pada sisi mobile, tabel harus dibungkus wadah penggulir (`overflow-x: auto`) karena tabel data memang punya lebar minimum buat keterbacaan kolomnya; dengan begitu, satu-satunya pengguliran horizontal adalah **di dalam wadah tabel**, bukan pada halaman — detail kecil yang membantu banget, karena pengguliran pada seluruh halaman adalah cacat responsif paling tampak.
 
-Pola kedua adalah **galeri produk** (katalog atau halaman koleksi perpustakaan). Di sini tugas kamu memilih dua jalan: (a) pola media query eksplisit — jumlah kolom ditetapkan per breakpoint (`repeat(2, ...)` di 768, `repeat(3, ...)` di 992); atau (b) pola otomatis `repeat(auto-fit, minmax(220px, 1fr))` yang menentukan sendiri jumlah kolom sesuai ruang. Jalan (a) memberi kendali yang bisa dijadwalkan bersama desainer — "di tablet harus tepat dua kolom ini"; jalan (b) memberi daya lentur pada konten yang jumlah kartunya berubah-ubah. Keduanya sah; yang penting **satu halaman satu pola**, biar hasilnya bisa diprediksi pas diinspeksi.
+Pola kedua adalah **galeri produk** (katalog atau halaman koleksi perpustakaan). Di sini tugasmu memilih dua jalan: (a) pola media query eksplisit — jumlah kolom ditetapkan per breakpoint (`repeat(2, ...)` di 768, `repeat(3, ...)` di 992); atau (b) pola otomatis `repeat(auto-fit, minmax(220px, 1fr))` yang menentukan sendiri jumlah kolom sesuai ruang. Jalan (a) memberi kendali yang bisa dijadwalkan bersama desainer — "di tablet harus tepat dua kolom ini"; jalan (b) memberi daya lentur pada konten yang jumlah kartunya berubah-ubah. Keduanya sah; yang penting **satu halaman satu pola**, biar hasilnya bisa diprediksi pas diinspeksi.
 
 ### 7.7 Pengujian Responsif di DevTools
 
-Menulis media query tanpa menguji itu kayak membuat jalan tanpa pernah melewatinya. Chrome menyediakan **device toolbar**: buka DevTools (`F12` atau `Ctrl+Shift+I` di Windows), lalu aktifkan mode perangkat dengan `Ctrl+Shift+M`. Alat ini meniru layar sesuai lebar yang kamu pilih — cobalah 375, 576, 768, 992, dan 1200 piksel, tepat di sekitar breakpoint Tokosaya — dan di bagian atas ruler muncul penanda garis buat setiap media query yang aktif, sehingga kamu bisa melihat batas gaya bergeser pas menyeret lebar. Mode *Responsive* memungkinkan kamu menyeret lebar bebas buat mencari titik masalah (*layout trap*): titik lebar di mana elemen tumpang tindih atau teks terpotong.
+Menulis media query tanpa menguji itu kayak membuat jalan tanpa pernah melewatinya. Chrome menyediakan **device toolbar**: buka DevTools (`F12` atau `Ctrl+Shift+I` di Windows), lalu aktifkan mode perangkat dengan `Ctrl+Shift+M`. Alat ini meniru layar sesuai lebar yang kamu pilih — cobalah 375, 576, 768, 992, dan 1200 piksel, tepat di sekitar breakpoint Tokosaya — dan di bagian atas ruler muncul penanda garis buat setiap media query yang aktif, sehingga kamu bisa melihat batas gaya bergeser pas menyeret lebar. Mode *Responsive* memungkinkanmu menyeret lebar bebas buat mencari titik masalah (*layout trap*): titik lebar di mana elemen tumpang tindih atau teks terpotong.
 
-DevTools juga punya panel khusus grid: pada tab *Elements*, pilih elemen wadah grid, lalu pada panel *Layout* aktifkan overlay-nya; nomor garis grid akan tercetak di halaman, mirip kartu rancangan — membantu banget pas menelusuri kenapa sebuah kartu menolak menempati kolom yang diinginkan. Gunakan panel *Elements* juga buat melihat aturan mana yang sedang menang (ingat kembali kaskade dan specificity dari Bab 3). Tiga kebiasaan sederhana buat menutup bab ini: uji dengan **mengecil melewati** breakpoint (bukan setop di satu lebar), cek kemunculan pengguliran horizontal seluruh halaman, dan ingat bahwa emulasi nggak menggantikan uji sempurna pada perangkat sungguhan — sentuhan, kamera, dan kecepatan jaringan HP berbeda perilaku, dan pengujian menyeluruh kembali dibahas pada Bab 13 dan Bab 15.
+DevTools juga punya panel khusus grid: pada tab *Elements*, pilih elemen wadah grid, lalu pada panel *Layout* aktifkan overlaynya; nomor garis grid akan tercetak di halaman, mirip kartu rancangan — membantu banget pas menelusuri kenapa sebuah kartu menolak menempati kolom yang diinginkan. Gunakan panel *Elements* juga buat melihat aturan mana yang sedang menang (ingat kembali kaskade dan specificity dari Bab 3). Tiga kebiasaan sederhana buat menutup bab ini: uji dengan **mengecil melewati** breakpoint (bukan setop di satu lebar), cek kemunculan pengguliran horizontal seluruh halaman, dan ingat bahwa emulasi nggak menggantikan uji sempurna pada perangkat sungguhan — sentuhan, kamera, dan kecepatan jaringan HP berbeda perilaku, dan pengujian menyeluruh kembali dibahas pada Bab 13 dan Bab 15.
 
 ## Konsep Penting
 
@@ -483,7 +483,7 @@ Penjelasan: inilah pola denah yang akan kamu tulis pada Praktikum dalam ukuran p
 
 ### Tujuan Praktikum
 
-Praktikum ini mengajak kamu membangun **dashboard admin Tokosaya yang statis dan responsif** — lengkap dengan header, sidebar navigasi, empat kartu statistik, dan tabel pesanan terbaru — memakai CSS Grid sebagai kerangka dan media query *mobile-first* sebagai strategi. Praktikum juga membuat halaman `katalog.html` jadi responsif dengan mengganti layout kartu menjadi grid. Semua data adalah data contoh statis sesuai cakupan mata kuliah (tanpa JavaScript, tanpa server); dashboard ini membangun kemampuan S7.1 dan S7.2 yang diujikan pada UTS Bab 8.
+Praktikum ini mengajakmu membangun **dashboard admin Tokosaya yang statis dan responsif** — lengkap dengan header, sidebar navigasi, empat kartu statistik, dan tabel pesanan terbaru — memakai CSS Grid sebagai kerangka dan media query *mobile-first* sebagai strategi. Praktikum juga membuat halaman `katalog.html` jadi responsif dengan mengganti layout kartu menjadi grid. Semua data adalah data contoh statis sesuai cakupan mata kuliah (tanpa JavaScript, tanpa server); dashboard ini membangun kemampuan S7.1 dan S7.2 yang diujikan pada UTS Bab 8.
 
 ### Kebutuhan
 
@@ -497,7 +497,7 @@ Praktikum ini mengajak kamu membangun **dashboard admin Tokosaya yang statis dan
 
 1. Cek apakah `css/style.css` kamu memuat blok `:root` dengan token Tokosaya (paling kurang `--clr-primary`, `--clr-surface`, `--clr-bg`, `--clr-border`, `--clr-dark`, `--clr-body`, `--font-heading`, `--font-body`, `--radius`, `--shadow-card`, `--space-unit`). Kalau belum lengkap, lengkapi menurut Bab 4 dulu, karena admin.css akan memanggil token itu.
 2. Buat file baru `admin.html` dan `css/admin.css` di dalam `tokosaya-css/`.
-3. Buka `katalog.html` dan pastikan daftar produk kamu berada di dalam satu elemen wadah (misalnya `<section>` yang memuat kartu-kartu `produk-card` dari Bab 5–6); catat class wadahnya, karena nanti diberi kelas grid baru.
+3. Buka `katalog.html` dan pastikan daftar produkmu berada di dalam satu elemen wadah (misalnya `<section>` yang memuat kartu-kartu `produk-card` dari Bab 5–6); catat class wadahnya, karena nanti diberi kelas grid baru.
 4. Sediakan daftar pesanan contoh (lima baris) dalam tabel — data lengkap udah ditulis pada blok Kode; kamu tinggal mengetik ulang.
 5. Siapkan Chrome DevTools: tekan `F12`, aktifkan device toolbar (`Ctrl+Shift+M`) biar siap menguji pada langkah terakhir.
 
@@ -922,7 +922,7 @@ Penjelasan: file ini adalah demonstrasi lengkap strategi 7.4–7.6. Gaya dasar m
 
 ```html
 File: tokosaya-css/katalog.html
-<!-- Potongan integrasi: ganti wadah daftar produk kamu jadi
+<!-- Potongan integrasi: ganti wadah daftar produkmu jadi
      struktur berikut (kelas produk-card, badge, dan harga tetap dari Bab 4-6). -->
 <section class="katalog" aria-labelledby="judul-katalog">
   <h2 id="judul-katalog" class="katalog-judul">Katalog Produk</h2>
@@ -1020,7 +1020,7 @@ Teramati (di DevTools device toolbar, tanpa JavaScript):
 
 Langkah pertama tim adalah **mencatat konteks penggunaan**, bukan daftar model gadget: siapa memakai apa, di mana, dalam postur apa, buat tugas apa. Dari situ terlihat tiga tugas utama: (1) meja pendaftaran beroperasi dengan tabel antrean lebar — membutuhkan tabulasi penuh, jadi wadah tabel dengan pengguliran dalam justru *nggak* disukai di desktop; (2) kunjungan perawat membaca status kamar sambil bergerak — kartu besar, angka sedikit, target sentuh besar; (3) petugas malam mengecek antrean ICU — satu angka besar di HP lebih bernilai daripada grafik lengkap.
 
-Dari analisis itu, tim memilih dua breakpoint: **768 px** — tablet, pas denah dua kolom aktif (kartu kamar di kiri, ringkasan di kanan), dan **992 px** — desktop, pas kolom tabel meluas penuh dan denah area menetap. 576 px sengaja dilewati karena jenis data dashboard (angka ringkasan) nggak menuntut layout tambahan di kisaran itu; dengan `clamp()` buat angka kamar dan antrean, font udah menyediakan penyesuaian yang halus. Keputusan ini mirip dengan Tokosaya (breakpoint sama, urutan denah sama), tetapi isinya berbeda: di klinik, *prioritas informasi kritis* menentukan area mana yang membentang (`grid-area` dua kolom untuk status kamar ICU), bukan estetika kartu. Pelajaran buat konteks SI: **breakpoint adalah keputusan rancangan informasi, bukan keputusan teknis semata** — mulailah dari tugas pengguna, tulis denah grid-nya, baru pilih `min-width` terkecil yang membuat tugas itu tetap bisa dikerjakan sempurna.
+Dari analisis itu, tim memilih dua breakpoint: **768 px** — tablet, pas denah dua kolom aktif (kartu kamar di kiri, ringkasan di kanan), dan **992 px** — desktop, pas kolom tabel meluas penuh dan denah area menetap. 576 px sengaja dilewati karena jenis data dashboard (angka ringkasan) nggak menuntut layout tambahan di kisaran itu; dengan `clamp()` buat angka kamar dan antrean, font udah menyediakan penyesuaian yang halus. Keputusan ini mirip dengan Tokosaya (breakpoint sama, urutan denah sama), tetapi isinya berbeda: di klinik, *prioritas informasi kritis* menentukan area mana yang membentang (`grid-area` dua kolom untuk status kamar ICU), bukan estetika kartu. Pelajaran buat konteks SI: **breakpoint adalah keputusan rancangan informasi, bukan keputusan teknis semata** — mulailah dari tugas pengguna, tulis denah gridnya, baru pilih `min-width` terkecil yang membuat tugas itu tetap bisa dikerjakan sempurna.
 
 ## Latihan Mandiri
 
@@ -1039,9 +1039,9 @@ Dari analisis itu, tim memilih dua breakpoint: **768 px** — tablet, pas denah 
 ## Refleksi
 
 1. Sebelum bab ini, bagian mana dari proyek Tokosaya kamu yang mengandalkan Flexbox padahal sebenarnya persoalan dua dimensi? Apa tanda-tandanya di layar?
-2. Gimana kesan kamu soal mobile-first pas baru pertama menulis gaya dasar tanpa media query — terasa membatasi atau justru menyederhanakan keputusan kamu?
+2. Gimana kesanmu soal mobile-first pas baru pertama menulis gaya dasar tanpa media query — terasa membatasi atau justru menyederhanakan keputusanmu?
 3. Pas memilih empat kartu statistik dua kolom di 576 px dan empat kolom di 1200 px, apa yang kamu pertimbangkan dari sisi pembaca angka di layar sesungguhnya?
-4. Dashboard Tokosaya seluruhnya statis. Menurut kamu, bagian mana dari tulisan CSS ini yang tetap berguna begitu sistem informasi nyata menambah data dinamis dari server di masa depan?
+4. Dashboard Tokosaya seluruhnya statis. Menurutmu, bagian mana dari tulisan CSS ini yang tetap berguna begitu sistem informasi nyata menambah data dinamis dari server di masa depan?
 
 ## Rangkuman
 

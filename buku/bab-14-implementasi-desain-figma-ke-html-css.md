@@ -2,7 +2,7 @@
 
 ## Deskripsi Singkat
 
-Bab ini mengajak kamu berlatih *handoff*: membaca desain UI di Figma lalu menerjemahkannya
+Bab ini mengajakmu berlatih *handoff*: membaca desain UI di Figma lalu menerjemahkannya
 dengan setia jadi halaman HTML, CSS, dan Bootstrap. Kamu akan belajar alur
 designer–developer, cara membaca frame, layer, auto layout, grid, tipografi, dan warna,
 lalu memetakan semuanya jadi *design token* dan komponen nyata. Kalau Bab 13 menutup audit
@@ -57,7 +57,7 @@ membuka hasilnya lalu mengirim revisi: "warna badge salah", "jarak kartu berubah
 Itulah contoh *handoff* yang gagal. Di tim sistem informasi pun hal kayak ini sering
 muncul — misalnya pas unit web kampus menerima desain portal penerimaan mahasiswa baru dari
 unit publikasi. Yang jelas di kepala desainer belum tentu jelas juga di kepala pengembang.
-Bab ini memberi kamu dua pegangan: membaca desain Figma secara sistematis, lalu
+Bab ini memberimu dua pegangan: membaca desain Figma secara sistematis, lalu
 menerjemahkannya lewat spesifikasi tekstual dan *fidelity checklist*. Dengan dua hal itu,
 janji desain yang udah kamu pelajari sejak Bab 4 bisa benar-benar muncul di layar, bukan
 sekadar dibayangkan.
@@ -249,7 +249,7 @@ menutup atau keranjang yang membuka panel — keterampilan yang dibutuhkan adala
 bahwa perilaku nyatanya nanti ditangani skrip di luar cakupan mata kuliah ini. Pendekatan
 ini bukan langkah mundur; justru di sini kamu belajar membedah desain keadaan (*state*),
 sesuatu yang sering diremehkan padahal banget menentukan rasa jadi sebuah UI. Bab 11 udah
-pernah mengajak kamu menata formulir beserta keadaannya; sekarang latihannya lebih padat:
+pernah mengajakmu menata formulir beserta keadaannya; sekarang latihannya lebih padat:
 kamu membaca keadaan langsung dari desain, bukan dari imajinasi.
 
 ### 14.6 Implementasi Token & Component Mapping (Figma styles → :root CSS)
@@ -512,7 +512,7 @@ Bootstrap 5.3. Praktikum juga melatih pembacaan panel Inspect Figma buat yang pu
    - Baca secara berurutan pada setiap layer utama: lebar-tingginya; isi *fill* (hex/rgba);
      *stroke*; keluarga dan ketebalan font; *line-height*; jarak *auto layout*.
    - Salin nilai ke tabel token kamu sendiri, jangan salin mentah semua properti — panel
-     Inspect bisa menyarankan struktur CSS berbeda dari proyek kamu; ambil nilainya,
+     Inspect bisa menyarankan struktur CSS berbeda dari proyekmu; ambil nilainya,
      tulis ulang dengan disiplin token dan kelas Bootstrap.
 3. Salin dan lengkapi tabel spesifikasi berikut (Spesifikasi Desain Tekstual — Frame
    `P-DETAIL-01`, produk.html Tokosaya).
@@ -1003,7 +1003,7 @@ berulang. Blok per komponen menyusun navbar, page head, panel, badge, tombol, ka
 footer — setiap kelas kustom mengonsumsi token (`var(--clr-…)`, `var(--radius)`,
 `var(--shadow-card)`) alih-alih menuliskan ulang nilai. Blok responsif kecil menyetel
 tipografi dan padding pas layar HP sesuai spesifikasi bagian I, karena utilitas
-Bootstrap mengurus layout kolom namun bukan ukuran huruf halaman kamu.
+Bootstrap mengurus layout kolom namun bukan ukuran huruf halamanmu.
 
 ### Hasil yang Diharapkan
 
@@ -1091,7 +1091,7 @@ dengan kebiasaan menulis, dan janji pengembang dicapai dengan disiplin membaca.
 
 ## Latihan Mandiri
 
-1. Jelaskan dengan kalimat kamu sendiri perbedaan *prototip* dan *implementasi* dalam alur
+1. Jelaskan dengan kalimatmu sendiri perbedaan *prototip* dan *implementasi* dalam alur
    desain ke kode, lalu beri satu contoh keputusan yang boleh berbeda di kedua tahap.
 2. Buka demo `kartu-produk-demo.html` di Chrome, ganti kelas `col-12 col-md-4` jadi
    `col-12 col-md-6`, lalu deskripsikan perubahan layout yang teramati dan kaitkan

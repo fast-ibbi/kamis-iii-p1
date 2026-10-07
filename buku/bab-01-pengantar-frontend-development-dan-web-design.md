@@ -33,15 +33,15 @@ Kata kunci bab ini: *frontend development* (bagian website yang dilihat dan digu
 
 Mari kenalan dengan Tokosaya, toko online fiktif milik UMKM di Jakarta yang berdiri pada 2019. Toko ini menjual aksesori dan elektronik komputer, kayak keyboard, mouse, headphone, monitor, dan webcam. Prinsip pemiliknya sederhana: *harga jujur, layanan cepat*, dengan tagline **"Belanja Tepat, Kirim Cepat"**. Selama ini, transaksi dilakukan lewat pesan singkat: pembeli menanyakan stok lewat chat, pemilik membalas satu per satu, lalu pesanan dicatat di buku. Cara ini masih jalan, tapi makin sulit dikelola pas pesanan bertambah. Pertanyaan yang sama terus muncul, catatan pesanan berantakan, dan foto produk yang dikirim nggak selalu sama.
 
-Pemilik Tokosaya lalu menemui tim mahasiswa Sistem Informasi di kampus kamu. Permintaannya sederhana: *saya ingin toko saya ada di internet, orang bisa melihat produk dan menghubungi saya.* Ia nggak menyebut HTML, CSS, server, atau basis data. Ia menjelaskan kebutuhannya: toko harus mudah ditemukan, produknya bisa dilihat, dan tampil meyakinkan.
+Pemilik Tokosaya lalu menemui tim mahasiswa Sistem Informasi di kampusmu. Permintaannya sederhana: *saya ingin toko saya ada di internet, orang bisa melihat produk dan menghubungi saya.* Ia nggak menyebut HTML, CSS, server, atau basis data. Ia menjelaskan kebutuhannya: toko harus mudah ditemukan, produknya bisa dilihat, dan tampil meyakinkan.
 
-Di sinilah peran mahasiswa Sistem Informasi: menerjemahkan kebutuhan itu menjadi rencana, lalu menjadi website yang bisa digunakan pengunjung. Kita belum membangun seluruh proyek di bab ini; kita mulai dengan mengenal frontend dan backend, melihat gimana desain diterjemahkan menjadi kode, dan membuat halaman web pertama. Proyek Tokosaya akan dimulai sebagai folder proyek pada bagian Contoh Kode, lalu dikembangkan sedikit demi sedikit—dari HTML dasar sampai website responsif yang siap dipresentasikan pada ujian akhir. Cerita Tokosaya akan menemani perjalanan belajar kamu selama satu semester.
+Di sinilah peran mahasiswa Sistem Informasi: menerjemahkan kebutuhan itu menjadi rencana, lalu menjadi website yang bisa digunakan pengunjung. Kita belum membangun seluruh proyek di bab ini; kita mulai dengan mengenal frontend dan backend, melihat gimana desain diterjemahkan menjadi kode, dan membuat halaman web pertama. Proyek Tokosaya akan dimulai sebagai folder proyek pada bagian Contoh Kode, lalu dikembangkan sedikit demi sedikit—dari HTML dasar sampai website responsif yang siap dipresentasikan pada ujian akhir. Cerita Tokosaya akan menemani perjalanan belajarmu selama satu semester.
 
 Skenario kayak ini sering muncul di proyek Sistem Informasi: klien menjelaskan kebutuhannya, lalu tim menerjemahkannya menjadi sistem. Skalanya bisa berbeda. Tokosaya mungkin cuma butuh beberapa halaman, sedangkan sistem akademik kampus bisa terdiri dari banyak modul. Namun, pertanyaan dasarnya sama: apa yang perlu ditampilkan, apa yang perlu disimpan, dan gimana keduanya saling terhubung. Di buku ini, kamu akan mempelajari bagian itu dari sudut pandang frontend.
 
 ## Materi Pembelajaran
 
-Bagian ini terdiri dari sembilan subtopik, mulai dari pengertian dasar sampai praktik pertama kamu. Ikuti urutannya karena tiap subtopik menyiapkan konsep buat bagian berikutnya.
+Bagian ini terdiri dari sembilan subtopik, mulai dari pengertian dasar sampai praktik pertamamu. Ikuti urutannya karena tiap subtopik menyiapkan konsep buat bagian berikutnya.
 
 ### 1.1 Apa Itu Frontend Development
 
@@ -55,7 +55,7 @@ Buat membedakan kebutuhan frontend dan backend, tanyakan: *apakah kebutuhan ini 
 
 Satu hal yang perlu diluruskan: frontend bukan berarti "bagian yang mudah", begitu juga backend bukan berarti "bagian yang lebih canggih". Keduanya punya tantangan berbeda. Pas membuat kartu produk, misalnya, kita perlu memikirkan tampilannya di HP, informasi yang tetap terbaca pas gambar lambat dimuat, dan cara menulis harga biar nggak tertukar dengan diskon.
 
-Kenapa mahasiswa Sistem Informasi perlu mempelajari frontend? Dalam banyak proyek, lulusan SI bekerja bersama klien, desainer, dan programmer buat memastikan kebutuhan bisnis benar-benar sampai ke layar. Contohnya ada di sistem nilai akademik, portal perpustakaan, aplikasi antrean rumah sakit, dan website layanan publik. Pengguna berinteraksi dengan semua sistem itu lewat antarmuka. Buku ini akan membantu kamu memahami hubungan antara sistem dan penggunanya, lalu membuat antarmuka dari dasar.
+Kenapa mahasiswa Sistem Informasi perlu mempelajari frontend? Dalam banyak proyek, lulusan SI bekerja bersama klien, desainer, dan programmer buat memastikan kebutuhan bisnis benar-benar sampai ke layar. Contohnya ada di sistem nilai akademik, portal perpustakaan, aplikasi antrean rumah sakit, dan website layanan publik. Pengguna berinteraksi dengan semua sistem itu lewat antarmuka. Buku ini akan membantumu memahami hubungan antara sistem dan penggunanya, lalu membuat antarmuka dari dasar.
 
 ### 1.2 Frontend vs Backend
 
@@ -95,7 +95,7 @@ Dalam istilah teknis, frontend memakai markup dan gaya (HTML dan CSS, serta inte
 
 Pada Tokosaya, pembagian ini cukup mudah dilihat. Kartu produk berisi nama *Keyboard Mekanis KX-210* dan harga Rp650.000 adalah bagian frontend: bentuk, teks, dan susunannya. Pas tombol "Beli" ditekan dan stok berkurang di sistem toko, backend yang mengurusnya. Begitu juga harga terbaru yang dikirim dari server; frontend menampilkannya. Contoh serupa ada di sistem informasi rumah sakit: nomor antrean yang terlihat pasien adalah frontend, sedangkan rekam medis yang disimpan dengan aman dikelola backend.
 
-Pembagian ini kadang terasa kabur karena hasil kerja frontend dan backend sama-sama muncul di layar. Cara mudah membedakannya: frontend mengurus **tampilan dan interaksi**, sedangkan backend mengurus **data dan aturan bisnis**. Di kotak pencarian Tokosaya, bentuk kotak, ikon kaca pembesar, dan layoutnya adalah frontend. Proses mencari produk berdasarkan kata kunci adalah backend. Pada formulir kontak, kolom nama dan email beserta labelnya termasuk frontend, sedangkan proses mengirim dan mencatat pesan termasuk backend. Membiasakan diri memilah kebutuhan kayak ini akan membantu kamu pas menganalisis kebutuhan klien.
+Pembagian ini kadang terasa kabur karena hasil kerja frontend dan backend sama-sama muncul di layar. Cara mudah membedakannya: frontend mengurus **tampilan dan interaksi**, sedangkan backend mengurus **data dan aturan bisnis**. Di kotak pencarian Tokosaya, bentuk kotak, ikon kaca pembesar, dan layoutnya adalah frontend. Proses mencari produk berdasarkan kata kunci adalah backend. Pada formulir kontak, kolom nama dan email beserta labelnya termasuk frontend, sedangkan proses mengirim dan mencatat pesan termasuk backend. Membiasakan diri memilah kebutuhan kayak ini akan membantumu pas menganalisis kebutuhan klien.
 
 Jadi, frontend **bukan** bagian yang mudah dan backend bukan bagian yang sulit. Tantangannya berbeda: backend berfokus pada logika dan keutuhan data, sedangkan frontend perlu memastikan antarmuka tetap jelas dan konsisten di berbagai ukuran layar. Buku ini berfokus pada frontend supaya kamu bisa membuat antarmuka yang siap ditunjukkan ke klien.
 
@@ -127,7 +127,7 @@ HTML dan CSS digunakan buat membangun rancangan tersebut. **HTML** (*HyperText M
 
 Alur kerja yang akan sering dipakai di buku ini adalah **design → code**. Pertama, kebutuhan dibuat menjadi rancangan memakai alat kayak Figma (dibahas di Bab 14). Lalu, rancangan diterjemahkan menjadi struktur HTML—heading, paragraf, gambar, dan daftar—kemudian ditata dengan CSS, kayak memberi warna, mengatur ukuran, jarak, dan layout. Kalau komponen yang sama digunakan berulang kali, CSS framework dapat membantu menghemat waktu dan menjaga konsistensi. Misalnya, desain kartu Keyboard Mekanis KX-210 memiliki lencana *Best Seller* kecil berwarna amber dengan teks gelap. HTML menempatkan teks lencana pada bagian yang tepat, CSS mengatur warna dan bentuknya, dan nanti komponen *badge* Bootstrap bisa digunakan buat membuatnya. Begitu juga kalau rancangan menetapkan kartu putih dengan sudut membulat dan harga berwarna indigo: HTML menyusun isi kartu, sedangkan CSS mengatur tampilannya. Dengan alur ini, kamu menerjemahkan rancangan, bukan memulai dari tebakan.
 
-Kenapa desain dan implementasi kadang dikerjakan sebagai dua peran terpisah? Perubahan lebih mudah dilakukan pas rancangan belum diterjemahkan menjadi kode. Setelah kode dibuat, rancangan juga memberi acuan yang jelas buat memeriksa hasilnya—misalnya, apakah sudut kartu dan warna tombol udah sesuai. Mata kuliah ini melatih kamu membaca rancangan sekaligus menuliskan kodenya.
+Kenapa desain dan implementasi kadang dikerjakan sebagai dua peran terpisah? Perubahan lebih mudah dilakukan pas rancangan belum diterjemahkan menjadi kode. Setelah kode dibuat, rancangan juga memberi acuan yang jelas buat memeriksa hasilnya—misalnya, apakah sudut kartu dan warna tombol udah sesuai. Mata kuliah ini melatihmu membaca rancangan sekaligus menuliskan kodenya.
 
 ### 1.5 Anatomi Sebuah Website
 
@@ -163,9 +163,9 @@ Buat gambar, ada dua jenis file yang akan sering kamu temui. **SVG** menyimpan g
 
 ### 1.6 Cara Browser Merender Halaman dan Pengenalan Chrome DevTools
 
-Apa yang terjadi pas kamu membuka halaman web? Secara sederhana, ada empat langkah. Pertama, browser **menerima dokumen HTML** dari server atau dari folder di komputer kamu. Kedua, browser **membaca tag** dan menyusunnya menjadi pohon dokumen. Dalam pohon ini, elemen kayak `<html>` membungkus `<head>` dan `<body>`, sementara elemen kayak `<h1>` dan `<p>` menjadi bagian di dalamnya. Pohon ini disebut *DOM* (*Document Object Model*). Ketiga, browser **menerapkan gaya CSS** pada elemen-elemen tersebut. Keempat, browser **menampilkan hasilnya** di layar. Singkatnya: HTML diterima → pohon dokumen disusun → CSS diterapkan → halaman ditampilkan.
+Apa yang terjadi pas kamu membuka halaman web? Secara sederhana, ada empat langkah. Pertama, browser **menerima dokumen HTML** dari server atau dari folder di komputermu. Kedua, browser **membaca tag** dan menyusunnya menjadi pohon dokumen. Dalam pohon ini, elemen kayak `<html>` membungkus `<head>` dan `<body>`, sementara elemen kayak `<h1>` dan `<p>` menjadi bagian di dalamnya. Pohon ini disebut *DOM* (*Document Object Model*). Ketiga, browser **menerapkan gaya CSS** pada elemen-elemen tersebut. Keempat, browser **menampilkan hasilnya** di layar. Singkatnya: HTML diterima → pohon dokumen disusun → CSS diterapkan → halaman ditampilkan.
 
-Ingat, **browser membaca kode, bukan menebak maksud kita**. Kalau tampilan halaman salah, biasanya ada bagian HTML atau CSS yang perlu diperiksa. Di Bab 5–7, cara berpikir ini akan membantu kamu mencari penyebab masalah jarak dan layout.
+Ingat, **browser membaca kode, bukan menebak maksud kita**. Kalau tampilan halaman salah, biasanya ada bagian HTML atau CSS yang perlu diperiksa. Di Bab 5–7, cara berpikir ini akan membantumu mencari penyebab masalah jarak dan layout.
 
 Buat memeriksa struktur halaman, Chrome menyediakan **Chrome DevTools**. Buka dengan menekan `F12` atau klik kanan halaman lalu pilih *Inspect*. Di panel **Elements**, kamu bisa melihat pohon tag halaman. Klik salah satu baris buat menyorot elemen yang sesuai di halaman. Panel lain memiliki fungsi yang lebih lanjut; buat sekarang, cukup kenali panel Elements dan dua kegunaan berikut.
 
@@ -200,7 +200,7 @@ Berikut peta isi buku supaya kamu tahu apa yang akan dipelajari di tiap bab:
 | 15 | QA & penyempurnaan | pengujian, perbaikan, rilis |
 | 16 | UAS: final project | proyek utuh pilihan kasus |
 
-Secara garis besar, Bab 1–8 membangun dasar HTML dan CSS di proyek `tokosaya-css/`. Bab 9–15 melanjutkan proyek dengan Bootstrap 5 di folder `tokosaya-bootstrap/`. Bab 8 dan 16 menjadi kesempatan buat menggabungkan kemampuan yang udah dipelajari. Jadi, tiap bab membawa kamu selangkah lebih dekat ke proyek yang utuh.
+Secara garis besar, Bab 1–8 membangun dasar HTML dan CSS di proyek `tokosaya-css/`. Bab 9–15 melanjutkan proyek dengan Bootstrap 5 di folder `tokosaya-bootstrap/`. Bab 8 dan 16 menjadi kesempatan buat menggabungkan kemampuan yang udah dipelajari. Jadi, tiap bab membawamu selangkah lebih dekat ke proyek yang utuh.
 
 Framework juga membantu menjaga konsistensi. Kalau kartu produk dibuat dari komponen yang sama, warna, jarak, dan bentuknya lebih mudah diseragamkan di seluruh halaman. Tanpa framework, kamu tetap bisa menjaga konsistensi dengan *design token*—nilai warna dan jarak yang dipakai berulang. Konsep ini mulai dibahas di Bab 4 dan diperdalam di Bab 12. Framework membantu pekerjaan ini, tapi bukan pengganti perhatian pada konsistensi.
 
@@ -214,7 +214,7 @@ Kita juga akan memakai **Figma**, aplikasi desain antarmuka berbasis browser yan
 
 Buat **menata folder proyek**, gunakan satu folder utama, kayak `profil-mahasiswa/` buat latihan atau `tokosaya-css/` buat proyek utama. Simpan file HTML di folder utama, lalu kelompokkan aset ke subfolder kayak `css/` dan `img/`. Gunakan nama file huruf kecil dengan pola *kebab-case*, misalnya `index.html`, `katalog.html`, atau `produk-keyboard-kx210.svg`. Hindari spasi dan huruf kapital supaya nama file mudah dicari dan konsisten. Folder yang rapi akan makin membantu pas proyek dan tim berkembang.
 
-Biasakan menekan `Ctrl+S` setelah menulis kode. Jangan menulis kode di aplikasi pengolah kata karena aplikasi itu bisa menambahkan karakter yang mengganggu HTML. Sebelum mencoba perubahan besar, buat salinan folder kerja. Kebiasaan sederhana ini membantu kamu kembali ke versi yang masih berfungsi kalau terjadi kesalahan.
+Biasakan menekan `Ctrl+S` setelah menulis kode. Jangan menulis kode di aplikasi pengolah kata karena aplikasi itu bisa menambahkan karakter yang mengganggu HTML. Sebelum mencoba perubahan besar, buat salinan folder kerja. Kebiasaan sederhana ini membantumu kembali ke versi yang masih berfungsi kalau terjadi kesalahan.
 
 ### 1.9 Menulis Dokumen HTML Pertama
 
@@ -222,7 +222,7 @@ Sekarang, mari lihat struktur dasar dokumen HTML. Dokumen dimulai dengan `<!DOCT
 
 Kamu akan mengetik pola lengkap ini di bagian Contoh Kode dan Praktikum. Dari awal, biasakan menyusun struktur dokumen dengan rapi: satu dokumen, satu `<h1>` (judul terpenting halaman); heading nggak melompat level tanpa alasan (`h1` → `h2` → `h3`, bukan `h1` → `h3`); setiap gambar sediakan `alt` berupa deskripsi singkat; dan penulisan tag selain huruf kecil. Kedengarannya detail kecil, tapi keempat kebiasaan itu adalah fondasi aksesibilitas dan keterbacaan kode yang akan diuji pada Bab 8 dan Bab 16.
 
-Sebelum mulai mengetik, ingat tiga hal ini. Pertama, gunakan tag HTML yang udah tersedia; tag yang nggak dikenal bisa saja nggak ditampilkan kayak yang diharapkan. Kedua, lengkapi tag pembuka dengan tag penutup kalau diperlukan supaya susunan dokumen tetap benar. Ketiga, simpan dokumen dengan ekstensi `.html` dan pengodean UTF-8 sejak awal. Kalau ada masalah, bagian Troubleshooting Praktikum bisa membantu kamu memeriksanya.
+Sebelum mulai mengetik, ingat tiga hal ini. Pertama, gunakan tag HTML yang udah tersedia; tag yang nggak dikenal bisa saja nggak ditampilkan kayak yang diharapkan. Kedua, lengkapi tag pembuka dengan tag penutup kalau diperlukan supaya susunan dokumen tetap benar. Ketiga, simpan dokumen dengan ekstensi `.html` dan pengodean UTF-8 sejak awal. Kalau ada masalah, bagian Troubleshooting Praktikum bisa membantumu memeriksanya.
 
 Sekarang saatnya mencoba. Di bagian berikutnya, kamu akan melihat contoh kode dan membuat halaman profil sendiri di Praktikum.
 
@@ -300,7 +300,7 @@ Penjelasan: contoh kedua cuma memakai paragraf dan link supaya mudah diikuti pas
 **Contoh 1 (`latihan/01-halo-dunia.html`).** `<!DOCTYPE html>` memberi tahu browser bahwa dokumen memakai HTML5. `<html lang="id">` menunjukkan bahasa dokumen, sehingga pembaca layar bisa memilih pelafalan yang sesuai. Di dalam `<head>`, `<meta charset="utf-8">` mengatur pengodean karakter supaya teks tampil benar, sedangkan `<meta name="viewport">` membantu halaman mengikuti lebar layar perangkat. `<title>` menentukan nama yang muncul pada tab browser. Bagian `<body>` berisi konten yang terlihat, termasuk `<h1>` sebagai judul utama dan `<p>` sebagai paragraf.
 
 **Contoh 2 (`tokosaya-css/index.html`).** Halaman ini sengaja ditulis "berongga gaya" — tanpa satu pun CSS — supaya kamu melihat browser menyediakan tampilan dasarnya sendiri: heading besar dan tebal, link berwarna biru bergaris bawah. Ini pemahaman penting: browser punya *style* bawaan, dan tugas CSS nantinya sebagian besar menggantikan gaya bawaan itu. Link `<a href="katalog.html">` memakai jalur relatif: browser mencari `katalog.html` di folder yang sama dengan halaman yang sedang dibuka, sehingga seluruh folder tetap bekerja pas dipindah ke komputer atau host lain — inilah alasan struktur folder rapi di Subbab 1.5 begitu bernilai. Judul hero di `<h1>` dan subjudul pada `<p>` mengikuti konten hero baku Tokosaya, termasuk tombol "Lihat Katalog" (sementara berupa link polos; penyamaran visual tombol adalah pekerjaan CSS di Bab 9). Perhatikan juga tanda `<!-- -->`:
-komentar HTML nggak tampil di halaman, tapi berguna banget buat meninggalkan catatan bagi pembaca berikutnya — termasuk diri kamu sebulan kemudian. Contoh ini pula titik lahir folder proyek `tokosaya-css/` yang akan terus diisi hingga UTS.
+komentar HTML nggak tampil di halaman, tapi berguna banget buat meninggalkan catatan bagi pembaca berikutnya — termasuk dirimu sebulan kemudian. Contoh ini pula titik lahir folder proyek `tokosaya-css/` yang akan terus diisi hingga UTS.
 
 ## Praktikum
 
@@ -312,13 +312,13 @@ Di praktikum ini, kamu akan membuat halaman profil mahasiswa dengan HTML, berisi
 
 - Komputer dengan **Visual Studio Code** (unduh dari website resminya kalau belum terpasang).
 - **Google Chrome** buat membuka halaman dan memakai Chrome DevTools.
-- Satu gambar buat foto profil (boleh foto kamu atau gambar lain; nama filenya akan diubah pas persiapan).
+- Satu gambar buat foto profil (boleh fotomu atau gambar lain; nama filenya akan diubah pas persiapan).
 - Folder kerja di tempat yang mudah diingat, misalnya `D:\praktikum\bab-01\`.
 
 ### Persiapan
 
 1. Buat folder `profil-mahasiswa/`, lalu buat subfolder `img/` di dalamnya.
-2. Salin gambar pilihan kamu ke folder `img/` dan ubah namanya menjadi `foto-profil.png`. Aktifkan tampilan ekstensi file di File Explorer supaya nama file nggak berakhir ganda, kayak `foto-profil.png.jpg`.
+2. Salin gambar pilihanmu ke folder `img/` dan ubah namanya menjadi `foto-profil.png`. Aktifkan tampilan ekstensi file di File Explorer supaya nama file nggak berakhir ganda, kayak `foto-profil.png.jpg`.
 3. Buka Visual Studio Code, pilih *File → Open Folder*, lalu buka `profil-mahasiswa/`. Isi folder akan terlihat di panel Explorer.
 4. Siapkan Chrome. Selama praktikum, kamu akan bergantian memakai editor dan browser.
 
@@ -376,7 +376,7 @@ File: profil-mahasiswa/index.html
 
 Bagian `<head>` memuat tiga elemen yang udah kamu kenal: `charset` supaya teks Indonesia tampil benar, `viewport` supaya halaman mengikuti lebar perangkat, dan `<title>` sebagai nama tab. Atribut `lang="id"` memberi tahu browser dan alat bantu bahwa konten halaman berbahasa Indonesia.
 
-Bagian `<body>` memperlihatkan beberapa elemen dasar. `<h1>` dan `<h2>` membentuk hierarki heading: satu judul utama, lalu judul-judul bagian. Elemen `<img>` menampilkan foto. Atribut `src` menunjukkan lokasi file, `alt` memberi teks alternatif kalau gambar nggak tampil atau dibaca oleh *screen reader*, sedangkan `width` dan `height` memberi tahu browser ukuran gambar. `<ul>` cocok buat daftar bidang minat yang urutannya nggak penting, sedangkan `<ol>` digunakan buat daftar keterampilan yang memiliki urutan. Contoh ini juga memuat link web yang dibuka di tab baru dan link `mailto:` yang membuka aplikasi email. Alamat `kampus.example` hanya contoh; ganti dengan alamat kamu pas berlatih.
+Bagian `<body>` memperlihatkan beberapa elemen dasar. `<h1>` dan `<h2>` membentuk hierarki heading: satu judul utama, lalu judul-judul bagian. Elemen `<img>` menampilkan foto. Atribut `src` menunjukkan lokasi file, `alt` memberi teks alternatif kalau gambar nggak tampil atau dibaca oleh *screen reader*, sedangkan `width` dan `height` memberi tahu browser ukuran gambar. `<ul>` cocok buat daftar bidang minat yang urutannya nggak penting, sedangkan `<ol>` digunakan buat daftar keterampilan yang memiliki urutan. Contoh ini juga memuat link web yang dibuka di tab baru dan link `mailto:` yang membuka aplikasi email. Alamat `kampus.example` hanya contoh; ganti dengan alamatmu pas berlatih.
 
 Ada dua hal yang perlu diingat dari contoh ini. Pertama, pilih `<ul>` atau `<ol>` berdasarkan isi daftarnya: `ul` buat bidang minat yang nggak perlu diurutkan, `ol` buat keterampilan yang memiliki urutan. Kedua, `<strong>` menandai informasi yang penting, bukan sekadar membuat teks terlihat tebal. Kalau digunakan terlalu sering, penekanannya justru nggak terasa. Kamu akan terus berlatih memilih elemen berdasarkan maknanya, terutama di Bab 2.
 
@@ -386,7 +386,7 @@ Kalau kodenya benar, halaman akan menampilkan judul tab *Profil Mahasiswa — An
 
 Di DevTools, panel **Elements** akan menampilkan struktur `html`, `head`, dan `body`, beserta elemen di dalamnya. Klik satu baris elemen buat melihat bagian yang disorot di halaman. Dengan *device toolbar*, ubah lebar layar dan perhatikan gimana teks menyesuaikan ruangnya. Ini menunjukkan gimana browser membaca dan menampilkan dokumen yang kamu tulis.
 
-Catat pengamatan kamu dalam tiga baris: apa yang dilihat, panel yang digunakan, dan artinya bagi kode. Ini latihan awal buat menjelaskan hasil pengujian. Di tugas-tugas berikutnya, kamu juga akan diminta mendukung penjelasan dengan bukti dari struktur halaman.
+Catat pengamatanmu dalam tiga baris: apa yang dilihat, panel yang digunakan, dan artinya bagi kode. Ini latihan awal buat menjelaskan hasil pengujian. Di tugas-tugas berikutnya, kamu juga akan diminta mendukung penjelasan dengan bukti dari struktur halaman.
 
 ### Troubleshooting
 
@@ -445,7 +445,7 @@ Gunakan daftar ini sebagai acuan pas membuat halaman baru di folder `tokosaya-cs
 1. Jelaskan dengan kata-kata kamu sendiri perbedaan frontend dan backend. Buat juga analogi lain selain ruang kafe dan dapur.
 2. Sebutkan empat pekerjaan frontend dan empat pekerjaan backend pada website perpustakaan kampus. Susun jawaban dalam dua kolom.
 3. Pilih website layanan kampus, misalnya portal kuliah atau perpustakaan digital. Catat lima elemen antarmuka yang kamu gunakan dan tiga pekerjaan server yang mungkin berjalan di belakangnya.
-4. Buat dokumen HTML sederhana berisi judul halaman, satu `h1`, dan satu paragraf tentang profil kamu. Simpan sebagai `latihan-2.html`, buka di Chrome, lalu periksa judul tabnya.
+4. Buat dokumen HTML sederhana berisi judul halaman, satu `h1`, dan satu paragraf tentang profilmu. Simpan sebagai `latihan-2.html`, buka di Chrome, lalu periksa judul tabnya.
 5. Buat halaman profil mahasiswa dengan satu `h1`, satu gambar ber-`alt`, dua daftar (`ul` dan `ol`), serta minimal tiga link. Periksa halaman dengan Chrome DevTools dan catat lima tag yang terlihat di panel Elements.
 6. Pada URL contoh `https://tokosaya.id/katalog.html`, tunjukkan bagian yang merupakan skema, domain, dan jalur file.
 7. Buka halaman profil praktikum pada ukuran HP melalui *device toolbar*, lalu pada ukuran komputer. Catat dua perbedaan yang kamu lihat, kayak aliran teks atau posisi foto.
@@ -462,7 +462,7 @@ Gunakan daftar ini sebagai acuan pas membuat halaman baru di folder `tokosaya-cs
 1. Sebelum membaca bab ini, apa yang kamu bayangkan tentang membuat website? Apakah ada yang berubah setelah membaca?
 2. Kamu lebih tertarik mengerjakan antarmuka—kayak desain dan layout—atau bagian belakang, kayak data dan logika? Apa pengaruhnya terhadap peran yang ingin kamu ambil dalam proyek kelompok?
 3. Apa hal paling menarik atau mengejutkan yang kamu temukan pas memeriksa halaman sendiri di DevTools?
-4. Dari 16 bab di buku ini, mana yang menurut kamu paling menantang? Apa rencana kamu buat menghadapinya?
+4. Dari 16 bab di buku ini, mana yang menurutmu paling menantang? Apa rencanamu buat menghadapinya?
 
 ## Rangkuman
 
@@ -471,7 +471,7 @@ Gunakan daftar ini sebagai acuan pas membuat halaman baru di folder `tokosaya-cs
 3. Dalam pengembangan sistem informasi, frontend menerjemahkan rancangan menjadi antarmuka dan menghubungkan kebutuhan bisnis, desain, teknologi, serta pengguna.
 4. *Web design* mencakup perancangan website; UI adalah bagian yang dilihat dan digunakan; UX adalah pengalaman secara keseluruhan. HTML menyusun konten, CSS mengatur tampilannya.
 5. Website terdiri dari halaman dan aset. Buku ini memakai struktur folder yang rapi dan nama file *kebab-case*.
-6. Secara sederhana, browser menerima HTML, menyusun pohon dokumen, menerapkan gaya, lalu menampilkan halaman. Panel Elements di DevTools membantu kamu melihat pohon tersebut.
+6. Secara sederhana, browser menerima HTML, menyusun pohon dokumen, menerapkan gaya, lalu menampilkan halaman. Panel Elements di DevTools membantumu melihat pohon tersebut.
 7. HTML menyusun struktur, CSS mengatur tampilan, dan CSS framework menyediakan komponen siap pakai. Bootstrap 5 dibahas mulai Bab 9.
 8. Alat utama yang digunakan adalah VS Code dan Chrome dengan DevTools. Live Server bisa dipasang sebagai pilihan.
 9. Proyek Tokosaya dikembangkan bertahap di folder `tokosaya-css/` (Bab 1–8) dan `tokosaya-bootstrap/` (Bab 9–16).
