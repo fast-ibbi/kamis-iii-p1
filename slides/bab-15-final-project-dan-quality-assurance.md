@@ -258,7 +258,7 @@ Ingatkan bahwa kustom tetap boleh, cuma tempatnya bukan di sini.
 <!--
 Minta kelas menunjuk satu aturan kustom di file masing-masing, lalu tanyakan apakah ada
 komentar pengenalnya. Lanjutkan dengan risiko ganti versi Bootstrap di tengah sprint QA.
-Periksa juga versi Bootstrap di situsnya sekarang, karena buku ini mengunci 5.3.3 dan
+Periksa juga versi Bootstrap di websitenya sekarang, karena buku ini mengunci 5.3.3 dan
 versi mayor baru bisa mengubah banyak kelas.
 -->
 
