@@ -543,8 +543,7 @@ Bootstrap 5.3. Praktikum juga melatih pembacaan panel Inspect Figma bagi yang me
    "Tokosaya" Poppins 700, 20 px, warna `#4F46E5`. Kanan: tautan Beranda, Katalog, tentang,
    Kontak — Inter 15 px, warna `#334155`, jarak antartautan 32 px; tautan aktif Katalog.
    Ikon keranjang (Bootstrap Icons `bi-cart3`) 20 px di ujung kanan, dipisah 24 px.
-   Implementasi: `header.site-nav` + `.container` + `d-flex flex-wrap align-items-center
-   justify-content-between gap-3`, padding vertikal 16 px.
+   Implementasi: `header.site-nav` + `.container` + `d-flex flex-wrap align-items-center justify-content-between gap-3`, padding vertikal 16 px.
 
    **E. Page head (hero).** Latar `#FFFFFF`, garis bawah 1 px `#E2E8F0`, padding 24 px atas
    dan bawah (tinggi isi ±112 px). Isi: jejak navigasi (Beranda / Katalog / Keyboard Mekanis
@@ -1301,8 +1300,7 @@ File: demo/bab-14/analisis-2.css
    nama). c) Tanpa `g-4` kartu bertumpuk tanpa jarak 24 px dari spesifikasi.
 2. a) Radius 8 px melanggar token `--radius` 12 px; latar `#6366F1` bukan token — panel
    wajib `var(--clr-surface)`; margin 50/100 di luar skala jarak (harus kelipatan 8:
-   48/64). b) Perbaikan: `padding: 24px; margin: 48px 0; border-radius: var(--radius);
-   background-color: var(--clr-surface); color: var(--clr-body);`.
+   48/64). b) Perbaikan: `padding: 24px; margin: 48px 0; border-radius: var(--radius); background-color: var(--clr-surface); color: var(--clr-body);`.
 
 **Soal Praktik (garis besar):**
 1. Panel memakai struktur identik praktikum dengan `badge-baru` berlatar `var(--clr-primary)`
