@@ -10,7 +10,7 @@ satu proyek berjalan (studi kasus **Tokosaya**), HTML dan CSS murni tanpa JavaSc
 - **Proyek buku:** `tokosaya-css/` (Bab 1–8) dan `tokosaya-bootstrap/` (Bab 9–16)
 - **Studi kasus:** Tokosaya — toko online UMKM, *"Belanja Tepat, Kirim Cepat"*
 
-> **Status:** 14 deck slide tersedia (Bab 1–7 dan 9–15, total 522 slide). Bab 8 (UTS) dan
+> **Status:** 14 deck slide tersedia (Bab 1–7 dan 9–15, total 523 slide). Bab 8 (UTS) dan
 > Bab 16 (UAS) tidak berdeck karena keduanya berupa ujian. Peta bab dan rincian pertemuan di
 > bawah diambil dari buku, bukan susunan final.
 
@@ -24,7 +24,7 @@ satu proyek berjalan (studi kasus **Tokosaya**), HTML dan CSS murni tanpa JavaSc
 | --- | --- | --- |
 | 1 | Pengantar Frontend Development dan Web Design | [HTML](https://fast-ibbi.github.io/kamis-iii-p1/bab-01-pengantar-frontend-development-dan-web-design) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-01-pengantar-frontend-development-dan-web-design.pdf) · 39 slide |
 | 2 | HTML5 dan Struktur Semantik | [HTML](https://fast-ibbi.github.io/kamis-iii-p1/bab-02-html5-dan-struktur-semantik) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-02-html5-dan-struktur-semantik.pdf) · 30 slide |
-| 3 | Dasar-Dasar CSS | [HTML](https://fast-ibbi.github.io/kamis-iii-p1/bab-03-dasar-dasar-css) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-03-dasar-dasar-css.pdf) · 38 slide |
+| 3 | Dasar-Dasar CSS | [HTML](https://fast-ibbi.github.io/kamis-iii-p1/bab-03-dasar-dasar-css) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-03-dasar-dasar-css.pdf) · 39 slide |
 | 4 | Tipografi dan Visual Design CSS | [HTML](https://fast-ibbi.github.io/kamis-iii-p1/bab-04-typography-dan-visual-design-css) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-04-typography-dan-visual-design-css.pdf) · 37 slide |
 | 5 | CSS Box Model dan Layout | [HTML](https://fast-ibbi.github.io/kamis-iii-p1/bab-05-css-box-model-dan-layout) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-05-css-box-model-dan-layout.pdf) · 38 slide |
 | 6 | Flexbox untuk Web Layout | [HTML](https://fast-ibbi.github.io/kamis-iii-p1/bab-06-flexbox-untuk-web-layout) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-06-flexbox-untuk-web-layout.pdf) · 38 slide |
