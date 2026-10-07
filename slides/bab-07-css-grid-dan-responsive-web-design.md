@@ -435,6 +435,8 @@ menguji setiap breakpoint tepat setelah menulisnya, bukan setelah semuanya seles
 
 ---
 
+<!-- _class: compact -->
+
 # clamp(): Huruf yang Bernafas
 
 `clamp()` menerima tiga argumen: nilai minimum, nilai dipilih, dan maksimum.
