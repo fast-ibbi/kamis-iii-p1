@@ -286,10 +286,10 @@ bab  mojb istil  Anda  Anda |    pagar      ##     ###     tabel  kode | CRLF BO
   STATUS: SEMUA LULUS
 ```
 
-Skala pekerjaan: **20 commit revisi** (ditambah 1 commit dokumentasi ini), 17 berkas,
-2.224 baris ditambah / 2.227 dihapus.
-Selisih 3 baris itu **disengaja dan terdokumentasi** — persis perbaikan struktur
-bab-01 (1 pagar nyasar) dan bab-14 (2 span inline yang dijadikan satu baris).
+Skala pekerjaan: **22 commit**, 17 berkas, ~2.290 baris diubah.
+Selisih 3 baris antara penambahan dan penghapusan itu **disengaja dan terdokumentasi**
+— persis perbaikan struktur bab-01 (1 pagar nyasar) dan bab-14 (2 span inline yang
+dijadikan satu baris).
 
 ### 11.2 Kesalahan isi yang diperbaiki
 
@@ -371,3 +371,63 @@ python scripts/verify-revisi.py
 
 Skrip membandingkan working tree dengan commit baseline yang disebut di atas
 dan mencetak tabel 14 baris di 11.1.
+
+### 11.9 Kerusakan tingkat huruf — kategori ketiga
+
+Ini temuan terbesar yang tidak terlihat di awal. Dua kategori kerusakan pertama
+adalah mojibake `?` dan pagar markdown yang tidak sinkron. Yang ini berbeda:
+**huruf yang hilang atau tertukar di dalam kata**, sehingga tidak tertangkap oleh
+pemindaian mojibake mana pun — contohnya `ketikanya` (ketiganya), `ditemati`
+(diamati), `konstrk` (kontras), `statitik` (statistik), `resiko` (risiko),
+`emuasi` (emulasi), `guna­kaan` (gunakan), `ter hitung` (terhitung),
+`bagianya` (bagiannya), `diarang` (tidak jelas).
+
+Ditemukan oleh para agen revisi nada saat membaca bab masing-masing, lalu saya
+verifikasi satu per satu terhadap teks berjalan: **54 klaim diperiksa, 33
+dipastikan dan diperbaiki** (commit `5691441`), 21 sisanya di bawah ini.
+
+#### 11.9.1 Tidak saya perbaiki karena kata yang benar tidak bisa saya pastikan
+
+Saya **tidak menebak** di sini. Mengganti kata dengan tebakan yang salah lebih
+buruk daripada membiarkannya terlihat rusak.
+
+| Bab | Teks sekarang | Dugaan | Keyakinan |
+|---|---|---|---|
+| 05 | padding dan latar warnanya **berbenung** penuh | membungkus penuh | rendah |
+| 05 | `overflow` hanya **menggembari** konten yang melintasi tepi kotak | memotong | rendah |
+| 05 | angkanya melompat 16 → 24 → 32, bukan **menjerayang** ke 21 | mengarang / menyimpang | rendah |
+| 05 | jarak foto ke tepi **paspotor** … antar **paspotor** di dinding (2×) | paspartu, yaitu mat pigura | sedang |
+| 05 | celah spasi dan **butur** yang menjengkelkan | tidak dapat ditentukan | — |
+| 11 | bagian token serta aturan font **tokoh** | token | sedang |
+| 12 | dinilai secara kualitatif tanpa **diarang** | tidak dapat ditentukan | — |
+| 13 | **luluskan** setiap halaman melalui pemeriksaan manual | loloskan | sedang |
+| 15 | pemberitaan **kering-kering** menurunkan kepercayaan klien | mungkin reduplikasi sengaja | rendah |
+| 04 | `<p>…mewarisi color dari **articletnya**</p>` | salah ketik, tetapi ini teks HTML tampilan sehingga tidak boleh diubah | — |
+
+#### 11.9.2 Tidak saya perbaiki karena butuh pengetahuan kurikulummu
+
+| Bab | Temuan |
+|---|---|
+| 02 | Pohon berkas menulis `katalog.html (dibuat pada Bab 7)`, sedangkan rujukan lain di bab yang sama menyebut bab yang berbeda |
+| 05 | Praktikum Persiapan menyebut sembilan produk sisa tetapi hanya mendaftar 7 nama berkas |
+| 06 | Pembuka `Contoh Kode` menulis Tiga contoh berikut… tetapi hanya ada Contoh 6-1 dan 6-2, dan kalimat yang sama lalu menulis keduanya |
+| 06 | Bagian 6.5: pengguna layar bawah (*screen reader* tidak melihat warna sama sekali — …) — tanda kurung tidak pernah ditutup dan frasa awalnya tidak utuh |
+| 10 | Bagian 10.4 menulis badge memakai `align-self-start`, tetapi kode di bagian itu tidak memuatnya (hanya kartu Studi Kasus) |
+| 10 | Bagian 10.3 menulis ketujuh pasangannya `btn-outline-*` — Bootstrap 5.3 punya delapan warna tema |
+| 13 | Bagian 14.3 dan kunci `Evaluasi` menulis `g-4` memberi 24 px di setiap sisi kolom; Bootstrap membagi setengah gutter per sisi (12 px), jadi jaraknya 24 px. Kalimatnya bertentangan sendiri |
+| 14 | Pohon 14.5 memakai `<h3>` untuk Spesifikasi Singkat, sedangkan spesifikasi F dan `produk.html` memakai `h2` |
+| 14 | Spesifikasi D: Katalog, **tentang**, Kontak — huruf kecil |
+| 03 | `<h2>Narasiswa</h2>` pada seksi `#kontak` — kemungkinan Narahubung, tetapi ada di teks HTML tampilan |
+| 03 | singkatan ( shorthand) dan mengabdiakannya |
+
+#### 11.9.3 Pelajaran untuk revisi berikutnya
+
+Kerusakan tingkat huruf tidak bisa ditemukan dengan mencari pola karakter, dan
+tidak bisa ditemukan dengan membandingkan jumlah baris atau struktur. Satu-satunya
+cara yang bekerja di sini adalah **membaca setiap bab**. Itu sebabnya temuan ini
+baru muncul di akhir, dari para agen yang memang membaca babnya satu per satu —
+bukan dari delapan pemeriksaan otomatis saya.
+
+Delapan pemeriksaan itu tetap perlu, tetapi ia hanya membuktikan **bentuk** tidak
+rusak. Untuk isi, yang perlu adalah membaca. Kalau kamu ingin menuntaskan 21 sisa
+di 11.9.1 dan 11.9.2, itu pekerjaan terpisah yang layak dikerjakan sendiri.
