@@ -10,8 +10,9 @@ satu proyek berjalan (studi kasus **Tokosaya**), HTML dan CSS murni tanpa JavaSc
 - **Proyek buku:** `tokosaya-css/` (Bab 1–8) dan `tokosaya-bootstrap/` (Bab 9–16)
 - **Studi kasus:** Tokosaya — toko online UMKM, *"Belanja Tepat, Kirim Cepat"*
 
-> **Status:** baru **Bab 1** yang tersedia. Empat belas bab lain masih direncanakan; topik dan
-> cakupannya di bawah diambil apa adanya dari peta bab di dalam buku, bukan susunan final.
+> **Status:** 14 deck slide tersedia (Bab 1–7 dan 9–15, total 522 slide). Bab 8 (UTS) dan
+> Bab 16 (UAS) tidak berdeck karena keduanya berupa ujian. Peta bab dan rincian pertemuan di
+> bawah diambil dari buku, bukan susunan final.
 
 **Website slide:** <https://fast-ibbi.github.io/kamis-iii-p1/>
 
@@ -21,7 +22,20 @@ satu proyek berjalan (studi kasus **Tokosaya**), HTML dan CSS murni tanpa JavaSc
 
 | Bab | Topik | Slides |
 | --- | --- | --- |
-| 1 | Pengantar Frontend Development dan Web Design | [bab-01](https://fast-ibbi.github.io/kamis-iii-p1/bab-01-pengantar-frontend-development-dan-web-design) |
+| 1 | Pengantar Frontend Development dan Web Design | [HTML](https://fast-ibbi.github.io/kamis-iii-p1/bab-01-pengantar-frontend-development-dan-web-design) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-01-pengantar-frontend-development-dan-web-design.pdf) · 39 slide |
+| 2 | HTML5 dan Struktur Semantik | [HTML](https://fast-ibbi.github.io/kamis-iii-p1/bab-02-html5-dan-struktur-semantik) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-02-html5-dan-struktur-semantik.pdf) · 30 slide |
+| 3 | Dasar-Dasar CSS | [HTML](https://fast-ibbi.github.io/kamis-iii-p1/bab-03-dasar-dasar-css) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-03-dasar-dasar-css.pdf) · 38 slide |
+| 4 | Tipografi dan Visual Design CSS | [HTML](https://fast-ibbi.github.io/kamis-iii-p1/bab-04-typography-dan-visual-design-css) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-04-typography-dan-visual-design-css.pdf) · 37 slide |
+| 5 | CSS Box Model dan Layout | [HTML](https://fast-ibbi.github.io/kamis-iii-p1/bab-05-css-box-model-dan-layout) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-05-css-box-model-dan-layout.pdf) · 38 slide |
+| 6 | Flexbox untuk Web Layout | [HTML](https://fast-ibbi.github.io/kamis-iii-p1/bab-06-flexbox-untuk-web-layout) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-06-flexbox-untuk-web-layout.pdf) · 38 slide |
+| 7 | CSS Grid dan Responsive Web Design | [HTML](https://fast-ibbi.github.io/kamis-iii-p1/bab-07-css-grid-dan-responsive-web-design) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-07-css-grid-dan-responsive-web-design.pdf) · 36 slide |
+| 9 | Pengenalan Bootstrap 5 | [HTML](https://fast-ibbi.github.io/kamis-iii-p1/bab-09-pengenalan-bootstrap-5) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-09-pengenalan-bootstrap-5.pdf) · 38 slide |
+| 10 | Komponen Bootstrap | [HTML](https://fast-ibbi.github.io/kamis-iii-p1/bab-10-komponen-bootstrap) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-10-komponen-bootstrap.pdf) · 38 slide |
+| 11 | Form dan User Interface Design | [HTML](https://fast-ibbi.github.io/kamis-iii-p1/bab-11-form-dan-user-interface-design) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-11-form-dan-user-interface-design.pdf) · 38 slide |
+| 12 | UI/UX dan Design System | [HTML](https://fast-ibbi.github.io/kamis-iii-p1/bab-12-ui-ux-dan-design-system) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-12-ui-ux-dan-design-system.pdf) · 38 slide |
+| 13 | Website Responsif dan Accessibility | [HTML](https://fast-ibbi.github.io/kamis-iii-p1/bab-13-website-responsif-dan-accessibility) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-13-website-responsif-dan-accessibility.pdf) · 38 slide |
+| 14 | Implementasi Desain Figma ke HTML/CSS | [HTML](https://fast-ibbi.github.io/kamis-iii-p1/bab-14-implementasi-desain-figma-ke-html-css) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-14-implementasi-desain-figma-ke-html-css.pdf) · 38 slide |
+| 15 | Final Project dan Quality Assurance | [HTML](https://fast-ibbi.github.io/kamis-iii-p1/bab-15-final-project-dan-quality-assurance) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-15-final-project-dan-quality-assurance.pdf) · 38 slide |
 
 Buka versi **HTML** untuk mengajar (tekan `p` untuk presenter view yang memuat catatan penyaji dan
 timer), atau **PDF** untuk handout, printing, dan unggahan ke LMS.
@@ -75,7 +89,7 @@ link web dan `mailto:`) lalu diinspeksi lewat panel **Elements** dan *device too
 
 ### Pertemuan 2 — HTML5 dan Struktur Semantik
 
-**Link Slides:** — *(belum tersedia)*
+**Link Slides:** [Bab 2](https://fast-ibbi.github.io/kamis-iii-p1/bab-02-html5-dan-struktur-semantik) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-02-html5-dan-struktur-semantik.pdf)
 
 **Cakupan:** elemen semantik, kerangka Tokosaya.
 
@@ -83,7 +97,7 @@ link web dan `mailto:`) lalu diinspeksi lewat panel **Elements** dan *device too
 
 ### Pertemuan 3 — Dasar-dasar CSS
 
-**Link Slides:** — *(belum tersedia)*
+**Link Slides:** [Bab 3](https://fast-ibbi.github.io/kamis-iii-p1/bab-03-dasar-dasar-css) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-03-dasar-dasar-css.pdf)
 
 **Cakupan:** selector, kaskade, specificity.
 
@@ -91,7 +105,7 @@ link web dan `mailto:`) lalu diinspeksi lewat panel **Elements** dan *device too
 
 ### Pertemuan 4 — Tipografi dan Visual dengan CSS
 
-**Link Slides:** — *(belum tersedia)*
+**Link Slides:** [Bab 4](https://fast-ibbi.github.io/kamis-iii-p1/bab-04-typography-dan-visual-design-css) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-04-typography-dan-visual-design-css.pdf)
 
 **Cakupan:** Google Fonts, sistem warna, design token.
 
@@ -99,7 +113,7 @@ link web dan `mailto:`) lalu diinspeksi lewat panel **Elements** dan *device too
 
 ### Pertemuan 5 — Box Model dan Layout Dasar
 
-**Link Slides:** — *(belum tersedia)*
+**Link Slides:** [Bab 5](https://fast-ibbi.github.io/kamis-iii-p1/bab-05-css-box-model-dan-layout) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-05-css-box-model-dan-layout.pdf)
 
 **Cakupan:** jarak, kotak, display, position.
 
@@ -107,7 +121,7 @@ link web dan `mailto:`) lalu diinspeksi lewat panel **Elements** dan *device too
 
 ### Pertemuan 6 — Flexbox
 
-**Link Slides:** — *(belum tersedia)*
+**Link Slides:** [Bab 6](https://fast-ibbi.github.io/kamis-iii-p1/bab-06-flexbox-untuk-web-layout) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-06-flexbox-untuk-web-layout.pdf)
 
 **Cakupan:** navigasi, footer, kartu satu baris.
 
@@ -115,7 +129,7 @@ link web dan `mailto:`) lalu diinspeksi lewat panel **Elements** dan *device too
 
 ### Pertemuan 7 — CSS Grid dan Responsif
 
-**Link Slides:** — *(belum tersedia)*
+**Link Slides:** [Bab 7](https://fast-ibbi.github.io/kamis-iii-p1/bab-07-css-grid-dan-responsive-web-design) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-07-css-grid-dan-responsive-web-design.pdf)
 
 **Cakupan:** grid dua dimensi, media query.
 
@@ -131,7 +145,7 @@ link web dan `mailto:`) lalu diinspeksi lewat panel **Elements** dan *device too
 
 ### Pertemuan 9–11 — Bootstrap 5
 
-**Link Slides:** — *(belum tersedia)*
+**Link Slides:** [Bab 9](https://fast-ibbi.github.io/kamis-iii-p1/bab-09-pengenalan-bootstrap-5) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-09-pengenalan-bootstrap-5.pdf) · [Bab 10](https://fast-ibbi.github.io/kamis-iii-p1/bab-10-komponen-bootstrap) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-10-komponen-bootstrap.pdf) · [Bab 11](https://fast-ibbi.github.io/kamis-iii-p1/bab-11-form-dan-user-interface-design) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-11-form-dan-user-interface-design.pdf)
 
 **Cakupan:** landing page, katalog, form.
 
@@ -141,7 +155,7 @@ Buku merinci blok ini sebagai satu kesatuan; pembagiannya menjadi tiga pertemuan
 
 ### Pertemuan 12 — UI/UX dan Design System
 
-**Link Slides:** — *(belum tersedia)*
+**Link Slides:** [Bab 12](https://fast-ibbi.github.io/kamis-iii-p1/bab-12-ui-ux-dan-design-system) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-12-ui-ux-dan-design-system.pdf)
 
 **Cakupan:** prinsip UI, halaman styleguide.
 
@@ -149,7 +163,7 @@ Buku merinci blok ini sebagai satu kesatuan; pembagiannya menjadi tiga pertemuan
 
 ### Pertemuan 13 — Responsif dan Aksesibilitas
 
-**Link Slides:** — *(belum tersedia)*
+**Link Slides:** [Bab 13](https://fast-ibbi.github.io/kamis-iii-p1/bab-13-website-responsif-dan-accessibility) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-13-website-responsif-dan-accessibility.pdf)
 
 **Cakupan:** mobile-first, WCAG dasar.
 
@@ -157,7 +171,7 @@ Buku merinci blok ini sebagai satu kesatuan; pembagiannya menjadi tiga pertemuan
 
 ### Pertemuan 14 — Figma ke Kode
 
-**Link Slides:** — *(belum tersedia)*
+**Link Slides:** [Bab 14](https://fast-ibbi.github.io/kamis-iii-p1/bab-14-implementasi-desain-figma-ke-html-css) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-14-implementasi-desain-figma-ke-html-css.pdf)
 
 **Cakupan:** translasi desain ke halaman.
 
@@ -165,7 +179,7 @@ Buku merinci blok ini sebagai satu kesatuan; pembagiannya menjadi tiga pertemuan
 
 ### Pertemuan 15 — QA dan Penyempurnaan
 
-**Link Slides:** — *(belum tersedia)*
+**Link Slides:** [Bab 15](https://fast-ibbi.github.io/kamis-iii-p1/bab-15-final-project-dan-quality-assurance) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-15-final-project-dan-quality-assurance.pdf)
 
 **Cakupan:** pengujian, perbaikan, rilis.
 
