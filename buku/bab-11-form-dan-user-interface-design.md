@@ -33,9 +33,9 @@ formulir (*form*) — antarmuka terstruktur untuk mengumpulkan input pengguna; k
 
 Bayangkan ada seorang mahasiswa bernama Rani yang ingin membeli *flash drive* dan keyboard dari Tokosaya untuk keperluan tugas akhirnya. Setelah menambahkan dua produk ke keranjang, ia masuk ke tahap pembayaran. Masalahnya, di sana ia bertemu form yang bikin ragu: kolom nama tanpa label, nomor telepon tanpa petunjuk format, dan kupon dengan pesan galat yang cuma berbunyi "error kode 7". Rani jadi mengisi alamat sambil menebak-nebak, lalu dua kali salah mengetik email. Akhirnya transaksi gagal dan pesanannya batal.
 
-Cerita sederhana ini menunjukkan inti mata kuliah sistem informasi: *sistem informasi hidup dari data, dan form adalah pintu masuk data tersebut*. Kalau form-nya buruk, masalahnya bukan cuma pengguna jadi kesal; data yang masuk pun bisa salah ? alamat keliru tersimpan di basis data, pesanan gagal diantar, atau layanan publik ikut tersendat. Jadi, kualitas data sebuah organisasi, baik UMKM maupun universitas, sangat bergantung pada kualitas form yang dipakai untuk mengumpulkannya.
+Cerita sederhana ini menunjukkan inti mata kuliah sistem informasi: *sistem informasi hidup dari data, dan form adalah pintu masuk data tersebut*. Kalau form-nya buruk, masalahnya bukan cuma pengguna jadi kesal; data yang masuk pun bisa salah — alamat keliru tersimpan di basis data, pesanan gagal diantar, atau layanan publik ikut tersendat. Jadi, kualitas data sebuah organisasi, baik UMKM maupun universitas, sangat bergantung pada kualitas form yang dipakai untuk mengumpulkannya.
 
-Kabar baiknya, sebagian besar masalah form bukan soal teknologi canggih, tetapi soal desain yang rapi: label yang selalu terlihat, medan yang dikelompokkan, instruksi yang jelas, dan tombol yang langsung memberi tahu apa yang akan terjadi. Semua itu bisa Anda wujudkan cukup dengan HTML dan kelas Bootstrap ? tanpa satu baris JavaScript pun. Lewat bab ini, Anda akan melatih cara merancang form Tokosaya dengan standar tersebut.
+Kabar baiknya, sebagian besar masalah form bukan soal teknologi canggih, tetapi soal desain yang rapi: label yang selalu terlihat, medan yang dikelompokkan, instruksi yang jelas, dan tombol yang langsung memberi tahu apa yang akan terjadi. Semua itu bisa Anda wujudkan cukup dengan HTML dan kelas Bootstrap — tanpa satu baris JavaScript pun. Lewat bab ini, Anda akan melatih cara merancang form Tokosaya dengan standar tersebut.
 
 ## Materi Pembelajaran
 
@@ -45,7 +45,7 @@ Materi bab ini dibagi ke tujuh subbab yang bergerak dari konsep dasar ke impleme
 
 Formulir (*form*) adalah kumpulan kontrol yang dipakai untuk mengumpulkan informasi dari pengguna lalu mengirimkannya sebagai satu kesatuan. Contohnya ada di mana-mana: form pendaftaran mahasiswa baru, form pengajuan cuti di kantor, form peminjaman buku di perpustakaan, sampai form checkout di toko daring. Dalam konteks sistem informasi, form adalah lapisan antarmuka dari proses bisnis "pengumpulan data": apa pun yang Anda tentukan di form, itulah yang nantinya masuk ke sistem.
 
-Kenapa form perlu dirancang dengan serius? Karena di titik inilah layanan digital paling mudah gagal. Pengguna datang dengan tujuan yang jelas ? mendaftar, memesan, mengajukan ? tetapi waktu dan kesabarannya terbatas. Kebingungan kecil seperti label yang hilang, instruksi yang kabur, atau tombol yang artinya tidak jelas bisa membuat mereka berhenti di tengah jalan. Steve Krug merangkum prinsipnya lewat kalimat terkenal: jangan membuat pengguna harus berpikir. Form yang baik mengurangi keputusan yang perlu diambil pengguna, bukan malah menambahnya.
+Kenapa form perlu dirancang dengan serius? Karena di titik inilah layanan digital paling mudah gagal. Pengguna datang dengan tujuan yang jelas — mendaftar, memesan, mengajukan — tetapi waktu dan kesabarannya terbatas. Kebingungan kecil seperti label yang hilang, instruksi yang kabur, atau tombol yang artinya tidak jelas bisa membuat mereka berhenti di tengah jalan. Steve Krug merangkum prinsipnya lewat kalimat terkenal: jangan membuat pengguna harus berpikir. Form yang baik mengurangi keputusan yang perlu diambil pengguna, bukan malah menambahnya.
 
 Empat prinsip berikut menjadi dasar seluruh materi bab ini.
 
@@ -64,7 +64,7 @@ Sebelum membahas gaya tampilannya, Anda perlu paham dulu bahan penyusun form: el
 
 **`label` dan atribut `for`.** Label adalah pasangan resmi sebuah medan. Nilai `for` pada label harus sama dengan `id` pada medan. Hubungan ini penting ke dua arah: saat pengguna mengeklik label, fokus pindah ke medan; saat *screen reader* membaca medan, labelnya ikut dibacakan. Tanpa hubungan `for`-`id`, form mungkin masih terlihat rapi, tetapi aksesibilitasnya langsung turun. Karena itu, aturan buku ini sederhana: setiap medan wajib punya `<label for="id">` yang benar-benar terhubung.
 
-**`input` dan semantik *type*.** Perilaku elemen `input` berubah sesuai atribut *type*-nya. `type="email"` menyesuaikan keyboard ponsel dan memicu pemeriksaan format bawaan browser; `type="tel"` biasanya memunculkan pad angka; `type="password"` menyamarkan teks; sedangkan `type="date"`, `type="number"`, dan `type="url"` punya keyboard serta pembatasannya masing-masing. Jadi, pilihan *type* menentukan keyboard yang muncul sekaligus aturan dasar yang dipakai ? semuanya gratis, tanpa JavaScript. Tabel berikut merangkum *type* yang paling sering dipakai di situs seperti Tokosaya.
+**`input` dan semantik *type*.** Perilaku elemen `input` berubah sesuai atribut *type*-nya. `type="email"` menyesuaikan keyboard ponsel dan memicu pemeriksaan format bawaan browser; `type="tel"` biasanya memunculkan pad angka; `type="password"` menyamarkan teks; sedangkan `type="date"`, `type="number"`, dan `type="url"` punya keyboard serta pembatasannya masing-masing. Jadi, pilihan *type* menentukan keyboard yang muncul sekaligus aturan dasar yang dipakai — semuanya gratis, tanpa JavaScript. Tabel berikut merangkum *type* yang paling sering dipakai di situs seperti Tokosaya.
 
 | *Type* | Kegunaan | Contoh penggunaan Tokosaya |
 |---|---|---|
@@ -80,11 +80,11 @@ Sebelum membahas gaya tampilannya, Anda perlu paham dulu bahan penyusun form: el
 
 **`select` dan `option`.** Kalau pilihan yang tersedia sudah jelas dan terbatas, seperti kategori produk atau program studi, `select` lebih tepat daripada `text`: salah ketik berkurang dan data jadi lebih seragam. Atribut `selected` menandai pilihan awal. Untuk daftar panjang yang perlu dikelompokkan, elemen `optgroup` dengan atribut `label` membantu pembacaan.
 
-**`checkbox` dan `radio`.** Checkbox memungkinkan lebih dari satu pilihan sekaligus (misalnya persetujuan atau langganan), sedangkan radio hanya mengizinkan satu pilihan dalam satu kelompok. Radio yang satu kelompok wajib memakai atribut `name` yang sama ? dari situlah browser tahu bahwa pilihannya saling meniadakan. Jika checkbox atau radio masih satu pertanyaan, bungkuslah dengan `fieldset`.
+**`checkbox` dan `radio`.** Checkbox memungkinkan lebih dari satu pilihan sekaligus (misalnya persetujuan atau langganan), sedangkan radio hanya mengizinkan satu pilihan dalam satu kelompok. Radio yang satu kelompok wajib memakai atribut `name` yang sama — dari situlah browser tahu bahwa pilihannya saling meniadakan. Jika checkbox atau radio masih satu pertanyaan, bungkuslah dengan `fieldset`.
 
 **`fieldset` dan `legend`.** Pasangan ini dipakai untuk mengelompokkan medan yang saling berhubungan sekaligus memberi judul kelompoknya. Browser dan pembaca layar mengenali `fieldset` sebagai satu unit, jadi saat pengguna pembaca layar masuk ke radio kedua, konteks kelompoknya tetap terbawa. Pakailah pasangan ini setiap kali ada lebih dari satu radio atau checkbox yang masih saling terkait.
 
-**`button`.** Di dalam sebuah `form`, tombol tanpa atribut *type* otomatis dianggap sebagai tombol kirim (submit) ? itulah perilaku bawaan HTML. Jadi, kalau tombolnya cuma dipakai untuk aksi visual atau pendamping, beri `type="button"` agar form tidak terkirim tanpa sengaja.
+**`button`.** Di dalam sebuah `form`, tombol tanpa atribut *type* otomatis dianggap sebagai tombol kirim (submit) — itulah perilaku bawaan HTML. Jadi, kalau tombolnya cuma dipakai untuk aksi visual atau pendamping, beri `type="button"` agar form tidak terkirim tanpa sengaja.
 
 Contoh berikut merangkai semua elemen dasar itu ke dalam satu halaman latihan mandiri. Halaman ini sengaja ditulis dengan HTML murni tanpa gaya Bootstrap supaya perhatian Anda tetap ke struktur elemennya.
 
@@ -163,7 +163,7 @@ File: tokosaya-bootstrap/latihan/elemen-form.html
 </html>
 ```
 
-Penjelasan: dari contoh ini, ada tiga hal yang paling penting untuk Anda perhatikan. Pertama, setiap `label` terhubung ke medan lewat pasangan `for`?`id`, termasuk pada radio dan checkbox ? hubungan inilah yang membuat klik pada label dan pembacaan layar bekerja benar. Kedua, kedua radio memakai `name="prodi"` yang sama sehingga browser membacanya sebagai satu kelompok pilihan tunggal. Ketiga, pemilihan atribut `type` yang tepat (`email`, `tel`) cukup dilakukan sekali di markup tanpa skrip apa pun.
+Penjelasan: dari contoh ini, ada tiga hal yang paling penting untuk Anda perhatikan. Pertama, setiap `label` terhubung ke medan lewat pasangan `for`?`id`, termasuk pada radio dan checkbox — hubungan inilah yang membuat klik pada label dan pembacaan layar bekerja benar. Kedua, kedua radio memakai `name="prodi"` yang sama sehingga browser membacanya sebagai satu kelompok pilihan tunggal. Ketiga, pemilihan atribut `type` yang tepat (`email`, `tel`) cukup dilakukan sekali di markup tanpa skrip apa pun.
 
 ### 11.3 Bootstrap Form
 
@@ -186,7 +186,7 @@ Kalau form dibangun hanya dengan HTML polos, hasilnya biasanya masih terasa ment
 
 *Input group* layak diperhatikan khusus. Pola ini menggabungkan sebuah medan dengan lampiran statis: tanda `@` di depan nama pengguna, satuan `Rp` di depan angka, atau tombol di ujung medan seperti tombol "Pakai" pada bidang kupon. Kelas pembungkusnya `input-group`, sedangkan lampirannya memakai `input-group-text`. Secara konsep, ini membantu konteks isian terbaca langsung, jadi pengguna tidak perlu menebak satuan atau arti kolomnya.
 
-`form-text` adalah teks bantuan yang selalu tampil di bawah medan ? perannya berbeda dari pesan status yang baru muncul saat ada kondisi valid atau tidak valid. Teks bantuan yang bagus biasanya berisi format yang diharapkan, alasan data diminta, atau info tentang bagian yang tidak wajib diisi. Agar hubungan bantuan ini terbaca secara semantik, gunakan pola `aria-describedby` yang dibahas di 11.7.
+`form-text` adalah teks bantuan yang selalu tampil di bawah medan — perannya berbeda dari pesan status yang baru muncul saat ada kondisi valid atau tidak valid. Teks bantuan yang bagus biasanya berisi format yang diharapkan, alasan data diminta, atau info tentang bagian yang tidak wajib diisi. Agar hubungan bantuan ini terbaca secara semantik, gunakan pola `aria-describedby` yang dibahas di 11.7.
 
 Berikut potongan pola dasar yang akan jadi tulang punggung halaman kontak Tokosaya. Potongan ini diambil dari halaman final yang dibangun di Praktikum.
 
@@ -207,7 +207,7 @@ File: tokosaya-bootstrap/kontak.html
 
 Penjelasan: satu kelompok kecil ini langsung memperlihatkan empat keputusan desain. `label for="email"` terhubung ke `id="email"`, jadi labelnya eksplisit dan fokusnya tepat; `form-control` menyeragamkan tampilan medan; `form-text` memberi konteks kenapa data itu diminta; sedangkan atribut `autocomplete="email"` membantu browser mengisi ulang data secara otomatis.
 
-Anatomi satu unit form ini bisa Anda bayangkan seperti skema berikut (ilustrasi struktur ? bukan kode yang perlu dijalankan).
+Anatomi satu unit form ini bisa Anda bayangkan seperti skema berikut (ilustrasi struktur — bukan kode yang perlu dijalankan).
 
 ```
 <div class="mb-3">                      <- kelompok satu medan
@@ -221,9 +221,9 @@ Satu catatan versi yang perlu Anda tahu: dalam dokumentasi resmi Bootstrap 5.3, 
 
 ### 11.4 Layout Form Kompleks
 
-Form satu kolom memang jadi pilihan default yang aman, tetapi ada beberapa medan yang memang lebih enak ditaruh berdampingan: nama depan dan belakang, kota dan kode pos, atau berangkat dan tujuan. Bootstrap menyelesaikan ini lewat utilitas grid yang sudah Anda pelajari di Bab 9: bungkus beberapa medan dalam satu `row`, lalu beri masing-masing `col`. Dengan `col-md-6`, dua medan akan berdampingan pada layar sedang ke atas dan otomatis menumpuk jadi satu kolom di ponsel ? persis sesuai prinsip "satu kolom di layar kecil".
+Form satu kolom memang jadi pilihan default yang aman, tetapi ada beberapa medan yang memang lebih enak ditaruh berdampingan: nama depan dan belakang, kota dan kode pos, atau berangkat dan tujuan. Bootstrap menyelesaikan ini lewat utilitas grid yang sudah Anda pelajari di Bab 9: bungkus beberapa medan dalam satu `row`, lalu beri masing-masing `col`. Dengan `col-md-6`, dua medan akan berdampingan pada layar sedang ke atas dan otomatis menumpuk jadi satu kolom di ponsel — persis sesuai prinsip "satu kolom di layar kecil".
 
-Gutter vertikal `g-3` (jarak antar sel grid) fungsinya sepadan dengan `mb-3` pada pola dasar: yang satu mengatur jarak antarbaris di dalam `row`, yang lain mengatur jarak antarkelompok di luar `row`. Pilih satu pola lalu pakai dengan konsisten; kalau keduanya dicampur di satu area tanpa alasan, ritme jaraknya jadi terasa acak. Untuk medan yang jarang dipasangkan ? misalnya `textarea` ? biarkan `col-12` supaya lebarnya penuh.
+Gutter vertikal `g-3` (jarak antar sel grid) fungsinya sepadan dengan `mb-3` pada pola dasar: yang satu mengatur jarak antarbaris di dalam `row`, yang lain mengatur jarak antarkelompok di luar `row`. Pilih satu pola lalu pakai dengan konsisten; kalau keduanya dicampur di satu area tanpa alasan, ritme jaraknya jadi terasa acak. Untuk medan yang jarang dipasangkan — misalnya `textarea` — biarkan `col-12` supaya lebarnya penuh.
 
 Kasus layout yang paling mudah dibaca di Tokosaya adalah halaman checkout: ini bukan satu form besar, melainkan halaman yang menggabungkan daftar item, pilihan pengiriman (sebuah form), dan ringkasan biaya di sisi kanan. Struktur umumnya dua kolom di layar besar: `col-lg-8` untuk isi transaksi dan `col-lg-4` untuk ringkasan yang tetap terlihat utuh. Skema berikut memperlihatkan pembagiannya (ilustrasi struktur, bukan kode).
 
@@ -234,7 +234,7 @@ Kasus layout yang paling mudah dibaca di Tokosaya adalah halaman checkout: ini b
        `- div.col-lg-4   : kartu ringkasan + kupon + tombol utama
 ```
 
-Cara membaca skema ini mengikuti urutan dokumen HTML: di layar lebar, kedua kolom tampil berdampingan karena totalnya pas dua belas (8 + 4); di bawah titik henti `lg`, keduanya otomatis menumpuk satu per satu ? daftar item dulu, ringkasan sesudahnya ? sehingga tetap enak dibaca. Pola serupa dipakai pada form kontak dua kolom: medan pendek dipasangkan dalam `col-md-6`, sedangkan medan panjang seperti `textarea` memakai `col-12`. Potongan berikut memperlihatkan pola pasangan nama depan-belakang yang sama akan Anda pakai.
+Cara membaca skema ini mengikuti urutan dokumen HTML: di layar lebar, kedua kolom tampil berdampingan karena totalnya pas dua belas (8 + 4); di bawah titik henti `lg`, keduanya otomatis menumpuk satu per satu — daftar item dulu, ringkasan sesudahnya — sehingga tetap enak dibaca. Pola serupa dipakai pada form kontak dua kolom: medan pendek dipasangkan dalam `col-md-6`, sedangkan medan panjang seperti `textarea` memakai `col-12`. Potongan berikut memperlihatkan pola pasangan nama depan-belakang yang sama akan Anda pakai.
 
 File: tokosaya-bootstrap/kontak.html
 
@@ -254,7 +254,7 @@ File: tokosaya-bootstrap/kontak.html
 </div>
 ```
 
-Penjelasan: `row` mengelompokkan dua kolom, `g-3` memberi jarak antar kolom, dan `col-md-6` membuat masing-masing medan mengambil setengah lebar layar mulai dari titik henti *medium* ? di ponsel keduanya otomatis kembali jadi satu kolom penuh. Atribut `autocomplete` dengan *token* `given-name` dan `family-name` bukan cuma membantu isi ulang, tetapi juga menyatakan tujuan medan dengan lebih jelas.
+Penjelasan: `row` mengelompokkan dua kolom, `g-3` memberi jarak antar kolom, dan `col-md-6` membuat masing-masing medan mengambil setengah lebar layar mulai dari titik henti *medium* — di ponsel keduanya otomatis kembali jadi satu kolom penuh. Atribut `autocomplete` dengan *token* `given-name` dan `family-name` bukan cuma membantu isi ulang, tetapi juga menyatakan tujuan medan dengan lebih jelas.
 
 Ada satu pola lanjutan yang perlu Anda kenali namanya: `col-form-label`. Kelas ini membuat label sejajar secara vertikal dengan medan saat label dan medannya ditempatkan pada `col` yang berbeda dalam satu `row` (misalnya label di kolom kiri, medan di kolom kanan, seperti pola tabel lama). Untuk Tokosaya yang memakai pola "label di atas medan", `form-label` sudah cukup. Pakailah `col-form-label` hanya kalau labelnya memang diletakkan berdampingan dengan medan.
 
@@ -262,7 +262,7 @@ Ada satu pola lanjutan yang perlu Anda kenali namanya: `col-form-label`. Kelas i
 
 Sebuah antarmuka selalu "berbicara" lewat status. Status (*state*) adalah kondisi sebuah elemen pada satu momen: bisa diklik atau tidak, sedang dibaca atau tidak, benar atau salah. Pada form, dua status dasar datang dari atribut HTML, lalu dua status lainnya berasal dari kelas Bootstrap.
 
-Pertama, atribut `disabled` membuat sebuah medan tidak bisa diedit, tidak ikut terkirim, dan tampil redup. Untuk `select`, pasangan yang tepat juga tetap `disabled` (bukan `readonly`) karena pilihannya tidak berisi teks bebas. Kedua, atribut `readonly` membuat medan hanya bisa dibaca: isinya tetap terlihat dan tetap terkirim, tetapi tidak dapat diubah ? cocok untuk nomor pesanan yang sudah terbit. Bootstrap otomatis memberi tampilan berbeda untuk kedua status ini lewat CSS pada atribut tersebut, jadi Anda tidak perlu menambah kelas lagi.
+Pertama, atribut `disabled` membuat sebuah medan tidak bisa diedit, tidak ikut terkirim, dan tampil redup. Untuk `select`, pasangan yang tepat juga tetap `disabled` (bukan `readonly`) karena pilihannya tidak berisi teks bebas. Kedua, atribut `readonly` membuat medan hanya bisa dibaca: isinya tetap terlihat dan tetap terkirim, tetapi tidak dapat diubah — cocok untuk nomor pesanan yang sudah terbit. Bootstrap otomatis memberi tampilan berbeda untuk kedua status ini lewat CSS pada atribut tersebut, jadi Anda tidak perlu menambah kelas lagi.
 
 Ketiga dan keempat adalah pasangan kelas visual: `is-valid` dan `is-invalid`. `is-valid` menandai medan yang isiannya memenuhi syarat sehingga Bootstrap memberi bingkai hijau dan ikon centang; `is-invalid` memberi bingkai merah pada medan yang bermasalah. Keduanya berpasangan dengan pembungkus pesan `valid-feedback` dan `invalid-feedback`. Hal pentingnya ada di aturan tampil: `invalid-feedback` baru muncul kalau medan di atasnya memakai `is-invalid`, begitu juga `valid-feedback` dengan `is-valid`. Jadi, pembungkus pesannya boleh sudah Anda tulis dari awal; ia baru aktif saat statusnya dipasangkan.
 
@@ -292,11 +292,11 @@ File: tokosaya-bootstrap/latihan/status-form.html
 
 Penjelasan: kedua medan memakai struktur kelompok yang sama; yang berubah hanya kelas status dan pembungkus pesannya. Perhatikan bahwa `invalid-feedback` dan `form-text` bisa muncul berdampingan: `form-text` tetap ada sebagai bantuan, sedangkan `invalid-feedback` baru tampil karena `is-invalid` menandai medan. Nilai `value` di sini sengaja diisi langsung di markup supaya statusnya terlihat masuk akal.
 
-Sekarang masuk ke catatan penting yang sudah disinggung sejak awal bab. Kelas-kelas di atas hanyalah *styling statis*: Anda menuliskannya sendiri untuk mempelajari bentuk visualnya. Dalam situs produksi, kelas seperti ini biasanya ditambah dan dilepas otomatis oleh JavaScript Bootstrap sesuai isi pengguna, lengkap dengan kelas pembungkus seperti `was-validated` yang aktif setelah tombol kirim ditekan. Karena mata kuliah ini belum membahas JavaScript, mekanisme verifikasi aslinya tidak kita pakai dulu. Yang penting untuk Anda pahami saat ini adalah bentuk akhirnya dan kapan elemen-elemen itu muncul. Dua hal yang masih relevan dalam cakupan bab ini: atribut `required` membuat browser menampilkan pesan bawaan saat medan kosong dikirim, dan pesan status di dekat medan tetap jadi penjelas utama ? warna saja tidak cukup, seperti dibahas lagi pada 11.7.
+Sekarang masuk ke catatan penting yang sudah disinggung sejak awal bab. Kelas-kelas di atas hanyalah *styling statis*: Anda menuliskannya sendiri untuk mempelajari bentuk visualnya. Dalam situs produksi, kelas seperti ini biasanya ditambah dan dilepas otomatis oleh JavaScript Bootstrap sesuai isi pengguna, lengkap dengan kelas pembungkus seperti `was-validated` yang aktif setelah tombol kirim ditekan. Karena mata kuliah ini belum membahas JavaScript, mekanisme verifikasi aslinya tidak kita pakai dulu. Yang penting untuk Anda pahami saat ini adalah bentuk akhirnya dan kapan elemen-elemen itu muncul. Dua hal yang masih relevan dalam cakupan bab ini: atribut `required` membuat browser menampilkan pesan bawaan saat medan kosong dikirim, dan pesan status di dekat medan tetap jadi penjelas utama — warna saja tidak cukup, seperti dibahas lagi pada 11.7.
 
 ### 11.6 Focus dan Keyboard
 
-Fokus (*focus*) adalah status khusus yang menandai elemen aktif saat ini: medan yang sedang diisi atau tautan yang sedang dituju. Bagi pengguna yang sangat bergantung pada keyboard ? termasuk pengguna dengan gangguan motorik, pengguna layar besar sambil memegang telepon, atau bahkan Anda sendiri saat tangan belum pindah dari keyboard ? fokus adalah penunjuk utama. Karena itu, aturan pertamanya jelas: **gaya fokus harus tetap terlihat.** Bootstrap sudah memberi cincin fokus yang cukup jelas pada setiap `form-control`; jangan menghapusnya. Form yang kelihatan "bersih" tetapi tidak punya indikator fokus justru menyulitkan pengguna keyboard.
+Fokus (*focus*) adalah status khusus yang menandai elemen aktif saat ini: medan yang sedang diisi atau tautan yang sedang dituju. Bagi pengguna yang sangat bergantung pada keyboard — termasuk pengguna dengan gangguan motorik, pengguna layar besar sambil memegang telepon, atau bahkan Anda sendiri saat tangan belum pindah dari keyboard — fokus adalah penunjuk utama. Karena itu, aturan pertamanya jelas: **gaya fokus harus tetap terlihat.** Bootstrap sudah memberi cincin fokus yang cukup jelas pada setiap `form-control`; jangan menghapusnya. Form yang kelihatan "bersih" tetapi tidak punya indikator fokus justru menyulitkan pengguna keyboard.
 
 CSS membedakan dua keadaan: `:focus` aktif saat elemen sedang fokus, apa pun cara pengguna mencapainya (termasuk klik mouse), sedangkan `:focus-visible` biasanya hanya muncul untuk fokus yang datang dari navigasi keyboard. Pembagian ini berguna karena fokus yang sangat menonjol penting untuk pengguna keyboard, tetapi bisa terasa berlebihan kalau selalu muncul setiap kali elemen diklik. Browser modern sudah menangani pembedaan ini dengan cukup baik; kalau proyek Tokosaya ingin memberi gaya fokus sendiri, cukup buat satu aturan `:focus-visible` di `css/style.css`, seperti yang sudah disiapkan pada Praktikum.
 
@@ -310,17 +310,17 @@ Ada uji singkat yang sering dipakai pemeriksa aksesibilitas, dan sebaiknya Anda 
 
 Aksesibilitas (*accessibility*) adalah kemampuan antarmuka untuk dipakai oleh semua pengguna, termasuk pengguna *screen reader*, papan ketik, dan pembesaran layar. Pada form, ada tiga praktik dasar yang dampaknya besar: label eksplisit, `placeholder` yang tidak menggantikan label, dan atribut `autocomplete` yang menjelaskan tujuan medan.
 
-**Label eksplisit.** Setiap medan perlu punya label yang terhubung `for`-`id` ? praktik yang sudah Anda pakai sejak 11.2. Bagi pembaca layar, label itulah nama resmi sebuah medan; tanpa hubungan itu, yang terdengar hanya "kotak isian". Jika label yang terlihat terasa belum cukup menjelaskan (misalnya untuk medan alamat dengan kebutuhan khusus), Anda bisa menambahkan `aria-label` atau `aria-labelledby` sebagai pelengkap, bukan sebagai pengganti label yang terlihat.
+**Label eksplisit.** Setiap medan perlu punya label yang terhubung `for`-`id` — praktik yang sudah Anda pakai sejak 11.2. Bagi pembaca layar, label itulah nama resmi sebuah medan; tanpa hubungan itu, yang terdengar hanya "kotak isian". Jika label yang terlihat terasa belum cukup menjelaskan (misalnya untuk medan alamat dengan kebutuhan khusus), Anda bisa menambahkan `aria-label` atau `aria-labelledby` sebagai pelengkap, bukan sebagai pengganti label yang terlihat.
 
-**Placeholder bukan label.** Teks *placeholder* akan hilang saat pengguna mulai mengetik, biasanya berkontras lebih lemah, dan tidak bisa diandalkan pembaca layar sebagai nama medan. Jadi, gunakan placeholder hanya untuk contoh format ? misalnya `nama@domain.id` pada email atau `0812-3456-7890` pada telepon ? lalu taruh aturan atau kewajiban isian pada `form-text`. Kalau satu-satunya petunjuk cuma placeholder, pengguna justru kehilangan panduan saat mulai mengisi.
+**Placeholder bukan label.** Teks *placeholder* akan hilang saat pengguna mulai mengetik, biasanya berkontras lebih lemah, dan tidak bisa diandalkan pembaca layar sebagai nama medan. Jadi, gunakan placeholder hanya untuk contoh format — misalnya `nama@domain.id` pada email atau `0812-3456-7890` pada telepon — lalu taruh aturan atau kewajiban isian pada `form-text`. Kalau satu-satunya petunjuk cuma placeholder, pengguna justru kehilangan panduan saat mulai mengisi.
 
-**Atribut `autocomplete`.** Dengan nilai seperti `name`, `email`, `tel`, `given-name`, dan `family-name`, browser bisa mengisi ulang data yang sudah pernah disimpan pengguna ? hasilnya salah ketik berkurang dan proses isi form jadi lebih cepat. Lebih dari itu, W3C menempatkan identifikasi tujuan medan (WCAG, kriteria 1.3.5) sebagai bagian dari aksesibilitas: medan yang mengumpulkan data pengguna perlu menyatakan tujuannya secara dapat diprogram, dan `autocomplete` adalah cara paling sederhana untuk melakukannya. Untuk form pengiriman barang, WHATWG juga mengenal prefiks seperti `shipping` dan `billing` sebelum *token* nama medan; karena detail nilainya bisa berubah menurut versi, cukup pahami pendekatannya dan cek dokumentasi resmi (MDN) saat benar-benar dipakai.
+**Atribut `autocomplete`.** Dengan nilai seperti `name`, `email`, `tel`, `given-name`, dan `family-name`, browser bisa mengisi ulang data yang sudah pernah disimpan pengguna — hasilnya salah ketik berkurang dan proses isi form jadi lebih cepat. Lebih dari itu, W3C menempatkan identifikasi tujuan medan (WCAG, kriteria 1.3.5) sebagai bagian dari aksesibilitas: medan yang mengumpulkan data pengguna perlu menyatakan tujuannya secara dapat diprogram, dan `autocomplete` adalah cara paling sederhana untuk melakukannya. Untuk form pengiriman barang, WHATWG juga mengenal prefiks seperti `shipping` dan `billing` sebelum *token* nama medan; karena detail nilainya bisa berubah menurut versi, cukup pahami pendekatannya dan cek dokumentasi resmi (MDN) saat benar-benar dipakai.
 
 **Penghubungan teks bantuan.** Teks bantuan `form-text` yang tidak dihubungkan ke medannya akan terdengar seperti paragraf biasa bagi pembaca layar. Pola yang benar sebenarnya sederhana: beri `id` pada `form-text`, lalu hubungkan dari medan dengan `aria-describedby`, persis seperti contoh bidang `email` di 11.3. Atribut seperti `aria-required` memang ada, tetapi dalam praktik dasar bab ini, atribut `required` bawaan HTML sudah cukup karena dipahami oleh browser dan pembaca layar sekaligus.
 
 **Pesan status yang dibaca.** Pesan valid atau tidak valid yang tampil sebagai teks di dekat medan memenuhi prinsip penting WCAG: informasi tidak boleh disampaikan lewat warna saja. Bingkai merah pada `is-invalid` tidak banyak membantu pengguna buta warna kalau tidak ada teks pendamping; sebaliknya, pesan `invalid-feedback` yang tertulis membuat masalahnya langsung jelas. Karena itulah desain Tokosaya selalu memasangkan status visual dengan pesan kata-kata, bukan menggantinya.
 
-Kalau seluruh praktik ini terpenuhi, form Anda sudah memenuhi fondasi WCAG 2.2 yang paling sering dicek: label, tujuan medan, kontras status, dan navigasi keyboard. Pengukuran yang lebih formal ? seperti kontras, urutan dokumen, atau pengujian *device* ? akan dibahas lagi dengan alatnya sendiri pada Bab 13, saat Anda mengaudit seluruh proyek Tokosaya.
+Kalau seluruh praktik ini terpenuhi, form Anda sudah memenuhi fondasi WCAG 2.2 yang paling sering dicek: label, tujuan medan, kontras status, dan navigasi keyboard. Pengukuran yang lebih formal — seperti kontras, urutan dokumen, atau pengujian *device* — akan dibahas lagi dengan alatnya sendiri pada Bab 13, saat Anda mengaudit seluruh proyek Tokosaya.
 
 ## Konsep Penting
 
