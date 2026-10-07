@@ -90,7 +90,11 @@ Nada di bagian ini dibiarkan persis. Yang boleh berubah hanya istilah (§1) dan 
 
 ### C. Khusus
 
-17. `Contoh Kode` — komentar di dalamnya ikut casual; teks HTML contoh tidak disentuh.
+17. `Contoh Kode` — tiga perlakuan berbeda di dalam satu bagian:
+    - **prosa pembuka di luar pagar kode** (mis. "Dua contoh berikut adalah dokumen HTML lengkap yang
+      bisa Anda ketik…", baris "Penjelasan: …") → **ikut casual** seperti 12 bagian lain;
+    - **komentar di dalam pagar kode** → ikut casual;
+    - **teks yang tampil di HTML contoh** → tidak disentuh.
 
 ### Judul
 
@@ -128,6 +132,16 @@ Label struktural di dalam `Praktikum` (`### Tujuan Praktikum`, `### Kebutuhan`, 
 
 Ejaan tetap baku di luar tabel di atas. Kalimat tetap lengkap dan bertanda baca benar.
 Kalau ragu antara "lebih casual" dan "lebih jelas", pilih **lebih jelas**.
+
+### Bentuk `-nya`
+
+Mengikuti PUEBI, `-nya` ditulis **serangkai** pada kata: `filenya`, `linknya`, `browsernya`,
+`gridnya`, `hovernya`, `headingnya`, `formnya`.
+
+Tanda hubung hanya dipakai bila pangkalnya singkatan huruf kapital atau angka: `HP-nya`,
+`CSS-nya`, `90-an`.
+
+Bentuk campur (`hover-nya` di sebelah `filenya`) adalah ketidakkonsistenan dan harus diseragamkan.
 
 ---
 
@@ -235,3 +249,125 @@ Ditulis terbuka, bukan disamarkan.
    kode **tidak berubah**, bukan bahwa kode itu **benar**.
 2. **Bab 8 (UTS) dan bab 16 (UAS) belum ada berkasnya**, padahal `readme.md` mencantumkan
    16 pertemuan. Jumlah bab di `buku/` = 14.
+
+---
+
+## 11. Laporan pelaksanaan
+
+Dijalankan setelah seluruh commit. Baseline kode & struktur = `6261631`
+(setelah perbaikan struktur), baseline mojibake & istilah = `71d2f69` (checkpoint).
+
+### 11.1 Hasil 8 pemeriksaan
+
+```
+bab  mojb istil  Anda  Anda |    pagar      ##     ###     tabel  kode | CRLF BOM terl |  nggak gimana kayak buat  tidak bagaim
+01      0     0     0     1 |  14/14   17/17   22/22     54/54       0 |    0   0    0 |     32      7    38   62     0      2
+02      0     0     0     4 |  22/22   17/17   21/21     25/25       0 |    0   0    0 |     31      2    19   85     0      1
+03      0     0     0     0 |  56/56   17/17   21/21     39/39       0 |    0   0    0 |     38      3    21   57     0      0
+04      0     0     0     1 |  26/26   17/17   24/24     59/59       0 |    0   0    0 |     33      4    22   73     1      0
+05      0     0     0     0 |  34/34   17/17   19/19     24/24       0 |    0   0    0 |     41      4    17   32     2      0
+06      0     0     0     4 |  26/26   17/17   22/22     24/24       0 |    0   0    0 |     32      4    11   40     1      0
+07      0     0     0     5 |  36/36   17/17   19/19     29/29       0 |    0   0    0 |     37      1    13   49     1      0
+09      0     0     0     0 |  12/12   17/17   21/21     53/53       0 |    0   0    0 |     26      1    16   61     1      0
+10      0     0     0     1 |  44/44   17/17   20/20     33/33       0 |    0   0    0 |     44      2    14   62     0      0
+11      0     0     0     0 |  26/26   17/17   20/20     38/38       0 |    0   0    0 |     41      0    26   51     0      0
+12      0     0     0     5 |  22/22   17/17   21/21     90/90       0 |    0   0    0 |     45      5    22   71     0      0
+13      0     0     0     2 |  22/22   17/17   25/25     61/61       0 |    0   0    0 |     46      0    20   39     1      0
+14      0     0     0     2 |  14/14   17/17   20/20     67/67       0 |    0   0    0 |     21      1    14   29     0      0
+15      0     0     0     3 |  14/14   17/17   21/21     42/42       0 |    0   0    0 |     45      1     5   43     0      0
+
+  kolom pagar/##/###/tabel = SEKARANG/BASELINE (harus sama)
+  TOTAL  mojibake=0  istilah-lama-prosa=0  istilah-lama-dalam-kode=37 (boleh)
+         Anda-casual=0  Anda-formal=28 (dibiarkan)
+         CRLF=0  BOM=0  baris-kode-berbeda=0  kata-terlarang-baru=0
+  LEKSIKON 12 bagian casual, checkpoint -> sekarang:
+         nggak 0 -> 512   gimana 0 -> 35   kayak 0 -> 258   buat 58 -> 754
+         tidak 487 -> 7   bagaimana 33 -> 3
+  STATUS: SEMUA LULUS
+```
+
+Skala pekerjaan: **20 commit revisi** (ditambah 1 commit dokumentasi ini), 17 berkas,
+2.224 baris ditambah / 2.227 dihapus.
+Selisih 3 baris itu **disengaja dan terdokumentasi** — persis perbaikan struktur
+bab-01 (1 pagar nyasar) dan bab-14 (2 span inline yang dijadikan satu baris).
+
+### 11.2 Kesalahan isi yang diperbaiki
+
+| Bab | Lokasi | Sebelum | Sesudah | Alasan |
+|---|---|---|---|---|
+| 13 | `Kata Kunci`, `clamp()` | "nilai **bergengsi** antara batas minimum dan maksimum" | "nilai yang dibatasi antara batas minimum dan maksimum" | `clamp()` mengurung nilai; "bergengsi" = *prestigious*, tidak berhubungan |
+| 13 | 7 tempat di prosa | `ponselu` (mis. "header jadi tinggi di ponselu") | `ponsel` / `HP` | `ponsel` + huruf `u` nyasar. 5 diperbaiki saat revisi nada; 1 di bagian `Evaluasi` diperbaiki terpisah |
+| 15 | `Evaluasi` | "dari ponselnya" | "dari HP-nya" | Bentuk bersufiks yang lolos dari pass istilah |
+| 03 | `Contoh Kode` | "spectrum selector" | "spektrum selector" | Kata Inggris yang tidak perlu; **bukan** salah makna, jadi dicatat terpisah dari daftar ini |
+
+### 11.3 Kerusakan struktur pra-ada yang ditemukan & diperbaiki
+
+| Bab | Masalah | Dampak | Perbaikan |
+|---|---|---|---|
+| 01 | 1 pagar nyasar (total 15, ganjil) + span inline tak ditutup di baris 302 | seluruh sisa bab dirender sebagai kode, termasuk Daftar Pustaka | pagar dibuang, span ditutup |
+| 14 | 2 span kode inline terbelah dua baris | backtick tampil sebagai teks | masing-masing dijadikan satu baris |
+
+### 11.4 Bug yang saya buat sendiri, dan perbaikannya
+
+Ditulis terbuka karena semuanya menyentuh berkas.
+
+1. **Regex istilah memakai `(?![A-Za-z])`**, sehingga bentuk bersufiks tidak pernah
+   cocok: `tata letaknya`, `ponselnya`, `berkasnya` lolos. Ditemukan karena agen
+   revisi bab-14 memperbaiki `tata letaknya` sendiri. Pemindaian ulang menemukan
+   0 sisa setelah diperbaiki.
+2. **Blok kode indentasi (4 spasi) tidak dikenali.** bab-09 memakai 320 baris
+   blok indentasi (blok pagar-nya hanya 6). Akibatnya pass istilah mengubah
+   2 baris **teks HTML tampilan** di bab-09 (`tata letak`→`layout`,
+   `ponsel`→`HP`). Keduanya sudah dikembalikan. Agen revisi nada tidak melakukan
+   kesalahan ini (0 perubahan non-komentar di blok indentasi, diperiksa di 4 bab
+   yang memilikinya).
+3. **Premis line ending saya salah.** Saya memberi tahu bahwa menyeragamkan ke LF
+   akan menghasilkan ~6.300 baris derau diff. Itu tidak benar: repo ini
+   `core.autocrlf=true` dan semua berkas sudah tersimpan LF di dalam git, sehingga
+   `git diff` tidak berubah sama sekali. Pilihan itu tetap dijalankan (hasilnya
+   tetap benar), tetapi bukan karena alasan yang saya sebutkan.
+4. **Aturan mojibake pertama saya salah.** `Bab 1?8` adalah **rentang** (1–8),
+   sedangkan `?2?0?1?1` adalah **2011**. Menerapkan aturan hapus-`?` lebih dulu
+   akan menghasilkan `Bab 18`. Ditangkap sebelum menyentuh berkas dengan uji
+   regex pada teks asli.
+
+### 11.5 Penyimpangan kecil yang perlu kamu tahu
+
+- **3 partikel percakapan pra-ada di dalam kutipan ikut terhapus.** Baseline
+  memuat `deh` (bab-04), `kok` (bab-09), `kok` (bab-14) di dalam tanda kutip,
+  mis. `bukan ke perasaan "kok kurang mirip"` menjadi `"kurang mirip"`. Hasilnya
+  0 kata terlarang, tetapi 3 kutipan berubah kata. Ini konsekuensi dari leksikon
+  yang melarang partikel tersebut.
+- **`-nya` dan posesif diseragamkan dengan aturan tata bahasa, bukan sekadar
+  gaya.** Posesif jadi serangkai (`kampusmu`, `membantumu`), sedangkan `kamu`
+  sebagai subjek tetap terpisah (`supaya kamu bisa`, `pas kamu membuka`). Jadi
+  buku ini memang memuat dua bentuk — itu disengaja, bukan sisa yang terlewat.
+
+### 11.6 Kesalahan isi yang DITEMUKAN tetapi TIDAK diperbaiki
+
+Semuanya perlu keputusanmu; tidak ada yang saya ubah.
+
+| Bab | Temuan | Kenapa tidak saya ubah |
+|---|---|---|
+| 13 | Bagian 14.3 dan kunci `Evaluasi` menulis `g-4` memberi "24 px di setiap sisi kolom". Bootstrap membagi setengah gutter per sisi (12 px), jadi jaraknya 24 px. Kalimatnya bertentangan sendiri. | klaim teknis; perlu kamu putuskan mana yang benar |
+| 14 | Pohon 14.5 menulis `<h3>` untuk "Spesifikasi Singkat", sedangkan spesifikasi F dan `produk.html` memakai `h2` | inkonsistensi antar bagian |
+| 14 | Spesifikasi D menulis "Katalog, tentang, Kontak" — `tentang` huruf kecil | salah ketik |
+| 03 | `<h2>Narasiswa</h2>` pada seksi `#kontak` | kata yang tampaknya salah, **tetapi** berada di teks HTML tampilan yang tidak boleh diubah. Mungkin maksudnya "Narahubung" |
+| 03 | "singkatan ( shorthand)" dan "mengabdiakannya" | kerapian, di luar nada |
+
+### 11.7 Yang masih tidak diketahui
+
+1. **Kode contoh belum diverifikasi jalan.** Tidak ada folder `tokosaya-css/`
+   atau `tokosaya-bootstrap/` di repo, jadi tidak ada pembanding. Pemeriksaan 4
+   hanya membuktikan kode **tidak berubah**, bukan bahwa kode itu **benar**.
+2. **bab 8 (UTS) dan bab 16 (UAS) belum ada berkasnya**, padahal `readme.md`
+   mencantumkan 16 pertemuan. Kalau ditulis nanti, pakai kontrak ini.
+
+### 11.8 Menjalankan ulang pemeriksaan
+
+```
+python scripts/verify-revisi.py
+```
+
+Skrip membandingkan working tree dengan commit baseline yang disebut di atas
+dan mencetak tabel 14 baris di 11.1.
