@@ -2,7 +2,7 @@
 
 ## Deskripsi Singkat
 
-Bab ini membahas *box model* (model kotak), fondasi yang menentukan bagaimana setiap elemen HTML menempati ruang di halaman: konten, padding, border, dan margin. Anda akan mempelajari cara menghitung lebar kotak, menukar model penghitungan dengan `box-sizing`, mengubah perilaku kotak lewat `display`, menangani konten yang meluber dengan `overflow`, mengatur posisi elemen dengan `position` dan `z-index`, serta menegakkan **skala jarak 8px** sebagai sistem *spacing*. Kemampuan ini memindahkan penguasaan tipografi dan warna dari Bab 4 ke ranah tata letak, dan menjadi pijakan wajib sebelum masuk ke Flexbox pada Bab 6.
+Bab ini membahas *box model* (model kotak), fondasi yang menentukan bagaimana setiap elemen HTML menempati ruang di halaman: konten, padding, border, dan margin. Anda akan mempelajari cara menghitung lebar kotak, menukar model penghitungan dengan `box-sizing`, mengubah perilaku kotak lewat `display`, menangani konten yang meluber dengan `overflow`, mengatur posisi elemen dengan `position` dan `z-index`, serta menegakkan **skala jarak 8px** sebagai sistem *spacing*. Kemampuan ini memindahkan penguasaan tipografi dan warna dari Bab 4 ke ranah layout, dan menjadi pijakan wajib sebelum masuk ke Flexbox pada Bab 6.
 
 ## Tujuan Pembelajaran
 
@@ -11,7 +11,7 @@ Setelah mempelajari bab ini, mahasiswa diharapkan mampu:
 1. **Menjelaskan** anatomi *box model*: *content*, *padding*, *border*, dan *margin*, beserta urutannya dari dalam ke luar.
 2. **Menghitung** lebar total elemen pada mode `content-box` dan `border-box` secara manual dan memverifikasinya melalui diagram kotak di DevTools.
 3. **Mengimplementasikan** `box-sizing: border-box` secara global beserta alasan pendekatan ini.
-4. **Membedakan** perilaku `display: block`, `inline`, dan `inline-block` serta memilih nilai yang tepat untuk komponen seperti *badge* dan tautan navigasi.
+4. **Membedakan** perilaku `display: block`, `inline`, dan `inline-block` serta memilih nilai yang tepat untuk komponen seperti *badge* dan link navigasi.
 5. **Menerapkan** `overflow` (hidden, scroll, auto) dan teknik pemenggalan teks untuk konten yang panjang.
 6. **Menerapkan** `position` (relative, absolute, fixed, sticky) dan `z-index` pada kasus nyata seperti *badge* kartu produk dan *header* yang menempel.
 7. **Merancang** sistem jarak komponen dengan skala 8px dan memutuskan kapan memakai *margin* kapan memakai *padding*.
@@ -102,7 +102,7 @@ File: tokosaya-css/css/style.css
 }
 ```
 
-Penjelasan: selektor universal `*` menjangkau seluruh elemen, sementara `*::before` dan `*::after` diperlukan agar elemen semu (dibahas Bab 4 untuk hiasan tipografi) ikut konsisten. Setelah aturan ini aktif, dua kotak berlabel `width: 280px` selalu sama lebar di layar, seberapa pun padding dan bordernya — inilah alasan pola global `border-box` menjadi standar praktik yang disarankan hampir seluruh dokumentasi modern. Perbandingan dua mode di atas juga Anda tunjukkan pada perintah Praktikum: matikan aturan ini sebentar, lalu amati kartu meluber dan munculnya bilah gulir.
+Penjelasan: selector universal `*` menjangkau seluruh elemen, sementara `*::before` dan `*::after` diperlukan agar elemen semu (dibahas Bab 4 untuk hiasan tipografi) ikut konsisten. Setelah aturan ini aktif, dua kotak berlabel `width: 280px` selalu sama lebar di layar, seberapa pun padding dan bordernya — inilah alasan pola global `border-box` menjadi standar praktik yang disarankan hampir seluruh dokumentasi modern. Perbandingan dua mode di atas juga Anda tunjukkan pada perintah Praktikum: matikan aturan ini sebentar, lalu amati kartu meluber dan munculnya bilah gulir.
 
 Pengaturan ukuran tidak berhenti di `width` dan `height`. Sifat `width` tanpa nilai lain pada elemen *block* berlaku persentase ke induk; sedangkan `auto` membiarkan browser menghitung. Yang lebih sering diperlukan adalah pasangan `min-*` dan `max-*`: `max-width` menahan kotak agar tidak melebar melewati batas (misal `max-width: 100%` membuat gambar tidak pernah meluber dari kartunya), dan `min-height` menahan area terlalu pendek. Kombinasi `width: 280px` + `max-width: 100%` yang dipakai di kartu produk Praktikum ini adalah pola klasik: pada layar lebar kartu tetap 280 px, pada layar sempit kartu memilih menyusut daripada memaksakan bilah gulir horizontal. Prinsip yang sama diterapkan pada kontainer halaman: `.container { max-width: 960px; }` menjaga baris teks tetap nyaman dibaca di monitor lebar — teks yang membentang luas terlalu melelahkan mata (lihat pula diskusi lebar bacaan pada Bab 4).
 
@@ -112,7 +112,7 @@ Kapan pendekatan mana yang dipakai? Aturan keputusannya ringkas: (1) pasang `bor
 
 Properti `display` menentukan **jenis kotak** yang akan dibangun browser untuk suatu elemen: apakah ia menumpang baris sendiri, mengalir di dalam teks, atau keduanya. Nilai bawaan setiap elemen HTML sudah ditetapkan oleh stylesheet browser — p, div, h1 hingga h6, ul, section, dan article berperilaku `block`; span, a, strong, dan em berperilaku `inline`; sedangkan img dan input adalah *inline* khusus (disebut *replaced element*) yang tetap menerima `width` dan `height`. Memahami bawaan ini penting karena banyak "kesalahan styling" sebenarnya adalah perilaku bawaan yang belum dipahami.
 
-Elemen `block` adalah kotak besar yang suka sendiri: ia memenuhi lebar induk, mulai di baris baru, dan menerima seluruh properti kotak (width, height, padding, margin, border) tanpa pengecualian. Elemen `inline` adalah lawan typografinya: ia mengalir di baris seperti kata — tautan dalam paragraf, sorotan kata — dan inilah alasan mengapa propertinya dibatasi: `width` dan `height` diabaikan, `margin` atas-bawah tidak menggeser baris, dan `padding` atas-bawah hanya "melukis" latar tanpa mendorong teks di atas atau bawahnya. Nilai tengah yang sering Anda butuhkan adalah `inline-block`: kotaknya mengalir di baris seperti teks, tetapi menerima dimensi dan padding penuh seperti kotak blok.
+Elemen `block` adalah kotak besar yang suka sendiri: ia memenuhi lebar induk, mulai di baris baru, dan menerima seluruh properti kotak (width, height, padding, margin, border) tanpa pengecualian. Elemen `inline` adalah lawan typografinya: ia mengalir di baris seperti kata — link dalam paragraf, sorotan kata — dan inilah alasan mengapa propertinya dibatasi: `width` dan `height` diabaikan, `margin` atas-bawah tidak menggeser baris, dan `padding` atas-bawah hanya "melukis" latar tanpa mendorong teks di atas atau bawahnya. Nilai tengah yang sering Anda butuhkan adalah `inline-block`: kotaknya mengalir di baris seperti teks, tetapi menerima dimensi dan padding penuh seperti kotak blok.
 
 Perbandingan ketiganya dirangkum berikut.
 
@@ -198,7 +198,7 @@ Dua catatan hati-hati pada subbab ini. Pertama, `display: none` menghapus kotak 
 
 ### 5.4 overflow dan Penanganannya
 
-*Overflow* adalah kondisi ketika konten melebihi ukuran kotaknya: nama produk terlalu panjang untuk kolom 280 px, gambar lebih lebar dari panel, atau tabel jadwal lebih lebar dari layar ponsel. Nilai bawaan `overflow: visible` membiarkan konten menumpang keluar kotak — sesekali diinginkan (menggantung), tetapi sering kali jadi cacat visual. Empat nilai utama yang perlu Anda kuasai: `hidden` memotong tanpa bilah gulir; `scroll` selalu menampilkan bilah gulir dua dimensi walaupun konten muat; `auto` menampilkan bilah gulir **hanya bila diperlukan** — dan itulah pilihan default yang aman untuk panel yang kontennya dinamis. Nilai yang lebih baru, `overflow: clip`, memotong tanpa membuat kotak menjadi wadah gulir; dokumen MDN memuat detail dukungan browsernya (⚠ version-sensitive: periksa dokumentasi resmi terbaru — MDN).
+*Overflow* adalah kondisi ketika konten melebihi ukuran kotaknya: nama produk terlalu panjang untuk kolom 280 px, gambar lebih lebar dari panel, atau tabel jadwal lebih lebar dari layar HP. Nilai bawaan `overflow: visible` membiarkan konten menumpang keluar kotak — sesekali diinginkan (menggantung), tetapi sering kali jadi cacat visual. Empat nilai utama yang perlu Anda kuasai: `hidden` memotong tanpa bilah gulir; `scroll` selalu menampilkan bilah gulir dua dimensi walaupun konten muat; `auto` menampilkan bilah gulir **hanya bila diperlukan** — dan itulah pilihan default yang aman untuk panel yang kontennya dinamis. Nilai yang lebih baru, `overflow: clip`, memotong tanpa membuat kotak menjadi wadah gulir; dokumen MDN memuat detail dukungan browsernya (⚠ version-sensitive: periksa dokumentasi resmi terbaru — MDN).
 
 Perhatikan detail perilaku: `overflow` hanya menggembari konten yang melintasi tepi kotak; ia tidak mengubah penghitungan lebar. Karena itu pola yang benar hampir selalu: `border-box` dulu di 5.2, baru `overflow` dipakai sebagai pengaman visual. Dua pola pemanfaatan yang sangat umum: pertama, **potong melingkar** — kotak kartu ber-radius 12 px akan menampakkan sudut gambar yang tajam kecuali `.produk-media` ditutup `overflow: hidden` supaya gambar anak ikut terpotong bersama sudut kartu; kedua, **gulir dalam panel** — tabel presensi panjang diberi wadah dengan tinggi terbatas dan `overflow-y: auto`, sehingga halaman tidak ikut menggulir dan pengguna tidak kehilangan konteks.
 
@@ -217,7 +217,7 @@ File: tokosaya-css/css/style.css
 
 Penjelasan: ketiga properti itu bekerja sebagai satu kesatuan — tanpa `overflow: hidden` elipsis tidak muncul, tanpa `white-space: nowrap` teks akan menurun sehingga tak ada sisa yang terpotong. Pola ini cocok untuk nama produk, path dokumen, atau kolom tabel; sempurnakan dengan atribut `title` pada elemen yang sama agar teks penuh terbaca saat pengguna mengarahkan kursor — solusi statis tanpa perilaku dinamis apapun.
 
-Untuk nama produk yang boleh menurun tetapi dibatasi dua baris, pola umumnya memakai `-webkit-line-clamp`. Teknik ini didukung luas di browser modern, namun tergolung dengan prefiks vendor (⚠ version-sensitive: periksa dokumentasi resmi terbaru — MDN / web.dev); bila ragu, pendekatan aman adalah membiarkan deskripsi menurun penuh dan memangkas isi teks di sisi penyunting konten. Berbeda dari keduanya, kasus "kata tunggal super panjang" (URL, nama berkas seperti `laporan-sistem-akademik-tahun-akademik-2025-2026-final-revisi.pdf`) membutuhkan kata yang boleh dipatahkan: `overflow-wrap: break-word` membuat potongan kata pindah baris, mencegah panel melebar.
+Untuk nama produk yang boleh menurun tetapi dibatasi dua baris, pola umumnya memakai `-webkit-line-clamp`. Teknik ini didukung luas di browser modern, namun tergolung dengan prefiks vendor (⚠ version-sensitive: periksa dokumentasi resmi terbaru — MDN / web.dev); bila ragu, pendekatan aman adalah membiarkan deskripsi menurun penuh dan memangkas isi teks di sisi penyunting konten. Berbeda dari keduanya, kasus "kata tunggal super panjang" (URL, nama file seperti `laporan-sistem-akademik-tahun-akademik-2025-2026-final-revisi.pdf`) membutuhkan kata yang boleh dipatahkan: `overflow-wrap: break-word` membuat potongan kata pindah baris, mencegah panel melebar.
 
 Dalam konteks sistem informasi, *overflow* adalah komoditas visual: layar antrean klinik, jadwal bus, dan daftar tugas kuliah hampir seluarnya berisi teks yang panjangnya tak terkendali oleh penulis kode. Putusan desain yang sehat berbunyi: kotak ditetapkan ukurannya, bukan kontennya. Bila isi tumbuh, konten menurun (dengan clamp bila perlu), menggulir di panel (`overflow-y: auto`) — bukan mendorong seluruh halaman tergulir. Putusan ini Anda akan menegaskan lagi pada Bab 7 saat *katalog.html* dibangun responsif dengan Grid.
 
@@ -467,7 +467,7 @@ Membangun komponen **kartu produk Tokosaya** (`.produk-card`) lengkap dengan *ba
 
 ### Persiapan
 
-Pastikan struktur folder minimal berikut ada; buat berkas yang belum ada (kosong boleh, akan diisi pada Langkah 3).
+Pastikan struktur folder minimal berikut ada; buat file yang belum ada (kosong boleh, akan diisi pada Langkah 3).
 
 1. `tokosaya-css/index.html` — halaman utama (ditulis ulang di Langkah 3).
 2. `tokosaya-css/css/style.css` — stylesheet utama (ditulis ulang di Langkah 4).
@@ -485,7 +485,7 @@ File: tokosaya-css/img/produk-keyboard-kx210.svg
 </svg>
 ```
 
-Penjelasan: SVG ini hanya placeholder visual berukuran persis 280×160 dan berisi satu kotak serta label kode produk; yang penting bagi praktikum adalah rasionya sama dengan `width`/`height` pada `<img>` agar layout tidak bergerak saat gambar asli menggantikannya. Gunakan nama berkas `kebab-case` untuk sembilan produk sisa: `produk-mouse-mw88.svg`, `produk-headphone-hs15.svg`, `produk-monitor-mr241.svg`, `produk-flashdrive-fd64.svg`, `produk-charger-cp30.svg`, `produk-speaker-bt5.svg`, `produk-webcam-wc720.svg`.
+Penjelasan: SVG ini hanya placeholder visual berukuran persis 280×160 dan berisi satu kotak serta label kode produk; yang penting bagi praktikum adalah rasionya sama dengan `width`/`height` pada `<img>` agar layout tidak bergerak saat gambar asli menggantikannya. Gunakan nama file `kebab-case` untuk sembilan produk sisa: `produk-mouse-mw88.svg`, `produk-headphone-hs15.svg`, `produk-monitor-mr241.svg`, `produk-flashdrive-fd64.svg`, `produk-charger-cp30.svg`, `produk-speaker-bt5.svg`, `produk-webcam-wc720.svg`.
 
 ### Langkah Kerja
 
@@ -502,7 +502,7 @@ Penjelasan: SVG ini hanya placeholder visual berukuran persis 280×160 dan beris
 
 ### Kode
 
-Berkas pertama adalah halaman utama proyek dengan hero Tokosaya dan 8 produk baku dari dataset §5.2.
+File pertama adalah halaman utama proyek dengan hero Tokosaya dan 8 produk baku dari dataset §5.2.
 
 File: tokosaya-css/index.html
 
@@ -657,14 +657,14 @@ File: tokosaya-css/index.html
 </html>
 ```
 
-Berkas kedua adalah `css/style.css` lengkap untuk keadaan bab ini: token Bab 4, aturan dasar, hero, dan komponen kartu.
+File kedua adalah `css/style.css` lengkap untuk keadaan bab ini: token Bab 4, aturan dasar, hero, dan komponen kartu.
 
 File: tokosaya-css/css/style.css
 
 ```css
 /* ============== DESIGN TOKEN — tokosaya (Bab 4) ============== */
 :root {
-  --clr-primary: #4F46E5;      /* indigo — tombol & tautan utama */
+  --clr-primary: #4F46E5;      /* indigo — tombol & link utama */
   --clr-primary-dark: #4338CA;
   --clr-accent: #F59E0B;       /* amber — badge & sorotan */
   --clr-dark: #1E293B;         /* heading & teks tegas */
@@ -770,7 +770,7 @@ img {
 }
 
 .hero-button {
-  display: inline-block;       /* tautan jadi kotak berpadding */
+  display: inline-block;       /* link jadi kotak berpadding */
   padding: 8px 32px;           /* 8 × 1 dan 8 × 4 */
   background-color: var(--clr-primary);
   color: #ffffff;
@@ -900,15 +900,15 @@ img {
 
 ### Penjelasan Kode
 
-**index.html.** Struktur halaman memakai semantik Bab 2: `header` berisi logo dan `nav` (list tautan), `main` berisi dua `section` (hero dan produk), `footer` memuat kontak baku. Setiap kartu adalah `li.produk-card` — satu daftar produk bermakna, bukan sekumpulan div — dengan anatomi: `.produk-media` (gambat + badge), `.produk-body` (kategori, nama, deskripsi, harga). Badge diberi kelas varian dua tingkat (`produk-badge-accent` dst.) seperti pola warna semantik Bab 4. Perhatikan atribut `width` dan `height` pada `<img>`: angkanya disamakan rasio SVG, sehingga layout tidak lompat ketika gambar termuat. Tidak ada satu pun *inline style* di berkas ini; semua keputusan visual hidup di `style.css` — pola yang menempatkan HTML sebagai struktur dan CSS sebagai penampilan.
+**index.html.** Struktur halaman memakai semantik Bab 2: `header` berisi logo dan `nav` (list link), `main` berisi dua `section` (hero dan produk), `footer` memuat kontak baku. Setiap kartu adalah `li.produk-card` — satu daftar produk bermakna, bukan sekumpulan div — dengan anatomi: `.produk-media` (gambat + badge), `.produk-body` (kategori, nama, deskripsi, harga). Badge diberi kelas varian dua tingkat (`produk-badge-accent` dst.) seperti pola warna semantik Bab 4. Perhatikan atribut `width` dan `height` pada `<img>`: angkanya disamakan rasio SVG, sehingga layout tidak lompat ketika gambar termuat. Tidak ada satu pun *inline style* di file ini; semua keputusan visual hidup di `style.css` — pola yang menempatkan HTML sebagai struktur dan CSS sebagai penampilan.
 
-**style.css.** Urutan berkas punya alasan: token dulu (basis keputusan), lalu aturan global (`box-sizing`), lalu halaman (header, hero, bagian), lalu komponen (kartu). Hero dipisah dengan padding `64px 0`, judul berjarak `16px` ke subjudul, subjudul `32px` ke tombol — ketemu skala 8/16/32/64 lewat satu token `--space-unit`. Deret kartu memakai `inline-block` + `font-size: 0` pada daftar (trik 5.3) dan `vertical-align: top` agar kartu bertingkat sejajar atas. `.produk-media` bersifat `relative` menjadi landasan badge `absolute` yang menempel `8px` dari pojok; `border-radius` kartu memotong sudut pada tepi luar, sementara sudut gambar di dalam juga tampak membulat karena gambar memenuhi media dan kartu memotongnya secara visual pada tepi; bila di kemudian hari Anda menambahkan latar pada media, tambahkan `overflow: hidden` pada `.produk-media` agar potongan sudut ditegaskan secara teknis, bukan sekadar optik. Terakhir, `width: 280px; max-width: 100%` pada kartu adalah aplikasi langsung subbab 5.2: tampil tetap pada layar lebar, menyusut bermartabat pada layar kecil.
+**style.css.** Urutan file punya alasan: token dulu (basis keputusan), lalu aturan global (`box-sizing`), lalu halaman (header, hero, bagian), lalu komponen (kartu). Hero dipisah dengan padding `64px 0`, judul berjarak `16px` ke subjudul, subjudul `32px` ke tombol — ketemu skala 8/16/32/64 lewat satu token `--space-unit`. Deret kartu memakai `inline-block` + `font-size: 0` pada daftar (trik 5.3) dan `vertical-align: top` agar kartu bertingkat sejajar atas. `.produk-media` bersifat `relative` menjadi landasan badge `absolute` yang menempel `8px` dari pojok; `border-radius` kartu memotong sudut pada tepi luar, sementara sudut gambar di dalam juga tampak membulat karena gambar memenuhi media dan kartu memotongnya secara visual pada tepi; bila di kemudian hari Anda menambahkan latar pada media, tambahkan `overflow: hidden` pada `.produk-media` agar potongan sudut ditegaskan secara teknis, bukan sekadar optik. Terakhir, `width: 280px; max-width: 100%` pada kartu adalah aplikasi langsung subbab 5.2: tampil tetap pada layar lebar, menyusut bermartabat pada layar kecil.
 
 ### Hasil yang Diharapkan
 
 Teramati (visual, pada jendela ≥ 1024 px):
 
-1. Header putih dengan logo "Tokosaya" dan empat tautan navigasi berderet horizontal berpadding rapi.
+1. Header putih dengan logo "Tokosaya" dan empat link navigasi berderet horizontal berpadding rapi.
 2. Hero putih berhias border bawah: judul Poppins besar, subjudul abu, tombol indigo melengkung "Lihat Katalog".
 3. Delapan kartu produk berbaris tiga per baris, dengan *badge* berwarna di pojok kanan- atas gambar: Best Seller (amber), Tersedia (hijau), Stok Terbatas (merah), Baru (indigo).
 4. Sudut gambar terpotong ikut radius kartu sehingga terlihat bulat; bayangan lembut `--shadow-card` tampil merata.
@@ -965,12 +965,12 @@ Remidiasinya memakai lima keputusan bab ini. (1) `box-sizing: border-box` global
 4. Ubah `.nav-item` pada style.css menjadi `display: block`, amati hasilnya di browser, jelaskan mengapa navigasi berantakan, lalu kembalikan ke `inline-block`. Sertakan kesimpulan satu paragraf tentang kapan *inline* tak cukup untuk komponen interaktif.
 5. Tambahkan kelas `.nama-terpotong` memakai pola empat baris `white-space/overflow/text-overflow` pada nama produk di kartu WC-720, lalu uji: ganti nama menjadi kalimat 60 huruf dan verifikasi munculnya elipsis. Tulis pengamatan Anda.
 6. Inspeksi badge kartu MR-241 via DevTools: catat `top/right` badge, lalu hapus `position: relative` di `.produk-media`, catat posisi badge baru, dan rangkum dalam dua kalimat alasan `relative` wajib dipasang.
-7. Audit skala 8 px pada style.css: buat tabel tiga kolom (properti, nilai, langkah skala 8 px) untuk seluruh `padding`/`margin` di berkas; tandai nilai yang bukan kelipatan 8 (bila ada) dan tangani dengan langkah terdekat.
+7. Audit skala 8 px pada style.css: buat tabel tiga kolom (properti, nilai, langkah skala 8 px) untuk seluruh `padding`/`margin` di file; tandai nilai yang bukan kelipatan 8 (bila ada) dan tangani dengan langkah terdekat.
 
 ## Tugas
 
-1. **Tugas individu — Komponensi delapan kartu + panel statistik.** Susun berkas `tokosaya-css/statistik.html` yang memuat panel "Ringkasan Tokosaya": empat kotak statistik (Jumlah Produk 8, Kategori 7, Produk Best Seller 2, Stok Terbatas 1) berderet `inline-block`, memakai `border-box` global, seluruh jarak dari skala 8 px, dan satu kartu mencontohkan `position: absolute` untuk badge "Baru" seperti kartu WC-720. Keluaran yang dikumpulkan: berkas HTML + CSS + tangkapan layar diagram kotak satu kartu + catatan singkat (maks 10 baris) pilihan margin vs padding pada tiap jarak. Kriteria ringkas: tanpa bilah gulir horizontal di 1280 px, semua jarak kelipatan 8, satu `<h1>`, seluruh gambar ber-`alt`.
-2. **Tugas kelompok (3 orang) — Audit spacing dashboard akademik.** Berdasarkan studi kasus SIAKAD, buat draf revisi tiga kartu: daftar masalah jarak (tabel: elemen, nilai lama, nilai baru, alasan), draf CSS per kartu memakai token Tokosaya, dan tangkapan layar sebelum-sesudah dari peragaan sederhana HTML/CSS. Keluaran: satu dokumen ringkas (2–3 halaman) + satu draf berkas CSS. Kriteria: konsistensi skala, keterbacaan kelompok informasi, dan kesesuaian `min/max` (5.2).
+1. **Tugas individu — Komponensi delapan kartu + panel statistik.** Susun file `tokosaya-css/statistik.html` yang memuat panel "Ringkasan Tokosaya": empat kotak statistik (Jumlah Produk 8, Kategori 7, Produk Best Seller 2, Stok Terbatas 1) berderet `inline-block`, memakai `border-box` global, seluruh jarak dari skala 8 px, dan satu kartu mencontohkan `position: absolute` untuk badge "Baru" seperti kartu WC-720. Keluaran yang dikumpulkan: file HTML + CSS + tangkapan layar diagram kotak satu kartu + catatan singkat (maks 10 baris) pilihan margin vs padding pada tiap jarak. Kriteria ringkas: tanpa bilah gulir horizontal di 1280 px, semua jarak kelipatan 8, satu `<h1>`, seluruh gambar ber-`alt`.
+2. **Tugas kelompok (3 orang) — Audit spacing dashboard akademik.** Berdasarkan studi kasus SIAKAD, buat draf revisi tiga kartu: daftar masalah jarak (tabel: elemen, nilai lama, nilai baru, alasan), draf CSS per kartu memakai token Tokosaya, dan tangkapan layar sebelum-sesudah dari peragaan sederhana HTML/CSS. Keluaran: satu dokumen ringkas (2–3 halaman) + satu draf file CSS. Kriteria: konsistensi skala, keterbacaan kelompok informasi, dan kesesuaian `min/max` (5.2).
 
 ## Refleksi
 

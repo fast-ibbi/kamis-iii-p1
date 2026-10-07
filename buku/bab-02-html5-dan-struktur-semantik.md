@@ -172,7 +172,7 @@ semantik memakai:
   apa;
 - `<td>` (*table data*) untuk sel isian biasa.
 
-Sangat penting untuk tidak memakai tabel sebagai alat tata letak (misalnya meniru dua
+Sangat penting untuk tidak memakai tabel sebagai alat layout (misalnya meniru dua
 kolom layout memakai `tr` dan `td`). Tabel untuk layout memakai makna secara palsu:
 *screen reader* akan berusaha "membaca tabel" yang sebenarnya bukan data, dan
 pemeliharaan layout semacam itu menyakitkan. Layout adalah tugas CSS (Bab 6 dan Bab 7).
@@ -182,22 +182,22 @@ sebelum harga ketika membaca baris.
 
 ### 2.4 Link dan Image
 
-Web tumbuh karena tautan. Elemen `<a>` (*anchor*) menghubungkan satu halaman ke halaman
+Web tumbuh karena link. Elemen `<a>` (*anchor*) menghubungkan satu halaman ke halaman
 atau sumber lain melalui atribut `href`. Dua tipe `href` yang wajib dipahami adalah
-tautan absolut dan relatif. Tautan **absolut** memuat alamat lengkap, misalnya
-`https://www.wikipedia.org/`; tautan **relatif** merujuk relatif terhadap halaman
+link absolut dan relatif. Link **absolut** memuat alamat lengkap, misalnya
+`https://www.wikipedia.org/`; link **relatif** merujuk relatif terhadap halaman
 sekarang, misalnya `tentang.html` atau `img/logo-tokosaya.svg`. Pada proyek multi-halaman
-seperti Tokosaya, tautan relatif antarhalaman (`index.html`, `katalog.html`,
+seperti Tokosaya, link relatif antarhalaman (`index.html`, `katalog.html`,
 `tentang.html`, `kontak.html`) menjaga struktur tetap berfungsi walau folder proyek
-dipindah. Secara bawaan, tautan dibuka di tab yang sama. Gunakan `target="_blank"` hanya
-ketika tautan benar-benar membuka sumber eksternal baru, dan pasangkan dengan
-`rel="noopener"` demi keamanan serta kinerja; tautan internal proyek cukup dibuka pada
+dipindah. Secara bawaan, link dibuka di tab yang sama. Gunakan `target="_blank"` hanya
+ketika link benar-benar membuka sumber eksternal baru, dan pasangkan dengan
+`rel="noopener"` demi keamanan serta kinerja; link internal proyek cukup dibuka pada
 tab sekarang.
 
-Teks tautan adalah bagian penting aksesibilitas: *screen reader* dapat menjumpainya
+Teks link adalah bagian penting aksesibilitas: *screen reader* dapat menjumpainya
 tunggal di luar kalimatnya. Frasa "klik di sini" tidak mengatakan apa-apa ketika dibaca
 sendirian, sedangkan "Baca aturan penukaran barang" bermakna di posisi mana pun.
-Kebiasaan menulis teks tautan deskriptif adalah bentuk sederhana dari disiplin
+Kebiasaan menulis teks link deskriptif adalah bentuk sederhana dari disiplin
 aksesibilitas yang diperdalam pada Bab 13.
 
 Elemen `<img>` menampilkan gambar dengan atribut wajib `alt` — teks alternatif yang
@@ -207,7 +207,7 @@ fungsi gambar dalam konteks halaman: logo Tokosaya cukup "Logo Tokosaya"; grafik
 penjualan butuh kalimat yang menyampaikan polanya. Gambar murni dekoratif sebaiknya
 `alt=""` (dibacakan kosong) — keputusan ini disertakan saat konten visual memang tidak
 membawa informasi. Atribut `width` dan `height` disertakan agar browser memesan (*reserve*) ruang
-gambar sebelum file termuat, menghindari lompatan tata letak (*layout shift*) — fondasi
+gambar sebelum file termuat, menghindari lompatan layout (*layout shift*) — fondasi
 kualitas yang diukur alat seperti Lighthouse pada Bab 13.
 
 Kalau gambar perlu keterangan yang tampil bersamanya, gunakan `<figure>` dan
@@ -247,9 +247,9 @@ Semua elemen yang sudah kita bahas punya makna semantik: `h2` berarti "judul bag
 `p` berarti "paragraf", dan `table` berarti "data tabular". HTML5 juga menyediakan
 elemen untuk menamai **bagian-bagian halaman**, yaitu:
 
-- `<header>` — kepala halaman atau bagian; biasanya memuat logo atau identitas situs,
+- `<header>` — kepala halaman atau bagian; biasanya memuat logo atau identitas website,
   dan kadang navigasi.
-- `<nav>` — kumpulan tautan navigasi utama; tidak setiap gugus `a` adalah `nav`, hanya
+- `<nav>` — kumpulan link navigasi utama; tidak setiap gugus `a` adalah `nav`, hanya
   gugus navigasi yang paling menentukan (menu utama, menu footer bila perlu).
 - `<main>` — isi utama halaman; gunakan satu `main` per halaman dan jangan letakkan
   di dalam elemen semantik lain seperti `header` atau `footer`.
@@ -284,7 +284,7 @@ Tabel pembanding singkat membantu mengingat:
 
 | Situasi | Pilihan elemen | Alasan |
 |---|---|---|
-| Kepala situs: logo + menu | `header` berisi `nav` | landmark standar yang mudah dikenali |
+| Kepala website: logo + menu | `header` berisi `nav` | landmark standar yang mudah dikenali |
 | Tepi konten: "Produk terpopuler" | `aside` | konten tambahan, bukan isi utama |
 | Berita satu per satu | setiap berita = `article` | konten mandiri yang berdiri sendiri |
 | Bagian "Visi & Misi" dalam halaman profil | `section + h2` | himpunan tematik dengan judul |
@@ -330,8 +330,8 @@ Sekarang, mari gabungkan semua konsep tadi untuk menyusun halaman company profil
 Tokosaya. Tugas halaman ini sederhana: memperkenalkan perusahaan dengan struktur yang
 mudah dijelajahi. Peta bagian dan pasangan semantiknya:
 
-- **kepala situs** — logo Tokosaya dan nama; elemen `header`, berisi `a > img`.
-- **navigasi utama** — Beranda, Katalog, Tentang, Kontak, ditambah tautan keranjang di
+- **kepala website** — logo Tokosaya dan nama; elemen `header`, berisi `a > img`.
+- **navigasi utama** — Beranda, Katalog, Tentang, Kontak, ditambah link keranjang di
   kanan; elemen `nav` di dalam `header`.
 - **isi utama** — elemen `main`, memuat satu atau lebih `section`.
 - **hero** — bagian pembuka: judul "Peralatan Kerja Digital untuk Semua", subjudul,
@@ -339,7 +339,7 @@ mudah dijelajahi. Peta bagian dan pasangan semantiknya:
 - **produk unggulan** — tabel produk pilihan dari 8 produk baku; `section + table`.
 - **layanan** — daftar nilai layanan Tokosaya; `section + ul` (atau `dl` pada halaman
   tentang).
-- **kaki situs** — kontak (Jl. Digital Raya No. 10, Jakarta; halo@tokosaya.id;
+- **kaki website** — kontak (Jl. Digital Raya No. 10, Jakarta; halo@tokosaya.id;
   (021) 555-0199) dan hak cipta; `footer` berisi `address`.
 
 Peta pohonnya dapat digambar sebagai struktur:
@@ -379,7 +379,7 @@ Praktikum berikut membangun dua halaman itu utuh.
 | Hierarki heading | Satu `h1`, tidak melompat level | `h1` hero, `h2` per section |
 | `ul / ol / dl` | Daftar tanpa urutan, dengan urutan, dan pasangan istilah | Layanan (`ul`), misi (`ol`), nilai (`dl`) |
 | `table` semantik | `caption`, `thead`, `tbody`, `th scope` | Daftar produk unggulan |
-| Tautan relatif | Path antarfile dalam folder proyek | `tentang.html`, `katalog.html` |
+| Link relatif | Path antarfile dalam folder proyek | `tentang.html`, `katalog.html` |
 | `alt` informatif | Menjelaskan fungsi gambar, bukan sekadar menyebut gambarnya ada | `alt="Ilustrasi peralatan kerja digital"` |
 | `figure/figcaption` | Pasangan gambar–keterangan yang terikat | Ilustrasi hero dengan penjelasan |
 | `label for / id` | Setiap input memiliki label yang terhubung | Form kontak (versi penuh Bab 11) |
@@ -566,7 +566,7 @@ Kerangka (contoh 1) menunjukkan kebiasaan yang akan dipakai di seluruh buku ini:
 lengkapi `head` sebelum menulis isi halaman. Letakkan `meta charset` di awal `head`
 agar browser langsung mengetahui pengodean karakternya. `viewport` juga dicantumkan
 sejak awal, meski manfaatnya baru terasa di Bab 7, supaya tidak lupa menambahkannya.
-`title` dibuat jelas dan unik; pada proyek dengan banyak halaman, pola "Nama Situs |
+`title` dibuat jelas dan unik; pada proyek dengan banyak halaman, pola "Nama Website |
 Nama Halaman" membantu membedakan tab.
 
 Contoh jadwal kuliah (contoh 2) memakai `article` untuk pengumuman karena konten itu
@@ -633,24 +633,24 @@ tokosaya-css/
 1. Buka `index.html` dan tulis kerangka lengkap: DOCTYPE, `html lang="id"`, `head`
    berisi `charset`, `viewport`, `description`, dan `title` "Tokosaya | Belanja Tepat,
    Kirim Cepat".
-2. Susun `header.site-header` yang memuat logo (tautan + gambar) dan `nav.site-nav`
+2. Susun `header.site-header` yang memuat logo (link + gambar) dan `nav.site-nav`
    berisi daftar navigasi baku: Beranda, Katalog, Tentang, Kontak, Keranjang.
 3. Susun `main` dengan tiga `section`: hero, produk unggulan, dan layanan. Beri `h2`
    pada dua `section` terakhir; judul hero adalah `h1` satu-satunya di halaman.
 4. Isi `section` hero: judul hero baku, subjudul, `figure` memuat ilustrasi placeholder,
-   dan tautan "Lihat Katalog" menuju `katalog.html`.
+   dan link "Lihat Katalog" menuju `katalog.html`.
 5. Bangun tabel produk unggulan: `caption`, `thead` berkolom Produk, Kategori, Harga,
    Status; lalu `tbody` memuat tiga produk baku dengan `th scope="row"` pada nama
    produknya.
 6. Tutup `main` dan tulis `footer.site-footer` dengan `address` berisi alamat, email
-   (tautan `mailto`), dan nomor telepon baku, disusul paragraf tagline dan hak cipta.
+   (link `mailto`), dan nomor telepon baku, disusul paragraf tagline dan hak cipta.
 7. Salin struktur yang sama ke `tentang.html`, mengganti `title`, `description`, dan
    isi `main`: h1 "Tentang Tokosaya"; empat `section` (profil, visi dan misi, nilai
    layanan dengan `dl`, kunjungi kami dengan `address`).
 8. Sesuaikan daftar navigasi di kedua halaman agar persis sama dan urutannya sama
    (konsistensi navigasi antarhalaman).
 9. Buka `index.html` di browser; periksa judul tab, baca konten dari atas ke bawah,
-   klik tautan "Tentang" untuk berpindah halaman, lalu kembali.
+   klik link "Tentang" untuk berpindah halaman, lalu kembali.
 10. Inspeksi dengan DevTools: pastikan satu `h1`, `nav` tunggal, `main` tunggal, dan
    setiap `img` memiliki `alt`.
 
@@ -792,8 +792,8 @@ File: tokosaya-css/index.html
 ```
 
 Penjelasan: Ada tiga keputusan struktur yang perlu diperhatikan pada file beranda. Pertama, `h1`
-hanya muncul sekali — pada judul hero — sedangkan judul situs di header memakai
-tautan logo tanpa heading, karena judul tiga halaman Tokosaya yang dibandingkan
+hanya muncul sekali — pada judul hero — sedangkan judul website di header memakai
+link logo tanpa heading, karena judul tiga halaman Tokosaya yang dibandingkan
 adalah isi `main` masing-masing, bukan nama toko yang sama berulang. Kedua, tabel
 produk memakai `th scope="row"` per baris dan `caption` yang menuliskan dasar data
 ("paling laris berdasarkan catatan penjualan") — pembaca layar lalu menyusun kalimat
@@ -826,7 +826,7 @@ File: tokosaya-css/tentang.html
         <li><a href="katalog.html">Katalog</a></li>
         <li><a href="tentang.html">Tentang</a></li>
         <li><a href="kontak.html">Kontak</a></li>
-        <!-- Halaman keranjang disiapkan pada Bab 11; sementara tautan menunjuk beranda -->
+        <!-- Halaman keranjang disiapkan pada Bab 11; sementara link menunjuk beranda -->
         <li><a href="index.html">Keranjang</a></li>
       </ul>
     </nav>
@@ -900,7 +900,7 @@ untuk jenis konten yang berbeda.
 `ol` dipakai untuk misi karena urutannya bermakna; `address` menandai blok kontak;
 dan `section class="visi-misi-section"`
 menunjukkan hierarki `h2` → `h3` tanpa lompatan. `footer` dua halaman identik —
-konsistensi antarhalaman adalah bagian dari identitas situs, dan penulisan berulang
+konsistensi antarhalaman adalah bagian dari identitas website, dan penulisan berulang
 pada tahap ini disengaja karena pemusatan markup bersama (memakai CSS/Bootstrap)
 baru dipelajari belakangan.
 
@@ -918,9 +918,9 @@ elemen yang tepat — tabel untuk data produk, `ol` untuk misi yang berurutan, d
 untuk pasangan nilai–penjelasan. Dengan begitu, saat menambahkan CSS nanti, struktur
 halaman tidak perlu diubah lagi.
 
-Ada dua hal yang sering terlewat pemula: (1) tautan "Keranjang"
+Ada dua hal yang sering terlewat pemula: (1) link "Keranjang"
 sementara menunjuk `index.html` dengan komentar penjelas, karena halaman keranjang
-baru dibangun pada Bab 11; mengarang `href="keranjang.html"` akan menghasilkan tautan
+baru dibangun pada Bab 11; mengarang `href="keranjang.html"` akan menghasilkan link
 mati pada pratinjau. (2) `figure/figcaption` hanya dipakai pada ilustrasi hero,
 bukan pada logo — logo tidak perlu keterangan tambahan karena teks `alt`-nya sudah
 cukup: "Logo Tokosaya".
@@ -929,7 +929,7 @@ cukup: "Logo Tokosaya".
 
 Saat membuka `index.html` di browser, halaman tampil dengan gaya bawaan browser (tanpa
 CSS khusus). Anda akan melihat judul tab "Tokosaya | Belanja Tepat, Kirim Cepat",
-tautan navigasi (Beranda, Katalog, Tentang, Kontak, Keranjang), judul utama
+link navigasi (Beranda, Katalog, Tentang, Kontak, Keranjang), judul utama
 "Peralatan Kerja Digital untuk Semua", tabel produk, daftar layanan, dan footer berisi
 alamat, email, serta tagline miring.
 Saat memeriksa kodenya, pastikan ada satu elemen `main`, satu elemen `h1`, satu elemen
@@ -950,15 +950,15 @@ Windows: File Explorer → View → File name extensions), atau simpan ulang lew
 **Pencegahan:** Selalu buat file lewat VS Code, perhatikan ekstensi pada bilah judul,
 dan buka pratinjau lewat Live Server atau klik dua kali file `.html` (bukan `.txt`).
 
-**Masalah:** Klik tautan "Tentang" atau "Katalog" menampilkan halaman galat 404
+**Masalah:** Klik link "Tentang" atau "Katalog" menampilkan halaman error 404
 "file not found" di browser.
 **Penyebab:** File yang dituju belum ada pada folder yang sama (`katalog.html` dan
-`kontak.html` baru dibangun pada bab berikutnya), atau tautan salah tulis
+`kontak.html` baru dibangun pada bab berikutnya), atau link salah tulis
 (mis. `tentang.html.hmtl` / huruf besar `Tentang.html` pada sistem peka huruf).
-**Solusi:** Perlu diingat, tautan Katalog dan Kontak memang belum aktif di bab ini.
-Untuk tautan yang sudah aktif, pastikan nama file tujuan persis sama
+**Solusi:** Perlu diingat, link Katalog dan Kontak memang belum aktif di bab ini.
+Untuk link yang sudah aktif, pastikan nama file tujuan persis sama
 dan berada satu folder dengan file pemanggil.
-**Pencegahan:** Tulis tautan relatif setelah membuat file tujuan, atau awali
+**Pencegahan:** Tulis link relatif setelah membuat file tujuan, atau awali
 pembuatan semua halaman dengan file kosong agar `href` tidak menunjuk file yang
 tidak pernah ada; biasakan nama file `lowercase` dan `kebab-case` dari awal.
 
@@ -991,7 +991,7 @@ Bayangkan Anda diminta meninjau halaman beranda portal berita kampus. Halaman it
 berfungsi bagi kebanyakan pembaca, tetapi tim ingin memastikan strukturnya mudah
 digunakan semua orang, termasuk mahasiswa tunanetra, dan mudah dipahami mesin pencari.
 
-Deskripsi halaman: pita atas berisi logo portal dan tautan masuk, diikuti bilah
+Deskripsi halaman: pita atas berisi logo portal dan link masuk, diikuti bilah
 menu (Beranda, Mahasiswa, Riset, Kontak); blok berita utama memuat satu berita
 utama dan delapan berita lain; panel samping menampilkan artikel terpopuler;
 bagian bawah memuat alamat redaksi, surel redaksi, dan kebijakan portal.
@@ -1096,7 +1096,7 @@ unit konten bermakna, judul `h2`-nya sebagai judul berita). Latihan mandiri nomo
 5. Buat markup `<img>` untuk foto produk "Headphone Studio HS-15" (nama file
    `produk-headphone-hs15.svg`), lengkap dengan teks alternatif dan ukuran
    400×400 piksel. Jelaskan alasan Anda memilih teks `alt` tersebut.
-6. Buka halaman portal berita atau situs layanan informasi pilihan Anda. Baca
+6. Buka halaman portal berita atau website layanan informasi pilihan Anda. Baca
    strukturnya dari atas ke bawah, lalu buat peta semantiknya dalam daftar
    bertingkat. Tunjukkan bagian yang menjadi `header`, `nav`, `main`, `section`,
    `article`, `aside`, dan `footer`. Catat juga satu bagian yang masih memakai
@@ -1112,10 +1112,10 @@ unit konten bermakna, judul `h2`-nya sebagai judul berita). Latihan mandiri nomo
    hierarki heading tidak melompat, tabel/`dl` semantik benar, tidak ada
    style/kelas styling yang belum diajarkan.
 2. **Tugas kelompok (2–3 orang) — peta semantik kampus.** Pilih dua jenis halaman
-   dari situs sistem informasi yang sama (misalnya halaman pengumuman dan halaman
+   dari website sistem informasi yang sama (misalnya halaman pengumuman dan halaman
    profil laboratorium). Buat peta semantik tiap halaman dalam satu tabel
    (Bagian halaman → Elemen semantik → Alasan), maksimal satu halaman A4.
-   Kumpulkan dokumen peta semantik dan tautan halaman yang dianalisis. Kriterianya:
+   Kumpulkan dokumen peta semantik dan link halaman yang dianalisis. Kriterianya:
    pemetaan elemen akurat, alasan lengkap, dan ada catatan satu perbaikan markup
    yang terlihat dari hasil analisis.
 
@@ -1141,7 +1141,7 @@ unit konten bermakna, judul `h2`-nya sebagai judul berita). Latihan mandiri nomo
 - `ul` untuk daftar setara, `ol` untuk urutan bermakna, `dl` untuk pasangan
   istilah–deskripsi; tabel semantik memakai `caption`, `thead`, `tbody`, dan
   `th scope`; tabel bukan alat layout.
-- Tautan relatif menghubungkan halaman proyek; teks tautan harus deskriptif; gambar
+- Link relatif menghubungkan halaman proyek; teks link harus deskriptif; gambar
   perlu memiliki `alt` serta atribut ukuran agar ruangnya tersedia sebelum gambar dimuat.
 - Form pada bab ini hanya pola dasar (`label for`/`id`, `input`, `textarea`,
   `button`); pemetaan lengkap pada Bab 11.
@@ -1154,7 +1154,7 @@ unit konten bermakna, judul `h2`-nya sebagai judul berita). Latihan mandiri nomo
   dan layanan, lalu `footer` berisi kontak dan tagline.
 
 Struktur semantik yang Anda buat hari ini masih tampil polos: belum ada warna,
-tipografi, atau tata letak khusus. Bab 3 akan mengajak Anda mengenal dasar-dasar CSS
+tipografi, atau layout khusus. Bab 3 akan mengajak Anda mengenal dasar-dasar CSS
 dan menambahkan `css/style.css` ke proyek Tokosaya. Untuk pertama kalinya, Anda akan
 mewarnai dan menata struktur yang baru saja dibuat.
 
@@ -1218,7 +1218,7 @@ mewarnai dan menata struktur yang baru saja dibuat.
 1. Satu halaman Tokosaya boleh memiliki lebih dari satu `main`.
 2. `alt=""` pada gambar murni dekoratif adalah pilihan yang benar.
 3. Tabel boleh dipakai untuk menyusun layout dua kolom bila CSS belum diajarkan.
-4. Tautan ke halaman lain dalam proyek Tokosaya lebih aman ditulis relatif
+4. Link ke halaman lain dalam proyek Tokosaya lebih aman ditulis relatif
    (mis. `tentang.html`) daripada absolut.
 5. `div` dan `span` dilarang dipakai dalam proyek buku ini.
 
@@ -1268,7 +1268,7 @@ lalu tulis ulang bloknya dalam bentuk yang benar.
    penuh: `header` + `nav` yang konsisten dengan halaman yang telah Anda buat,
    `main` berisi `h1` "Layanan Tokosaya" dan tiga `section` (garansi 7 hari,
    pengiriman, konsultasi perangkat) dengan hierarki heading benar, serta `footer`
-   sama dengan halaman lain. Kumpulkan file `layanan.html` dan tambahkan tautan
+   sama dengan halaman lain. Kumpulkan file `layanan.html` dan tambahkan link
    ke halaman ini dari `tentang.html`.
 2. Periksa halaman beranda teman Anda: buka `index.html` miliknya, lalu buat daftar
    cek singkat (minimal 7 hal: viewport, charset, satu `h1`, hierarki heading,
@@ -1307,8 +1307,8 @@ lalu tulis ulang bloknya dalam bentuk yang benar.
    pembaca layar (hanya untuk gambar tidak membawa informasi).
 3. **Salah** — tabel dipertahankan untuk data tabular; layout adalah tugas CSS
    (Bab 6 dan 7), dan tabel untuk layout memalsukan makna data.
-4. **Benar** — tautan relatif tetap berfungsi ketika folder proyek dipindah;
-   tautan absolut menyertakan domain sehingga rapuh pada pemindahan.
+4. **Benar** — link relatif tetap berfungsi ketika folder proyek dipindah;
+   link absolut menyertakan domain sehingga rapuh pada pemindahan.
 5. **Salah** — `div`/`span` boleh dipakai ketika tidak ada elemen semantik yang
    pas; yang dilarang adalah menggantikan elemen bermakna dengan pembagi netral.
 
@@ -1323,13 +1323,13 @@ lalu tulis ulang bloknya dalam bentuk yang benar.
   level dan melanggar pola satu `h1` per halaman); pembungkus dan subjudul
   memakai pembagi netral padahal maknanya jelas (bagian hero dan paragraf
   subjudul). Perbaikan: `section class="hero-section"` dengan `h1` dan `p`,
-  tetap mempertahankan tautan tombol ke katalog.
+  tetap mempertahankan link tombol ke katalog.
 
 **Soal Praktik:**
 
 - Butir 1: kriteria utama jawaban — struktur `header`/`nav`/`main`/`footer`
   konsisten dengan halaman lain; satu `h1` di bagian layanan; tiga
-  `section` dengan `h2`; hierarki heading tidak melompat; tautan dari
+  `section` dengan `h2`; hierarki heading tidak melompat; link dari
   `tentang.html` memakai path relatif `layanan.html`.
 - Butir 2: kriteria penilaian kualitas audit — daftar periksa memuat tujuh
   pemeriksaan yang diminta dan dijalankan satu per satu; temuan ditulis

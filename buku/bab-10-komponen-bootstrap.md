@@ -30,7 +30,7 @@ Bab ini berkontribusi pada sub-capaian berikut:
 
 Pada Bab 9 Anda merakit ulang *landing page* Tokosaya dengan sistem grid dan utilitas Bootstrap 5.3.3. Hasilnya terasa cepat, namun ada bagian yang belum Anda sentuh: elemen-elemen yang pengguna benar-benar "menyentuh" setiap kunjungan, yaitu menu navigasi di atas halaman, kartu produk di tengah halaman, dan tanda-tanda kecil seperti label harga atau status stok. Bagian-bagian itulah yang disebut *komponen* (component) dalam istilah Bootstrap.
 
-Bayangkan situasi yang sering muncul di proyek sistem informasi. Tim pengembang sistem informasi akademik sebuah kampus baru saja menerima rancangan antarmuka dari desainer. Kepala tim berkata: "Katalog e-layar perpustakaan selesai minggu ini; menu, kartu buku, dan status stok wajib seragam di semua halaman." Jika setiap anggota tim menulis CSS kartu dari nol dengan gaya pribadi, hasilnya hampir pasti melenceng: satu menulis sudut tumpul, satu lagi menulis sudut tajam; satu memakai bayangan kuat, satu lagi tidak memakai bayangan sama sekali. Proses review pun jadi lama karena setiap berkas harus dicek satu per satu. Di sinilah komponen siap pakai menjadi jawaban: satu kali mempelajari struktur kelas `card`, seluruh tim menghasilkan kartu yang identik di situs mana pun proyek dibangun.
+Bayangkan situasi yang sering muncul di proyek sistem informasi. Tim pengembang sistem informasi akademik sebuah kampus baru saja menerima rancangan antarmuka dari desainer. Kepala tim berkata: "Katalog e-layar perpustakaan selesai minggu ini; menu, kartu buku, dan status stok wajib seragam di semua halaman." Jika setiap anggota tim menulis CSS kartu dari nol dengan gaya pribadi, hasilnya hampir pasti melenceng: satu menulis sudut tumpul, satu lagi menulis sudut tajam; satu memakai bayangan kuat, satu lagi tidak memakai bayangan sama sekali. Proses review pun jadi lama karena setiap file harus dicek satu per satu. Di sinilah komponen siap pakai menjadi jawaban: satu kali mempelajari struktur kelas `card`, seluruh tim menghasilkan kartu yang identik di website mana pun proyek dibangun.
 
 Tokosaya adalah contoh latihan yang pas. Halaman `katalog.html` Anda di proyek `tokosaya-css/` (Bab 7 hingga Bab 8) dibangun dengan Flexbox dan CSS Grid murni. Kini tugasnya diulang di proyek baru `tokosaya-bootstrap/` dengan delapan produk baku yang sama, tetapi memakai komponen resmi Bootstrap: *navbar* untuk menu Beranda–Kontak, kartu untuk produk, *badge* untuk label stok, *pagination* untuk kelihatan "berhalaman", serta ikon resmi dari Bootstrap Icons. Setelah mencoba dua cara membuat katalog yang sama, Anda punya pembanding yang nyata: kapan CSS kustom lebih pas, dan kapan komponen siap pakai lebih hemat. Pertanyaan pemandu bab ini: *bagaimana komponen siap pakai mempercepat translasi desain menjadi halaman siap ditinjau?*
 
@@ -53,7 +53,7 @@ Empat langkah ini akan Anda jalankan sebanyak delapan kali di Praktikum, sehingg
 
 ### 10.2 Navbar
 
-Sebuah **navbar** adalah bilah navigasi yang menampung merek (nama situs), tautan menu utama, dan — bila perlu — satu-dua elemen pendukung seperti ikon keranjang. Pada Tokosaya, navigasi bakunya empat tautan (Beranda, Katalog, Tentang, Kontak) ditambah ikon keranjang di sisi kanan. Di Bootstrap, wadah utamanya adalah `navbar`, lalu dipadukan dengan kelas warna seperti `navbar-dark bg-dark` dan kelas responsif `navbar-expand-lg` yang menentukan mulai ukuran layar mana menu ditampilkan mendatar.
+Sebuah **navbar** adalah bilah navigasi yang menampung merek (nama website), link menu utama, dan — bila perlu — satu-dua elemen pendukung seperti ikon keranjang. Pada Tokosaya, navigasi bakunya empat link (Beranda, Katalog, Tentang, Kontak) ditambah ikon keranjang di sisi kanan. Di Bootstrap, wadah utamanya adalah `navbar`, lalu dipadukan dengan kelas warna seperti `navbar-dark bg-dark` dan kelas responsif `navbar-expand-lg` yang menentukan mulai ukuran layar mana menu ditampilkan mendatar.
 
 Anatomi kelas *markup* navbar yang perlu Anda kenali adalah sebagai berikut:
 
@@ -91,7 +91,7 @@ File: tokosaya-bootstrap/katalog.html
 </nav>
 ```
 
-Penjelasan: Kelas `navbar` menyusun isi dengan Flexbox, sedangkan `container` menjaga lebar isi tetap selaras dengan bagian halaman lain. Tautan merek memakai `navbar-brand`, sedangkan daftar menu memakai trinitas kelas `navbar-nav`–`nav-item`–`nav-link` yang menata teks dan area sentuh dengan rapat. `active` pada tautan "Katalog" menandai halaman sedang terbuka, dikuatkan atribut `aria-current="page"` bagi pembaca layar. Manfaat `navbar-expand-lg` ada di dua kondisi: di layar besar (992 piksel ke atas) daftar menu berjajar mendatar ke kanan berkat `ms-auto`; di layar kecil menu kembali menumpuk vertikal. Bagian inilah yang tetap bekerja penuh tanpa JavaScript.
+Penjelasan: Kelas `navbar` menyusun isi dengan Flexbox, sedangkan `container` menjaga lebar isi tetap selaras dengan bagian halaman lain. Link merek memakai `navbar-brand`, sedangkan daftar menu memakai trinitas kelas `navbar-nav`–`nav-item`–`nav-link` yang menata teks dan area sentuh dengan rapat. `active` pada link "Katalog" menandai halaman sedang terbuka, dikuatkan atribut `aria-current="page"` bagi pembaca layar. Manfaat `navbar-expand-lg` ada di dua kondisi: di layar besar (992 piksel ke atas) daftar menu berjajar mendatar ke kanan berkat `ms-auto`; di layar kecil menu kembali menumpuk vertikal. Bagian inilah yang tetap bekerja penuh tanpa JavaScript.
 
 Sekarang masuk ke bagian yang paling penting. Dokumentasi resmi Bootstrap menampilkan pola *navbar* yang lebih panjang: ada sebuah elemen `<button class="navbar-toggler">` berisi `navbar-toggler-icon`, ada panel `<div class="collapse navbar-collapse">`, dan di tombol serta panel itu tertulis atribut `data-bs-toggle="collapse"` dan `data-bs-target="..."` (di dokumentasi terbaru, periksa kembali atribut yang dipakai ⚠ *version-sensitive*: periksa dokumentasi resmi terbaru di getbootstrap.com). Atribut-atribut itu adalah penanda yang dibaca oleh paket JavaScript resmi Bootstrap. Tanpa paket itu — dan dalam mata kuliah ini kita memang tidak memuatnya karena JavaScript di luar cakupan — penekanan tombol hamburger sama sekali tidak berefek: panel tidak akan terbuka. Batas ini perlu disebut dengan jelas: **struktur dan kelas *markup* pola resmi tetap diajarkan agar Anda bisa membaca kode dunia kerja, tetapi perilaku buka-tutupnya tidak kita pelajari karena menuntut JavaScript.**
 
@@ -112,7 +112,7 @@ Solusi yang dipakai buku ini, dan yang Anda buat di Praktikum, murni memakai CSS
     | [Keranjang]                  |
     +------------------------------+
 
-Untuk Tokosaya yang hanya punya empat tautan, menu yang selalu terlihat di layar kecil adalah pilihan yang bisa dipertanggungjawabkan: tidak ada menu yang hilang, tidak ada tombol palsu. Memang ada trik CSS murni lain berbasis kotak centang tersembunyi dan pemilih saudara untuk membuka-tutup menu tanpa JavaScript. Namun, pola itu memakai elemen di luar tujuan semantiknya dan membuat review lebih rumit. Untuk halaman sederhana, menu yang selalu tampil jauh lebih mudah dirawat. Di dunia kerja, ketika tim memilih memuat paket JavaScript resmi Bootstrap, pola hamburger bukalah sesuai dokumentasi — dan Anda kini siap membaca *markup*-nya tanpa bingung.
+Untuk Tokosaya yang hanya punya empat link, menu yang selalu terlihat di layar kecil adalah pilihan yang bisa dipertanggungjawabkan: tidak ada menu yang hilang, tidak ada tombol palsu. Memang ada trik CSS murni lain berbasis kotak centang tersembunyi dan pemilih saudara untuk membuka-tutup menu tanpa JavaScript. Namun, pola itu memakai elemen di luar tujuan semantiknya dan membuat review lebih rumit. Untuk halaman sederhana, menu yang selalu tampil jauh lebih mudah dirawat. Di dunia kerja, ketika tim memilih memuat paket JavaScript resmi Bootstrap, pola hamburger bukalah sesuai dokumentasi — dan Anda kini siap membaca *markup*-nya tanpa bingung.
 
 ### 10.3 Buttons, Badges, dan Alerts
 
@@ -202,7 +202,7 @@ File: tokosaya-bootstrap/katalog.html
 
 Penjelasan: Kelas `card h-100` membuat kartu mengisi penuh tinggi kolom gridnya sehingga deretan kartu tampak rata di bagian atas dan bawah. Tubuh kartu memakai `d-flex flex-column` — utilitas Flexbox Bootstrap — agar konten tersusun menurun, lalu `mt-auto` pada baris harga mendorong harga dan tombol turun menempel dasar kartu. Akibatnya, walau deskripsi produk beragam panjangnya, harga dan tombol semua kartu sejajar rapi; inilah alasan pola "harga menempel dasar kartu" menjadi pakem katalog Tokosaya. Judul ditulis dalam elemen `h3` namun memakai kelas ukuran `h6`: semantik outline halaman tetap benar, sementara ukuran visualnya kecil. Badge ditempel di baris pertama tubuh kartu dengan `align-self-start` agar tidak melebar sendiri. Nama kelas `produk-card` (pola `blok-elemen` proyek) menampung gaya kustom tokoh Tokosaya yang ditulis terpisah di `css/style.css`.
 
-Dua catatan lanjutan soal kartu. Pertama, **kartu tidak berdiri sendiri**: ia berdiri di dalam sel grid `col-*` Bab 9. Satu baris `row g-4` memuat delapan kolom produk, dan kelas `col-12 col-sm-6 col-lg-3` memutar susunannya 1-2-4 kolom ketika layar melebar. Kedua, Bootstrap menyediakan `card-group` untuk menempelkan beberapa kartu menjadi satu bingkai rapi; bermanfaat untuk galeri, tetapi untuk katalog Tokosaya kartu-melalui-grid lebih baik karena jarak antarkartu terkendali `g-4`. Membiasakan diri memisahkan "wadah konten" (kartu) dari "wadah tata letak" (grid) membuat komponen Anda lebih mudah disusun ulang kapan pun susunannya berubah.
+Dua catatan lanjutan soal kartu. Pertama, **kartu tidak berdiri sendiri**: ia berdiri di dalam sel grid `col-*` Bab 9. Satu baris `row g-4` memuat delapan kolom produk, dan kelas `col-12 col-sm-6 col-lg-3` memutar susunannya 1-2-4 kolom ketika layar melebar. Kedua, Bootstrap menyediakan `card-group` untuk menempelkan beberapa kartu menjadi satu bingkai rapi; bermanfaat untuk galeri, tetapi untuk katalog Tokosaya kartu-melalui-grid lebih baik karena jarak antarkartu terkendali `g-4`. Membiasakan diri memisahkan "wadah konten" (kartu) dari "wadah layout" (grid) membuat komponen Anda lebih mudah disusun ulang kapan pun susunannya berubah.
 
 ### 10.5 Breadcrumbs, Pagination, dan List Group
 
@@ -219,9 +219,9 @@ File: tokosaya-bootstrap/katalog.html
 </nav>
 ```
 
-Penjelasan: Pola berlapis `breadcrumb > breadcrumb-item` diakhiri item `active` + `aria-current="page"` untuk posisi halaman sekarang, yang tidak perlu lagi menjadi tautan. Label `aria-label="breadcrumb"` memberi nama wilayah tersebut bagi pembaca layar. Dalam sistem informasi, *breadcrumb* muncul hampir di setiap halaman rinci (perpustakaan: Beranda → Katalog → Klasifikasi 000 → Data Komputer) sehingga pengguna tidak pernah hilang arah.
+Penjelasan: Pola berlapis `breadcrumb > breadcrumb-item` diakhiri item `active` + `aria-current="page"` untuk posisi halaman sekarang, yang tidak perlu lagi menjadi link. Label `aria-label="breadcrumb"` memberi nama wilayah tersebut bagi pembaca layar. Dalam sistem informasi, *breadcrumb* muncul hampir di setiap halaman rinci (perpustakaan: Beranda → Katalog → Klasifikasi 000 → Data Komputer) sehingga pengguna tidak pernah hilang arah.
 
-**Pagination** adalah deret nomor halaman di dasar daftar panjang. Pada situs statis Tokosaya tanpa data dinamis, kita memakainya apa adanya: paginasi ini bersifat *visual* — halaman 1 diberi tanda aktif, halaman lain tetap ditampilkan agar desainnya lengkap, dan saat diklik pengguna tetap kembali ke halaman yang sama. Pola ini persis yang dibutuhkan prototip desain sebelum data nyata disambungkan:
+**Pagination** adalah deret nomor halaman di dasar daftar panjang. Pada website statis Tokosaya tanpa data dinamis, kita memakainya apa adanya: paginasi ini bersifat *visual* — halaman 1 diberi tanda aktif, halaman lain tetap ditampilkan agar desainnya lengkap, dan saat diklik pengguna tetap kembali ke halaman yang sama. Pola ini persis yang dibutuhkan prototip desain sebelum data nyata disambungkan:
 
 File: tokosaya-bootstrap/katalog.html
 
@@ -237,7 +237,7 @@ File: tokosaya-bootstrap/katalog.html
 </nav>
 ```
 
-Penjelasan: Tanda status memakai dua kelas: `active` pada halaman sekarang dan `disabled` pada halaman sebelum (belum ada halaman 0). Untuk status di atas tautan, Bootstrap menyarankan memakai `span` alih-alih `a` — itulah yang dilakukan pada item pertama dan kedua. Ikon panah berbentuk font memasuki markah lewat kelas `bi bi-chevron-*` dari Bootstrap Icons (Subbab 10.7). Seluruh deret dikunci tengah dengan `justify-content-center`.
+Penjelasan: Tanda status memakai dua kelas: `active` pada halaman sekarang dan `disabled` pada halaman sebelum (belum ada halaman 0). Untuk status di atas link, Bootstrap menyarankan memakai `span` alih-alih `a` — itulah yang dilakukan pada item pertama dan kedua. Ikon panah berbentuk font memasuki markah lewat kelas `bi bi-chevron-*` dari Bootstrap Icons (Subbab 10.7). Seluruh deret dikunci tengah dengan `justify-content-center`.
 
 **List group** adalah daftar berbingkai siap pakai yang menjadi bentuk bawaan banyak daftar pada sistem informasi: daftar buku, daftar log kejadian, daftar mata kuliah. Ia menyediakan kelas status `active` untuk item terpilih serta pemaduan dengan *badge* pada sisi kanan tiap item — memakai utilitas `d-flex justify-content-between align-items-center`:
 
@@ -254,7 +254,7 @@ File: tokosaya-bootstrap/demo-komponen.html
 </ul>
 ```
 
-Penjelasan: Kelas bapak `list-group` menyalakan gaya daftar berbingkai; `active` menyorot satu item (di sini Monitor MR-241, seolah sedang dipilih operaturnya). Item pertama memperlihatkan pola populer daftar + *badge*: tautan/label di kiri, status di kanan — pola yang sama yang Anda pakai di studi kasus perpustakaan. Ketiga komponen bagian ini sama-sama bertumpu pada trik yang sama sekali aman tanpa JavaScript: status direpresentasikan sebagai **kelas** (`active`, `disabled`), bukan data interaktif.
+Penjelasan: Kelas bapak `list-group` menyalakan gaya daftar berbingkai; `active` menyorot satu item (di sini Monitor MR-241, seolah sedang dipilih operaturnya). Item pertama memperlihatkan pola populer daftar + *badge*: link/label di kiri, status di kanan — pola yang sama yang Anda pakai di studi kasus perpustakaan. Ketiga komponen bagian ini sama-sama bertumpu pada trik yang sama sekali aman tanpa JavaScript: status direpresentasikan sebagai **kelas** (`active`, `disabled`), bukan data interaktif.
 
 ### 10.6 Accordion, Modal, dan Carousel
 
@@ -331,11 +331,11 @@ File: tokosaya-bootstrap/demo-status.html
 </div>
 ```
 
-Penjelasan: Kelas `active` menentukan gambar yang tampak; selain itu, semua item tetap tersimpan. Tombol panah kiri-kanan dan indikator titik yang pada situs sungguhan menavigasi gambar kita tidak sertakan — mereka ikut bergantung paket JavaScript. Sebagai wawasan industri: di dunia nyata, ketiga komponen interaktif ini justru alasan utama tim memuat paket JavaScript resmi Bootstrap. Pemahaman Anda atas strukturnya tidak sia-sia: membaca, meninjau, dan menata ulang markup komponen tersebut adalah keterampilan desain antarmuka yang dibutuhkan meski penggeraknya dibuat orang lain.
+Penjelasan: Kelas `active` menentukan gambar yang tampak; selain itu, semua item tetap tersimpan. Tombol panah kiri-kanan dan indikator titik yang pada website sungguhan menavigasi gambar kita tidak sertakan — mereka ikut bergantung paket JavaScript. Sebagai wawasan industri: di dunia nyata, ketiga komponen interaktif ini justru alasan utama tim memuat paket JavaScript resmi Bootstrap. Pemahaman Anda atas strukturnya tidak sia-sia: membaca, meninjau, dan menata ulang markup komponen tersebut adalah keterampilan desain antarmuka yang dibutuhkan meski penggeraknya dibuat orang lain.
 
 ### 10.7 Bootstrap Icons
 
-**Bootstrap Icons** adalah kumpulan ikon resmi yang dikemas sebagai *icon font*: setiap ikon adalah satu kelas yang merujuk *glyph* huruf. Ikon ini dihubungkan lewat tautan CSS versi 1.11.3 pada elemen `head`, lalu dipakai dengan pasangan kelas `bi bi-nama-ikon` pada elemen ikon, biasanya `<i class="bi ..."></i>`. Agar ikon bisa dipakai, tulis dua baris berikut di setiap berkas proyek tokosaya-bootstrap:
+**Bootstrap Icons** adalah kumpulan ikon resmi yang dikemas sebagai *icon font*: setiap ikon adalah satu kelas yang merujuk *glyph* huruf. Ikon ini dihubungkan lewat link CSS versi 1.11.3 pada elemen `head`, lalu dipakai dengan pasangan kelas `bi bi-nama-ikon` pada elemen ikon, biasanya `<i class="bi ..."></i>`. Agar ikon bisa dipakai, tulis dua baris berikut di setiap file proyek tokosaya-bootstrap:
 
 File: tokosaya-bootstrap/katalog.html
 
@@ -346,7 +346,7 @@ File: tokosaya-bootstrap/katalog.html
 
 Penjelasan: Baris pertama memuat Ikon Bootstrap 1.11.3, baris kedua Bootstrap 5.3.3, sesuai alamat resmi yang dipakai bab ini. Ikon dipasang dengan kelas — misalnya `bi bi-cart3` untuk keranjang dan `bi bi-search` untuk pencarian — tanpa satu pun JavaScript. Tidak perlu markup tambahan: ikon otomatis mengikuti ukuran dan warna di sekitarnya.
 
-Ada tiga aturan praktis supaya ikon tetap rapi. Pertama, **ukuran mengikuti teks**: karena ikon adalah huruf, menaikkan ukuran teks wadah (kelas `fs-*`) menaikkan ikonnya. Kedua, **warna mewarisi teksnya**: kelas `text-*` pada wadah, atau langsung pada ikon, mengubah warna ikon. Ketiga, **ikon bermakna bila diberi nama**: bila ikon berdiri sendiri tanpa kata pendamping, beri atribut `aria-label` atau teks rahasia pada elemen tautan; bila ikon hanya hiasan di sebelah kata "Keranjang", beri `aria-hidden="true"` agar pembaca layar tidak membacanya dua kali:
+Ada tiga aturan praktis supaya ikon tetap rapi. Pertama, **ukuran mengikuti teks**: karena ikon adalah huruf, menaikkan ukuran teks wadah (kelas `fs-*`) menaikkan ikonnya. Kedua, **warna mewarisi teksnya**: kelas `text-*` pada wadah, atau langsung pada ikon, mengubah warna ikon. Ketiga, **ikon bermakna bila diberi nama**: bila ikon berdiri sendiri tanpa kata pendamping, beri atribut `aria-label` atau teks rahasia pada elemen link; bila ikon hanya hiasan di sebelah kata "Keranjang", beri `aria-hidden="true"` agar pembaca layar tidak membacanya dua kali:
 
 File: tokosaya-bootstrap/katalog.html
 
@@ -356,14 +356,14 @@ File: tokosaya-bootstrap/katalog.html
 </a>
 ```
 
-Penjelasan: Ikon bersifat dekorasi (kata "Keranjang" sudah menyampaikan makna) sehingga `aria-hidden="true"` menyembunyikannya dari pembaca layar. Selain keranjang, ikon memang berulang di katalog Tokosaya: `bi bi-cart3` pada tautan keranjang, `bi bi-funnel` di baris penyaring, serta `bi bi-chevron-left`/`bi bi-chevron-right` pada *pagination*. Konteks sistem informasi menghargai aturan ikon ini: di katalog perpustakaan, misalnya, ikon `bi bi-book` menandai daftar buku, dan kontras ikon perlu diperiksa bersama *badge* — bukan sekadar "tampak indah".
+Penjelasan: Ikon bersifat dekorasi (kata "Keranjang" sudah menyampaikan makna) sehingga `aria-hidden="true"` menyembunyikannya dari pembaca layar. Selain keranjang, ikon memang berulang di katalog Tokosaya: `bi bi-cart3` pada link keranjang, `bi bi-funnel` di baris penyaring, serta `bi bi-chevron-left`/`bi bi-chevron-right` pada *pagination*. Konteks sistem informasi menghargai aturan ikon ini: di katalog perpustakaan, misalnya, ikon `bi bi-book` menandai daftar buku, dan kontras ikon perlu diperiksa bersama *badge* — bukan sekadar "tampak indah".
 
 ## Konsep Penting
 
 | Konsep | Ringkasan satu frasa |
 |---|---|
 | Komponen antarmuka | Potongan antarmuka baku dengan markup dan gaya siap pakai |
-| *Navbar* | Bilah navigasi Tokosaya: brand + 4 tautan + tautan keranjang ikon |
+| *Navbar* | Bilah navigasi Tokosaya: brand + 4 link + link keranjang ikon |
 | `navbar-expand-lg` | Mendatar sejak 992 piksel; di bawahnya menumpuk (tanpa JS) |
 | Solusi tanpa JavaScript | Menu selalu tampil; tidak memuat tombol `navbar-toggler` |
 | *Badge* | Label kecil `text-bg-*` dengan warna semantik (hijau/sorot/merah/utama) |
@@ -379,7 +379,7 @@ Penjelasan: Ikon bersifat dekorasi (kata "Keranjang" sudah menyampaikan makna) s
 
 ## Contoh Kode
 
-Tiga berkas demo kecil di folder `tokosaya-bootstrap/` membantu Anda mencoba komponen satu per satu tanpa harus menyusun halaman penuh. Masing-masing adalah halaman lengkap yang dapat dibuka langsung di Chrome. Ketiganya menambah berkas demo pada proyek; silakan dihapus setelah memahami kontennya.
+Tiga file demo kecil di folder `tokosaya-bootstrap/` membantu Anda mencoba komponen satu per satu tanpa harus menyusun halaman penuh. Masing-masing adalah halaman lengkap yang dapat dibuka langsung di Chrome. Ketiganya menambah file demo pada proyek; silakan dihapus setelah memahami kontennya.
 
 File: tokosaya-bootstrap/demo-komponen.html
 
@@ -597,9 +597,9 @@ File: tokosaya-bootstrap/demo-status.html
 
 **Demo-komponen.html** menggabungkan lima komponen kecil dalam satu halaman supaya Anda bisa menguji semuanya sekali buka. Perhatikan pola yang berulang: setiap komponen berdiri di atas kelas bapak (`list-group`, `btn-group`, `pagination`) lalu mengisi anak sesuai resep; status menyusul lewat kelas (`active`, `disabled`) dan atribut kesediaan lewat `aria-current`. *Navbar* memakai varian tanpa JavaScript: tidak ada tombol `navbar-toggler`, menu `navbar-nav` berdiri langsung, dan hanya `navbar-expand-lg` yang memutar susunannya mendatar di layar besar. Alert ditulis tanpa tombol tutup — kesepakatan bab: komponen yang menutupannya butuh paket JavaScript tidak dipakai perilaku itu pada halaman statis.
 
-**Demo-kartu.html** menampilkan anatomi satu kartu Tokosaya secara terpisah. Komentar di dalam kode menata batas setiap bagian: gambar atas, *badge*, judul, kategori, deskripsi, harga, dan tombol. Kombinasi utilitas `d-flex flex-column` pada `card-body` dan `mt-auto` pada harga adalah inti pola Tokosaya: kartu tetap sejajar dasarnya meski deskripsi beragam. Kelas `produk-card` menunjuk gaya kustom (border, radius token, bayangan token, gambar tinggi seragam) yang didefinisikan di `css/style.css`, sehingga batas "Bootstrap dulu, kustom pelengkap" tetap terjaga. Tautan pembuka "#" menandai prototipe statis yang nanti dihubungkan ke halaman detail saat data halaman detail tersedia.
+**Demo-kartu.html** menampilkan anatomi satu kartu Tokosaya secara terpisah. Komentar di dalam kode menata batas setiap bagian: gambar atas, *badge*, judul, kategori, deskripsi, harga, dan tombol. Kombinasi utilitas `d-flex flex-column` pada `card-body` dan `mt-auto` pada harga adalah inti pola Tokosaya: kartu tetap sejajar dasarnya meski deskripsi beragam. Kelas `produk-card` menunjuk gaya kustom (border, radius token, bayangan token, gambar tinggi seragam) yang didefinisikan di `css/style.css`, sehingga batas "Bootstrap dulu, kustom pelengkap" tetap terjaga. Link pembuka "#" menandai prototipe statis yang nanti dihubungkan ke halaman detail saat data halaman detail tersedia.
 
-**Demo-status.html** adalah halaman untuk belajar, bukan halaman produk: tiga komponen interaktif ditampilkan sebagai status beku. Pada accordion, status terbuka/tertutup dinyatakan sepenuhnya dengan kelas `show`/`collapsed` di panel dan tombolnya. Modal dibuat tampil dalam aliran halaman lewat gaya `inline` bertanda `<!-- khusus demonstrasi -->` — cara aman memeriksa tampilan kotaknya tanpa memuat paket JavaScript. Carousel menampilkan item pertama saja karena `active` tidak bergeser tanpa JavaScript. Halaman ini juga memperkenalkan kebiasaan baik: komponen yang aslinya interaktif boleh dirapikan dalam berkas demo terpisah agar tidak membingungkan halaman resmi seperti `katalog.html`.
+**Demo-status.html** adalah halaman untuk belajar, bukan halaman produk: tiga komponen interaktif ditampilkan sebagai status beku. Pada accordion, status terbuka/tertutup dinyatakan sepenuhnya dengan kelas `show`/`collapsed` di panel dan tombolnya. Modal dibuat tampil dalam aliran halaman lewat gaya `inline` bertanda `<!-- khusus demonstrasi -->` — cara aman memeriksa tampilan kotaknya tanpa memuat paket JavaScript. Carousel menampilkan item pertama saja karena `active` tidak bergeser tanpa JavaScript. Halaman ini juga memperkenalkan kebiasaan baik: komponen yang aslinya interaktif boleh dirapikan dalam file demo terpisah agar tidak membingungkan halaman resmi seperti `katalog.html`.
 
 ## Praktikum
 
@@ -609,21 +609,21 @@ Membangun halaman `katalog.html` Tokosaya di proyek `tokosaya-bootstrap/` dengan
 
 ### Kebutuhan
 
-1. Peramban Google Chrome (beserta DevTools) dan Visual Studio Code.
+1. Browser Google Chrome (beserta DevTools) dan Visual Studio Code.
 2. Proyek `tokosaya-bootstrap/` hasil Bab 9 (memuat `index.html` dan `css/style.css`); jika belum ada, buat folder baru dengan mengikuti langkah Persiapan.
-3. Folder `img/` berisi delapan berkas gambar produk kebab-case dari proyek `tokosaya-css/` Anda.
-4. Jaringan internet tersambung untuk memuat dua berkas CDN: Bootstrap 5.3.3 CSS dan Bootstrap Icons 1.11.3.
+3. Folder `img/` berisi delapan file gambar produk kebab-case dari proyek `tokosaya-css/` Anda.
+4. Jaringan internet tersambung untuk memuat dua file CDN: Bootstrap 5.3.3 CSS dan Bootstrap Icons 1.11.3.
 
 ### Persiapan
 
 1. Duplikat atau buat folder proyek `tokosaya-bootstrap/` berisi `index.html` hasil Bab 9 dan folder `css/` berisi `style.css`.
-2. Salin seluruh isi folder `img/` dari proyek `tokosaya-css/` (berkas `produk-keyboard-kx210.svg` dan teman-temannya) ke `tokosaya-bootstrap/img/`.
-3. Buka proyek di Visual Studio Code dan buat berkas kosong `katalog.html`. Pratinjau bisa Anda buka lewat ekstensi Live Server atau dengan membuka berkasnya langsung di Chrome.
+2. Salin seluruh isi folder `img/` dari proyek `tokosaya-css/` (file `produk-keyboard-kx210.svg` dan teman-temannya) ke `tokosaya-bootstrap/img/`.
+3. Buka proyek di Visual Studio Code dan buat file kosong `katalog.html`. Pratinjau bisa Anda buka lewat ekstensi Live Server atau dengan membuka berkasnya langsung di Chrome.
 
 ### Langkah Kerja
 
-1. **Buat kerangka `katalog.html`.** Tulis `<!DOCTYPE html>`, `<html lang="id">`, bagian `head` lengkap: `charset`, `viewport`, judul halaman, tautan Bootstrap 5.3.3 CSS, Bootstrap Icons 1.11.3, Google Fonts Poppins + Inter, dan `css/style.css`. Tambahkan komentar HTML `<!-- Tanpa bundle JavaScript Bootstrap (di luar cakupan mata kuliah) -->`.
-2. **Tulis *navbar* tanpa JavaScript.** Gunakan pola Subbab 10.2: `navbar navbar-expand-lg navbar-dark bg-dark`, merek `Tokosaya`, empat tautan baku dengan `active` + `aria-current="page"` pada Katalog, dan tautan Keranjang berikon `bi bi-cart3`.
+1. **Buat kerangka `katalog.html`.** Tulis `<!DOCTYPE html>`, `<html lang="id">`, bagian `head` lengkap: `charset`, `viewport`, judul halaman, link Bootstrap 5.3.3 CSS, Bootstrap Icons 1.11.3, Google Fonts Poppins + Inter, dan `css/style.css`. Tambahkan komentar HTML `<!-- Tanpa bundle JavaScript Bootstrap (di luar cakupan mata kuliah) -->`.
+2. **Tulis *navbar* tanpa JavaScript.** Gunakan pola Subbab 10.2: `navbar navbar-expand-lg navbar-dark bg-dark`, merek `Tokosaya`, empat link baku dengan `active` + `aria-current="page"` pada Katalog, dan link Keranjang berikon `bi bi-cart3`.
 3. **Buat *header* katalog.** Di bawah *navbar*, buat `container` yang berisi *breadcrumb* Beranda → Katalog, judul `h1` "Katalog Produk", dan tagline "Belanja Tepat, Kirim Cepat" sebagai teks sekunder.
 4. **Susun bar penyaring.** Baris `d-flex flex-wrap gap-2` memuat ikon `bi bi-funnel`, label "Urutkan:", dan tiga tombol (satu warna utama, dua garis tepi) sesuai Subbab 10.3.
 5. **Susun grid produk.** Buat `<div class="row g-4">`; setiap produk menempati `<article class="col-12 col-sm-6 col-lg-3">` sehingga susunan 1-2-4 kolom tercapai.
@@ -640,7 +640,7 @@ Membangun halaman `katalog.html` Tokosaya di proyek `tokosaya-bootstrap/` dengan
    | Speaker Bluetooth BT-5 | Stok Terbatas | `text-bg-danger` |
    | Webcam HD WC-720 | Baru | `text-bg-primary` |
 
-8. **Tutup grid lalu tambahkan *pagination* visual** di dasar konten memakai pola Subbab 10.5: halaman 1 `active`, dua halaman berikutnya tautan biasa ke `katalog.html`, panah kiri `disabled`.
+8. **Tutup grid lalu tambahkan *pagination* visual** di dasar konten memakai pola Subbab 10.5: halaman 1 `active`, dua halaman berikutnya link biasa ke `katalog.html`, panah kiri `disabled`.
 9. **Tulis `css/style.css`** berisi token §5.3, aturan `body`/`.font-heading`, dan gaya kustom `.produk-card` (lihat blok `### Kode` berikut).
 10. **Uji di Chrome** menggunakan panel perangkat DevTools: periksa tampilan pada lebar 360 piksel (1 kolom), 768 piksel (2 kolom), dan 1200 piksel (4 kolom).
 
@@ -861,7 +861,7 @@ File: tokosaya-bootstrap/css/style.css
    Token mengikuti KONTRAK §5.3; utilitas Bootstrap dipakai terlebih dahulu. */
 
 :root {
-  --clr-primary: #4F46E5;      /* indigo — tombol dan tautan utama */
+  --clr-primary: #4F46E5;      /* indigo — tombol dan link utama */
   --clr-primary-dark: #4338CA;
   --clr-accent: #F59E0B;       /* amber — badge dan sorotan */
   --clr-dark: #1E293B;         /* heading dan teks tegas */
@@ -913,50 +913,50 @@ body {
 
 ### Penjelasan Kode
 
-Pada `katalog.html`, urutan tautan di `head` penting: Bootstrap 5.3.3 CSS dimuat lebih dahulu, lalu Bootstrap Icons 1.11.3, lalu `css/style.css` paling akhir. Dengan urutan itu, aturan kustom Tokosaya selalu berkesempatan menimpa gaya umum Bootstrap tanpa perlu *important*. Komentar di atas `</head>` menegaskan pilihan proyek: halaman ini tidak memuat paket JavaScript apa pun, dan seluruh tampilan dijamin berjalan oleh CSS komponen dan utilitas saja.
+Pada `katalog.html`, urutan link di `head` penting: Bootstrap 5.3.3 CSS dimuat lebih dahulu, lalu Bootstrap Icons 1.11.3, lalu `css/style.css` paling akhir. Dengan urutan itu, aturan kustom Tokosaya selalu berkesempatan menimpa gaya umum Bootstrap tanpa perlu *important*. Komentar di atas `</head>` menegaskan pilihan proyek: halaman ini tidak memuat paket JavaScript apa pun, dan seluruh tampilan dijamin berjalan oleh CSS komponen dan utilitas saja.
 
 Pada bagian isi, ada tiga peran yang perlu Anda ingat. Pertama, peran **wilayah**: `nav` untuk menu, `header` untuk keterangan halaman, `main` untuk daftar produk, `footer` untuk alamat — sama seperti kerangka `tokosaya-css/` di Bab 7, sehingga pengalaman Anda dipindahkan tanpa kehilangan semantik. Kedua, peran **grid**: `row g-4` dengan sel `col-12 col-sm-6 col-lg-3` membuat pola 1-2-4 kolom muncul otomatis sesuai layar. Ketiga, peran **kartu**: `card h-100` menyamakan tinggi, `d-flex flex-column` menata isi menurun, dan `mt-auto` menempelkan harga-tombol ke dasar; itulah sebabnya seluruh kartu terlihat sejajar walaupun deskripsinya beragam panjang.
 
-Pada `css/style.css`, ada tiga aturan kustom yang melengkapi hal-hal yang tidak disediakan utilitas singkat Bootstrap: token warna `--clr-*` dari KONTRAK §5.3 (agar proyek tokosaya-bootstrap sepenuhnya setara tokosaya-css), kelas `.font-heading` untuk judul Poppins, dan `.produk-card` sebagai pelengkap kartu (garis tepi token, radius token, bayangan token, efek mengangkat pada `:hover`, serta tinggi gambar tetap 160 piksel dengan `object-fit: cover` agar delapan kartu memakai bingkai gambar yang sama). Semua aturan kustom diberi komentar `/* kustom */` sesuai kesepakatan bab — bila suatu saat Anda melihat kelas kustom di markup, cek keberadaannya di berkas ini terlebih dahulu.
+Pada `css/style.css`, ada tiga aturan kustom yang melengkapi hal-hal yang tidak disediakan utilitas singkat Bootstrap: token warna `--clr-*` dari KONTRAK §5.3 (agar proyek tokosaya-bootstrap sepenuhnya setara tokosaya-css), kelas `.font-heading` untuk judul Poppins, dan `.produk-card` sebagai pelengkap kartu (garis tepi token, radius token, bayangan token, efek mengangkat pada `:hover`, serta tinggi gambar tetap 160 piksel dengan `object-fit: cover` agar delapan kartu memakai bingkai gambar yang sama). Semua aturan kustom diberi komentar `/* kustom */` sesuai kesepakatan bab — bila suatu saat Anda melihat kelas kustom di markup, cek keberadaannya di file ini terlebih dahulu.
 
 ### Hasil yang Diharapkan
 
-- **Teramati pada layar desktop (≥ 992 piksel):** bilah *navbar* gelap dengan merek Tokosaya di kiri, empat tautan mendatar ke kanan, tautan Keranjang berikon di ujung kanan; *breadcrumb* "Beranda / Katalog"; bar penyaring dengan tiga tombol; delapan kartu dalam empat kolom dengan tinggi seragam; *badge* berwarna sesuai tabel; *pagination* di tengah dengan "1" tertandai aktif dan panah kiri pudar.
+- **Teramati pada layar desktop (≥ 992 piksel):** bilah *navbar* gelap dengan merek Tokosaya di kiri, empat link mendatar ke kanan, link Keranjang berikon di ujung kanan; *breadcrumb* "Beranda / Katalog"; bar penyaring dengan tiga tombol; delapan kartu dalam empat kolom dengan tinggi seragam; *badge* berwarna sesuai tabel; *pagination* di tengah dengan "1" tertandai aktif dan panah kiri pudar.
 - **Teramati pada tablet (576–991 piksel):** kartu menumpuk dua kolom; menu *navbar* menumpuk vertikal di bawah merek tanpa tombol apa pun (sifat pola tanpa JavaScript).
-- **Teramati pada ponsel (< 576 piksel):** satu kolom kartu memenuhi lebar; ikon ikut tampil; seluruh tautan tetap dapat ditekan dengan target sentuh lapang.
+- **Teramati pada HP (< 576 piksel):** satu kolom kartu memenuhi lebar; ikon ikut tampil; seluruh link tetap dapat ditekan dengan target sentuh lapang.
 - **Terukur:** jumlah kartu dalam grid tepat 8; setiap kartu memuat nama produk, kategori, harga berformat `Rp650.000` (tanpa spasi), *badge*, dan tombol; jumlah *variant* badge berbeda = 4; gambar kartu seluruhnya bertingkat sama (160 piksel).
 - **Efek kustom terlihat:** ketika penunjuk tetikus diarahkan ke kartu, kartu terangkat 4 piksel senyap; itu hasil `.produk-card:hover` pada CSS kustom, bukan hasil interaksi JavaScript.
 
 ### Troubleshooting
 
 **Masalah:** Ikon keranjang dan panah *pagination* tampil sebagai nama teks (misalnya "bi bi-cart3") atau kotak kosong.
-**Penyebab:** Berkas CSS Bootstrap Icons belum terhubung ke halaman — tautan CDN ikon lupa ditulis, URL salah mengetik, atau halaman dibuka tanpa jaringan sehingga berkas CDN gagal dimuat.
-**Solusi:** Periksa urutan tautan di `head`: baris `bootstrap-icons@1.11.3` harus sebelum `css/style.css`, lalu pastikan penulisan kelas ganda `bi bi-nama-ikon` persis sesuai daftar resmi di situs ikon Bootstrap.
-**Pencegahan:** Saat menyalin kerangka `head`, salin penuh empat tautan baku (Bootstrap CSS, Icons, Google Fonts, `css/style.css`) tanpa memangkas satu baris pun; tes pertama setiap halaman adalah memastikan ikon keranjang tampil.
+**Penyebab:** File CSS Bootstrap Icons belum terhubung ke halaman — link CDN ikon lupa ditulis, URL salah mengetik, atau halaman dibuka tanpa jaringan sehingga file CDN gagal dimuat.
+**Solusi:** Periksa urutan link di `head`: baris `bootstrap-icons@1.11.3` harus sebelum `css/style.css`, lalu pastikan penulisan kelas ganda `bi bi-nama-ikon` persis sesuai daftar resmi di website ikon Bootstrap.
+**Pencegahan:** Saat menyalin kerangka `head`, salin penuh empat link baku (Bootstrap CSS, Icons, Google Fonts, `css/style.css`) tanpa memangkas satu baris pun; tes pertama setiap halaman adalah memastikan ikon keranjang tampil.
 
 **Masalah:** Gaya kustom (kartu terangkat, font Poppins) tidak berlaku sama sekali.
-**Penyebab:** Urutan tautan terbalik — `css/style.css` ditulis sebelum `bootstrap.min.css` — sehingga gaya komponen Bootstrap menimpa kustom, atau berkas `style.css` tidak ditemukan karena penulisan jalurnya salah.
-**Solusi:** Pindahkan tautan `css/style.css` ke urutan terakhir di `head`; periksa huruf besar-kecil dan nama folder `css/` persis sama dengan struktur proyek.
-**Pencegahan:** Jadikan konvensi: kelima berkas CDN dan kustom selalu dalam urutan resmi sama di semua halaman proyek Tokosaya sehingga salin-tempel antarhalaman selalu aman.
+**Penyebab:** Urutan link terbalik — `css/style.css` ditulis sebelum `bootstrap.min.css` — sehingga gaya komponen Bootstrap menimpa kustom, atau file `style.css` tidak ditemukan karena penulisan jalurnya salah.
+**Solusi:** Pindahkan link `css/style.css` ke urutan terakhir di `head`; periksa huruf besar-kecil dan nama folder `css/` persis sama dengan struktur proyek.
+**Pencegahan:** Jadikan konvensi: kelima file CDN dan kustom selalu dalam urutan resmi sama di semua halaman proyek Tokosaya sehingga salin-tempel antarhalaman selalu aman.
 
 **Masalah:** Harga dan tombol pada kartu tidak sejajar dasar; kartu tampak berantakan bila deret bertinggi berbeda.
 **Penyebab:** Tubuh kartu dibiarkan tanpa utilitas penata — `h-100`, `d-flex flex-column`, dan `mt-auto` tidak lengkap terpasang.
 **Solusi:** Tambahkan `h-100` pada elemen `card`, `d-flex flex-column` pada `card-body`, dan `mt-auto` pada paragraf harga sehingga harga dan tombol turun menempel dasar kartu.
 **Pencegahan:** Tuliskan ketiga kelas itu sekali pada kartu pertama, lalu salin pola penuh kartu pertama untuk kartu kedua hingga kedelapan — bukan menulis ulang kartu dari nol.
 
-**Masalah:** Menu navbar tampak mendatar padat ke kanan di layar ponsel, tidak menumpuk seperti contoh.
+**Masalah:** Menu navbar tampak mendatar padat ke kanan di layar HP, tidak menumpuk seperti contoh.
 **Penyebab:** Kelas `navbar-expand-lg` tidak terpasang (atau salah mengetik) sehingga menu ditampilkan mendatar sejak layar kecil; atau `ms-auto` tertaruh di ul yang salah.
 **Solusi:** Pastikan kelas `navbar-expand-lg` ada pada elemen `nav`, dan `ms-auto` ditaruh pada `navbar-nav`; dalam pola buku ini memang menu menumpuk di layar kecil tanpa tombol — itulah solusi tanpa JavaScript, bukan cacat.
 **Pencegahan:** Setelah menulis *navbar*, uji tiga lebar layar (360, 768, 1200 piksel) sebelum lanjut ke bagian lain halaman.
 
 **Masalah:** Kartu terlihat melar karena gambar produk terlalu tinggi atau gepeng.
-**Penyebab:** Aturan kustom `.produk-card .card-img-top` belum ada di `style.css`, atau berkas gambar SVG punya rasio berbeda sehingga tampilan berbeda antarkartu.
+**Penyebab:** Aturan kustom `.produk-card .card-img-top` belum ada di `style.css`, atau file gambar SVG punya rasio berbeda sehingga tampilan berbeda antarkartu.
 **Solusi:** Tambahkan aturan tinggi 160 piksel dengan `object-fit: cover` pada CSS kustom; bila perlu, sesuaikan tinggi tersebut saat meninjau di tiga ukuran layar.
 **Pencegahan:** Selalu tetapkan tinggi gambar kartu lewat satu kelas kustom agar delapan kartu memakai bingkai sama tingkatannya.
 
 ## Studi Kasus
 
-**Konteks:** Perpustakaan sebuah politeknik memelihara sistem informasi perpustakaan berbasis web. Petugas menginginkan halaman OPAC (katalog daring) yang menampilkan daftar buku hasil pencarian beserta status ketersediaan: tersedia atau dipinjam. Kendalanya berasal dari kebijakan laboratorium: komputer milik kampus tidak diperkenankan memuat berkas JavaScript dari luar jaringan kampus. Kasus ini nyata memotret materi bab ini, sebab kebutuhannya adalah komponen visual status, bukan interaksi.
+**Konteks:** Perpustakaan sebuah politeknik memelihara sistem informasi perpustakaan berbasis web. Petugas menginginkan halaman OPAC (katalog daring) yang menampilkan daftar buku hasil pencarian beserta status ketersediaan: tersedia atau dipinjam. Kendalanya berasal dari kebijakan laboratorium: komputer milik kampus tidak diperkenankan memuat file JavaScript dari luar jaringan kampus. Kasus ini nyata memotret materi bab ini, sebab kebutuhannya adalah komponen visual status, bukan interaksi.
 
 Tiga penerapan komponen bab ini cocok di sini. Pertama, **daftar buku** sebagai `list-group`: setiap baris memuat judul di kiri dan *badge* status di kanan, dipisah `d-flex justify-content-between`. Kedua, **kartu status buku** sebagai `card` dengan *badge*: kartu unggulan berada di atas halaman berisi sampul buku dan statusnya. Ketiga, **warna semantik** dipetakan: hijau `text-bg-success` untuk tersedia, abu `text-bg-secondary` untuk dipinjam, merah `text-bg-danger` untuk terlambat dikembalikan, dan sorot `text-bg-warning` untuk sedang direservasi. Berikut pola daftar buku yang dapat ditiru:
 
@@ -1001,16 +1001,16 @@ Penjelasan: Kartu memakai struktur inti Tokosaya (`card`, `card-img-top`, `card-
 
 ## Latihan Mandiri
 
-1. Tanpa JavaScript, jelaskan apa yang terjadi pada menu *navbar* Tokosaya ketika lebar layar turun dari 991 piksel ke 480 piksel, dan mengapa hal itu berbeda dari perilaku situs yang memuat paket JavaScript resmi Bootstrap.
+1. Tanpa JavaScript, jelaskan apa yang terjadi pada menu *navbar* Tokosaya ketika lebar layar turun dari 991 piksel ke 480 piksel, dan mengapa hal itu berbeda dari perilaku website yang memuat paket JavaScript resmi Bootstrap.
 2. Tuliskan *markup* *badge* lengkap untuk kedelapan produk baku KONTRAK §5.2 — setiap baris produk mencantumkan nama produk dan baris kelas *badge* semantiknya.
 3. Bila Anda ingin pola kolom katalog menjadi 1–2–4 kolom, tulislah satu baris kelas `col-*` yang harus dipasang pada setiap sel produk dan cantumkan rentang layar setiap kelasnya.
 4. Identifikasi tiga utilitas yang membuat harga setiap kartu sejajar dasar kartu, lalu jelaskan secara rinci mengapa masing-masing utilitas itu diperlukan.
-5. Tuliskan *markup* *pagination* visual dengan halaman 3 dalam keadaan aktif, halaman 1 dan 2 berupa tautan biasa, dan panah kanan dalam keadaan `disabled`; tambahkan `aria-*` yang perlu.
+5. Tuliskan *markup* *pagination* visual dengan halaman 3 dalam keadaan aktif, halaman 1 dan 2 berupa link biasa, dan panah kanan dalam keadaan `disabled`; tambahkan `aria-*` yang perlu.
 6. Bandingkan kartu produk Tokosaya pada proyek `tokosaya-css/` (Bab 7) dan `tokosaya-bootstrap/` (Bab ini): sebutkan dua kelas Bootstrap yang menggantikan gaya kustom CSS dan satu gaya kustom yang tetap perlu ditulis tangan.
 
 ## Tugas
 
-1. **Tugas individu — kartu status buku.** Buat halaman `buku.html` pada folder proyek Anda sendiri yang menampilkan tiga kartu buku dengan status Tersedia, Dipinjam, dan Terlambat memakai `card` + *badge* semantik + ikon Bootstrap Icons. Keluaran yang dikumpulkan: berkas HTML, tangkapan layar pada tiga lebar layar (360, 768, 1200 piksel), dan satu paragraf menjelaskan pilihan warna *badge*. Kriteria singkat: *badge* semantik benar, kartu sejajar, ikon dekoratif memakai `aria-hidden`.
+1. **Tugas individu — kartu status buku.** Buat halaman `buku.html` pada folder proyek Anda sendiri yang menampilkan tiga kartu buku dengan status Tersedia, Dipinjam, dan Terlambat memakai `card` + *badge* semantik + ikon Bootstrap Icons. Keluaran yang dikumpulkan: file HTML, tangkapan layar pada tiga lebar layar (360, 768, 1200 piksel), dan satu paragraf menjelaskan pilihan warna *badge*. Kriteria singkat: *badge* semantik benar, kartu sejajar, ikon dekoratif memakai `aria-hidden`.
 2. **Tugas kelompok (2–3 orang) — tabel komparasi pendekatan.** Susun tabel satu halaman membandingkan kartu produk Tokosaya di `tokosaya-css/` (CSS murni) dan `tokosaya-bootstrap/` (komponen Bootstrap): jumlah baris kode, jumlah kelas, kemudahan konsistensi, dan fleksibilitas gaya. Keluaran yang dikumpulkan: tabel + satu paragraf rekomendasi tim. Kriteria singkat: perbandingan jujur, contoh kelas nyata dari kedua proyek, tidak ada klaim tanpa dasar.
 
 ## Refleksi
@@ -1114,7 +1114,7 @@ File: tokosaya-bootstrap/kasus-analisis-2.html
 
 ### Soal Praktik
 
-1. Buat halaman `katalog-klasifikasi.html` (boleh menyalin dari Praktikum) yang menampilkan kelima produk pertama KONTRAK §5.2 dalam pola kolom 1-2-3 (`col-12 col-md-6 col-lg-4`), lengkap dengan *badge* semantik masing-masing produk dan satu *alert* statis peringatan stok terbatas di atas grid. Kumpulkan berkas HTML beserta tangkapan layar desktop dan ponsel.
+1. Buat halaman `katalog-klasifikasi.html` (boleh menyalin dari Praktikum) yang menampilkan kelima produk pertama KONTRAK §5.2 dalam pola kolom 1-2-3 (`col-12 col-md-6 col-lg-4`), lengkap dengan *badge* semantik masing-masing produk dan satu *alert* statis peringatan stok terbatas di atas grid. Kumpulkan file HTML beserta tangkapan layar desktop dan HP.
 2. Terapkan pola studi kasus perpustakaan pada halaman baru `daftar-buku.html`: satu `list-group` empat buku (tiga status berbeda) plus satu kartu buku unggulan dengan *badge* status dan baris keterangan klasifikasi. Pastikan setiap ikon dekoratif memakai `aria-hidden="true"`.
 
 ### Kunci Jawaban
@@ -1128,7 +1128,7 @@ File: tokosaya-bootstrap/kasus-analisis-2.html
 
 **Analisis Kode 1:** (i) gambar tanpa kelas `card-img-top` sehingga tidak menempel bingkai atas kartu; (ii) tanpa `h-100`/`d-flex flex-column`/`mt-auto`, tinggi kartu dan posisi harga melenceng bila berderet dengan kartu lain; (iii) kelas kolom juga belum memakai tingkat medium (`col-sm`/`col-md`) sehingga peralihan layar sedikit melompat. Perbaikan: `class="card-img-top"` pada `img`, `h-100` pada kartu, `d-flex flex-column` pada `card-body`, dan `mt-auto` pada harga agar mengikuti pola Praktikum.
 
-**Analisis Kode 2:** Kelas ditaruh salah lapis: status pagination dibaca dari `<li class="page-item active">` yang memuat `<span class="page-link">`, sedangkan potongan menaruh `page-link active` langsung pada elemen `li`. Perbaikan: `<li class="page-item active" aria-current="page"><span class="page-link">1</span></li>`, dan baris 3 sebaiknya `<a class="page-link" href="katalog.html">2</a>` agar pola tautan dan `page-item` konsisten.
+**Analisis Kode 2:** Kelas ditaruh salah lapis: status pagination dibaca dari `<li class="page-item active">` yang memuat `<span class="page-link">`, sedangkan potongan menaruh `page-link active` langsung pada elemen `li`. Perbaikan: `<li class="page-item active" aria-current="page"><span class="page-link">1</span></li>`, dan baris 3 sebaiknya `<a class="page-link" href="katalog.html">2</a>` agar pola link dan `page-item` konsisten.
 
 **Soal Praktik:** dinyatakan memadai bila pola kolom 1-2-3 terbaca pada tiga rentang layar, seluruh *badge* mengikuti makna semantik tabel §10.3, alert statis tanpa tombol tutup, dan ikon dekoratif bermata `aria-hidden` — penilaian menelusuri kelas, bukan sekadar gambar akhir.
 

@@ -209,17 +209,17 @@ Ajak mahasiswa memilih jenis daftar sebelum menunjukkan contoh kodenya.
 - `caption` menjelaskan isi tabel
 - `thead` mengelompokkan baris judul kolom
 - `th scope` menjelaskan apakah judul berlaku untuk kolom atau baris
-- Gunakan tabel untuk data, bukan untuk mengatur tata letak
+- Gunakan tabel untuk data, bukan untuk mengatur layout
 
 <!--
 Tanpa `caption` dan header, pengguna *screen reader* lebih sulit memahami konteks
-tiap sel. Ingatkan juga: tabel untuk tata letak memberi makna yang keliru; urusan
-tata letak adalah pekerjaan CSS.
+tiap sel. Ingatkan juga: tabel untuk layout memberi makna yang keliru; urusan
+layout adalah pekerjaan CSS.
 -->
 
 ---
 
-# Tautan yang Jelas
+# Link yang Jelas
 
 ```html
 <a href="tentang.html">Kenali Tokosaya</a>
@@ -227,14 +227,14 @@ tata letak adalah pekerjaan CSS.
    target="_blank" rel="noopener">Baca panduan eksternal</a>
 ```
 
-- Tautan relatif menghubungkan halaman dalam proyek
-- Tautan absolut menyertakan alamat lengkap
-- Pilih teks tautan yang tetap jelas saat dibaca sendiri
-- Buka tab baru hanya jika memang diperlukan untuk tautan eksternal
+- Link relatif menghubungkan halaman dalam proyek
+- Link absolut menyertakan alamat lengkap
+- Pilih teks link yang tetap jelas saat dibaca sendiri
+- Buka tab baru hanya jika memang diperlukan untuk link eksternal
 
 <!--
-Tautan internal seperti `tentang.html` tetap berfungsi saat folder proyek dipindahkan.
-Hindari teks seperti "klik di sini": *screen reader* bisa menampilkan daftar tautan
+Link internal seperti `tentang.html` tetap berfungsi saat folder proyek dipindahkan.
+Hindari teks seperti "klik di sini": *screen reader* bisa menampilkan daftar link
 tanpa kalimat di sekitarnya.
 -->
 
@@ -283,7 +283,7 @@ gunakan `alt=""` agar tidak mengganggu pengguna *screen reader*.
 
 <!--
 Hubungan label dan input membuat label bisa diklik dan memberi nama pada kontrol
-bagi *screen reader*. Jenis input, validasi visual, dan tata letak dibahas di Bab 11.
+bagi *screen reader*. Jenis input, validasi visual, dan layout dibahas di Bab 11.
 -->
 
 ---
@@ -319,7 +319,7 @@ footer  kontak, kredit, atau kebijakan
 - Landmark membantu pengguna berpindah antarbagian
 
 <!--
-Tidak semua kumpulan tautan perlu dibungkus dengan `nav`. Setiap halaman cukup
+Tidak semua kumpulan link perlu dibungkus dengan `nav`. Setiap halaman cukup
 memiliki satu `main`, dan `main` tidak ditempatkan di dalam `header` atau `footer`.
 -->
 
@@ -439,7 +439,7 @@ tentang.html
 
 <!--
 `title` dan `description` dibuat berbeda untuk tiap halaman. Navigasi dan footer
-yang konsisten membantu pengguna mengenali pola situs saat berpindah halaman.
+yang konsisten membantu pengguna mengenali pola website saat berpindah halaman.
 -->
 
 ---
@@ -453,7 +453,7 @@ yang konsisten membantu pengguna mengenali pola situs saat berpindah halaman.
 
 <!--
 Tujuan praktik ini bukan membuat halaman terlihat cantik. Buat `index.html` dan
-`tentang.html`, periksa tautan dan strukturnya, lalu tambahkan gaya di bab berikutnya.
+`tentang.html`, periksa link dan strukturnya, lalu tambahkan gaya di bab berikutnya.
 -->
 
 ---
@@ -504,10 +504,10 @@ untuk tidak menghapus file hasil Bab 1 yang masih perlu disimpan.
 ```
 
 - Gunakan menu dan urutan yang sama di kedua halaman
-- Tautan relatif menghubungkan halaman-halaman di proyek
+- Link relatif menghubungkan halaman-halaman di proyek
 
 <!--
-Nama file yang belum dibuat boleh dipakai sebagai tujuan tautan. Tekankan pentingnya
+Nama file yang belum dibuat boleh dipakai sebagai tujuan link. Tekankan pentingnya
 menu yang konsisten; jangan membuat daftar menu berbeda di halaman Tentang.
 -->
 
@@ -578,7 +578,7 @@ Tokosaya. Setiap section punya heading dan berada di dalam satu main.
 
 1. Buka `index.html` dan periksa judul tab
 2. Baca urutan isi dari atas ke bawah
-3. Klik tautan Tentang, lalu kembali ke Beranda
+3. Klik link Tentang, lalu kembali ke Beranda
 4. Periksa struktur elemen dengan DevTools
 
 - Pastikan satu `h1`, satu `nav`, dan satu `main`
@@ -616,7 +616,7 @@ konteks tambahan yang dapat mengubah keputusan pada kasus tertentu.
 - `head` berisi charset, viewport, description, dan `title` unik
 - Heading berurutan dengan satu `h1`
 - Tabel dipakai untuk data; gambar punya `alt`
-- Landmark memberi nama pada bagian halaman; teks tautan menjelaskan tujuannya
+- Landmark memberi nama pada bagian halaman; teks link menjelaskan tujuannya
 - Label form terhubung ke kolom yang sesuai
 
 <!--

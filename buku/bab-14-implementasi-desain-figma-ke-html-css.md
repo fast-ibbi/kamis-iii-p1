@@ -1,4 +1,4 @@
-﻿# BAB 14 — Implementasi Desain Figma ke HTML/CSS/Bootstrap
+# BAB 14 — Implementasi Desain Figma ke HTML/CSS/Bootstrap
 
 ## Deskripsi Singkat
 
@@ -42,12 +42,12 @@ objek pembentuk desain; *auto layout* — penataan isi otomatis di dalam bingkai
 kebenaran; *text style* dan *color style* — gaya teks dan warna berlabel; *component
 mapping* — pemetaan komponen desain ke komponen Bootstrap; *fidelity* — kesetiaan
 implementasi terhadap desain; *spec desain tekstual* — deskripsi desain dalam teks berukuran
-presisi sebagai pengganti berkas Figma.
+presisi sebagai pengganti file Figma.
 
 ## Apersepsi
 
 Bayangkan sebuah UMKM aksesori komputer ingin memperbarui halaman detail produknya.
-Desainer mengirim berkas Figma yang rapi: kartu produk, harga, *badge* "Best Seller",
+Desainer mengirim file Figma yang rapi: kartu produk, harga, *badge* "Best Seller",
 tombol keranjang, sampai footer. Tapi pengembang yang membukanya cuma melihat gambar berwarna
 yang terasa sudah "jadi". Ukuran akhirnya ditaksir pakai mata: warna tombol sedikit meleset,
 jarak antarbagiannya ditebak, dan judul diperkecil sesuka hati. Seminggu kemudian desainer
@@ -101,7 +101,7 @@ catatan perilakunya.
 
 Figma menyimpan desain sebagai hirarki objek yang bernama *layer*. Objek paling luar untuk
 satu layar perangkat disebut *frame* — kanvas berukuran tetap, misalnya 1440 piksel untuk
-desktop atau 375 piksel untuk ponsel. Di dalam frame ada *layer* bertumpuk: kotak, teks,
+desktop atau 375 piksel untuk HP. Di dalam frame ada *layer* bertumpuk: kotak, teks,
 gambar, ikon, dan grup. Panel sisi kiri Figma menampilkan hirarki ini seperti daftar isi
 buku. Pembaca yang disiplin selalu masuk dari frame terluar, lalu membedah layer pada anak
 pertama hingga ke bawah — persis cara membaca struktur HTML dari elemen terluar hingga
@@ -141,7 +141,7 @@ setengah, sepertiga, dan seperempat ruang, jadi kombinasi seperti 6+6, 4+4+4, at
 tetap terasa rapi. Di Figma, grid ini muncul sebagai garis vertikal merah muda dengan dua
 angka penting: *gutter* — lebar celah antarkolom — dan *margin* — jarak sisi kiri-kanan
 frame. Menyalin angka-angka ini apa adanya adalah cara paling aman untuk menjaga kesetiaan
-tata letak.
+layout.
 
 Mari hitung grid yang dipakai di bab ini. Frame desktop Tokosaya lebarnya 1440 piksel.
 Kontainer konten maksimal 1140 piksel, jadi posisinya ada di tengah dengan sisi kosong
@@ -156,7 +156,7 @@ kolom, sedangkan kelas `col-*` membagi baris menjadi 12 bagian sama — persis k
 Figma. *Gutter* diatur lewat kelas `g-*`: pada root font 16 piksel (nilai bawaan), `g-4`
 memberikan 24 piksel di setiap sisi kolom sehingga celah antar dua kolom justru 24 piksel —
 sesuaikan dengan spesifikasi Figma. ⚠ *version-sensitive*: nilai *gutter* mengikuti root
-font peramban; periksa dokumentasi resmi Bootstrap 5.3 bila root diubah. Selain kolom dan
+font browser; periksa dokumentasi resmi Bootstrap 5.3 bila root diubah. Selain kolom dan
 celah, perhatikan juga *row gap* — jarak vertikal antar baris kartu — yang pada desain
 Tokosaya juga 24 piksel.
 
@@ -181,7 +181,7 @@ desainernya.
 
 Pemetaan ke CSS berjalan dalam dua lapis. Lapis pertama: setiap *color style* menjadi satu
 CSS *custom property* di blok `:root` — misalnya warna utama indigo menjadi `--clr-primary`.
-Lapis kedua: setiap *text style* menjadi satu aturan tipografi (kelas atau selektor) yang
+Lapis kedua: setiap *text style* menjadi satu aturan tipografi (kelas atau selector) yang
 menyalin ukuran, ketebalan, dan *line-height* dari nilai style, bukan dari tebakan. Tabel
 berikut merangkum pemetaan itu; nama token tetap mengikuti standar Tokosaya yang sudah Anda
 pakai sejak Bab 4 dan dipertegas lagi di Bab 12.
@@ -216,13 +216,13 @@ Sekarang masuk ke inti kerja: mengubah komponen desain menjadi kode. Ada lima la
 bisa Anda ulang untuk setiap komponen. Pertama, pilih komponennya dan tulis tujuannya
 ("navbar navigasi utama", "panel detail produk"). Kedua, pilih elemen semantik HTML —
 bukan sekadar kotak; navbar memakai `<header>`, bagian konten memakai `<section>` dengan
-judul `<h2>`, dan daftar tautan memakai `<ul>`. Ketiga, tentukan kelas Bootstrap: grid dan
+judul `<h2>`, dan daftar link memakai `<ul>`. Ketiga, tentukan kelas Bootstrap: grid dan
 utilitas mengatur susunan, sementara warna dan ukuran presisi ditangani CSS kustom berbasis
 token. Keempat, tulis CSS kustom dengan komentar `/* kustom */`. Kelima, bandingkan hasilnya
 dengan frame asli supaya tampilan dan susunannya tidak bergeser.
 
 Pemetaan komponen Tokosaya pada halaman `produk.html` bisa dibaca seperti ini. Navbar
-berupa `<header>` dengan ikon dan tautan yang diatur `d-flex` dan `gap`; tautan aktif
+berupa `<header>` dengan ikon dan link yang diatur `d-flex` dan `gap`; link aktif
 dibedakan lewat warna dan ketebalan. Page head (hero kecil halaman) adalah `<section>` putih
 yang berisi jejak navigasi dan judul halaman; dibuat sengaja tenang supaya panel produk yang
 lebih dominan tetap jadi fokus. Panel produk detail memakai `row` dua kolom: gambar ada di
@@ -266,7 +266,7 @@ Tabel di bawah ini adalah *component mapping* Tokosaya: setiap elemen kecil pada
 dipetakan ke peran token dan kelas penerapannya. Tabel semacam ini sering dipakai tim
 nyata sebagai lembar janji kesetiaan; semakin lengkap tabelnya, semakin jarang terjadi
 interpretasi bebas di tengah pengerjaan. Untuk komponen Bootstrap, nilai token dipakai
-melalui CSS kustom (selektor kelas sendiri), sehingga *utility* Bootstrap tidak ditimpa
+melalui CSS kustom (selector kelas sendiri), sehingga *utility* Bootstrap tidak ditimpa
 secara diam-diam. Pendekatan resmi lainnya adalah menimpa variabel tema Bootstrap
 (misalnya variabel tombol) lewat CSS custom properties; pendekatan itu valid di Bootstrap 5.3,
 tetapi daftar variabelnya panjang dan dapat berubah antar versi. ⚠ *version-sensitive*:
@@ -404,7 +404,7 @@ File: tokosaya-bootstrap/demo/kartu-produk-demo.html
 ```
 
 Penjelasan: file demo ini sengaja mini: satu kartu, satu kolom, satu kelas kustom. Perhatikan
-tiga hal. Pertama, kelas Bootstrap `col-12 col-md-4` dan `g-4` mengurus tata letak dan
+tiga hal. Pertama, kelas Bootstrap `col-12 col-md-4` dan `g-4` mengurus layout dan
 *gutter* 24 piksel, jadi CSS kustom menangani warna dan radius — utilitas dulu, kustom
 sesudahnya. Kedua, nilai-nilai penting (padding 16, radius 12, ukuran 18) disalin dari
 spesifikasi, bukan ditaksir; itulah pekerjaan inti bab ini. Ketiga, komentar di awal blok
@@ -442,12 +442,12 @@ File: tokosaya-bootstrap/demo/token-demo.css
 }
 ```
 
-Penjelasan: berkas `token-demo.css` memperlihatkan dua bentuk pemetaan sekaligus.
-Garis-garis komentar mengingatkan asal setiap nilai sehingga siapa pun yang membuka berkas
+Penjelasan: file `token-demo.css` memperlihatkan dua bentuk pemetaan sekaligus.
+Garis-garis komentar mengingatkan asal setiap nilai sehingga siapa pun yang membuka file
 tahu perjanjiannya: nilai tersebut bukan selera penulis, melainkan hasil salinan dari
 *styles* desain. Perhatikan bahwa `.section-title` tidak menulis nilai warna mentah; ia
 menitipkan pada variabel, sehingga bila desain diperbarui, cukup blok `:root` yang disalin
-ulang. Pada praktiknya berkas demo ini dipindahkan ke `css/style.css` proyek utama.
+ulang. Pada praktiknya file demo ini dipindahkan ke `css/style.css` proyek utama.
 
 ## Penjelasan Kode
 
@@ -483,7 +483,7 @@ Bootstrap 5.3. Praktikum juga melatih pembacaan panel Inspect Figma bagi yang me
 2. Google Chrome dengan DevTools untuk pemeriksaan nilai terhitung.
 3. File gambar produk: `img/produk-keyboard-kx210.svg`, `img/produk-mouse-mw88.svg`,
    `img/produk-headphone-hs15.svg`, `img/produk-speaker-bt5.svg` (boleh digambar sederhana
-   atau memakai berkas dari folder `img/` proyek Bab 1–8).
+   atau memakai file dari folder `img/` proyek Bab 1–8).
 4. Koneksi internet untuk CDN Bootstrap 5.3.3, Bootstrap Icons 1.11.3, dan Google Fonts.
 5. Spesifikasi desain tekstual pada Langkah 3 (standar kesetiaannya diperiksa bersama dosen).
 
@@ -496,7 +496,7 @@ Bootstrap 5.3. Praktikum juga melatih pembacaan panel Inspect Figma bagi yang me
    utama yang lengkap.
 3. Buka `css/style.css` dan cari blok `:root`; pastikan token Tokosaya lengkap seperti pada
    Bab 4 dan Bab 12. Bila ada token yang hilang, salin dari spesifikasi pada Langkah 3.
-4. Mahasiswa berlisensi Figma: siapkan akses ke berkas desain (versi pengajar atau buatan
+4. Mahasiswa berlisensi Figma: siapkan akses ke file desain (versi pengajar atau buatan
    sendiri dari spesifikasi di Langkah 3).
 
 ### Langkah Kerja
@@ -504,7 +504,7 @@ Bootstrap 5.3. Praktikum juga melatih pembacaan panel Inspect Figma bagi yang me
 1. Baca spesifikasi pada Langkah 3 dengan disiplin: baca urut dari kanvas, grid, tipografi,
    komponen. Jangan menulis kode sebelum daftar nilai terbaca semua.
 2. (Opsional, hanya bagi yang berlisensi Figma) Membaca desain lewat panel Inspect.
-   - Buka berkas Figma dan pilih frame desktop 1440.
+   - Buka file Figma dan pilih frame desktop 1440.
    - Tekan panel kanan; bila mode pengembang tersedia pada paket Anda, panel akan memperlihat
      data teknis layer terpilih (ukuran, *fill*, teks). Nama tampilannya berbeda antar paket
      dan versi. ⚠ *version-sensitive*: periksa *Figma Help Center* mengenai mode pengembang
@@ -520,7 +520,7 @@ Bootstrap 5.3. Praktikum juga melatih pembacaan panel Inspect Figma bagi yang me
    **A. Kanvas dan grid.** Frame desktop 1440 piksel lebar; kontainer maksimum 1140 piksel,
    terpusat (sisi kosong 150 px). *Column grid* 12 kolom, *gutter* 24 px, lebar kolom
    73 px. *Gutter* vertikal antar kartu juga 24 px. Frame tambahan: tablet 768 px
-   (*gutter* 24, margin kontainer 32), ponsel 375 px (*gutter* 16, margin kontainer 24).
+   (*gutter* 24, margin kontainer 32), HP 375 px (*gutter* 16, margin kontainer 24).
    Implementasi: `.container`, `.row`, `col-12 col-lg-7` / `col-lg-5` untuk detail,
    `col-12 col-md-4` untuk kartu terkait, kelas `g-4` untuk *gutter* 24 (root 16 px).
 
@@ -536,12 +536,12 @@ Bootstrap 5.3. Praktikum juga melatih pembacaan panel Inspect Figma bagi yang me
    1,25, `#1E293B` (mobile 24 px). Judul sebutan `h2` (Produk Terkait, footer): 28 px/16 px
    (footer) Poppins 600. Judul kartu `h3`: Poppins 500, 18 px, 1,4, `#1E293B`. Teks badan:
    Inter 400, 16 px, 1,6, `#334155`. Keterangan/jejak navigasi: Inter 400, 14 px, 1,5,
-   `#334155`. Harga: Poppins 600, 24 px, `#4F46E5`. Harga kartu: 18 px/600. Tautan nav:
-   Inter 400, 15 px; tautan aktif 600 dan berwarna `#4F46E5`.
+   `#334155`. Harga: Poppins 600, 24 px, `#4F46E5`. Harga kartu: 18 px/600. Link nav:
+   Inter 400, 15 px; link aktif 600 dan berwarna `#4F46E5`.
 
    **D. Navbar (tinggi ±72 px).** Latar `#FFFFFF`, garis bawah 1 px `#E2E8F0`. Kiri: merek
-   "Tokosaya" Poppins 700, 20 px, warna `#4F46E5`. Kanan: tautan Beranda, Katalog, tentang,
-   Kontak — Inter 15 px, warna `#334155`, jarak antartautan 32 px; tautan aktif Katalog.
+   "Tokosaya" Poppins 700, 20 px, warna `#4F46E5`. Kanan: link Beranda, Katalog, tentang,
+   Kontak — Inter 15 px, warna `#334155`, jarak antartautan 32 px; link aktif Katalog.
    Ikon keranjang (Bootstrap Icons `bi-cart3`) 20 px di ujung kanan, dipisah 24 px.
    Implementasi: `header.site-nav` + `.container` + `d-flex flex-wrap align-items-center justify-content-between gap-3`, padding vertikal 16 px.
 
@@ -569,19 +569,19 @@ Bootstrap 5.3. Praktikum juga melatih pembacaan panel Inspect Figma bagi yang me
    bayangan kartu, padding 16. Isi tiap kartu: gambar lebar penuh ±332×160 px, radius 12,
    margin bawah 16 — *badge* status (MW-88 "Tersedia" `#16A34A` teks putih; HS-15
    "Tersedia" `#16A34A`; BT-5 "Stok Terbatas" `#DC2626` teks putih; format badge sama: 12 px,
-   600, pil) — nama produk 18 px — harga 18 px/600/`#4F46E5` — tautan "Lihat di Katalog"
+   600, pil) — nama produk 18 px — harga 18 px/600/`#4F46E5` — link "Lihat di Katalog"
    14 px/600/`#4F46E5`.
 
    **H. Footer.** Latar `#1E293B`, padding atas 48 dan bawah 24, teks putih. Tiga kolom
    (`col-12 col-md-4`): merek + tagline "Belanja Tepat, Kirim Cepat"; kolom Navigasi (4
-   tautan, 14 px, *line-height* 1,8); kolom Kontak: Jl. Digital Raya No. 10, Jakarta;
+   link, 14 px, *line-height* 1,8); kolom Kontak: Jl. Digital Raya No. 10, Jakarta;
    halo@tokosaya.id; (021) 555-0199. Baris hak cipta 14 px, dipisah garis tipis putih
    transparan 20 %, margin atas 32.
 
    **I. Responsif.** ≤ 1199 px: kontainer memakai lebar Bootstrap. ≤ 767 px: kolom detail
    menumpuk (`col-12`), judul 24 px, padding bagian 24/32, kartu terkait satu kolom.
 
-4. Susun kerangka HTML di `produk.html`: `<!DOCTYPE html>`, meta viewport, title, tautan
+4. Susun kerangka HTML di `produk.html`: `<!DOCTYPE html>`, meta viewport, title, link
    Google Fonts, CDN Bootstrap, Bootstrap Icons, `css/style.css`, lalu lima bagian utama
    pada peta komponen (navbar, page head, detail, terkait, footer).
 5. Tulis `css/style.css`: blok `:root` penuh, aturan dasar `body` dan heading, lalu kelas
@@ -771,7 +771,7 @@ File: tokosaya-bootstrap/css/style.css
 
 /* kustom — design token hasil pemetaan Figma styles (14.6) */
 :root {
-  --clr-primary: #4F46E5;      /* indigo — tombol & tautan utama */
+  --clr-primary: #4F46E5;      /* indigo — tombol & link utama */
   --clr-primary-dark: #4338CA;
   --clr-accent: #F59E0B;       /* amber — badge & sorotan */
   --clr-dark: #1E293B;         /* heading & teks tegas */
@@ -801,7 +801,7 @@ h1, h2, h3 {
   color: var(--clr-dark);
 }
 
-/* kustom — navbar (tinggi ±72 px: padding 16 + baris tautan) */
+/* kustom — navbar (tinggi ±72 px: padding 16 + baris link) */
 .site-nav {
   background-color: var(--clr-surface);
   border-bottom: 1px solid var(--clr-border);
@@ -993,17 +993,17 @@ mengikuti spesifikasi: navbar memakai flex utilitas Bootstrap (`d-flex`,
 menampung jejak navigasi dan `h1` per halaman; detail berbagi baris `row g-4` dua kolom
 (7-5) persis rasio grid; panel kanan menyusun badge — nama — kategori — harga — deskripsi —
 CTA — info sesuai urutan spesifikasi; tiga kartu terkait memakai data katalog baku MW-88,
-HS-15, BT-5; footer menyalin kontak baku Tokosaya. Semua gambar membawa `alt`, semua tautan
+HS-15, BT-5; footer menyalin kontak baku Tokosaya. Semua gambar membawa `alt`, semua link
 membawa tujuan nyata, dan tidak ada atribut perilaku sama sekali.
 
-Penjelasan: berkas CSS dibangun dalam lima blok utama. Blok `:root` menyalin token dari
+Penjelasan: file CSS dibangun dalam lima blok utama. Blok `:root` menyalin token dari
 spesifikasi kata demi kata — inilah penerapan 14.6. Blok dasar menentukan font dan warna
 teks halaman sekali saja, sehingga seluruh paragraf mewarisi gaya body tanpa aturan
 berulang. Blok per komponen menyusun navbar, page head, panel, badge, tombol, kartu, dan
 footer — setiap kelas kustom mengonsumsi token (`var(--clr-…)`, `var(--radius)`,
 `var(--shadow-card)`) alih-alih menuliskan ulang nilai. Blok responsif kecil menyetel
-tipografi dan padding pada layar ponsel sesuai spesifikasi bagian I, karena utilitas
-Bootstrap mengurus tata letak kolom namun bukan ukuran huruf halaman Anda.
+tipografi dan padding pada layar HP sesuai spesifikasi bagian I, karena utilitas
+Bootstrap mengurus layout kolom namun bukan ukuran huruf halaman Anda.
 
 ### Hasil yang Diharapkan
 
@@ -1020,7 +1020,7 @@ Bootstrap mengurus tata letak kolom namun bukan ukuran huruf halaman Anda.
 ### Troubleshooting
 
 **Masalah:** Kartu produk terkait sejajar di desktop tetapi bertumpuk terlalu rapat di
-layar ponsel tanpa jalan napas.
+layar HP tanpa jalan napas.
 **Penyebab:** Baris kartu ditulis tanpa kelas `g-4`, sehingga kolom `col-12` menumpuk
 tanpa jarak vertikal 24 px dari spesifikasi.
 **Solusi:** Tambahkan `g-4` pada `row` kartu terkait dan pastikan setiap kartu berada di
@@ -1032,7 +1032,7 @@ item grid sebelum menyatakan halaman selesai.
 **Penyebab:** Nilai hex ditulis langsung di CSS (misalnya warna ungu bawaan utilitas),
 bukan memanggil `var(--clr-accent)`, sehingga token tidak ikut berbicara.
 **Solusi:** Ganti latar `badge-populer` menjadi `background-color: var(--clr-accent)` dan
-hapus setiap hex duplikat yang menempel pada selektor komponen.
+hapus setiap hex duplikat yang menempel pada selector komponen.
 **Pencegahan:** Terapkan aturan "tanpa hex di luar `:root`" pada seluruh file kustom; jalankan
 pemeriksaan warna checklist item 2.
 
@@ -1060,7 +1060,7 @@ beri kelas khusus dan komentari alasannya (`/* kustom */`).
 Sebuah startup e-commerce yang diisi lulusan sistem informasi berumur tiga semester
 berinisiatif memformalkan prosesnya: desainer menghabiskan dua minggu menyempurnakan desain
 beranda dan
-halaman produk, lalu menyampaikan berkas Figma kepada pengembang dengan satu pesan singkat:
+halaman produk, lalu menyampaikan file Figma kepada pengembang dengan satu pesan singkat:
 "inilah desainnya, tolong bangun". Dua minggu kemudian, halaman jadi melahirkan perdebatan:
 tombol utama memakai warna yang hampir serupa (tetapi bukan token), kartu punya jarak
 berubah-ubah, *state* keranjang kosong tidak pernah direncanakan, dan nama produk panjang
@@ -1081,7 +1081,7 @@ di banyak tim.
 | Teks alternatif gambar | aksesibilitas turun tanpa terlihat | kolom `alt` pada daftar aset |
 | Kontras *badge* di latar gelap | *badge* tak terbaca | uji kontras saat menetapkan token |
 
-Pelajaran bagi mahasiswa sistem informasi jelas: *handoff* bukan sekadar mengirim berkas,
+Pelajaran bagi mahasiswa sistem informasi jelas: *handoff* bukan sekadar mengirim file,
 melainkan mengirim *keputusan* — dan keputusan yang tidak tertulis akan ditafsir bebas.
 Makanya bab ini berlatih bentuk ekstremnya: spesifikasi desain tekstual lengkap dengan
 angka piksel. Ketika desainer menulis spesifikasi dan pengembang menaati checklist, rapat
@@ -1094,7 +1094,7 @@ dengan kebiasaan menulis, dan janji pengembang dicapai dengan disiplin membaca.
 1. Jelaskan dengan kalimat Anda sendiri perbedaan *prototip* dan *implementasi* dalam alur
    desain ke kode, lalu beri satu contoh keputusan yang boleh berbeda di kedua tahap.
 2. Buka demo `kartu-produk-demo.html` di Chrome, ganti kelas `col-12 col-md-4` menjadi
-   `col-12 col-md-6`, lalu deskripsikan perubahan tata letak yang teramati dan kaitkan
+   `col-12 col-md-6`, lalu deskripsikan perubahan layout yang teramati dan kaitkan
    dengan pembagian grid dua belas kolom.
 3. Susun tabel pemetaan sendiri untuk dua *color style* fiktif "Warna/Info" dan
    "Warna/Warning" beserta nama variabel CSS yang sesuai pola penamaan Tokosaya.
@@ -1113,7 +1113,7 @@ dengan kebiasaan menulis, dan janji pengembang dicapai dengan disiplin membaca.
 1. **Individu — Spesifikasi dan translasi setengah halaman.** Tulis spesifikasi desain
    tekstual untuk *page head* dan panel detail Webcam HD WC-720 (mengikuti format
    bagian A–F Langkah Kerja), lalu implementasikan keduanya pada file `produk-wc720.html`
-   dengan token yang sama. Keluaran yang dikumpulkan: berkas HTML, CSS, dan tabel
+   dengan token yang sama. Keluaran yang dikumpulkan: file HTML, CSS, dan tabel
    *fidelity* kesembilan item. Kriteria ringkas: kelengkapan spesifikasi (angka px),
    kesetiaan kode, kelas utilitas dipakai dulu, tanpa warna di luar token.
 2. **Kelompok (2 orang) — Role-play *handoff* dan audit silang.** Anggota A menulis
@@ -1127,7 +1127,7 @@ dengan kebiasaan menulis, dan janji pengembang dicapai dengan disiplin membaca.
 
 1. Nilai berapa persen keputusan desain yang Anda salin secara presisi tadi, dan bagian
    mana yang paling sering Anda "takan" dengan selera pribadi?
-2. Ketika spesifikasi tekstual menggantikan berkas gambar, kehilangan dan kelebihan apa
+2. Ketika spesifikasi tekstual menggantikan file gambar, kehilangan dan kelebihan apa
    yang Anda alami sebagai pembaca?
 3. Selama pekerjaan ini, komponen mana yang paling sulit disetiaikan (navbar, panel,
    kartu, footer) dan mengapa?
@@ -1162,7 +1162,7 @@ final project — *fidelity* checklist bab ini menjadi modul pertama checklist Q
 ### Pilihan Ganda
 
 1. Pernyataan yang paling tepat mengenai *handoff* adalah…
-   A. serah terima berkas desain lengkap dengan keputusan ukuran, warna, dan keadaan
+   A. serah terima file desain lengkap dengan keputusan ukuran, warna, dan keadaan
    B. pengiriman tangkapan layar agar pengembang menebak sisa detailnya
    C. proses desain berulang oleh pengembang setelah desainer selesai
    D. kontrak kerja antara perusahaan dan desainer lepas-las
@@ -1244,7 +1244,7 @@ File: demo/bab-14/analisis-1.html
    b) Urutan tampilan isi kartu menyimpang dari spesifikasi praktikum; apa yang salah dan
       di posisi mana elemen *badge* seharusnya berada?
    c) `row` pada potongan ini tidak membawa `g-4`; dampak apa yang muncul pada tumpukan
-      kartu di layar ponsel?
+      kartu di layar HP?
 
 2. Periksa aturan CSS berikut yang ditulis seorang mahasiswa untuk panel produk:
 

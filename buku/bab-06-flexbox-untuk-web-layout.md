@@ -23,7 +23,7 @@ Bab ini mendukung **CPMK 4** — Menggunakan Flexbox dan CSS Grid untuk membangu
 
 ## Apersepsi
 
-Coba lihat lagi situs Tokosaya yang sudah Anda bangun sampai Bab 5. Sekarang desainer proyek mengirim *wireframe* revisi: di bagian atas halaman, logo "Tokosaya" harus tetap di kiri, empat tautan — Beranda, Katalog, Tentang, Kontak — ada di kanan, lalu tombol "Keranjang" berada paling ujung. Di bawahnya, delapan kartu produk baku harus tetap rapi dari layar ponsel sempit sampai monitor 24 inci MR-241 yang dijual toko ini. Saat lebar layar berubah, kartunya tidak boleh gepeng; kalau tidak muat, item boleh turun ke baris baru dengan rapi.
+Coba lihat lagi website Tokosaya yang sudah Anda bangun sampai Bab 5. Sekarang desainer proyek mengirim *wireframe* revisi: di bagian atas halaman, logo "Tokosaya" harus tetap di kiri, empat link — Beranda, Katalog, Tentang, Kontak — ada di kanan, lalu tombol "Keranjang" berada paling ujung. Di bawahnya, delapan kartu produk baku harus tetap rapi dari layar HP sempit sampai monitor 24 inci MR-241 yang dijual toko ini. Saat lebar layar berubah, kartunya tidak boleh gepeng; kalau tidak muat, item boleh turun ke baris baru dengan rapi.
 
 Masalah *layout* seperti ini ternyata belum selesai kalau hanya mengandalkan Bab 5. *Box model* memang mengatur tiap kotak secara individual — lebar, *padding*, *border*, *margin* — tetapi belum menjawab pertanyaan seperti "kalau ada tiga kotak dalam satu baris, sisa ruangnya dibagi bagaimana?". Dulu banyak developer menyiasatinya dengan `float` dan margin negatif, lalu repot sendiri saat footer tiba-tiba "jatuh" ke bawah. Nah, flexbox hadir untuk kasus seperti ini: cukup satu properti di elemen induk, lalu anak-anaknya bisa otomatis sejajar, berjarak, dan pindah ke baris baru saat layar makin sempit.
 
@@ -98,7 +98,7 @@ antara item           berpeluk ruang;       termasuk dua tepi,
 
 Pada navigasi Tokosaya, kombinasi yang paling produktif adalah `space-between` untuk mendorong kelompok kiri dan kelompok kanan ke tepi berseberangan. Pada *toolbar* pencarian, `space-between` juga menyelesaikan "judul kiri, alat kanan" hanya dengan satu baris CSS.
 
-**`align-items`** menyelaraskan flex item pada **cross axis**. Nilai defaultnya `stretch`: anak-anak meregang mengikuti tinggi wadah (pada `row`) — inilah alasan kartu di satu baris otomatis sama tinggi bila Anda tidak mengganggunya. Nilai lain: `flex-start` (menempel puncak), `flex-end` (menempel dasar), `center` (menengah vertikal), `baseline` (menyetel garis dasar teks). Menu Tokosaya memakai `align-items: center` agar logo tinggi, tautan teks, dan tombol keranjang berdiri seimbang meski tinggi aslinya berbeda.
+**`align-items`** menyelaraskan flex item pada **cross axis**. Nilai defaultnya `stretch`: anak-anak meregang mengikuti tinggi wadah (pada `row`) — inilah alasan kartu di satu baris otomatis sama tinggi bila Anda tidak mengganggunya. Nilai lain: `flex-start` (menempel puncak), `flex-end` (menempel dasar), `center` (menengah vertikal), `baseline` (menyetel garis dasar teks). Menu Tokosaya memakai `align-items: center` agar logo tinggi, link teks, dan tombol keranjang berdiri seimbang meski tinggi aslinya berbeda.
 
 **`gap`** memberi jarak antar-flex item tanpa margin ganda. Pendekatan lama menulis `margin-right` pada tiap anak — menimbulkan margin menyusup di tepi terluar dan terpaksa dibersihkan dengan `:last-child`. Dengan `gap: 24px`, jarak hanya lahir **di antara** item; tepi wadah tetap bersih. Bila Anda butuh jarak berbeda antar-baris dan antar-kolom (relevan saat `flex-wrap` aktif), tulis `row-gap` dan `column-gap`. Sejak flexbox, `gap` juga didukung oleh Grid — kebiasaan ini akan terus terpakai di Bab 7.
 
@@ -133,9 +133,9 @@ Singkatnya, di flexbox ada dua level pengaturan: wadah mengatur pembagian ruang 
 
 Pola flexbox yang paling gampang dikenali adalah **navigasi satu baris: logo di kiri, menu di kanan**. Struktur HTML-nya sebenarnya sudah Anda kuasai sejak Bab 2: ada `<header>` berisi `<nav>`, lalu di dalamnya merek sebagai `<a>` dan daftar menu sebagai `<ul>` dengan beberapa `<li><a>`. Yang berubah di Bab 6 adalah cara menatanya. Strateginya ada tiga langkah: (1) jadikan `<nav>` sebagai flex container; (2) bungkus menu dan tombol keranjang dalam satu kelompok kanan supaya bergerak bersama; (3) dorong kelompok itu dengan `justify-content: space-between` atau, kalau mau lebih ringkas, `margin-left: auto` pada kelompok kanan.
 
-Pengelompokan ini bukan cuma soal tampilan, tetapi dasar responsivitasnya. Kalau tidak ada kelompok kanan, `flex-wrap` bisa membuat item turun satu per satu ke posisi acak sehingga baris kedua terlihat pincang: misalnya "Beranda" tetap di kiri, sedangkan tiga tautan lain jatuh ke bawah. Dengan kelompok kanan, seluruh navigasi turun sebagai satu blok yang tetap rapi dan enak dibaca. Itulah maksud "responsif karena *wrap*": di layar sempit kita tidak menyembunyikan isi, tetapi membiarkan baris menekuk dengan cara yang masih terkontrol.
+Pengelompokan ini bukan cuma soal tampilan, tetapi dasar responsivitasnya. Kalau tidak ada kelompok kanan, `flex-wrap` bisa membuat item turun satu per satu ke posisi acak sehingga baris kedua terlihat pincang: misalnya "Beranda" tetap di kiri, sedangkan tiga link lain jatuh ke bawah. Dengan kelompok kanan, seluruh navigasi turun sebagai satu blok yang tetap rapi dan enak dibaca. Itulah maksud "responsif karena *wrap*": di layar sempit kita tidak menyembunyikan isi, tetapi membiarkan baris menekuk dengan cara yang masih terkontrol.
 
-Tombol keranjang boleh dibuat lebih menonjol dengan warna `--clr-primary`, radius `--radius`, dan teks "Keranjang (0)". Karena fitur keranjang baru benar-benar dipakai di Bab 11 (dan ikon yang rapi baru masuk lewat Bootstrap di Bab 10), di bab ini tautannya cukup diarahkan ke tanda pagar sebagai prototipe statis. Perlu jujur juga: menu *hamburger* yang buka-tutup saat diklik memang umum dipakai, tetapi pola itu butuh JavaScript yang belum dibahas di mata kuliah ini. Jadi, `flex-wrap` adalah alternatif CSS murni yang aman dan masuk akal untuk situs statis. Bab 13 nanti akan membandingkannya dengan pola navigasi responsif lain.
+Tombol keranjang boleh dibuat lebih menonjol dengan warna `--clr-primary`, radius `--radius`, dan teks "Keranjang (0)". Karena fitur keranjang baru benar-benar dipakai di Bab 11 (dan ikon yang rapi baru masuk lewat Bootstrap di Bab 10), di bab ini tautannya cukup diarahkan ke tanda pagar sebagai prototipe statis. Perlu jujur juga: menu *hamburger* yang buka-tutup saat diklik memang umum dipakai, tetapi pola itu butuh JavaScript yang belum dibahas di mata kuliah ini. Jadi, `flex-wrap` adalah alternatif CSS murni yang aman dan masuk akal untuk website statis. Bab 13 nanti akan membandingkannya dengan pola navigasi responsif lain.
 
 Detail kenyamanan menutup pola ini: `position: sticky` (Bab 5) pada `header` membuat navigasi menempel saat halaman digulir; `align-items: center` menyetel semua isi menu agar sejajar di tengah vertikal; kelas aktif (mis. `site-nav-link-aktif`) menandai halaman yang sedang dibuka; dan `:focus-visible` memberi cincin jelas saat navigasi dengan papan tombol. Cincin fokus bukan hiasan — WCAG 2.2 menuntut indikator fokus yang terlihat sehingga pengguna keyboard tidak tersesat di tengah menu.
 
@@ -147,7 +147,7 @@ Di dalam kolom kontak, muncul pola ketiga yang terkenal: ***media object*** — 
 
 Ketika perangkat sangat sempit, ada trik halus yang layak kenal: pada kolom yang menumpuk, urutan visual bisa dibalik per-item dengan `order` tanpa mengubah HTML — misalnya meletakkan kolom kontak lebih dulu karena nomor telepon lebih sering dipakai daripada menu. Ini contoh `order` yang sehat: penyesuaian kecil, urutan dokumen tetap logis.
 
-Footer yang baik juga menuntut kontras: teks terang di atas latar `--clr-dark` masih nyaman, tetapi tautan pada latar gelap harus tetap tersorot jelas ketika disorot atau difokuskan. Jangan menghilangkan garis bawah tautan di footer tanpa memberi tanda ganti; pengguna muda pun masih membaca hyperlink dengan tanda itu, apalagi pengguna layar bawah (*screen reader* tidak melihat warna sama sekali — urutan dan struktur HTML-lah yang mereka telusuri).
+Footer yang baik juga menuntut kontras: teks terang di atas latar `--clr-dark` masih nyaman, tetapi link pada latar gelap harus tetap tersorot jelas ketika disorot atau difokuskan. Jangan menghilangkan garis bawah link di footer tanpa memberi tanda ganti; pengguna muda pun masih membaca hyperlink dengan tanda itu, apalagi pengguna layar bawah (*screen reader* tidak melihat warna sama sekali — urutan dan struktur HTML-lah yang mereka telusuri).
 
 ### 6.6 Pola 3: Hero Section, CTA, dan Centering
 
@@ -155,7 +155,7 @@ Pola ketiga menjawab permintaan desainer yang sering sekali muncul: "tolong ini 
 
 Pengalaman mahasiswa biasanya kaget: dua properti "terbalik" ini memang kelihatan membingungkan, dan justru itulah pelajaran terbaik 6.1. Pada `column`, `justify-content` bekerja vertikal dan `align-items` horizontal — persis pertukaran peran yang Anda duga setelah diagram sumbu. Ketika suatu saat Anda butuh menengahkan **vertikal dan horizontal sekaligus** (sangat dilirik saat `min-height` besar pada banner), kompasnya tetap sama: `justify-content: center` mengurus sumbu utama, `align-items: center` mengurus sumbu silang, tak peduli arahnya.
 
-CTA (*call to action*) di hero bertugas mengarahkan perhatian pembaca. Karena itu, tombol utamanya boleh dibuat besar dengan warna `--clr-primary` dan status `:hover` menuju `--clr-primary-dark`. Cukup **satu** CTA utama di tiap hero; kalau perlu tautan tambahan, tampilkan saja sebagai tautan teks biasa di bawahnya. Wroblewski (2012) menekankan pendekatan *mobile first*: di layar kecil, satu tindakan yang jelas jauh lebih mudah dipahami daripada lima tombol yang berebut perhatian.
+CTA (*call to action*) di hero bertugas mengarahkan perhatian pembaca. Karena itu, tombol utamanya boleh dibuat besar dengan warna `--clr-primary` dan status `:hover` menuju `--clr-primary-dark`. Cukup **satu** CTA utama di tiap hero; kalau perlu link tambahan, tampilkan saja sebagai link teks biasa di bawahnya. Wroblewski (2012) menekankan pendekatan *mobile first*: di layar kecil, satu tindakan yang jelas jauh lebih mudah dipahami daripada lima tombol yang berebut perhatian.
 
 Terakhir, jaga keterbacaan subjudul hero: beri `max-width` (misal 46 karakter ke atas, praktisnya 640 px) agar baris teks tidak membentang sepanjang monitor lebar. Tanpa batasan itu, sebuah paragraf di monitor MR-241 bisa memuat 160 karakter per baris — terlalu lelah untuk mata. Batas `max-width` bukan pengecilan, melainkan penghormatan pada mata pembaca.
 
@@ -201,7 +201,7 @@ Dalam praktik nyata, keduanya justru sering dipakai bareng: Grid menangani rangk
 
 ## Contoh Kode
 
-Tiga contoh berikut memberi Anda laboratorium berukuran kecil sebelum praktikum. Contoh 6-1 membuka kembali wawasan properti container; Contoh 6-2 menunjukkan perilaku item dan trik `margin-top: auto` pada kartu; keduanya berkas *standalone* sehingga aman dicoba tanpa menyentuh proyek utama. Semua contoh memakai token warna Bab 4 agar tampilannya konsisten dengan Tokosaya.
+Tiga contoh berikut memberi Anda laboratorium berukuran kecil sebelum praktikum. Contoh 6-1 membuka kembali wawasan properti container; Contoh 6-2 menunjukkan perilaku item dan trik `margin-top: auto` pada kartu; keduanya file *standalone* sehingga aman dicoba tanpa menyentuh proyek utama. Semua contoh memakai token warna Bab 4 agar tampilannya konsisten dengan Tokosaya.
 
 ### Contoh 6-1: Halaman Demonstrasi Properti Container
 
@@ -410,7 +410,7 @@ Pada praktikum ini, Anda akan menambah dua komponen flexbox ke `tokosaya-css/`: 
 
 - Visual Studio Code dan Google Chrome (teknologi terkunci bab ini).
 - Folder `tokosaya-css/` hasil Bab 5; bila memulai bersih, ikuti langkah 1 di bagian Persiapan.
-- 8 berkas SVG di `img/` untuk gambar produk (dibuat di langkah 3).
+- 8 file SVG di `img/` untuk gambar produk (dibuat di langkah 3).
 - Koneksi internet untuk memuat Google Fonts Poppins dan Inter.
 - Chrome DevTools untuk memeriksa lencana `flex` dan mengubah ukuran jendela.
 
@@ -418,7 +418,7 @@ Pada praktikum ini, Anda akan menambah dua komponen flexbox ke `tokosaya-css/`: 
 
 1. Pastikan struktur proyek memuat: `index.html`, `css/style.css`, dan folder `img/`.
 2. Pastikan token baku §5.3 berada di bagian atas `css/style.css` (blok token sudah termasuk pada kode di bawah ini, jadi menyalin kembali tidak merusak apa pun).
-3. Buat delapan SVG penanda produk di `img/`. Bentuk bebas asalkan valid; contoh satu berkas (kotak indigo dengan lingkaran):
+3. Buat delapan SVG penanda produk di `img/`. Bentuk bebas asalkan valid; contoh satu file (kotak indigo dengan lingkaran):
 
 File: tokosaya-css/img/produk-keyboard-kx210.svg
 
@@ -435,14 +435,14 @@ File: tokosaya-css/img/produk-keyboard-kx210.svg
 </svg>
 ```
 
-Penjelasan: SVG ini hanya *placeholder* gambar produk yang ringan dan tetap valid. Anda bisa menyalin polanya ke tujuh berkas lain, lalu mengganti nama dan labelnya sesuai daftar produk pada kode utama.
+Penjelasan: SVG ini hanya *placeholder* gambar produk yang ringan dan tetap valid. Anda bisa menyalin polanya ke tujuh file lain, lalu mengganti nama dan labelnya sesuai daftar produk pada kode utama.
 
 ### Langkah Kerja
 
 1. Buka `tokosaya-css/index.html` dan ganti seluruh isinya dengan markup utama di bagian Kode.
 2. Perhatikan `header.site-header` → `nav.site-nav`: satu *flex container*, dua anak (merek dan kelompok kanan).
 3. Periksa `site-nav-kanan`: kelompok flex berisi `<ul>` menu dan `<a>` keranjang, berjarak 24 px.
-4. Ganti `css/style.css` dengan berkas utama pada bagian Kode (token tetap di atas).
+4. Ganti `css/style.css` dengan file utama pada bagian Kode (token tetap di atas).
 5. Buka `index.html` di Chrome; pastikan logo di kiri, menu dan keranjang di kanan.
 6. Susutkan jendela perlahan; amati kelompok kanan turun menjadi baris kedua secara utuh.
 7. Buka DevTools → tab Elements; periksa lencana `flex` pada `.site-nav` dan `.produk-row`.
@@ -583,7 +583,7 @@ File: tokosaya-css/index.html
 </html>
 ```
 
-Penjelasan: dokumen ini memakai `<a>` sebagai tombol untuk keranjang dan CTA karena keduanya memang berfungsi sebagai tautan tujuan. Nama kelasnya mengikuti pola `blok-elemen` (`site-nav-keranjang`, `produk-flag`) sesuai konvensi proyek. Karakter `&#8243;` dan `&amp;` menunjukkan penggunaan entitas agar karakter khusus tidak dibaca sebagai markup.
+Penjelasan: dokumen ini memakai `<a>` sebagai tombol untuk keranjang dan CTA karena keduanya memang berfungsi sebagai link tujuan. Nama kelasnya mengikuti pola `blok-elemen` (`site-nav-keranjang`, `produk-flag`) sesuai konvensi proyek. Karakter `&#8243;` dan `&amp;` menunjukkan penggunaan entitas agar karakter khusus tidak dibaca sebagai markup.
 
 File: tokosaya-css/css/style.css
 
@@ -800,11 +800,11 @@ a:focus-visible {
 .footer-teks { color: #E2E8F0; }
 ```
 
-Penjelasan: berkas ini dibagi menjadi enam blok bernomor supaya alurnya mudah diikuti, mirip pola organisasi Bab 3. Bagian menu dan kelompok kanan sama-sama memakai `flex-wrap`, jadi penekukannya terjadi dua lapis: mula-mula seluruh kelompok kanan turun ke baris berikutnya, lalu jika layar makin sempit tautan menunya ikut menekuk di dalam kelompok itu. `margin-top: auto` pada `.produk-harga` adalah trik dari 6.3 untuk merapikan posisi harga di dasar kartu.
+Penjelasan: file ini dibagi menjadi enam blok bernomor supaya alurnya mudah diikuti, mirip pola organisasi Bab 3. Bagian menu dan kelompok kanan sama-sama memakai `flex-wrap`, jadi penekukannya terjadi dua lapis: mula-mula seluruh kelompok kanan turun ke baris berikutnya, lalu jika layar makin sempit link menunya ikut menekuk di dalam kelompok itu. `margin-top: auto` pada `.produk-harga` adalah trik dari 6.3 untuk merapikan posisi harga di dasar kartu.
 
 ### Penjelasan Kode
 
-Ada tiga keputusan penting di sini yang layak Anda lihat lagi. `justify-content: space-between` pada `.site-nav` bekerja paling pas saat ada **dua anak langsung** (merek dan kelompok kanan). Itulah alasan `.site-nav-kanan` perlu dibuat: kalau anak langsungnya lebih dari dua, ruang kosong justru menyebar ke tengah menu dan baris kedua bisa terlihat pincang. `align-items: center` pada `.site-nav` membuat logo, tautan, dan tombol tetap sejajar vertikal tanpa perlu akrobat padding. Terakhir, `object-fit: cover` pada `.produk-gambar` menjaga tinggi tetap 140 px, jadi gambar apa pun akan dipotong secukupnya dari tengah agar delapan kartu tetap terlihat seragam walau sumber SVG-nya berbeda-beda.
+Ada tiga keputusan penting di sini yang layak Anda lihat lagi. `justify-content: space-between` pada `.site-nav` bekerja paling pas saat ada **dua anak langsung** (merek dan kelompok kanan). Itulah alasan `.site-nav-kanan` perlu dibuat: kalau anak langsungnya lebih dari dua, ruang kosong justru menyebar ke tengah menu dan baris kedua bisa terlihat pincang. `align-items: center` pada `.site-nav` membuat logo, link, dan tombol tetap sejajar vertikal tanpa perlu akrobat padding. Terakhir, `object-fit: cover` pada `.produk-gambar` menjaga tinggi tetap 140 px, jadi gambar apa pun akan dipotong secukupnya dari tengah agar delapan kartu tetap terlihat seragam walau sumber SVG-nya berbeda-beda.
 
 ### Hasil yang Diharapkan
 
@@ -825,7 +825,7 @@ Ada tiga keputusan penting di sini yang layak Anda lihat lagi. `justify-content:
 **Pencegahan:** Kebiasaan mendirikan navigasi: tentukan dulu anak-anak langsung dari flex container (dianjurkan jumlahnya dua), lalu tulis pembungkusnya sebelum konten menu.
 
 **Masalah:** Tinggi kartu tidak seragam; baris kartu tampak bergelombang.
-**Penyebab:** Wadah kartu diberi `align-items: center` (warisan dari bagian lain berkas CSS), sehingga `stretch` default tidak terjadi; kartu menjadi sependek isi masing-masing lalu di tengahkan.
+**Penyebab:** Wadah kartu diberi `align-items: center` (warisan dari bagian lain file CSS), sehingga `stretch` default tidak terjadi; kartu menjadi sependek isi masing-masing lalu di tengahkan.
 **Solusi:** Hapus `align-items: center` pada `.produk-row` (biarkan default `stretch`), lalu gunakan `margin-top: auto` pada `.produk-harga` untuk menyejajarkan harga ke dasar.
 **Pencegahan:** Ketika menata baris kartu, tulis properti penyelarasan hanya bila alasan perataannya tertulis di komentar; jangan meniru properti wadah dari pola lain tanpa mengecek ulang.
 
@@ -836,7 +836,7 @@ Ada tiga keputusan penting di sini yang layak Anda lihat lagi. `justify-content:
 
 ## Studi Kasus
 
-Aplikasi informasi perpustakaan kampus (Sistem Informasi Perpustakaan) membutuhkan **toolbar** di atas halaman katalog buku: judul aplikasi di kiri, bilah pencarian di tengah, lalu tombol filter kategori dan tautan "Bantuan" di kanan. Semua elemen itu idealnya tetap satu baris di monitor lab komputer, tetapi tetap rapi saat dibuka di ponsel. Ini contoh kasus yang pas untuk flexbox: `.toolbar` dijadikan flex container dengan `gap: 16px`, `align-items: center`, dan `flex-wrap: wrap`; bilah pencarian diberi `flex: 1 1 240px` supaya mengisi sisa ruang di tengah; lalu kelompok kanan didorong dengan `margin-left: auto`.
+Aplikasi informasi perpustakaan kampus (Sistem Informasi Perpustakaan) membutuhkan **toolbar** di atas halaman katalog buku: judul aplikasi di kiri, bilah pencarian di tengah, lalu tombol filter kategori dan link "Bantuan" di kanan. Semua elemen itu idealnya tetap satu baris di monitor lab komputer, tetapi tetap rapi saat dibuka di HP. Ini contoh kasus yang pas untuk flexbox: `.toolbar` dijadikan flex container dengan `gap: 16px`, `align-items: center`, dan `flex-wrap: wrap`; bilah pencarian diberi `flex: 1 1 240px` supaya mengisi sisa ruang di tengah; lalu kelompok kanan didorong dengan `margin-left: auto`.
 
 Ada detail teknis yang menarik di sini: fitur pencarian itu cukup berupa `<form method="get" action="katalog.html">` dengan `<label for>` yang terhubung ke `<input type="search">`. Semuanya masih HTML murni tanpa JavaScript, dan pengiriman `GET` dari browser sudah cukup untuk memindahkan pengguna ke hasil. Yang perlu Anda jaga adalah aksesibilitasnya: label harus jelas, tombol "Cari" harus bermakna, target sentuh minimal 44×44 px sesuai WCAG, dan `:focus-visible` harus tetap kelihatan saat halaman dipakai dengan keyboard. Dalam skenario nyata, tombol "Pinjam" dan "Kembali" yang diletakkan berdampingan juga lebih enak dipilih karena **jarak kelompok** (`gap`) memberi ruang untuk jari, bukan margin yang hanya menempel di satu sisi. Pertanyaan diskusinya: kalau isi toolbar bertambah jadi sembilan butir, apakah `flex-wrap` masih cukup, atau justru lebih enak diatur dengan Grid pada Bab 7?
 
@@ -846,13 +846,13 @@ Ada detail teknis yang menarik di sini: fitur pencarian itu cukup berupa `<form 
 2. Pada `.produk-row` proyek Anda, ganti `flex: 0 1 250px` menjadi `flex: 0 1 200px`. Susutkan jendela dan catat lebar ketika jumlah kartu per baris berganti; jelaskan mengapa basis mengubah momen penekukan.
 3. Ubah footer praktikum menjadi tiga kolom ala 6.5: kolom pertama merek dan tagline, kolom kedua menu `ul`, kolom ketiga *media object* email dan telepon Tokosaya. Kumpulkan kode CSS lengkapnya.
 4. Buat *media object* baru (komponen `berita-item`) untuk dua pengumuman perpustakaan: ikon bulat di kiri, judul dan tanggal di kanan. Kumpulkan potongan HTML dan CSS-nya.
-5. Di halaman hero, tambahkan tautan teks "Lihat harga terbaru" di bawah CTA dengan kelas `hero-link` dan jarak `gap`; pastikan hanya satu CTA utama yang tetap menonjol. Jelaskan alasannya satu-dua kalimat.
+5. Di halaman hero, tambahkan link teks "Lihat harga terbaru" di bawah CTA dengan kelas `hero-link` dan jarak `gap`; pastikan hanya satu CTA utama yang tetap menonjol. Jelaskan alasannya satu-dua kalimat.
 6. Cek potongan `.produk-row { display: flex; align-items: center; }` dan jelaskan gejala apa yang akan muncul pada kartu, lalu tulis versi yang benar beserta alasan satu kalimat.
 
 ## Tugas
 
-1. **Individu — Navigasi dan footer v6:** Terapkan pola Bab 6 pada `tentang.html` dan `kontak.html` di `tokosaya-css/`: tambahkan `site-nav` yang sama, dan footer multi kolom dengan *media object* kontak (data baku §5.1). Keluaran yang dikumpulkan: dua berkas HTML, `style.css`, dan tangkapan layar ketiga ukuran jendela (± 360 px, 768 px, 1280 px — gunakan device toolbar DevTools). Kriteria singkat: konsistensi kelas, penekukan yang rapi, fokus terlihat, tanpa CSS inline di luar demonstrasi.
-2. **Kelompok (2-3 orang) — Katalog mini toolbar perpustakaan:** Bangun satu halaman `baca.html` di luar proyek utama berisi toolbar (judul, form pencarian, tombol filter) dan deret kartu buku `flex-wrap`, memakai minimal enam properti flex yang dibahas. Keluaran: satu berkas HTML, satu CSS, dan daftar penggunaan (tabel "properti → alasan"). Kriteria: markup semantik, pola berdasar 6.2-6.7, dan penjelasan singkat pilihan `justify-content`-nya.
+1. **Individu — Navigasi dan footer v6:** Terapkan pola Bab 6 pada `tentang.html` dan `kontak.html` di `tokosaya-css/`: tambahkan `site-nav` yang sama, dan footer multi kolom dengan *media object* kontak (data baku §5.1). Keluaran yang dikumpulkan: dua file HTML, `style.css`, dan tangkapan layar ketiga ukuran jendela (± 360 px, 768 px, 1280 px — gunakan device toolbar DevTools). Kriteria singkat: konsistensi kelas, penekukan yang rapi, fokus terlihat, tanpa CSS inline di luar demonstrasi.
+2. **Kelompok (2-3 orang) — Katalog mini toolbar perpustakaan:** Bangun satu halaman `baca.html` di luar proyek utama berisi toolbar (judul, form pencarian, tombol filter) dan deret kartu buku `flex-wrap`, memakai minimal enam properti flex yang dibahas. Keluaran: satu file HTML, satu CSS, dan daftar penggunaan (tabel "properti → alasan"). Kriteria: markup semantik, pola berdasar 6.2-6.7, dan penjelasan singkat pilihan `justify-content`-nya.
 
 ## Refleksi
 
@@ -873,7 +873,7 @@ Ada detail teknis yang menarik di sini: fitur pencarian itu cukup berupa `<form 
 - Hero diatur `flex-direction: column` + `align-items: center` + satu CTA tebal.
 - Baris kartu 8 produk baku memakai `flex: 0 1 250px` + `wrap` → responsif tanpa media query, dengan catatan keterbatasan perataan baris.
 
-**Jembatan ke Bab 7:** Flexbox menyelesaikan satu sumbu dengan elegan, tetapi katalog Tokosaya dan dasbor admin dua arah menginginkan jumlah kolom pasti, rata antar-baris, dan area header-sidebar-konten yang terkelola. Bab 7 memperkenalkan Grid dua dimensi, `fr`, media query *breakpoint*, dan strategi *mobile first* — tata letak yang akan dipadukan dengan flexbox di setiap halaman proyek, dan bahan utama UTS.
+**Jembatan ke Bab 7:** Flexbox menyelesaikan satu sumbu dengan elegan, tetapi katalog Tokosaya dan dasbor admin dua arah menginginkan jumlah kolom pasti, rata antar-baris, dan area header-sidebar-konten yang terkelola. Bab 7 memperkenalkan Grid dua dimensi, `fr`, media query *breakpoint*, dan strategi *mobile first* — layout yang akan dipadukan dengan flexbox di setiap halaman proyek, dan bahan utama UTS.
 
 ## Evaluasi
 

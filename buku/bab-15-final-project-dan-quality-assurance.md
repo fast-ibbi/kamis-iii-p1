@@ -9,11 +9,11 @@ Bab ini adalah ruang menunggu terakhir menuju mahkota semester: final project we
 Setelah mempelajari bab ini, mahasiswa diharapkan mampu:
 
 1. Menjelaskan anatomi final project website beserta keterkaitan setiap bagiannya dengan milestone M7 (QA + penyempurnaan) dan pedoman final project pada Bab 16.
-2. Mengidentifikasi cacat organisasi folder dan penamaan berkas yang menghambat review, kolaborasi, serta pemeliharaan proyek web.
+2. Mengidentifikasi cacat organisasi folder dan penamaan file yang menghambat review, kolaborasi, serta pemeliharaan proyek web.
 3. Menerapkan prinsip kode bersih (clean code) pada HTML dan CSS, termasuk kebiasaan komentar dan penghapusan kode mati.
 4. Menerapkan praktik terbaik Bootstrap: memanfaatkan utilitas terlebih dahulu, membatasi CSS kustom, dan menghindari duplikasi serta `!important`.
 5. Mengimplementasikan QA sprint: audit mandiri, peer review dengan checklist, pencatatan temuan, perbaikan berprioritas, uji ulang, dan penyiapan rilis kandidat.
-6. Menganalisis temuan pengujian responsif, pengujian peramban, audit aksesibilitas, serta inkonsistensi visual menggunakan toolset Chrome DevTools.
+6. Menganalisis temuan pengujian responsif, pengujian browser, audit aksesibilitas, serta inkonsistensi visual menggunakan toolset Chrome DevTools.
 7. Mengevaluasi kesiapan rilis dengan checklist pra-deployment dan merancang skrip presentasi proyek sel tujuh menit.
 
 ## Capaian Pembelajaran
@@ -32,28 +32,28 @@ Pemetaannya: subbab Materi 15.1–15.4 menunjang S15.1; subbab 15.5–15.7 dan p
 
 ## Apersepsi
 
-Bayangkan tim tiga mahasiswa Sistem Informasi yang menyelesaikan magang di Tokosaya pada pekan terakhir. Situs `tokosaya-bootstrap/` sudah tampak sempurna di laptop mereka: hero memukau, katalog rapi, checkout mengalir. Malam sebelum tayang, pemilik toko membukanya di ponselnya sendiri — dan menemukan halaman katalog menampilkan gulir horizontal, kartu produk menumpuk berantakan, sementara label form kontak hilang sehingga pembaca layar (screen reader) menyebut bidang surel sebagai "edit kosong". Situs yang di laptop terlihat matang ternyata belum siap menerima pengunjung sungguhan.
+Bayangkan tim tiga mahasiswa Sistem Informasi yang menyelesaikan magang di Tokosaya pada pekan terakhir. Website `tokosaya-bootstrap/` sudah tampak sempurna di laptop mereka: hero memukau, katalog rapi, checkout mengalir. Malam sebelum tayang, pemilik toko membukanya di ponselnya sendiri — dan menemukan halaman katalog menampilkan gulir horizontal, kartu produk menumpuk berantakan, sementara label form kontak hilang sehingga pembaca layar (screen reader) menyebut bidang surel sebagai "edit kosong". Website yang di laptop terlihat matang ternyata belum siap menerima pengunjung sungguhan.
 
 Cerita di atas adalah kasus klasik pada pengembangan sistem informasi: kualitas tidak pernah tinggal, ia harus dirawat. Layanan informasi publik yang diluncurkan tanpa perawatan kualitas kerap mengecewakan pengguna justru pada hari yang paling penting, walaupun seluruh fitur "terasa selesai". Analoginya seperti kalibrasi alat laboratorium: data tidak boleh diumumkan sebelum tim memastikan alat pengukurnya akurat, sebab kesalahan alat mengkontaminasi seluruh kesimpulan. Kualitas *diperiksa ulang* (recheck), bukan diasumsikan.
 
-Karena itu semester ini Anda tidak berhenti di "situs jadi". Pertemuan 15 adalah milestone M7 berisi satu putaran QA + penyempurnaan seluruh proyek dengan tiga mesin yang saling menguatkan: checklist QA (agar audit terukur dan setara bagi semua orang), peer review (agar mata segar menemukan yang terlewat), dan rilis kandidat (agar perubahan berhenti pada satu titik yang bisa dibuktikan). Bab ini memandu Anda menjalankan putaran itu secara utuh, memakai alat yang sudah Anda kenal — DevTools, W3C validator, dan checklist aksesibilitas Bab 13 — lalu menyerahkan hasilnya dalam laporan yang profesional. Setelah rilis kandidat terbentuk, bab berikutnya akan menuntut Anda membawanya ke forum ujian: Bab 16.
+Karena itu semester ini Anda tidak berhenti di "website jadi". Pertemuan 15 adalah milestone M7 berisi satu putaran QA + penyempurnaan seluruh proyek dengan tiga mesin yang saling menguatkan: checklist QA (agar audit terukur dan setara bagi semua orang), peer review (agar mata segar menemukan yang terlewat), dan rilis kandidat (agar perubahan berhenti pada satu titik yang bisa dibuktikan). Bab ini memandu Anda menjalankan putaran itu secara utuh, memakai alat yang sudah Anda kenal — DevTools, W3C validator, dan checklist aksesibilitas Bab 13 — lalu menyerahkan hasilnya dalam laporan yang profesional. Setelah rilis kandidat terbentuk, bab berikutnya akan menuntut Anda membawanya ke forum ujian: Bab 16.
 
 ## Materi Pembelajaran
 
-Bab ini terdiri atas delapan subbab yang mengikuti alur kerja QA pada dunia kerja: memahami bentuk jadi (15.1), merapikan struktur proyek (15.2–15.3), menerapkan praktik terbaik framework (15.4), menguji lintas perangkat dan peramban (15.5), memeriksa aksesibilitas (15.6), men-debug konsistensi visual (15.7), lalu mengunci kesiapan rilis dan presentasi (15.8). Ikuti subbab ini berurutan; masing-masing menyiapkan bahasanya untuk subbab berikutnya.
+Bab ini terdiri atas delapan subbab yang mengikuti alur kerja QA pada dunia kerja: memahami bentuk jadi (15.1), merapikan struktur proyek (15.2–15.3), menerapkan praktik terbaik framework (15.4), menguji lintas perangkat dan browser (15.5), memeriksa aksesibilitas (15.6), men-debug konsistensi visual (15.7), lalu mengunci kesiapan rilis dan presentasi (15.8). Ikuti subbab ini berurutan; masing-masing menyiapkan bahasanya untuk subbab berikutnya.
 
 ### 15.1 Anatomi Final Project Website
 
 *Final project* adalah proyek akhir yang mengintegrasikan seluruh keterampilan mata kuliah — HTML semantik, CSS, framework, responsif, aksesibilitas, dan translasi desain — ke dalam satu website statis yang utuh. Pada buku ini bentuknya ditetapkan di Bab 16 sebagai ujian akhir semester: pilihan di antara delapan kasus (company profile, katalog produk, sistem informasi akademik, portal berita, landing page startup, website event, website travel, dan website UMKM) dengan ketentuan minimal empat halaman. Sebelum menguji apa pun, Anda harus paham dulu dari apa website itu dianatomi — sebab setiap bagian punya risiko khas yang berbeda dan dengan demikian butuh pemeriksaan yang berbeda pula.
 
-Anatomi final project adalah peta bagian wajib situs dan perannya. Terdapat sembilan bagian yang menurut pedoman Bab 16 wajib hadir: *homepage*, navigasi, hero, beberapa section konten, kartu/komponen, form, footer, layout responsif, dan design system sederhana. Pada proyek Tokosaya, sembilan bagian itu tinggal di empat halaman baku: `index.html` (hero + produk unggulan), `katalog.html` (grid produk delapan katalog baku: KX-210, MW-88, HS-15, MR-241, FD-64, CP-30, BT-5, dan WC-720), `produk.html` (detail satu produk), serta `kontak.html`/`checkout.html` (form). Setiap halaman berlayar di bawah tiga lebar layar (ponsel, tablet, desktop) dan menyerupai style guide yang Anda buat di Bab 12.
+Anatomi final project adalah peta bagian wajib website dan perannya. Terdapat sembilan bagian yang menurut pedoman Bab 16 wajib hadir: *homepage*, navigasi, hero, beberapa section konten, kartu/komponen, form, footer, layout responsif, dan design system sederhana. Pada proyek Tokosaya, sembilan bagian itu tinggal di empat halaman baku: `index.html` (hero + produk unggulan), `katalog.html` (grid produk delapan katalog baku: KX-210, MW-88, HS-15, MR-241, FD-64, CP-30, BT-5, dan WC-720), `produk.html` (detail satu produk), serta `kontak.html`/`checkout.html` (form). Setiap halaman berlayar di bawah tiga lebar layar (HP, tablet, desktop) dan menyerupai style guide yang Anda buat di Bab 12.
 
 Tabel berikut memetakan bagian anatomi dengan fokus QA-nya — tabel ini sekaligus menjadi kerangka checklist pada Praktikum:
 
 | Bagian anatomi | Peran dalam halaman | Fokus QA khas |
 |---|---|---|
 | Homepage | Pintu utama dan kesan pertama | Judul hero lengkap, tombol "Lihat Katalog" berfungsi, tidak ada gulir horizontal |
-| Navigasi | Perpindahan antarhalaman | Empat menu baku aktif (Beranda, Katalog, Tentang, Kontak), tautan tidak mati |
+| Navigasi | Perpindahan antarhalaman | Empat menu baku aktif (Beranda, Katalog, Tentang, Kontak), link tidak mati |
 | Hero | Penegasan pesan merek | Tagline "Belanja Tepat, Kirim Cepat" konsisten, kontras teks-latar memenuhi WCAG |
 | Section konten | Narasi nilai produk | Hierarki heading tidak melompat, jarak mengikuti skala 8 px |
 | Kartu/komponen | Wadah konten modular | 8 produk baku tampil, badge semantik benar, radius konsisten |
@@ -66,9 +66,9 @@ Mengapa anatomi perlu diuraikan sejauh ini? Karena QA tanpa peta berubah menjadi
 
 ### 15.2 Organisasi Folder dan Naming Convention
 
-Setelah peta jelas, langkah pertama QA menyangkut rumahnya kode, bukan warna dan jadwal. Situs yang isinya bagus tetapi foldernya kacau mempersulit review, memicu tautan mati, dan memberi tanda bahaya kepada penguji bahwa pemeliharaannya akan sulit. Dua disiplin yang menopang rumah kode adalah organisasi folder (penataan grup berkas) dan *naming convention* (kesepakatan penamaan berkas, folder, dan kelas). Keduanya murah dikerjakan di awal, tetapi mahal diperbaiki belakangan.
+Setelah peta jelas, langkah pertama QA menyangkut rumahnya kode, bukan warna dan jadwal. Website yang isinya bagus tetapi foldernya kacau mempersulit review, memicu link mati, dan memberi tanda bahaya kepada penguji bahwa pemeliharaannya akan sulit. Dua disiplin yang menopang rumah kode adalah organisasi folder (penataan grup file) dan *naming convention* (kesepakatan penamaan file, folder, dan kelas). Keduanya murah dikerjakan di awal, tetapi mahal diperbaiki belakangan.
 
-Pola folder proyek siap tim pada buku ini sudah Anda ketahui dari Bab 9: satu folder akar proyek, satu folder `css/`, satu folder `img/`, dan berkas HTML datar di akar. Struktur akhir untuk QA sprint menjadi seperti berikut.
+Pola folder proyek siap tim pada buku ini sudah Anda ketahui dari Bab 9: satu folder akar proyek, satu folder `css/`, satu folder `img/`, dan file HTML datar di akar. Struktur akhir untuk QA sprint menjadi seperti berikut.
 
 ```
 tokosaya-bootstrap/
@@ -94,31 +94,31 @@ tokosaya-bootstrap/
     └── produk-webcam-wc720.svg
 ```
 
-Struktur di atas diberi ilustrasi tree agar mudah diverifikasi — dalam praktiknya folder inilah yang Anda serahkan sebagai rilis kandidat. Perhatikan empat konvensi yang memakai pola `blok-elemen` seragam (kebab-case, huruf kecil, tanda hubung): nama berkas deskriptif tetapi ringkas, nama gambar memuat kategori produk beserta kode produk (`produk-keyboard-kx210.svg`, bukan `photo3.svg`), satu berkas CSS di `css/style.css`, dan alat QA ditempatkan di akar agar mudah ditemukan reviewer. Nama berkas tidak pernah memuat spasi, huruf kapital, atau karakter khusus, sebab beberapa sistem file dan server memperlakukan `Produk Baru.html` berbeda dengan `produk-baru.html` sehingga tautan yang baik secara lokal bisa mati begitu masuk *hosting*.
+Struktur di atas diberi ilustrasi tree agar mudah diverifikasi — dalam praktiknya folder inilah yang Anda serahkan sebagai rilis kandidat. Perhatikan empat konvensi yang memakai pola `blok-elemen` seragam (kebab-case, huruf kecil, tanda hubung): nama file deskriptif tetapi ringkas, nama gambar memuat kategori produk beserta kode produk (`produk-keyboard-kx210.svg`, bukan `photo3.svg`), satu file CSS di `css/style.css`, dan alat QA ditempatkan di akar agar mudah ditemukan reviewer. Nama file tidak pernah memuat spasi, huruf kapital, atau karakter khusus, sebab beberapa sistem file dan server memperlakukan `Produk Baru.html` berbeda dengan `produk-baru.html` sehingga link yang baik secara lokal bisa mati begitu masuk *hosting*.
 
-Mengapa disiplin ini penting bagi QA? Pertama, *peer review* berjalan cepat bila reviewer menemukan semua berkas pada tempat yang bisa diprediksi. Kedua, pencarian cacat menyapu folder secara menyeluruh, dan folder tertata membuat penyisiran tidak menyisakan blind spot. Ketiga, penamaan konsisten mengurangi salah ketik jalur (`src`, `href`) — salah satu sumber tautan mati paling umum pada proyek pemula. Terakhir, di dunia sistem informasi nyata, folder yang tertata adalah dokumen arsitektur: pengelola baru bisa membaca sejarah pemikiran tim hanya dari pohon folder. Saat ujian Bab 16, struktur folder yang rapi juga dipandang langsung oleh rubrik (kriteria "kualitas kode", khususnya).
+Mengapa disiplin ini penting bagi QA? Pertama, *peer review* berjalan cepat bila reviewer menemukan semua file pada tempat yang bisa diprediksi. Kedua, pencarian cacat menyapu folder secara menyeluruh, dan folder tertata membuat penyisiran tidak menyisakan blind spot. Ketiga, penamaan konsisten mengurangi salah ketik jalur (`src`, `href`) — salah satu sumber link mati paling umum pada proyek pemula. Terakhir, di dunia sistem informasi nyata, folder yang tertata adalah dokumen arsitektur: pengelola baru bisa membaca sejarah pemikiran tim hanya dari pohon folder. Saat ujian Bab 16, struktur folder yang rapi juga dipandang langsung oleh rubrik (kriteria "kualitas kode", khususnya).
 
 ### 15.3 Clean HTML & Clean CSS
 
-Kode bersih (*clean code*) adalah kode yang mudah dibaca, mudah diubah, dan sulit disalahgunakan. Pada bab-bab awal Anda sudah belajar aturan kebersihannya secara terpencar; di sini kaidah itu terkumpul sebagai paket audit final project. Ada dua pembaca kode Anda: manusia (mentor, reviewer, rekan satu tim, dosen) dan mesin (peramban, validator, pembaca layar). Kode bersih melayani keduanya sekaligus, dan justru karena itu ia adalah pekerjaan QA yang paling murah sebelum pengujian menyeluruh dimulai.
+Kode bersih (*clean code*) adalah kode yang mudah dibaca, mudah diubah, dan sulit disalahgunakan. Pada bab-bab awal Anda sudah belajar aturan kebersihannya secara terpencar; di sini kaidah itu terkumpul sebagai paket audit final project. Ada dua pembaca kode Anda: manusia (mentor, reviewer, rekan satu tim, dosen) dan mesin (browser, validator, pembaca layar). Kode bersih melayani keduanya sekaligus, dan justru karena itu ia adalah pekerjaan QA yang paling murah sebelum pengujian menyeluruh dimulai.
 
 Pada HTML, kaidah paketnya ringkas. Gunakan DOCTYPE HTML5 dan `lang="id"` pada elemen `html`; sertakan `<meta name="viewport">` di setiap halaman; tuliskan satu `h1` per halaman dengan hierarki heading yang tidak melompat (`h1 → h2 → h3`); beri `alt` bermakna pada setiap `img`; hubungkan setiap `label` ke inputnya melalui pasangan `for`–`id`; gunakan elemen semantik (Bab 2) daripada `div` untuk header, nav, main, dan footer; indentasi dua spasi; tulis tag dan atribut dengan huruf kecil. Komentar diterapkan seperlunya dan berbahasa Indonesia — cukup untuk mengelompokkan bagian, bukan untuk menceritakan ulang penjelasan teks.
 
-Pada CSS, kebersihan ditentukan oleh tiga hal. Pertama, urutan berkas: token `:root` paling atas (Bab 4), kelanjutannya gaya dasar (base), komponen (kartu, nav), lalu perbaikan halaman spesifik. Kedua, penamaan kelas kebab-case dengan pola `blok-elemen` seperti `produk-card` dan `hero-title`, sehingga nama kelas mendeskripsikan peran, bukan tampilan sesaat (`font-biru-besar` adalah nama yang matang begitu desain berubah). Ketiga, kejujuran isi: hapus kode mati (aturan yang tidak pernah mengenai elemen apa pun), hapus duplikasi, dan jangan gunakan `!important` sebagai jalan pintas — bila tampilan melawan Anda, hampir selalu masalah kaskade atau *specificity* yang bisa dibereskan secara jujur (Bab 3).
+Pada CSS, kebersihan ditentukan oleh tiga hal. Pertama, urutan file: token `:root` paling atas (Bab 4), kelanjutannya gaya dasar (base), komponen (kartu, nav), lalu perbaikan halaman spesifik. Kedua, penamaan kelas kebab-case dengan pola `blok-elemen` seperti `produk-card` dan `hero-title`, sehingga nama kelas mendeskripsikan peran, bukan tampilan sesaat (`font-biru-besar` adalah nama yang matang begitu desain berubah). Ketiga, kejujuran isi: hapus kode mati (aturan yang tidak pernah mengenai elemen apa pun), hapus duplikasi, dan jangan gunakan `!important` sebagai jalan pintas — bila tampilan melawan Anda, hampir selalu masalah kaskade atau *specificity* yang bisa dibereskan secara jujur (Bab 3).
 
 Tabel kecil berikut menjadi alat audit cepat; gunakannya persis seperti ini saat peer review:
 
 | Pemegang | Kebiasaan baik | Kebiasaan buruk pada proyek pemula |
 |---|---|---|
 | HTML | satu `h1`, heading berurutan | tiga `h1`, `h2` melompat ke `h5` |
-| HTML | `label for` terhubung `id` input | label bebas tanpa tautan |
+| HTML | `label for` terhubung `id` input | label bebas tanpa link |
 | HTML | `alt` deskriptif pada gambar produk | `alt="gambar"`, atau atribut hilang |
-| CSS | satu berkas `css/style.css` berurutan | gaya tercecer di banyak berkas saling menimpa |
+| CSS | satu file `css/style.css` berurutan | gaya tercecer di banyak file saling menimpa |
 | CSS | penamaan `blok-elemen` kebab-case | `.merah`, `.aa`, `.fix2`, `.x1finalFIX` |
 | CSS | token dipakai (`var(--clr-primary)`) | warna hex ditulis ulang di sepuluh tempat |
 | CSS | dead code dihapus saat refactor | 120 baris tak pernah dipakai, tak ada yang berani menghapus |
 
-Konteks sistem informasi memberi alasan yang kuat untuk kebersihan ini. Laporan informasi rumah sakit, portal akademik, dan situs layanan publik hidup bertahun-tahun, dan pengelolanya sering bukan penulis awalnya. Kode bersih itulah yang memungkinkan seseorang yang tidak menyusunnya memperbaikinya dengan aman. Saat QA sprint dijalankan (Praktikum), kebersihan kodemu menentukan seberapa cepat temuan bisa dilacak: aturan yang ganda dan komentar berbahasa lain menambah waktu cari — dan pada QA, waktu itu disebut biaya pemeliharaan.
+Konteks sistem informasi memberi alasan yang kuat untuk kebersihan ini. Laporan informasi rumah sakit, portal akademik, dan website layanan publik hidup bertahun-tahun, dan pengelolanya sering bukan penulis awalnya. Kode bersih itulah yang memungkinkan seseorang yang tidak menyusunnya memperbaikinya dengan aman. Saat QA sprint dijalankan (Praktikum), kebersihan kodemu menentukan seberapa cepat temuan bisa dilacak: aturan yang ganda dan komentar berbahasa lain menambah waktu cari — dan pada QA, waktu itu disebut biaya pemeliharaan.
 
 ### 15.4 Bootstrap Best Practices
 
@@ -137,15 +137,15 @@ Tabel pilihan berikut merangkum kapan memakai utilitas dan kapan memakai CSS kus
 | Latar gradien hero, bayangan khas | — | kelas `hero-...`, `konten-kartu` |
 | Pengecualian satu kasus langka | — | kelas tunggal, diberi komentar alasan |
 
-Dua kejujuran praktis ikut menutup subbab ini. Pertama, beberapa komponen Bootstrap (navbar collapse, modal, carousel, accordion, dropdown) yang aslinya interaktif membutuhkan berkas bundle JavaScript Bootstrap untuk berfungsi — JavaScript berada di luar cakupan mata kuliah ini, sehingga pada buku ini Anda cukup memakai struktur markup dan kelas status statisnya (sebagaimana dilatih Bab 10), dan menulis komentar `<!-- Tanpa bundle JavaScript Bootstrap: interaksi di luar cakupan mata kuliah -->` di `head` setiap halaman. Kedua, kaitkan CDN pada versi pin yang terkunci: Bootstrap 5.3.3 dan Bootstrap Icons 1.11.3 — jangan menambah versi lain di tengah sprint QA, sebab mengganti versi framework menjelang rilis adalah sumber *regression* yang spektakuler. *⚠ version-sensitive: periksa getbootstrap.com untuk perubahan mayor (Bootstrap 6).*
+Dua kejujuran praktis ikut menutup subbab ini. Pertama, beberapa komponen Bootstrap (navbar collapse, modal, carousel, accordion, dropdown) yang aslinya interaktif membutuhkan file bundle JavaScript Bootstrap untuk berfungsi — JavaScript berada di luar cakupan mata kuliah ini, sehingga pada buku ini Anda cukup memakai struktur markup dan kelas status statisnya (sebagaimana dilatih Bab 10), dan menulis komentar `<!-- Tanpa bundle JavaScript Bootstrap: interaksi di luar cakupan mata kuliah -->` di `head` setiap halaman. Kedua, kaitkan CDN pada versi pin yang terkunci: Bootstrap 5.3.3 dan Bootstrap Icons 1.11.3 — jangan menambah versi lain di tengah sprint QA, sebab mengganti versi framework menjelang rilis adalah sumber *regression* yang spektakuler. *⚠ version-sensitive: periksa getbootstrap.com untuk perubahan mayor (Bootstrap 6).*
 
 ### 15.5 Responsive & Browser Testing
 
-Situs yang bagus di laptop Anda belum menyakinkan siapa pun; yang menyakinkan adalah situs yang bagus di tiga puluh lebar layar yang berbeda. Pengujian responsif pada final project dijalankan lewat *test matrix*: tabel baris halaman × kolom breakpoint, tempat setiap sel diisi status (lulus atau temuan) dan catatan singkat. Matrix mengubah kerja pengujian dari "lihat-lihat sana-sini" menjadi penyisiran yang bisa dijadwalkan dan dilaporkan: bila satu sel belum terisi, kerja belum selesai — tidak ada tebing "sudah cukup".
+Website yang bagus di laptop Anda belum menyakinkan siapa pun; yang menyakinkan adalah website yang bagus di tiga puluh lebar layar yang berbeda. Pengujian responsif pada final project dijalankan lewat *test matrix*: tabel baris halaman × kolom breakpoint, tempat setiap sel diisi status (lulus atau temuan) dan catatan singkat. Matrix mengubah kerja pengujian dari "lihat-lihat sana-sini" menjadi penyisiran yang bisa dijadwalkan dan dilaporkan: bila satu sel belum terisi, kerja belum selesai — tidak ada tebing "sudah cukup".
 
-Pilih breakpoint yang konsisten, yaitu breakpoint baku Bootstrap 576/768/992/1200 px yang sudah Anda kenal sejak Bab 7 dan Bab 9, disiplinkan ke tiga kolom praktis: ponsel (360–575 px), tablet (768–991 px), dan desktop (992 px ke atas). Untuk setiap sel matrix, jalankan pemindaian lima titik yang urutannya stabil: (1) navigasi — menu terbaca, tautan hidup, tidak meluber; (2) hero — judul dan tombol muat tanpa terpotong; (3) grid kartu — kolom berubah wajar antartitk potong (collapsing atau multi-kolom, bukan menumpuk kacau); (4) form — label, input, dan tombol sejajar dan tidak melebar melebihi layar; (5) footer — tautan dan kontak tersusun kembali. Gulir horizontal pada lebar layar apapun otomatis menjadi temuan; ia bukan selera, ia cacat.
+Pilih breakpoint yang konsisten, yaitu breakpoint baku Bootstrap 576/768/992/1200 px yang sudah Anda kenal sejak Bab 7 dan Bab 9, disiplinkan ke tiga kolom praktis: HP (360–575 px), tablet (768–991 px), dan desktop (992 px ke atas). Untuk setiap sel matrix, jalankan pemindaian lima titik yang urutannya stabil: (1) navigasi — menu terbaca, link hidup, tidak meluber; (2) hero — judul dan tombol muat tanpa terpotong; (3) grid kartu — kolom berubah wajar antartitk potong (collapsing atau multi-kolom, bukan menumpuk kacau); (4) form — label, input, dan tombol sejajar dan tidak melebar melebihi layar; (5) footer — link dan kontak tersusun kembali. Gulir horizontal pada lebar layar apapun otomatis menjadi temuan; ia bukan selera, ia cacat.
 
-Alat utamanya adalah *device toolbar* pada Chrome DevTools (Bab 1 dan 7). Atur mode responsif, geser lebar 360 → 576 → 768 → 992 → 1200 sambil memperhatikan kelima titik di atas; simpan tangkapan layar untuk setiap temuan agar laporan QA punya bukti. Lengkapi dengan *browser testing* antarperamban: Chrome sebagai peramban utama plus satu peramban lain (Firefox, Edge, atau Safari bila tersedia) untuk memastikan font bawaan, radius, dan media query dirender setara. Anda tidak perlu menghafal perbedaan mesin rendering; cukup catat tampilan yang menyimpang sebagai temuan — peramban lain sering mengaku-cacat pada hal yang tak terpikirkan, misalnya jarak bawaan elemen form.
+Alat utamanya adalah *device toolbar* pada Chrome DevTools (Bab 1 dan 7). Atur mode responsif, geser lebar 360 → 576 → 768 → 992 → 1200 sambil memperhatikan kelima titik di atas; simpan tangkapan layar untuk setiap temuan agar laporan QA punya bukti. Lengkapi dengan *browser testing* antarperamban: Chrome sebagai browser utama plus satu browser lain (Firefox, Edge, atau Safari bila tersedia) untuk memastikan font bawaan, radius, dan media query dirender setara. Anda tidak perlu menghafal perbedaan mesin rendering; cukup catat tampilan yang menyimpang sebagai temuan — browser lain sering mengaku-cacat pada hal yang tak terpikirkan, misalnya jarak bawaan elemen form.
 
 Bila perubahan gaya diterapkan di tengah sprint, jalankan uji ulang regresi (regression): pengujian ulang area yang sebelumnya sehat untuk memastikan tidak pecah. Aturan praktisnya: setiap perubahan kaskade wajib disertai penyapuan cepat seluruh navigasi bawah dan satu halaman katalog — karena aturan CSS kustom untuk satu halaman kadang diam-diam mengenai halaman lain. Contoh test matrix untuk Tokosaya Anda lihat pada Praktikum; polanya tinggal dipindai halaman demi halaman hingga seluruh sel memuat status dan tangkapan layar.
 
@@ -157,11 +157,11 @@ Lima pemeriksaan wajib membentuk inti audit. Pertama, teks alternatif (alt): set
 
 Verifikasi manual di atas bisa diperkuat alat. Chrome DevTools menyediakan panel aksesibilitas pada inspeksi elemen untuk melihat nama dan peran elemen, dan Lighthouse — audit yang dibangun ke dalam Chrome, bukan kode yang Anda tulis — memberi skor aksesibilitas beserta daftar temuan teknisnya. Ingatlah keterbatasannya secara jujur: skor tinggi bukan sertifikasi kualitas, dan pembacaan urutan serta makna hanyalah bisa dinilai manusia. Karena itu kombinasi terbaik adalah alat untuk kriteria terukur (kontras, nama, peran) dan pengujian manual untuk pengalaman (tab, makna, urutan).
 
-Mengapa porsi ini dianggarkan begitu besar? Karena layanan informasi publik adalah tempat aksesibilitas bukan sikap baik melainkan kewajiban: portal layanan kampus, situs informasi faskes, dan katalog perpustakaan diakses oleh pengguna dengan ragam kemampuan. Situs Tokosaya pun sama: pembeli dengan pembaca layar berhak menelusuri katalog KX-210 sampai tombol "Lihat Katalog". Saat peer review nanti, auditor aksesibilitas Anda adalah rekan yang memeriksa halaman tanpa sentuh mouse — beri orang itu waktu, dan Anda akan menerima daftar perbaikan yang mahal harganya jika ditunda ke fase rilis.
+Mengapa porsi ini dianggarkan begitu besar? Karena layanan informasi publik adalah tempat aksesibilitas bukan sikap baik melainkan kewajiban: portal layanan kampus, website informasi faskes, dan katalog perpustakaan diakses oleh pengguna dengan ragam kemampuan. Website Tokosaya pun sama: pembeli dengan pembaca layar berhak menelusuri katalog KX-210 sampai tombol "Lihat Katalog". Saat peer review nanti, auditor aksesibilitas Anda adalah rekan yang memeriksa halaman tanpa sentuh mouse — beri orang itu waktu, dan Anda akan menerima daftar perbaikan yang mahal harganya jika ditunda ke fase rilis.
 
 ### 15.7 Visual Consistency & Debugging CSS
 
-*Debugging* CSS adalah proses menjawab satu pertanyaan secara terarah: mengapa elemen ini tampil seperti ini, padahal seharusnya begitu? Pemula biasanya menjawabnya dengan menebak: menambah aturan di sana, mengubah angka di sini, dan bila tampilan belum berubah, menambah `!important`. Cara menebak itu membuang waktu dan menyimpan *regression* di mana-mana. QA profesional menjawab pertanyaan itu dengan membaca kaskade: aturan mana yang menang, mengapa menang, dan pada berkas mana aturan itu berasal. Prasyaratnya Anda sudah punya sejak Bab 3: kaskade, inheritance, dan specificity.
+*Debugging* CSS adalah proses menjawab satu pertanyaan secara terarah: mengapa elemen ini tampil seperti ini, padahal seharusnya begitu? Pemula biasanya menjawabnya dengan menebak: menambah aturan di sana, mengubah angka di sini, dan bila tampilan belum berubah, menambah `!important`. Cara menebak itu membuang waktu dan menyimpan *regression* di mana-mana. QA profesional menjawab pertanyaan itu dengan membaca kaskade: aturan mana yang menang, mengapa menang, dan pada file mana aturan itu berasal. Prasyaratnya Anda sudah punya sejak Bab 3: kaskade, inheritance, dan specificity.
 
 Alatnya adalah inspector elemen di Chrome DevTools. Buka panel Elements, pilih elemen yang bermasalah, lalu baca dua informasi sebelum menulis satu baris perbaikan apa pun. Panel *Styles* menampilkan seluruh aturan yang menyentuh elemen: yang membatalkan lainnya tampil dengan garis coret, dan urutannya menunjukkan pemenang kaskade — beginilah cara Anda membuktikan bahwa `style.css` kalah oleh utilitas Bootstrap atau sebaliknya. Panel *Computed* menampilkan hasil akhir yang benar-benar menyala setelah seluruh aturan bertanding (misalnya nilai `font-size` final dan warna final), sehingga hipotesis Anda bisa diverifikasi alih-alih digunakan sebagai tebakan. Diagram kotak dan nilai *box model* di panel yang sama membantu melacak jarak tak terduga (Bab 5).
 
@@ -171,11 +171,11 @@ Konsistensi visual akhirnya dihasilkan bukan oleh penglihatan, melainkan oleh pe
 
 ### 15.8 Checklist Sebelum Deployment & Presentasi
 
-Pintu terakhir QA adalah *checklist* pra-penyiapan publikasi (*pre-deployment checklist*): daftar periksa tetap yang memutuskan kapan sebuah draft boleh disebut rilis kandidat. Definisikan terlebih dahulu dua kata itu. *Deployment* adalah proses menempatkan situs ke tempat yang bisa diakses orang lain (layanan *hosting statis* atau satu paket ZIP yang dikirim sebagai artefak penilaian). *Rilis kandidat* adalah versi yang dinyatakan siap rilis dan menunggu persetujuan terakhir — pada buku ini, persetujuan peer review dan dosen pada Bab 16. Keduanya dibedakan agar keputusan rilis menjadi tindakan yang terdokumentasi, bukan suasana hati.
+Pintu terakhir QA adalah *checklist* pra-penyiapan publikasi (*pre-deployment checklist*): daftar periksa tetap yang memutuskan kapan sebuah draft boleh disebut rilis kandidat. Definisikan terlebih dahulu dua kata itu. *Deployment* adalah proses menempatkan website ke tempat yang bisa diakses orang lain (layanan *hosting statis* atau satu paket ZIP yang dikirim sebagai artefak penilaian). *Rilis kandidat* adalah versi yang dinyatakan siap rilis dan menunggu persetujuan terakhir — pada buku ini, persetujuan peer review dan dosen pada Bab 16. Keduanya dibedakan agar keputusan rilis menjadi tindakan yang terdokumentasi, bukan suasana hati.
 
-Checklist penguncian kualitasnya terbentang dua belas item. (1) Seluruh tautan dan navigasi hidup: klik satu per satu, tidak ada rujukan mati. (2) Konten brand konsisten: tagline, navigasi baku, dan kontak Tokosaya identik di semua halaman. (3) Delapan produk katalog baku tampil dengan nama, kategori, harga (format `Rp650.000` tanpa spasi), dan badge yang benar. (4) Meta lengkap: `charset`, `viewport`, `title` deskriptif per halaman. (5) Google Fonts Poppins/Inter dan Bootstrap via CDN versi terkunci dengan urutan pemuatan yang benar. (6) HTML lolos W3C validator tanpa kesalahan. (7) CSS kustom terorganisasi dengan token, tanpa kode mati dan tanpa `!important`. (8) Test matrix tiga breakpoint terisi penuh tanpa gulir horizontal. (9) Checklist aksesibilitas Bab 13 lolos: alt, kontras, label, tab, fokus. (10) Gambar teroptimasi: nama kebab-case, dimensi wajar, format tetap. (11) Alat QA tidak ikut terkirim tanpa maksud publikasi yang jelas: halaman `qa-checklist.html` dan `laporan-temuan.html` ditempatkan sesuai kesepakatan kelompok. (12) Versi akhir disimpan sebagai rilis kandidat berlabel (mis. `tokosaya-bootstrap-v1.0.0.zip`) dengan catatan perubahan.
+Checklist penguncian kualitasnya terbentang dua belas item. (1) Seluruh link dan navigasi hidup: klik satu per satu, tidak ada rujukan mati. (2) Konten brand konsisten: tagline, navigasi baku, dan kontak Tokosaya identik di semua halaman. (3) Delapan produk katalog baku tampil dengan nama, kategori, harga (format `Rp650.000` tanpa spasi), dan badge yang benar. (4) Meta lengkap: `charset`, `viewport`, `title` deskriptif per halaman. (5) Google Fonts Poppins/Inter dan Bootstrap via CDN versi terkunci dengan urutan pemuatan yang benar. (6) HTML lolos W3C validator tanpa kesalahan. (7) CSS kustom terorganisasi dengan token, tanpa kode mati dan tanpa `!important`. (8) Test matrix tiga breakpoint terisi penuh tanpa gulir horizontal. (9) Checklist aksesibilitas Bab 13 lolos: alt, kontras, label, tab, fokus. (10) Gambar teroptimasi: nama kebab-case, dimensi wajar, format tetap. (11) Alat QA tidak ikut terkirim tanpa maksud publikasi yang jelas: halaman `qa-checklist.html` dan `laporan-temuan.html` ditempatkan sesuai kesepakatan kelompok. (12) Versi akhir disimpan sebagai rilis kandidat berlabel (mis. `tokosaya-bootstrap-v1.0.0.zip`) dengan catatan perubahan.
 
-Setelah ke dua belas kotak dicentang, artefak M7 pada pertemuan 15 siap: QA checklist terisi, laporan temuan, dan paket rilis kandidat. Dosen menilai milestone ini sebelum Bab 16 menyuntikkan persetujuan akhirnya; situs yang melewati rilis kandidat pun berjalan ke forum UAS dengan tiga keunggulan nyata: tidak akan ada kejutan pada demo, perbaikan punya bukti, dan presentasi tidak perlu mengarang.
+Setelah ke dua belas kotak dicentang, artefak M7 pada pertemuan 15 siap: QA checklist terisi, laporan temuan, dan paket rilis kandidat. Dosen menilai milestone ini sebelum Bab 16 menyuntikkan persetujuan akhirnya; website yang melewati rilis kandidat pun berjalan ke forum UAS dengan tiga keunggulan nyata: tidak akan ada kejutan pada demo, perbaikan punya bukti, dan presentasi tidak perlu mengarang.
 
 Skrip presentasinya sendiri diatur ketat oleh Bab 16: tujuh menit presentasi dan tiga menit QA demo responsif. Struktur yang terbukti efektif untuk tujuh menit adalah: (1) satu menit masalah yang dipecahkan dan audiensnya; (2) sekitar sembilan puluh detik arah penyelesaian—sistem konten, design system, arsitektur halaman; (3) tiga menit demo live yang pergi ke tiga breakpoint dan menunjukkan dua form dan satu katalog; (4) satu menit bukti QA — checklist, temuan terbuka vs diperbaiki; (5) satu menit refleksi dan rencana pemeliharaan. Siapkan cadangan: tangkapan layar responsif pada PDF atau gambar, sehingga demo tetap terlihat seandainya perangkat presentasi bermasalah.
 
@@ -300,7 +300,7 @@ File: tokosaya-bootstrap/qa-checklist.html
 </html>
 ```
 
-**Contoh 2 — Refactor CSS hasil temuan QA.** Berikut `css/style.css` sebelum dan sesudah refactor khas yang dilakukan saat QA sprint. Blok "SEBELUM" ditampilkan untuk bahan diskusi review — hapus pola itu dan pertahankan hanya blok "SESUDAH" pada berkas riil Anda.
+**Contoh 2 — Refactor CSS hasil temuan QA.** Berikut `css/style.css` sebelum dan sesudah refactor khas yang dilakukan saat QA sprint. Blok "SEBELUM" ditampilkan untuk bahan diskusi review — hapus pola itu dan pertahankan hanya blok "SESUDAH" pada file riil Anda.
 
 File: tokosaya-bootstrap/css/style.css
 
@@ -372,11 +372,11 @@ File: tokosaya-bootstrap/kontak.html (fragmen bagian form)
 
 ## Penjelasan Kode
 
-**Contoh 1.** Halaman `qa-checklist.html` dibangun sepenuhnya dengan utilitas Bootstrap — tidak ada satu baris CSS kustom yang diperlukan, dan itu adalah demonstrasi langsung prinsip utilitas-pertama pada subbab 15.4: kebutuhan tata letak sederhana (grid dua kartu, jarak, badge) tidak menuntut CSS buatan tangan. Struktur semantik dipelihara: satu `h1` memuat judul seluruh halaman, kartu-kartu memakai `h2` berikutnya sehingga hierarki tidak melompat; `code` dan `<em>` membawa makna, bukan gaya. Badge memakai pola warna semantik `text-bg-danger`/`text-bg-secondary` (Bab 10) sehingga prioritas item terbaca dari warna, bukan ditebak dari posisi. Comment `<!-- Tanpa bundle JavaScript ... -->` menegaskan pada reviewer bahwa tidak ada halaman yang menyertakan berkas skrip — kepatuhan pada keterbatasan mata kuliah ini sendiri tercantum sebagai item checklist.
+**Contoh 1.** Halaman `qa-checklist.html` dibangun sepenuhnya dengan utilitas Bootstrap — tidak ada satu baris CSS kustom yang diperlukan, dan itu adalah demonstrasi langsung prinsip utilitas-pertama pada subbab 15.4: kebutuhan layout sederhana (grid dua kartu, jarak, badge) tidak menuntut CSS buatan tangan. Struktur semantik dipelihara: satu `h1` memuat judul seluruh halaman, kartu-kartu memakai `h2` berikutnya sehingga hierarki tidak melompat; `code` dan `<em>` membawa makna, bukan gaya. Badge memakai pola warna semantik `text-bg-danger`/`text-bg-secondary` (Bab 10) sehingga prioritas item terbaca dari warna, bukan ditebak dari posisi. Comment `<!-- Tanpa bundle JavaScript ... -->` menegaskan pada reviewer bahwa tidak ada halaman yang menyertakan file skrip — kepatuhan pada keterbatasan mata kuliah ini sendiri tercantum sebagai item checklist.
 
-**Contoh 2.** Blok "SEBELUM" memperlihatkan tiga penyakit sekali baca. Pertama, tiga aturan yang menyasar selektor sama diletakkan di tiga tempat yang berbeda-beda; kaskade memilih aturan terakhir, dan pada saat itulah "menang" berhenti dikaitkan dengan maksudnya. Kedua, `div .card-produk-title` menambah bobot (specificity) dan memakai `!important` untuk memaksa kemenangan — kombinasi yang dilarang pada subbab 15.3, karena perbaikan setelahnya harus memikul senjata yang lebih besar lagi. Ketiga, nilai acak (`22px`, `8px`, hex yang ditulis telanjang) melanggar token (Bab 4) dan skala rem sehingga satu perubahan merek menuntut pencarian manual di sepuluh tempat. Blok "SESUDAH" menyembuhkan ketiganya: selektor tunggal yang deskriptif (`produk-card` pada pola blok-elemen), tanpa `!important`, semua nilai mengacu pada token (`var(--clr-dark)`, `var(--radius)`), dan ukuran pada skala rem. Prinsip refactor yang terbengar: pilih satu aturan per maksud, biarkan token memikul nilai, dan biarkan kaskade bekerja tanpa dipaksa.
+**Contoh 2.** Blok "SEBELUM" memperlihatkan tiga penyakit sekali baca. Pertama, tiga aturan yang menyasar selector sama diletakkan di tiga tempat yang berbeda-beda; kaskade memilih aturan terakhir, dan pada saat itulah "menang" berhenti dikaitkan dengan maksudnya. Kedua, `div .card-produk-title` menambah bobot (specificity) dan memakai `!important` untuk memaksa kemenangan — kombinasi yang dilarang pada subbab 15.3, karena perbaikan setelahnya harus memikul senjata yang lebih besar lagi. Ketiga, nilai acak (`22px`, `8px`, hex yang ditulis telanjang) melanggar token (Bab 4) dan skala rem sehingga satu perubahan merek menuntut pencarian manual di sepuluh tempat. Blok "SESUDAH" menyembuhkan ketiganya: selector tunggal yang deskriptif (`produk-card` pada pola blok-elemen), tanpa `!important`, semua nilai mengacu pada token (`var(--clr-dark)`, `var(--radius)`), dan ukuran pada skala rem. Prinsip refactor yang terbengar: pilih satu aturan per maksud, biarkan token memikul nilai, dan biarkan kaskade bekerja tanpa dipaksa.
 
-**Contoh 3.** Form kontak ini memenuhi checklist aksesibilitas yang akan dijalankan peer review. Setiap label memakai kaitan `for`–`id` yang tegas ("nama", "surel", "pesan", "kategori-beli", "kategori-keluhan") sehingga pembaca layar menyebutkan nama bidang dengan benar ke titik mana pun kursor kognitifnya — kesalahan klasik yang tercantum pada tabel anatomi pada subbab 15.1 adalah label bebas tanpa tautan. Atribut `autocomplete` memberi isian cepat ("name", "email") yang memenuhi kriteria WCAG 2.2 tentang mengidentifikasi tujuan isian; `aria-describedby` menautkan teks bantuan ke bidang surel sehingga ia dibacakan bersama labelnya. Atribut `required` pada surel memicu pemeriksaan natif peramban (tipe `email`, isian wajib) tanpa satu baris JavaScript pun, sebab pemeriksaan tersebut bagian dari peramban, bukan dari skrip halaman. Fieldset/legend mengelompokkan kategori pesan; ini praktik Bab 11 untuk form yang menolak menjadi tebakan. Perhatikan pula bahwa semua tampilan menyerahkan diri kepada kelas Bootstrap (`form-label`, `form-control`, `form-check`), dan kelas kustom tidak dituliskan.
+**Contoh 3.** Form kontak ini memenuhi checklist aksesibilitas yang akan dijalankan peer review. Setiap label memakai kaitan `for`–`id` yang tegas ("nama", "surel", "pesan", "kategori-beli", "kategori-keluhan") sehingga pembaca layar menyebutkan nama bidang dengan benar ke titik mana pun kursor kognitifnya — kesalahan klasik yang tercantum pada tabel anatomi pada subbab 15.1 adalah label bebas tanpa link. Atribut `autocomplete` memberi isian cepat ("name", "email") yang memenuhi kriteria WCAG 2.2 tentang mengidentifikasi tujuan isian; `aria-describedby` menautkan teks bantuan ke bidang surel sehingga ia dibacakan bersama labelnya. Atribut `required` pada surel memicu pemeriksaan natif browser (tipe `email`, isian wajib) tanpa satu baris JavaScript pun, sebab pemeriksaan tersebut bagian dari browser, bukan dari skrip halaman. Fieldset/legend mengelompokkan kategori pesan; ini praktik Bab 11 untuk form yang menolak menjadi tebakan. Perhatikan pula bahwa semua tampilan menyerahkan diri kepada kelas Bootstrap (`form-label`, `form-control`, `form-check`), dan kelas kustom tidak dituliskan.
 
 ## Praktikum
 
@@ -387,7 +387,7 @@ Melatih QA sprint lengkap atas draft final project: melakukan audit mandiri bera
 ### Kebutuhan
 
 1. Draft final project `tokosaya-bootstrap/` hasil milestone M6 — minimal empat halaman (index, katalog, produk, kontak/checkout) yang navigasinya menyambung penuh, ditambah `styleguide.html` dari Bab 12.
-2. Google Chrome (atau browser modern lain) dengan DevTools; fitur W3C validator daring (validator.w3.org) melalui peramban.
+2. Google Chrome (atau browser modern lain) dengan DevTools; fitur W3C validator daring (validator.w3.org) melalui browser.
 3. Alat QA dari bab ini: `qa-checklist.html` dan `laporan-temuan.html` (kode praktikum) yang disimpan di akar folder proyek.
 4. Lembar sebar peer review yang disepakati kelas (checklist Bab 13 boleh dipakai ulang), serta alat pembuat arsip ZIP pada sistem Anda.
 
@@ -395,18 +395,18 @@ Melatih QA sprint lengkap atas draft final project: melakukan audit mandiri bera
 
 1. Simpan `qa-checklist.html` dan `laporan-temuan.html` (bagian Kode di bawah) di akar folder `tokosaya-bootstrap/` berdampingan dengan halaman-halaman produksi; pastikan keduanya terbuka di Chrome.
 2. Salin isi laporan temuan dengan baris contoh (F-01–F-03) terlebih dahulu — lalu hapus dan ganti dengan temuan milik proyek Anda; contoh baris ada agar formatnya terdemonstrasi.
-3. Siapkan tiga jendela kerja di DevTools: tab peramban utama, tab yang memanggil laporan-temuan (untuk menyalin temuan), dan satu tab validator daring. Tetapkan satu berkas ringkasan QA bernama `laporan-qa.md` di luar folder proyek untuk bukti M7.
+3. Siapkan tiga jendela kerja di DevTools: tab browser utama, tab yang memanggil laporan-temuan (untuk menyalin temuan), dan satu tab validator daring. Tetapkan satu file ringkasan QA bernama `laporan-qa.md` di luar folder proyek untuk bukti M7.
 
 ### Langkah Kerja
 
-1. **Konfirmasi draft M6.** Pastikan seluruh halaman final project lengkap (index, katalog, produk, kontak atau checkout, tentang bila ada, styleguide) dan setiap tautan nav hidup. Bila ada halaman rusak, selesaikan dahulu — QA sprint bukan tempat menulis halaman baru.
+1. **Konfirmasi draft M6.** Pastikan seluruh halaman final project lengkap (index, katalog, produk, kontak atau checkout, tentang bila ada, styleguide) dan setiap link nav hidup. Bila ada halaman rusak, selesaikan dahulu — QA sprint bukan tempat menulis halaman baru.
 2. **Audit struktur (QA mandiri I).** Jalankan pengujian `qa-checklist.html` secara top-down pada bagian "Struktur dan HTML": lakukan proses validasi satu per satu halaman utama (index, katalog, produk, kontak) pada validator W3C, catati setiap kesalahan dan peringatan berikut halamannya. Catat ke `laporan-temuan.html` dengan ID naik.
 3. **Audit responsif (QA mandiri II).** Buka setiap halaman pada mode responsif device toolbar Chrome; pemindai lima titik (nav, hero, grid kartu, form, footer) pada lebar 360/768/992 px; isi test matrix di lembar ringkasan: sel yang temuan diberi catatan singkat dan tangkapan layar.
 4. **Audit aksesibilitas (QA mandiri III).** Uji tiap halaman dengan checklist lima pemeriksaan subbab 15.6: alt bermakna, kontras 4,5:1 pada teks utama, heading tidak melompat, form dapat dijelajahi tab tanpa mouse, dan indikator fokus terlihat. Catat temuan.
-5. **Peer review silang.** Tukar situs dengan satu rekan sekelas selama 45 menit: reviewer menjalankan langkah 2–4 yang sama pada proyek Anda, menemukan temuan baru dengan format sama, dan menandai setiap temuan yang terkonfirmasi. Anda secara bersamaan men-review miliknya. Perjanjian yang setara mencegah review satu arah.
-6. **Konsolidasi dan prioritas temuan.** Gabungkan temuan mandiri dan peer review; beri severitas (*severity*): Kritis (menghalangi penggunaan — tautan mati, form tak berlabel, gulir horizontal), Mayor (memperburuk penggunaan — kontras kurang, kartu tak sejajar), Minor (kesalahan kecil — radius, jarak tidak sesuai styleguide). Urutkan tabel dari Kritis.
+5. **Peer review silang.** Tukar website dengan satu rekan sekelas selama 45 menit: reviewer menjalankan langkah 2–4 yang sama pada proyek Anda, menemukan temuan baru dengan format sama, dan menandai setiap temuan yang terkonfirmasi. Anda secara bersamaan men-review miliknya. Perjanjian yang setara mencegah review satu arah.
+6. **Konsolidasi dan prioritas temuan.** Gabungkan temuan mandiri dan peer review; beri severitas (*severity*): Kritis (menghalangi penggunaan — link mati, form tak berlabel, gulir horizontal), Mayor (memperburuk penggunaan — kontras kurang, kartu tak sejajar), Minor (kesalahan kecil — radius, jarak tidak sesuai styleguide). Urutkan tabel dari Kritis.
 7. **Perbaikan terarah.** Mulai dari Kritis. Untuk setiap perbaikan, jalankan metode debugging empat langkah subbab 15.7: pastikan reproduksinya → isolasi elemen terkecil → terapkan satu perubahan → verifikasi muat ulang. Jangan melipatgandakan perubahan dalam satu putaran.
-8. **Uji ulang regresi.** Setelah setiap perbaikan, jalankan penyapuan cepat: tekan setiap tautan nav pada halaman sebelumnya, buka satu halaman katalog pada tiga breakpoint, dan periksa styleguide: pastikan tak ada komponen yang ikut berubah tak terduga.
+8. **Uji ulang regresi.** Setelah setiap perbaikan, jalankan penyapuan cepat: tekan setiap link nav pada halaman sebelumnya, buka satu halaman katalog pada tiga breakpoint, dan periksa styleguide: pastikan tak ada komponen yang ikut berubah tak terduga.
 9. **Tutup temuan.** Ubah status temuan bahwa telah diperbaiki di laporan-temuan (kolom Status) hanya setelah verifikasi ulang; biarkan temuan "Terbuka" bila memang belum diperbaiki dan catat alasannya.
 10. **Kunci rilis kandidat.** Pastikan seluruh item Wajib pada qa-checklist berstatus lulus; beri label paket `tokosaya-bootstrap-v1.0.0-rc1.zip` (rc = rilis kandidat); salin ringkasan checklist ke `laporan-qa.md` dan kirim keduanya sebagai artefak M7.
 
@@ -496,14 +496,14 @@ Halaman ini adalah templat pelaporan QA yang dipakai berulang; mengapa perlu ben
 
 ### Hasil yang Diharapkan
 
-Di akhir praktikum, lima bukti terlihat: (1) `qa-checklist.html` menampilkan seluruh item Wajib berstatus lulus dan tanpa item kritis tersisa; (2) `laporan-temuan.html` memuat minimal tiga temuan milik proyek sendiri dengan kolom lengkap, yang telah berubah dari tumpukan Kritis ke campuran Diperbaiki/Terbuka (bila kebijakan kelompok mencatat beberapa temuan minor tetap Terbuka); (3) test matrix tiga breakpoint × empat halaman terisi penuh tanpa sel kosong; (4) zip paket `tokosaya-bootstrap-v1.0.0-rc1.zip` dapat dibuka dan halamannya berpindah benar tanpa tautan mati; (5) `laporan-qa.md` memuat ringkasan checklist dan daftar perubahan akhir. Ukuran yang terukur: temuan Kritis = 0 tersisa pada rilis kandidat.
+Di akhir praktikum, lima bukti terlihat: (1) `qa-checklist.html` menampilkan seluruh item Wajib berstatus lulus dan tanpa item kritis tersisa; (2) `laporan-temuan.html` memuat minimal tiga temuan milik proyek sendiri dengan kolom lengkap, yang telah berubah dari tumpukan Kritis ke campuran Diperbaiki/Terbuka (bila kebijakan kelompok mencatat beberapa temuan minor tetap Terbuka); (3) test matrix tiga breakpoint × empat halaman terisi penuh tanpa sel kosong; (4) zip paket `tokosaya-bootstrap-v1.0.0-rc1.zip` dapat dibuka dan halamannya berpindah benar tanpa link mati; (5) `laporan-qa.md` memuat ringkasan checklist dan daftar perubahan akhir. Ukuran yang terukur: temuan Kritis = 0 tersisa pada rilis kandidat.
 
 ### Troubleshooting
 
 **Masalah:** Perubahan pada `css/style.css` tidak terpantau pada halaman walau telah dimuat ulang.
-**Penyebab:** Halaman masih memakai salinan lama dari cache peramban, berkas belum tersimpan di editor, atau jalur `href` ke CSS salah ketik sehingga CSS kustom tidak ikut termuat sama sekali.
-**Solusi:** Pastikan berkas tersimpan; tekan muat ulang cepat (Ctrl+F5) untuk memaksa pembaruan; periksa jalur `href="css/style.css"` pada setiap halaman; bila perlu, buka panel Styles pada elemen bersangkutan untuk melihat apakah aturan Anda tampil di senarai.
-**Pencegahan:** Biasakan menyimpan sebelum menguji; gunakan satu berkas `css/style.css` di seluruh halaman sehingga hanya satu jalur yang bisa salah; beri komentar `/* kustom */` agar aturan kustom mudah dicari.
+**Penyebab:** Halaman masih memakai salinan lama dari cache browser, file belum tersimpan di editor, atau jalur `href` ke CSS salah ketik sehingga CSS kustom tidak ikut termuat sama sekali.
+**Solusi:** Pastikan file tersimpan; tekan muat ulang cepat (Ctrl+F5) untuk memaksa pembaruan; periksa jalur `href="css/style.css"` pada setiap halaman; bila perlu, buka panel Styles pada elemen bersangkutan untuk melihat apakah aturan Anda tampil di senarai.
+**Pencegahan:** Biasakan menyimpan sebelum menguji; gunakan satu file `css/style.css` di seluruh halaman sehingga hanya satu jalur yang bisa salah; beri komentar `/* kustom */` agar aturan kustom mudah dicari.
 
 **Masalah:** Validator W3C menampilkan banyak kesalahan sekaligus sehingga membingungkan.
 **Penyebab:** Satu tag yang tidak ditutup (misalnya `div` atau `ul`) membuat parser menarik kesimpulan berantai pada baris-baris setelahnya, sehingga satu akar kesalahan muncul sebagai lima catatan.
@@ -511,18 +511,18 @@ Di akhir praktikum, lima bukti terlihat: (1) `qa-checklist.html` menampilkan sel
 **Pencegahan:** Tulis tag penutup segera setelah tag pembuka saat mengetik kode; lakukan proses validasi satu halaman tepat setelah selesai ditulis, bukan memeriksa seluruh proyek di akhir.
 
 **Masalah:** Temuan katalog tetap muncul pada halaman lain setelah satu perbaikan diterapkan.
-**Penyebab:** Selektor CSS kustom yang ditulis terlalu luas (misalnya `.card-title` tanpa konteks) ikut mengenai komponen lain melalui kaskade, atau berkas yang diubah ternyata disertakan pada halaman yang tak sengaja ikut memuatnya.
+**Penyebab:** Selector CSS kustom yang ditulis terlalu luas (misalnya `.card-title` tanpa konteks) ikut mengenai komponen lain melalui kaskade, atau file yang diubah ternyata disertakan pada halaman yang tak sengaja ikut memuatnya.
 **Solusi:** Batasi kembali seleksi ke konteks komponen yang dimaksud (pola `blok-elemen`, seperti `.produk-card .card-title`), lalu jalankan uji ulang regresi pada satu halaman lain yang memakai komponen tersebut.
 **Pencegahan:** Beri penyokong (parent class) pada setiap aturan kustom agar cakupannya jelas, dan jalankan penyapuan nav dan satu halaman katalog setiap kali berakhir sprint perbaikan.
 
-**Masalah:** Peer review menemukan halaman yang gagal di-open (404 pada beberapa tautan).
-**Penyebab:** Huruf kapital, spasi, atau kutipan berbeda pada jalur `href`/`src` dibanding nama berkas sesungguhnya — sering muncul karena nama pada disk dan nama pada HTML tidak pernah dibandingkan.
-**Solusi:** Samakan nama berkas pada disk dan markup (kebab-case, huruf kecil tanpa spasi), lalu uji klik seluruh tautan pada menu nav dan footer.
-**Pencegahan:** Sepakati nama berkas sebelum halaman mulai ditulis dan jalankan pengujian klik satu kali pada setiap rilis kandidat sebelum dikirim.
+**Masalah:** Peer review menemukan halaman yang gagal di-open (404 pada beberapa link).
+**Penyebab:** Huruf kapital, spasi, atau kutipan berbeda pada jalur `href`/`src` dibanding nama file sesungguhnya — sering muncul karena nama pada disk dan nama pada HTML tidak pernah dibandingkan.
+**Solusi:** Samakan nama file pada disk dan markup (kebab-case, huruf kecil tanpa spasi), lalu uji klik seluruh link pada menu nav dan footer.
+**Pencegahan:** Sepakati nama file sebelum halaman mulai ditulis dan jalankan pengujian klik satu kali pada setiap rilis kandidat sebelum dikirim.
 
 ## Studi Kasus
 
-**Konteks:** Tim internal Tokosaya (UMKM aksesori dan elektronik komputer) bersama seorang praktikan Sistem Informasi menyiapkan peluncuran situs `tokosaya.id`. Pemilik toko — pengguna akhir yang tidak menyentuh kode — akan menilai situs itu sendiri: bisa-jangka-pelanggan, katalognya, dan formulir pesanannya. Inilah *user acceptance testing* (UAT): uji penerimaan oleh pengguna nyata sebelum peluncuran resmi, berbeda dari QA teknis yang sudah Anda jalankan sendiri sebagai pengembang. Pada UAT, praktikan berperan mencatat keluhan pemilik (yang kadang menyampaikannya dengan bahasa non-teknis: "yang ini beda sama yang tadi", "warnanya beda dengan yang di gambar"), menerjemahkannya ke temuan teknis, dan melaporkannya balik secara profesional.
+**Konteks:** Tim internal Tokosaya (UMKM aksesori dan elektronik komputer) bersama seorang praktikan Sistem Informasi menyiapkan peluncuran website `tokosaya.id`. Pemilik toko — pengguna akhir yang tidak menyentuh kode — akan menilai website itu sendiri: bisa-jangka-pelanggan, katalognya, dan formulir pesanannya. Inilah *user acceptance testing* (UAT): uji penerimaan oleh pengguna nyata sebelum peluncuran resmi, berbeda dari QA teknis yang sudah Anda jalankan sendiri sebagai pengembang. Pada UAT, praktikan berperan mencatat keluhan pemilik (yang kadang menyampaikannya dengan bahasa non-teknis: "yang ini beda sama yang tadi", "warnanya beda dengan yang di gambar"), menerjemahkannya ke temuan teknis, dan melaporkannya balik secara profesional.
 
 **Masalah:** Melaporkan temuan QA kepada klien kecil dengan format yang bisa ditindaklanjuti. Laporan yang buruk meraung: "ada banyak bug, mohon maaf" — tidak ada yang bisa diputuskan dari kalimat itu. Laporan yang baik menghadirkan lima bagian yang ringkas: (1) ringkasan eksekutif tiga kalimat (kesimpulan penerimaan: lulus, lulus dengan catatan, atau tidak lulus — dan alasan utamanya); (2) lingkup pengujian (halaman mana, perangkat apa, skenario apa); (3) tabel temuan berkategori severitas dengan ID, langkah reproduksi, dan bukti tangkapan layar; (4) rekomendasi prioritas urutan perbaikan; (5) kesimpulan dan tawaran sesi klarifikasi. Formatnya persis yang dipraktikkan pada `laporan-temuan.html` — hanya dituang untuk pembaca bisnis: pemilik Tokosaya tidak membaca kode, ia membaca dampak dan prioritas.
 
@@ -532,9 +532,9 @@ Di akhir praktikum, lima bukti terlihat: (1) `qa-checklist.html` menampilkan sel
 
 1. Jelaskan perbedaan *quality assurance*, pengujian (testing), dan UAT dengan masing-masing satu paragraf pendek, lalu temukan satu contoh aktivitas pada Bab 15 yang termasuk masing-masing kategori.
 2. Buat test matrix sendiri untuk empat halaman Tokosaya (index, katalog, produk, kontak) × tiga breakpoint (360, 768, 992) berbentuk tabel; isi kolom status dengan asumsi proyek Anda saat ini, dan tandai tiga sel yang paling berisiko beserta alasannya.
-3. Dibentangkan blok CSS berikut yang ditemukan reviewer pada `css/style.css` proyek: `/* kustom */ .daftar-produk { font-size: 1rem; }`, `/* kustom */ div .daftar-produk { font-size: 0.9rem !important; }`, `/* kustom */ .daftar-produk { border-radius: 9px; }`. Tuliskan tiga cacat, urutkan dari yang paling menyebar bahayanya, dan susun satu berkas CSS penggantinya yang mengikuti kaidah subbab 15.3–15.4.
+3. Dibentangkan blok CSS berikut yang ditemukan reviewer pada `css/style.css` proyek: `/* kustom */ .daftar-produk { font-size: 1rem; }`, `/* kustom */ div .daftar-produk { font-size: 0.9rem !important; }`, `/* kustom */ .daftar-produk { border-radius: 9px; }`. Tuliskan tiga cacat, urutkan dari yang paling menyebar bahayanya, dan susun satu file CSS penggantinya yang mengikuti kaidah subbab 15.3–15.4.
 4. Jalankan audit aksesibilitas mandiri pada satu halaman `kontak.html` proyek Anda memakai kaidah lima pemeriksaan (alt, kontras, heading, label-tab, fokus); tuliskan hasilnya sebagai daftar temuan berkategori severitas pada format tabel temuan, lengkap dengan langkah reproduksi.
-5. Buat skrip presentasi tujuh menit untuk final project Anda (masalah → solusi → demo responsif → bukti QA → refleksi) yang memakai tabel alokasi waktu per detik; tuliskan bagian satu paragraf pembuka yang menutup dengan kalimat "mengapa situs ini siap dirilis".
+5. Buat skrip presentasi tujuh menit untuk final project Anda (masalah → solusi → demo responsif → bukti QA → refleksi) yang memakai tabel alokasi waktu per detik; tuliskan bagian satu paragraf pembuka yang menutup dengan kalimat "mengapa website ini siap dirilis".
 6. Jelaskan satu situasi pada proyek Anda ketika peer review menemukan cacat yang tidak Anda temukan sendiri. Analisa alasan (kelebihan mata segar, asumsi tersamar, kebiasaan melihat sendiri), dan tulis satu langkah proses yang mencegahnya berulang.
 
 ## Tugas
@@ -556,7 +556,7 @@ Di akhir praktikum, lima bukti terlihat: (1) `qa-checklist.html` menampilkan sel
 - QA (perawatan kualitas) adalah proses sistematis — bukan tindakan akhir sembarangan — yang membuktikan bahwa proyek memenuhi standar sebelum diserahkan; pada buku ini ia adalah milestone M7 pada pertemuan 15.
 - Anatomi final project memaparkan sembilan bagian wajib di empat halaman baku Tokosaya dan mendefinisikan fokus QA masing-masing bagian.
 - Organisasi folder dan penamaan `kebab-case` pola `blok-elemen` membuat audit dapat disisir tanpa sisa dan memudahkan peer review.
-- Kode bersih diterapkan pada dua berkas: HTML (satu `h1`, meta viewport, alt, label-terhubung) dan CSS (urutan token → komponen → halaman, tanpa kode mati dan `!important`).
+- Kode bersih diterapkan pada dua file: HTML (satu `h1`, meta viewport, alt, label-terhubung) dan CSS (urutan token → komponen → halaman, tanpa kode mati dan `!important`).
 - Praktik terbaik Bootstrap pada Bab 15: utilitas-pertama, kustom terkomentar, tak ada duplikasi, dan CDN dikunci pada 5.3.3.
 - Test matrix halaman × breakpoint + pemindai lima titik menjadikan pengujian responsif terencana; uji ulang regresi menyapu cacat yang kembali.
 - Audit aksesibilitas menurunkan kaidah WCAG 2.2 Bab 13 ke lima pemeriksaan wajib yang bisa dijalankan sendiri, diperkuat audit Lighthouse.
@@ -564,7 +564,7 @@ Di akhir praktikum, lima bukti terlihat: (1) `qa-checklist.html` menampilkan sel
 - Checklist pra-publikasi dua belas titik mengunci versi `v1.0.0-rc1`; laporan temuan profesional berformat ID/reproduksi/severitas/status/bukti.
 - Presentasi tujuh menit + tiga menit QA demo responsif disusun sebagai skrip (masalah → solusi → demo → bukti QA → refleksi) dengan cadangan tangkapan layar.
 
-Jembatan ke bab berikutnya: setiap artefak yang Anda kunci di bab ini — QA checklist yang terisi, laporan temuan yang menunjukkan sejarah perbaikan, paket rilis kandidat, dan skrip presentasi tujuh menit — adalah bahan mentah ujian akhir semester. **Bab 16 (UAS: Final Project Website)** menyambutnya dengan pedoman ujian resmi: delapan pilihan studi kasus, persyaratan minimum empat halaman, rubrik penilaian berbobot yang dinormalisasikan ke 100 poin, format pengumpulan (ZIP/repo + README + tangkapan layar responsif), serta presentasi tujuh menit dengan tiga menit QA demo responsif. Situs Anda sudah jadi; pada bab berikutnya, situs itu menyamai gelar dan nilai Anda.
+Jembatan ke bab berikutnya: setiap artefak yang Anda kunci di bab ini — QA checklist yang terisi, laporan temuan yang menunjukkan sejarah perbaikan, paket rilis kandidat, dan skrip presentasi tujuh menit — adalah bahan mentah ujian akhir semester. **Bab 16 (UAS: Final Project Website)** menyambutnya dengan pedoman ujian resmi: delapan pilihan studi kasus, persyaratan minimum empat halaman, rubrik penilaian berbobot yang dinormalisasikan ke 100 poin, format pengumpulan (ZIP/repo + README + tangkapan layar responsif), serta presentasi tujuh menit dengan tiga menit QA demo responsif. Website Anda sudah jadi; pada bab berikutnya, website itu menyamai gelar dan nilai Anda.
 
 ## Evaluasi
 
@@ -575,7 +575,7 @@ Pilih satu jawaban paling tepat untuk setiap butir.
 1. Berikut yang paling tepat menggambarkan *quality assurance* (QA) pada proyek web statis adalah...
    A. Mencari kesalahan tampilan hanya pada hari pengumpulan.
    B. Proses sistematis memastikan produk memenuhi kriteria kualitas yang terukur sebelum diserahkan.
-   C. Menambahkan lebih banyak komponen agar situs tampak kaya.
+   C. Menambahkan lebih banyak komponen agar website tampak kaya.
    D. Menulis ulang seluruh halaman memakai framework yang berbeda.
 2. Pada metode utilitas-pertama (subbab 15.4), langkah pertama sebelum menulis CSS kustom adalah...
    A. Mencari perluasan CDN dengan versi terbaru.
@@ -594,7 +594,7 @@ Pilih satu jawaban paling tepat untuk setiap butir.
    D. Judul temuan diganti agar terdengar positif.
 5. Rasio kontras minimal untuk teks utama normal menurut WCAG 2.2 level AA adalah...
    A. 2 : 1.
-   B. 3 : 1 pada ponsel dan 2 : 1 pada desktop.
+   B. 3 : 1 pada HP dan 2 : 1 pada desktop.
    C. 4,5 : 1.
    D. 10 : 1 untuk semua teks tanpa kecuali.
 6. Artefak yang diserahkan pada milestone M7 (pertemuan 15) menurut pedoman buku adalah...
@@ -608,16 +608,16 @@ Pilih satu jawaban paling tepat untuk setiap butir.
    C. Kaskade; menghapus seluruh CSS kustom.
    D. Inline style; menambah `!important`.
 8. Cara paling tepat menyalakan pengecekan responsif di DevTools adalah...
-   A. Mengubah tinggi jendela peramban secara manual dan mengamati.
+   A. Mengubah tinggi jendela browser secara manual dan mengamati.
    B. Memakai device toolbar dengan lebar tetap satu titik lalu berpindah breakpoint.
-   C. Meminta pengguna nyata membuka situs dari ponselnya tanpa catatan.
+   C. Meminta pengguna nyata membuka website dari ponselnya tanpa catatan.
    D. Menonaktifkan CSS lalu membaca HTML.
 
 ### Benar atau Salah
 
 1. QA adalah tugas tim terpisah; pengembang yang menulis kode tidak perlu menjalankan audit mandiri.
 2. Rilis kandidat adalah versi yang dinyatakan siap rilis dan menunggu persetujuan terakhir.
-3. Menulis CSS kustom tanpa komentar pengenal diperbolehkan karena urutan berkas sudah cukup.
+3. Menulis CSS kustom tanpa komentar pengenal diperbolehkan karena urutan file sudah cukup.
 4. Nada laporan temuan yang efektif menyalahkan pengembang agar perbaikan berjalan cepat.
 5. Checklist aksesibilitas Bab 13 tetap dipakai pada bab ini sebagai audit mandiri.
 
@@ -649,7 +649,7 @@ File: tokosaya-bootstrap/latihan/fragmen-soal.html
 </div>
 ```
 
-Fragmen di atas adalah kartu produk beserta form kecil pada sebuah halaman katalog. Identifikasi minimal tiga cacat QA yang ada pada fragmen (aspek: aksesibilitas, teks tautan, pasangan label–input) dan tulis perbaikannya, sebagaimana akan Anda catat pada `laporan-temuan.html`.
+Fragmen di atas adalah kartu produk beserta form kecil pada sebuah halaman katalog. Identifikasi minimal tiga cacat QA yang ada pada fragmen (aspek: aksesibilitas, teks link, pasangan label–input) dan tulis perbaikannya, sebagaimana akan Anda catat pada `laporan-temuan.html`.
 
 2. Perhatikan potongan CSS berikut di `css/style.css`:
 
@@ -671,7 +671,7 @@ Pertanyaan: aturan mana yang menang pada judul kartu produk mengapa; apa dua cac
 ### Soal Praktik
 
 1. Jalankan QA sprint mini pada satu halaman proyek Anda (misalnya `kontak.html` selama 30 menit): jalankan checklist lima pemeriksaan aksesibilitas dan pemeriksaan W3C validator, catat minimal tiga temuan berkategori severitas pada format tabel temuan (ID, halaman, temuan, langkah reproduksi, severitas, status), perbaiki satu temuan Kritis, lalu jalankan uji ulang regresi. Kumpulkan tabel temuan dan tangkapan layar sebelum/sesudah perbaikan.
-2. Susun skrip presentasi tujuh menit untuk final project Anda (bagian per bagian dengan alokasi waktu menit) dan satu entri ringkasan rilis kandidat beserta daftar perubahan terakhir; pastikan ringkasan menyebut status seluruh temuan (terbuka vs diperbaiki) dan satu paragraf penutup "mengapa situs ini siap dirilis".
+2. Susun skrip presentasi tujuh menit untuk final project Anda (bagian per bagian dengan alokasi waktu menit) dan satu entri ringkasan rilis kandidat beserta daftar perubahan terakhir; pastikan ringkasan menyebut status seluruh temuan (terbuka vs diperbaiki) dan satu paragraf penutup "mengapa website ini siap dirilis".
 
 ### Kunci Jawaban
 
@@ -696,8 +696,8 @@ Pertanyaan: aturan mana yang menang pada judul kartu produk mengapa; apa dua cac
 5. **Benar.** Checklist aksesibilitas Bab 13 adalah fondasinya; Bab 15 menerapkannya kembali sebagai pemeriksaan wajib.
 
 **Analisis Kode (ringkasan):**
-1. Cacat yang diharapkan ditemukan (minimal tiga): (a) `img` tanpa atribut `alt` — tambahkan `alt` deskriptif ("Keyboard Mekanis KX-210 dengan switch biru"); (b) teks tautan "Klik di sini" tidak bermakna — ganti menjadi "Lihat detail Keyboard Mekanis KX-210"; (c) label tanpa kaitan `for` dan input tanpa `id` — tambahkan `for="surel"` dan `id="surel"`; (d) `h5` di kartu berpotensi melompat level bila halaman memulai dari `h1` di header — pakai `h2`/`h3` sesuai hierarki; (e) `href="#"` membuat tautan mati — ganti `href="produk.html"`.
-2. Aturan kedua (dengan `!important` dan selector bertingkat `div .produk-card .card-title`) yang menang karena kombinasi bobot lebih tinggi plus `!important`. Dua cacat: `!important` (menekan kaskade secara paksa dan mengikat refactoring masa depan) dan duplikasi nilai yang terpencar (dua deklarasi `font-size` untuk tujuan sama). Perbaikan: hapus aturan `!important`, sederhanakan ke satu selektor `.produk-card .card-title`, dan ganti nilai literal dengan token/skala rem.
+1. Cacat yang diharapkan ditemukan (minimal tiga): (a) `img` tanpa atribut `alt` — tambahkan `alt` deskriptif ("Keyboard Mekanis KX-210 dengan switch biru"); (b) teks link "Klik di sini" tidak bermakna — ganti menjadi "Lihat detail Keyboard Mekanis KX-210"; (c) label tanpa kaitan `for` dan input tanpa `id` — tambahkan `for="surel"` dan `id="surel"`; (d) `h5` di kartu berpotensi melompat level bila halaman memulai dari `h1` di header — pakai `h2`/`h3` sesuai hierarki; (e) `href="#"` membuat link mati — ganti `href="produk.html"`.
+2. Aturan kedua (dengan `!important` dan selector bertingkat `div .produk-card .card-title`) yang menang karena kombinasi bobot lebih tinggi plus `!important`. Dua cacat: `!important` (menekan kaskade secara paksa dan mengikat refactoring masa depan) dan duplikasi nilai yang terpencar (dua deklarasi `font-size` untuk tujuan sama). Perbaikan: hapus aturan `!important`, sederhanakan ke satu selector `.produk-card .card-title`, dan ganti nilai literal dengan token/skala rem.
 
 **Soal Praktik (kerangka jawaban):**
 1. Tabel temuan yang lulus harus memuat ID, halaman, gejala, langkah reproduksi yang bisa diulang, severitas yang benar (Kritis murni untuk yang menghalangi), dan status yang berubah hanya setelah verifikasi ulang; tangkapan layar sebelum/sesudah menjadi bukti.
@@ -708,7 +708,7 @@ Pertanyaan: aturan mana yang menang pada judul kartu produk mengapa; apa dua cac
 ## Referensi
 
 1. Bootstrap. (2024). *Bootstrap 5.3 documentation*. Diases 10 Maret 2026, dari https://getbootstrap.com/docs/5.3/
-2. MDN Web Docs. (2026). *Debugging CSS* dan dokumentasi perkakas pengembang peramban. Diases 10 Maret 2026, dari https://developer.mozilla.org/
+2. MDN Web Docs. (2026). *Debugging CSS* dan dokumentasi perkakas pengembang browser. Diases 10 Maret 2026, dari https://developer.mozilla.org/
 3. W3C. (2023). *Web Content Accessibility Guidelines (WCAG) 2.2 — W3C Recommendation*. Diases 10 Maret 2026, dari https://www.w3.org/TR/wcag22/
 4. Krug, S. (2014). *Don't Make Me Think, Revisited: A Common Sense Approach to Web Usability* (ed. ke-3). San Francisco: New Riders.
 5. Robbins, J. N. (2018). *Learning Web Design: A Beginner's Guide to HTML, CSS, JavaScript, and Web Graphics* (ed. ke-5). Sebastopol: O'Reilly Media.

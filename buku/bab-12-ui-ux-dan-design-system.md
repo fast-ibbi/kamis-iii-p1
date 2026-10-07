@@ -40,7 +40,7 @@ Masalah Rara sebenarnya bukan soal kemampuan—semua orang bisa menata tampilan�
 
 ### 12.1 Prinsip Dasar UI: Hierarki, Konsistensi, Usability, dan Affordance
 
-Antarmuka pengguna, atau *user interface* (UI), adalah seluruh wajah visual yang dilihat dan disentuh pengguna: tata letak, warna, huruf, tombol, sampai ikon kecil di bilah navigasi. Sementara itu, pengalaman pengguna, atau *user experience* (UX), cakupannya lebih luas: seluruh rasa dan hasil yang dialami pengguna dari awal membuka halaman sampai selesai berbelanja. Hubungan keduanya mirip restoran dan makanannya: UI adalah suasana ruangan, menu, dan desain piring; UX adalah keseluruhan pengalaman makan, termasuk kecepatan pelayanan dan rasa lega setelah kenyang. Prinsip dasar UI/UX pada subbab ini membantu Anda merancang keduanya sekaligus. Dalam konteks sistem informasi, keduanya menentukan apakah portal akademik, sistem rekam medis, atau toko daring benar-benar dipakai orang—bukan sekadar selesai dibangun.
+Antarmuka pengguna, atau *user interface* (UI), adalah seluruh wajah visual yang dilihat dan disentuh pengguna: layout, warna, huruf, tombol, sampai ikon kecil di bilah navigasi. Sementara itu, pengalaman pengguna, atau *user experience* (UX), cakupannya lebih luas: seluruh rasa dan hasil yang dialami pengguna dari awal membuka halaman sampai selesai berbelanja. Hubungan keduanya mirip restoran dan makanannya: UI adalah suasana ruangan, menu, dan desain piring; UX adalah keseluruhan pengalaman makan, termasuk kecepatan pelayanan dan rasa lega setelah kenyang. Prinsip dasar UI/UX pada subbab ini membantu Anda merancang keduanya sekaligus. Dalam konteks sistem informasi, keduanya menentukan apakah portal akademik, sistem rekam medis, atau toko daring benar-benar dipakai orang—bukan sekadar selesai dibangun.
 
 Prinsip pertama adalah **hierarki visual** (*visual hierarchy*): menata informasi menurut tingkat pentingnya, dari yang paling menonjol sampai yang pelengkap. Alasannya sederhana: pengguna tidak membaca halaman kata demi kata, melainkan memindai layar dalam hitungan detik lalu memutuskan ke mana perhatian mereka bergerak. Hierarki yang jelas mengarahkan pemindaian itu, seperti papan pengumuman kampus yang judulnya dicetak besar dan tebal, lalu rincian tanggalnya diletakkan lebih kecil di bawah. Mirip juga dengan surat resmi: kop besar di atas, isi paragraf di tengah, tanda tangan di bawah—pembaca tahu urutan membacanya tanpa perlu diarahkan.
 
@@ -69,11 +69,11 @@ DENGAN HIERARKI (baik):
 
 Pada versi yang baik, urutan mata bergerak dari judul besar, ke subjudul yang merangkum isi, lalu ke tombol utama; itulah alur pikir yang kita harapkan. Hierarki biasanya dibangun oleh beberapa "pegas" sekaligus—ukuran (judul lebih besar), ketebalan (judul lebih tebal), warna (tombol lebih kontras), posisi (ada di atas), dan jarak (judul dekat dengan subjudulnya). Satu pegas saja jarang cukup; semuanya akan kita uraikan satu per satu pada subbab 12.2.
 
-Prinsip kedua adalah **konsistensi** (*consistency*): elemen yang mirip harus tampil dan bekerja dengan cara yang mirip di seluruh halaman. Tombol utama selalu berwarna indigo `--clr-primary`, kartu produk selalu berlengkung 12 piksel, dan tautan aktif di navigasi selalu ditebalkan. Alasannya ada dua: dari sisi desain, konsistensi membentuk pola sehingga pengguna cukup belajar sekali lalu bisa mengulanginya; dari sisi kepercayaan, perilaku yang seragam memberi kesan bahwa organisasinya rapi. Bayangkan dua fakultas dalam satu kampus menamai menu akademik secara berbeda?"SIA" di satu sisi dan "Portal Mahasiswa" di sisi lain; mahasiswa baru akan mudah tersesat padahal sistemnya sama. Kekacauan label dan wujud seperti itu biasanya muncul bukan karena pengguna kurang cekatan, melainkan karena tidak ada aturan baku.
+Prinsip kedua adalah **konsistensi** (*consistency*): elemen yang mirip harus tampil dan bekerja dengan cara yang mirip di seluruh halaman. Tombol utama selalu berwarna indigo `--clr-primary`, kartu produk selalu berlengkung 12 piksel, dan link aktif di navigasi selalu ditebalkan. Alasannya ada dua: dari sisi desain, konsistensi membentuk pola sehingga pengguna cukup belajar sekali lalu bisa mengulanginya; dari sisi kepercayaan, perilaku yang seragam memberi kesan bahwa organisasinya rapi. Bayangkan dua fakultas dalam satu kampus menamai menu akademik secara berbeda?"SIA" di satu sisi dan "Portal Mahasiswa" di sisi lain; mahasiswa baru akan mudah tersesat padahal sistemnya sama. Kekacauan label dan wujud seperti itu biasanya muncul bukan karena pengguna kurang cekatan, melainkan karena tidak ada aturan baku.
 
 Prinsip ketiga adalah **usability**: sejauh mana antarmuka membantu pengguna mencapai tujuan mereka dengan efektif, efisien, dan memuaskan. Cara paling praktis untuk memeriksanya bisa dimulai dari pertanyaan Steve Krug: apakah pengguna harus berpikir keras hanya untuk memahami tombol ini? Jika iya, berarti labelnya belum cukup baik. "Klik di sini" memaksa pengguna mencari konteks di sekitarnya, sedangkan "Lihat Katalog" langsung menyampaikan tujuan. Dalam proyek sistem informasi, masalah usability biasanya bukan ada di halaman utama yang sederhana, melainkan di halaman penting yang rumit—formulir pendaftaran wisuda, antrean rawat jalan, atau keranjang checkout—saat pengguna sedang tertekan dan salah klik terasa mahal.
 
-Prinsip keempat masih dekat dengan tiga prinsip sebelumnya: **affordance**, istilah dari Don Norman untuk menyebut isyarat visual bahwa sebuah objek menyediakan cara interaksi tertentu. Tombol gerbang memberi kesan untuk ditekan; gagang pintu memberi kesan untuk ditarik atau diputar; di web, tombol dengan latar warna dan lengkungan terlihat bisa ditekan, sedangkan teks biru `--clr-primary` terlihat bisa disentuh sebagai tautan. Antarmuka yang buruk melanggar affordance ketika sesuatu yang seharusnya tombol justru tampil sebagai teks putih polos tanpa batas atau lengkungan—pengguna jadi ragu untuk mengklik, dan keraguan itu bisa memperlebar rasa tidak percaya pada layanan publik.
+Prinsip keempat masih dekat dengan tiga prinsip sebelumnya: **affordance**, istilah dari Don Norman untuk menyebut isyarat visual bahwa sebuah objek menyediakan cara interaksi tertentu. Tombol gerbang memberi kesan untuk ditekan; gagang pintu memberi kesan untuk ditarik atau diputar; di web, tombol dengan latar warna dan lengkungan terlihat bisa ditekan, sedangkan teks biru `--clr-primary` terlihat bisa disentuh sebagai link. Antarmuka yang buruk melanggar affordance ketika sesuatu yang seharusnya tombol justru tampil sebagai teks putih polos tanpa batas atau lengkungan—pengguna jadi ragu untuk mengklik, dan keraguan itu bisa memperlebar rasa tidak percaya pada layanan publik.
 
 Dua hukum ringkas dari aliran *gestalt* melengkapi empat prinsip di atas. **Hukum kedekatan** (*proximity*) menyatakan bahwa elemen yang berdekatan akan dipersepsi sebagai satu kelompok; **hukum kemiripan** (*similarity*) menyatakan bahwa elemen yang wajahnya mirip akan dipersepsi sebagai satu rumpun. Bayangkan penumpang bus yang duduk dempet terlihat seperti satu rombongan, atau seragam sekolah yang langsung menandai satu angkatan. Di web, kedekatan membuat label form dan kolomnya terasa satu pasangan, sedangkan kemiripan membuat semua badge status "Tersedia" terasa satu keluarga. Perhatikan ilustrasi berikut:
 
@@ -102,7 +102,7 @@ Lima konsep ini akan menjadi kacamata Anda sepanjang bab. Saat meninjau satu hal
 
 ### 12.2 Whitespace, Alignment, Contrast, Repetition — Empat Alat Visual Utama
 
-Empat prinsip pada 12.1 menjawab pertanyaan "mengapa desain harus tertata". Pertanyaan lanjutannya adalah: "alat apa yang dipakai untuk menegakkan ketertataan itu?" Jawabannya ada pada empat alat visual yang sering disebut bersama: *whitespace*, *alignment*, *contrast*, dan *repetition*. Alat-alat ini bekerja tanpa bahasa pemrograman apa pun; semuanya murni keputusan tata letak yang nanti kita terjemahkan ke dalam token dan kelas utilitas Bootstrap.
+Empat prinsip pada 12.1 menjawab pertanyaan "mengapa desain harus tertata". Pertanyaan lanjutannya adalah: "alat apa yang dipakai untuk menegakkan ketertataan itu?" Jawabannya ada pada empat alat visual yang sering disebut bersama: *whitespace*, *alignment*, *contrast*, dan *repetition*. Alat-alat ini bekerja tanpa bahasa pemrograman apa pun; semuanya murni keputusan layout yang nanti kita terjemahkan ke dalam token dan kelas utilitas Bootstrap.
 
 **Whitespace** adalah ruang kosong yang sengaja disediakan di sekeliling dan di antara elemen, dan ruang ini bukan ruang yang terbuang. Reaksi awal orang awam sering begini: "masih ada ruang kosong, berarti harus diisi". Padahal ruang kosong punya tiga tugas penting: memberi napas agar mata tidak sesak, menandai batas kelompok (sesuai hukum kedekatan), dan memberi fokus pada elemen yang tersisa. Bandingkan dua layar berikut:
 
@@ -168,7 +168,7 @@ Sistem yang lengkap terdiri dari empat lapisan, dari bawah ke atas, seperti pada
 
 Manfaat utamanya ada lima. Pertama, **konsistensi**: semua halaman lahir dari token dan komponen yang sama, jadi kepercayaan pengguna tidak tergores setiap kali ada halaman baru. Kedua, **kecepatan**: anggota tim tidak mulai dari nol; mereka tinggal menyalin pola yang sudah ada, dan halaman promo Rara pun bisa selesai di hari yang sama. Ketiga, **pemeliharaan**: saat warna utama diubah, cukup ganti satu nilai token, lalu tombol, badge, dan ikon di semua halaman ikut menyesuaikan; ini memanfaatkan sifat kaskade CSS yang sudah Anda pelajari di Bab 3. Keempat, **komunikasi**: dua orang akan lebih cepat paham jika sama-sama menyebut "badge stok terbatas pakai `--clr-danger`" daripada "yang merah lucu itu". Kelima, **adaptasi anggota baru**: membaca satu halaman styleguide jauh lebih efisien daripada harus bertanya ke enam orang berbeda.
 
-Contohnya tidak jauh. Google mempublikasikan *Material Design*—design system yang mengikat aplikasi-aplikasinya di banyak perangkat. Bootstrap yang Anda pakai sejak Bab 9 juga sebenarnya design system publik: ada token warna dan tipografi bawaan, koleksi komponen (tombol, kartu, alert), dan situs dokumentasi yang pada dasarnya adalah styleguide raksasa. Design system untuk kampus, rumah sakit, atau UMKM mengikuti pola yang sama, hanya skalanya lebih ramping. Bedanya hanya pada jangkauan: Material Design dipakai di seluruh ekosistem Google, sedangkan design system Tokosaya cukup untuk satu tim—dan justru karena itu bisa dibuat sangat pas dengan kebutuhannya.
+Contohnya tidak jauh. Google mempublikasikan *Material Design*—design system yang mengikat aplikasi-aplikasinya di banyak perangkat. Bootstrap yang Anda pakai sejak Bab 9 juga sebenarnya design system publik: ada token warna dan tipografi bawaan, koleksi komponen (tombol, kartu, alert), dan website dokumentasi yang pada dasarnya adalah styleguide raksasa. Design system untuk kampus, rumah sakit, atau UMKM mengikuti pola yang sama, hanya skalanya lebih ramping. Bedanya hanya pada jangkauan: Material Design dipakai di seluruh ekosistem Google, sedangkan design system Tokosaya cukup untuk satu tim—dan justru karena itu bisa dibuat sangat pas dengan kebutuhannya.
 
 Agar tidak tertukar, bedakan dua istilah ini: **design token** sudah diperkenalkan di Bab 4 sebagai variabel CSS bernama (misalnya `--clr-primary`), sedangkan **design system** adalah bangunan yang lebih besar dan menjadikan token itu sebagai lantai dasarnya. Praktikum bab ini akan menyusun token yang sudah ada menjadi sistem yang utuh dan terdokumentasi.
 
@@ -180,7 +180,7 @@ Tabel berikut berisi token warna baku Tokosaya beserta perannya. Nantinya, setia
 
 | Token | Nilai | Peran semantik |
 |---|---|---|
-| `--clr-primary` | `#4F46E5` | tombol utama, tautan, aksi paling penting |
+| `--clr-primary` | `#4F46E5` | tombol utama, link, aksi paling penting |
 | `--clr-primary-dark` | `#4338CA` | warna tombol saat disentuh (hover) |
 | `--clr-accent` | `#F59E0B` | badge penanda, nomor bagian, sorotan |
 | `--clr-dark` | `#1E293B` | judul dan teks yang harus tegas |
@@ -236,7 +236,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 ```
 
-Penjelasan: aturan `body` menetapkan bawaan untuk seluruh halaman (semua turunannya mewarisi Inter kecuali jika dioverride), aturan heading menggantungkan semua keluarga judul pada satu selektor sehingga judul baru otomatis tetap serasi, dan `.type-contoh` dipakai khusus di styleguide untuk menampilkan sampel huruf pada elemen `<p>` yang memakai kelas `.h*` Bootstrap—jadi dokumentasinya terlihat persis seperti hasil produksi.
+Penjelasan: aturan `body` menetapkan bawaan untuk seluruh halaman (semua turunannya mewarisi Inter kecuali jika dioverride), aturan heading menggantungkan semua keluarga judul pada satu selector sehingga judul baru otomatis tetap serasi, dan `.type-contoh` dipakai khusus di styleguide untuk menampilkan sampel huruf pada elemen `<p>` yang memakai kelas `.h*` Bootstrap—jadi dokumentasinya terlihat persis seperti hasil produksi.
 
 Sistem tipografi juga punya aturan disiplin: satu `h1` per halaman, jenjang heading tidak melompat (`h1` ke `h2` ke `h3`), panjang baris paragraf dijaga agar nyaman dibaca (sekitar 60–75 karakter per baris; dibatasi oleh lebar kontainer Bootstrap), dan `line-height` paragraf dibiarkan lega mengikuti bawaan Bootstrap. Aturan panjang baris ini bukan detail sepele: kalau perpindahan baris terlalu sering, mata cepat lelah; kalau baris terlalu panjang di layar lebar, pembaca mudah tersesat saat kembali ke baris berikutnya.
 
@@ -282,7 +282,7 @@ Aturan pemakaiannya ditulis jelas di styleguide supaya Anda tidak perlu menghafa
 | Harga | `.h5.text-harga` | contrast ukuran/bobot, Poppins |
 | Aksi | `.btn-utama.btn-sm` + `.btn-netral.btn-sm` | satu utama, sisanya pendamping |
 
-**Navigasi** memakai tiga elemen: navbar (brand + menu baku "Beranda, Katalog, Tentang, Kontak" + ikon keranjang di kanan), breadcrumb untuk halaman dalam, dan tautan aktif yang ditandai `aria-current="page"`. Di Bootstrap, navbar pada kondisi desktop bisa tampil penuh tanpa JavaScript. Sebaliknya, tombol buka-tutup (hamburger) yang dibutuhkan pada layar sempit memerlukan paket JavaScript Bootstrap, dan itu memang di luar cakupan mata kuliah ini. Karena itu, di styleguide sampel navigasi ditampilkan statis pada status desktop, sedangkan perilaku interaktifnya cukup dijelaskan lewat catatan dokumentasi. Pola yang sama berlaku untuk modal dan dropdown Bootstrap: status visualnya (kelas `.show`, tata letak panel) tetap dipelajari dan didokumentasikan, sementara perilaku interaktifnya diserahkan ke alat industri yang JavaScript-nya sudah matang. Intinya, **setiap varian sah harus ada di styleguide**; kalau satu varian tidak masuk dokumentasi, anggota tim yang belum tahu aturannya bisa saja melanggar—dan itu salah sistem, bukan salah orangnya.
+**Navigasi** memakai tiga elemen: navbar (brand + menu baku "Beranda, Katalog, Tentang, Kontak" + ikon keranjang di kanan), breadcrumb untuk halaman dalam, dan link aktif yang ditandai `aria-current="page"`. Di Bootstrap, navbar pada kondisi desktop bisa tampil penuh tanpa JavaScript. Sebaliknya, tombol buka-tutup (hamburger) yang dibutuhkan pada layar sempit memerlukan paket JavaScript Bootstrap, dan itu memang di luar cakupan mata kuliah ini. Karena itu, di styleguide sampel navigasi ditampilkan statis pada status desktop, sedangkan perilaku interaktifnya cukup dijelaskan lewat catatan dokumentasi. Pola yang sama berlaku untuk modal dan dropdown Bootstrap: status visualnya (kelas `.show`, layout panel) tetap dipelajari dan didokumentasikan, sementara perilaku interaktifnya diserahkan ke alat industri yang JavaScript-nya sudah matang. Intinya, **setiap varian sah harus ada di styleguide**; kalau satu varian tidak masuk dokumentasi, anggota tim yang belum tahu aturannya bisa saja melanggar—dan itu salah sistem, bukan salah orangnya.
 
 **Badge**, meskipun kecil, tetap bagian dari sistem. Mapping baku Tokosaya adalah sebagai berikut:
 
@@ -297,7 +297,7 @@ Aturan pemakaiannya ditulis jelas di styleguide supaya Anda tidak perlu menghafa
 
 *Styleguide* adalah satu halaman yang menampilkan seluruh design token dan komponen design system secara nyata di layar, lengkap dengan nama, nilai, dan aturan pakainya. Prinsipnya sederhana: **satu halaman, semua token**. Siapa pun yang membuka `styleguide.html` di browser biasa harus bisa langsung menjawab pertanyaan seperti "warna apa yang dipakai tombol utama?", "berapa jarak antar kartu?", dan "bagaimana bentuk alert sukses?" tanpa perlu alat lain.
 
-Kenapa harus satu halaman? Karena styleguide adalah jendela utama design system untuk tiga pembaca sekaligus. **Desainer** memakainya sebagai palet untuk memilih varian tombol yang tepat sebelum menyesuaikan halaman lain. **Penulis kode** (termasuk Anda dan anggota baru) menyalin pola markup dari styleguide, bukan mengarang dari nol, sehingga markup produksi dan dokumentasi tidak saling menjauh. **Penjaga merek atau pemilik produk** memakainya untuk review karena semua contoh terkumpul dalam satu tampilan. Styleguide juga sangat berguna saat serah terima proyek—ketika anggota baru bergabung, halaman pertama yang mereka buka seharusnya halaman ini, bukan berkas CSS ratusan baris.
+Kenapa harus satu halaman? Karena styleguide adalah jendela utama design system untuk tiga pembaca sekaligus. **Desainer** memakainya sebagai palet untuk memilih varian tombol yang tepat sebelum menyesuaikan halaman lain. **Penulis kode** (termasuk Anda dan anggota baru) menyalin pola markup dari styleguide, bukan mengarang dari nol, sehingga markup produksi dan dokumentasi tidak saling menjauh. **Penjaga merek atau pemilik produk** memakainya untuk review karena semua contoh terkumpul dalam satu tampilan. Styleguide juga sangat berguna saat serah terima proyek—ketika anggota baru bergabung, halaman pertama yang mereka buka seharusnya halaman ini, bukan file CSS ratusan baris.
 
 Isi minimumnya adalah: (1) daftar token warna sebagai swatch bernama + nilai heksa; (2) sampel tipografi dari H1 sampai teks kecil; (3) skala jarak dalam bentuk visual; (4) setiap komponen dalam semua varian sahnya; (5) catatan do and don't; dan (6) baris meta berisi versi, tanggal, pemilik, dan tagline agar identitasnya tercatat. Yang perlu dihindari adalah styleguide yang hanya berisi daftar nama tanpa tampilan nyata, karena dokumentasi yang tidak bisa dilihat biasanya juga tidak akan dipatuhi.
 
@@ -325,7 +325,7 @@ Praktikum bab ini akan membangun tepat satu halaman seperti itu untuk Tokosaya. 
 
 ## Contoh Kode
 
-Dua contoh berikut berdiri sendiri: masing-masing berupa satu berkas HTML yang bisa langsung dibuka di Chrome tanpa berkas lain. Contoh pertama memperlihatkan empat alat visual (12.2) lewat pasangan desain buruk dan baik; contoh kedua memperlihatkan kartu produk Tokosaya yang dibangun penuh dari design token. Di dalam contoh, CSS ditulis langsung di `<style>`—ini hanya untuk kebutuhan demonstrasi agar berkas bisa berdiri sendiri. Di proyek nyata, gaya seperti ini tetap dipindahkan ke `css/style.css`.
+Dua contoh berikut berdiri sendiri: masing-masing berupa satu file HTML yang bisa langsung dibuka di Chrome tanpa file lain. Contoh pertama memperlihatkan empat alat visual (12.2) lewat pasangan desain buruk dan baik; contoh kedua memperlihatkan kartu produk Tokosaya yang dibangun penuh dari design token. Di dalam contoh, CSS ditulis langsung di `<style>`—ini hanya untuk kebutuhan demonstrasi agar file bisa berdiri sendiri. Di proyek nyata, gaya seperti ini tetap dipindahkan ke `css/style.css`.
 
 ```html
 File: tokosaya-bootstrap/demo-prinsip-visual.html
@@ -576,7 +576,7 @@ Penjelasan: satu kartu ini merangkum sebagian besar materi bab dalam satu wujud.
 
 ## Penjelasan Kode
 
-**Contoh 1 (demo-prinsip-visual.html).** Struktur halaman menempatkan tiga pasangan di dalam `<section>` terpisah agar tiap prinsip bisa diperiksa satu per satu. CSS internal bertanda `<!-- khusus demonstrasi -->` dipakai supaya satu berkas bisa dibuka tanpa koneksi dan tanpa berkas lain—cara yang pas untuk latihan mandiri, meski pada proyek nyata Anda tetap memindahkannya ke `css/style.css` sesuai aturan buku ini. Perhatikan tiga keputusan khas design system: (1) pada pasangan kedekatan, dua nilai jarak ditulis sebagai varian kelas (`.baik-form .kolom` 8 piksel, `.baik-form .kelompok` 24 piksel), sehingga aturan tinggal di CSS, bukan tercecer sebagai angka ajaib di markup; (2) label dipasang dengan `<label for>` yang menunjuk ke `id` input, karena form contoh tetap harus memakai struktur yang benar sejak awal; dan (3) setiap pasangan memakai konten dataset Tokosaya yang asli (MW-88, hero baku), supaya Anda belajar dari kasus yang sama dengan proyek utamanya.
+**Contoh 1 (demo-prinsip-visual.html).** Struktur halaman menempatkan tiga pasangan di dalam `<section>` terpisah agar tiap prinsip bisa diperiksa satu per satu. CSS internal bertanda `<!-- khusus demonstrasi -->` dipakai supaya satu file bisa dibuka tanpa koneksi dan tanpa file lain—cara yang pas untuk latihan mandiri, meski pada proyek nyata Anda tetap memindahkannya ke `css/style.css` sesuai aturan buku ini. Perhatikan tiga keputusan khas design system: (1) pada pasangan kedekatan, dua nilai jarak ditulis sebagai varian kelas (`.baik-form .kolom` 8 piksel, `.baik-form .kelompok` 24 piksel), sehingga aturan tinggal di CSS, bukan tercecer sebagai angka ajaib di markup; (2) label dipasang dengan `<label for>` yang menunjuk ke `id` input, karena form contoh tetap harus memakai struktur yang benar sejak awal; dan (3) setiap pasangan memakai konten dataset Tokosaya yang asli (MW-88, hero baku), supaya Anda belajar dari kasus yang sama dengan proyek utamanya.
 
 **Contoh 2 (demo-kartu-token.html).** Kartu ini dibangun tanpa kelas Bootstrap untuk menunjukkan bahwa komponen bisa lahir langsung dari token murni. Nanti, Bootstrap memang membantu menghemat kerja, tetapi urutannya tetap sama: token dulu, komponen menyusul. `display: flex; flex-direction: column; gap: 8px` mengatur jarak vertikal yang seragam antarbagiannya (Flexbox dibahas di Bab 6); `justify-content: space-between` menaruh badge di kiri dan ikon di kanan tanpa angka posisi; `border-radius: var(--radius)` dan `box-shadow: var(--shadow-card)` memanggil token sehingga kartu ini otomatis ikut berubah kalau identitas Tokosaya diperbarui. Tombol aksinya memakai dua varian (utama + netral) persis seperti matriks pada 12.7, dan `max-width: 360px` menjaga lebar kartu agar tetap satu kolom walau dibuka di layar lebar.
 
@@ -595,22 +595,22 @@ Tujuan praktikum ini adalah membangun halaman `styleguide.html`—mini design sy
 
 ### Persiapan
 
-Buka folder `tokosaya-bootstrap/` di VS Code. Pastikan `css/style.css` sudah memuat blok token `:root` dari Bab 4; kalau belum, salin blok token dari Kode pada langkah 2. Halaman styleguide akan memakai dua berkas: `css/style.css` (token + kelas komponen kustom) dan `styleguide.html` (dokumentasi satu halaman). Keduanya diperkaya dengan Bootstrap CDN seperti pada Bab 9–11, ditambah Bootstrap Icons untuk ikon. Simpan salinan `css/style.css` sebelum mengedit agar perubahan bab ini lebih mudah Anda lacak.
+Buka folder `tokosaya-bootstrap/` di VS Code. Pastikan `css/style.css` sudah memuat blok token `:root` dari Bab 4; kalau belum, salin blok token dari Kode pada langkah 2. Halaman styleguide akan memakai dua file: `css/style.css` (token + kelas komponen kustom) dan `styleguide.html` (dokumentasi satu halaman). Keduanya diperkaya dengan Bootstrap CDN seperti pada Bab 9–11, ditambah Bootstrap Icons untuk ikon. Simpan salinan `css/style.css` sebelum mengedit agar perubahan bab ini lebih mudah Anda lacak.
 
 ### Langkah Kerja
 
-1. **Siapkan berkas.** Di dalam folder `tokosaya-bootstrap/`, pastikan `css/style.css` ada; buat berkas baru bernama `styleguide.html`; keduanya akan diperkaya pada langkah 2 dan 4.
-2. **Tulis design token pada `css/style.css`.** Letakkan blok token lengkap di paling atas berkas (sesuai Kode di bawah); token lama dari Bab 4 diganti sekaligus blok ini supaya tidak ada nilai ganda.
+1. **Siapkan file.** Di dalam folder `tokosaya-bootstrap/`, pastikan `css/style.css` ada; buat file baru bernama `styleguide.html`; keduanya akan diperkaya pada langkah 2 dan 4.
+2. **Tulis design token pada `css/style.css`.** Letakkan blok token lengkap di paling atas file (sesuai Kode di bawah); token lama dari Bab 4 diganti sekaligus blok ini supaya tidak ada nilai ganda.
 3. **Tambahkan kelas komponen.** Di bawah blok token, tulis seluruh kelas komponen styleguide: tombol varian, kartu, swatch, skala jarak, badge, alert, dan navigasi (blok lengkap pada bagian Kode).
 4. **Tulis kerangka `styleguide.html`.** Buat halaman baru lengkap sesuai Kode: `header` dengan `h1`, lalu `main` berisi sembilan section bernomor, dan `footer` kontak baku Tokosaya.
-5. **Hubungkan seluruh CDN.** Tautkan Bootstrap 5.3.3, Bootstrap Icons 1.11.3, Google Fonts (Poppins + Inter), dan `css/style.css`; beri komentar starter tanpa berkas JavaScript Bootstrap.
+5. **Hubungkan seluruh CDN.** Tautkan Bootstrap 5.3.3, Bootstrap Icons 1.11.3, Google Fonts (Poppins + Inter), dan `css/style.css`; beri komentar starter tanpa file JavaScript Bootstrap.
 6. **Verifikasi token warna.** Buka `styleguide.html` di Chrome; bandingkan setiap kartu warna dengan nilainya: `--clr-primary` harus tampil indigo `#4F46E5`, `--clr-accent` amber `#F59E0B`, dan sembilan lainnya sesuai tabel 12.4.
 7. **Uji struktur dokumen.** Pastikan satu `h1`, jenjang heading tidak melompat (h1 → h2 → h3), setiap label form terhubung `id`, dan ikon dekoratif memakai `aria-hidden="true"`.
 8. **Inspeksi dengan DevTools.** Pilih salah satu kartu, panel **Elements**: periksa nilai `background-color` menyandang `var(--clr-primary)`; bandingkan jarak antar kartu (24 piksel) dan jarak dalam kartu (16 piksel).
 
 ### Kode
 
-Blok pertama adalah berkas `css/style.css` yang melengkapi token dengan seluruh kelas komponen styleguide:
+Blok pertama adalah file `css/style.css` yang melengkapi token dengan seluruh kelas komponen styleguide:
 
 ```css
 File: tokosaya-bootstrap/css/style.css
@@ -622,7 +622,7 @@ File: tokosaya-bootstrap/css/style.css
 
 /* ===== 1. Design token Tokosaya (satu sumber kebenaran) ===== */
 :root {
-  --clr-primary: #4F46E5;      /* indigo - tombol & tautan utama */
+  --clr-primary: #4F46E5;      /* indigo - tombol & link utama */
   --clr-primary-dark: #4338CA;
   --clr-accent: #F59E0B;       /* amber - badge & sorotan */
   --clr-dark: #1E293B;         /* heading & teks tegas */
@@ -788,9 +788,9 @@ h1, h2, h3, h4, h5, h6 {
 .alert-bahaya i { color: var(--clr-danger); }
 ```
 
-Penjelasan: berkas ini disusun dalam delapan grup berurutan—token dulu, lalu fondasi, lalu satu grup per komponen—supaya siapa pun membacanya mulai dari sumbernya. Setiap kelas diberi komentar `/* kustom */` sesuai aturan buku; tiga varian tombol menetapkan variabel `--bs-btn-focus-shadow-rgb` supaya sorotan fokus keyboard ikut berwarna indigo, bukan biru bawaan Bootstrap. Tint alert ditulis dengan `rgba()` agar latar tipis tetap mengikuti warna token tanpa menambah nilai baru; ini persis teknik "turun tanpa menambah" yang dibahas pada 12.4. Nama `alert-info-toko` sengaja dibedakan dari `.alert-info` Bootstrap agar keduanya tidak saling menimpa.
+Penjelasan: file ini disusun dalam delapan grup berurutan—token dulu, lalu fondasi, lalu satu grup per komponen—supaya siapa pun membacanya mulai dari sumbernya. Setiap kelas diberi komentar `/* kustom */` sesuai aturan buku; tiga varian tombol menetapkan variabel `--bs-btn-focus-shadow-rgb` supaya sorotan fokus keyboard ikut berwarna indigo, bukan biru bawaan Bootstrap. Tint alert ditulis dengan `rgba()` agar latar tipis tetap mengikuti warna token tanpa menambah nilai baru; ini persis teknik "turun tanpa menambah" yang dibahas pada 12.4. Nama `alert-info-toko` sengaja dibedakan dari `.alert-info` Bootstrap agar keduanya tidak saling menimpa.
 
-Blok kedua adalah berkas `styleguide.html` yang mendokumentasikan semuanya dalam satu halaman:
+Blok kedua adalah file `styleguide.html` yang mendokumentasikan semuanya dalam satu halaman:
 
 ```html
 File: tokosaya-bootstrap/styleguide.html
@@ -1129,7 +1129,7 @@ File: tokosaya-bootstrap/styleguide.html
 </html>
 ```
 
-Penjelasan: berkas ini adalah konsumen pertama dari `css/style.css` dan berisi sembilan section yang tersusun berurutan. Section warna menampilkan sepuluh swatch dengan kelas `warna-*`, lengkap dengan nama dan nilai heksanya; section tipografi memakai kelas skala Bootstrap (`h1`?`h3`, `lead`, `small`) di atas elemen `<p>` agar sampelnya tidak merusak jenjang heading dokumen; section tombol menampilkan matriks 3 jenis — 4 status termasuk varian `disabled`; dua kartu produk memuat dataset MR-241 dan BT-5 dengan badge status berbeda serta ikon kategori yang diberi warna `var(--clr-border)` supaya tidak berebut perhatian dengan judul; alert memakai `role="alert"`, struktur flex Bootstrap, dan ikon dekoratif `aria-hidden`; form memakai kelas statis `is-valid`/`is-invalid` untuk mendemonstrasikan status tanpa JavaScript; dan navigasi memakai `aria-current="page"` untuk item aktif. Navbar memakai `navbar-expand-lg`, jadi menu desktop tampil penuh di layar lebar; di layar sempit, tanpa JavaScript susunannya akan menumpuk, dan batas ini memang dicatat di dokumentasi sebagai v1.
+Penjelasan: file ini adalah konsumen pertama dari `css/style.css` dan berisi sembilan section yang tersusun berurutan. Section warna menampilkan sepuluh swatch dengan kelas `warna-*`, lengkap dengan nama dan nilai heksanya; section tipografi memakai kelas skala Bootstrap (`h1`?`h3`, `lead`, `small`) di atas elemen `<p>` agar sampelnya tidak merusak jenjang heading dokumen; section tombol menampilkan matriks 3 jenis — 4 status termasuk varian `disabled`; dua kartu produk memuat dataset MR-241 dan BT-5 dengan badge status berbeda serta ikon kategori yang diberi warna `var(--clr-border)` supaya tidak berebut perhatian dengan judul; alert memakai `role="alert"`, struktur flex Bootstrap, dan ikon dekoratif `aria-hidden`; form memakai kelas statis `is-valid`/`is-invalid` untuk mendemonstrasikan status tanpa JavaScript; dan navigasi memakai `aria-current="page"` untuk item aktif. Navbar memakai `navbar-expand-lg`, jadi menu desktop tampil penuh di layar lebar; di layar sempit, tanpa JavaScript susunannya akan menumpuk, dan batas ini memang dicatat di dokumentasi sebagai v1.
 
 Urutan sembilan section ini mengikuti alur materi bab: tiga section pertama (warna, tipografi, spasi) menampilkan token; enam section berikutnya (tombol, kartu, badge, alert, form, navigasi) menampilkan komponen. Penomoran pada judul section membuat susunan halamannya mudah dibaca semua orang, dan kalau nanti ada section baru, nomornya tinggal dilanjutkan dari nomor terakhir (seperti dibahas pada Tugas 1).
 
@@ -1148,18 +1148,18 @@ Kalau langkah-langkah di atas Anda ikuti, `styleguide.html` akan menampilkan hal
 3. Enam bar skala jarak (8/16/24/32/48/64 piksel) bernilai berbeda panjang pada barisnya.
 4. Tiga grup tombol (utama, outline, netral) masing-masing dalam tiga ukuran plus satu varian nonaktif — total 12 tombol.
 5. Dua kartu produk dataset (MR-241 dengan badge Best Seller, BT-5 dengan badge Stok Terbatas) yang struktur bagianya identik, hanya badge dan ikonnya berbeda.
-6. Lima badge dataset + satu badge netral; empat alert (sukses, info, peringatan, bahaya) berlatar tint dan ikon berwarna token; form dengan satu input valid (tanda hijau) dan satu input tidak valid (tanda merah) yang tampak langsung tanpa mengetik apa pun; navbar dan breadcrumb dengan tautan aktif indigo.
+6. Lima badge dataset + satu badge netral; empat alert (sukses, info, peringatan, bahaya) berlatar tint dan ikon berwarna token; form dengan satu input valid (tanda hijau) dan satu input tidak valid (tanda merah) yang tampak langsung tanpa mengetik apa pun; navbar dan breadcrumb dengan link aktif indigo.
 7. Satu-satunya `h1` adalah "Styleguide Tokosaya"; urutan heading tidak melompat; tagline dan kontak baku tampil di header/footer.
 
-Secara terukur, ukuran berkas `css/style.css` bertambah sekitar 180 baris; semua kelas di styleguide mengonsumsi token lewat `var()`; tidak ada properti warna dengan nilai mentah di luar blok `:root` (label heksa pada swatch hanyalah teks dokumentasi, bukan gaya); dan utilitas jarak yang dipakai hanya `gap-2/3/4` serta `m-2/3/4/5`, yang tetap sejalan dengan skala 8 piksel.
+Secara terukur, ukuran file `css/style.css` bertambah sekitar 180 baris; semua kelas di styleguide mengonsumsi token lewat `var()`; tidak ada properti warna dengan nilai mentah di luar blok `:root` (label heksa pada swatch hanyalah teks dokumentasi, bukan gaya); dan utilitas jarak yang dipakai hanya `gap-2/3/4` serta `m-2/3/4/5`, yang tetap sejalan dengan skala 8 piksel.
 
 ### Troubleshooting
 
 **Masalah:** Halaman styleguide menampilkan tanpa gaya sama sekali (semua teks hitam polos, tanpa kartu dan warna indigo).
 
-**Penyebab:** Pranala CDN Bootstrap di `<head>` belum benar (salah ketik pada URL `bootstrap@5.3.3`) atau halaman dibuka tanpa koneksi internet, sehingga CSS Bootstrap dan ikon ikut gagal dimuat.
+**Penyebab:** Link CDN Bootstrap di `<head>` belum benar (salah ketik pada URL `bootstrap@5.3.3`) atau halaman dibuka tanpa koneksi internet, sehingga CSS Bootstrap dan ikon ikut gagal dimuat.
 
-**Solusi:** Periksa panel Network DevTools dan tanda merah pada baris CDN; pastikan `href` persis `https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css` dan tautan Bootstrap Icons 1.11.3; sambungkan internet lalu muat ulang.
+**Solusi:** Periksa panel Network DevTools dan tanda merah pada baris CDN; pastikan `href` persis `https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css` dan link Bootstrap Icons 1.11.3; sambungkan internet lalu muat ulang.
 
 **Pencegahan:** Salin URL CDN dari KONTRAK §4 (teknologi terkunci) tanpa mengubah satu huruf; jangan mengetik ulang URL secara manual.
 
@@ -1173,11 +1173,11 @@ Secara terukur, ukuran berkas `css/style.css` bertambah sekitar 180 baris; semua
 
 **Masalah:** Semua tombol tetap biru (bukan indigo Tokosaya) walaupun kelas varian sudah ada.
 
-**Penyebab:** `css/style.css` tidak tertaut di `styleguide.html`, atau pranala `<link>` ke `css/style.css` ditulis sebelum pranala CDN Bootstrap sehingga aturan kustom ditimpa nilai baku Bootstrap.
+**Penyebab:** `css/style.css` tidak tertaut di `styleguide.html`, atau link `<link>` ke `css/style.css` ditulis sebelum link CDN Bootstrap sehingga aturan kustom ditimpa nilai baku Bootstrap.
 
 **Solusi:** Pastikan urutan di `head`: CSS Bootstrap 5.3.3 dan Bootstrap Icons dulu, Google Fonts, lalu `css/style.css` paling bawah.
 
-**Pencegahan:** Ingat sifat kaskade (Bab 3): berkas yang dimuat paling akhir memenangkan aturan dengan spesifisitas setara.
+**Pencegahan:** Ingat sifat kaskade (Bab 3): file yang dimuat paling akhir memenangkan aturan dengan spesifisitas setara.
 
 **Masalah:** Kartu warna `clr-surface` dan `clr-bg` tampak "hilang" (putih di atas putih).
 
@@ -1189,26 +1189,26 @@ Secara terukur, ukuran berkas `css/style.css` bertambah sekitar 180 baris; semua
 
 ## Studi Kasus
 
-**Design system kampus: mengapa tim SI membutuhkannya.** Amati kasus fiktif tetapi lazim berikut. Universitas Andalankara mengelola situs pusat plus puluhan sub-situs fakultas, program studi, unit layanan, dan laboratorium. Selama bertahun-tahun setiap unit menyusun halamannya sendiri: satu fakultas memilih tombol biru dengan teks biru muda, unit lain menyukai garis tepi tebal, dan dua unit menamai menu layanan akademik dengan label berbeda. Dampaknya bukan sekadar estetika: calon mahasiswa menduga halaman dengan wajah asing bukan milik universitas, staf unit baru menghabiskan waktu mingguan untuk memahami halaman unit lain, setiap pembaruan identitas visual kampus harus disusun ulang di belasan sub-situs, dan tim SI terus menjawab pertanyaan "yang warna mana yang benar?".
+**Design system kampus: mengapa tim SI membutuhkannya.** Amati kasus fiktif tetapi lazim berikut. Universitas Andalankara mengelola website pusat plus puluhan sub-website fakultas, program studi, unit layanan, dan laboratorium. Selama bertahun-tahun setiap unit menyusun halamannya sendiri: satu fakultas memilih tombol biru dengan teks biru muda, unit lain menyukai garis tepi tebal, dan dua unit menamai menu layanan akademik dengan label berbeda. Dampaknya bukan sekadar estetika: calon mahasiswa menduga halaman dengan wajah asing bukan milik universitas, staf unit baru menghabiskan waktu mingguan untuk memahami halaman unit lain, setiap pembaruan identitas visual kampus harus disusun ulang di belasan sub-website, dan tim SI terus menjawab pertanyaan "yang warna mana yang benar?".
 
-Solusi yang diambil kampus tersebut sama persis dengan yang Anda pelajari di bab ini, hanya dalam skala lebih besar: menetapkan satu design system dengan satu halaman styleguide pusat. Lapisan tokennya menetapkan warna institusi (satu merah, satu emas), pasangan huruf untuk judul dan paragraf, dan skala jarak 8 piksel; lapisan komponennya menetapkan bentuk tombol (buka portal, unduh berkas), kartu berita fakultas, dan tiga varian form layanan (pendaftaran, pengajuan data, surat keterangan); lapisan aturannya menjelaskan mana peran yang sah: merah institusi hanya untuk pesan bahaya, hijau hanya untuk konfirmasi sukses. Seluruh sub-situs dibangun ulang secara bertahap dengan menyalin pola dari styleguide, dan setiap varian baru terdokumentasi terlebih dahulu.
+Solusi yang diambil kampus tersebut sama persis dengan yang Anda pelajari di bab ini, hanya dalam skala lebih besar: menetapkan satu design system dengan satu halaman styleguide pusat. Lapisan tokennya menetapkan warna institusi (satu merah, satu emas), pasangan huruf untuk judul dan paragraf, dan skala jarak 8 piksel; lapisan komponennya menetapkan bentuk tombol (buka portal, unduh file), kartu berita fakultas, dan tiga varian form layanan (pendaftaran, pengajuan data, surat keterangan); lapisan aturannya menjelaskan mana peran yang sah: merah institusi hanya untuk pesan bahaya, hijau hanya untuk konfirmasi sukses. Seluruh sub-website dibangun ulang secara bertahap dengan menyalin pola dari styleguide, dan setiap varian baru terdokumentasi terlebih dahulu.
 
 Hasilnya dinilai secara kualitatif tanpa diarang: halaman unit baru selesai lebih cepat karena anggota menyalin komponen baku, penyelarasan identitas visual cukup mengganti token pusat, penyerahan proyek ke anggota baru menimbulkan sedikit pertanyaan, dan keluhan pengguna bergeser dari "kebingungan visual" ke "isu materi" — tanda yang diharapkan dari sebuah sistem layanan. Perlu diketahui pula biayanya yang jujur: menyusun sistem menuntut komitmen waktu di awal, aturan perlu dijaga secara disiplin, dan styleguide harus dipelihara agar tidak menjadi dokumen usang. Kasus ini cermin masalah Rara pada apersepsi; dan justru karena hal serupa, design system dikembangkan di industri, layanan publik, dan kampus: dengan sistem, tim SI menjaga konsistensi secara tertulis, bukan dengan mengandalkan selera masing-masing.
 
-Kaitkan kasus ini dengan materi bab: hukum kedekatan dan kemiripan memandu penataan sub-situs serupa; token semantik membuat pembaruan identitas kampus menjadi satu perubahan; matriks varian mengendalikan bentuk tiga form layanan; dan styleguide pusat memungkinkan anggota baru memeriksa wajah keseluruhan dalam satu pembukaan. Proyek berkelanjutan Anda di Tokosaya menjalankan pola yang sama dalam skala mini melalui `styleguide.html`.
+Kaitkan kasus ini dengan materi bab: hukum kedekatan dan kemiripan memandu penataan sub-website serupa; token semantik membuat pembaruan identitas kampus menjadi satu perubahan; matriks varian mengendalikan bentuk tiga form layanan; dan styleguide pusat memungkinkan anggota baru memeriksa wajah keseluruhan dalam satu pembukaan. Proyek berkelanjutan Anda di Tokosaya menjalankan pola yang sama dalam skala mini melalui `styleguide.html`.
 
 ## Latihan Mandiri
 
-1. Amati satu situs layanan kampus (portal akademik, perpustakaan, atau e-ujian). Identifikasi empat prinsip 12.1 di dalamnya dan tulis satu paragraf per prinsip: satu contoh penerapan yang baik dan satu cacat yang ditemukan.
+1. Amati satu website layanan kampus (portal akademik, perpustakaan, atau e-ujian). Identifikasi empat prinsip 12.1 di dalamnya dan tulis satu paragraf per prinsip: satu contoh penerapan yang baik dan satu cacat yang ditemukan.
 2. Buat tabel matrix varian untuk komponen badge Tokosaya: baris = empat badge dataset (Best Seller, Tersedia, Stok Terbatas, Baru), kolom = token, makna, dan kelas varian yang diusulkan. Bandingkan usulan Anda dengan bagian 12.7.
 3. Cari tiga nilai jarak yang menyimpang dari kelipatan 8 piksel pada halaman web pilihan Anda (gunakan inspektur elemen browser) dan susun proposal perbaikannya memakai utilitas Bootstrap pada tabel 12.6.
 4. Rancang perpanjangan token semantik untuk aplikasi perpustakaan kampus: kebutuhan warna "buku tersedia", "sedang dipinjam", dan "terlambat". Tulis nama token, nilai yang diusulkan (dari palet Tokosaya atau tint dari token yang ada), dan alasannya.
 5. Perbaiki satu halaman profil pribadi Anda sendiri memakai empat alat visual pada 12.2 dan dokumentasikan tiga perubahan: apa yang diubah, alat apa yang dipakai, dan mengapa hierarkinya membaik.
-6. Tulis halaman styleguide mini (dua token warna + satu komponen tombol dua varian + satu kartu produk sederhana) untuk proyek toko buku sekolah Anda sendiri, dari awal sampai akhir, memakai pola dua berkas (token CSS + halaman HTML).
+6. Tulis halaman styleguide mini (dua token warna + satu komponen tombol dua varian + satu kartu produk sederhana) untuk proyek toko buku sekolah Anda sendiri, dari awal sampai akhir, memakai pola dua file (token CSS + halaman HTML).
 
 ## Tugas
 
-1. **Tugas individu — styleguide yang lengkap.** Lengkapi `styleguide.html` Tokosaya dengan section baru bernomor 10 yang berisi lima pasangan Do & Don't warna (misalnya tombol utama indigo vs tombol hijau; teks gelap di latar terang vs teks amber di latar putih) beserta satu kalimat alasan tiap pasangan. Keluaran yang dikumpulkan: berkas `styleguide.html` yang diperbarui dan catatan singkat (maksimal satu halaman). Kriteria: pasangan menggunakan token yang ada, penjelasan menyebut alasan contrast atau kemiripan, markup memenuhi aturan semantik buku (satu h1, label terhubung, tanpa gaya inline).
+1. **Tugas individu — styleguide yang lengkap.** Lengkapi `styleguide.html` Tokosaya dengan section baru bernomor 10 yang berisi lima pasangan Do & Don't warna (misalnya tombol utama indigo vs tombol hijau; teks gelap di latar terang vs teks amber di latar putih) beserta satu kalimat alasan tiap pasangan. Keluaran yang dikumpulkan: file `styleguide.html` yang diperbarui dan catatan singkat (maksimal satu halaman). Kriteria: pasangan menggunakan token yang ada, penjelasan menyebut alasan contrast atau kemiripan, markup memenuhi aturan semantik buku (satu h1, label terhubung, tanpa gaya inline).
 2. **Tugas kelompok (2–3 orang) — audit konsistensi.** Dengan `styleguide.html` sebagai satu sumber kebenaran, periksa tiga halaman riil proyek (`index.html`, `katalog.html`, halaman form/checkout) dan daftarkan semua perbedaan dari styleguide (warna, ukuran, jarak, label tombol). Keluaran yang dikumpulkan: satu tabel audit (kolom: halaman, temuan, token yang seharusnya, status perbaikan) plus usulan penambahan varian bila ada. Kriteria: temuan merujuk prinsip atau token yang dilanggar, bukan selera pribadi.
 
 ## Refleksi
@@ -1241,7 +1241,7 @@ Bab ini menuntaskan bangunan visual Anda; Bab 13 mengujinya pada dua dimensi yan
    A. koleksi alat desain berbayar yang dipakai perusahaan besar
    B. kumpulan token, komponen, pola, dan aturan pemakaian yang terdokumentasi sebagai satu sumber kebenaran
    C. template siap pakai yang menggantikan halaman riil proyek
-   D. berkas CSS raksasa yang berisi semua gaya tanpa dokumentasi
+   D. file CSS raksasa yang berisi semua gaya tanpa dokumentasi
 
 2. Pada form kontak Tokosaya, jarak label-input 8 piksel sedangkan jarak antarkelompok (identitas dan pengiriman) 24 piksel. Prinsip persepsi yang diterapkan adalah…
    A. hukum kemiripan
@@ -1249,9 +1249,9 @@ Bab ini menuntaskan bangunan visual Anda; Bab 13 mengujinya pada dua dimensi yan
    C. affordance
    D. contrast
 
-3. Contoh elemen yang affordance-nya benar untuk aksi "unduh berkas akademik" adalah…
+3. Contoh elemen yang affordance-nya benar untuk aksi "unduh file akademik" adalah…
    A. teks abu-abu 12 piksel tanpa garis bawah di dalam paragraf
-   B. tombol berlatar indigo dengan ikon unduhan dan teks "Unduh Berkas"
+   B. tombol berlatar indigo dengan ikon unduhan dan teks "Unduh File"
    C. judul Poppins 700 tanpa pembeda apa pun
    D. gambar berukuran besar tanpa teks pendamping
 
@@ -1294,7 +1294,7 @@ Bab ini menuntaskan bangunan visual Anda; Bab 13 mengujinya pada dua dimensi yan
 
 ### Analisis Kode
 
-**Soal 1.** Perhatikan cuplikan dari berkas uji latihan (bukan artefak final proyek):
+**Soal 1.** Perhatikan cuplikan dari file uji latihan (bukan artefak final proyek):
 
 ```css
 File: tokosaya-bootstrap/uji-analisis-1.css
@@ -1337,7 +1337,7 @@ Tugas Anda: (a) sebutkan cacat struktur heading pada potongan ini dan mengapa it
 
 **Pilihan Ganda:**
 
-1. **B** — design system adalah token + komponen + pola + aturan yang terdokumentasi sebagai satu sumber kebenaran; opsi lain mengacaukannya dengan alat berbayar atau berkas gaya tanpa dokumentasi.
+1. **B** — design system adalah token + komponen + pola + aturan yang terdokumentasi sebagai satu sumber kebenaran; opsi lain mengacaukannya dengan alat berbayar atau file gaya tanpa dokumentasi.
 2. **B** — jarak yang berbeda antar kelompok memanfaatkan hukum kedekatan: dekat berarti satu kelompok, jauh berarti kelompok terpisah.
 3. **B** — affordance benar saat isyarat visual (latar, ikon, label) sepadan dengan aksinya.
 4. **C** — nilai berganti, makna peran tetap; seluruh pemakaian ikut berganti lewat `var()`.

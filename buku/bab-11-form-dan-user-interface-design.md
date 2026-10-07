@@ -31,7 +31,7 @@ formulir (*form*) — antarmuka terstruktur untuk mengumpulkan input pengguna; k
 
 ## Apersepsi
 
-Bayangkan ada seorang mahasiswa bernama Rani yang ingin membeli *flash drive* dan keyboard dari Tokosaya untuk keperluan tugas akhirnya. Setelah menambahkan dua produk ke keranjang, ia masuk ke tahap pembayaran. Masalahnya, di sana ia bertemu form yang bikin ragu: kolom nama tanpa label, nomor telepon tanpa petunjuk format, dan kupon dengan pesan galat yang cuma berbunyi "error kode 7". Rani jadi mengisi alamat sambil menebak-nebak, lalu dua kali salah mengetik email. Akhirnya transaksi gagal dan pesanannya batal.
+Bayangkan ada seorang mahasiswa bernama Rani yang ingin membeli *flash drive* dan keyboard dari Tokosaya untuk keperluan tugas akhirnya. Setelah menambahkan dua produk ke keranjang, ia masuk ke tahap pembayaran. Masalahnya, di sana ia bertemu form yang bikin ragu: kolom nama tanpa label, nomor telepon tanpa petunjuk format, dan kupon dengan pesan error yang cuma berbunyi "error kode 7". Rani jadi mengisi alamat sambil menebak-nebak, lalu dua kali salah mengetik email. Akhirnya transaksi gagal dan pesanannya batal.
 
 Cerita sederhana ini menunjukkan inti mata kuliah sistem informasi: *sistem informasi hidup dari data, dan form adalah pintu masuk data tersebut*. Kalau form-nya buruk, masalahnya bukan cuma pengguna jadi kesal; data yang masuk pun bisa salah — alamat keliru tersimpan di basis data, pesanan gagal diantar, atau layanan publik ikut tersendat. Jadi, kualitas data sebuah organisasi, baik UMKM maupun universitas, sangat bergantung pada kualitas form yang dipakai untuk mengumpulkannya.
 
@@ -49,7 +49,7 @@ Kenapa form perlu dirancang dengan serius? Karena di titik inilah layanan digita
 
 Empat prinsip berikut menjadi dasar seluruh materi bab ini.
 
-- **Satu kolom (*single column*).** Medan disusun vertikal dari atas ke bawah dalam satu aliran. Alasannya: mata manusia membaca melompat sedikit melintasi baris, tidak melompat jauh melintasi kolom; pada ponsel, dua kolom membuat medan sempit dan salah ketik meningkat. Form satu kolom juga lebih mudah dipindai dengan pembaca layar.
+- **Satu kolom (*single column*).** Medan disusun vertikal dari atas ke bawah dalam satu aliran. Alasannya: mata manusia membaca melompat sedikit melintasi baris, tidak melompat jauh melintasi kolom; pada HP, dua kolom membuat medan sempit dan salah ketik meningkat. Form satu kolom juga lebih mudah dipindai dengan pembaca layar.
 - **Label yang selalu terlihat.** Setiap medan punya label permanen di atasnya, bukan sekadar teks di dalam medan yang hilang begitu pengguna mengetik. Label terlihat adalah tanda alamat medan; *placeholder* hanyalah contoh isian.
 - **Pengelompokan dan progres.** Medan yang sebanding diguguskan — data pribadi, alamat, pembelian — dengan batas visual jelas. Untuk proses panjang seperti checkout, langkah-langkahnya ditampilkan bertahap sehingga pengguna tahu posisinya dan sisa pekerjaan.
 - **Tombol aksi yang jelas (*clear call to action*).** Satu tombol utama per halaman, dengan label yang menyatakan akibatnya, misalnya "Kirim Pesan" atau "Lanjut ke Pembayaran". Tombol ganda dengan gaya sama membuat pengguna berpikir dua kali; justru itu yang harus dihindari.
@@ -64,7 +64,7 @@ Sebelum membahas gaya tampilannya, Anda perlu paham dulu bahan penyusun form: el
 
 **`label` dan atribut `for`.** Label adalah pasangan resmi sebuah medan. Nilai `for` pada label harus sama dengan `id` pada medan. Hubungan ini penting ke dua arah: saat pengguna mengeklik label, fokus pindah ke medan; saat *screen reader* membaca medan, labelnya ikut dibacakan. Tanpa hubungan `for`-`id`, form mungkin masih terlihat rapi, tetapi aksesibilitasnya langsung turun. Karena itu, aturan buku ini sederhana: setiap medan wajib punya `<label for="id">` yang benar-benar terhubung.
 
-**`input` dan semantik *type*.** Perilaku elemen `input` berubah sesuai atribut *type*-nya. `type="email"` menyesuaikan keyboard ponsel dan memicu pemeriksaan format bawaan browser; `type="tel"` biasanya memunculkan pad angka; `type="password"` menyamarkan teks; sedangkan `type="date"`, `type="number"`, dan `type="url"` punya keyboard serta pembatasannya masing-masing. Jadi, pilihan *type* menentukan keyboard yang muncul sekaligus aturan dasar yang dipakai — semuanya gratis, tanpa JavaScript. Tabel berikut merangkum *type* yang paling sering dipakai di situs seperti Tokosaya.
+**`input` dan semantik *type*.** Perilaku elemen `input` berubah sesuai atribut *type*-nya. `type="email"` menyesuaikan keyboard HP dan memicu pemeriksaan format bawaan browser; `type="tel"` biasanya memunculkan pad angka; `type="password"` menyamarkan teks; sedangkan `type="date"`, `type="number"`, dan `type="url"` punya keyboard serta pembatasannya masing-masing. Jadi, pilihan *type* menentukan keyboard yang muncul sekaligus aturan dasar yang dipakai — semuanya gratis, tanpa JavaScript. Tabel berikut merangkum *type* yang paling sering dipakai di website seperti Tokosaya.
 
 | *Type* | Kegunaan | Contoh penggunaan Tokosaya |
 |---|---|---|
@@ -217,11 +217,11 @@ Anatomi satu unit form ini bisa Anda bayangkan seperti skema berikut (ilustrasi 
 </div>
 ```
 
-Satu catatan versi yang perlu Anda tahu: dalam dokumentasi resmi Bootstrap 5.3, starter template untuk situs produksi memuat berkas JavaScript Bootstrap yang digabung. Di buku ini, kontraknya diganti menjadi komentar `<!-- Tanpa bootstrap.bundle (JavaScript di luar cakupan mata kuliah) -->`. Pada berkas latihan di bab ini, komentarnya ditulis sebagai `<!-- Tanpa Bootstrap JS ... -->`; maknanya tetap sama, hanya penulisannya yang disesuaikan dengan konteks bab yang memang belum membahas JavaScript.
+Satu catatan versi yang perlu Anda tahu: dalam dokumentasi resmi Bootstrap 5.3, starter template untuk website produksi memuat file JavaScript Bootstrap yang digabung. Di buku ini, kontraknya diganti menjadi komentar `<!-- Tanpa bootstrap.bundle (JavaScript di luar cakupan mata kuliah) -->`. Pada file latihan di bab ini, komentarnya ditulis sebagai `<!-- Tanpa Bootstrap JS ... -->`; maknanya tetap sama, hanya penulisannya yang disesuaikan dengan konteks bab yang memang belum membahas JavaScript.
 
 ### 11.4 Layout Form Kompleks
 
-Form satu kolom memang jadi pilihan default yang aman, tetapi ada beberapa medan yang memang lebih enak ditaruh berdampingan: nama depan dan belakang, kota dan kode pos, atau berangkat dan tujuan. Bootstrap menyelesaikan ini lewat utilitas grid yang sudah Anda pelajari di Bab 9: bungkus beberapa medan dalam satu `row`, lalu beri masing-masing `col`. Dengan `col-md-6`, dua medan akan berdampingan pada layar sedang ke atas dan otomatis menumpuk jadi satu kolom di ponsel — persis sesuai prinsip "satu kolom di layar kecil".
+Form satu kolom memang jadi pilihan default yang aman, tetapi ada beberapa medan yang memang lebih enak ditaruh berdampingan: nama depan dan belakang, kota dan kode pos, atau berangkat dan tujuan. Bootstrap menyelesaikan ini lewat utilitas grid yang sudah Anda pelajari di Bab 9: bungkus beberapa medan dalam satu `row`, lalu beri masing-masing `col`. Dengan `col-md-6`, dua medan akan berdampingan pada layar sedang ke atas dan otomatis menumpuk jadi satu kolom di HP — persis sesuai prinsip "satu kolom di layar kecil".
 
 Gutter vertikal `g-3` (jarak antar sel grid) fungsinya sepadan dengan `mb-3` pada pola dasar: yang satu mengatur jarak antarbaris di dalam `row`, yang lain mengatur jarak antarkelompok di luar `row`. Pilih satu pola lalu pakai dengan konsisten; kalau keduanya dicampur di satu area tanpa alasan, ritme jaraknya jadi terasa acak. Untuk medan yang jarang dipasangkan — misalnya `textarea` — biarkan `col-12` supaya lebarnya penuh.
 
@@ -239,7 +239,7 @@ Cara membaca skema ini mengikuti urutan dokumen HTML: di layar lebar, kedua kolo
 File: tokosaya-bootstrap/kontak.html
 
 ```html
-<!-- Cuplikan: dua medan bersebelahan di layar ≥ md, menumpuk di ponsel -->
+<!-- Cuplikan: dua medan bersebelahan di layar ≥ md, menumpuk di HP -->
 <div class="row g-3">
   <div class="col-md-6">
     <label for="nama-depan" class="form-label">Nama Depan</label>
@@ -254,7 +254,7 @@ File: tokosaya-bootstrap/kontak.html
 </div>
 ```
 
-Penjelasan: `row` mengelompokkan dua kolom, `g-3` memberi jarak antar kolom, dan `col-md-6` membuat masing-masing medan mengambil setengah lebar layar mulai dari titik henti *medium* — di ponsel keduanya otomatis kembali jadi satu kolom penuh. Atribut `autocomplete` dengan *token* `given-name` dan `family-name` bukan cuma membantu isi ulang, tetapi juga menyatakan tujuan medan dengan lebih jelas.
+Penjelasan: `row` mengelompokkan dua kolom, `g-3` memberi jarak antar kolom, dan `col-md-6` membuat masing-masing medan mengambil setengah lebar layar mulai dari titik henti *medium* — di HP keduanya otomatis kembali jadi satu kolom penuh. Atribut `autocomplete` dengan *token* `given-name` dan `family-name` bukan cuma membantu isi ulang, tetapi juga menyatakan tujuan medan dengan lebih jelas.
 
 Ada satu pola lanjutan yang perlu Anda kenali namanya: `col-form-label`. Kelas ini membuat label sejajar secara vertikal dengan medan saat label dan medannya ditempatkan pada `col` yang berbeda dalam satu `row` (misalnya label di kolom kiri, medan di kolom kanan, seperti pola tabel lama). Untuk Tokosaya yang memakai pola "label di atas medan", `form-label` sudah cukup. Pakailah `col-form-label` hanya kalau labelnya memang diletakkan berdampingan dengan medan.
 
@@ -292,11 +292,11 @@ File: tokosaya-bootstrap/latihan/status-form.html
 
 Penjelasan: kedua medan memakai struktur kelompok yang sama; yang berubah hanya kelas status dan pembungkus pesannya. Perhatikan bahwa `invalid-feedback` dan `form-text` bisa muncul berdampingan: `form-text` tetap ada sebagai bantuan, sedangkan `invalid-feedback` baru tampil karena `is-invalid` menandai medan. Nilai `value` di sini sengaja diisi langsung di markup supaya statusnya terlihat masuk akal.
 
-Sekarang masuk ke catatan penting yang sudah disinggung sejak awal bab. Kelas-kelas di atas hanyalah *styling statis*: Anda menuliskannya sendiri untuk mempelajari bentuk visualnya. Dalam situs produksi, kelas seperti ini biasanya ditambah dan dilepas otomatis oleh JavaScript Bootstrap sesuai isi pengguna, lengkap dengan kelas pembungkus seperti `was-validated` yang aktif setelah tombol kirim ditekan. Karena mata kuliah ini belum membahas JavaScript, mekanisme verifikasi aslinya tidak kita pakai dulu. Yang penting untuk Anda pahami saat ini adalah bentuk akhirnya dan kapan elemen-elemen itu muncul. Dua hal yang masih relevan dalam cakupan bab ini: atribut `required` membuat browser menampilkan pesan bawaan saat medan kosong dikirim, dan pesan status di dekat medan tetap jadi penjelas utama — warna saja tidak cukup, seperti dibahas lagi pada 11.7.
+Sekarang masuk ke catatan penting yang sudah disinggung sejak awal bab. Kelas-kelas di atas hanyalah *styling statis*: Anda menuliskannya sendiri untuk mempelajari bentuk visualnya. Dalam website produksi, kelas seperti ini biasanya ditambah dan dilepas otomatis oleh JavaScript Bootstrap sesuai isi pengguna, lengkap dengan kelas pembungkus seperti `was-validated` yang aktif setelah tombol kirim ditekan. Karena mata kuliah ini belum membahas JavaScript, mekanisme verifikasi aslinya tidak kita pakai dulu. Yang penting untuk Anda pahami saat ini adalah bentuk akhirnya dan kapan elemen-elemen itu muncul. Dua hal yang masih relevan dalam cakupan bab ini: atribut `required` membuat browser menampilkan pesan bawaan saat medan kosong dikirim, dan pesan status di dekat medan tetap jadi penjelas utama — warna saja tidak cukup, seperti dibahas lagi pada 11.7.
 
 ### 11.6 Focus dan Keyboard
 
-Fokus (*focus*) adalah status khusus yang menandai elemen aktif saat ini: medan yang sedang diisi atau tautan yang sedang dituju. Bagi pengguna yang sangat bergantung pada keyboard — termasuk pengguna dengan gangguan motorik, pengguna layar besar sambil memegang telepon, atau bahkan Anda sendiri saat tangan belum pindah dari keyboard — fokus adalah penunjuk utama. Karena itu, aturan pertamanya jelas: **gaya fokus harus tetap terlihat.** Bootstrap sudah memberi cincin fokus yang cukup jelas pada setiap `form-control`; jangan menghapusnya. Form yang kelihatan "bersih" tetapi tidak punya indikator fokus justru menyulitkan pengguna keyboard.
+Fokus (*focus*) adalah status khusus yang menandai elemen aktif saat ini: medan yang sedang diisi atau link yang sedang dituju. Bagi pengguna yang sangat bergantung pada keyboard — termasuk pengguna dengan gangguan motorik, pengguna layar besar sambil memegang telepon, atau bahkan Anda sendiri saat tangan belum pindah dari keyboard — fokus adalah penunjuk utama. Karena itu, aturan pertamanya jelas: **gaya fokus harus tetap terlihat.** Bootstrap sudah memberi cincin fokus yang cukup jelas pada setiap `form-control`; jangan menghapusnya. Form yang kelihatan "bersih" tetapi tidak punya indikator fokus justru menyulitkan pengguna keyboard.
 
 CSS membedakan dua keadaan: `:focus` aktif saat elemen sedang fokus, apa pun cara pengguna mencapainya (termasuk klik mouse), sedangkan `:focus-visible` biasanya hanya muncul untuk fokus yang datang dari navigasi keyboard. Pembagian ini berguna karena fokus yang sangat menonjol penting untuk pengguna keyboard, tetapi bisa terasa berlebihan kalau selalu muncul setiap kali elemen diklik. Browser modern sudah menangani pembedaan ini dengan cukup baik; kalau proyek Tokosaya ingin memberi gaya fokus sendiri, cukup buat satu aturan `:focus-visible` di `css/style.css`, seperti yang sudah disiapkan pada Praktikum.
 
@@ -335,7 +335,7 @@ Kalau seluruh praktik ini terpenuhi, form Anda sudah memenuhi fondasi WCAG 2.2 y
 | Pola dasar Bootstrap | `div.mb-3` + `label.form-label` + medan `form-control` | 11.3 |
 | `form-text` | teks bantuan permanen; dihubungkan lewat `aria-describedby` | 11.3, 11.7 |
 | `input-group` | menggabungkan medan dengan lampiran teks (`@`, `Rp`) atau tombol | 11.3 |
-| `row`/`col` dalam form | dua kolom pada `col-md-6`, satu kolom otomatis di ponsel; gutter `g-3` | 11.4 |
+| `row`/`col` dalam form | dua kolom pada `col-md-6`, satu kolom otomatis di HP; gutter `g-3` | 11.4 |
 | Layout checkout | daftar item `col-lg-8`, ringkasan `col-lg-4` | 11.4 |
 | Status visual statis | `is-valid`/`is-invalid` + `valid-feedback`/`invalid-feedback`; verifikasi asli memakai JavaScript Bootstrap | 11.5 |
 | `disabled`/`readonly` | atribut HTML; `readonly` hanya untuk medan teks yang tetap terkirim | 11.5 |
@@ -501,11 +501,11 @@ Penjelasan singkat: halaman ini memadukan keempat status medan — valid, tidak 
 
 ## Penjelasan Kode
 
-**Contoh 1 — form dua kolom.** Struktur terpenting ada pada pembungkusannya. Satu `form` menampung seluruh medan karena data itu satu kesatuan pendaftaran; di dalamnya setiap kelompok label–medan dibungkus `div` berkelas `col-*` sehingga grid Bootstrap mengatur jarak dan lebar. Alasan memilih `col-md-6` (bukan `col-6`) adalah bahwa pada ponsel — titik henti di bawah *medium* — medan kembali satu kolom penuh, sementara `col-6` akan tetap membagi layar ponsel dan membuat isian sempit. Pasangan radio dalam `fieldset` memakai `form-check-inline` karena pilihannya pendek dan saling keterkaitan jelas; checkbox persetujuan ditempatkan terpisah karena maknanya berbeda dari pilihan radio. Atribut `required` pada email dan setuju mengaktifkan pemeriksaan bawaan browser saat tombol kirim ditekan — tanpa satu pun bagian JavaScript.
+**Contoh 1 — form dua kolom.** Struktur terpenting ada pada pembungkusannya. Satu `form` menampung seluruh medan karena data itu satu kesatuan pendaftaran; di dalamnya setiap kelompok label–medan dibungkus `div` berkelas `col-*` sehingga grid Bootstrap mengatur jarak dan lebar. Alasan memilih `col-md-6` (bukan `col-6`) adalah bahwa pada HP — titik henti di bawah *medium* — medan kembali satu kolom penuh, sementara `col-6` akan tetap membagi layar HP dan membuat isian sempit. Pasangan radio dalam `fieldset` memakai `form-check-inline` karena pilihannya pendek dan saling keterkaitan jelas; checkbox persetujuan ditempatkan terpisah karena maknanya berbeda dari pilihan radio. Atribut `required` pada email dan setuju mengaktifkan pemeriksaan bawaan browser saat tombol kirim ditekan — tanpa satu pun bagian JavaScript.
 
-**Contoh 2 — panel status.** Empat unit pada halaman ini disusun berurutan agar perbedaannya dapat dibaca berdampingan, seperti galeri status. Kelas `is-valid` dan `is-invalid` mengambil alih warna bingkai medan dan mengaktifkan pembungkus pesan masing-masing; `form-text` tetap hidup di bawahnya sebagai bantuan permanen. Atribut `readonly` dipilih untuk nomor pesanan karena isiannya harus tetap terkirim bersama form, sedangkan `disabled` dipakai pada promo yang sudah kedaluwarsa dan memang tidak disertakan. Dalam situs nyata, penandaan status ini akan dilakukan oleh JavaScript Bootstrap menurut isian pengguna; di sini kelas ditulis manual agar bentuk visualnya dapat dipelajari — dan itu penuh sesuai tujuan latihan ini.
+**Contoh 2 — panel status.** Empat unit pada halaman ini disusun berurutan agar perbedaannya dapat dibaca berdampingan, seperti galeri status. Kelas `is-valid` dan `is-invalid` mengambil alih warna bingkai medan dan mengaktifkan pembungkus pesan masing-masing; `form-text` tetap hidup di bawahnya sebagai bantuan permanen. Atribut `readonly` dipilih untuk nomor pesanan karena isiannya harus tetap terkirim bersama form, sedangkan `disabled` dipakai pada promo yang sudah kedaluwarsa dan memang tidak disertakan. Dalam website nyata, penandaan status ini akan dilakukan oleh JavaScript Bootstrap menurut isian pengguna; di sini kelas ditulis manual agar bentuk visualnya dapat dipelajari — dan itu penuh sesuai tujuan latihan ini.
 
-Kedua contoh mengikuti satu pola yang kini menjadi refleks Anda: kelompok per medan, label selalu terpasang, kelas utilitas Bootstrap yang dipilih karena perannya, dan CSS kustom diberi komentar `/* kustom */` bila benar-benar diperlukan. Pola ini akan terlihat lagi pada tiga berkas Praktikum berikut.
+Kedua contoh mengikuti satu pola yang kini menjadi refleks Anda: kelompok per medan, label selalu terpasang, kelas utilitas Bootstrap yang dipilih karena perannya, dan CSS kustom diberi komentar `/* kustom */` bila benar-benar diperlukan. Pola ini akan terlihat lagi pada tiga file Praktikum berikut.
 
 ## Praktikum
 
@@ -526,7 +526,7 @@ Sesudah praktikum ini, mahasiswa mampu: (1) membangun halaman checkout visual st
 
 ### Persiapan
 
-1. Buka folder `tokosaya-bootstrap/` di VS Code dan pastikan berkas `css/style.css` berisi design token Bab 4 (bagian `:root`).
+1. Buka folder `tokosaya-bootstrap/` di VS Code dan pastikan file `css/style.css` berisi design token Bab 4 (bagian `:root`).
 2. Pastikan gambar produk ada di `img/` dengan pola nama `produk-<nama>-<kode>.svg` (misal `produk-keyboard-kx210.svg`). Bila belum ada, salin dari folder `tokosaya-css/img/` hasil Bab 5–8.
 3. Siapkan data keranjang sesuai tabel baku: KX-210 (1 unit), MW-88 (2 unit), FD-64 (1 unit).
 4. Ingat kontak baku Tokosaya: Jl. Digital Raya No. 10, Jakarta; halo@tokosaya.id; (021) 555-0199.
@@ -534,9 +534,9 @@ Sesudah praktikum ini, mahasiswa mampu: (1) membangun halaman checkout visual st
 ### Langkah Kerja
 
 1. **Perbarui `css/style.css`.** Buka berkasnya dan pastikan bagian token serta aturan font tokoh sudah sama dengan blok kode di bagian Kode di bawah; bila Anda sudah punya versi Bab 9–10, cukup tambahkan bagian yang belum ada.
-2. **Buat `keranjang.html`.** Buat berkas baru di root folder, ketik ulang blok HTML keranjang dari atas ke bawah, lalu simpan.
+2. **Buat `keranjang.html`.** Buat file baru di root folder, ketik ulang blok HTML keranjang dari atas ke bawah, lalu simpan.
 3. **Buat ulang `kontak.html`.** Ganti isi versi lama dengan versi form Bootstrap dari blok di bawah, satu blok penuh.
-4. **Buka dan periksa visual.** Jalankan `keranjang.html` lewat Live Server atau buka langsung dari penjelajah berkas; periksa navbar, tabel item, ringkasan, dan tombolnya.
+4. **Buka dan periksa visual.** Jalankan `keranjang.html` lewat Live Server atau buka langsung dari penjelajah file; periksa navbar, tabel item, ringkasan, dan tombolnya.
 5. **Periksa responsif keranjang.** Di DevTools, mode perangkat seluler, periksa pada lebar 1200px, 768px, dan 375px: pastikan dua kolom pada 1200px menumpuk pada 375px dan tabel sempit menggulir (bukan melar), bukan meluap melampaui layar.
 6. **Periksa status visual kontak.** Pada `kontak.html`, pastikan medan nama bertanda hijau dengan pesan `valid-feedback` yang tampil, dan medan email bertanda merah dengan pesan `invalid-feedback` yang tampil keduanya sekaligus hasil kelas yang ditulis manual.
 7. **Periksa aliran fokus.** Tekan Tab dari awal dokumen pada kontak.html; catat urutan medan yang dilalui tombol Tab dan bandingkan dengan urutan visualnya.
@@ -545,7 +545,7 @@ Sesudah praktikum ini, mahasiswa mampu: (1) membangun halaman checkout visual st
 
 ### Kode
 
-Tiga blok berikut adalah isi lengkap berkas yang direkomendasikan. Semua halaman memakai CDN Bootstrap 5.3.3 dan Bootstrap Icons 1.11.3 dengan pin yang sama seperti Kontrak.
+Tiga blok berikut adalah isi lengkap file yang direkomendasikan. Semua halaman memakai CDN Bootstrap 5.3.3 dan Bootstrap Icons 1.11.3 dengan pin yang sama seperti Kontrak.
 
 File: tokosaya-bootstrap/css/style.css
 
@@ -555,7 +555,7 @@ File: tokosaya-bootstrap/css/style.css
    cukup pastikan bagian :root dan aturan font/latar di bawah tersedia. */
 
 :root {
-  --clr-primary: #4F46E5;      /* indigo — tombol & tautan utama */
+  --clr-primary: #4F46E5;      /* indigo — tombol & link utama */
   --clr-primary-dark: #4338CA;
   --clr-accent: #F59E0B;       /* amber — badge & sorotan */
   --clr-dark: #1E293B;
@@ -591,7 +591,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 ```
 
-Penjelasan: berkas ini lengkap dan dapat dijalankan sendiri, namun sengaja ringkas. Blok `:root` menyalin token Tokosaya agar berkas mandiri; `body` dan heading memetakan font serta warna token ke tema Bootstrap; aturan `:focus-visible` memastikan gaya fokus jelas memakai warna token — diberi komentar `/* kustom */` sesuai kontrak.
+Penjelasan: file ini lengkap dan dapat dijalankan sendiri, namun sengaja ringkas. Blok `:root` menyalin token Tokosaya agar file mandiri; `body` dan heading memetakan font serta warna token ke tema Bootstrap; aturan `:focus-visible` memastikan gaya fokus jelas memakai warna token — diberi komentar `/* kustom */` sesuai kontrak.
 
 File: tokosaya-bootstrap/keranjang.html
 
@@ -953,7 +953,7 @@ File: tokosaya-bootstrap/kontak.html
 
 ### Penjelasan Kode
 
-**`css/style.css`.** Berkas ini membawa design token Tokosaya (Bab 4) ke halaman Bootstrap: font Poppins/Inter, warna indigo sebagai aksen, dan latar abu muda. Aturan `:focus-visible` memastikan cincin fokus terlihat jelas pada setiap medan — perbaikan aksesibilitas kecil yang dibahas di 11.6. Bila `style.css` Anda dari Bab 9–10 sudah memuat bagian ini, jangan ditimpa; cukup pastikan aturan `:focus-visible` ada.
+**`css/style.css`.** File ini membawa design token Tokosaya (Bab 4) ke halaman Bootstrap: font Poppins/Inter, warna indigo sebagai aksen, dan latar abu muda. Aturan `:focus-visible` memastikan cincin fokus terlihat jelas pada setiap medan — perbaikan aksesibilitas kecil yang dibahas di 11.6. Bila `style.css` Anda dari Bab 9–10 sudah memuat bagian ini, jangan ditimpa; cukup pastikan aturan `:focus-visible` ada.
 
 **`keranjang.html`.** Halaman ini mengikuti pola tiga zona dari 11.4: daftar item di `col-lg-8` (tabel responsif di dalam `table-responsive`), pilihan pengiriman sebagai `fieldset` radio, dan ringkasan biaya di `col-lg-4` berupa kartu. Angka pada tabel dan ringkasan dihitung konsisten dengan dataset baku: 650.000 + 370.000 + 95.000 = Rp1.115.000, plus ongkir Rp20.000 = Rp1.135.000. Kupon memakai pola `input-group` berisikan medan isian dan tombol "Pakai" yang diberi `type="button"` supaya tidak menyerahkan formulir. Tombol "Lanjut ke Pembayaran" adalah satu-satunya tombol utama di halaman, sesuai prinsip CTA di 11.1.
 
@@ -968,13 +968,13 @@ Setelah praktikum, Anda mengamati hal-hal berikut di browser:
 - Pada form kontak, medan "Nama Lengkap" berbingkai hijau dengan ikon centang dan pesan "Nama terisi dengan benar." tampil di bawahnya; medan "Alamat Email" berbingkai merah dengan pesan "Format email belum tepat — contoh: nama@domain.id." tampil. Keduanya murni akibat kelas statis yang ditulis manual — bukan hasil pengecekan isian.
 - Ketika Anda menekan Tab berulang pada kontak.html, fokus melintasi medan dengan urutan yang sama persis dengan urutan visual: nama, email, telepon, topik, pesan, persetujuan, tombol kirim; setiap medan bertanda cincin fokus yang jelas.
 - Menekan "Kirim Pesan" memuat ulang halaman dan menambah parameter pada URL (misal `?nama=...&email=...`) karena `method="get"` — perilaku bawaan HTML, bukan tanda bahwa data terkirim ke mana pun.
-- Pada folder proyek tidak ada satu pun berkas JavaScript; kedua halaman hanya memuat HTML, CSS kustom, dan CDN CSS Bootstrap.
+- Pada folder proyek tidak ada satu pun file JavaScript; kedua halaman hanya memuat HTML, CSS kustom, dan CDN CSS Bootstrap.
 
 ### Troubleshooting
 
 **Masalah:** Halaman tampil tanpa gaya Bootstrap sama sekali (tabel polos, tulisan serif bawaan browser).
 **Penyebab:** URL CDN pada `<link>` salah ketik, nomor versinya berbeda, atau koneksi internet gagal saat memuat.
-**Solusi:** Buka DevTools tab Network, muat ulang halaman, dan pastikan berkas `bootstrap.min.css` berstatus sukses; salin ulang URL CDN persis dari blok kode di atas (versi 5.3.3).
+**Solusi:** Buka DevTools tab Network, muat ulang halaman, dan pastikan file `bootstrap.min.css` berstatus sukses; salin ulang URL CDN persis dari blok kode di atas (versi 5.3.3).
 **Pencegahan:** Simpan satu salinan *starter template* pribadi berisi tiga baris `<link>` baku (Bootstrap, Icons, Fonts) dan mulailah setiap halaman dari salinan itu.
 
 **Masalah:** Pesan `valid-feedback` atau `invalid-feedback` tidak muncul di bawah medan meskipun sudah ditulis.
@@ -987,21 +987,21 @@ Setelah praktikum, Anda mengamati hal-hal berikut di browser:
 **Solusi:** Tambahkan baris `<link>` Bootstrap Icons 1.11.3 di `<head>` persis seperti pada blok kode di bagian Kode, lalu muat ulang halaman.
 **Pencegahan:** Sisipkan tiga baris CDN (Bootstrap, Icons, Fonts) sebagai satu paket; ikon dan font saling dibutuhkan oleh banyak komponen.
 
-**Masalah:** Di layar lebar, dua medan form kontak tampil berdampingan seperti yang diharapkan, tetapi di ponsel keduanya tetap tampil bersebelahan dan terlalu sempit.
+**Masalah:** Di layar lebar, dua medan form kontak tampil berdampingan seperti yang diharapkan, tetapi di HP keduanya tetap tampil bersebelahan dan terlalu sempit.
 **Penyebab:** Kelas kolom ditulis `col-6` (gaya selalu dua kolom) alih-alih `col-md-6` (dua kolom hanya mulai dari titik henti *medium*).
 **Solusi:** Ganti kelasnya menjadi `col-md-6` dan pastikan keduanya berada di dalam satu `row g-3`, lalu cek kembali pada lebar 375px di DevTools.
-**Pencegahan:** Ingat aturan Bab 9: `col-[titik-henti]-[angka]` adalah perilaku dari titik henti itu ke atas; ponsel selalu menerima bentuk satu kolomnya.
+**Pencegahan:** Ingat aturan Bab 9: `col-[titik-henti]-[angka]` adalah perilaku dari titik henti itu ke atas; HP selalu menerima bentuk satu kolomnya.
 
 **Masalah:** Gambar produk di tabel keranjang tidak tampil (ikon gambar rusak).
-**Penyebab:** Nama berkas atau path tidak cocok dengan isi folder `img/` — misal `produk-fd-64.svg` padahal berkasnya bernama lain, atau folder `img/` belum disalin dari proyek sebelumnya.
-**Solusi:** Cocokkan `src` pada HTML dengan nama berkas sebenarnya di `img/`, perhatikan huruf besar-kecil (beberapa server web sensitif), lalu muat ulang.
-**Pencegahan:** Patuhi penamaan berkas `kebab-case` yang baku pada Kontrak (`produk-flashdrive-fd64.svg`) sejak pertama membuat berkas gambar.
+**Penyebab:** Nama file atau path tidak cocok dengan isi folder `img/` — misal `produk-fd-64.svg` padahal berkasnya bernama lain, atau folder `img/` belum disalin dari proyek sebelumnya.
+**Solusi:** Cocokkan `src` pada HTML dengan nama file sebenarnya di `img/`, perhatikan huruf besar-kecil (beberapa server web sensitif), lalu muat ulang.
+**Pencegahan:** Patuhi penamaan file `kebab-case` yang baku pada Kontrak (`produk-flashdrive-fd64.svg`) sejak pertama membuat file gambar.
 
 ## Studi Kasus
 
 Fakultas Teknologi Informasi sebuah universitas membuka form pendaftaran Ujian Akhir Semester daring. Form yang beredar dibangun tergesa-gesa dan berikut gejalanya: ke-18 medan isian disusun dalam tabel tiga kolom yang rapat; "Nama Lengkap" dan "Nomor Pokok Mahasiswa" hanya muncul sebagai teks di dalam medan; tanggal ujian ditulis bebas ("5/1", "5 Jan", "besok") yang lalu menyusahkan petugas pencocokan; pilihan sesi (pagi/sore) berupa dua checkbox tanpa judul kelompok sehingga mahasiswa bisa memilih keduanya sekaligus; tombol pengirimannya satu tombol kecil bertuliskan "OK" di pojok kanan bawah; dan ketika ada kesalahan, halaman membalas dengan satu pesan untuk semuanya: "ada kolom yang salah".
 
-Masalah-masalah itu bukan kegagalan teknologi, melainkan kegagalan *desain form* — dan seluruhnya dapat didiagnosis dengan bab ini. Ketiadaan label merujuk pelanggaran prinsip 11.1–11.7: label harus selalu terlihat dan terpasang `for`-`id`. Layout tabel tiga kolom menyalahi prinsip satu kolom: 18 medan disajikan sekaligus tanpa pengelompokan, padahal `fieldset`/`legend` sudah menyediakan alatnya. Format tanggal bebas muncul karena tidak ada `select`/`type="date"` yang menstandarkan isian. Dua checkbox sesi yang dapat dipilih bersamaan adalah pilihan jenis kontrol yang salah — itu kasus *radio* — dan pesan galat satu-satunya adalah kegagalan status per medan yang dibahas di 11.5.
+Masalah-masalah itu bukan kegagalan teknologi, melainkan kegagalan *desain form* — dan seluruhnya dapat didiagnosis dengan bab ini. Ketiadaan label merujuk pelanggaran prinsip 11.1–11.7: label harus selalu terlihat dan terpasang `for`-`id`. Layout tabel tiga kolom menyalahi prinsip satu kolom: 18 medan disajikan sekaligus tanpa pengelompokan, padahal `fieldset`/`legend` sudah menyediakan alatnya. Format tanggal bebas muncul karena tidak ada `select`/`type="date"` yang menstandarkan isian. Dua checkbox sesi yang dapat dipilih bersamaan adalah pilihan jenis kontrol yang salah — itu kasus *radio* — dan pesan error satu-satunya adalah kegagalan status per medan yang dibahas di 11.5.
 
 Berikut perbaikannya yang didemokan dengan data kampus yang sama. Penyusunan ulang satu kolom membagi 18 medan menjadi tiga kelompok `fieldset` bertajuk: "Data Mahasiswa", "Pilihan Ujian", "Persetujuan". Label permanen menggantikan *placeholder*; tanggal memakai `type="date"` sehingga formatnya terkunci; sesi memakai satu pasang radio dalam `fieldset` sehingga satu pilihan menghilangkan yang lain; medan `autocomplete="name"` membantu isi ulang; dan tombolnya diberi label "Kirim Pendaftaran" sebagai aksi yang menyatakan akibatnya. Hasilnya: petugas penerimaan mendapatkan data yang konsisten, mahasiswa menyelesaikan proses lebih cepat, dan form itu sendiri menjadi lebih mudah dipakai pengguna pembaca layar — karena label, pengelompokan, dan urutan tab kini tertata.
 
@@ -1018,14 +1018,14 @@ Pelajaran dari kasus ini terasa lewat proyek Tokosaya Anda sendiri: halaman `kon
 
 ## Tugas
 
-**Tugas 1 (individu): footer berlangganan Tokosaya.** Tambahkan blok "Berlangganan Info Produk" di atas `<footer>` pada `kontak.html` memakai pola `input-group`: satu `input type="email"` berlabel `form-label`, tombol lampiran "Daftar", satu kolom `form-text` penjelasan, dan satu `form-check` persetujuan. Kumpulkan: berkas `kontak.html` terbaru dan paragraf 4–6 kalimat yang menjelaskan alasan tiap kelas yang dipakai. Kriteria: seluruh label terhubung, ada teks bantuan, tombol menyatakan aksinya, dan tidak ada bagian JavaScript.
+**Tugas 1 (individu): footer berlangganan Tokosaya.** Tambahkan blok "Berlangganan Info Produk" di atas `<footer>` pada `kontak.html` memakai pola `input-group`: satu `input type="email"` berlabel `form-label`, tombol lampiran "Daftar", satu kolom `form-text` penjelasan, dan satu `form-check` persetujuan. Kumpulkan: file `kontak.html` terbaru dan paragraf 4–6 kalimat yang menjelaskan alasan tiap kelas yang dipakai. Kriteria: seluruh label terhubung, ada teks bantuan, tombol menyatakan aksinya, dan tidak ada bagian JavaScript.
 
 **Tugas 2 (kelompok 2–3 mahasiswa): audit form acara kampus.** Pilih satu form nyata di lingkungan kampus Anda (pendaftaran seminar, organisasi, atau laboratorium), dokumentasikan bentuknya (screenshot/tabel medan), uji dengan checklist bab ini (label eksplisit, pengelompokan, kontrol yang tepat, CTA, status, fokus, `autocomplete`), lalu tulis tabel rekomendasi perbaikan: Temuan → Prinsip bab ini → Form perbaikannya (cuplikan HTML). Kumpulkan laporan 3–5 halaman + tabel itu. Kriteria: setiap temuan diikat pada prinsip yang tepat, dan seluruh rekomendasi dapat diimplementasikan dengan HTML/CSS/Bootstrap tanpa JavaScript. Tugas ini menyiapkan milestone M3 (Bab 12) yang meminta halaman form utama kelompok Anda.
 
 ## Refleksi
 
-1. Prinsip "satu kolom" terasa melambat bagi form panjang. Kapan pengecualiannya benar-benar wajar? Kapan pasangan medan pendek boleh bersebelahan, dan konsekuensinya apa pada ponsel?
-2. Anda jauh lebih sering mengetik di ponsel daripada di komputer. Hubungan apa yang Anda temukan antara atribut `type` pada `input` dan pengalaman mengetik Anda sendiri, kini yang Anda sadari setelah 11.2?
+1. Prinsip "satu kolom" terasa melambat bagi form panjang. Kapan pengecualiannya benar-benar wajar? Kapan pasangan medan pendek boleh bersebelahan, dan konsekuensinya apa pada HP?
+2. Anda jauh lebih sering mengetik di HP daripada di komputer. Hubungan apa yang Anda temukan antara atribut `type` pada `input` dan pengalaman mengetik Anda sendiri, kini yang Anda sadari setelah 11.2?
 3. Pada Praktikum, kelas status ditulis manual demi mempelajari bentuk visualnya. Menurut Anda, apa risiko bila sebuah tim produksi terus menulis kelas tersebut dengan tangan tanpa pemverifikasi sungguhan yang dijalankan JavaScript — dan desain apa yang meminimalkan risiko itu?
 4. Bab 13 adalah audit seluruh proyek Tokosaya. Dari tiga checklist (label, urutan tab, `autocomplete`), mana yang menurut Anda paling mudah terlewat saat membangun cepat, dan mengapa?
 
@@ -1042,7 +1042,7 @@ Pelajaran dari kasus ini terasa lewat proyek Tokosaya Anda sendiri: halaman `kon
 - Status visual statis (`is-valid`/`is-invalid` + pesan `valid-feedback`/`invalid-feedback`) dipelajari sebagai *styling*; verifikasi form sungguhan memakai JavaScript Bootstrap yang berada di luar cakupan mata kuliah ini.
 - Fokus harusnya selalu terlihat; `:focus-visible` dan urutan dokumen yang logis menyediakan dasarnya tanpa perlu `tabindex` khusus.
 
-**Jembatan ke Bab 12.** Dalam bab ini Anda membuat banyak keputusan kecil yang kini tercerai pada beberapa berkas: warna aksen, font heading, jarak `mb-3`, bentuk medan, bahasa pesan status. Bila keputusan-keputusan itu tidak terdokumentasi, dua orang pembuat halaman berbeda akan menghasilkan dua Tokosaya yang berbeda pula. Bab 12 mengambil seluruh keputusan itu dan menaikinya satu tangga: menjadi sebuah **design system** — token formal, komponen dengan varian, dan halaman *styleguide* Tokosaya yang terdokumentasi. Yang hari ini Anda tulis berulang-ulang, di bab berikutnya akan ditulis satu kali dan dipakai di mana-mana.
+**Jembatan ke Bab 12.** Dalam bab ini Anda membuat banyak keputusan kecil yang kini tercerai pada beberapa file: warna aksen, font heading, jarak `mb-3`, bentuk medan, bahasa pesan status. Bila keputusan-keputusan itu tidak terdokumentasi, dua orang pembuat halaman berbeda akan menghasilkan dua Tokosaya yang berbeda pula. Bab 12 mengambil seluruh keputusan itu dan menaikinya satu tangga: menjadi sebuah **design system** — token formal, komponen dengan varian, dan halaman *styleguide* Tokosaya yang terdokumentasi. Yang hari ini Anda tulis berulang-ulang, di bab berikutnya akan ditulis satu kali dan dipakai di mana-mana.
 
 ## Evaluasi
 
@@ -1076,7 +1076,7 @@ D. `input-select`
 A. menampilkan daftar produk di keranjang
 B. menyandingkan medan isian dengan lampiran statis seperti tanda `@` atau tombol pendamping
 C. menampilkan pesan kesalahan di bawah medan
-D. mengatur lebar layar ponsel
+D. mengatur lebar layar HP
 
 6. *(sulit ringan)* Pada kontak.html, pesan "Format email belum tepat…" ditulis dalam pembungkus `invalid-feedback`, tetapi tidak muncul di layar. Sebab paling mungkin adalah…
 A. medan email belum memakai kelas `form-control`
@@ -1098,7 +1098,7 @@ D. "Submit"
 
 ### Benar atau Salah
 
-1. Kelas `col-md-6` membuat dua medan tampil bersebelahan pada layar mulai titik henti *medium*, dan tampil bertumpuk satu kolom di ponsel.
+1. Kelas `col-md-6` membuat dua medan tampil bersebelahan pada layar mulai titik henti *medium*, dan tampil bertumpuk satu kolom di HP.
 2. Kelas `is-valid` membuat data medan benar-benar tervalidasi tanpa JavaScript.
 3. Pasangan `fieldset`/`legend` tepat dipakai untuk mengelompokkan beberapa radio yang sejenis.
 4. Atribut `readonly` membuat medan tidak ikut terkirim bersama form.

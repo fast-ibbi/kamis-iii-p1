@@ -1,0 +1,7 @@
+# Paksa LF hanya untuk berkas yang menjadi cakupan revisi ini.
+# Tanpa ini, core.autocrlf=true mengembalikan CRLF saat checkout.
+# cheatsheet/ dan berkas lain sengaja tidak disentuh.
+buku/*.md    text eol=lf
+slides/*.md  text eol=lf
+readme.md    text eol=lf
+REVISI-CASUAL.md text eol=lf

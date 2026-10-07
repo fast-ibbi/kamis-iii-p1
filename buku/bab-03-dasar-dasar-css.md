@@ -13,24 +13,24 @@ Setelah menyelesaikan bab ini, mahasiswa dapat:
 3. **Mengimplementasikan** selector elemen, *class*, *ID*, *grouping*, dan *descendant* untuk menata halaman Tokosaya.
 4. **Menerapkan** *pseudo-class* dasar (`:hover`, `:focus`, `:first-child`, `:last-child`, `:nth-child()`) untuk menata keadaan interaktif tanpa JavaScript.
 5. **Menganalisis** konflik gaya dengan tabel *specificity* dan aturan urutan penulisan dalam kaskade.
-6. **Merancang** struktur berkas `style.css` yang terorganisasi menggunakan komentar bagian dan penamaan *class* konsisten.
+6. **Merancang** struktur file `style.css` yang terorganisasi menggunakan komentar bagian dan penamaan *class* konsisten.
 7. **Mengevaluasi** perubahan gaya pada halaman nyata menggunakan browser dan DevTools.
 
 ## Capaian Pembelajaran
 
-Sub-capaian bab ini bermuara pada **CPMK 3** — mahasiswa mampu menerapkan HTML5 dan CSS3 secara semantik untuk membangun halaman web statis yang konsisten dan mudah dirawat. Secara khusus, bab ini menyumbang kemampuan: menata rupa halaman dengan CSS eksternal, memilih *selector* secara sengaja dan terdokumentasi, menguraikan bagaimana browser menentukan gaya final ketika terjadi konflik, serta menata berkas gaya agar selaras dengan kerja tim pengembangan sistem informasi. Kemampuan ini menjadi prasyarat langsung Bab 4 (tipografi dan sistem warna), Bab 5 (box model), serta Bab 6–7 (layout dan *responsive web design*).
+Sub-capaian bab ini bermuara pada **CPMK 3** — mahasiswa mampu menerapkan HTML5 dan CSS3 secara semantik untuk membangun halaman web statis yang konsisten dan mudah dirawat. Secara khusus, bab ini menyumbang kemampuan: menata rupa halaman dengan CSS eksternal, memilih *selector* secara sengaja dan terdokumentasi, menguraikan bagaimana browser menentukan gaya final ketika terjadi konflik, serta menata file gaya agar selaras dengan kerja tim pengembangan sistem informasi. Kemampuan ini menjadi prasyarat langsung Bab 4 (tipografi dan sistem warna), Bab 5 (box model), serta Bab 6–7 (layout dan *responsive web design*).
 
 ## Kata Kunci
 
-CSS (*Cascading Style Sheets*) — bahasa untuk menata rupa halaman web, *selector* — pola pencocokan elemen yang akan diberi gaya, *declaration* — pasangan properti dan nilai di dalam blok aturan, external stylesheet — berkas CSS terpisah yang dihubungkan ke dokumen, *pseudo-class* — keadaan khusus elemen seperti saat dihampiri kursor, *kaskade* (cascade) — algoritma browser memilih pemenang ketika aturan bertentangan, *specificity* — ukuran kekhususan selector dalam kaskade, *inheritance* — pewarisan nilai properti dari elemen induk ke elemen anak, class dan penamaan *kebab-case* — konvensi nama gaya `blok-elemen`, satuan CSS — px, %, em, rem, vw, dan vh.
+CSS (*Cascading Style Sheets*) — bahasa untuk menata rupa halaman web, *selector* — pola pencocokan elemen yang akan diberi gaya, *declaration* — pasangan properti dan nilai di dalam blok aturan, external stylesheet — file CSS terpisah yang dihubungkan ke dokumen, *pseudo-class* — keadaan khusus elemen seperti saat dihampiri kursor, *kaskade* (cascade) — algoritma browser memilih pemenang ketika aturan bertentangan, *specificity* — ukuran kekhususan selector dalam kaskade, *inheritance* — pewarisan nilai properti dari elemen induk ke elemen anak, class dan penamaan *kebab-case* — konvensi nama gaya `blok-elemen`, satuan CSS — px, %, em, rem, vw, dan vh.
 
 ## Apersepsi
 
-Pada akhir Bab 2, struktur company profile Tokosaya sudah selesai: `index.html` dan `tentang.html` kini semantik dengan `header`, `nav`, `main`, dan `footer`. Lalu pemilik toko membuka tautan pratinjau, melihatnya sebentar, lalu bertanya: "Strukturnya sudah rapi, tetapi kenapa tampilannya seperti dokumen lama? Semua hurufnya sama, tautannya biru tua bergaris bawah, dan tak ada satu warna pun dari brand kami."
+Pada akhir Bab 2, struktur company profile Tokosaya sudah selesai: `index.html` dan `tentang.html` kini semantik dengan `header`, `nav`, `main`, dan `footer`. Lalu pemilik toko membuka link pratinjau, melihatnya sebentar, lalu bertanya: "Strukturnya sudah rapi, tetapi kenapa tampilannya seperti dokumen lama? Semua hurufnya sama, tautannya biru tua bergaris bawah, dan tak ada satu warna pun dari brand kami."
 
-Komentar itu memang tepat. HTML menyimpan struktur dan isi, tetapi tanpa instruksi penataan browser akan menampilkan semuanya dengan "pakaian default": huruf *serif* bawaan, tautan biru khas tahun 1990-an, dan tanpa warna brand Tokosaya. Sementara itu, situs toko pesaing sudah tampil dengan warna ungu khas mereka, tombol yang benar-benar terlihat seperti tombol, dan heading yang terasa seperti judul sungguhan. Jadi bedanya bukan pada struktur HTML — keduanya sama-sama semantik — melainkan pada lapisan penataannya.
+Komentar itu memang tepat. HTML menyimpan struktur dan isi, tetapi tanpa instruksi penataan browser akan menampilkan semuanya dengan "pakaian default": huruf *serif* bawaan, link biru khas tahun 1990-an, dan tanpa warna brand Tokosaya. Sementara itu, website toko pesaing sudah tampil dengan warna ungu khas mereka, tombol yang benar-benar terlihat seperti tombol, dan heading yang terasa seperti judul sungguhan. Jadi bedanya bukan pada struktur HTML — keduanya sama-sama semantik — melainkan pada lapisan penataannya.
 
-Di sinilah CSS mulai terasa gunanya. Tokosaya tidak butuh kode yang rumit; cukup satu berkas `css/style.css` yang berisi keputusan visual: font dasar yang enak dibaca, warna indigo untuk tautan dan tombol, heading yang tegas, dan status interaktif tautan (saat kursor di atasnya atau saat menerima fokus keyboard). Karena keputusan itu ditulis sekali dalam satu berkas, keempat halaman Tokosaya bisa berbagi gaya dan tetap konsisten — kebiasaan penting saat proyek nanti tumbuh menjadi sistem informasi dengan banyak halaman.
+Di sinilah CSS mulai terasa gunanya. Tokosaya tidak butuh kode yang rumit; cukup satu file `css/style.css` yang berisi keputusan visual: font dasar yang enak dibaca, warna indigo untuk link dan tombol, heading yang tegas, dan status interaktif link (saat kursor di atasnya atau saat menerima fokus keyboard). Karena keputusan itu ditulis sekali dalam satu file, keempat halaman Tokosaya bisa berbagi gaya dan tetap konsisten — kebiasaan penting saat proyek nanti tumbuh menjadi sistem informasi dengan banyak halaman.
 
 Analogi sederhananya begini: HTML adalah manekin, CSS adalah pakaiannya. Di bab ini Anda mulai merakit pakaian pertamanya. Anda juga akan melihat bahwa perubahan warna, ukuran huruf, sampai respons *hover* bisa dibuat *murni dengan CSS tanpa JavaScript satu baris pun*.
 
@@ -42,7 +42,7 @@ CSS adalah bahasa deklaratif untuk menjelaskan tampilan dokumen HTML. Nama lengk
 
 Satuan terkecil dalam CSS adalah **blok aturan** (*rule*). Satu blok aturan terdiri dari *selector* — pola yang menunjukkan elemen mana yang dipilih — dan blok deklarasi yang berisi pasangan properti—nilai, atau *declaration*, di antara kurung kurawal. Properti menyebut bagian yang ingin diubah (misalnya `color`), sedangkan nilai menyebut hasil yang diinginkan (misalnya `#1E293B`).
 
-Berkas CSS di bawah ini memuat satu blok aturan: selector `h1` dan dua deklarasi.
+File CSS di bawah ini memuat satu blok aturan: selector `h1` dan dua deklarasi.
 
 ```css
 File: latihan-css/anatomi-rule.css
@@ -57,7 +57,7 @@ Penjelasan: baris pertama hanyalah komentar (ditulis dengan `/* ... */`). `h1` a
 
 Lalu bagaimana CSS "bekerja"? Saat browser merender halaman, ia mencocokkan (*matching*) setiap aturan CSS dengan setiap elemen DOM (pohon yang dibangun dari HTML — lihat lagi kajian render pada Bab 1). Aturan yang *selector*-nya cocok dengan suatu elemen akan digabung. Jika ada dua aturan yang memberi nilai berbeda untuk properti yang sama, browser memilih pemenangnya lewat kaskade. Setelah itu, hasil akhirnya dirender ke layar. Jadi, CSS tidak punya "urutan program" seperti logika aplikasi: hasilnya ditentukan oleh kecocokan *selector* dengan elemen, bukan oleh alur eksekusi dari atas ke bawah dokumen.
 
-Contoh berikut memperlihatkan pencocokan tersebut. Berkas HTML memuat satu `h1` dan dua `p`.
+Contoh berikut memperlihatkan pencocokan tersebut. File HTML memuat satu `h1` dan dua `p`.
 
 ```html
 File: latihan-css/pencocokan/index.html
@@ -89,23 +89,23 @@ p {
 
 Penjelasan: selector `h1` cocok dengan satu elemen judul, jadi judulnya berwarna indigo (#4F46E5). Selector `p` cocok dengan dua elemen paragraf, dan keduanya menerima warna slate (#334155) dari satu aturan yang sama. Di sinilah efisiensi utama CSS terasa: gaya ditulis sekali, lalu dipakai di banyak elemen sekaligus.
 
-Dalam konteks sistem informasi, memisahkan struktur dan tampilan itu sangat penting. Bayangkan situs layanan akademik dengan lima puluh halaman: tanpa CSS, penataan harus diulang di setiap halaman; dengan satu stylesheet terpusat, perubahan warna status "selesai" cukup dilakukan sekali dan langsung terasa di seluruh situs. Itulah sebabnya unit kerja SI — dari sistem akademik sampai informasi rumah sakit — butuh gaya yang terpusat, bukan tersebar di banyak berkas halaman. Kalau gayanya konsisten, pengguna juga lebih yakin bahwa seluruh sistem memang dikelola dengan rapi.
+Dalam konteks sistem informasi, memisahkan struktur dan tampilan itu sangat penting. Bayangkan website layanan akademik dengan lima puluh halaman: tanpa CSS, penataan harus diulang di setiap halaman; dengan satu stylesheet terpusat, perubahan warna status "selesai" cukup dilakukan sekali dan langsung terasa di seluruh website. Itulah sebabnya unit kerja SI — dari sistem akademik sampai informasi rumah sakit — butuh gaya yang terpusat, bukan tersebar di banyak file halaman. Kalau gayanya konsisten, pengguna juga lebih yakin bahwa seluruh sistem memang dikelola dengan rapi.
 
 ### 3.2 Inline, Internal, dan External CSS
 
 Aturan CSS bisa diletakkan di tiga tempat, dan pilihan yang terlihat kecil ini ternyata berpengaruh besar ke urusan pemeliharaan.
 
-**Inline CSS** menempel langsung pada satu elemen lewat atribut `style`. Gaya ini hanya berlaku untuk elemen itu, menang atas hampir semua gaya lain, dan tidak bisa dipakai ulang. **Internal CSS** ditulis di dalam elemen `<style>` pada `head` dokumen, sehingga berlaku untuk satu halaman penuh. **External CSS** disimpan di berkas terpisah (umumnya `style.css`) lalu dihubungkan dengan elemen `<link>`, sehingga satu berkas bisa dipakai banyak halaman. Secara teknis ketiganya sama-sama sah, tetapi dalam praktik profesional perannya jelas berbeda.
+**Inline CSS** menempel langsung pada satu elemen lewat atribut `style`. Gaya ini hanya berlaku untuk elemen itu, menang atas hampir semua gaya lain, dan tidak bisa dipakai ulang. **Internal CSS** ditulis di dalam elemen `<style>` pada `head` dokumen, sehingga berlaku untuk satu halaman penuh. **External CSS** disimpan di file terpisah (umumnya `style.css`) lalu dihubungkan dengan elemen `<link>`, sehingga satu file bisa dipakai banyak halaman. Secara teknis ketiganya sama-sama sah, tetapi dalam praktik profesional perannya jelas berbeda.
 
 | Aspek | Inline | Internal | External |
 |---|---|---|---|
-| Letak kode | atribut `style` pada elemen | elemen `<style>` di `head` | berkas `.css` terpisah |
+| Letak kode | atribut `style` pada elemen | elemen `<style>` di `head` | file `.css` terpisah |
 | Jangkauan | satu elemen | satu halaman | seluruh halaman proyek |
 | Dapat dipakai ulang | tidak | antarelemen 1 halaman | antar semua halaman |
 | Kemudahan pemeliharaan | buruk, tersebar | sedang | baik, satu pusat |
 | Posisi dalam proyek | demonstrasi konsep | eksperimen cepat 1 halaman | default proyek |
 
-Praktik terbaik di proyek web adalah ini: **external CSS jadi pilihan default**. Internal CSS masih berguna untuk eksperimen cepat di satu halaman (misalnya saat Anda sedang mencoba ide sebelum dipindahkan ke berkas proyek), tetapi gayanya tetap ikut bercampur dalam kaskade halaman itu. Sementara itu, inline CSS di mata kuliah ini sebaiknya hanya muncul sebagai demonstrasi konsep — seperti pada contoh berikut yang sengaja menampilkan ketiganya sekaligus agar gampang dibandingkan.
+Praktik terbaik di proyek web adalah ini: **external CSS jadi pilihan default**. Internal CSS masih berguna untuk eksperimen cepat di satu halaman (misalnya saat Anda sedang mencoba ide sebelum dipindahkan ke file proyek), tetapi gayanya tetap ikut bercampur dalam kaskade halaman itu. Sementara itu, inline CSS di mata kuliah ini sebaiknya hanya muncul sebagai demonstrasi konsep — seperti pada contoh berikut yang sengaja menampilkan ketiganya sekaligus agar gampang dibandingkan.
 
 ```html
 File: latihan-css/tiga-cara-css/index.html
@@ -142,7 +142,7 @@ h1 {
 
 Penjelasan: halaman ini memperlihatkan ketiga cara secara berdampingan. Paragraf pertama berwarna merah karena gaya inline menang atas aturan lain (lihat subbab 3.7). Paragraf kedua berwarna slate dari aturan internal. Judulnya berwarna indigo karena `<link>` memuat `style.css`. Perhatikan urutan di `head`: internal ditulis lebih dulu, external setelahnya; jika keduanya menyasar elemen yang sama dengan kekuatan setara, aturan yang ditulis belakangan akan menang. Karena itu, biasakan menaruh `<link>` stylesheet sebagai bagian tetap di `head` setiap halaman proyek.
 
-Mengapa urusan pemeliharaan penting? Lihat saja Tokosaya yang menata empat halaman (Beranda, Katalog, Tentang, Kontak). Jika warna indigo ditulis inline di setiap halaman, mengganti warna brand berarti Anda harus menyusuri puluhan baris di empat berkas. Dengan external CSS, cukup ubah satu baris di `style.css`. Untuk unit layanan publik yang punya ratusan halaman informasi, selisih ini bukan soal selera — tetapi soal biaya pemeliharaan dan risiko inkonsistensi antarhalaman.
+Mengapa urusan pemeliharaan penting? Lihat saja Tokosaya yang menata empat halaman (Beranda, Katalog, Tentang, Kontak). Jika warna indigo ditulis inline di setiap halaman, mengganti warna brand berarti Anda harus menyusuri puluhan baris di empat file. Dengan external CSS, cukup ubah satu baris di `style.css`. Untuk unit layanan publik yang punya ratusan halaman informasi, selisih ini bukan soal selera — tetapi soal biaya pemeliharaan dan risiko inkonsistensi antarhalaman.
 
 ### 3.3 Element, Class, dan ID Selector
 
@@ -217,8 +217,8 @@ Elemen di halaman tidak selalu berada dalam keadaan statis: kadang dihampiri kur
 
 Lima *pseudo-class* dasar yang cukup untuk sebagian besar kebutuhan Bab 3–8:
 
-- **`:hover`** — aktif ketika kursor berada di atas elemen: warna tautan berubah, garis bawah muncul.
-- **`:focus`** — aktif ketika elemen menerima fokus, biasanya karena ditabrak tombol Tab atau diklik. Tautan dan elemen form punya fokus. Gaya fokus yang jelas sangat penting bagi pengguna yang menyusuri halaman dengan keyboard (kajian penuh mengikuti di Bab 13 tentang aksesibilitas).
+- **`:hover`** — aktif ketika kursor berada di atas elemen: warna link berubah, garis bawah muncul.
+- **`:focus`** — aktif ketika elemen menerima fokus, biasanya karena ditabrak tombol Tab atau diklik. Link dan elemen form punya fokus. Gaya fokus yang jelas sangat penting bagi pengguna yang menyusuri halaman dengan keyboard (kajian penuh mengikuti di Bab 13 tentang aksesibilitas).
 - **`:first-child`** — menyasar elemen yang merupakan anak pertama elemen induknya; berguna memberi penekanan pada butir daftar pertama.
 - **`:last-child`** — menyasar anak terakhir; misalnya menghapus jarak bawah butir terakhir.
 - **`:nth-child()`** — menyasar anak sesuai pola urutan: `odd` (ganjil), `even` (genap), atau rumus seperti `2n`. Pola baris silih ganti pada tabel (pewarna berselang, *zebra striping*) dibuat dari satu baris aturan ini.
@@ -272,12 +272,12 @@ File: latihan-css/pseudo-class/index.html
 
 ```css
 File: latihan-css/pseudo-class/css/style.css
-/* :hover saat kursor berada di atas tautan */
+/* :hover saat kursor berada di atas link */
 .site-nav a:hover {
   color: #4F46E5;
 }
 
-/* :focus saat tautan menerima fokus keyboard */
+/* :focus saat link menerima fokus keyboard */
 .site-nav a:focus {
   outline: 2px solid #4F46E5;
 }
@@ -299,7 +299,7 @@ File: latihan-css/pseudo-class/css/style.css
 }
 ```
 
-Penjelasan: setiap *pseudo-class* di sini benar-benar berguna untuk pengguna. `:hover` pada `.site-nav a` memberi umpan balik langsung bahwa tautan itu aktif; tanpa perubahan tampilan, orang bisa ragu apakah tautannya bisa diklik. `:focus` menggambar kotak indigo saat pengguna menyusuri halaman dengan Tab — gaya fokus tidak boleh dihapus begitu saja karena itulah pengganti kursor bagi pengguna keyboard. `:first-child` dan `:last-child` membantu Anda menghindari penambahan *class* khusus pada butir pertama atau terakhir yang bisa "rusak" saat isi daftar berubah. `:nth-child(odd)` membuat latar selang-seling pada tabel statistik; satu baris CSS bisa menggantikan class tambahan di setiap baris HTML. Perhatikan juga bahwa tidak ada atribut kejadian di HTML — semua keadaan itu ditangani oleh CSS.
+Penjelasan: setiap *pseudo-class* di sini benar-benar berguna untuk pengguna. `:hover` pada `.site-nav a` memberi umpan balik langsung bahwa link itu aktif; tanpa perubahan tampilan, orang bisa ragu apakah tautannya bisa diklik. `:focus` menggambar kotak indigo saat pengguna menyusuri halaman dengan Tab — gaya fokus tidak boleh dihapus begitu saja karena itulah pengganti kursor bagi pengguna keyboard. `:first-child` dan `:last-child` membantu Anda menghindari penambahan *class* khusus pada butir pertama atau terakhir yang bisa "rusak" saat isi daftar berubah. `:nth-child(odd)` membuat latar selang-seling pada tabel statistik; satu baris CSS bisa menggantikan class tambahan di setiap baris HTML. Perhatikan juga bahwa tidak ada atribut kejadian di HTML — semua keadaan itu ditangani oleh CSS.
 
 ### 3.5 Properti Inti Visual
 
@@ -369,7 +369,7 @@ CSS punya banyak satuan, dan memilihnya adalah keputusan desain, bukan sekadar u
 - **`rem`** (root em): relatif terhadap `font-size` elemen akar (`html`), yang lazimnya 16px. `1rem = 16px`, `2rem = 32px`. Rem adalah pilihan unggulan untuk `font-size` karena mengikuti pengaturan font bawaan browser pengguna (misal pengguna memperbesar font dasar) — aspek aksesibilitas yang berulang kali muncul di bab-bab berikutnya.
 - **`vw` dan `vh`**: 1/100 dari lebar/tinggi *viewport* (area pandang browser). `min-height: 60vh` menjadikan banner tingginya sekurang-kurangnya 60% layar; pemakaian penuhnya menyusul saat membahas halaman responsif.
 
-| Situs penggunaan | Satuan disarankan | Alasan singkat |
+| Website penggunaan | Satuan disarankan | Alasan singkat |
 |---|---|---|
 | Ukuran font teks | `rem` | mengikuti pengaturan pengguna, ramah aksesibilitas |
 | Jarak internal kecil | `px` atau `em` | tetap, mudah difiksasi terhadap desain |
@@ -411,7 +411,7 @@ Penjelasan: setiap aturan di atas menunjukkan satu satuan pada kasus yang paling
 
 Tiga mekanisme bekerja bersama untuk menentukan gaya akhir setiap elemen: **kaskade** (*cascade*), **inheritance** (pewarisan), dan **specificity** (kekhususan). Memahami ketiganya adalah inti bab ini. Dalam praktiknya, CSS yang terasa "berantakan" biasanya bukan karena properti yang ditulis salah, tetapi karena kaskadenya belum benar-benar dipahami.
 
-**Kaskade** adalah cara browser memutuskan pemenang ketika lebih dari satu aturan memberi nilai berbeda untuk properti yang sama pada elemen yang sama. Bayangkan pemilihan seragam di sekolah. Ada **kebijakan pemerintah** (gaya bawaan browser, atau *user-agent stylesheet* — tautan biru bergaris, font *serif*, tanpa gaya apa pun dari kita), lalu ada **aturan sekolah** (berkas `style.css` yang kita tulis — inilah lapisan yang bisa kita kendalikan). Ketika dua aturan sekolah bertabrakan, browser melihat dua hal: **seberapa khusus aturannya** dan, kalau tingkat kekhususannya sama, **siapa yang ditulis paling akhir**. `!important` bisa dibayangkan seperti surat keputusan terakhir yang memotong antrean — sah, tetapi bikin aturan berikutnya makin susah diatur, jadi pakailah hanya saat darurat.
+**Kaskade** adalah cara browser memutuskan pemenang ketika lebih dari satu aturan memberi nilai berbeda untuk properti yang sama pada elemen yang sama. Bayangkan pemilihan seragam di sekolah. Ada **kebijakan pemerintah** (gaya bawaan browser, atau *user-agent stylesheet* — link biru bergaris, font *serif*, tanpa gaya apa pun dari kita), lalu ada **aturan sekolah** (file `style.css` yang kita tulis — inilah lapisan yang bisa kita kendalikan). Ketika dua aturan sekolah bertabrakan, browser melihat dua hal: **seberapa khusus aturannya** dan, kalau tingkat kekhususannya sama, **siapa yang ditulis paling akhir**. `!important` bisa dibayangkan seperti surat keputusan terakhir yang memotong antrean — sah, tetapi bikin aturan berikutnya makin susah diatur, jadi pakailah hanya saat darurat.
 
 Alur keputusan kaskade secara ringkas:
 
@@ -486,15 +486,15 @@ File: latihan-css/kaskade-demo/index.html
 
 Penjelasan: paragraf pertama hanya terkena Aturan 1, jadi warnanya slate. Paragraf kedua punya class `note`, sehingga Aturan 2 (0,1,0) mengalahkan Aturan 1 (0,0,1) dan menghasilkan warna amber. Paragraf ketiga cocok dengan Aturan 3 dan 4 sekaligus; karena `p#pengurusan.note` (1,1,1) lebih spesifik daripada `#pengurusan` (1,0,0), warna hijau yang menang. Paragraf keempat sengaja dibuat menarik: atribut `style` — **khusus demonstrasi** — punya specificity tertinggi dan memaksa warna merah meskipun ada aturan id yang memberi warna hijau. Empat warna, empat aturan kaskade, dan semuanya bisa Anda telusuri satu per satu di panel Styles DevTools.
 
-Ada beberapa kesalahan umum di sekitar kaskade yang sebaiknya Anda waspadai sejak awal. Pertama, memakai `!important` untuk menyelesaikan semua konflik. Sekali dipakai, konflik berikutnya biasanya harus dilawan dengan `!important` lain yang lebih spesifik, dan file CSS jadi makin sulit dipercaya. Kedua, menulis selector terlalu panjang seperti `#navigasi ul li a.tautan` padahal `.nav-link` sudah cukup; specificity yang terlalu tinggi bikin aturan susah diganti nanti. Ketiga, menyebarkan aturan serupa ke banyak berkas sehingga pemenang kaskade makin sulit ditebak. Keempat, menaruh gaya inline di HTML produksi sehingga gayanya tidak terlihat jelas di `style.css` dan susah diaudit. Kebiasaan yang lebih aman sederhana saja: satu berkas gaya, selector spesifik seperlunya, dan biarkan kaskade bekerja sebagaimana mestinya.
+Ada beberapa kesalahan umum di sekitar kaskade yang sebaiknya Anda waspadai sejak awal. Pertama, memakai `!important` untuk menyelesaikan semua konflik. Sekali dipakai, konflik berikutnya biasanya harus dilawan dengan `!important` lain yang lebih spesifik, dan file CSS jadi makin sulit dipercaya. Kedua, menulis selector terlalu panjang seperti `#navigasi ul li a.tautan` padahal `.nav-link` sudah cukup; specificity yang terlalu tinggi bikin aturan susah diganti nanti. Ketiga, menyebarkan aturan serupa ke banyak file sehingga pemenang kaskade makin sulit ditebak. Keempat, menaruh gaya inline di HTML produksi sehingga gayanya tidak terlihat jelas di `style.css` dan susah diaudit. Kebiasaan yang lebih aman sederhana saja: satu file gaya, selector spesifik seperlunya, dan biarkan kaskade bekerja sebagaimana mestinya.
 
 ### 3.8 Mengorganisasi style.css
 
-Berkas CSS yang baik tidak hanya dibaca browser — ia dibaca anggota tim berikutnya, termasuk Anda enam bulan dari sekarang. Struktur yang disarankan untuk proyek Tokosaya:
+File CSS yang baik tidak hanya dibaca browser — ia dibaca anggota tim berikutnya, termasuk Anda enam bulan dari sekarang. Struktur yang disarankan untuk proyek Tokosaya:
 
-1. **Komentar kepala berkas**: nama proyek, versi, ringkasan urutan bagian.
+1. **Komentar kepala file**: nama proyek, versi, ringkasan urutan bagian.
 2. **Dasar halaman**: aturan untuk `body` — font dasar, warna teks, latar.
-3. **Tipografi dasar**: aturan `h1–h3`, paragraf, tautan.
+3. **Tipografi dasar**: aturan `h1–h3`, paragraf, link.
 4. **Bagian halaman berurutan**: header dan navigasi, lalu setiap bagian `main` sesuai urutan kemunculannya, diakhiri footer.
 5. **Utilitas kecil**: *class* serbaguna seperti `text-center`.
 
@@ -504,7 +504,7 @@ Susunan ini penting karena tiga alasan. Pertama, urutan penulisan adalah bagian 
 File: tokosaya-css/css/style.css
 /* =====================================================================
    Tokosaya style.css — v1 (Bab 3)
-   Urutan bagian: dasar halaman, tipografi, tautan, header dan navigasi,
+   Urutan bagian: dasar halaman, tipografi, link, header dan navigasi,
    hero, bagian konten, footer, utilitas.
    Font Poppins/Inter dan design token menyusul pada Bab 4.
    ===================================================================== */
@@ -517,7 +517,7 @@ body {
   background-color: #F8FAFC;
 }
 
-/* ---------- Tipografi dan tautan ---------- */
+/* ---------- Tipografi dan link ---------- */
 h1, h2, h3 {
   color: #1E293B;
 }
@@ -552,7 +552,7 @@ a {
 }
 ```
 
-Penjelasan: kerangka di atas adalah peta ringkas organisasi `style.css`. Blok komentar banner dengan garis tanda sama membuat tiap bagian mudah terlihat di ikhtisar editor. Urutan bagiannya mengikuti anatomi halaman (dasar, lalu header, lalu isi, lalu footer), bukan urutan "apa yang kepikiran duluan" — dan itulah yang membuat berkas tetap mudah dinavigasi saat aturannya nanti makin banyak. `text-center` dipakai sebagai satu-satunya utilitas karena sifatnya kecil, umum, dan tidak mengganggu struktur utama. Di Bab 4–7 berkas ini akan tumbuh untuk menampung token warna, layout kartu, dan media query. Justru karena itu, disiplin organisasi perlu dibiasakan sejak aturan pertama.
+Penjelasan: kerangka di atas adalah peta ringkas organisasi `style.css`. Blok komentar banner dengan garis tanda sama membuat tiap bagian mudah terlihat di ikhtisar editor. Urutan bagiannya mengikuti anatomi halaman (dasar, lalu header, lalu isi, lalu footer), bukan urutan "apa yang kepikiran duluan" — dan itulah yang membuat file tetap mudah dinavigasi saat aturannya nanti makin banyak. `text-center` dipakai sebagai satu-satunya utilitas karena sifatnya kecil, umum, dan tidak mengganggu struktur utama. Di Bab 4–7 file ini akan tumbuh untuk menampung token warna, layout kartu, dan media query. Justru karena itu, disiplin organisasi perlu dibiasakan sejak aturan pertama.
 
 ## Konsep Penting
 
@@ -577,7 +577,7 @@ Penjelasan: kerangka di atas adalah peta ringkas organisasi `style.css`. Blok ko
 
 Dua contoh berikut melatih pola inti bab ini dalam konteks sistem informasi yang berbeda dari Tokosaya, supaya pola selector dan kaskade terasa sebagai kebiasaan umum, bukan cuma milik satu proyek. Contoh pertama adalah halaman pengumuman ujian program studi; contoh kedua adalah "laboratorium" kecil yang memang dibuat untuk mengamati kaskade bekerja.
 
-**Contoh 1 — halaman pengumuman ujian.** Halaman ini menggunakan spectrum selector lengkap: elemen, class, ID, descendant, grouping, dan *pseudo-class* pada tautan serta baris tabel.
+**Contoh 1 — halaman pengumuman ujian.** Halaman ini menggunakan spectrum selector lengkap: elemen, class, ID, descendant, grouping, dan *pseudo-class* pada link serta baris tabel.
 
 ```html
 File: contoh-bab-03/pengumuman/index.html
@@ -663,7 +663,7 @@ body {
   background-color: #F8FAFC;
 }
 
-/* Tipografi dan tautan */
+/* Tipografi dan link */
 h1, h2 {
   color: #1E293B;
 }
@@ -794,15 +794,15 @@ Penjelasan: paragraf pertama berwarna amber karena class mengalahkan elemen. Par
 
 ## Penjelasan Kode
 
-**Contoh 1 (halaman pengumuman).** Struktur CSS mengikuti pola organisasi 3.8 mulai dari dasar halaman hingga footer, jadi pembahasannya bergerak dari yang umum ke yang lebih khusus. Element selector `body` menetapkan font dasar dan warna global; grouping `h1, h2` mengatur warna judul sekali saja — ini efisien karena kalau warna judul berubah, Anda cukup mengedit satu tempat. Ada tiga teknik yang layak disorot. Pertama, `.site-nav a` adalah *descendant selector*: garis bawah tautan dihapus (`text-decoration: none`) hanya di navigasi, sementara tautan di isi tetap bergaris bawah — keputusan kecil yang penting untuk keterbacaan dan aksesibilitas karena teks tautan tetap mudah dibedakan dari teks biasa. Kedua, `:nth-child(odd)` memberi latar lembut pada baris tabel ganjil agar mata lebih mudah mengikuti baris saat tabel melebar. Ketiga, `a:focus { outline: 2px solid #4F46E5; }` memastikan pengguna keyboard tetap tahu posisi fokusnya; outline dibiarkan terlihat, bukan dihapus, karena menghapusnya tanpa pengganti akan merugikan pengguna keyboard.
+**Contoh 1 (halaman pengumuman).** Struktur CSS mengikuti pola organisasi 3.8 mulai dari dasar halaman hingga footer, jadi pembahasannya bergerak dari yang umum ke yang lebih khusus. Element selector `body` menetapkan font dasar dan warna global; grouping `h1, h2` mengatur warna judul sekali saja — ini efisien karena kalau warna judul berubah, Anda cukup mengedit satu tempat. Ada tiga teknik yang layak disorot. Pertama, `.site-nav a` adalah *descendant selector*: garis bawah link dihapus (`text-decoration: none`) hanya di navigasi, sementara link di isi tetap bergaris bawah — keputusan kecil yang penting untuk keterbacaan dan aksesibilitas karena teks link tetap mudah dibedakan dari teks biasa. Kedua, `:nth-child(odd)` memberi latar lembut pada baris tabel ganjil agar mata lebih mudah mengikuti baris saat tabel melebar. Ketiga, `a:focus { outline: 2px solid #4F46E5; }` memastikan pengguna keyboard tetap tahu posisi fokusnya; outline dibiarkan terlihat, bukan dihapus, karena menghapusnya tanpa pengganti akan merugikan pengguna keyboard.
 
-**Contoh 2 (laboratorium specificity).** Berkas CSS ini sengaja "berkonflik": satu elemen `p` ditangkap dua atau tiga aturan dengan tingkat kekhususan berbeda. Nilai utamanya bukan pada tampilannya, tetapi pada latihan membaca *panel Styles*: buka DevTools (F12), pilih elemennya, lalu browser akan menampilkan daftar aturan sesuai urutan kaskade, lengkap dengan label *user agent stylesheet* pada aturan bawaannya. Di situ Anda bisa melihat langsung mengapa id menggantikan class, dan mengapa satu atribut `style` bisa mengalahkan semuanya. Coba juga eksperimen kecil ini: ubah urutan aturan di berkas CSS dan amati bahwa hasilnya tidak selalu berubah (karena specificity masih menentukan pemenang), lalu tukar dua aturan yang setara spesifikasinya dan lihat bagaimana pemenangnya ikut berpindah.
+**Contoh 2 (laboratorium specificity).** File CSS ini sengaja "berkonflik": satu elemen `p` ditangkap dua atau tiga aturan dengan tingkat kekhususan berbeda. Nilai utamanya bukan pada tampilannya, tetapi pada latihan membaca *panel Styles*: buka DevTools (F12), pilih elemennya, lalu browser akan menampilkan daftar aturan sesuai urutan kaskade, lengkap dengan label *user agent stylesheet* pada aturan bawaannya. Di situ Anda bisa melihat langsung mengapa id menggantikan class, dan mengapa satu atribut `style` bisa mengalahkan semuanya. Coba juga eksperimen kecil ini: ubah urutan aturan di file CSS dan amati bahwa hasilnya tidak selalu berubah (karena specificity masih menentukan pemenang), lalu tukar dua aturan yang setara spesifikasinya dan lihat bagaimana pemenangnya ikut berpindah.
 
 ## Praktikum
 
 ### Tujuan Praktikum
 
-Praktikum ini menghasilkan `css/style.css` v1 untuk company profile Tokosaya: berkas gaya eksternal pertama yang menyetel font dasar, warna brand, gaya tautan, dan arsitektur heading. Praktikum melatih seluruh materi bab — selector, *pseudo-class*, properti visual — dalam konteks proyek yang akan dipakai hingga Bab 8.
+Praktikum ini menghasilkan `css/style.css` v1 untuk company profile Tokosaya: file gaya eksternal pertama yang menyetel font dasar, warna brand, gaya link, dan arsitektur heading. Praktikum melatih seluruh materi bab — selector, *pseudo-class*, properti visual — dalam konteks proyek yang akan dipakai hingga Bab 8.
 
 ### Kebutuhan
 
@@ -814,7 +814,7 @@ Praktikum ini menghasilkan `css/style.css` v1 untuk company profile Tokosaya: be
 ### Persiapan
 
 1. Buka folder `tokosaya-css/` di Visual Studio Code. Struktur yang diharapkan: `index.html`, `tentang.html`, dan folder kosong yang akan Anda isi.
-2. Buat folder baru bernama `css`, lalu di dalamnya buat berkas `style.css`.
+2. Buat folder baru bernama `css`, lalu di dalamnya buat file `style.css`.
 3. Buka `index.html` dari Bab 2. Pada praktikum ini Anda akan menambahkan atribut *class* pada elemen-elemen utama sebagai "kail" (hook) gaya; nama class mengikuti pola `blok-elemen` kebab-case.
 4. Pastikan `index.html` memuat `<meta name="viewport">` dan `<link rel="stylesheet" href="css/style.css">` di dalam `head`; tambahkan `<link>` yang sama pada `tentang.html` agar kedua halaman berbagi gaya.
 
@@ -824,18 +824,18 @@ Praktikum ini menghasilkan `css/style.css` v1 untuk company profile Tokosaya: be
 2. Beri `class="hero"`, `class="hero-title"`, `class="hero-subtitle"`, dan `class="btn-cta"` pada bagian hero dan tombol katalognya.
 3. Beri `class="nilai-section"` dan `class="nilai-item"` pada bagian keunggulan, serta `class="kontak-section"` pada bagian kontak.
 4. Beri `class="site-footer"` pada `footer`.
-5. Di `css/style.css`, tulis banner komentar kepala berkas beserta aturan `body` (font dasar, warna teks #334155, latar #F8FAFC).
+5. Di `css/style.css`, tulis banner komentar kepala file beserta aturan `body` (font dasar, warna teks #334155, latar #F8FAFC).
 6. Tambahkan aturan heading: `h1, h2, h3` berwarna #1E293B dengan ukuran bertingkat (h1 2.25rem, h2 1.75rem, h3 1.25rem).
-7. Setel gaya tautan: warna indigo #4F46E5, `:hover` menuju indigo gelap #4338CA, dan `:focus` dengan outline indigo.
-8. Gaya `site-header`, `brand`, dan `site-nav`: latar putih, garis tepi bawah #E2E8F0, tautan navigasi tanpa garis bawah hingga di-*hover*.
+7. Setel gaya link: warna indigo #4F46E5, `:hover` menuju indigo gelap #4338CA, dan `:focus` dengan outline indigo.
+8. Gaya `site-header`, `brand`, dan `site-nav`: latar putih, garis tepi bawah #E2E8F0, link navigasi tanpa garis bawah hingga di-*hover*.
 9. Gaya `hero`, `hero-title`, `hero-subtitle`, dan `btn-cta` (tombol indigo ber teks putih; `:hover` berubah indigo gelap).
 10. Gaya sisa bagian (nilai, kontak, footer) dengan jarak dan latar sesuai tabel keputusan di bawah.
-11. Simpan kedua berkas, lalu muat ulang `index.html` di Chrome dan bandingkan tampilan sebelum-sesudah.
+11. Simpan kedua file, lalu muat ulang `index.html` di Chrome dan bandingkan tampilan sebelum-sesudah.
 12. Buka DevTools, pilih judul hero, dan amati panel Styles: catat aturan mana yang berlaku dan urutannya.
 
 ### Kode
 
-Dua berkas berikut adalah hasil utuh praktikum. `index.html` berada di root proyek; gayanya di `css/style.css`. Navigasi ke `katalog.html` dan `kontak.html` sengaja memakai tautan kosong `href="#"` karena kedua halaman itu baru lahir pada bab-bab berikutnya.
+Dua file berikut adalah hasil utuh praktikum. `index.html` berada di root proyek; gayanya di `css/style.css`. Navigasi ke `katalog.html` dan `kontak.html` sengaja memakai link kosong `href="#"` karena kedua halaman itu baru lahir pada bab-bab berikutnya.
 
 ```html
 File: tokosaya-css/index.html
@@ -893,13 +893,13 @@ File: tokosaya-css/index.html
 </html>
 ```
 
-Penjelasan singkat: struktur `index.html` dari Bab 2 sekarang sudah diberi kail style: lima class pada bagian identitas (header, brand, nav), empat class pada hero, dan satu class untuk tiap bagian konten. Perhatikan `href="#"` pada Katalog, Kontak, dan tombol CTA — halaman tujuannya memang belum dibuat; ini hanya tautan sementara, bukan bagian dari pembahasan gaya.
+Penjelasan singkat: struktur `index.html` dari Bab 2 sekarang sudah diberi kail style: lima class pada bagian identitas (header, brand, nav), empat class pada hero, dan satu class untuk tiap bagian konten. Perhatikan `href="#"` pada Katalog, Kontak, dan tombol CTA — halaman tujuannya memang belum dibuat; ini hanya link sementara, bukan bagian dari pembahasan gaya.
 
 ```css
 File: tokosaya-css/css/style.css
 /* =====================================================================
    Tokosaya style.css — v1 (Bab 3)
-   Isu inti: font dasar, warna, tautan, heading.
+   Isu inti: font dasar, warna, link, heading.
    Font Poppins/Inter dan design token menyusul pada Bab 4.
    ===================================================================== */
 
@@ -931,7 +931,7 @@ h3 {
   font-size: 1.25rem;
 }
 
-/* ---------- Tautan global ---------- */
+/* ---------- Link global ---------- */
 a {
   color: #4F46E5;
   text-decoration: underline;
@@ -1028,11 +1028,11 @@ a:focus {
 }
 ```
 
-Penjelasan singkat: `style.css` v1 masih memakai warna hex Tokosaya secara langsung (indigo #4F46E5 untuk tautan dan tombol, slate untuk teks, dan garis #E2E8F0 sebagai pemisah halus) karena design token baru dibahas di Bab 4. Perhatikan juga bahwa urutan bagiannya mengikuti anatomi halaman, lengkap dengan komentar banner pada tiap blok.
+Penjelasan singkat: `style.css` v1 masih memakai warna hex Tokosaya secara langsung (indigo #4F46E5 untuk link dan tombol, slate untuk teks, dan garis #E2E8F0 sebagai pemisah halus) karena design token baru dibahas di Bab 4. Perhatikan juga bahwa urutan bagiannya mengikuti anatomi halaman, lengkap dengan komentar banner pada tiap blok.
 
 ### Penjelasan Kode
 
-Berkas `index.html` menerapkan prinsip "HTML membawa identitas, CSS membawa keputusan": nama class `hero-title` dan `btn-cta` menunjukkan peran elemen, bukan warna atau bentuknya, jadi kalau Tokosaya nanti mengganti warna, HTML tidak perlu ikut berubah. Gaya tautan diatur dalam dua lapis: aturan global `a` memberi warna indigo dan garis bawah agar tautan tetap jelas terlihat, lalu `.site-nav a` menghapus garis bawah khusus di navigasi karena bagian itu sudah punya tampilan sendiri. Ini contoh kaskade yang rapi — id tidak dipakai, class sudah cukup. Tombol `btn-cta` berupa `<a>` dengan latar indigo; `:hover` membuat warnanya lebih gelap (#4338CA) sebagai umpan balik interaktif, dan `:focus` global memastikan pengguna keyboard tetap tahu tautan mana yang sedang tersorot. `line-height: 1.6` pada `body` diwariskan ke seluruh teks sebagai contoh langsung *inheritance*, sedangkan `border-bottom` pada header hanya berlaku di header karena border memang tidak diwariskan.
+File `index.html` menerapkan prinsip "HTML membawa identitas, CSS membawa keputusan": nama class `hero-title` dan `btn-cta` menunjukkan peran elemen, bukan warna atau bentuknya, jadi kalau Tokosaya nanti mengganti warna, HTML tidak perlu ikut berubah. Gaya link diatur dalam dua lapis: aturan global `a` memberi warna indigo dan garis bawah agar link tetap jelas terlihat, lalu `.site-nav a` menghapus garis bawah khusus di navigasi karena bagian itu sudah punya tampilan sendiri. Ini contoh kaskade yang rapi — id tidak dipakai, class sudah cukup. Tombol `btn-cta` berupa `<a>` dengan latar indigo; `:hover` membuat warnanya lebih gelap (#4338CA) sebagai umpan balik interaktif, dan `:focus` global memastikan pengguna keyboard tetap tahu link mana yang sedang tersorot. `line-height: 1.6` pada `body` diwariskan ke seluruh teks sebagai contoh langsung *inheritance*, sedangkan `border-bottom` pada header hanya berlaku di header karena border memang tidak diwariskan.
 
 ### Hasil yang Diharapkan
 
@@ -1040,36 +1040,36 @@ Setelah praktikum, hasil berikut diharapkan teramati pada `index.html` di Chrome
 
 - Seluruh teks tampil sans-serif dengan jarak baris 1.6; heading tegas berwarna #1E293B dengan ukuran bertingkat (h1 36px, h2 28px, h3 20px pada setelan font dasar 16px).
 - Latar halaman putih kebiruan #F8FAFC dengan panel putih pada header, hero, nilai, dan footer; garis pemisah #E2E8F0 menghubungkan panel-panel itu.
-- Tautan berwarna indigo #4F46E5, mempergelap saat di-*hover*, dan menggambar kotak fokus indigo ketika ditabrak tombol Tab.
+- Link berwarna indigo #4F46E5, mempergelap saat di-*hover*, dan menggambar kotak fokus indigo ketika ditabrak tombol Tab.
 - Tombol "Lihat Katalog" tampil sebagai blok indigo ber teks putih; hover-nya mempergelap menjadi #4338CA.
 
-Terukur: tampilan dimuat tanpa aset tambahan (satu berkas teks CSS), jumlah aturan gaya di `style.css` sekitar dua puluh, dan berkas yang sama ikut menata `tentang.html` karena kedua halaman menautkan `<link>` yang sama — tanpa duplikasi aturan dimanapun.
+Terukur: tampilan dimuat tanpa aset tambahan (satu file teks CSS), jumlah aturan gaya di `style.css` sekitar dua puluh, dan file yang sama ikut menata `tentang.html` karena kedua halaman menautkan `<link>` yang sama — tanpa duplikasi aturan dimanapun.
 
 ### Troubleshooting
 
 **Masalah:** Halaman tampak persis sebelum praktikum; semua gaya CSS tidak terlihat.
-**Penyebab:** Paling sering jalur `<link>` salah — misal berkas berada di `css/style.css` tetapi HTML menyebut `styles/style.css`, atau berkas diberi nama `style.css.txt` karena ekstensi tersembunyi di Windows.
-**Solusi:** Buka DevTools, tab Console: cari galat "Failed to load stylesheet" beserta URL yang diminta; betulkan atribut `href` hingga cocok dengan struktur folder, pastikan ekstensi benar `.css`.
-**Pencegahan:** Biasakan membuat folder `css/` bersamaan dengan berkas `style.css` pada langkah persiapan, dan selalu periksa tab Network/Console setelah menautkan berkas gaya baru.
+**Penyebab:** Paling sering jalur `<link>` salah — misal file berada di `css/style.css` tetapi HTML menyebut `styles/style.css`, atau file diberi nama `style.css.txt` karena ekstensi tersembunyi di Windows.
+**Solusi:** Buka DevTools, tab Console: cari error "Failed to load stylesheet" beserta URL yang diminta; betulkan atribut `href` hingga cocok dengan struktur folder, pastikan ekstensi benar `.css`.
+**Pencegahan:** Biasakan membuat folder `css/` bersamaan dengan file `style.css` pada langkah persiapan, dan selalu periksa tab Network/Console setelah menautkan file gaya baru.
 
-**Masalah:** Beberapa aturan berlaku, tetapi warna tautan tetap biru default browser.
+**Masalah:** Beberapa aturan berlaku, tetapi warna link tetap biru default browser.
 **Penyebab:** Selector tidak benar-benar menjangkau elemen — salah ketik nama class di HTML atau CSS (misal `site-nav` vs `sitenav`), atau aturan yang lebih spesifik menang dalam kaskade.
-**Solusi:** Klik tautan di halaman, buka panel Styles DevTools, dan lihat aturan mana yang tercoret mana yang berlaku; perbaiki pengejaan atau naikkan ketepatan selector (misal `.site-nav a`).
+**Solusi:** Klik link di halaman, buka panel Styles DevTools, dan lihat aturan mana yang tercoret mana yang berlaku; perbaiki pengejaan atau naikkan ketepatan selector (misal `.site-nav a`).
 **Pencegahan:** Salin nama class antara HTML dan CSS, jangan ketik ulang; gunakan penamaan konsisten kebab-case agar perbedaan huruf tidak muncul.
 
 **Masalah:** Perubahan warna tidak tampak meskipun aturan jelas ditulis, lalu setelah beberapa refresh tampil.
-**Penyebab:** Browser memakai versi lama `style.css` dari cache, atau berkas belum disimpan di editor ketika halaman di-muat ulang.
-**Solusi:** Hard refresh (Ctrl+F5 di Chrome) untuk memaksa unduh ulang berkas gaya; pastikan titik tersimpan di editor (dot pada tab berubah hilang).
+**Penyebab:** Browser memakai versi lama `style.css` dari cache, atau file belum disimpan di editor ketika halaman di-muat ulang.
+**Solusi:** Hard refresh (Ctrl+F5 di Chrome) untuk memaksa unduh ulang file gaya; pastikan titik tersimpan di editor (dot pada tab berubah hilang).
 **Pencegahan:** Biasakan simpan lalu muat ulang; aktifkan "Disable cache" pada panel Network DevTools saat sedang menyunting gaya.
 
-**Masalah:** `:hover` tidak berpengaruh pada tautan navigasi.
-**Penyebab:** Ada aturan lain dengan specificity lebih tinggi (misal gaya inline yang tersisa dari eksperimen), atau *pseudo-class* ditulis dengan spasi salah sehingga menyasar hal lain: `a :hover` (dengan spasi) berarti "elemen apa pun di dalam a", bukan keadaan hover tautan itu.
+**Masalah:** `:hover` tidak berpengaruh pada link navigasi.
+**Penyebab:** Ada aturan lain dengan specificity lebih tinggi (misal gaya inline yang tersisa dari eksperimen), atau *pseudo-class* ditulis dengan spasi salah sehingga menyasar hal lain: `a :hover` (dengan spasi) berarti "elemen apa pun di dalam a", bukan keadaan hover link itu.
 **Solusi:** Tulis `:hover` tanpa spasi setelah elemen (`a:hover`), hapus gaya inline sisa eksperimen, dan gunakan panel Styles untuk memeriksa aturan mana yang menang.
 **Pencegahan:** Satu konvensi penulisan *pseudo-class* (menempel tanpa spasi) dan audit berkala pada HTML agar tidak ada gaya inline menunggu di tag.
 
 ## Studi Kasus
 
-Sebuah dinas layanan publik perpustakaan dan administrasi wilayah punya halaman informasi jam layanan yang sering dibuka warga sebelum datang ke loket. Halaman ini dulu dibuat dengan cara yang saat itu terasa praktis: hampir setiap elemen diberi gaya **inline** — atribut `style` menempel pada `header`, `p`, bahkan tiap `li`. Warna header, ukuran huruf, sampai warna status tutup cepat semuanya ditulis langsung di HTML. Masalah baru terasa saat muncul tiga halaman serupa (jam layanan, biaya layanan, kelengkapan berkas). Ketika warna identitas unit diganti dari biru ke warna yang lebih tegas, petugas harus menyalin ulang atribut `style` di puluhan tag; dua halaman ikut berubah, satu halaman tertinggal, dan jam layanan Jumat pun tampil dengan warna berbeda. Inilah biaya pemeliharaan yang sering tidak kelihatan di awal — persis seperti yang dibahas di 3.2 dan 3.7: gaya inline menang di kaskade, tidak bisa dipakai ulang, dan membuat struktur gaya sulit dibaca. Berikut potongan kondisi sebelum refactor (disajikan sebagai demonstrasi kondisi awal — gaya inline inilah yang nanti dihapus):
+Sebuah dinas layanan publik perpustakaan dan administrasi wilayah punya halaman informasi jam layanan yang sering dibuka warga sebelum datang ke loket. Halaman ini dulu dibuat dengan cara yang saat itu terasa praktis: hampir setiap elemen diberi gaya **inline** — atribut `style` menempel pada `header`, `p`, bahkan tiap `li`. Warna header, ukuran huruf, sampai warna status tutup cepat semuanya ditulis langsung di HTML. Masalah baru terasa saat muncul tiga halaman serupa (jam layanan, biaya layanan, kelengkapan file). Ketika warna identitas unit diganti dari biru ke warna yang lebih tegas, petugas harus menyalin ulang atribut `style` di puluhan tag; dua halaman ikut berubah, satu halaman tertinggal, dan jam layanan Jumat pun tampil dengan warna berbeda. Inilah biaya pemeliharaan yang sering tidak kelihatan di awal — persis seperti yang dibahas di 3.2 dan 3.7: gaya inline menang di kaskade, tidak bisa dipakai ulang, dan membuat struktur gaya sulit dibaca. Berikut potongan kondisi sebelum refactor (disajikan sebagai demonstrasi kondisi awal — gaya inline inilah yang nanti dihapus):
 
 ```html
 File: kasus-bab-03/layanan-publik/versi-inline.html
@@ -1098,7 +1098,7 @@ File: kasus-bab-03/layanan-publik/versi-inline.html
 </html>
 ```
 
-Penjelasan: dalam kondisi seperti ini, setiap perubahan warna berarti Anda harus menyentuh atribut `style` satu per satu. Karena gaya inline menang atas CSS apa pun (specificity paling tinggi — lihat 3.7), memindahkan gaya halaman ke `style.css` tanpa menghapus atribut inline tidak akan mengubah apa-apa. Maka refactor harus dimulai dari audit: kelompokkan nilai gaya yang berulang, beri nama class sesuai perannya, pindahkan ke berkas eksternal, lalu kosongkan atribut `style`. Hasilnya seperti berikut.
+Penjelasan: dalam kondisi seperti ini, setiap perubahan warna berarti Anda harus menyentuh atribut `style` satu per satu. Karena gaya inline menang atas CSS apa pun (specificity paling tinggi — lihat 3.7), memindahkan gaya halaman ke `style.css` tanpa menghapus atribut inline tidak akan mengubah apa-apa. Maka refactor harus dimulai dari audit: kelompokkan nilai gaya yang berulang, beri nama class sesuai perannya, pindahkan ke file eksternal, lalu kosongkan atribut `style`. Hasilnya seperti berikut.
 
 ```html
 File: kasus-bab-03/layanan-publik/index.html
@@ -1182,27 +1182,27 @@ body {
 }
 ```
 
-Penjelasan: markup sekarang sudah memakai nama peran (`site-header`, `jam-list`, `jam-short`) dan tidak lagi punya atribut `style`. Semua keputusan visual pindah ke satu berkas yang bisa dipakai ulang di dua halaman serupa lainnya, dan penggantian warna brand kini berpotensi selesai hanya dengan mengubah satu-dua aturan di `body` dan `site-header`. Dari sisi pemeliharaan, versi sesudah refactor juga lebih sehat: identitas halaman dipegang oleh *class* (`site-header`, `site-title`), bukan ID, karena memang tidak ada bagian unik yang butuh gaya khusus di luar class. Kebiasaan memberi ID ke setiap blok hanya menaikkan specificity tanpa manfaat yang jelas. Studi kasus ini menegaskan lagi pola 3.7: setelah gaya inline dihapus, kaskade bisa bekerja sebagaimana mestinya dan aturan yang sama berlaku seragam di semua halaman. Inilah fondasi yang nanti dipakai Tokosaya saat membangun empat halaman dengan satu berkas gaya yang sama.
+Penjelasan: markup sekarang sudah memakai nama peran (`site-header`, `jam-list`, `jam-short`) dan tidak lagi punya atribut `style`. Semua keputusan visual pindah ke satu file yang bisa dipakai ulang di dua halaman serupa lainnya, dan penggantian warna brand kini berpotensi selesai hanya dengan mengubah satu-dua aturan di `body` dan `site-header`. Dari sisi pemeliharaan, versi sesudah refactor juga lebih sehat: identitas halaman dipegang oleh *class* (`site-header`, `site-title`), bukan ID, karena memang tidak ada bagian unik yang butuh gaya khusus di luar class. Kebiasaan memberi ID ke setiap blok hanya menaikkan specificity tanpa manfaat yang jelas. Studi kasus ini menegaskan lagi pola 3.7: setelah gaya inline dihapus, kaskade bisa bekerja sebagaimana mestinya dan aturan yang sama berlaku seragam di semua halaman. Inilah fondasi yang nanti dipakai Tokosaya saat membangun empat halaman dengan satu file gaya yang sama.
 
 ## Latihan Mandiri
 
 1. Dengan kata-kata Anda sendiri, jelaskan perbedaan selector elemen dan selector *class* — lalu tunjuk di `index.html` Tokosaya satu tempat yang tepat dipakainya masing-masing.
 2. Tulis satu blok aturan CSS untuk badge "Baru" produk Webcam HD WC-720: teks putih di atas latar indigo, tepi 1px #E2E8F0, dengan class bernama `badge-baru`; sertakan satu kalimat mengapa Anda memilih class, bukan ID.
-3. Buka sebuah situs layanan publik Indonesia (misal situs kampus atau portal informasi kesehatan); daftarkan minimal tiga gaya visual yang Anda amati dan tebak properti CSS di baliknya (misal "heading tiba-tiba besar — kemungkinan `font-size`").
-4. Pada `latihan-css/kaskade-demo`, tukar posisi Aturan 1 dan Aturan 2, muat ulang, dan deskripsikan hasilnya; jelaskan mengapa hasil tidak berubah, lalu cari pasangan aturan di berkas itu yang hasilnya justru berubah bila ditukar.
+3. Buka sebuah website layanan publik Indonesia (misal website kampus atau portal informasi kesehatan); daftarkan minimal tiga gaya visual yang Anda amati dan tebak properti CSS di baliknya (misal "heading tiba-tiba besar — kemungkinan `font-size`").
+4. Pada `latihan-css/kaskade-demo`, tukar posisi Aturan 1 dan Aturan 2, muat ulang, dan deskripsikan hasilnya; jelaskan mengapa hasil tidak berubah, lalu cari pasangan aturan di file itu yang hasilnya justru berubah bila ditukar.
 5. Tulis ulang halaman `latihan-css/tiga-cara-css` menjadi pola penuh external CSS (hapus `<style>` dan setiap atribut `style`); catat langkah yang Anda lakukan dan jumlah atribut yang dihapus.
-6. Rancang daftar tiga situasi pada website Tokosaya yang membutuhkan *pseudo-class* berbeda (misal `:hover` pada tombol, `:focus` pada tautan, `:nth-child()` pada daftar) dan tulis draf satu baris aturan CSS untuk masing-masing.
+6. Rancang daftar tiga situasi pada website Tokosaya yang membutuhkan *pseudo-class* berbeda (misal `:hover` pada tombol, `:focus` pada link, `:nth-child()` pada daftar) dan tulis draf satu baris aturan CSS untuk masing-masing.
 
 ## Tugas
 
-**Tugas 1 — Style v1 lengkap (individu).** Terapkan hasil Praktikum di atas ke seluruh halaman yang ada pada folder `tokosaya-css/` (`index.html` dan `tentang.html`), sehingga kedua halaman tampil satu keluarga visual. Keluaran yang dikumpulkan: (a) berkas `css/style.css`, (b) kedua berkas HTML dengan class yang rapi, dan (c) catatan singkat 150 kata: tiga keputusan warna Anda dan alasannya. Kriteria penilaian singkat: external CSS benar dihubungkan di kedua halaman (30%), gaya tautan dan heading lengkap dengan keadaan `:hover`/`:focus` (30%), organisasi berkas dengan komentar banner (20%), kecocokan warna Tokosaya (20%).
+**Tugas 1 — Style v1 lengkap (individu).** Terapkan hasil Praktikum di atas ke seluruh halaman yang ada pada folder `tokosaya-css/` (`index.html` dan `tentang.html`), sehingga kedua halaman tampil satu keluarga visual. Keluaran yang dikumpulkan: (a) file `css/style.css`, (b) kedua file HTML dengan class yang rapi, dan (c) catatan singkat 150 kata: tiga keputusan warna Anda dan alasannya. Kriteria penilaian singkat: external CSS benar dihubungkan di kedua halaman (30%), gaya link dan heading lengkap dengan keadaan `:hover`/`:focus` (30%), organisasi file dengan komentar banner (20%), kecocokan warna Tokosaya (20%).
 
 **Tugas 2 — Refleksi refactor (kelompok 3–4 orang).** Pilih satu halaman web publik sederhana (satu halaman, bukan aplikasi kompleks), amati gaya visual utamanya, lalu susun tabel "gaya yang terlihat → properti CSS yang menduga mewakilinya → nama class yang akan Anda pakai" untuk 10 elemen. Keluaran: tabel dalam dokumen teks (1 halaman) beserta satu paragraf penutup: bagian mana yang paling sulit diubah bila gayanya inline, dan mengapa. Kriteria: ketepatan tebakan properti (40%), kegunaan nama class yang diusulkan (30%), kedalaman analisis pemeliharaan (30%).
 
 ## Refleksi
 
 1. Ketika Anda mengubah satu baris `style.css` dan seluruh halaman ikut berubah, bagian mana dari mekanisme CSS yang membuat itu mungkin — dan kapan mekanisme yang sama justru membuat perilaku gaya terasa "tak bisa diprediksi"?
-2. Anda diminta memakai warna yang sama di `hover` tombol dan tautan navigasi. Kapan Anda memilih menulis dua aturan terpisah, dan kapan memilih satu selector gabungan? Apa yang Anda pertimbangkan?
+2. Anda diminta memakai warna yang sama di `hover` tombol dan link navigasi. Kapan Anda memilih menulis dua aturan terpisah, dan kapan memilih satu selector gabungan? Apa yang Anda pertimbangkan?
 3. Menurut Anda, mengapa spesifikasi web menempatkan gaya inline di puncak specificity alih-alih mengabdiakannya seperti aturan biasa? Apa konsekuensi desain keputusan itu bagi pemeliharaan?
 4. Setelah praktikum ini, bagian mana dari `style.css` v1 yang menurut Anda paling rentan meledak menjadi tidak teratur ketika Bab 4–7 menambah tipografi, kartu produk, dan layout? Apa yang bisa Anda lakukan sekarang (misal komentar bagian atau penamaan) untuk mengantisipasinya?
 
@@ -1214,9 +1214,9 @@ Penjelasan: markup sekarang sudah memakai nama peran (`site-header`, `jam-list`,
 - *Pseudo-class* menata keadaan elemen — `:hover`, `:focus`, `:first-child`, `:last-child`, `:nth-child()` — seluruhnya *murni CSS* tanpa JavaScript.
 - Properti inti visual bab ini: `color`, `background-color`, `border`, `opacity`; warna dijaga kontrasnya terhadap latar.
 - Satuan penting: `rem` untuk font (mengikuti setelan pengguna), `%` untuk lebar, `px` untuk garis kecil, `vw`/`vh` untuk ukuran berbasis layar.
-- Kaskade memilih pemenang aturan bila konflik, dengan urutan: asal aturan, lalu specificity (inline > id > class > elemen), lalu aturan terbawah dalam berkas bila setara.
+- Kaskade memilih pemenang aturan bila konflik, dengan urutan: asal aturan, lalu specificity (inline > id > class > elemen), lalu aturan terbawah dalam file bila setara.
 - `color` dan `font-family` diwarisi elemen anak; `border`, `padding`, `margin`, `background-color` tidak.
-- Berkas `style.css` yang baik: banner komentar, urutan dasar→bagian halaman→footer→utilitas, nama class peran.
+- File `style.css` yang baik: banner komentar, urutan dasar→bagian halaman→footer→utilitas, nama class peran.
 
 Jembatan ke bab berikutnya: `style.css` v1 yang baru saja Anda bangun masih memakai keluarga font sistem dan warna hex yang ditulis berulang di banyak aturan. Bab 4 menaikkan standar keduanya: tipografi profesional dengan Google Fonts (Poppins untuk heading, Inter untuk teks) — skala, jarak baris, dan hierarki visual — serta sistem warna yang terpusat dalam *design token*: setiap warna brand didefinisikan satu kali sebagai variabel warna bernama, lalu dipanggil di semua aturan yang membutuhkannya. Dasar selector, kaskade, dan specificity yang Anda kuasai di bab ini adalah pisau utama untuk menerapkan token itu dengan terkendali.
 
@@ -1240,7 +1240,7 @@ Bagian ini mengukur pemahaman konsep selector, kaskade, dan specificity serta pe
 
 3. Keunggulan utama external CSS dibanding internal CSS adalah …
    A. penulisannya paling pendek per elemen
-   B. satu berkas dipakai banyak halaman sehingga gaya konsisten dan mudah dirawat
+   B. satu file dipakai banyak halaman sehingga gaya konsisten dan mudah dirawat
    C. gayanya otomatis menang atas semua aturan lain
    D. tidak perlu dimuat oleh browser
 
@@ -1262,11 +1262,11 @@ Bagian ini mengukur pemahaman konsep selector, kaskade, dan specificity serta pe
    C. `em` berpatokan pada lebar layar, `rem` pada tinggi layar
    D. keduanya identik saling menggantikan tanpa perbedaan
 
-7. Dua aturan dengan *specificity* setara menyasar elemen sama dan ditulis berturut-turut dalam satu berkas CSS. Aturan yang berlaku adalah …
+7. Dua aturan dengan *specificity* setara menyasar elemen sama dan ditulis berturut-turut dalam satu file CSS. Aturan yang berlaku adalah …
    A. aturan yang ditulis pertama
    B. aturan yang ditulis terakhir
    C. keduanya digabungkan nilainya
-   D. browser melempar galat dan memakai gaya default
+   D. browser melempar error dan memakai gaya default
 
 ### Benar atau Salah
 
@@ -1275,14 +1275,14 @@ Tandai B jika pernyataan benar, S jika salah.
 1. Selector *ID* memiliki *specificity* lebih tinggi daripada selector *class*.
 2. Gaya inline adalah cara terbaik untuk menyusun seluruh halaman proyek karena tercepat ditulis.
 3. Properti `border` diwariskan oleh setiap elemen anak dari induknya.
-4. Bila *specificity* dua aturan setara, urutan penulisan di berkas CSS menentukan pemenang.
+4. Bila *specificity* dua aturan setara, urutan penulisan di file CSS menentukan pemenang.
 5. `:focus` hanya berguna bagi pengguna tetikus, sehingga boleh diabaikan desainnya.
 
 ### Analisis Kode
 
 (Butir analisis — tingkat ringan.)
 
-**Butir 1.** Perhatikan berkas CSS dan elemen HTML berikut.
+**Butir 1.** Perhatikan file CSS dan elemen HTML berikut.
 
 ```css
 File: latihan-css/evaluasi-analisis-1.css
@@ -1306,7 +1306,7 @@ File: latihan-css/evaluasi-analisis-1.html
 
 a) Warna apa yang akhirnya tampak pada paragraf tersebut, dan urutan perhitungan specificity-nya seperti apa? b) Desainer ingin paragraf ini berwarna hijau (#16A34A) tanpa mengubah HTML sama sekali — sebutkan dua langkah berbeda yang mungkin (termasuk keputusan menyingkirkan aturan yang konflik), dan jelaskan pilihan mana yang paling bersih untuk dirawat.
 
-**Butir 2.** Potongan berikut diambil dari berkas gaya halaman admin yang disunting dua orang pada dua waktu yang berbeda.
+**Butir 2.** Potongan berikut diambil dari file gaya halaman admin yang disunting dua orang pada dua waktu yang berbeda.
 
 ```css
 File: latihan-css/evaluasi-analisis-2.css
@@ -1323,7 +1323,7 @@ a) Warna berapa yang tampak, dan berdasar mekanisme kaskade yang mana? b) Identi
 
 ### Soal Praktik
 
-1. Pada proyek `tokosaya-css/`, tambahkan gaya keadaan fokus (`a:focus`) bagi seluruh tautan `tentang.html` dengan outline 2px indigo #4F46E5 dan `outline-offset: 2px`; jelaskan dalam 2–3 kalimat mengapa gaya fokus jangan dihapus demi "tampak bersih".
+1. Pada proyek `tokosaya-css/`, tambahkan gaya keadaan fokus (`a:focus`) bagi seluruh link `tentang.html` dengan outline 2px indigo #4F46E5 dan `outline-offset: 2px`; jelaskan dalam 2–3 kalimat mengapa gaya fokus jangan dihapus demi "tampak bersih".
 2. Buat halaman mini `jadwal.html` Tokosaya (struktur minimal: satu `h1`, tabel tiga baris jadwal pengiriman) dengan external CSS; setel baris ganjil `tbody` diberi latar #F8FAFC memakai `:nth-child`, dan tulis satu kalimat mengapa `:nth-child` lebih tahan perubahan daripada memberi class manual pada baris ganjil.
 
 ### Kunci Jawaban
@@ -1349,11 +1349,11 @@ a) Warna berapa yang tampak, dan berdasar mekanisme kaskade yang mana? b) Identi
 4. B — urutan sumber (source order) adalah penentu terakhir ketika specificity setara.
 5. S — gaya fokus adalah pengganti kursor bagi pengguna keyboard; menghapusnya membuat posisi navigasi tak terlihat.
 
-**Analisis Kode — Butir 1.** a) Warna akhirnya indigo (#4F46E5): `#pengumuman-halaman` (id, 1,0,0) mengalahkan `p.info` (0,1,1) dan `.info` (0,1,0). b) Dua langkah: hapus aturan ID dari berkas (sehingga `p.info` hijau menang), atau naikkan kekhususan aturan hijau agar memuat id (misal `p#pengumuman-halaman.info`) — tapi pilihan paling bersih adalah menyatukan satu sumber gaya: pilih satu aturan pemenang sengaja, hapus aturan lain, karena menyusun konflik untuk "membisanya" kaskade membuat berkas sulit dinalar.
+**Analisis Kode — Butir 1.** a) Warna akhirnya indigo (#4F46E5): `#pengumuman-halaman` (id, 1,0,0) mengalahkan `p.info` (0,1,1) dan `.info` (0,1,0). b) Dua langkah: hapus aturan ID dari file (sehingga `p.info` hijau menang), atau naikkan kekhususan aturan hijau agar memuat id (misal `p#pengumuman-halaman.info`) — tapi pilihan paling bersih adalah menyatukan satu sumber gaya: pilih satu aturan pemenang sengaja, hapus aturan lain, karena menyusun konflik untuk "membisanya" kaskade membuat file sulit dinalar.
 
 **Analisis Kode — Butir 2.** a) Warna yang tampak #4338CA: kedua blok setara se specificity-nya sempurna (identik), maka pemenang ditentukan urutan sumber — aturan kedua. b) Cacat: (1) selector terlalu spesifik dan rapuh (menyebut rantai panjang termasuk `li` yang tidak penting), sulit dipakai ulang; (2) dua blok identik dengan nilai berbeda — duplikasi yang menunggu kebingungan. Perbaikan: sederhanakan menjadi `.site-nav a { color: #4338CA; }` satu-satunya aturan (atau simpan dua nilai dalam dua class berbeda bila dua warna memang diperlukan).
 
-**Soal Praktik — ringkasan jawaban.** 1) Tambahkan pada `style.css`: `a:focus { outline: 2px solid #4F46E5; outline-offset: 2px; }` — alasan: pengguna keyboard menyusuri halaman lewat Tab tanpa kursor, sehingga indikasi fokus visual adalah satu-satunya isyarat posisi (terkait WCAG, dibahas Bab 13); menghapusnya justru membutakan pengguna keyboard. 2) Aturan `.tabel-jadwal tbody tr:nth-child(odd) { background-color: #F8FAFC; }` pada berkas gaya halaman; `:nth-child` berdasar pada urutan baris dalam HTML sehingga menambah/menghapus baris tidak merusak pewarnaan — sedangkan class manual harus disunting ulang setiap kali struktur tabel berubah.
+**Soal Praktik — ringkasan jawaban.** 1) Tambahkan pada `style.css`: `a:focus { outline: 2px solid #4F46E5; outline-offset: 2px; }` — alasan: pengguna keyboard menyusuri halaman lewat Tab tanpa kursor, sehingga indikasi fokus visual adalah satu-satunya isyarat posisi (terkait WCAG, dibahas Bab 13); menghapusnya justru membutakan pengguna keyboard. 2) Aturan `.tabel-jadwal tbody tr:nth-child(odd) { background-color: #F8FAFC; }` pada file gaya halaman; `:nth-child` berdasar pada urutan baris dalam HTML sehingga menambah/menghapus baris tidak merusak pewarnaan — sedangkan class manual harus disunting ulang setiap kali struktur tabel berubah.
 
 </details>
 

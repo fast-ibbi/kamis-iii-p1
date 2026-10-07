@@ -2,19 +2,19 @@
 
 ## Deskripsi Singkat
 
-Bab ini mengenalkan **CSS Grid**, sistem tata letak dua dimensi untuk baris dan kolom, sekaligus **responsive web design** (desain web responsif) sebagai cara menampilkan satu halaman yang sama dengan rapi di berbagai ukuran layar. Di Bab 6 Anda sudah memakai Flexbox untuk membagi ruang pada satu arah (satu baris atau satu kolom); CSS Grid melengkapi kemampuan itu untuk mengatur kerangka halaman secara menyeluruh, seperti halaman dashboard admin. Bab berikutnya (Bab 8) adalah Ujian Tengah Semester, dan kemampuan grid plus media query pada bab ini akan jadi bekal utama Anda untuk membangun mini website Tokosaya yang responsif.
+Bab ini mengenalkan **CSS Grid**, sistem layout dua dimensi untuk baris dan kolom, sekaligus **responsive web design** (desain web responsif) sebagai cara menampilkan satu halaman yang sama dengan rapi di berbagai ukuran layar. Di Bab 6 Anda sudah memakai Flexbox untuk membagi ruang pada satu arah (satu baris atau satu kolom); CSS Grid melengkapi kemampuan itu untuk mengatur kerangka halaman secara menyeluruh, seperti halaman dashboard admin. Bab berikutnya (Bab 8) adalah Ujian Tengah Semester, dan kemampuan grid plus media query pada bab ini akan jadi bekal utama Anda untuk membangun mini website Tokosaya yang responsif.
 
 ## Tujuan Pembelajaran
 
 Setelah mempelajari bab ini, Anda mampu:
 
-1. Menjelaskan konsep CSS Grid sebagai tata letak dua dimensi dan membedakannya dari Flexbox beserta kasus penggunaan yang tepat masing-masing.
+1. Menjelaskan konsep CSS Grid sebagai layout dua dimensi dan membedakannya dari Flexbox beserta kasus penggunaan yang tepat masing-masing.
 2. Membangun kerangka halaman dengan `grid-template-columns`, `grid-template-rows`, satuan `fr`, fungsi `repeat()`, dan properti `gap`.
 3. Mengimplementasikan penempatan elemen menggunakan `grid-column`, `grid-row`, `span`, dan `grid-template-areas`.
 4. Merancang strategi *mobile-first* (bergerak dulu dari layar kecil) dengan *breakpoint* yang konsisten pada proyek Tokosaya.
-5. Menulis *media query* (kueri media) untuk menyesuaikan tata letak, tipografi dengan `clamp()`, dan gambar responsif.
+5. Menulis *media query* (kueri media) untuk menyesuaikan layout, tipografi dengan `clamp()`, dan gambar responsif.
 6. Mengimplementasikan dashboard admin Tokosaya yang statis dan responsif serta halaman `katalog.html` yang responsif.
-7. Menguji keberhasilan tata letak responsif menggunakan *device toolbar* pada DevTools Chrome.
+7. Menguji keberhasilan layout responsif menggunakan *device toolbar* pada DevTools Chrome.
 
 ## Capaian Pembelajaran
 
@@ -27,23 +27,23 @@ Kegiatan pengujian di DevTools pada bab ini menjadi kontribusi awal bagi CPMK 11
 
 ## Kata Kunci
 
-**CSS Grid** (sistem kisi dua dimensi untuk menata baris sekaligus kolom), **grid track** (jalur atau lintasan baris/kolom di dalam kerangka grid), **fr** (satuan pecahan *free space*, ruang sisa yang dibagi proporsional), **repeat()** (fungsi mengulang definisi track agar CSS ringkas), **gap** (jarak antar track yang menggantikan trik margin), **grid-area** (wilayah bernama untuk memetakan elemen ke denah grid), **breakpoint** (titik lebar layar tempat gaya berubah), **media query** (kueri media: aturan "jika layar memenuhi syarat, terapkan blok ini"), **mobile-first** (strategi menulis gaya dasar untuk ponsel lebih dahulu), **clamp()** (fungsi CSS yang menahan nilai di antara batas minimum dan maksimum), **viewport** (area gambar halaman di layar perangkat).
+**CSS Grid** (sistem kisi dua dimensi untuk menata baris sekaligus kolom), **grid track** (jalur atau lintasan baris/kolom di dalam kerangka grid), **fr** (satuan pecahan *free space*, ruang sisa yang dibagi proporsional), **repeat()** (fungsi mengulang definisi track agar CSS ringkas), **gap** (jarak antar track yang menggantikan trik margin), **grid-area** (wilayah bernama untuk memetakan elemen ke denah grid), **breakpoint** (titik lebar layar tempat gaya berubah), **media query** (kueri media: aturan "jika layar memenuhi syarat, terapkan blok ini"), **mobile-first** (strategi menulis gaya dasar untuk HP lebih dahulu), **clamp()** (fungsi CSS yang menahan nilai di antara batas minimum dan maksimum), **viewport** (area gambar halaman di layar perangkat).
 
 ## Apersepsi
 
 Di akhir pertemuan minggu lalu, pemilik Tokosaya mengirim pesan: "Saya ingin satu ruang kerja tempat saya bisa melihat kondisi toko sekilas — penjualan hari ini, pesanan yang belum diproses, dan stok yang menipis." Pada dasarnya, yang diminta adalah **dashboard admin**: satu halaman yang menggabungkan panel navigasi, kartu-kartu angka ringkasan, dan tabel pesanan terbaru.
 
-Kebutuhan kedua datang dari sisi pelanggan. Saat Anda membuka `katalog.html` yang dibangun pada Bab 5 dan Bab 6 di monitor kantor, tampilannya rapi; tetapi rekan Anda membukanya dari ponsel dengan layar selebar 380 piksel, dan kartu produk tumpang tindih serta teksnya menyempit berantakan. Dua kebutuhan ini menunjukkan dua masalah yang berbeda: (1) mengatur banyak komponen pada **dua dimensi** sekaligus — baris dan kolom — yang ditangani CSS Grid, dan (2) memastikan halaman yang sama tetap layak dibaca di **berbagai ukuran layar** yang ditangani responsive web design.
+Kebutuhan kedua datang dari sisi pelanggan. Saat Anda membuka `katalog.html` yang dibangun pada Bab 5 dan Bab 6 di monitor kantor, tampilannya rapi; tetapi rekan Anda membukanya dari HP dengan layar selebar 380 piksel, dan kartu produk tumpang tindih serta teksnya menyempit berantakan. Dua kebutuhan ini menunjukkan dua masalah yang berbeda: (1) mengatur banyak komponen pada **dua dimensi** sekaligus — baris dan kolom — yang ditangani CSS Grid, dan (2) memastikan halaman yang sama tetap layak dibaca di **berbagai ukuran layar** yang ditangani responsive web design.
 
-Pegang dua frasa kunci bab ini: tata letak dua dimensi adalah soal *struktur*, sedangkan desain responsif adalah soal *strategi beradaptasi*. Keduanya saling menguatkan: grid menyusun denah, media query mengubah denah ketika layar berubah. Mari kuasai dua hal ini, lalu bangun dashboard admin Tokosaya sebagai buktinya.
+Pegang dua frasa kunci bab ini: layout dua dimensi adalah soal *struktur*, sedangkan desain responsif adalah soal *strategi beradaptasi*. Keduanya saling menguatkan: grid menyusun denah, media query mengubah denah ketika layar berubah. Mari kuasai dua hal ini, lalu bangun dashboard admin Tokosaya sebagai buktinya.
 
 ## Materi Pembelajaran
 
 ### 7.1 Konsep CSS Grid dan Perbedaannya dengan Flexbox
 
-CSS Grid adalah modul tata letak yang mengubah sebuah elemen jadi **wadah grid** (*grid container*) berikut anak-anaknya menjadi **butir grid** (*grid item*), lalu membagi wadah tersebut menjadi baris dan kolom sekaligus dalam **dua dimensi**. Anda menentukan denahnya lebih dulu — beberapa kolom, beberapa baris, dengan lebar dan tinggi tertentu — kemudian menempatkan butir ke dalam sel-selnya, baik otomatis maupun secara manual. Analoginya seperti denah parkir: garis-garis tempat parkir (grid track) sudah dilukis lebih dulu, dan mobil (butir grid) bisa diparkir ke slot mana pun, termasuk "meratakan dua slot" (span) untuk kendaraan yang besar.
+CSS Grid adalah modul layout yang mengubah sebuah elemen jadi **wadah grid** (*grid container*) berikut anak-anaknya menjadi **butir grid** (*grid item*), lalu membagi wadah tersebut menjadi baris dan kolom sekaligus dalam **dua dimensi**. Anda menentukan denahnya lebih dulu — beberapa kolom, beberapa baris, dengan lebar dan tinggi tertentu — kemudian menempatkan butir ke dalam sel-selnya, baik otomatis maupun secara manual. Analoginya seperti denah parkir: garis-garis tempat parkir (grid track) sudah dilukis lebih dulu, dan mobil (butir grid) bisa diparkir ke slot mana pun, termasuk "meratakan dua slot" (span) untuk kendaraan yang besar.
 
-Bedanya dengan Flexbox bisa diringkas begini: **Flexbox menata konten pada satu arah** (baris horizontal atau kolom vertikal), sedangkan **Grid menata kedua arah serentak**. Flexbox bekerja dari konten menuju tata letak (*content-out*): item mengalir, lalu kita memilih cara mendistribusikannya. Grid bekerja dari denah menuju konten (*layout-out*): kita merancang kotak-kotak dahulu, lalu mengisinya. Contoh nyata: navigasi Tokosaya (logo kiri, menu kanan) adalah persoalan satu baris — itu wilayah Flexbox; dashboard admin (panel kiri, area konten, empat kartu statistik, tabel) adalah persoalan dua dimensi — itu wilayah Grid.
+Bedanya dengan Flexbox bisa diringkas begini: **Flexbox menata konten pada satu arah** (baris horizontal atau kolom vertikal), sedangkan **Grid menata kedua arah serentak**. Flexbox bekerja dari konten menuju layout (*content-out*): item mengalir, lalu kita memilih cara mendistribusikannya. Grid bekerja dari denah menuju konten (*layout-out*): kita merancang kotak-kotak dahulu, lalu mengisinya. Contoh nyata: navigasi Tokosaya (logo kiri, menu kanan) adalah persoalan satu baris — itu wilayah Flexbox; dashboard admin (panel kiri, area konten, empat kartu statistik, tabel) adalah persoalan dua dimensi — itu wilayah Grid.
 
 ```
 Bagan struktur (ilustrasi, bukan file):
@@ -67,7 +67,7 @@ Kapan memilih yang mana? Tabel berikut merangkum aturan praktis yang dipakai di 
 | Kartu statistik dashboard yang harus sebaris sempurna | Grid | Kontrol kolom `1fr` menjaga lebar identik |
 | Posisi satu elemen agak bergerak dari alurnya | `position` (Bab 5) | Bukan pekerjaan grid maupun flexbox |
 
-Perlu diingat, Grid dan Flexbox bukan dua hal yang saling meniadakan. Di proyek profesional, pola yang paling masuk akal justru memadukan keduanya: Grid membentuk **kerangka halaman**, lalu di setiap selnya dipasang komponen kecil yang diatur Flexbox — misalnya dalam dashboard admin Tokosaya, kerangka `header-nav-main` ditata grid, sementara tautan-tautan navigasi di dalam panel dinata flex agar bisa menggulir horizontal di layar kecil. Dalam konteks sistem informasi, pola ini sering dijumpai pada halaman jadwal peminjaman ruang kelas (kolom hari, baris jam) dan halaman rekap nilai semester: keduanya menuntut keselarasan dua arah yang tidak mungkin diwujudkan hanya dengan satu dimensi.
+Perlu diingat, Grid dan Flexbox bukan dua hal yang saling meniadakan. Di proyek profesional, pola yang paling masuk akal justru memadukan keduanya: Grid membentuk **kerangka halaman**, lalu di setiap selnya dipasang komponen kecil yang diatur Flexbox — misalnya dalam dashboard admin Tokosaya, kerangka `header-nav-main` ditata grid, sementara link-link navigasi di dalam panel dinata flex agar bisa menggulir horizontal di layar kecil. Dalam konteks sistem informasi, pola ini sering dijumpai pada halaman jadwal peminjaman ruang kelas (kolom hari, baris jam) dan halaman rekap nilai semester: keduanya menuntut keselarasan dua arah yang tidak mungkin diwujudkan hanya dengan satu dimensi.
 
 ### 7.2 Membangun Grid: grid-template-columns, grid-template-rows, fr, repeat(), dan gap
 
@@ -80,14 +80,14 @@ Bagan fr (ilustrasi): grid-template-columns: 240px 1fr 2fr;
 └────────────────────────────┴───────────────────────┴───────────────────────┘
 ```
 
-Fungsi `repeat()` mengulang penulisan ukuran agar CSS tetap ringkas dan mudah dirawat. Menulis `grid-template-columns: repeat(3, 1fr);` adalah bentuk ringkas dari `1fr 1fr 1fr`. Fungsi ini juga menerima perulangan bertingkat, misalnya `repeat(2, 200px 1fr)` yang menghasilkan urutan `200px 1fr 200px 1fr`. Untuk galeri yang jumlah kolomnya "sebanyak yang muat", tersedia pola `repeat(auto-fit, minmax(220px, 1fr))`: browser menaruh kolom selebar mungkin minimal 220 piksel, dan menambah kolom begitu ruang melebar — tata letak kartu yang menumpuk pada ponsel lalu menjadi 2–4 kolom di monitor, tanpa satu media query pun. Properti `grid-auto-flow`, `minmax()`, serta pilihan antara `auto-fit` dan `auto-fill` adalah fitur standar CSS Grid; bila ragu soal perilaku detail, periksa dokumentasi resmi MDN Web Docs.
+Fungsi `repeat()` mengulang penulisan ukuran agar CSS tetap ringkas dan mudah dirawat. Menulis `grid-template-columns: repeat(3, 1fr);` adalah bentuk ringkas dari `1fr 1fr 1fr`. Fungsi ini juga menerima perulangan bertingkat, misalnya `repeat(2, 200px 1fr)` yang menghasilkan urutan `200px 1fr 200px 1fr`. Untuk galeri yang jumlah kolomnya "sebanyak yang muat", tersedia pola `repeat(auto-fit, minmax(220px, 1fr))`: browser menaruh kolom selebar mungkin minimal 220 piksel, dan menambah kolom begitu ruang melebar — layout kartu yang menumpuk pada HP lalu menjadi 2–4 kolom di monitor, tanpa satu media query pun. Properti `grid-auto-flow`, `minmax()`, serta pilihan antara `auto-fit` dan `auto-fill` adalah fitur standar CSS Grid; bila ragu soal perilaku detail, periksa dokumentasi resmi MDN Web Docs.
 
 Properti `gap` menetapkan jarak antar track: `column-gap` untuk jarak antar kolom, `row-gap` antar baris, dan `gap: 16px` menetapkan keduanya. Mengapa `gap` dipilih daripada `margin`? Karena gap dipahami browser sebagai **jarak di dalam kerangka**, sehingga tidak perlu jebakan "sel pertama boleh ber-margin, sel terakhir tidak" yang biasanya memaksa pemilihan pseudo-class seperti `:last-child`. Dengan gap, setiap sel punya hak yang sama dan kotak penampungnya tetap rapi. Dalam konteks SI, pola ini persis kebutuhan dashboard akademik: kartu statistik jumlah mahasiswa aktif, mata kuliah, dan dosen harus sama lebar dan berjarak seragam agar tidak memberi kesan "prioritas palsu" pada angka mana pun.
 
 ```css
 File: tokosaya-css/css/admin.css
 
-/* kustom — alternatif tata letak kartu statistik;
+/* kustom — alternatif layout kartu statistik;
    pola auto-fit: kolom menyesuaikan lebar ruang tanpa media query */
 .stat-kartu {
   display: grid;
@@ -108,18 +108,18 @@ Mengapa penempatan eksplisit sangat berguna bagi sistem informasi? Karena inform
 
 ### 7.4 Mobile-First dan Breakpoint
 
-*Mobile-first* (ponsel lebih dahulu) adalah strategi penulisan CSS yang sudah lama dipakai di industri dan dijelaskan secara klasik oleh Wroblewski (2012): gaya dasar ditulis untuk layar kecil, lalu gaya tambahan ditumpuk untuk layar makin besar. Di CSS, tumpukan ini dilakukan dengan *media query* bernilai **min-width** (lebar minimum). Penulisan `@media (min-width: 768px) { ... }` berarti "mulai lebar 768 piksel ke atas, pakai blok di dalamnya". Karena gaya dasar tetap berlaku dan media query hanya menambah serta mengganti, kode bergerak naik seperti jalan yang dibangun dari jalan kecil lalu diperlebar — tanpa membongkar fondasi. Strategi sebaliknya (desktop-first dengan `max-width`) membuat browser terus-menerus **membatalkan** gaya desktop; kaskadenya menjadi tempat berburu bug.
+*Mobile-first* (HP lebih dahulu) adalah strategi penulisan CSS yang sudah lama dipakai di industri dan dijelaskan secara klasik oleh Wroblewski (2012): gaya dasar ditulis untuk layar kecil, lalu gaya tambahan ditumpuk untuk layar makin besar. Di CSS, tumpukan ini dilakukan dengan *media query* bernilai **min-width** (lebar minimum). Penulisan `@media (min-width: 768px) { ... }` berarti "mulai lebar 768 piksel ke atas, pakai blok di dalamnya". Karena gaya dasar tetap berlaku dan media query hanya menambah serta mengganti, kode bergerak naik seperti jalan yang dibangun dari jalan kecil lalu diperlebar — tanpa membongkar fondasi. Strategi sebaliknya (desktop-first dengan `max-width`) membuat browser terus-menerus **membatalkan** gaya desktop; kaskadenya menjadi tempat berburu bug.
 
-Sekarang kita tegaskan istilah yang sudah sering muncul: **breakpoint adalah nilai lebar viewport tempat serangkaian gaya berubah untuk menjaga halaman tetap layak dibaca**. Breakpoint bukan daftar perangkat, melainkan keputusan desain: kita mengamati pada lebar berapa tata letak mulai rusak — kartu terlalu sempit, teks membentang terlalu lebar — dan di titik itulah gaya berubah. Wroblewski (2012) menekankan bahwa keputusan breakpoint lahir dari konten dan tugas pengguna, bukan dari katalog merek ponsel yang tiap tahun berganti.
+Sekarang kita tegaskan istilah yang sudah sering muncul: **breakpoint adalah nilai lebar viewport tempat serangkaian gaya berubah untuk menjaga halaman tetap layak dibaca**. Breakpoint bukan daftar perangkat, melainkan keputusan desain: kita mengamati pada lebar berapa layout mulai rusak — kartu terlalu sempit, teks membentang terlalu lebar — dan di titik itulah gaya berubah. Wroblewski (2012) menekankan bahwa keputusan breakpoint lahir dari konten dan tugas pengguna, bukan dari katalog merek HP yang tiap tahun berganti.
 
 Meski begitu, konvensi industri bisa memudahkan kerja tim. Konvensi yang paling sering memengaruhi kerja web saat ini adalah rangkaian *breakpoint* yang dipakai Bootstrap 5 (getbootstrap.com, diakses 6 Januari 2026), dan kita mengadopsinya agar transisi ke Bab 9 mulus:
 
 | Nama | Lebar minimum | Kebiasaan pemberian gaya di Tokosaya |
 |---|---|---|
-| Bawaan (*base*, ponsel) | tanpa media query | tumpukan satu kolom; font ukuran dasar |
+| Bawaan (*base*, HP) | tanpa media query | tumpukan satu kolom; font ukuran dasar |
 | `sm` | 576 px | kartu statistik dua kolom |
 | `md` | 768 px | panel navigasi bergeser ke sisi kiri (tablet) |
-| `lg` | 992 px | jarak meluas; tata letak desktop ringan |
+| `lg` | 992 px | jarak meluas; layout desktop ringan |
 | `xl` | 1200 px | empat kartu statistik sebaris; lebar konten maksimum |
 | `xxl` | 1400 px | konvensi Bootstrap; jarang dibutuhkan pada proyek kecil |
 
@@ -128,7 +128,7 @@ Ada dua prinsip penulisan gaya yang dipakai di bab ini: pertama, **urutan media 
 ```css
 File: tokosaya-css/css/style.css
 
-/* kustom — pola umum mobile-first: gaya dasar untuk ponsel dulu */
+/* kustom — pola umum mobile-first: gaya dasar untuk HP dulu */
 .stat-kartu {
   display: grid;
   grid-template-columns: 1fr;
@@ -192,7 +192,7 @@ Pola kedua adalah **galeri produk** (katalog atau halaman koleksi perpustakaan).
 
 Menulis media query tanpa menguji itu seperti membuat jalan tanpa pernah melewatinya. Chrome menyediakan **device toolbar**: buka DevTools (`F12` atau `Ctrl+Shift+I` di Windows), lalu aktifkan mode perangkat dengan `Ctrl+Shift+M`. Alat ini meniru layar sesuai lebar yang Anda pilih — cobalah 375, 576, 768, 992, dan 1200 piksel, tepat di sekitar breakpoint Tokosaya — dan di bagian atas ruler muncul penanda garis untuk setiap media query yang aktif, sehingga Anda bisa melihat batas gaya bergeser saat menyeret lebar. Mode *Responsive* memungkinkan Anda menyeret lebar bebas untuk mencari titik masalah (*layout trap*): titik lebar di mana elemen tumpang tindih atau teks terpotong.
 
-DevTools juga punya panel khusus grid: pada tab *Elements*, pilih elemen wadah grid, lalu pada panel *Layout* aktifkan overlay-nya; nomor garis grid akan tercetak di halaman, mirip kartu rancangan — sangat membantu saat menelusuri mengapa sebuah kartu menolak menempati kolom yang diinginkan. Gunakan panel *Elements* juga untuk melihat aturan mana yang sedang menang (ingat kembali kaskade dan specificity dari Bab 3). Tiga kebiasaan sederhana untuk menutup bab ini: uji dengan **mengecil melewati** breakpoint (bukan setop di satu lebar), cek kemunculan pengguliran horizontal seluruh halaman, dan ingat bahwa emulasi tidak menggantikan uji sempurna pada perangkat sungguhan — sentuhan, kamera, dan kecepatan jaringan ponsel berbeda perilaku, dan pengujian menyeluruh kembali dibahas pada Bab 13 dan Bab 15.
+DevTools juga punya panel khusus grid: pada tab *Elements*, pilih elemen wadah grid, lalu pada panel *Layout* aktifkan overlay-nya; nomor garis grid akan tercetak di halaman, mirip kartu rancangan — sangat membantu saat menelusuri mengapa sebuah kartu menolak menempati kolom yang diinginkan. Gunakan panel *Elements* juga untuk melihat aturan mana yang sedang menang (ingat kembali kaskade dan specificity dari Bab 3). Tiga kebiasaan sederhana untuk menutup bab ini: uji dengan **mengecil melewati** breakpoint (bukan setop di satu lebar), cek kemunculan pengguliran horizontal seluruh halaman, dan ingat bahwa emulasi tidak menggantikan uji sempurna pada perangkat sungguhan — sentuhan, kamera, dan kecepatan jaringan HP berbeda perilaku, dan pengujian menyeluruh kembali dibahas pada Bab 13 dan Bab 15.
 
 ## Konsep Penting
 
@@ -206,14 +206,14 @@ DevTools juga punya panel khusus grid: pada tab *Elements*, pilih elemen wadah g
 | `span` | Membentang n track mulai garis tertentu | kartu utama 2 kolom |
 | `grid-template-areas` | Denah berbasis nama yang mudah digambar ulang | `header / nav / main` |
 | Breakpoint | Lebar layar tempat gaya berubah; bukan daftar perangkat | 576/768/992/1200 |
-| Mobile-first | Gaya dasar untuk ponsel, naik dengan `min-width` | urutan query menaik |
+| Mobile-first | Gaya dasar untuk HP, naik dengan `min-width` | urutan query menaik |
 | `clamp()` | Nilai bernafas dengan batas min–maks | judul dashboard 24–32 px |
 | Gambar responsif | `width: 100%`, `height: auto`, `object-fit` | gambar produk katalog |
-| Pengguliran tabel | Wadah `overflow-x: auto` untuk tabel lebar di ponsel | tabel pesanan admin |
+| Pengguliran tabel | Wadah `overflow-x: auto` untuk tabel lebar di HP | tabel pesanan admin |
 
 ## Contoh Kode
 
-Tiga contoh berikut adalah halaman latihan mandiri (folder `latihan-bab7/`) yang sengaja dibuat kecil dan mandiri agar fokus pada satu konsep per berkas. Setiap berkas CSS mendefinisikan token bawaan Tokosaya agar dapat berdiri sendiri.
+Tiga contoh berikut adalah halaman latihan mandiri (folder `latihan-bab7/`) yang sengaja dibuat kecil dan mandiri agar fokus pada satu konsep per file. Setiap file CSS mendefinisikan token bawaan Tokosaya agar dapat berdiri sendiri.
 
 ```html
 File: latihan-bab7/grid-dasar.html
@@ -325,7 +325,7 @@ File: latihan-bab7/kartu-responsif.html
 </html>
 ```
 
-Penjelasan: empat kartu produk baku Tokosaya disusun tanpa kelas kolom pada tiap kartu — **semua keputusan tata letak ada di CSS wadah**; inilah perbedaan mental grid: denah milik wadah, bukan milik item.
+Penjelasan: empat kartu produk baku Tokosaya disusun tanpa kelas kolom pada tiap kartu — **semua keputusan layout ada di CSS wadah**; inilah perbedaan mental grid: denah milik wadah, bukan milik item.
 
 ```css
 File: latihan-bab7/css/kartu-responsif.css
@@ -473,30 +473,30 @@ Penjelasan: inilah pola denah yang akan Anda tulis pada Praktikum dalam ukuran p
 
 ## Penjelasan Kode
 
-**Contoh 1 (grid-dasar).** Tiga teknik bekerja bersama dalam berkas kecil ini. Pertama, `repeat(3, 1fr)` membagi lebar wadah ke tiga kolom identik — `fr` yang memastikan proporsional terhadap sisa ruang, bukan terhadap ukuran font maupun tetap tertentu. Kedua, `grid-template-rows: repeat(2, 120px)` memberi tinggi terukur agar latihan mudah diamati; pada proyek nyata, baris sering dibiarkan membesar sesuai konten (`grid-auto-rows` atau tinggi otomatis). Ketiga, `grid-column: 1 / span 2` memperlihatkan bentangan tanpa menghitung garis akhir. Alasan penggunaan `gap` daripada margin tetap sama seperti 7.2: jarak adalah wilayah kerangka, bukan tanggung jawab tiap item, sehingga tidak perlu koreksi `:first-child` atau `:last-child`.
+**Contoh 1 (grid-dasar).** Tiga teknik bekerja bersama dalam file kecil ini. Pertama, `repeat(3, 1fr)` membagi lebar wadah ke tiga kolom identik — `fr` yang memastikan proporsional terhadap sisa ruang, bukan terhadap ukuran font maupun tetap tertentu. Kedua, `grid-template-rows: repeat(2, 120px)` memberi tinggi terukur agar latihan mudah diamati; pada proyek nyata, baris sering dibiarkan membesar sesuai konten (`grid-auto-rows` atau tinggi otomatis). Ketiga, `grid-column: 1 / span 2` memperlihatkan bentangan tanpa menghitung garis akhir. Alasan penggunaan `gap` daripada margin tetap sama seperti 7.2: jarak adalah wilayah kerangka, bukan tanggung jawab tiap item, sehingga tidak perlu koreksi `:first-child` atau `:last-child`.
 
-**Contoh 2 (kartu-responsif).** Nilai teknis utama contoh ini adalah pergeseran cara berpikir: pada pola Flexbox Bab 6, `flex-wrap` dan proporsi item mengatur penumpukan; pada galeri grid, satu properti wadah — `repeat(auto-fit, minmax(220px, 1fr))` — memikirkan seluruh jumlah kolom. `auto-fit` artinya "taruh sebanyak mungkin kolom minimal 220 piksel, lalu jika sisa ruang lebih besar, buang kolom kosong dan bagikan ruang sisa ke kartu yang ada". Pilih 220 piksel dengan nalar: 220 px cukup lebar untuk nama produk dan harga Tokosaya tanpa membuat kartu sesak. `clamp()` pada judul menerapkan tata letak yang terkendali ganda: ukuran ikut naik seiring `vw`, namun tertahan di 32 piksel sehingga tidak memaksakan baris judul berlipat pada monitor besar.
+**Contoh 2 (kartu-responsif).** Nilai teknis utama contoh ini adalah pergeseran cara berpikir: pada pola Flexbox Bab 6, `flex-wrap` dan proporsi item mengatur penumpukan; pada galeri grid, satu properti wadah — `repeat(auto-fit, minmax(220px, 1fr))` — memikirkan seluruh jumlah kolom. `auto-fit` artinya "taruh sebanyak mungkin kolom minimal 220 piksel, lalu jika sisa ruang lebih besar, buang kolom kosong dan bagikan ruang sisa ke kartu yang ada". Pilih 220 piksel dengan nalar: 220 px cukup lebar untuk nama produk dan harga Tokosaya tanpa membuat kartu sesak. `clamp()` pada judul menerapkan layout yang terkendali ganda: ukuran ikut naik seiring `vw`, namun tertahan di 32 piksel sehingga tidak memaksakan baris judul berlipat pada monitor besar.
 
-**Contoh 3 (pola-area).** Berkas ini adalah embrio dashboard. Kuncinya penggunaan `grid-template-areas` dua kali: versi mobile (denah tumpuk) dan versi 768 px (denah bercabang). Penamaan area — `header`, `nav`, `main`, `footer` — dipetakan ke elemen melalui `grid-area`, sehingga membaca CSS terasa seperti membaca denah kamar. Perhatikan pula bahwa versi tablet memindahkan `nav` ke kolom kiri **tanpa mengubah tag HTML**: inilah alasan pola ini menjadi bawaan Praktikum. Satu pembatasan yang patut diingat: `grid-template-areas` hanya merancang denah persegi — bentuk tangga dan area berlekuk tidak bisa digambar dengan kata-kata, gunakaan `grid-column`/`grid-row` untuk kasus itu.
+**Contoh 3 (pola-area).** File ini adalah embrio dashboard. Kuncinya penggunaan `grid-template-areas` dua kali: versi mobile (denah tumpuk) dan versi 768 px (denah bercabang). Penamaan area — `header`, `nav`, `main`, `footer` — dipetakan ke elemen melalui `grid-area`, sehingga membaca CSS terasa seperti membaca denah kamar. Perhatikan pula bahwa versi tablet memindahkan `nav` ke kolom kiri **tanpa mengubah tag HTML**: inilah alasan pola ini menjadi bawaan Praktikum. Satu pembatasan yang patut diingat: `grid-template-areas` hanya merancang denah persegi — bentuk tangga dan area berlekuk tidak bisa digambar dengan kata-kata, gunakaan `grid-column`/`grid-row` untuk kasus itu.
 
 ## Praktikum
 
 ### Tujuan Praktikum
 
-Praktikum ini mengajak Anda membangun **dashboard admin Tokosaya yang statis dan responsif** — lengkap dengan header, sidebar navigasi, empat kartu statistik, dan tabel pesanan terbaru — memakai CSS Grid sebagai kerangka dan media query *mobile-first* sebagai strategi. Praktikum juga membuat halaman `katalog.html` menjadi responsif dengan mengganti tata letak kartu menjadi grid. Semua data adalah data contoh statis sesuai cakupan mata kuliah (tanpa JavaScript, tanpa server); dashboard ini membangun kemampuan S7.1 dan S7.2 yang diujikan pada UTS Bab 8.
+Praktikum ini mengajak Anda membangun **dashboard admin Tokosaya yang statis dan responsif** — lengkap dengan header, sidebar navigasi, empat kartu statistik, dan tabel pesanan terbaru — memakai CSS Grid sebagai kerangka dan media query *mobile-first* sebagai strategi. Praktikum juga membuat halaman `katalog.html` menjadi responsif dengan mengganti layout kartu menjadi grid. Semua data adalah data contoh statis sesuai cakupan mata kuliah (tanpa JavaScript, tanpa server); dashboard ini membangun kemampuan S7.1 dan S7.2 yang diujikan pada UTS Bab 8.
 
 ### Kebutuhan
 
 - VS Code dan Google Chrome (DevTools) sesuai pin teknologi buku.
 - Folder proyek `tokosaya-css/` hasil Bab 1–6, minimal berisi `index.html`, `katalog.html`, `tentang.html`, `kontak.html`, dan `css/style.css` yang sudah memuat *design token* Tokosaya (Bab 4), aturan `box-sizing` dan gambar dasar (Bab 5), serta gaya flexbox navigasi (Bab 6).
-- Dua berkas baru: `admin.html` (di akar folder) dan `css/admin.css`.
+- Dua file baru: `admin.html` (di akar folder) dan `css/admin.css`.
 - Data produk baku 8 item Tokosaya (Bab kontrak §5.2) untuk memastikan isi tabel dan kartu konsisten dengan katalog.
 - Opsional: ekstensi Live Server agar penyimpanan langsung memuat ulang halaman di browser.
 
 ### Persiapan
 
 1. Cek apakah `css/style.css` Anda memuat blok `:root` dengan token Tokosaya (paling kurang `--clr-primary`, `--clr-surface`, `--clr-bg`, `--clr-border`, `--clr-dark`, `--clr-body`, `--font-heading`, `--font-body`, `--radius`, `--shadow-card`, `--space-unit`). Kalau belum lengkap, lengkapi menurut Bab 4 terlebih dahulu, karena admin.css akan memanggil token tersebut.
-2. Buat berkas baru `admin.html` dan `css/admin.css` di dalam `tokosaya-css/`.
+2. Buat file baru `admin.html` dan `css/admin.css` di dalam `tokosaya-css/`.
 3. Buka `katalog.html` dan pastikan daftar produk Anda berada di dalam satu elemen wadah (misalnya `<section>` yang memuat kartu-kartu `produk-card` dari Bab 5–6); catat class wadahnya, karena akan diberi kelas grid baru.
 4. Sediakan daftar pesanan contoh (lima baris) dalam tabel — data lengkap sudah ditulis pada blok Kode; Anda tinggal mengetik ulang.
 5. Siapkan Chrome DevTools: tekan `F12`, aktifkan device toolbar (`Ctrl+Shift+M`) agar siap menguji pada langkah terakhir.
@@ -504,13 +504,13 @@ Praktikum ini mengajak Anda membangun **dashboard admin Tokosaya yang statis dan
 ### Langkah Kerja
 
 1. Tulis dulu kerangka `admin.html`: DOCTYPE, `html lang="id"`, meta charset, meta viewport (wajib, tanpa itu semua media query gagal), judul halaman, Google Fonts, serta dua `<link>` stylesheet: `css/style.css` lalu `css/admin.css`.
-2. Susun struktur semantik: `<div class="dasbor">` sebagai wadah grid; di dalamnya `<header class="dasbor-header">` (brand, `h1` judul, keterangan data contoh), `<nav class="dasbor-nav">` dengan `<ul>` tautan panel (Dashboard sebagai tautan aktif dengan atribut `aria-current="page"`), `<main class="dasbor-main">` berisi seksi ringkasan (list empat kartu statistik) dan seksi pesanan (tabel dalam wadah `.tabel-scroll`), serta `<footer class="dasbor-footer">`.
+2. Susun struktur semantik: `<div class="dasbor">` sebagai wadah grid; di dalamnya `<header class="dasbor-header">` (brand, `h1` judul, keterangan data contoh), `<nav class="dasbor-nav">` dengan `<ul>` link panel (Dashboard sebagai link aktif dengan atribut `aria-current="page"`), `<main class="dasbor-main">` berisi seksi ringkasan (list empat kartu statistik) dan seksi pesanan (tabel dalam wadah `.tabel-scroll`), serta `<footer class="dasbor-footer">`.
 3. Isi tabel pesanan contoh lima baris dengan produk baku Tokosaya (KX-210, BT-5, MW-88, MR-241, WC-720) lengkap dengan kolom nomor pesanan, pelanggan, produk, total, dan status.
 4. Susun `css/admin.css` secara **mobile-first**: gaya dasar menumpuk area `header → nav → main → footer` satu kolom; kartu statistik satu kolom; navigasi berganti chip horizontal yang bisa menggulir.
 5. Tambahkan media query bertahap: `576` (kartu dua kolom), `768` (sidebar vertikal kolom 220 px lewat penggambaran ulang `grid-template-areas`), `992` (sidebar 240 px, jarak meluas), `1200` (empat kartu sebaris, lebar konten maksimum 1200 px terpusat).
-6. Atur tabelnya: bungkus `<table>` dengan `.tabel-scroll` beraliran `overflow-x: auto` dan beri tabel `min-width: 640px` agar di ponsel ia menggulir di dalam wadahnya, bukan melar seluruh halaman.
+6. Atur tabelnya: bungkus `<table>` dengan `.tabel-scroll` beraliran `overflow-x: auto` dan beri tabel `min-width: 640px` agar di HP ia menggulir di dalam wadahnya, bukan melar seluruh halaman.
 7. Buat katalog jadi responsif: buka `katalog.html`, beri kelas `katalog-grid` pada wadah daftar produk, lalu tambahkan blok CSS katalog (grid + media query + gambar responsif) pada **bagian akhir** `css/style.css`.
-8. Lengkapi `admin.css` dengan aturan fokus `:focus-visible` untuk tautan navigasi, kelas warna status pesanan (`status-lunas`, `status-diproses`, `status-dikirim`) berbasis token warna semantik.
+8. Lengkapi `admin.css` dengan aturan fokus `:focus-visible` untuk link navigasi, kelas warna status pesanan (`status-lunas`, `status-diproses`, `status-dikirim`) berbasis token warna semantik.
 9. Uji di DevTools device toolbar pada 375, 576, 768, 992, 1200 px: cek tumpukan, perpindahan sidebar, jumlah kolom kartu, dan pengguliran tabel; catat hasil untuk bagian `Hasil yang Diharapkan`.
 
 ### Kode
@@ -649,7 +649,7 @@ Penjelasan: struktur mengikuti pola `grid-template-areas`: wadah `.dasbor` menam
 File: tokosaya-css/css/admin.css
 /* ====== Admin Tokosaya — Bab 7 (mobile-first) ======
    Asumsi: css/style.css sudah memuat token :root (Bab 4)
-   dan reset dasar (Bab 3-5). Berkas ini hanya aturan panel admin. */
+   dan reset dasar (Bab 3-5). File ini hanya aturan panel admin. */
 
 /* Pengaman kecil agar panel tetap rapi walau style.css diubah */
 html, body {
@@ -703,7 +703,7 @@ html, body {
   font-size: 0.875rem;
 }
 
-/* --- Navigasi: chip horizontal di ponsel, kolom di tablet ke atas --- */
+/* --- Navigasi: chip horizontal di HP, kolom di tablet ke atas --- */
 .dasbor-nav {
   grid-area: nav;
   background: var(--clr-surface);
@@ -918,7 +918,7 @@ html, body {
 }
 ```
 
-Penjelasan: berkas ini adalah demonstrasi lengkap strategi 7.4–7.6. Gaya dasar menggambar denah tumpuk; empat media query menaik hanya mengganti yang harus diubah — jumlah kolom kartu, lebar kolom navigasi, dan penggambaran ulang `grid-template-areas` pada 768 px. Perhatikan bahwa di tablet ke atas navigasi berubah bentuk (pembatas kiri, garis aktif), semua murni dengan CSS: **markup tidak tersentuh sejak langkah pertama**. Penggunaan token (`--clr-*`, `--space-unit`, `--radius`) menuntut `css/style.css` ikut ter-link sebelum `admin.css` — urutan ini memang ditulis pada `admin.html`.
+Penjelasan: file ini adalah demonstrasi lengkap strategi 7.4–7.6. Gaya dasar menggambar denah tumpuk; empat media query menaik hanya mengganti yang harus diubah — jumlah kolom kartu, lebar kolom navigasi, dan penggambaran ulang `grid-template-areas` pada 768 px. Perhatikan bahwa di tablet ke atas navigasi berubah bentuk (pembatas kiri, garis aktif), semua murni dengan CSS: **markup tidak tersentuh sejak langkah pertama**. Penggunaan token (`--clr-*`, `--space-unit`, `--radius`) menuntut `css/style.css` ikut ter-link sebelum `admin.css` — urutan ini memang ditulis pada `admin.html`.
 
 ```html
 File: tokosaya-css/katalog.html
@@ -943,7 +943,7 @@ File: tokosaya-css/katalog.html
 </section>
 ```
 
-Penjelasan: perubahan pada `katalog.html` sekecil mungkin: wadah daftar produk diberi kelas `katalog-grid`, dan isinya tetap kartu-kartu `produk-card` yang sudah Anda bangun pada Bab 5–6. Dengan begitu, perubahan tata letak seluruhnya berada di CSS — prinsip *denah milik wadah* yang ditegaskan Contoh 2.
+Penjelasan: perubahan pada `katalog.html` sekecil mungkin: wadah daftar produk diberi kelas `katalog-grid`, dan isinya tetap kartu-kartu `produk-card` yang sudah Anda bangun pada Bab 5–6. Dengan begitu, perubahan layout seluruhnya berada di CSS — prinsip *denah milik wadah* yang ditegaskan Contoh 2.
 
 ```css
 File: tokosaya-css/css/style.css
@@ -974,7 +974,7 @@ File: tokosaya-css/css/style.css
 }
 ```
 
-Penjelasan: blok ini menaikkan jumlah kolom kartu produk menurut breakpoint yang sama dengan panel admin, sehingga kedua halaman berbicara bahasa "breakpoint" yang sama. Semua aturan ditulis pada bagian akhir berkas dan diberi komentar penanda — kaskade lama (Bab 3–6) tetap berlaku, aturan baru hanya menimpa jumlah kolom daftar produk. Karena `katalog.html` memuat delapan produk baku, di 1200 px grid menjadi 4 kolom × 2 baris yang pas penuh; di 992 menjadi 3 kolom dengan sisa dua kartu, dan di 576 menjadi 2 kolom — wajar diadaptasi bila desain Anda memilih pola `auto-fit` ala Contoh 2.
+Penjelasan: blok ini menaikkan jumlah kolom kartu produk menurut breakpoint yang sama dengan panel admin, sehingga kedua halaman berbicara bahasa "breakpoint" yang sama. Semua aturan ditulis pada bagian akhir file dan diberi komentar penanda — kaskade lama (Bab 3–6) tetap berlaku, aturan baru hanya menimpa jumlah kolom daftar produk. Karena `katalog.html` memuat delapan produk baku, di 1200 px grid menjadi 4 kolom × 2 baris yang pas penuh; di 992 menjadi 3 kolom dengan sisa dua kartu, dan di 576 menjadi 2 kolom — wajar diadaptasi bila desain Anda memilih pola `auto-fit` ala Contoh 2.
 
 ### Hasil yang Diharapkan
 
@@ -985,46 +985,46 @@ Teramati (di DevTools device toolbar, tanpa JavaScript):
 - Pada **768 px**: denah berubah — navigasi bergeser ke kolom kiri selebar 220 piksel (tanpa pembatas bawah, dengan garis aktif berwarna indigo); kartu tetap dua kolom.
 - Pada **992 px**: kolom navigasi melebar ke 240 px, jarak antarkartu membesar, padding konten melebar.
 - Pada **1200 px**: empat kartu statistik sebaris `repeat(4, 1fr)`, konten terpusat maksimal 1200 piksel; katalog tampil 4 kolom × 2 baris.
-- Terukur: seluruh lima lebar uji memberi nol pengguliran horizontal pada halaman; tautan navigasi memiliki area sentuh paling kurang 40 piksel; satu kartu tidak pernah berbeda tinggi lebih dari satu baris teks keterangan.
+- Terukur: seluruh lima lebar uji memberi nol pengguliran horizontal pada halaman; link navigasi memiliki area sentuh paling kurang 40 piksel; satu kartu tidak pernah berbeda tinggi lebih dari satu baris teks keterangan.
 
 ### Troubleshooting
 
 **Masalah:** Kartu statistik tetap menumpuk vertikal walau jendela sudah di atas 576 piksel.
 **Penyebab:** Wadah `.stat-kartu` tidak dideklarasikan `display: grid` di gaya dasar, atau media query `min-width: 576px` salah ketik (misalnya `min-width: 576` tanpa `px`), sehingga aturan dua kolom tidak pernah berlaku.
 **Solusi:** Inspeksi `.stat-kartu` di panel Elements → Computed: pastikan nilai `display: grid` ada; lalu lihat panel Styles, cari blok `@media` dan periksa sintaks kurung serta satuan `px` pada nilai query; perbaiki ketikan dan simpan kembali.
-**Pencegahan:** Ikuti urutan menulis yang baku pada bab ini — gaya dasar dulu, media query menaik di bagian akhir berkas — dan uji setiap breakpoint langsung setelah menulisnya, bukan setelah semua selesai.
+**Pencegahan:** Ikuti urutan menulis yang baku pada bab ini — gaya dasar dulu, media query menaik di bagian akhir file — dan uji setiap breakpoint langsung setelah menulisnya, bukan setelah semua selesai.
 
 **Masalah:** Sidebar tidak pindah ke sisi kiri pada tablet (768 piksel ke atas); area tetap bertumpuk.
 **Penyebab:** Denah `grid-template-areas` versi 768 px jumlah kolomnya tidak konsisten dengan versi dasar (misalnya baris `"nav main"` ditulis dengan jumlah kolom yang berbeda-beda), atau nama area pada `grid-area` tidak sama persis dengan nama denah, sehingga browser mengabaikan denah baru tersebut.
 **Solusi:** Bandingkan dua blok `grid-template-areas` di admin.css: pastikan setiap baris kata berjumlah dua kolom (`"header header"`, `"nav main"`, `"footer footer"`), dan setiap elemen memakai `grid-area: header|nav|main|footer` dengan nama yang identik; perbaiki, simpan, muat ulang.
 **Pencegahan:** Bangun kebiasaan menggambar denah di komentar dahulu sebelum menulis string `grid-template-areas`, dan beri komentar penanda `/* denah versi mobile */` / `/* denah versi tablet */` agar dua denah mudah dibaca berdampingan.
 
-**Masalah:** Halaman muncul pengguliran horizontal di ponsel; seluruh antarmuka tergeser.
+**Masalah:** Halaman muncul pengguliran horizontal di HP; seluruh antarmuka tergeser.
 **Penyebab:** Tabel tidak dibungkus wadah penggulir sehingga lebar `min-width: 640px` tabel melebihi viewport dan mendorong `body`, atau ada elemen selebar tetap melebihi viewport — misalnya gambar tanpa `width: 100%` atau panjang teks tanpa `overflow` yang aman.
 **Solusi:** Buka DevTools device toolbar pada 375 px; gulirkan halaman untuk mengenali elemen yang melebar; bungkus tabel dengan `<div class="tabel-scroll">` yang memuat `overflow-x: auto` dan pastikan `overflow-y: hidden` tidak ikut menyekat; untuk gambar, pastikan aturan `width: 100%; height: auto` sudah tertulis.
 **Pencegahan:** Uji setiap halaman baru dengan menyeret device toolbar dari 320 px ke 1200 px sekali sekaligus; jika ada pengguliran pada `<body>`, anggap itu cacat yang mesti dituntaskan sebelum lanjut.
 
 **Masalah:** Semua token warna di admin.css terbaca `var() = kosong` (warna tak muncul, font tidak berlaku).
-**Penyebab:** `css/style.css` tidak di-link pada admin.html, atau tertulis setelah admin.css sehingga `:root` token dideklarasikan setelah dipakai; token CSS tidak memeriksa urutan aturan di berkas yang berbeda, hanya urutan berkas yang di-link.
-**Solusi:** Pastikan `<link rel="stylesheet" href="css/style.css">` tertulis sebelum `<link rel="stylesheet" href="css/admin.css">` di `<head>` admin.html, dan cek jalan berkas tidak salah folder (`css/`).
+**Penyebab:** `css/style.css` tidak di-link pada admin.html, atau tertulis setelah admin.css sehingga `:root` token dideklarasikan setelah dipakai; token CSS tidak memeriksa urutan aturan di file yang berbeda, hanya urutan file yang di-link.
+**Solusi:** Pastikan `<link rel="stylesheet" href="css/style.css">` tertulis sebelum `<link rel="stylesheet" href="css/admin.css">` di `<head>` admin.html, dan cek jalan file tidak salah folder (`css/`).
 **Pencegahan:** Tetapkan kebiasaan template `<head>`: charset → viewport → judul → font → stylesheet utama → stylesheet modul; uji satu token (misalnya ubah `--clr-primary` sementara) untuk memastikan kabelnya tersambung sebelum menulis gaya penuh.
 
-**Masalah:** Media query dianggap tidak bekerja sama sekali di ponsel/emuasi, semua tampil seperti gaya dasar.
+**Masalah:** Media query dianggap tidak bekerja sama sekali di HP/emuasi, semua tampil seperti gaya dasar.
 **Penyebab:** Tag `<meta name="viewport" ...>` hilang dari `admin.html`; tanpa itu browser emulasi memperlakukan halaman sebagai halaman desktop melebar dan melebih-lebih skala, sehingga semua pemicu `min-width` seolah tidak tercapai.
 **Solusi:** Tambahkan `<meta name="viewport" content="width=device-width, initial-scale=1.0">` di `<head>` dan muat ulang; pastikan juga tidak ada salah tulis seperti `min-width:576px;` di luar kurung `@media`.
 **Pencegahan:** Jadikan meta viewport bagian checklist template setiap halaman baru (ia juga jadi prasyarat UTS); tulis koma dan satuan query lengkap sejak mengetik pertama.
 
 ## Studi Kasus
 
-**Konteks:** Rumah sakit umum daerah "RS Sumber Sehat" ingin menata *informasi dashboard* di tiga titik: meja pendaftaran (desktop di konter), kunjungan visum di sekitar ruang rawat (tablet dibawa dokter dan perawat dalam pemeriksaan harian), dan petugas on-call yang memeriksa status kamar dari ponsel saat berjaga di malam. Tim sistem informasi diminta menentukan breakpoint — soal yang persis memakai materi 7.4–7.6.
+**Konteks:** Rumah sakit umum daerah "RS Sumber Sehat" ingin menata *informasi dashboard* di tiga titik: meja pendaftaran (desktop di konter), kunjungan visum di sekitar ruang rawat (tablet dibawa dokter dan perawat dalam pemeriksaan harian), dan petugas on-call yang memeriksa status kamar dari HP saat berjaga di malam. Tim sistem informasi diminta menentukan breakpoint — soal yang persis memakai materi 7.4–7.6.
 
-Langkah pertama tim adalah **mencatat konteks penggunaan**, bukan daftar model gadget: siapa memakai apa, di mana, dalam postur apa, untuk tugas apa. Dari situ terlihat tiga tugas utama: (1) meja pendaftaran beroperasi dengan tabel antrean lebar — membutuhkan tabulasi penuh, jadi wadah tabel dengan pengguliran dalam justru *tidak* disukai di desktop; (2) kunjungan perawat membaca status kamar sambil bergerak — kartu besar, angka sedikit, target sentuh besar; (3) petugas malam mengecek antrean ICU — satu angka besar di ponsel lebih bernilai daripada grafik lengkap.
+Langkah pertama tim adalah **mencatat konteks penggunaan**, bukan daftar model gadget: siapa memakai apa, di mana, dalam postur apa, untuk tugas apa. Dari situ terlihat tiga tugas utama: (1) meja pendaftaran beroperasi dengan tabel antrean lebar — membutuhkan tabulasi penuh, jadi wadah tabel dengan pengguliran dalam justru *tidak* disukai di desktop; (2) kunjungan perawat membaca status kamar sambil bergerak — kartu besar, angka sedikit, target sentuh besar; (3) petugas malam mengecek antrean ICU — satu angka besar di HP lebih bernilai daripada grafik lengkap.
 
-Dari analisis itu, tim memilih dua breakpoint: **768 px** — tablet, saat denah dua kolom aktif (kartu kamar di kiri, ringkasan di kanan), dan **992 px** — desktop, saat kolom tabel meluas penuh dan denah area menetap. 576 px sengaja dilewati karena jenis data dashboard (angka ringkasan) tidak menuntut tata letak tambahan di kisaran itu; dengan `clamp()` untuk angka kamar dan antrean, font sudah menyediakan penyesuaian yang halus. Keputusan ini mirip dengan Tokosaya (breakpoint sama, urutan denah sama), tetapi isinya berbeda: di klinik, *prioritas informasi kritis* menentukan area mana yang membentang (`grid-area` dua kolom untuk status kamar ICU), bukan estetika kartu. Pelajaran bagi konteks SI: **breakpoint adalah keputusan rancangan informasi, bukan keputusan teknis semata** — mulailah dari tugas pengguna, tulis denah grid-nya, baru pilih `min-width` terkecil yang membuat tugas itu tetap bisa dikerjakan sempurna.
+Dari analisis itu, tim memilih dua breakpoint: **768 px** — tablet, saat denah dua kolom aktif (kartu kamar di kiri, ringkasan di kanan), dan **992 px** — desktop, saat kolom tabel meluas penuh dan denah area menetap. 576 px sengaja dilewati karena jenis data dashboard (angka ringkasan) tidak menuntut layout tambahan di kisaran itu; dengan `clamp()` untuk angka kamar dan antrean, font sudah menyediakan penyesuaian yang halus. Keputusan ini mirip dengan Tokosaya (breakpoint sama, urutan denah sama), tetapi isinya berbeda: di klinik, *prioritas informasi kritis* menentukan area mana yang membentang (`grid-area` dua kolom untuk status kamar ICU), bukan estetika kartu. Pelajaran bagi konteks SI: **breakpoint adalah keputusan rancangan informasi, bukan keputusan teknis semata** — mulailah dari tugas pengguna, tulis denah grid-nya, baru pilih `min-width` terkecil yang membuat tugas itu tetap bisa dikerjakan sempurna.
 
 ## Latihan Mandiri
 
-1. Jelaskan perbedaan tata letak satu dimensi (Flexbox) dan dua dimensi (CSS Grid) dengan satu contoh halaman sistem informasi masing-masing (misalnya navigasi dan jadwal perkuliahan). Tuliskan dalam satu paragraf per teknologi.
+1. Jelaskan perbedaan layout satu dimensi (Flexbox) dan dua dimensi (CSS Grid) dengan satu contoh halaman sistem informasi masing-masing (misalnya navigasi dan jadwal perkuliahan). Tuliskan dalam satu paragraf per teknologi.
 2. Tulis satu baris `grid-template-columns` untuk halaman yang memuat kolom navigasi tetap 220 piksel dan area konten yang terbagi tiga kolom sama lebar. Jelaskan mengapa memakai satuan `fr` pada bagian konten.
 3. Buat wadah `.kotak-grafik` yang berisi tiga kartu; kartu pertama harus membentang dua kolom dan dua baris. Tulis CSS lengkapnya di `latihan-bab7/latihan-1.css` dan jelaskan urutan garis kolom yang menyebutkan (tuliskan nilai `grid-column` dan `grid-row` yang dipakai).
 4. Rancang grid jadwal perkuliahan 4 kolom × 3 baris dengan jarak 16 piksel dan judul kolom berwarna latar `--clr-primary`. Tulis `grid-template-columns`, `grid-template-rows`, dan pola `repeat()` yang dipakai, lalu tuliskan juga HTML semantik minimal tabel atau list yang menyusunnya.
@@ -1034,7 +1034,7 @@ Dari analisis itu, tim memilih dua breakpoint: **768 px** — tablet, saat denah
 ## Tugas
 
 1. **Tugas 1 (individu) — Kartu Agenda Gudang.** Tambahkan seksi "Agenda Gudang" pada `admin.html`: daftar tiga kartu (misalnya “Audit stok BT-5”, “Restok CP-30”, “Foto produk WC-720”) yang di atas 768 px menjadikan kartu pertama membentang dua kolom (`grid-column: 1 / span 2`). Kumpulkan: `admin.html`, `css/admin.css` terbaru, laporan singkat (maks. 200 kata) berisi tiga tangkapan layar (375, 768, 1200 px) beserta satu kalimat keterangan per ukuran, dan checklist: (a) media query ternotasi `min-width`, (b) tidak ada pengguliran horizontal halaman, (c) komentar CSS berbahasa Indonesia, (d) token Tokosaya dipakai tanpa nilai warna yang diketik manual.
-2. **Tugas 2 (kelompok 2–3 orang) — Bedah Breakpoint Situs Publik.** Pilih tiga situs layanan publik atau perpustakaan/kampus, inspeksi masing-masing dengan device toolbar (375/576/768/992/1200 px), dan catat: pada lebar berapa tata letak berubah (perkirakan lebar dengan menyeret lebar hingga tampilan berubah, bukan membaca kodennya), pola apa yang dipakai (sidebar geser, denah area, kartu auto-fit), serta satu hal yang patut diimiti Tokosaya. Kumpulkan tabel perbandingan dan rekomendasi 150 kata. Gunakan hanya pengamatan tampilan — tidak diperbolehkan membuka file sumber situs.
+2. **Tugas 2 (kelompok 2–3 orang) — Bedah Breakpoint Website Publik.** Pilih tiga website layanan publik atau perpustakaan/kampus, inspeksi masing-masing dengan device toolbar (375/576/768/992/1200 px), dan catat: pada lebar berapa layout berubah (perkirakan lebar dengan menyeret lebar hingga tampilan berubah, bukan membaca kodennya), pola apa yang dipakai (sidebar geser, denah area, kartu auto-fit), serta satu hal yang patut diimiti Tokosaya. Kumpulkan tabel perbandingan dan rekomendasi 150 kata. Gunakan hanya pengamatan tampilan — tidak diperbolehkan membuka file sumber website.
 
 ## Refleksi
 
@@ -1048,7 +1048,7 @@ Dari analisis itu, tim memilih dua breakpoint: **768 px** — tablet, saat denah
 - CSS Grid menata **dua dimensi** sekaligus; Flexbox tetap andal untuk aliran satu arah, dan keduanya bekerja bersama (Grid kerangka, Flex isi komponen).
 - `grid-template-columns`/`rows` menentukan track; `fr` membagi sisa ruang; `repeat()` merapikan penulisan; `gap` menempatkan jarak di dalam kerangka.
 - `span` dan `grid-template-areas` memberi wewenang menempatkan dan membentangkan butir, yang sangat berguna untuk menonjolkan informasi prioritas.
-- *Mobile-first* menulis gaya dasar ponsel lebih dahulu, lalu menaikkan dengan media query `min-width` yang urutannya menaik.
+- *Mobile-first* menulis gaya dasar HP lebih dahulu, lalu menaikkan dengan media query `min-width` yang urutannya menaik.
 - *Breakpoint* dipilih dari kebutuhan konten dan tugas pengguna; konvensi 576/768/992/1200 dipakai di buku ini agar serasi dengan Bab 9.
 - `clamp()` mengendalikan tipografi responsif dalam satu baris; gambar responsif berbasis `width: 100%`, `height: auto`, dan `object-fit` mencegah gambar melar halaman.
 - Pola dashboard admin (header + sidebar + kartu + tabel) dan pola galeri produk adalah dua pola yang terbukti langsung dipakai pada proyek; pengujian lewat device toolbar DevTools menutup alur kerja.
@@ -1111,7 +1111,7 @@ Dari analisis itu, tim memilih dua breakpoint: **768 px** — tablet, saat denah
 
 ### Analisis Kode
 
-1. Perhatikan berkas berikut dari galeri latihan:
+1. Perhatikan file berikut dari galeri latihan:
 
 ```css
 File: latihan-analisis/analisis-1.css
@@ -1122,9 +1122,9 @@ File: latihan-analisis/analisis-1.css
 }
 ```
 
-Jawablah: (a) berapa jumlah kolom yang akan terbentuk kira-kira pada viewport 360 px, 760 px, dan 1260 px? (b) apa yang terjadi jika nilai `minmax` diganti menjadi `minmax(500px, 1fr)` pada layar ponsel — dan mengapa pola itu tidak cocok untuk kartu produk? (c) sebutkan satu kelebihan pola ini dibandingkan media query eksplisit dan satu kelemahannya bila jumlah kartu sangat sedikit.
+Jawablah: (a) berapa jumlah kolom yang akan terbentuk kira-kira pada viewport 360 px, 760 px, dan 1260 px? (b) apa yang terjadi jika nilai `minmax` diganti menjadi `minmax(500px, 1fr)` pada layar HP — dan mengapa pola itu tidak cocok untuk kartu produk? (c) sebutkan satu kelebihan pola ini dibandingkan media query eksplisit dan satu kelemahannya bila jumlah kartu sangat sedikit.
 
-2. Rekan satu kelompok menulis kode dashboard berikut dan mengeluh: "di ponsel, denah dua kolom tetap aktif dan sidebar sempit sekali". Temukan cacatnya dan tuliskan versi perbaikan.
+2. Rekan satu kelompok menulis kode dashboard berikut dan mengeluh: "di HP, denah dua kolom tetap aktif dan sidebar sempit sekali". Temukan cacatnya dan tuliskan versi perbaikan.
 
 ```css
 File: latihan-analisis/analisis-2.css
@@ -1170,15 +1170,15 @@ File: latihan-analisis/analisis-2.css
 **Benar atau Salah**
 
 1. **Salah** — Grid justru menata baris dan kolom sekaligus; Flexbox yang satu arah.
-2. **Benar** — gaya dasar ponsel tetap berlaku; query menaik menumpuk penyesuaian tanpa membatalkan banyak gaya.
+2. **Benar** — gaya dasar HP tetap berlaku; query menaik menumpuk penyesuaian tanpa membatalkan banyak gaya.
 3. **Salah** — `gap` berlaku dua arah; ada pula `row-gap` dan `column-gap` bila ingin beda.
 4. **Benar** — denah berbasis kata membuat perubahan posisi area menjadi pengeditan string saja.
-5. **Salah** — media query menyusun tata letak; semantik tetap menentukan makna, aksesibilitas, dan keterbacaan kode.
+5. **Salah** — media query menyusun layout; semantik tetap menentukan makna, aksesibilitas, dan keterbacaan kode.
 
 **Analisis Kode**
 
-1. (a) 360 px → 1 kolom (200 tidak muat × 2 dengan gap), 760 px → 3 kolom, 1260 px → 5–6 kolom bergantung penghitungan track; (b) dengan `minmax(500px, 1fr)` ponsel selalu 1 kolom dan desktop terlalu lebar per kartu — nilai minimum terlalu besar untuk kartu produk; (c) kelebihan: jumlah kolom menyesuaikan ruang tanpa media query; kelemahan: tidak bisa dijadwalkan persis bersama desainer, dan bila kartu sangat sedikit, `auto-fit` membuat kartu melebar penuh sehingga keterbacaan baris teks panjang menurun.
-2. Cacat: penulisan desktop-first — gaya dasar memuat denah dua kolom lalu media query `max-width` mencabutnya di layar kecil; pola ini memaksa browser membatalkan gaya dan rawan berbenturan urutan berkas. Perbaikan: gaya dasar satu kolom, lalu `@media (min-width: 768px)` menggambar denah `"nav main"` dengan `grid-template-columns: 240px 1fr` — bertumbuh, bukan membongkar.
+1. (a) 360 px → 1 kolom (200 tidak muat × 2 dengan gap), 760 px → 3 kolom, 1260 px → 5–6 kolom bergantung penghitungan track; (b) dengan `minmax(500px, 1fr)` HP selalu 1 kolom dan desktop terlalu lebar per kartu — nilai minimum terlalu besar untuk kartu produk; (c) kelebihan: jumlah kolom menyesuaikan ruang tanpa media query; kelemahan: tidak bisa dijadwalkan persis bersama desainer, dan bila kartu sangat sedikit, `auto-fit` membuat kartu melebar penuh sehingga keterbacaan baris teks panjang menurun.
+2. Cacat: penulisan desktop-first — gaya dasar memuat denah dua kolom lalu media query `max-width` mencabutnya di layar kecil; pola ini memaksa browser membatalkan gaya dan rawan berbenturan urutan file. Perbaikan: gaya dasar satu kolom, lalu `@media (min-width: 768px)` menggambar denah `"nav main"` dengan `grid-template-columns: 240px 1fr` — bertumbuh, bukan membongkar.
 
 **Soal Praktik**
 

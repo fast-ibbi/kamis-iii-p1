@@ -18,7 +18,7 @@ footer: "Bab 1 · Pengantar Frontend Development dan Web Design"
 <!--
 Slide pembuka sekaligus janji satu semester. Tekankan bahwa bab ini bukan sekadar
 daftar istilah: di akhir pertemuan mahasiswa sudah punya satu halaman HTML yang
-berjalan di peramban. Tanyakan pembuka: "Siapa yang pernah membuka DevTools
+berjalan di browser. Tanyakan pembuka: "Siapa yang pernah membuka DevTools
 tanpa sengaja?" Jawaban biasanya banyak, dan itu pintu masuk yang murah.
 -->
 
@@ -83,7 +83,7 @@ soal ruang kafe dan dapur. Batas waktunya dua menit saja, jangan sampai melebar.
 
 # Apa Itu *Frontend Development*
 
-Pekerjaan membangun bagian website yang **dilihat, dibaca, dan diklik** pengguna di peramban.
+Pekerjaan membangun bagian website yang **dilihat, dibaca, dan diklik** pengguna di browser.
 
 - *Front* — sisi depan yang menghadap pengunjung
 - Tiga lapisan: **HTML** (struktur), **CSS** (tampilan), **CSS framework** (komponen)
@@ -132,7 +132,7 @@ berada di mata kuliah lain.
 Analogi ini akan dipakai ulang di seluruh buku, jadi pastikan tertanam. Minta satu
 mahasiswa menceritakan analogi itu dengan kalimatnya sendiri sebelum Anda lanjut.
 Pertanyaan pemandu: "Di kafe, siapa yang berperan sebagai pengantar pesan?"
-(Jawaban: pelayan, yaitu permintaan dan respons antara peramban dan server.)
+(Jawaban: pelayan, yaitu permintaan dan respons antara browser dan server.)
 Peringatan: pelayan BUKAN backend; pelayan adalah penghubung keduanya.
 -->
 
@@ -142,7 +142,7 @@ Peringatan: pelayan BUKAN backend; pelayan adalah penghubung keduanya.
 
 | Aspek | Frontend | Backend |
 |---|---|---|
-| Bekerja pada | Peramban pengguna | Server |
+| Bekerja pada | Browser pengguna | Server |
 | Teknologi inti | HTML, CSS, framework antarmuka | Bahasa server + basis data |
 | Fokus yang diukur | Tampilan, responsif, aksesibilitas | Keandalan, keamanan, kinerja |
 | Hasil yang terlihat | Kartu produk, tombol, formulir | Stok berkurang, pesanan tersimpan |
@@ -203,7 +203,7 @@ Buka satu per satu; tanyakan "di tahap mana kita berada sekarang?" sebelum lanju
 
 1) **Kebutuhan bisnis** — pemilik Tokosaya ingin toko yang dapat dilihat dan dihubungi
 2) **Analisis** — siapa pengunjungnya dan proses apa yang mengalir sampai pesanan
-3) **Desain** — tata letak halaman, warna, hierarki tombol
+3) **Desain** — layout halaman, warna, hierarki tombol
 4) **Implementasi** — frontend mewujudkan rancangan; backend membangun layanan data
 5) **Pengujian & pemeliharaan** — memeriksa keduanya, lalu menjaga sistem tetap hidup
 
@@ -223,7 +223,7 @@ kelompok, lalu bingung ketika rancangannya berubah di tengah jalan.
 |---|---|---|
 | Kebutuhan bisnis | Apa masalah yang diselesaikan? | Daftar kebutuhan utama klien |
 | Analisis | Apa yang sistem harus bisa? | Spesifikasi, peran pengguna |
-| Desain | Bagaimana tampak dan terasa? | Rancangan antarmuka, tata letak |
+| Desain | Bagaimana tampak dan terasa? | Rancangan antarmuka, layout |
 | Implementasi | Bagaimana rancangan dihidupkan? | Halaman HTML/CSS + layanan data |
 | Pengujian & pemeliharaan | Apakah sesuai dan tetap berguna? | Catatan temuan, perbaikan rutin |
 
@@ -278,8 +278,8 @@ mengerjakan tugas?" (Jawaban: analis, karena mereka cenderung langsung menulis k
 | Web design | Kerangka besar | Merancang tampilan dan pengalaman halaman |
 | UI | Elemen yang disentuh | Tombol, kartu produk, ikon keranjang, formulir |
 | UX | Pengalaman menyeluruh | Perjalanan pengguna menuju tujuannya |
-| HTML | Struktur | Heading, paragraf, daftar, gambar, tautan |
-| CSS | Rupa | Warna, huruf, jarak, tata letak |
+| HTML | Struktur | Heading, paragraf, daftar, gambar, link |
+| CSS | Rupa | Warna, huruf, jarak, layout |
 
 > UI adalah *tampaknya*, UX adalah *rasanya*, dan web design menyelaraskan keduanya.
 
@@ -297,7 +297,7 @@ melainkan bahan bangun yang menghidupkan rancangan.
 
 1) **Kebutuhan** diubah menjadi **rancangan** — alat desain seperti Figma (Bab 14)
 2) Rancangan diuraikan menjadi **struktur** — bahasa HTML
-3) Struktur diberi **rupa** — warna, ukuran, jarak, tata letak
+3) Struktur diberi **rupa** — warna, ukuran, jarak, layout
 4) Bila kebutuhan berulang, pakai **komponen siap pakai** dari CSS framework
 
 > Desain yang jelas membuat kode menemukan jalannya, bukan mencarinya sendiri.
@@ -338,7 +338,7 @@ rancangan tidak mengikuti pola standar.)
 
 1. Klien ingin tombol kontak mudah ditemukan tanpa menggulir — frontend atau backend?
 2. Tombol "Beli" ditekan dan stok benar-benar berkurang — frontend atau backend?
-3. Halaman tampak menyusut di ponsel sampai perlu cubit-zoom — apa penyebabnya?
+3. Halaman tampak menyusut di HP sampai perlu cubit-zoom — apa penyebabnya?
 
 <!--
 Beri 60 detik, minta angkat tangan untuk tiap butir, jangan dibahas panjang. Kunci
@@ -353,7 +353,7 @@ jawaban yang salah itu, karena dibahas pada slide tentang DevTools.
 
 1. **Frontend** — kebutuhannya mengubah apa yang dilihat dan disentuh pengguna
 2. **Backend** — stok berkurang berarti data tersimpan dan aturan bisnis bekerja
-3. **`<meta name="viewport">` belum ada** — peramban mengasumsikan lebar meja standar
+3. **`<meta name="viewport">` belum ada** — browser mengasumsikan lebar meja standar
 
 > Frontend mengurus penyajian dan interaksi di layar; backend mengurus penyimpanan data dan aturan bisnis.
 
@@ -369,40 +369,40 @@ berisi charset dan viewport, jangan menulis dokumen dari nol.
 # Anatomi Sebuah Website
 
 - **Halaman** (*page*) — satu dokumen HTML yang menampilkan satu layar konten
-- **Website** — sejumlah halaman yang saling terhubung lewat tautan
-- **Aset** — gambar, berkas CSS, kadang font dan ikon
-- **`index.html`** — berkas yang dibuka ketika pengunjung hanya mengetik `tokosaya.id/`
+- **Website** — sejumlah halaman yang saling terhubung lewat link
+- **Aset** — gambar, file CSS, kadang font dan ikon
+- **`index.html`** — file yang dibuka ketika pengunjung hanya mengetik `tokosaya.id/`
 
 <!--
 Poin yang paling sering terlewat adalah baris terakhir. Jelaskan konvensi index:
-alamat tanpa nama berkas dianggap menunjuk halaman utama, dan konvensi yang sama
+alamat tanpa nama file dianggap menunjuk halaman utama, dan konvensi yang sama
 bekerja di komputer sendiri saat kita dobel klik index.html. Itulah sebabnya seluruh
 proyek buku ini memakai nama index.html, bukan utama.html atau halaman1.html.
 Tanyakan: "Apa jadinya folder tanpa index.html?" (Jawaban: pengunjung melihat daftar
-berkas, bukan halaman.)
+file, bukan halaman.)
 -->
 
 ---
 
 # Pola Folder Proyek Tokosaya
 
-| Berkas / Folder | Peran |
+| File / Folder | Peran |
 |---|---|
 | `index.html` | Halaman beranda |
 | `katalog.html` | Daftar produk |
 | `tentang.html`, `kontak.html` | Profil toko dan formulir kontak |
-| `css/style.css` | Satu berkas gaya bersama untuk semua halaman |
+| `css/style.css` | Satu file gaya bersama untuk semua halaman |
 | `img/` | Gambar produk dan logo, semuanya berakhiran `.svg` |
 
-Tiga kebiasaan: satu CSS bersama · nama *kebab-case* · satu halaman satu berkas.
+Tiga kebiasaan: satu CSS bersama · nama *kebab-case* · satu halaman satu file.
 
 <!--
 Tuliskan pohon folder ini di papan dan biarkan terlihat selama praktikum. Tiga
 kebiasaan itu terlihat remeh tetapi punya alasan: satu CSS agar perbaikan di satu
-tempat menular ke semua halaman; kebab-case agar tautan tidak rontok karena
-perbedaan besar kecil huruf antar sistem operasi; satu berkas per halaman agar tidak
-ada dokumen raksasa. Peringatan: spasi dan huruf kapital pada nama berkas adalah
-sumber bug tautan paling umum bagi pemula.
+tempat menular ke semua halaman; kebab-case agar link tidak rontok karena
+perbedaan besar kecil huruf antar sistem operasi; satu file per halaman agar tidak
+ada dokumen raksasa. Peringatan: spasi dan huruf kapital pada nama file adalah
+sumber bug link paling umum bagi pemula.
 -->
 
 ---
@@ -410,18 +410,18 @@ sumber bug tautan paling umum bagi pemula.
 # Domain, Hosting, dan URL
 
 - **Domain** — nama alamat website, mis. `tokosaya.id`, disewa tahunan
-- **Hosting** — layanan penyimpan berkas pada server yang selalu menyala
-- **Deployment** — menyalin berkas ke server lalu mengaitkannya dengan domain
-- `https` adalah skema · `tokosaya.id` adalah domain · `/katalog.html` adalah jalur berkas
+- **Hosting** — layanan penyimpan file pada server yang selalu menyala
+- **Deployment** — menyalin file ke server lalu mengaitkannya dengan domain
+- `https` adalah skema · `tokosaya.id` adalah domain · `/katalog.html` adalah jalur file
 
-> Tautan `<a href="katalog.html">` memakai **jalur relatif**: dibaca dari folder halaman yang membukanya.
+> Link `<a href="katalog.html">` memakai **jalur relatif**: dibaca dari folder halaman yang membukanya.
 
 <!--
 Bedakan domain dan hosting dengan pertanyaan: "Mana yang berupa nama, mana yang berupa
-tempat?" Domain adalah nama, hosting adalah tempat berkas disimpan, dan keduanya
-disewa terpisah. Untuk latihan bab ini, keduanya belum dibutuhkan sama sekali: berkas
+tempat?" Domain adalah nama, hosting adalah tempat file disimpan, dan keduanya
+disewa terpisah. Untuk latihan bab ini, keduanya belum dibutuhkan sama sekali: file
 dibuka langsung dari komputer sendiri, konsepnya sama, hanya belum dipasang di
-internet. Baris terakhir penting untuk Bab 2, saat tautan antarhalaman mulai ditulis.
+internet. Baris terakhir penting untuk Bab 2, saat link antarhalaman mulai ditulis.
 -->
 
 ---
@@ -436,7 +436,7 @@ internet. Baris terakhir penting untuk Bab 2, saat tautan antarhalaman mulai dit
 Jelaskan keempat gerakan itu sebagai urutan yang tidak bisa ditukar, lalu minta
 mahasiswa mengulanginya lisan dalam empat kata: diterima, disusun, diberi gaya,
 digambar. Pemahaman umum menyebut pohon ini DOM; cukup pahami sebagai wujud struktur
-dokumen di dalam peramban. Tanyakan: "Pada langkah mana warna tombol ditentukan?"
+dokumen di dalam browser. Tanyakan: "Pada langkah mana warna tombol ditentukan?"
 (Jawaban: langkah tiga, saat aturan CSS dicocokkan ke elemen pohon.)
 -->
 
@@ -447,7 +447,7 @@ dokumen di dalam peramban. Tanyakan: "Pada langkah mana warna tombol ditentukan?
 Buka dengan `F12` atau klik kanan halaman lalu pilih **Inspect**.
 
 - **Elements** — pohon tag halaman; mengklik satu baris menyorot elemen itu di halaman
-- **Device toolbar** — uji lebar layar dari ponsel sekitar 360 px sampai komputer meja
+- **Device toolbar** — uji lebar layar dari HP sekitar 360 px sampai komputer meja
 - Kebiasaan QA yang murah: *simpan → muat ulang → periksa* setiap kali kode berubah
 
 > Browser tidak menebak, browser membaca. Tampilan yang salah selalu punya baris penyebabnya.
@@ -457,7 +457,7 @@ Dua kemampuan di slide ini dikategorikan sebagai pekerjaan mengamati, bukan
 mengeksekusi, dan keduanya naik kelas menjadi alat pengujian serius di Bab 7, 13, dan
 15. Tekankan kalimat "browser membaca": ini fondasi seluruh mentalitas debugging yang
 akan dipakai sampai akhir semester. Peringatan: banyak "bug" pemula sebenarnya hanya
-berkas lama yang masih tampil karena halaman belum dimuat ulang.
+file lama yang masih tampil karena halaman belum dimuat ulang.
 -->
 
 ---
@@ -484,7 +484,7 @@ nanti.
 
 | Keluhan klien | Yang diperiksa |
 |---|---|
-| "Tombolnya hilang saat dibuka dari ponsel" | Elemen benar ada di struktur? (Elements) |
+| "Tombolnya hilang saat dibuka dari HP" | Elemen benar ada di struktur? (Elements) |
 | "Tulisannya menabrak logo" | Berapa lebar layar pengguna? (device toolbar) |
 | "Masih tampil versi yang lama" | Halaman sudah dimuat ulang dengan `F5`? |
 
@@ -502,8 +502,8 @@ mini kuis sebelumnya ada di baris pertama slide ini.
 
 | Teknologi | Mengurus | Contoh |
 |---|---|---|
-| **HTML** | Struktur konten yang bermakna | Judul, paragraf, daftar, gambar, tautan |
-| **CSS** | Rupa dan tata letak | Warna, huruf, jarak, susunan kolom |
+| **HTML** | Struktur konten yang bermakna | Judul, paragraf, daftar, gambar, link |
+| **CSS** | Rupa dan layout | Warna, huruf, jarak, susunan kolom |
 | **CSS framework** | Komponen siap pakai | Bootstrap 5, masuk Bab 9 lewat CDN |
 
 > Framework yang dipakai tanpa memahami dasarnya berubah menjadi penjara.
@@ -520,9 +520,9 @@ kartu produk dengan CSS murni, jadi komponen Bootstrap bukan kotak hitam lagi.)
 
 # Perangkat Kerja: VS Code dan Chrome
 
-- **VS Code** — pewarnaan tag, pelengkapan otomatis saat mengetik `<`, pohon berkas di Explorer
-- **Live Server** (opsional) — memuat ulang halaman sendiri setiap berkas disimpan
-- **Google Chrome** — peramban pilihan, dengan DevTools yang siap dipakai
+- **VS Code** — pewarnaan tag, pelengkapan otomatis saat mengetik `<`, pohon file di Explorer
+- **Live Server** (opsional) — memuat ulang halaman sendiri setiap file disimpan
+- **Google Chrome** — browser pilihan, dengan DevTools yang siap dipakai
 - **Figma** menyusul di Bab 14; panel DevTools yang lebih dalam menyusul di Bab 13 dan 15
 
 Kebiasaan kecil: `Ctrl+S` setiap selesai menulis · jangan mengetik kode di pengolah kata · salin folder sebelum perubahan besar.
@@ -531,7 +531,7 @@ Kebiasaan kecil: `Ctrl+S` setiap selesai menulis · jangan mengetik kode di peng
 Pesan utamanya bukan daftar alat, melainkan cara buku ini memperkenalkan alat: tepat
 ketika masalahnya muncul, bukan menumpuk semua alat sejak hari pertama. Pola yang sama
 memandu urutan HTML, CSS, lalu Bootstrap. Sebutkan jebakan pengolah kata secara
-eksplisit, karena ia menyelipkan karakter tak terlihat yang merusak berkas HTML dan
+eksplisit, karena ia menyelipkan karakter tak terlihat yang merusak file HTML dan
 gejalanya sulit dilacak. Tekankan juga kebiasaan menyimpan: dua detik menyimpan dapat
 menghemat berjam-jam.
 -->
@@ -613,7 +613,7 @@ Lanjutkan mengetik dari slide sebelumnya. Yang diuji di sini adalah pilihan elem
 berdasarkan makna, bukan selera: ul untuk isi yang tidak mengenal urutan, ol untuk isi
 yang urutannya bermakna. Minta mahasiswa menilai sendiri: "Bidang Minat seharusnya ul
 atau ol?" (Jawaban: ul, karena tidak ada urutan di antara minat.) Sebutkan bahwa sisa
-berkasnya, termasuk blok Tautan dengan tautan mailto, dilanjutkan di praktikum.
+berkasnya, termasuk blok Link dengan link mailto, dilanjutkan di praktikum.
 -->
 
 ---
@@ -632,7 +632,7 @@ Kedengarannya seperti detail kecil, jadi jelaskan konsekuensinya: alt adalah sat
 teks yang dibacakan pembaca layar dan yang tampil saat gambar gagal dimuat, sedangkan
 lompatan level heading merusak peta dokumen bagi alat bantu. Tuliskan keempatnya di
 papan sebagai daftar periksa, karena ini dipakai sebagai rubrik penilaian.
-Peringatan: mahasiswa cenderung menulis alt berisi nama berkas, bukan deskripsi.
+Peringatan: mahasiswa cenderung menulis alt berisi nama file, bukan deskripsi.
 -->
 
 ---
@@ -649,7 +649,7 @@ Peringatan: mahasiswa cenderung menulis alt berisi nama berkas, bukan deskripsi.
 Ketiga rambu ini seluruhnya muncul lagi di bagian Troubleshooting pada praktikum, jadi
 perkenalkan sekali di sini dan jangan diulang panjang lebar. Rambu pertama paling
 penting: kekuatan HTML justru pada kumpulan elemen baku yang pengertiannya disepakati
-seluruh peramban, dan pelanggarannya tidak memberi pesan apa pun. Tanyakan: "Mengapa
+seluruh browser, dan pelanggarannya tidak memberi pesan apa pun. Tanyakan: "Mengapa
 kesalahan tag lebih sulit dilacak daripada kesalahan CSS?" (Jawaban: karena tidak ada
 peringatan sama sekali, hanya tampilan yang bergeser.)
 -->
@@ -670,8 +670,8 @@ Ini slide yang menyambungkan teori penuh di depan dengan praktikum. Tekankan bah
 pengamatan yang dicatat lebih bernilai daripada pengamatan yang hanya dilihat: catatan
 tiga baris itu adalah latihan pertama menyusun bukti pengujian, dan mulai UTS
 kemampuan menjelaskan antarmuka lewat bukti struktur ikut dinilai. Peringatan yang
-sering terjadi: gambar tidak tampil, dan penyebabnya hampir selalu nama berkas yang
-tidak cocok. Sarankan menyalin nama berkas, jangan mengetiknya dari ingatan.
+sering terjadi: gambar tidak tampil, dan penyebabnya hampir selalu nama file yang
+tidak cocok. Sarankan menyalin nama file, jangan mengetiknya dari ingatan.
 -->
 
 ---
@@ -695,7 +695,7 @@ pada Tugas 1, jadi pastikan bentuk foldernya sudah terbayang.
 
 # Ringkasan (2/2)
 
-1. Peramban merender: dokumen HTML → pohon dokumen → gaya → digambar ke layar
+1. Browser merender: dokumen HTML → pohon dokumen → gaya → digambar ke layar
 2. DevTools memperlihatkan pohon itu lewat panel Elements dan device toolbar
 3. HTML mengurus struktur, CSS mengurus rupa, framework menyediakan komponen siap pakai
 4. Bootstrap 5 baru dibahas di Bab 9, setelah dasar-dasarnya kuat
@@ -718,7 +718,7 @@ di slide penutup.
 | Analogi | Cari pasangan analogi selain kafe dan dapur | Ketepatan alasan, bukan keindahan analogi |
 | Analisis | Empat pekerjaan frontend dan empat backend di perpustakaan kampus | Ketepatan memisahkan tanggung jawab |
 | Kode | `latihan-2.html` lalu catat lima tag dari Elements | Kelengkapan pola dokumen dan bukti inspeksi |
-| Tugas 1 | `index.html` dan `rencana.html` saling bertautan | Struktur, tautan dua arah, kerapian kode |
+| Tugas 1 | `index.html` dan `rencana.html` saling bertautan | Struktur, link dua arah, kerapian kode |
 | Tugas 2 | Tabel perbandingan dua website layanan | Cakupan pengamatan dan alasan pemisahan kerja |
 
 Pilih satu baris untuk dikerjakan di kelas; sisanya menjadi pekerjaan rumah pertemuan berikutnya.

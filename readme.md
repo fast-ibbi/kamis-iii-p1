@@ -13,7 +13,7 @@ satu proyek berjalan (studi kasus **Tokosaya**), HTML dan CSS murni tanpa JavaSc
 > **Status:** baru **Bab 1** yang tersedia. Empat belas bab lain masih direncanakan; topik dan
 > cakupannya di bawah diambil apa adanya dari peta bab di dalam buku, bukan susunan final.
 
-**Situs slide:** <https://fast-ibbi.github.io/kamis-iii-p1/>
+**Website slide:** <https://fast-ibbi.github.io/kamis-iii-p1/>
 
 ---
 
@@ -61,12 +61,12 @@ timer), atau **PDF** untuk handout, printing, dan unggahan ke LMS.
 2. Membedakan tanggung jawab *frontend* dan *backend* pada sebuah website berdasarkan pengamatan nyata.
 3. Mengidentifikasi posisi frontend dalam alur pengembangan sistem informasi, dari kebutuhan bisnis sampai implementasi, serta peran lulusan Sistem Informasi di dalamnya.
 4. Membedakan konsep *web design*, *user interface* (UI), *user experience* (UX), HTML, dan CSS serta menjelaskan alur *design → code*.
-5. Mengimplementasikan halaman profil mahasiswa dengan HTML murni (heading, paragraf, gambar, daftar, tautan) secara valid.
+5. Mengimplementasikan halaman profil mahasiswa dengan HTML murni (heading, paragraf, gambar, daftar, link) secara valid.
 6. Menginspeksi struktur halaman yang ditulis menggunakan Chrome DevTools dan menjelaskan hasil pengamatan.
 7. Merancang pola folder proyek web sederhana sesuai konvensi buku ini.
 
 **Praktikum:** halaman `profil-mahasiswa/index.html` (satu `h1`, foto ber-`alt`, `ul` dan `ol`,
-tautan web dan `mailto:`) lalu diinspeksi lewat panel **Elements** dan *device toolbar*.
+link web dan `mailto:`) lalu diinspeksi lewat panel **Elements** dan *device toolbar*.
 
 **Tugas:** Tugas 1 (individu, `index.html` + `rencana.html` saling bertautan) dan Tugas 2
 (kelompok 3–4 orang, tabel perbandingan dua website layanan).
