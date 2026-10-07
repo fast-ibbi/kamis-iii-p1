@@ -149,21 +149,14 @@ kesalahan paling sering di praktikum pertama.
 </body>
 ```
 
-`File: latihan-css/pencocokan/index.html`
-
 ```css
-h1 {
-  color: #4F46E5;
-}
-p {
-  color: #334155;
-}
+h1 { color: #4F46E5; }
+p  { color: #334155; }
 ```
-
-`File: latihan-css/pencocokan/css/style.css`
 
 - Selector `h1` cocok dengan satu elemen judul
 - Selector `p` cocok dengan dua paragraf sekaligus
+- Kedua file di `latihan-css/pencocokan/`: HTML-nya dan `css/style.css`
 
 <!--
 Gambarkan browser mencocokkan aturan ke pohon DOM, bukan menjalankan kode dari atas
@@ -435,7 +428,7 @@ terasa nggak bisa diprediksi kalau dilewati.
 - `background-color` nggak diwariskan ke elemen anak
 
 <!--
-Ingatkan bahwa keempat properti ini cuma fondasi; jarak dan tata letak menyusul di
+Ingatkan bahwa keempat properti ini cuma fondasi; jarak dan layout menyusul di
 Bab 5 dan 7. Tekankan bahwa heksadesimal dipakai konsisten karena Bab 4 bakal
 mengubahnya jadi design token. Tanyakan apa bedanya `opacity: 0.95` dengan
 `opacity: 0`.
@@ -789,6 +782,19 @@ masih memakai file gaya dari cache.
 
 `File: kasus-bab-03/layanan-publik/versi-inline.html`
 
+<!--
+Ceritakan kisahnya dulu: tiga halaman serupa, satu halaman tertinggal waktu warna
+identitas diganti. Tanyakan langkah pertama refactor-nya. Jawaban yang diharapkan:
+audit dan hapus atribut `style` dulu, karena gaya inline menang atas apa pun di
+`style.css`.
+-->
+
+---
+
+<!-- _class: compact -->
+
+# Setelah Refactor: Nama Peran
+
 **Sesudah:** nama peran menggantikan keputusan visual.
 
 ```html
@@ -801,13 +807,13 @@ masih memakai file gaya dari cache.
 `File: kasus-bab-03/layanan-publik/index.html`
 
 - Warna identitas diganti, dua halaman ikut berubah, satu tertinggal
+- Kalau nama perannya jelas, satu perubahan di `style.css` cukup buat semua halaman
 
 <!--
-Ceritakan kisahnya dulu: tiga halaman serupa, satu halaman tertinggal waktu warna
-identitas diganti. Tanyakan langkah pertama refactor-nya. Jawaban yang diharapkan:
-audit dan hapus atribut `style` dulu, karena gaya inline menang atas apa pun di
-`style.css`. Tutup dengan menegaskan bahwa refactor ini fondasi yang nanti dipakai
-Tokosaya buat empat halaman.
+Tegaskan bahwa refactor ini fondasi yang nanti dipakai Tokosaya buat empat halaman.
+Tanyakan: apa yang terjadi pada halaman ketiga kalau namanya masih `merah-kecil`
+atau `huruf-besar`? Jawaban yang diharapkan: namanya jadi membingungkan begitu
+desainnya berubah.
 -->
 
 ---
