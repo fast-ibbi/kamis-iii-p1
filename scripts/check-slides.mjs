@@ -23,7 +23,7 @@
  * Keluar dengan kode 1 kalau ada slide meluber atau gambar gagal dimuat.
  */
 
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { basename, join, resolve } from 'node:path'
 import { spawnSync } from 'node:child_process'
 
@@ -69,7 +69,7 @@ const PROBE = `
 function ovfMeasure(){
   var secs=[].slice.call(document.querySelectorAll('section'))
       .filter(function(s,i,a){return a.indexOf(s)===i});
-  var out=[];
+  var out=[], sisa=[];
   secs.forEach(function(s,i){
     var sb=s.getBoundingClientRect(), cs=getComputedStyle(s);
     var padB=parseFloat(cs.paddingBottom)||0, padR=parseFloat(cs.paddingRight)||0;
@@ -88,13 +88,16 @@ function ovfMeasure(){
     });
     var oB=Math.round((maxB-(sb.bottom-padB*scale))/scale);
     var oR=Math.round((maxR-(sb.right-padR*scale))/scale);
+    sisa.push(Math.round(((sb.bottom-padB*scale)-maxB)/scale));
     if(oB>2||oR>2) out.push({slide:i+1,bawah:oB,kanan:oR,elemen:worst});
   });
   var bad=0;
   [].slice.call(document.querySelectorAll('img')).forEach(function(im){
     if(!im.complete||im.naturalWidth===0) bad++;
   });
-  return {total:secs.length, overflow:out, gambarRusak:bad};
+  return {total:secs.length, overflow:out, gambarRusak:bad,
+          sisaMinimum: sisa.length?Math.min.apply(null,sisa):null,
+          sisaSlide: sisa.length?sisa.indexOf(Math.min.apply(null,sisa))+1:null};
 }
 setTimeout(function(){
   var r=ovfMeasure();
@@ -111,6 +114,13 @@ if (!existsSync(SLIDES)) {
 }
 
 mkdirSync(WORK, { recursive: true })
+// Deck merujuk aset sebagai `assets/diagrams/...` (relatif terhadap folder slides/).
+// HTML sementara ada di out/_check/, jadi asetnya harus ikut disalin ke sana —
+// kalau tidak, semua diagram terbaca sebagai gambar rusak.
+for (const d of ['assets', 'img', 'theme']) {
+  const from = join(SLIDES, d)
+  if (existsSync(from)) cpSync(from, join(WORK, d), { recursive: true })
+}
 
 const wanted = process.argv.slice(2).filter((a) => !a.startsWith('-'))
 const decks = readdirSync(SLIDES)
@@ -151,6 +161,12 @@ for (const file of decks) {
   const dom = spawnSync(browser, [
     '--headless=new', '--disable-gpu', '--no-sandbox',
     '--allow-file-access-from-files',
+    // Ukuran jendela harus kanonik: ukuran slide adalah 1280x720 (@size di tema),
+    // dan tema memakai @auto-scaling sehingga Marp mengecilkan blok kode menurut
+    // skala render. Mengukur pada skala lain memberi hasil berbeda untuk slide
+    // yang sama (terbukti: slide yang sama meluber 69 px di 1280x720 tetapi 0 di
+    // 1600x900). Skala 1:1 inilah yang dipakai ekspor PDF/PNG.
+    '--window-size=1280,720',
     '--virtual-time-budget=9000',
     '--dump-dom',
     `file:///${probe.replace(/\\/g, '/')}`,
@@ -165,26 +181,34 @@ for (const file of decks) {
   }
   const res = JSON.parse(m[1])
   rows.push({ slug, ...res })
-  if (res.overflow.length || res.gambarRusak) failed++
+  const rapuh = res.sisaMinimum !== null && res.sisaMinimum < 8
+  if (res.overflow.length || res.gambarRusak || rapuh) failed++
 }
 
 console.log('')
-console.log('  deck                                     slide  meluber  gambar-rusak')
+console.log('  deck                                     slide  meluber  terkecil  gambar-rusak')
 for (const r of rows) {
-  const ok = r.overflow.length === 0 && r.gambarRusak === 0
+  const ok = r.overflow.length === 0 && r.gambarRusak === 0 && (r.sisaMinimum ?? 0) >= 8
   console.log(
     `  ${r.slug.slice(0, 40).padEnd(40)} ${String(r.total).padStart(5)}  ` +
-    `${String(r.overflow.length).padStart(7)}  ${String(r.gambarRusak).padStart(12)}` +
+    `${String(r.overflow.length).padStart(7)}  ` +
+    `${String(r.sisaMinimum).padStart(8)}px  ${String(r.gambarRusak).padStart(12)}` +
     (ok ? '' : '   <-- PERIKSA')
   )
+  if (r.overflow.length === 0 && r.sisaMinimum !== null && r.sisaMinimum < 8) {
+    console.log(`       slide ${r.sisaSlide} cuma sisa ${r.sisaMinimum}px di bawah — rapuh, rapikan`)
+  }
   for (const o of r.overflow) {
     console.log(`       slide ${o.slide}: lewat ${o.bawah}px bawah, ${o.kanan}px kanan — ${o.elemen}`)
   }
 }
 
 console.log('')
+console.log('  meluber = slide yang isinya melewati batas bawah/kanan')
+console.log('  terkecil = sisa ruang paling sempit di antara semua slide (negatif = meluber);')
+console.log('             di bawah 8px dianggap rapuh karena bisa meluber di skala render lain')
 if (failed) {
-  console.log(`  ${failed} deck bermasalah dari ${rows.length} yang diperiksa.`)
+  console.log(`\n  ${failed} deck bermasalah dari ${rows.length} yang diperiksa.`)
   process.exit(1)
 }
-console.log(`  ${rows.length} deck, semua slide muat, 0 gambar rusak.`)
+console.log(`\n  ${rows.length} deck, semua slide muat dengan sisa ruang aman, 0 gambar rusak.`)
