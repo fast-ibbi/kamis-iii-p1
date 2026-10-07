@@ -18,6 +18,12 @@ import { basename, join, resolve } from 'node:path'
 import { spawnSync } from 'node:child_process'
 
 const ROOT = resolve(process.cwd())
+
+// marp.cmd (Windows) butuh shell, dan shell:true memicu peringatan DEP0190 soal
+// argumen yang tidak di-escape. Argumen di sini dikendalikan skrip ini sendiri,
+// jadi peringatan itu disaring supaya keluaran build tetap bersih.
+process.removeAllListeners('warning')
+process.on('warning', (w) => { if (w.code !== 'DEP0190') console.warn(w) })
 const SLIDES = join(ROOT, 'slides')
 const DIST = join(ROOT, 'dist')
 
@@ -29,7 +35,10 @@ if (!existsSync(SLIDES)) {
 /* ------------------------------------------------------------ perintah marp */
 
 function marpBin() {
-  const local = join(ROOT, 'node_modules', '.bin', 'marp')
+  const bin = join(ROOT, 'node_modules', '.bin')
+  // Di Windows npm memasang marp sebagai marp.cmd; nama tanpa ekstensi tidak bisa
+  // dijalankan langsung oleh spawnSync.
+  const local = join(bin, process.platform === 'win32' ? 'marp.cmd' : 'marp')
   if (existsSync(local)) return [local]
   return ['npx', '-y', '@marp-team/marp-cli@4.5.0']
 }
@@ -89,11 +98,17 @@ for (const file of decks) {
   const res = spawnSync(bin, [...binArgs, src, '-o', out, '--allow-local-files'], {
     cwd: ROOT,
     encoding: 'utf8',
+    // marp.cmd (Windows) adalah skrip batch, jadi butuh shell. Di Linux/macOS
+    // node_modules/.bin/marp adalah skrip biasa dan shell tidak diperlukan.
+    shell: process.platform === 'win32',
     stdio: ['ignore', 'pipe', 'pipe'],
   })
   if (res.status !== 0) {
     failed++
-    console.error(`GAGAL HTML ${slug}\n${(res.stderr || res.stdout || '').trim().split('\n').slice(-4).join('\n')}`)
+    const why = res.error
+      ? String(res.error.message)
+      : (res.stderr || res.stdout || '').trim().split('\n').slice(-4).join('\n')
+    console.error(`GAGAL HTML ${slug}: ${why || 'kode keluar ' + res.status}`)
     continue
   }
   const meta = frontMatter(readFileSync(src, 'utf8'))
