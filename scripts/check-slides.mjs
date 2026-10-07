@@ -69,26 +69,38 @@ const PROBE = `
 function ovfMeasure(){
   var secs=[].slice.call(document.querySelectorAll('section'))
       .filter(function(s,i,a){return a.indexOf(s)===i});
-  var out=[], sisa=[];
+  var out=[], sisa=[], tabel=[];
   secs.forEach(function(s,i){
     var sb=s.getBoundingClientRect(), cs=getComputedStyle(s);
     var padB=parseFloat(cs.paddingBottom)||0, padR=parseFloat(cs.paddingRight)||0;
     var scale=sb.height/(s.offsetHeight||1);
-    var maxB=sb.top, maxR=sb.left, worst='';
+    var maxB=sb.top, maxNS=sb.top, maxR=sb.left, worst='';
+    // maxB  = seluruh isi, dipakai untuk mendeteksi luberan nyata.
+    // maxNS = isi yang TIDAK ikut @auto-scaling (tema menskalakan heading, code,
+    //         dan math). Pre dikecualikan dari maxNS karena Marp bisa
+    //         mengecilkannya, sehingga ruang hampir nol pada slide ber-kode
+    //         adalah kondisi mantap auto-scaler, bukan tanda teks terpotong.
     [].slice.call(s.children).forEach(function(el){
       if(el.tagName==='HEADER'||el.tagName==='FOOTER') return;
       var r=el.getBoundingClientRect();
-      if(r.bottom>maxB){maxB=r.bottom; worst=(el.textContent||'').trim().replace(/[\\s]+/g,' ').slice(0,46);}
+      if(r.bottom>maxB) maxB=r.bottom;
+      if(el.tagName!=='PRE' && r.bottom>maxNS){
+        maxNS=r.bottom;
+        worst=(el.textContent||'').trim().replace(/[\\s]+/g,' ').slice(0,46);
+      }
       if(r.right>maxR) maxR=r.right;
       [].slice.call(el.querySelectorAll('table,pre,img')).forEach(function(g){
         var b=g.getBoundingClientRect();
-        if(b.bottom>maxB){maxB=b.bottom; worst='['+g.tagName+']';}
+        if(b.bottom>maxB) maxB=b.bottom;
+        if(g.tagName!=='PRE' && b.bottom>maxNS) maxNS=b.bottom;
         if(b.right>maxR) maxR=b.right;
       });
     });
     var oB=Math.round((maxB-(sb.bottom-padB*scale))/scale);
     var oR=Math.round((maxR-(sb.right-padR*scale))/scale);
-    sisa.push(Math.round(((sb.bottom-padB*scale)-maxB)/scale));
+    var s2=Math.round(((sb.bottom-padB*scale)-maxNS)/scale);
+    sisa.push(s2);
+    if(s.querySelector('table')) tabel.push({slide:i+1,sisa:s2});
     if(oB>2||oR>2) out.push({slide:i+1,bawah:oB,kanan:oR,elemen:worst});
   });
   var bad=0;
@@ -97,7 +109,8 @@ function ovfMeasure(){
   });
   return {total:secs.length, overflow:out, gambarRusak:bad,
           sisaMinimum: sisa.length?Math.min.apply(null,sisa):null,
-          sisaSlide: sisa.length?sisa.indexOf(Math.min.apply(null,sisa))+1:null};
+          sisaSlide: sisa.length?sisa.indexOf(Math.min.apply(null,sisa))+1:null,
+          tabelSempit: tabel.filter(function(x){return x.sisa<40;})};
 }
 setTimeout(function(){
   var r=ovfMeasure();
@@ -121,6 +134,9 @@ for (const d of ['assets', 'img', 'theme']) {
   const from = join(SLIDES, d)
   if (existsSync(from)) cpSync(from, join(WORK, d), { recursive: true })
 }
+
+const RUNS_OF = 3   // ulangan pengukuran; auto-scaling tema tidak deterministik
+const AMAN = 8      // sisa ruang minimum yang dianggap aman, dalam px CSS
 
 const wanted = process.argv.slice(2).filter((a) => !a.startsWith('-'))
 const decks = readdirSync(SLIDES)
@@ -158,45 +174,72 @@ for (const file of decks) {
 
   writeFileSync(probe, readFileSync(html, 'utf8').replace('</body>', PROBE + '</body>'))
 
-  const dom = spawnSync(browser, [
-    '--headless=new', '--disable-gpu', '--no-sandbox',
-    '--allow-file-access-from-files',
-    // Ukuran jendela harus kanonik: ukuran slide adalah 1280x720 (@size di tema),
-    // dan tema memakai @auto-scaling sehingga Marp mengecilkan blok kode menurut
-    // skala render. Mengukur pada skala lain memberi hasil berbeda untuk slide
-    // yang sama (terbukti: slide yang sama meluber 69 px di 1280x720 tetapi 0 di
-    // 1600x900). Skala 1:1 inilah yang dipakai ekspor PDF/PNG.
-    '--window-size=1280,720',
-    '--virtual-time-budget=9000',
-    '--dump-dom',
-    `file:///${probe.replace(/\\/g, '/')}`,
-  ], { cwd: ROOT, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024, stdio: ['ignore', 'pipe', 'pipe'] })
+  // Pengukuran diulang dan diambil kasus terburuk. Tema memakai @auto-scaling,
+  // dan apakah auto-scaling menyelamatkan slide yang berada di ambang ternyata
+  // tidak konsisten antar pemuatan. Satu pengukuran bisa meloloskan slide yang
+  // sebenarnya meluber: bab-07 slide 20 terukur 0 px pada satu run dan meluber
+  // 19 px pada run lain.
+  let worst = null
+  for (let k = 0; k < RUNS_OF; k++) {
+    const dom = spawnSync(browser, [
+      '--headless=new', '--disable-gpu', '--no-sandbox',
+      '--allow-file-access-from-files',
+      // Ukuran jendela harus kanonik: ukuran slide adalah 1280x720 (@size di tema),
+      // dan tema memakai @auto-scaling sehingga Marp mengecilkan blok kode menurut
+      // skala render. Mengukur pada skala lain memberi hasil berbeda untuk slide
+      // yang sama (terbukti: slide yang sama meluber 69 px di 1280x720 tetapi 0 di
+      // 1600x900). Skala 1:1 inilah yang dipakai ekspor PDF/PNG.
+      '--window-size=1280,720',
+      '--virtual-time-budget=9000',
+      '--dump-dom',
+      `file:///${probe.replace(/\\/g, '/')}`,
+    ], { cwd: ROOT, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024, stdio: ['ignore', 'pipe', 'pipe'] })
 
-  const m = /OVFJSON(\{.*?\})<\/pre>/s.exec(dom.stdout || '')
-  if (!m) {
-    const why = dom.error ? String(dom.error.message) : `Chrome keluar ${dom.status} tanpa laporan`
-    console.error(`GAGAL ukur ${slug} — ${why}`)
-    failed++
-    continue
+    const m = /OVFJSON(\{.*?\})<\/pre>/s.exec(dom.stdout || '')
+    if (!m) {
+      const why = dom.error ? String(dom.error.message) : `Chrome keluar ${dom.status} tanpa laporan`
+      console.error(`GAGAL ukur ${slug} — ${why}`)
+      failed++
+      worst = null
+      break
+    }
+    const res = JSON.parse(m[1])
+    if (!worst || res.sisaMinimum < worst.sisaMinimum) worst = res
+    // Gabungkan luberan antar run: slide yang meluber di run mana pun adalah
+    // masalah, walau run lain meloloskannya.
+    for (const o of res.overflow) {
+      if (!worst.overflow.some((x) => x.slide === o.slide)) worst.overflow.push(o)
+    }
+    for (const t of res.tabelSempit || []) {
+      if (!(worst.tabelSempit || []).some((x) => x.slide === t.slide)) {
+        worst.tabelSempit = [...(worst.tabelSempit || []), t]
+      }
+    }
   }
-  const res = JSON.parse(m[1])
-  rows.push({ slug, ...res })
-  const rapuh = res.sisaMinimum !== null && res.sisaMinimum < 8
-  if (res.overflow.length || res.gambarRusak || rapuh) failed++
+  if (!worst) continue
+
+  rows.push({ slug, ...worst })
+  const rapuh = worst.sisaMinimum !== null && worst.sisaMinimum < AMAN
+  const tabelSempit = worst.tabelSempit || []
+  if (worst.overflow.length || worst.gambarRusak || rapuh || tabelSempit.length) failed++
 }
 
 console.log('')
 console.log('  deck                                     slide  meluber  terkecil  gambar-rusak')
 for (const r of rows) {
-  const ok = r.overflow.length === 0 && r.gambarRusak === 0 && (r.sisaMinimum ?? 0) >= 8
+  const ok = r.overflow.length === 0 && r.gambarRusak === 0 && (r.sisaMinimum ?? 0) >= AMAN
+    && (r.tabelSempit || []).length === 0
   console.log(
     `  ${r.slug.slice(0, 40).padEnd(40)} ${String(r.total).padStart(5)}  ` +
     `${String(r.overflow.length).padStart(7)}  ` +
     `${String(r.sisaMinimum).padStart(8)}px  ${String(r.gambarRusak).padStart(12)}` +
     (ok ? '' : '   <-- PERIKSA')
   )
-  if (r.overflow.length === 0 && r.sisaMinimum !== null && r.sisaMinimum < 8) {
+  if (r.overflow.length === 0 && r.sisaMinimum !== null && r.sisaMinimum < AMAN) {
     console.log(`       slide ${r.sisaSlide} cuma sisa ${r.sisaMinimum}px di bawah — rapuh, rapikan`)
+  }
+  for (const t of r.tabelSempit || []) {
+    console.log(`       slide ${t.slide} bertabel cuma sisa ${t.sisa}px — tabel tidak ikut auto-scaling`)
   }
   for (const o of r.overflow) {
     console.log(`       slide ${o.slide}: lewat ${o.bawah}px bawah, ${o.kanan}px kanan — ${o.elemen}`)
@@ -205,8 +248,10 @@ for (const r of rows) {
 
 console.log('')
 console.log('  meluber = slide yang isinya melewati batas bawah/kanan')
-console.log('  terkecil = sisa ruang paling sempit di antara semua slide (negatif = meluber);')
-console.log('             di bawah 8px dianggap rapuh karena bisa meluber di skala render lain')
+console.log(`  terkecil = sisa ruang paling sempit pada isi yang TIDAK ikut auto-scaling`)
+console.log(`             (paragraf, daftar, tabel, gambar), diambil dari kasus terburuk`)
+console.log(`             ${RUNS_OF} pemuatan ulangan. Isi blok kode dikecualikan karena Marp bisa`)
+console.log('             mengecilkannya, sehingga ruang hampir nol di sana normal.')
 if (failed) {
   console.log(`\n  ${failed} deck bermasalah dari ${rows.length} yang diperiksa.`)
   process.exit(1)
