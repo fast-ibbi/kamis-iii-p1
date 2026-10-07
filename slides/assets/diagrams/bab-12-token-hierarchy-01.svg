@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 380" width="820" height="380">
+  <text x="410" y="36" font-family="system-ui, sans-serif" font-size="22" fill="#111827" text-anchor="middle">Hierarki design system Tokosaya</text>
+  <rect x="200" y="52" width="420" height="66" rx="10" fill="#eef2ff" stroke="#1d4ed8" stroke-width="2"/>
+  <text x="410" y="80" font-family="system-ui, sans-serif" font-size="26" fill="#1d4ed8" text-anchor="middle">Token</text>
+  <text x="410" y="106" font-family="system-ui, sans-serif" font-size="20" fill="#111827" text-anchor="middle">warna, huruf, jarak, lengkung</text>
+  <line x1="410" y1="118" x2="410" y2="148" stroke="#1d4ed8" stroke-width="3"/>
+  <line x1="410" y1="148" x2="400" y2="136" stroke="#1d4ed8" stroke-width="3"/>
+  <line x1="410" y1="148" x2="420" y2="136" stroke="#1d4ed8" stroke-width="3"/>
+  <rect x="200" y="148" width="420" height="66" rx="10" fill="#f8fafc" stroke="#1d4ed8" stroke-width="2"/>
+  <text x="410" y="176" font-family="system-ui, sans-serif" font-size="26" fill="#1d4ed8" text-anchor="middle">Komponen</text>
+  <text x="410" y="202" font-family="system-ui, sans-serif" font-size="20" fill="#111827" text-anchor="middle">tombol, kartu, badge, navigasi</text>
+  <line x1="410" y1="214" x2="410" y2="244" stroke="#1d4ed8" stroke-width="3"/>
+  <line x1="410" y1="244" x2="400" y2="232" stroke="#1d4ed8" stroke-width="3"/>
+  <line x1="410" y1="244" x2="420" y2="232" stroke="#1d4ed8" stroke-width="3"/>
+  <rect x="200" y="244" width="420" height="66" rx="10" fill="#eef2ff" stroke="#1d4ed8" stroke-width="2"/>
+  <text x="410" y="272" font-family="system-ui, sans-serif" font-size="26" fill="#1d4ed8" text-anchor="middle">Halaman</text>
+  <text x="410" y="298" font-family="system-ui, sans-serif" font-size="20" fill="#111827" text-anchor="middle">styleguide dan katalog</text>
+  <text x="410" y="344" font-family="system-ui, sans-serif" font-size="20" fill="#111827" text-anchor="middle">satu sumber kebenaran visual</text>
+</svg>
