@@ -610,7 +610,7 @@ Pilih satu jawaban paling tepat untuk setiap butir.
 8. Cara paling tepat menyalakan pengecekan responsif di DevTools adalah...
    A. Mengubah tinggi jendela browser secara manual dan mengamati.
    B. Memakai device toolbar dengan lebar tetap satu titik lalu berpindah breakpoint.
-   C. Meminta pengguna nyata membuka website dari ponselnya tanpa catatan.
+   C. Meminta pengguna nyata membuka website dari HP-nya tanpa catatan.
    D. Menonaktifkan CSS lalu membaca HTML.
 
 ### Benar atau Salah

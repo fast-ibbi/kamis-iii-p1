@@ -1004,7 +1004,7 @@ Sepanjang bab ini proyek Tokosaya udah melewati audit dan keluar dengan layout y
    D. `min-height` menurun
 2. Risiko utama strategi *desktop-first* yang wajib dikompensasi adalah...
    A. kode menjadi terlalu pendek
-   B. konten padat muncul dulu dan ponselu hanya menjadi tambalan
+   B. konten padat muncul dulu dan HP hanya menjadi tambalan
    C. tidak perlu media query
    D. Bootstrap tidak berjalan
 3. Fungsi `clamp(1rem, 0.95rem + 0.2vw, 1.125rem)` menjelaskan bahwa ukuran teks akan...
