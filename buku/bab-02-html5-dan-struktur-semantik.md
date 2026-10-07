@@ -3,11 +3,11 @@
 ## Deskripsi Singkat
 
 Bab ini membahas kerangka dokumen HTML5 dan elemen-elemen yang membentuk struktur halaman:
-elemen teks, list, table, link, image, form dasar, serta elemen semantik seperti `header`,
-`nav`, `main`, `section`, `article`, `aside`, dan `footer`. Pada Bab 1 Anda telah menulis
-dokumen HTML pertama dan melihatnya di browser. Di bab ini, Anda akan belajar menyusun
+elemen teks, list, table, link, image, form dasar, serta elemen semantik kayak `header`,
+`nav`, `main`, `section`, `article`, `aside`, dan `footer`. Di Bab 1 kamu sudah menulis
+dokumen HTML pertama dan melihatnya di browser. Di bab ini, kamu akan belajar menyusun
 halaman Tokosaya dengan struktur yang jelas dan bermakna. Struktur semantik ini juga
-jadi bekal untuk Bab 3, karena selector CSS bekerja pada elemen yang Anda susun.
+jadi bekal buat Bab 3, karena selector CSS bekerja pada elemen yang kamu susun.
 
 ## Tujuan Pembelajaran
 
@@ -44,11 +44,11 @@ Anda membuat website secara utuh.
 
 HTML5, HTML Living Standard yang mengatur struktur dokumen web; **DOCTYPE**, deklarasi
 tipe dokumen pada baris pertama file; **semantik** (*semantic*), makna bawaan elemen yang
-menjelaskan apa isi kontennya; **elemen semantik** (*semantic elements*), elemen seperti
+menjelaskan apa isi kontennya; **elemen semantik** (*semantic elements*), elemen kayak
 `header`, `nav`, `main`, `section`, `article`, `aside`, `footer`; **landmark**, wilayah
 halaman yang dikenali pembacanya sebagai tujuan navigasi; **screen reader**, perangkat
-lunak pembaca layar bagi pengguna tunanetra; **SEO**, optimasi mesin pencari
-(*search engine optimization*) agar halaman mudah ditemukan; **alt text**, teks alternatif
+lunak pembaca layar buat pengguna tunanetra; **SEO**, optimasi mesin pencari
+(*search engine optimization*) buat halaman mudah ditemukan; **alt text**, teks alternatif
 pada gambar; **hierarki heading**, urutan `h1` hingga `h6` yang menunjukkan tingkatan
 informasi; **markup**, kode berupa tag yang menandai struktur dan makna konten.
 
@@ -56,21 +56,21 @@ informasi; **markup**, kode berupa tag yang menandai struktur dan makna konten.
 
 Bayangkan tim pengembang Tokosaya pada awal 2020. Toko online UMKM ini baru berdiri,
 dan satu-satunya halaman yang tersedia adalah file HTML panjang berisi ratusan baris
-`div` tanpa nama yang jelas. Saat pemilik meminta bagian "kisah Tokosaya" dipindah ke
-halaman tersendiri, developer harus menghabiskan waktu mencari batas bagian itu di
-antara `div` yang bertumpuk. Saat pelanggan tunanetra membuka halaman dengan
-*screen reader*, alatnya hanya mengumumkan "region" tanpa nama lalu membaca semua isi
-secara berurutan. Mesin pencari pun kesulitan memahami susunan halaman dan hanya bisa
+`div` tanpa nama yang jelas. Pas pemilik minta bagian "kisah Tokosaya" dipindah ke
+halaman tersendiri, developer harus habiskan waktu mencari batas bagian itu di
+antara `div` yang bertumpuk. Pas pelanggan tunanetra membuka halaman dengan
+*screen reader*, alatnya cuma mengumumkan "region" tanpa nama lalu membaca semua isi
+secara berurutan. Mesin pencari pun kesulitan memahami susunan halaman dan cuma bisa
 mengandalkan teksnya.
 
 Kisah ini menunjukkan bahwa markup bukan sekadar pembungkus teks. Dengan markup, kita
 bisa **memberi nama pada struktur informasi**. Hal serupa bisa terjadi di sistem
-informasi kampus: kalau strukturnya tidak jelas, pengumuman penting bisa tersembunyi
+informasi kampus: kalau strukturnya nggak jelas, pengumuman penting bisa tersembunyi
 di bawah menu panjang dan pengguna alat bantu sulit menemukan jalan pintas. Dengan
 semantik yang tepat, susunan halaman bisa dipahami tanpa harus membuka file:
 "halaman ini punya navigasi di bagian atas, tiga bagian utama, dan kontak di bawah".
 
-Di bab ini, Anda akan belajar mencegah masalah seperti yang dialami Tokosaya: mulai dari
+Di bab ini, kamu akan belajar mencegah masalah kayak yang dialami Tokosaya: mulai dari
 menyusun `head`, memilih elemen konten sesuai maknanya, sampai membuat struktur halaman
 company profile. Kita mulai dari dasar dulu: struktur dokumen HTML5.
 
@@ -81,8 +81,8 @@ company profile. Kita mulai dari dasar dulu: struktur dokumen HTML5.
 Halaman web adalah dokumen HTML5, yaitu file teks biasa yang berisi konten dan **markup**.
 Setiap dokumen diawali deklarasi `<!DOCTYPE html>`. Deklarasi ini memberi tahu browser
 bahwa halaman mengikuti standar HTML5, sehingga browser menampilkan dokumen dalam
-"mode standar" (*standards mode*) dan tidak mencoba meniru perilaku browser lawas.
-Bayangkan DOCTYPE seperti kop surat. Tanpanya, penerima harus menebak jenis surat;
+"mode standar" (*standards mode*) dan nggak mencoba meniru perilaku browser lawas.
+Bayangkan DOCTYPE kayak kop surat. Tanpanya, penerima harus menebak jenis surat;
 dengan kop, konteksnya langsung jelas. DOCTYPE selalu berdiri sendiri di baris
 pertama, tanpa spasi di depannya.
 
@@ -94,25 +94,25 @@ berbahasa Indonesia bisa dilafalkan dengan aturan bahasa Inggris. Karena semua k
 Tokosaya berbahasa Indonesia, setiap halamannya memakai `lang="id"`.
 
 Di dalam `html` ada dua elemen utama: `<head>` dan `<body>`. `head` berisi informasi
-*tentang* dokumen. Isinya memang tidak terlihat di halaman, tetapi dibaca browser,
+*tentang* dokumen. Isinya memang nggak terlihat di halaman, tetapi dibaca browser,
 mesin pencari, dan alat bantu. Sementara itu, `body` berisi konten yang tampil di layar.
 Elemen penting di dalam `head` antara lain:
 
-- `<meta charset="UTF-8">` — mengatur pengodean karakter agar teks seperti
+- `<meta charset="UTF-8">` — mengatur pengodean karakter biar teks kayak
   "Kirim Cepat" dan tanda "—" tampil dengan benar; tanpa deklarasi ini, karakter khusus
   bisa terlihat berantakan.
 - `<meta name="viewport" content="width=device-width, initial-scale=1.0">` — memberi tahu
-  browser agar menyesuaikan lebar halaman dengan lebar perangkat; elemen ini menjadi
+  browser biar menyesuaikan lebar halaman dengan lebar perangkat; elemen ini jadi
   prasyarat desain responsif pada Bab 7 dan wajib di setiap halaman proyek.
 - `<meta name="description" content="...">` — ringkasan satu kalimat tujuan halaman;
   mesin pencari kerap menampilkannya di bawah hasil pencarian.
 - `<title>...</title>` — judul dokumen yang tampil di tab browser dan dibacakan pertama
   oleh *screen reader*; setiap halaman wajib memakai `title` unik dan deskriptif.
 
-Perlu diingat, isi `head` memang tidak terlihat di layar, tetapi menentukan bagaimana
-dokumen dikenali. Di sistem informasi dengan banyak halaman, seperti portal akademik,
-`title` yang unik membantu pengguna membedakan tab yang terbuka. Saat membuat halaman
-baru untuk Tokosaya, kita akan mulai dengan menyusun `head`. Pola ini dipakai di
+Perlu diingat, isi `head` memang nggak terlihat di layar, tetapi menentukan bagaimana
+dokumen dikenali. Di sistem informasi dengan banyak halaman, kayak portal akademik,
+`title` yang unik membantu pengguna membedakan tab yang terbuka. Pas membuat halaman
+baru buat Tokosaya, kita akan mulai dengan menyusun `head`. Pola ini dipakai di
 `index.html`, `katalog.html`, `tentang.html`, dan `kontak.html`.
 
 ### 2.2 Elemen Teks: Heading, Paragraf, dan Penekanan
@@ -122,26 +122,26 @@ masing-masing. Salah satunya adalah **heading** `h1` hingga `h6`, yang fungsinya
 struktur bab dan subbab: `h1` adalah judul
 dokumen, `h2` adalah judul bagian, `h3` adalah judul subbagian, dan seterusnya.
 Ada tiga aturan yang perlu diingat: satu halaman punya **satu `h1`**; level heading
-**tidak melompat** (misalnya, dari `h2` langsung ke `h4`); dan heading dipilih
+**nggak melompat** (misalnya, dari `h2` langsung ke `h4`); dan heading dipilih
 berdasarkan **tingkatan informasi**, bukan ukuran huruf. Tampilan heading akan dibahas
-di Bab 3. Bagi pengguna *screen reader*, daftar heading berfungsi sebagai peta navigasi
-untuk berpindah bagian tanpa harus membaca seluruh halaman.
+di Bab 3. Buat pengguna *screen reader*, daftar heading berfungsi sebagai peta navigasi
+buat berpindah bagian tanpa harus membaca seluruh halaman.
 
-Elemen `<p>` menandai satu paragraf. Aturan sederhananya: satu `p` untuk satu blok
-pikiran, bukan satu kalimat; jangan menumpuk `p` kosong untuk menciptakan jarak — jarak
+Elemen `<p>` menandai satu paragraf. Aturan sederhananya: satu `p` buat satu blok
+pikiran, bukan satu kalimat; jangan menumpuk `p` kosong buat menciptakan jarak — jarak
 adalah pekerjaan CSS, bukan pekerjaan struktur. Browser sendiri menampilkan `p` dengan
 jarak bawaan antarparagraf, sehingga tanpa gaya apa pun halaman tetap terbaca.
 
-Untuk memberi penekanan, gunakan `<strong>` (bagian yang penting) dan `<em>` (bagian
+Buat memberi penekanan, gunakan `<strong>` (bagian yang penting) dan `<em>` (bagian
 yang perlu dibaca dengan penekanan). Keduanya bukan sekadar hiasan. Elemen `<mark>`
-berguna untuk menyorot teks, misalnya kata kunci hasil pencarian. Bedanya, `<strong>`
+berguna buat menyorot teks, misalnya kata kunci hasil pencarian. Bedanya, `<strong>`
 dan `<em>` memberi penekanan pada makna, sedangkan `<mark>` menandai teks yang relevan
-dalam konteks tertentu. Singkatnya: pilih `strong` untuk hal penting, `em` untuk
-penekanan saat dibaca, dan `mark` untuk sorotan kontekstual.
+dalam konteks tertentu. Singkatnya: pilih `strong` buat hal penting, `em` buat
+penekanan pas dibaca, dan `mark` buat sorotan kontekstual.
 
 Konteks sistem informasi mudah ditemukan. Halaman peraturan layanan (misalnya syarat
 pengadaan perangkat di Tokosaya) dipecah menjadi `h2` per pasal dan `p` per ayat.
-Jika seseorang menulis semuanya dengan `p` besar, pembaca kehilangan struktur; jika
+Kalau seseorang menulis semuanya dengan `p` besar, pembaca kehilangan struktur; kalau
 heading dipilih sewenang-wenang, peta navigasi *screen reader* ikut kacau. Kebiasaan
 yang ditanam sejak bab ini: tulis kerangka heading terlebih dahulu (sebagai kerangka
 daftar isi halaman), baru isi tiap bagian dengan paragraf.
@@ -150,35 +150,35 @@ daftar isi halaman), baru isi tiap bagian dengan paragraf.
 
 Daftar dan tabel sering muncul di halaman sistem informasi. HTML menyediakan tiga jenis
 list. Pertama, `<ul>` (*unordered list*): daftar
-berbutir yang urutannya tidak penting, misalnya daftar fasilitas layanan Tokosaya.
+berbutir yang urutannya nggak penting, misalnya daftar fasilitas layanan Tokosaya.
 Setiap butir dibungkus `<li>` (*list item*). Kedua, `<ol>` (*ordered list*): daftar
-yang urutannya penting, seperti langkah mengisi formulir atau alur menerima pesanan.
+yang urutannya penting, kayak langkah mengisi formulir atau alur menerima pesanan.
 Ketiga, `<dl>` (*description list*): pasangan istilah dan penjelasannya, dengan
-`<dt>` untuk istilah dan `<dd>` untuk deskripsi; cocok untuk glosarium, daftar paket
+`<dt>` buat istilah dan `<dd>` buat deskripsi; cocok buat glosarium, daftar paket
 layanan, atau definisi singkat. Pilih list dari maknanya: "langkah" berarti `ol`,
 "rumpun kumpulan yang setara" berarti `ul`, "istilah–definisi" berarti `dl`.
 
-Tabel digunakan untuk data tabular — data yang memang cocok dibaca dalam baris dan kolom,
-seperti rekap penjualan, jadwal perkuliahan, atau daftar produk. Struktur tabel yang
+Tabel digunakan buat data tabular — data yang memang cocok dibaca dalam baris dan kolom,
+kayak rekap penjualan, jadwal perkuliahan, atau daftar produk. Struktur tabel yang
 semantik memakai:
 
 - `<table>` sebagai pembungkus;
 - `<caption>` sebagai judul tabel — terbaca oleh *screen reader* sebelum data dibacakan
   dan membantu pembaca memahami isi tabel tanpa membaca seluruhnya;
-- `<thead>` untuk baris kepala tabel, `<tbody>` untuk baris data;
-- `<tr>` (*table row*) untuk satu baris;
-- `<th>` (*table header*) untuk sel kepala, baik kolom maupun baris; atribut
+- `<thead>` buat baris kepala tabel, `<tbody>` buat baris data;
+- `<tr>` (*table row*) buat satu baris;
+- `<th>` (*table header*) buat sel kepala, baik kolom maupun baris; atribut
   `scope="col"` atau `scope="row"` menyatakan sel header menggambarkan kolom atau baris
   apa;
-- `<td>` (*table data*) untuk sel isian biasa.
+- `<td>` (*table data*) buat sel isian biasa.
 
-Sangat penting untuk tidak memakai tabel sebagai alat layout (misalnya meniru dua
-kolom layout memakai `tr` dan `td`). Tabel untuk layout memakai makna secara palsu:
+Penting banget buat nggak memakai tabel sebagai alat layout (misalnya meniru dua
+kolom layout memakai `tr` dan `td`). Tabel buat layout memakai makna secara palsu:
 *screen reader* akan berusaha "membaca tabel" yang sebenarnya bukan data, dan
 pemeliharaan layout semacam itu menyakitkan. Layout adalah tugas CSS (Bab 6 dan Bab 7).
 Dalam proyek Tokosaya, tabel dipakai secara sah di daftar produk unggulan — sel `th`
 dengan `scope="row"` memuat nama produk sehingga pembaca layar menyebut nama produk
-sebelum harga ketika membaca baris.
+sebelum harga pas membaca baris.
 
 ### 2.4 Link dan Image
 
@@ -187,32 +187,32 @@ atau sumber lain melalui atribut `href`. Dua tipe `href` yang wajib dipahami ada
 link absolut dan relatif. Link **absolut** memuat alamat lengkap, misalnya
 `https://www.wikipedia.org/`; link **relatif** merujuk relatif terhadap halaman
 sekarang, misalnya `tentang.html` atau `img/logo-tokosaya.svg`. Pada proyek multi-halaman
-seperti Tokosaya, link relatif antarhalaman (`index.html`, `katalog.html`,
+kayak Tokosaya, link relatif antarhalaman (`index.html`, `katalog.html`,
 `tentang.html`, `kontak.html`) menjaga struktur tetap berfungsi walau folder proyek
-dipindah. Secara bawaan, link dibuka di tab yang sama. Gunakan `target="_blank"` hanya
-ketika link benar-benar membuka sumber eksternal baru, dan pasangkan dengan
+dipindah. Secara bawaan, link dibuka di tab yang sama. Gunakan `target="_blank"` cuma
+pas link benar-benar membuka sumber eksternal baru, dan pasangkan dengan
 `rel="noopener"` demi keamanan serta kinerja; link internal proyek cukup dibuka pada
 tab sekarang.
 
-Teks link adalah bagian penting aksesibilitas: *screen reader* dapat menjumpainya
-tunggal di luar kalimatnya. Frasa "klik di sini" tidak mengatakan apa-apa ketika dibaca
+Teks link adalah bagian penting aksesibilitas: *screen reader* bisa menjumpainya tunggal
+di luar kalimatnya. Frasa "klik di sini" nggak mengatakan apa-apa pas dibaca
 sendirian, sedangkan "Baca aturan penukaran barang" bermakna di posisi mana pun.
 Kebiasaan menulis teks link deskriptif adalah bentuk sederhana dari disiplin
 aksesibilitas yang diperdalam pada Bab 13.
 
 Elemen `<img>` menampilkan gambar dengan atribut wajib `alt` — teks alternatif yang
-menjelaskan gambar bagi pengguna yang tidak dapat melihatnya (pengguna *screen reader*,
+menjelaskan gambar buat pengguna yang nggak bisa melihatnya (pengguna *screen reader*,
 koneksi gagal memuat gambar, atau mesin pencari gambar). Menulis `alt` hanyalah mendeskripsi
 fungsi gambar dalam konteks halaman: logo Tokosaya cukup "Logo Tokosaya"; grafik rekap
 penjualan butuh kalimat yang menyampaikan polanya. Gambar murni dekoratif sebaiknya
-`alt=""` (dibacakan kosong) — keputusan ini disertakan saat konten visual memang tidak
-membawa informasi. Atribut `width` dan `height` disertakan agar browser memesan (*reserve*) ruang
+`alt=""` (dibacakan kosong) — keputusan ini disertakan pas konten visual memang nggak
+membawa informasi. Atribut `width` dan `height` disertakan biar browser memesan (*reserve*) ruang
 gambar sebelum file termuat, menghindari lompatan layout (*layout shift*) — fondasi
-kualitas yang diukur alat seperti Lighthouse pada Bab 13.
+kualitas yang diukur alat kayak Lighthouse pada Bab 13.
 
 Kalau gambar perlu keterangan yang tampil bersamanya, gunakan `<figure>` dan
 `<figcaption>`. Elemen *figure* membungkus gambar (atau kode, tabel, ilustrasi), sementara
-*figcaption* memberi keterangannya. Berbeda dengan menaruh `p` biasa di bawah `img`,
+*figcaption* memberi keterangannya. Beda dengan menaruh `p` biasa di bawah `img`,
 pasangan `figure`–`figcaption` menunjukkan bahwa gambar dan keterangannya saling
 berhubungan. Di Tokosaya, ilustrasi hero dan tangkapan layar proses pengiriman bisa
 menggunakan pola ini.
@@ -221,40 +221,40 @@ menggunakan pola ini.
 
 Form menyediakan interaksi dasar pada web statis: pengguna memasukkan data, lalu data
 dikirim ke alamat yang ditentukan oleh `action` dengan metode `method` (`get` atau `post`).
-Di bab ini, kita hanya membahas struktur form. Pembahasan lebih lengkap — jenis input,
+Di bab ini, kita cuma membahas struktur form. Pembahasan lebih lengkap — jenis input,
 status validasi visual, layout responsif, dan aksesibilitas lanjutan — ada di Bab 11.
-Meski begitu, struktur dasarnya perlu Anda kuasai karena form
+Meski begitu, struktur dasarnya perlu kamu kuasai karena form
 kontak Tokosaya menjadi bagian standar halaman `kontak.html`.
 
 Struktur form terdiri dari `<form>` yang membungkus kontrol, pasangan `<label>` dan
-`<input>`, `textarea` untuk teks panjang, dan `<button>` untuk aksi. Pastikan setiap
+`<input>`, `textarea` buat teks panjang, dan `<button>` buat aksi. Pastikan setiap
 `<label>` terhubung ke input melalui atribut `for` pada label dan `id` pada input.
 Hubungan ini bukan cuma soal tampilan: klik label
 akan mengarahkan fokus ke input, dan *screen reader* bisa menyebutkan nama kolom tersebut.
-Tanpa pasangan itu, pengguna *screen reader* akan menemukan kontrol tanpa nama — seperti
-mengisi formulir kertas yang kolomnya tidak diberi label.
+Tanpa pasangan itu, pengguna *screen reader* akan menemukan kontrol tanpa nama — kayak
+mengisi formulir kertas yang kolomnya nggak diberi label.
 
 Contoh sederhana: `<label for="pesan">Pesan</label>` diikuti
 `<textarea id="pesan" name="pesan"></textarea>`. Atribut `name` menentukan nama data
 yang dikirim. Sementara itu, `<input type="email">` memberi tahu browser bahwa kolom
-ini untuk alamat email, sehingga formatnya bisa diperiksa tanpa kode tambahan.
-`<button type="submit">` menandai tombol untuk mengirim form. Untuk sekarang, pahami
+ini buat alamat email, sehingga formatnya bisa diperiksa tanpa kode tambahan.
+`<button type="submit">` menandai tombol buat mengirim form. Sekarang, pahami
 dulu polanya; form ini akan dibahas lebih lengkap di Bab 11.
 
 ### 2.6 Elemen Semantik
 
 Semua elemen yang sudah kita bahas punya makna semantik: `h2` berarti "judul bagian",
 `p` berarti "paragraf", dan `table` berarti "data tabular". HTML5 juga menyediakan
-elemen untuk menamai **bagian-bagian halaman**, yaitu:
+elemen buat menamai **bagian-bagian halaman**, yaitu:
 
 - `<header>` — kepala halaman atau bagian; biasanya memuat logo atau identitas website,
   dan kadang navigasi.
-- `<nav>` — kumpulan link navigasi utama; tidak setiap gugus `a` adalah `nav`, hanya
+- `<nav>` — kumpulan link navigasi utama; nggak setiap gugus `a` adalah `nav`, cuma
   gugus navigasi yang paling menentukan (menu utama, menu footer bila perlu).
 - `<main>` — isi utama halaman; gunakan satu `main` per halaman dan jangan letakkan
-  di dalam elemen semantik lain seperti `header` atau `footer`.
-- `<section>` — himpunan tematik konten, biasanya memiliki judul sendiri (h2, h3, ...).
-- `<article>` — konten lengkap yang bisa berdiri sendiri, seperti berita, entri blog,
+  di dalam elemen semantik lain kayak `header` atau `footer`.
+- `<section>` — himpunan tematik konten, biasanya punya judul sendiri (h2, h3, ...).
+- `<article>` — konten lengkap yang bisa berdiri sendiri, kayak berita, entri blog,
   atau profil produk. Tes sederhananya: kalau konten ini dipindah ke tempat lain,
   misalnya ke RSS, apakah isinya masih masuk akal?
 - `<aside>` — konten yang terkait tetapi bisa dilepas tanpa merusak isi utama: kotak
@@ -262,23 +262,23 @@ elemen untuk menamai **bagian-bagian halaman**, yaitu:
 - `<footer>` — bagian bawah halaman atau bagian tertentu; biasanya memuat identitas,
   kontak, kredit, atau kebijakan.
 - `<address>` — informasi kontak penulis atau organisasi pada halaman/bagian terkait;
-  dipakai untuk alamat tokosaya pada footer.
+  dipakai buat alamat tokosaya pada footer.
 - `<time datetime="2026-02-10">` — waktu yang dipahami mesin: teks tampil "10 Februari
   2026" namun nilai mesin tercantum pada `datetime`.
 
-Elemen-elemen ini menjadi **landmark**: wilayah halaman yang dikenali
+Elemen-elemen ini jadi **landmark**: wilayah halaman yang dikenali
 *screen reader*, mesin pencari, dan pembaca sebagai bagian-bagian penting.
-*Screen reader* modern biasanya menyediakan daftar landmark agar pengguna bisa cepat
+*Screen reader* modern biasanya menyediakan daftar landmark biar pengguna bisa cepat
 berpindah ke bagian tertentu. Misalnya, pengguna bisa langsung menuju `main` tanpa harus
 mendengar menu yang sama di setiap halaman.
 
-Bagaimana dengan `<div>` dan `<span>`? Keduanya bukan elemen yang perlu dihindari;
-keduanya hanya pembungkus netral tanpa makna khusus. Pegang aturan ini: **pilih elemen
-semantik yang sesuai; gunakan `div` kalau Anda hanya butuh pembungkus untuk CSS/JS dan
-tidak ada elemen semantik yang cocok**. `<div>` untuk kartu produk pada Bab 5 bisa
-dipadankan ke `article` bila kartu itu konten mandiri, atau tetap `div` bila ia hanya
-kotak tampilan. `span` punya fungsi serupa untuk potongan teks dalam paragraf. Intinya, gunakan elemen
-yang tepat untuk menandai struktur; urusan tampilan bisa menyusul.
+Gimana dengan `<div>` dan `<span>`? Keduanya bukan elemen yang perlu dihindari;
+keduanya cuma pembungkus netral tanpa makna khusus. Pegang aturan ini: **pilih elemen
+semantik yang sesuai; gunakan `div` kalau kamu cuma butuh pembungkus buat CSS/JS dan
+nggak ada elemen semantik yang cocok**. `<div>` buat kartu produk pada Bab 5 bisa
+dipadankan ke `article` bila kartu itu konten mandiri, atau tetap `div` bila ia cuma
+kotak tampilan. `span` punya fungsi serupa buat potongan teks dalam paragraf. Intinya, gunakan elemen
+yang tepat buat menandai struktur; urusan tampilan bisa menyusul.
 
 Tabel pembanding singkat membantu mengingat:
 
@@ -288,15 +288,15 @@ Tabel pembanding singkat membantu mengingat:
 | Tepi konten: "Produk terpopuler" | `aside` | konten tambahan, bukan isi utama |
 | Berita satu per satu | setiap berita = `article` | konten mandiri yang berdiri sendiri |
 | Bagian "Visi & Misi" dalam halaman profil | `section + h2` | himpunan tematik dengan judul |
-| Pembungkus kartu demi grid belaka | `div` | tidak ada makna baru yang perlu dinyatakan |
+| Pembungkus kartu demi grid belaka | `div` | nggak ada makna baru yang perlu dinyatakan |
 | Alamat toko pada footer | `address` di dalam `footer` | semantik kontak yang benar |
 
 ### 2.7 Mengapa Semantik Itu Penting
 
 Pertama, **aksesibilitas**. Pengguna *screen reader* mengandalkan landmark dan hierarki
-heading untuk menelusuri halaman. Halaman Tokosaya yang memakai `header`, `nav`, `main`,
+heading buat menelusuri halaman. Halaman Tokosaya yang memakai `header`, `nav`, `main`,
 `aside`, dan `footer`
-lebih mudah dijelajahi dengan lompatan cepat. Sebaliknya, kalau halaman hanya dibangun
+lebih mudah dijelajahi dengan lompatan cepat. Sebaliknya, kalau halaman cuma dibangun
 dari `div`, pengguna harus mendengar menu yang sama berulang kali di setiap halaman.
 Standar aksesibilitas *WCAG* (*Web Content Accessibility Guidelines*), termasuk
 WCAG 2.2, mendorong halaman yang mudah dinavigasi. Markup semantik membantu mencapainya
@@ -311,22 +311,22 @@ dimulai dari markup. Kita menyebutnya "SEO dasar" karena bab selanjutnya, teruta
 Bab 13, membahas aksesibilitas dan kualitas website dengan lebih lengkap.
 
 Ketiga, **keterbacaan dan pemeliharaan kode**. `section class="layanan"` jauh lebih
-mudah dipahami daripada `div class="bagian-tengah-bawah-kiri"` saat rekan tim — atau
-Anda sendiri enam bulan kemudian — membuka file. Elemen semantik menyimpan informasi
+mudah dipahami daripada `div class="bagian-tengah-bawah-kiri"` pas rekan tim — atau
+kamu sendiri enam bulan kemudian — membuka file. Elemen semantik menyimpan informasi
 tentang halaman di tempat yang tepat: batas bagian, urutan struktur, peran tiap blok.
-Kesinambungan ini penting pada proyek tim seperti Tokosaya; penamaan yang konsisten
+Kesinambungan ini penting pada proyek tim kayak Tokosaya; penamaan yang konsisten
 (pada Bab 3: kebiasaan `kebab-case` dan pola `blok-elemen`) bekerja baik hanya setelah
 struktur semantiknya benar.
 
 Markup semantik juga membantu browser dan alat pengembang memahami bahwa `nav` adalah
-navigasi, `main` adalah isi utama, dan `footer` adalah bagian bawah. Saat mulai belajar
-CSS di Bab 3, selector seperti `.site-nav a` jadi lebih mudah dipahami. Di Bab 13,
+navigasi, `main` adalah isi utama, dan `footer` adalah bagian bawah. Pas mulai belajar
+CSS di Bab 3, selector kayak `.site-nav a` jadi lebih mudah dipahami. Di Bab 13,
 alat uji aksesibilitas juga bisa mengenali landmark yang sudah disiapkan. Sekali
 strukturnya benar, browser dan alat lain bisa langsung memahaminya.
 
 ### 2.8 Anatomi Halaman Company Profile
 
-Sekarang, mari gabungkan semua konsep tadi untuk menyusun halaman company profile
+Sekarang, mari gabungkan semua konsep tadi buat menyusun halaman company profile
 Tokosaya. Tugas halaman ini sederhana: memperkenalkan perusahaan dengan struktur yang
 mudah dijelajahi. Peta bagian dan pasangan semantiknya:
 
@@ -359,11 +359,11 @@ index.html Tokosaya (struktur semantik)
     └─ p       : tagline "Belanja Tepat, Kirim Cepat" + hak cipta
 </pre>
 
-Perhatikan, hanya ada satu `h1`, yaitu judul hero, karena halaman ini punya satu topik
+Perhatikan, cuma ada satu `h1`, yaitu judul hero, karena halaman ini punya satu topik
 utama. Heading berikutnya memakai `h2` di tiap `section`, tanpa melompati level.
 Karena kontennya berbahasa Indonesia, `lang="id"` sudah sesuai. Meta description
-merangkum Tokosaya untuk mesin pencari. Struktur ini juga dipakai di
-`tentang.html` — yang berbeda hanya isi bagian `main`: profil Tokosaya (2019, UMKM
+merangkum Tokosaya buat mesin pencari. Struktur ini juga dipakai di
+`tentang.html` — yang berbeda cuma isi bagian `main`: profil Tokosaya (2019, UMKM
 aksesori dan elektronik komputer), visi dan misi, nilai layanan (`dl`), dan blok kontak.
 Praktikum berikut membangun dua halaman itu utuh.
 
@@ -372,11 +372,11 @@ Praktikum berikut membangun dua halaman itu utuh.
 | Konsep | Inti | Contoh pemakaian di Tokosaya |
 |---|---|---|
 | DOCTYPE | Deklarasi mode standar, baris pertama file | Baris pertama `index.html` |
-| `html lang="id"` | Menentukan bahasa halaman untuk pelafalan dan kamus | Semua halaman proyek |
-| `meta charset` | Pengodean UTF-8 agar A–Z dan simbol aman | `head` setiap halaman |
+| `html lang="id"` | Menentukan bahasa halaman buat pelafalan dan kamus | Semua halaman proyek |
+| `meta charset` | Pengodean UTF-8 buat A–Z dan simbol aman | `head` setiap halaman |
 | `meta viewport` | Lebar halaman mengikuti lebar perangkat | Prasyarat desain responsif Bab 7 |
 | `title` unik | Judul tab dan identitas halaman pada hasil pencarian | "Tokosaya | Tentang Kami" |
-| Hierarki heading | Satu `h1`, tidak melompat level | `h1` hero, `h2` per section |
+| Hierarki heading | Satu `h1`, nggak melompat level | `h1` hero, `h2` per section |
 | `ul / ol / dl` | Daftar tanpa urutan, dengan urutan, dan pasangan istilah | Layanan (`ul`), misi (`ol`), nilai (`dl`) |
 | `table` semantik | `caption`, `thead`, `tbody`, `th scope` | Daftar produk unggulan |
 | Link relatif | Path antarfile dalam folder proyek | `tentang.html`, `katalog.html` |
@@ -384,15 +384,15 @@ Praktikum berikut membangun dua halaman itu utuh.
 | `figure/figcaption` | Pasangan gambar–keterangan yang terikat | Ilustrasi hero dengan penjelasan |
 | `label for / id` | Setiap input memiliki label yang terhubung | Form kontak (versi penuh Bab 11) |
 | Elemen semantik | `header`, `nav`, `main`, `section`, `article`, `aside`, `footer` | Peta bagian company profile |
-| `div` dan `span` | Pembagi netral, dipilih jika tidak ada elemen semantik yang pas | Wrapper kartu produk (Bab 5) |
-| Landmark | Wilayah halaman yang dikenali pembaca layar | `main` untuk lompatan cepat |
+| `div` dan `span` | Pembagi netral, dipilih kalau nggak ada elemen semantik yang pas | Wrapper kartu produk (Bab 5) |
+| Landmark | Wilayah halaman yang dikenali pembaca layar | `main` buat lompatan cepat |
 
 ## Contoh Kode
 
 Contoh berikut mengikuti pola HTML5 yang umum dipakai. Coba ketik ulang kodenya dan
-buka di browser untuk melihat hasilnya.
+buka di browser buat melihat hasilnya.
 
-Contoh pertama adalah kerangka minimal yang bisa Anda pakai setiap kali membuat halaman
+Contoh pertama adalah kerangka minimal yang bisa kamu pakai setiap kali membuat halaman
 baru di proyek ini.
 
 File: latihan-html/kerangka-dasar.html
@@ -414,12 +414,12 @@ File: latihan-html/kerangka-dasar.html
 
 Penjelasan: kerangka ini memuat lima unsur penting — DOCTYPE, elemen `html` dengan
 `lang="id"`, `meta charset`, `meta viewport`, dan `title` yang jelas. Isi `body` baru
-disusun mengikuti bagian 2.6. Kerangka ini sengaja tidak menyertakan CSS; pemuatan gaya
+disusun mengikuti bagian 2.6. Kerangka ini sengaja nggak menyertakan CSS; pemuatan gaya
 dimulai di Bab 3 seiring pembuatan `css/style.css`.
 
 Contoh kedua menunjukkan elemen teks, list, dan tabel semantik pada halaman informasi
 perkuliahan. Polanya mirip dengan yang dipakai Tokosaya
-untuk tabel produk.
+buat tabel produk.
 
 File: latihan-html/jadwal-kuliah.html
 
@@ -496,12 +496,12 @@ File: latihan-html/jadwal-kuliah.html
 ```
 
 Penjelasan: dokumen ini menunjukkan hierarki heading yang rapi — satu `h1`,
-lalu `h2`, lalu `h3` tanpa lompatan. Penekanan memakai `strong` untuk kepentingan
-(pengumuman batas kehadiran), `em` untuk penekanan baca, dan `mark` untuk sorotan
-kontekstual. `article` dipilih untuk pengumuman yang berdiri sendiri; `section` menampung
+lalu `h2`, lalu `h3` tanpa lompatan. Penekanan memakai `strong` buat kepentingan
+(pengumuman batas kehadiran), `em` buat penekanan baca, dan `mark` buat sorotan
+kontekstual. `article` dipilih buat pengumuman yang berdiri sendiri; `section` menampung
 tabel; `footer` memuat publikasi bertanggal dengan `time datetime` yang mesin-dapat-baca.
 Tabel memakai `caption`, `thead`, `tbody`, dan `th scope` sehingga pembaca layar
-menyampaikan konteks kolom dan baris ketika membaca sel.
+menyampaikan konteks kolom dan baris pas membaca sel.
 
 Contoh ketiga menyiapkan halaman kontak Tokosaya dengan struktur form dasar. Halaman
 ini akan dilengkapi di Bab 11, termasuk aturan layout dan tampilan statusnya.
@@ -554,7 +554,7 @@ File: tokosaya-css/kontak.html
 
 Penjelasan: form memakai `post` karena berisi data pesan; atribut
 `action` menunjuk alamat penerima data — pada proyek statis ini alamat contoh memakai
-domain contoh `example.com` dan bisa diganti saat tim sudah punya layanan penerima
+domain contoh `example.com` dan bisa diganti pas tim sudah punya layanan penerima
 (pembahasan aliran data ada di Bab 1). Ketiga kolom memakai pasangan `label for` dan
 `input id` yang nilainya sama. `type="email"` memberi tahu browser jenis data yang
 dimasukkan, sedangkan `rows` mengatur tinggi awal `textarea`. Tombol memakai
@@ -564,15 +564,15 @@ dimasukkan, sedangkan `rows` mengatur tinggi awal `textarea`. Tombol memakai
 
 Kerangka (contoh 1) menunjukkan kebiasaan yang akan dipakai di seluruh buku ini:
 lengkapi `head` sebelum menulis isi halaman. Letakkan `meta charset` di awal `head`
-agar browser langsung mengetahui pengodean karakternya. `viewport` juga dicantumkan
-sejak awal, meski manfaatnya baru terasa di Bab 7, supaya tidak lupa menambahkannya.
+biar browser langsung tahu pengodean karakternya. `viewport` juga dicantumkan
+sejak awal, meski manfaatnya baru terasa di Bab 7, biar nggak lupa menambahkannya.
 `title` dibuat jelas dan unik; pada proyek dengan banyak halaman, pola "Nama Website |
 Nama Halaman" membantu membedakan tab.
 
-Contoh jadwal kuliah (contoh 2) memakai `article` untuk pengumuman karena konten itu
-tetap masuk akal saat dibagikan sendiri — misalnya di portal akademik atau lewat
+Contoh jadwal kuliah (contoh 2) memakai `article` buat pengumuman karena konten itu
+tetap masuk akal pas dibagikan sendiri — misalnya di portal akademik atau lewat
 notifikasi. `section` di bawahnya menampung tabel. Bedanya, tabel itu bukan konten
-mandiri untuk dibagikan, melainkan bagian dari halaman.
+mandiri buat dibagikan, melainkan bagian dari halaman.
 Tabelnya menempatkan `th scope="row"` pada sel pertama tiap baris — nama hari — sehingga
 pembaca layar bisa mengatakan "Senin, 08.00 sampai 09.40, Frontend Development" alih-alih
 "sel, sel, sel". `time datetime` menuliskan tanggal dalam format mesin
@@ -580,17 +580,17 @@ pembaca layar bisa mengatakan "Senin, 08.00 sampai 09.40, Frontend Development" 
 manusia.
 
 Contoh kontak (contoh 3) menunjukkan dua hal yang akan dipakai lagi di bab berikutnya.
-Pertama, letakkan label sebelum input agar pengguna membaca label sebelum mengisi
-kolomnya. Kedua, gunakan `address` untuk kontak organisasi, bukan `p` biasa, supaya
+Pertama, letakkan label sebelum input biar pengguna membaca label sebelum mengisi
+kolomnya. Kedua, gunakan `address` buat kontak organisasi, bukan `p` biasa, biar
 *screen reader* mengenalinya sebagai informasi kontak. Footer memakai `p` dengan `em`
-untuk tagline, bukan heading. Hal-hal kecil seperti ini membantu menjaga makna markup
+buat tagline, bukan heading. Hal-hal kecil kayak ini membantu menjaga makna markup
 meski halaman terus berkembang.
 
 ## Praktikum
 
 ### Tujuan Praktikum
 
-Di praktikum ini, Anda akan membuat dua halaman company profile Tokosaya — `index.html`
+Di praktikum ini, kamu akan membuat dua halaman company profile Tokosaya — `index.html`
 dan `tentang.html` — dengan struktur semantik HTML5, tanpa CSS. Fokusnya memastikan
 strukturnya sudah benar sebelum menambahkan tampilan: navigasi jelas, hierarki heading
 rapi, data produk disusun sebagai tabel, dan tiap bagian halaman punya nama. Gaya
@@ -598,11 +598,11 @@ visualnya akan kita buat mulai Bab 3.
 
 ### Kebutuhan
 
-- Visual Studio Code (opsional: ekstensi Live Server untuk membuka dan menyegarkan
+- Visual Studio Code (opsional: ekstensi Live Server buat membuka dan menyegarkan
   halaman otomatis).
 - Google Chrome atau browser modern lain + DevTools yang diperkenalkan di Bab 1.
 - Folder proyek `tokosaya-css/` hasil Bab 1 (berisi file profil latihan Bab 1; file itu
-  boleh disimpan atau dihapus, praktikum ini tidak menyentuhnya).
+  boleh disimpan atau dihapus, praktikum ini nggak menyentuhnya).
 - Data Tokosaya yang sudah disiapkan: navigasi, hero, kontak, dan tiga produk pertama
   dari katalog (KX-210, MW-88, MR-241).
 
@@ -611,9 +611,9 @@ visualnya akan kita buat mulai Bab 3.
 1. Buat file kosong `tokosaya-css/index.html` dan `tokosaya-css/tentang.html`.
 2. Buat folder `tokosaya-css/img/`. Dua file gambar placeholder disertakan pada bagian
    Kode di bawah; salinlah sebagai `img/logo-tokosaya.svg` dan `img/hero-tokosaya.svg`.
-   Ini gambar placeholder berisi teks ilustratif; pada Bab 4 file ini dapat diganti
+   Ini gambar placeholder berisi teks ilustratif; pada Bab 4 file ini bisa diganti
    visual yang lebih menawan tanpa mengubah markup.
-3. Pastikan struktur folder proyek seperti peta berikut (file `katalog.html` dan
+3. Pastikan struktur folder proyek kayak peta berikut (file `katalog.html` dan
    `kontak.html` baru dibangun pada bab-bab berikutnya):
 
 <pre>
@@ -647,10 +647,10 @@ tokosaya-css/
 7. Salin struktur yang sama ke `tentang.html`, mengganti `title`, `description`, dan
    isi `main`: h1 "Tentang Tokosaya"; empat `section` (profil, visi dan misi, nilai
    layanan dengan `dl`, kunjungi kami dengan `address`).
-8. Sesuaikan daftar navigasi di kedua halaman agar persis sama dan urutannya sama
+8. Sesuaikan daftar navigasi di kedua halaman biar persis sama dan urutannya sama
    (konsistensi navigasi antarhalaman).
 9. Buka `index.html` di browser; periksa judul tab, baca konten dari atas ke bawah,
-   klik link "Tentang" untuk berpindah halaman, lalu kembali.
+   klik link "Tentang" buat berpindah halaman, lalu kembali.
 10. Inspeksi dengan DevTools: pastikan satu `h1`, `nav` tunggal, `main` tunggal, dan
    setiap `img` memiliki `alt`.
 
@@ -671,7 +671,7 @@ File: tokosaya-css/img/logo-tokosaya.svg
 
 Penjelasan: logo placeholder ini dibuat dari bentuk persegi bersudut membulat
 dan teks inisial. Warna mengikuti palet baku Tokosaya (indigo `#4F46E5` dan latar
-`#F8FAFC`) supaya aset ini tetap cocok saat palet warna dipakai di Bab 4.
+`#F8FAFC`) biar aset ini tetap cocok pas palet warna dipakai di Bab 4.
 
 File: tokosaya-css/img/hero-tokosaya.svg
 
@@ -688,7 +688,7 @@ File: tokosaya-css/img/hero-tokosaya.svg
 Penjelasan: ilustrasi hero memakai warna latar halaman `--clr-bg` (`#F8FAFC`) dan
 permukaan putih dengan garis tepi `#E2E8F0`, sesuai token warna yang akan dibahas di
 Bab 4. Ukuran kanvas 800×320 juga dicantumkan pada atribut `width`/`height` di `img`
-agar browser menyediakan ruang untuk gambar.
+biar browser menyediakan ruang buat gambar.
 
 File: tokosaya-css/index.html
 
@@ -714,7 +714,7 @@ File: tokosaya-css/index.html
         <li><a href="katalog.html">Katalog</a></li>
         <li><a href="tentang.html">Tentang</a></li>
         <li><a href="kontak.html">Kontak</a></li>
-        <!-- Halaman keranjang disiapkan pada Bab 11; sementara tautannya menunjuk beranda -->
+        <!-- Halaman keranjang disiapkan pada Bab 11; sementara linknya menunjuk beranda -->
         <li><a href="index.html">Keranjang</a></li>
       </ul>
     </nav>
@@ -792,12 +792,12 @@ File: tokosaya-css/index.html
 ```
 
 Penjelasan: Ada tiga keputusan struktur yang perlu diperhatikan pada file beranda. Pertama, `h1`
-hanya muncul sekali — pada judul hero — sedangkan judul website di header memakai
+cuma muncul sekali — pada judul hero — sedangkan judul website di header memakai
 link logo tanpa heading, karena judul tiga halaman Tokosaya yang dibandingkan
 adalah isi `main` masing-masing, bukan nama toko yang sama berulang. Kedua, tabel
 produk memakai `th scope="row"` per baris dan `caption` yang menuliskan dasar data
 ("paling laris berdasarkan catatan penjualan") — pembaca layar lalu menyusun kalimat
-"Keyboard Mekanis KX-210, Aksesori Input, Rp650.000, Best Seller" seperti pembaca
+"Keyboard Mekanis KX-210, Aksesori Input, Rp650.000, Best Seller" kayak pembaca
 visual yang melihat baris yang sama. Ketiga, `nav` memakai `aria-label="Navigasi utama"`
 sehingga bila kelak halaman memiliki navigasi kedua (mis. menu footer), keduanya jelas
 dibedakan oleh pembaca layar.
@@ -895,9 +895,9 @@ File: tokosaya-css/tentang.html
 ```
 
 Penjelasan: halaman tentang menunjukkan cara memakai elemen semantik yang berbeda
-untuk jenis konten yang berbeda.
-`dl` dipilih untuk nilai layanan karena polanya berupa "istilah–penjelasan";
-`ol` dipakai untuk misi karena urutannya bermakna; `address` menandai blok kontak;
+buat jenis konten yang berbeda.
+`dl` dipilih buat nilai layanan karena polanya berupa "istilah–penjelasan";
+`ol` dipakai buat misi karena urutannya bermakna; `address` menandai blok kontak;
 dan `section class="visi-misi-section"`
 menunjukkan hierarki `h2` → `h3` tanpa lompatan. `footer` dua halaman identik —
 konsistensi antarhalaman adalah bagian dari identitas website, dan penulisan berulang
@@ -909,42 +909,42 @@ baru dipelajari belakangan.
 Ketiga bagian file praktikum ini saling melengkapi. **Kerangka `head`:** setiap halaman
 memakai pola lima unsur yang sama (DOCTYPE, `lang`, charset, viewport, title) dengan
 `title` dan `description` yang berbeda — cara mengeceknya mudah: judul tab
-berubah saat berpindah dari beranda ke halaman tentang, dan tiap halaman punya deskripsi
+berubah pas berpindah dari beranda ke halaman tentang, dan tiap halaman punya deskripsi
 pencari sendiri. **Konsistensi header dan footer:** kedua halaman memakai markup yang
 persis sama pada `header` dan `footer`; konsistensi ini nanti memungkinkan Bab 3
 menata keduanya dengan satu set selector, dan Bab 9 menggantikannya tanpa mengubah
 semantik. **Konten semantik `main`:** setiap himpunan konten menangkap maknanya lewat
-elemen yang tepat — tabel untuk data produk, `ol` untuk misi yang berurutan, dan `dl`
-untuk pasangan nilai–penjelasan. Dengan begitu, saat menambahkan CSS nanti, struktur
-halaman tidak perlu diubah lagi.
+elemen yang tepat — tabel buat data produk, `ol` buat misi yang berurutan, dan `dl`
+buat pasangan nilai–penjelasan. Dengan begitu, pas menambahkan CSS nanti, struktur
+halaman nggak perlu diubah lagi.
 
 Ada dua hal yang sering terlewat pemula: (1) link "Keranjang"
 sementara menunjuk `index.html` dengan komentar penjelas, karena halaman keranjang
 baru dibangun pada Bab 11; mengarang `href="keranjang.html"` akan menghasilkan link
-mati pada pratinjau. (2) `figure/figcaption` hanya dipakai pada ilustrasi hero,
-bukan pada logo — logo tidak perlu keterangan tambahan karena teks `alt`-nya sudah
+mati pada pratinjau. (2) `figure/figcaption` cuma dipakai pada ilustrasi hero,
+bukan pada logo — logo nggak perlu keterangan tambahan karena teks `alt`-nya sudah
 cukup: "Logo Tokosaya".
 
 ### Hasil yang Diharapkan
 
-Saat membuka `index.html` di browser, halaman tampil dengan gaya bawaan browser (tanpa
-CSS khusus). Anda akan melihat judul tab "Tokosaya | Belanja Tepat, Kirim Cepat",
+Pas membuka `index.html` di browser, halaman tampil dengan gaya bawaan browser (tanpa
+CSS khusus). Kamu akan melihat judul tab "Tokosaya | Belanja Tepat, Kirim Cepat",
 link navigasi (Beranda, Katalog, Tentang, Kontak, Keranjang), judul utama
 "Peralatan Kerja Digital untuk Semua", tabel produk, daftar layanan, dan footer berisi
 alamat, email, serta tagline miring.
-Saat memeriksa kodenya, pastikan ada satu elemen `main`, satu elemen `h1`, satu elemen
+Pas memeriksa kodenya, pastikan ada satu elemen `main`, satu elemen `h1`, satu elemen
 `nav` berlabel, setiap `img` memiliki atribut `alt`, dan `meta viewport` hadir pada
 kedua halaman. Klik "Tentang" harus mengarah ke halaman tentang dengan struktur
 sama; kembali lewat "Beranda" berhasil karena navigasi relatif.
 
 ### Troubleshooting
 
-**Masalah:** Halaman dibuka menampilkan teks mentah yang bercampur dengan tag seperti
+**Masalah:** Halaman dibuka menampilkan teks mentah yang bercampur dengan tag kayak
 `<html>` dan `<!DOCTYPE html>`, atau muncul sebagai teks tanpa struktur sama sekali.
 **Penyebab:** File tersimpan dengan ekstensi `.txt` (mis. `index.html.txt`) sehingga
 browser membacanya sebagai teks biasa, atau file disimpan dari editor Word yang
 memasukkan karakter aneh.
-**Solusi:** Ganti nama file menjadi `index.html` (hidupkan tampilan ekstensi di
+**Solusi:** Ganti nama file jadi `index.html` (hidupkan tampilan ekstensi di
 Windows: File Explorer → View → File name extensions), atau simpan ulang lewat VS Code
 (File → Save As) dengan ekstensi `.html`.
 **Pencegahan:** Selalu buat file lewat VS Code, perhatikan ekstensi pada bilah judul,
@@ -956,15 +956,15 @@ dan buka pratinjau lewat Live Server atau klik dua kali file `.html` (bukan `.tx
 `kontak.html` baru dibangun pada bab berikutnya), atau link salah tulis
 (mis. `tentang.html.hmtl` / huruf besar `Tentang.html` pada sistem peka huruf).
 **Solusi:** Perlu diingat, link Katalog dan Kontak memang belum aktif di bab ini.
-Untuk link yang sudah aktif, pastikan nama file tujuan persis sama
+Kalau linknya sudah aktif, pastikan nama file tujuan persis sama
 dan berada satu folder dengan file pemanggil.
 **Pencegahan:** Tulis link relatif setelah membuat file tujuan, atau awali
-pembuatan semua halaman dengan file kosong agar `href` tidak menunjuk file yang
-tidak pernah ada; biasakan nama file `lowercase` dan `kebab-case` dari awal.
+pembuatan semua halaman dengan file kosong biar `href` nggak menunjuk file yang
+nggak pernah ada; biasakan nama file `lowercase` dan `kebab-case` dari awal.
 
-**Masalah:** Gambar logo atau hero tidak tampil dan browser menampilkan ikon kertas
+**Masalah:** Gambar logo atau hero nggak tampil dan browser menampilkan ikon kertas
 sobek dengan teks alt.
-**Penyebab:** Path `src` tidak cocok dengan struktur folder — file SVG belum dibuat
+**Penyebab:** Path `src` nggak cocok dengan struktur folder — file SVG belum dibuat
 di `img/`, atau ditulis `src="img\logo-tokosaya.svg"` dengan garis miring terbalik,
 atau ditulis dari folder berbeda setelah file dipindah.
 **Solusi:** Pastikan file `img/logo-tokosaya.svg` dan `img/hero-tokosaya.svg` ada,
@@ -976,19 +976,19 @@ relatif dengan garis miring maju di semua atribut `src` dan `href`.
 **Masalah:** *Screen reader* atau lighthouse audit DevTools menunjukkan "heading order"
 atau "one h1" bermasalah pada halaman.
 **Penyebab:** Level heading melompat (misalnya, dari `h1` ke `h3` karena `h2` dianggap
-"terlalu kecil" untuk tampilan), atau ada lebih dari
+"terlalu kecil" buat tampilan), atau ada lebih dari
 satu `h1` dalam satu halaman.
-**Solusi:** Atur hierarkinya menjadi satu `h1` (judul hero atau konten utama), diikuti
-`h2` untuk tiap `section` dan `h3` untuk subbagian. Ukuran hurufnya nanti diatur dengan
+**Solusi:** Atur hierarkinya jadi satu `h1` (judul hero atau konten utama), diikuti
+`h2` buat tiap `section` dan `h3` buat subbagian. Ukuran hurufnya nanti diatur dengan
 CSS, bukan dengan memilih level heading.
 **Pencegahan:** Tulis kerangka heading lebih dahulu sebagai daftar isi sebelum
-mengisi paragraf, lalu jalankan pernyataan inspeksi di DevTools (Elements) untuk
+mengisi paragraf, lalu jalankan pernyataan inspeksi di DevTools (Elements) buat
 memeriksa urutan heading sebelum melanjutkan ke bab berikutnya.
 
 ## Studi Kasus
 
-Bayangkan Anda diminta meninjau halaman beranda portal berita kampus. Halaman itu sudah
-berfungsi bagi kebanyakan pembaca, tetapi tim ingin memastikan strukturnya mudah
+Bayangkan kamu diminta meninjau halaman beranda portal berita kampus. Halaman itu sudah
+berfungsi buat kebanyakan pembaca, tetapi tim ingin memastikan strukturnya mudah
 digunakan semua orang, termasuk mahasiswa tunanetra, dan mudah dipahami mesin pencari.
 
 Deskripsi halaman: pita atas berisi logo portal dan link masuk, diikuti bilah
@@ -999,7 +999,7 @@ bagian bawah memuat alamat redaksi, surel redaksi, dan kebijakan portal.
 Cara membacanya: pita atas dan bilah menu adalah `header` + `nav`; deretan berita adalah
 `main`, dan tiap berita adalah `article` karena masing-masing berdiri sendiri
 (bisa dibagikan, bisa dibaca tanpa tetangganya); blok "terpopuler" adalah `aside`
-karena dapat dihapus tanpa merusak berita; alamat redaksi dan kebijakan adalah
+karena bisa dihapus tanpa merusak berita; alamat redaksi dan kebijakan adalah
 `footer`. Versi yang sehat memisahkan itu secara semantik, sehingga pembaca layar
 bisa melompat langsung ke `main`, dan bot pencari membedakan isi berita dari
 navigasi.
@@ -1010,7 +1010,7 @@ Versi pertama memakai pembungkus polos tanpa makna:
 File: latihan-html/berita-sebelum.html
 
 ```html
-<!-- Versi "div semua": tidak ada makna yang bisa dibaca alat -->
+<!-- Versi "div semua": nggak ada makna yang bisa dibaca alat -->
 <div>
   <div>
     <div>Portal Mahasiswa</div>
@@ -1030,7 +1030,7 @@ File: latihan-html/berita-sebelum.html
 ```
 
 Penjelasan: markup ini tetap "berfungsi" di browser karena urutan tampilannya benar,
-tetapi nama tiap bagian hilang — tidak ada `header`, `nav`, `main`, atau `article`.
+tetapi nama tiap bagian hilang — nggak ada `header`, `nav`, `main`, atau `article`.
 Pembaca layar menganggap halaman sebagai satu bagian panjang, dan bot pencari sulit
 mengenali bagian mana yang menjadi isi utama.
 
@@ -1071,32 +1071,32 @@ File: latihan-html/berita-sesudah.html
 </footer>
 ```
 
-Penjelasan: pemetaan itu memperjelas peran tiga sumber informasi: landmark bagi
+Penjelasan: pemetaan itu memperjelas peran tiga sumber informasi: landmark buat
 pembaca layar (`header`, `nav`, `main`, `aside`, `footer`), hierarki heading
 (`article` menyediakan judulnya sendiri melalui `h2`, karena `h1` disediakan oleh
 konteks halaman), dan sinyal SEO dasar (bot pencari menandai `article` sebagai
 unit konten bermakna, judul `h2`-nya sebagai judul berita). Latihan mandiri nomor
-6 meminta Anda menganalisis portal berita pilihan sendiri dengan kerangka yang sama.
+6 meminta kamu menganalisis portal berita pilihan sendiri dengan kerangka yang sama.
 
 ## Latihan Mandiri
 
 1. Jelaskan fungsi `<!DOCTYPE html>` pada dokumen HTML5. Apa dampaknya kalau
-   deklarasi ini tidak ada di halaman Tokosaya?
-2. Buat kerangka `head` lengkap untuk halaman `katalog.html` (halaman ini akan dibuat
+   deklarasi ini nggak ada di halaman Tokosaya?
+2. Buat kerangka `head` lengkap buat halaman `katalog.html` (halaman ini akan dibuat
    di bab lain). Tulis DOCTYPE, elemen `html` dengan atribut bahasa, serta elemen
    `meta` dan `title` yang diperlukan. Buat `title` dan `description` yang cocok
-   untuk halaman katalog.
+   buat halaman katalog.
 3. Tokosaya perlu menampilkan langkah-langkah memesan (5 langkah), daftar merek
    komputer, dan pasangan nilai–penjelasan layanan. Pilih jenis list yang paling
-   tepat (`ul`, `ol`, atau `dl`) untuk tiap konten, lalu jelaskan alasannya dalam
+   tepat (`ul`, `ol`, atau `dl`) buat tiap konten, lalu jelaskan alasannya dalam
    satu kalimat.
 4. Tabel laporan penjualan Tokosaya punya 6 kolom dan 40 baris. Kenapa `thead`,
-   `th scope`, dan `caption` penting untuk tabel sebesar ini? Apa dampaknya bagi
-   pengguna *screen reader* kalau elemen-elemen itu tidak ada?
-5. Buat markup `<img>` untuk foto produk "Headphone Studio HS-15" (nama file
+   `th scope`, dan `caption` penting buat tabel sebesar ini? Apa dampaknya bagi
+   pengguna *screen reader* kalau elemen-elemen itu nggak ada?
+5. Buat markup `<img>` buat foto produk "Headphone Studio HS-15" (nama file
    `produk-headphone-hs15.svg`), lengkap dengan teks alternatif dan ukuran
-   400×400 piksel. Jelaskan alasan Anda memilih teks `alt` tersebut.
-6. Buka halaman portal berita atau website layanan informasi pilihan Anda. Baca
+   400×400 piksel. Jelaskan alasan kamu memilih teks `alt` tersebut.
+6. Buka halaman portal berita atau website layanan informasi pilihan kamu. Baca
    strukturnya dari atas ke bawah, lalu buat peta semantiknya dalam daftar
    bertingkat. Tunjukkan bagian yang menjadi `header`, `nav`, `main`, `section`,
    `article`, `aside`, dan `footer`. Catat juga satu bagian yang masih memakai
@@ -1108,8 +1108,8 @@ unit konten bermakna, judul `h2`-nya sebagai judul berita). Latihan mandiri nomo
    Tambahkan satu `section` baru, "Jam Layanan" (Senin–Sabtu, 09.00–17.00 WIB), pada
    `tentang.html`. Gunakan `section` dan tabel (atau `dl`) semantik.
    Kumpulkan file `tentang.html` final dan satu paragraf (maksimal 150 kata) yang
-   menjelaskan pilihan elemen Anda. Kriterianya: satu `h1`,
-   hierarki heading tidak melompat, tabel/`dl` semantik benar, tidak ada
+   menjelaskan pilihan elemen kamu. Kriterianya: satu `h1`,
+   hierarki heading nggak melompat, tabel/`dl` semantik benar, nggak ada
    style/kelas styling yang belum diajarkan.
 2. **Tugas kelompok (2–3 orang) — peta semantik kampus.** Pilih dua jenis halaman
    dari website sistem informasi yang sama (misalnya halaman pengumuman dan halaman
@@ -1124,12 +1124,12 @@ unit konten bermakna, judul `h2`-nya sebagai judul berita). Latihan mandiri nomo
 1. Kalau gaya visual di halaman Tokosaya dihilangkan, struktur semantiknya masih
    bisa dibaca dari atas ke bawah. Apa yang hilang dan apa yang tetap terasa
    dari pengalaman pengguna?
-2. Kapan Anda memilih `section`, dan kapan memakai `div`? Berikan satu contoh
-   dari proyek Tokosaya ketika keduanya bisa terlihat sama, tetapi maknanya berbeda.
+2. Kapan kamu memilih `section`, dan kapan memakai `div`? Berikan satu contoh
+   dari proyek Tokosaya pas keduanya bisa terlihat sama, tetapi maknanya berbeda.
 3. Dari tiga manfaat semantik (aksesibilitas, SEO, dan pemeliharaan kode), mana
-   yang paling memengaruhi keputusan Anda saat menyusun halaman? Kenapa?
-4. Kalau orang lain melanjutkan pengembangan Tokosaya, bagaimana struktur semantik
-   membantu mereka memahami halaman tanpa perlu penjelasan panjang dari Anda?
+   yang paling memengaruhi keputusan kamu pas menyusun halaman? Kenapa?
+4. Kalau orang lain melanjutkan pengembangan Tokosaya, gimana struktur semantik
+   membantu mereka memahami halaman tanpa perlu penjelasan panjang dari kamu?
 
 ## Rangkuman
 
@@ -1138,24 +1138,24 @@ unit konten bermakna, judul `h2`-nya sebagai judul berita). Latihan mandiri nomo
 - Bagian `head` memuat tiga kebutuhan wajib beserta satu meta tambahan: charset,
   viewport, dan `title` unik; `meta description` melayani ringkasan mesin pencari.
 - Heading membentuk hierarki: satu `h1` per halaman, tanpa lompatan level.
-- `ul` untuk daftar setara, `ol` untuk urutan bermakna, `dl` untuk pasangan
+- `ul` buat daftar setara, `ol` buat urutan bermakna, `dl` buat pasangan
   istilah–deskripsi; tabel semantik memakai `caption`, `thead`, `tbody`, dan
   `th scope`; tabel bukan alat layout.
 - Link relatif menghubungkan halaman proyek; teks link harus deskriptif; gambar
-  perlu memiliki `alt` serta atribut ukuran agar ruangnya tersedia sebelum gambar dimuat.
-- Form pada bab ini hanya pola dasar (`label for`/`id`, `input`, `textarea`,
+  perlu memiliki `alt` serta atribut ukuran biar ruangnya tersedia sebelum gambar dimuat.
+- Form pada bab ini cuma pola dasar (`label for`/`id`, `input`, `textarea`,
   `button`); pemetaan lengkap pada Bab 11.
 - Elemen semantik (`header`, `nav`, `main`, `section`, `article`, `aside`,
   `footer`, `address`, `time`) menamai wilayah halaman sebagai landmark.
-- `div`/`span` dipakai hanya ketika tidak ada elemen semantik yang cocok.
+- `div`/`span` dipakai hanya kalau nggak ada elemen semantik yang cocok.
 - Semantik memberi manfaat berlapis: aksesibilitas pembaca layar, SEO dasar,
   keterbacaan kode, dan pemeliharaan jangka panjang.
 - Anatomi company profile Tokosaya: `header+nav`, `main` berisi hero, unggulan,
   dan layanan, lalu `footer` berisi kontak dan tagline.
 
-Struktur semantik yang Anda buat hari ini masih tampil polos: belum ada warna,
-tipografi, atau layout khusus. Bab 3 akan mengajak Anda mengenal dasar-dasar CSS
-dan menambahkan `css/style.css` ke proyek Tokosaya. Untuk pertama kalinya, Anda akan
+Struktur semantik yang kamu buat hari ini masih tampil polos: belum ada warna,
+tipografi, atau layout khusus. Bab 3 akan mengajak kamu mengenal dasar-dasar CSS
+dan menambahkan `css/style.css` ke proyek Tokosaya. Pertama kalinya, kamu akan
 mewarnai dan menata struktur yang baru saja dibuat.
 
 ## Evaluasi
