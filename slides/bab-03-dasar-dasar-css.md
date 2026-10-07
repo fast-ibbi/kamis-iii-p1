@@ -84,6 +84,8 @@ apa dan gimana ia bekerja. Tahan dulu soal selector; itu masuk di bagian kedua.
 
 ---
 
+<!-- _class: compact -->
+
 # Apa Itu CSS
 
 CSS adalah bahasa deklaratif buat menjelaskan tampilan dokumen HTML.
