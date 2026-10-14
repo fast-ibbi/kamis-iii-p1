@@ -1,0 +1,14 @@
+01|Pengantar Frontend Development dan Web Design
+02|HTML5 dan Struktur Semantik
+03|Dasar-Dasar CSS
+04|Tipografi dan Visual Design CSS
+05|CSS Box Model dan Layout
+06|Flexbox untuk Web Layout
+07|CSS Grid dan Responsive Web Design
+09|Pengenalan Bootstrap 5
+10|Komponen Bootstrap
+11|Form dan User Interface Design
+12|UI/UX dan Design System
+13|Website Responsif dan Accessibility
+14|Implementasi Desain Figma ke HTML CSS
+15|Final Project dan Quality Assurance
