@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 380" width="820" height="380" role="img" aria-label="Satu typeface Poppins bercabang menjadi empat font: Regular 400, Medium 500, SemiBold 600, dan Bold 700.">
+
+  <!-- typeface: keluarga -->
+  <rect x="270" y="22" width="280" height="68" rx="10" fill="#eef2ff" stroke="#1d4ed8" stroke-width="2"/>
+  <text x="410" y="52" font-family="system-ui, sans-serif" font-size="26" font-weight="700" fill="#1d4ed8" text-anchor="middle">Poppins</text>
+  <text x="410" y="76" font-family="system-ui, sans-serif" font-size="15" fill="#111827" text-anchor="middle">typeface = keluarga desain huruf</text>
+
+  <!-- batang dan cabang -->
+  <line x1="410" y1="90" x2="410" y2="116" stroke="#1d4ed8" stroke-width="2.5"/>
+  <line x1="155" y1="116" x2="665" y2="116" stroke="#1d4ed8" stroke-width="2.5"/>
+  <line x1="155" y1="116" x2="155" y2="140" stroke="#1d4ed8" stroke-width="2.5"/>
+  <line x1="325" y1="116" x2="325" y2="140" stroke="#1d4ed8" stroke-width="2.5"/>
+  <line x1="495" y1="116" x2="495" y2="140" stroke="#1d4ed8" stroke-width="2.5"/>
+  <line x1="665" y1="116" x2="665" y2="140" stroke="#1d4ed8" stroke-width="2.5"/>
+
+  <!-- empat font: berat berbeda dari satu keluarga -->
+  <rect x="80" y="140" width="150" height="66" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="155" y="167" font-family="system-ui, sans-serif" font-size="19" fill="#111827" text-anchor="middle">Regular</text>
+  <text x="155" y="191" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280" text-anchor="middle">400 · font</text>
+
+  <rect x="250" y="140" width="150" height="66" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="325" y="167" font-family="system-ui, sans-serif" font-size="19" fill="#111827" text-anchor="middle">Medium</text>
+  <text x="325" y="191" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280" text-anchor="middle">500 · font</text>
+
+  <rect x="420" y="140" width="150" height="66" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="495" y="167" font-family="system-ui, sans-serif" font-size="19" fill="#111827" text-anchor="middle">SemiBold</text>
+  <text x="495" y="191" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280" text-anchor="middle">600 · font</text>
+
+  <rect x="590" y="140" width="150" height="66" rx="8" fill="#eef2ff" stroke="#1d4ed8" stroke-width="2"/>
+  <text x="665" y="167" font-family="system-ui, sans-serif" font-size="19" font-weight="700" fill="#1d4ed8" text-anchor="middle">Bold</text>
+  <text x="665" y="191" font-family="system-ui, sans-serif" font-size="15" fill="#1d4ed8" text-anchor="middle">700 · font</text>
+
+  <!-- kesimpulan -->
+  <text x="410" y="262" font-family="system-ui, sans-serif" font-size="19" fill="#111827" text-anchor="middle">Poppins Bold 700 = satu font dari typeface Poppins</text>
+  <text x="410" y="304" font-family="system-ui, sans-serif" font-size="16" fill="#6b7280" text-anchor="middle">Salah sebut tidak bikin kode error, tapi bikin diskusi berputar</text>
+</svg>

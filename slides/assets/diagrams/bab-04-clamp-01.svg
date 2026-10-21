@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 380" width="820" height="380" role="img" aria-label="Kurva clamp: ukuran judul bertahan 36 piksel sampai lebar jendela 720 piksel, menanjak mengikuti 5vw sampai 48 piksel pada 960 piksel, lalu datar.">
+
+  <!-- sumbu -->
+  <line x1="82" y1="306" x2="704" y2="306" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="90" y1="44" x2="90" y2="306" stroke="#94a3b8" stroke-width="1.5"/>
+
+  <!-- garis bantu mendatar -->
+  <line x1="90" y1="209" x2="308" y2="209" stroke="#bfdbfe" stroke-width="1.5" stroke-dasharray="5 5"/>
+  <line x1="439" y1="113" x2="704" y2="113" stroke="#bfdbfe" stroke-width="1.5" stroke-dasharray="5 5"/>
+
+  <!-- garis bantu tegak -->
+  <line x1="308" y1="209" x2="308" y2="306" stroke="#bfdbfe" stroke-width="1.5" stroke-dasharray="5 5"/>
+  <line x1="439" y1="113" x2="439" y2="306" stroke="#bfdbfe" stroke-width="1.5" stroke-dasharray="5 5"/>
+
+  <!-- kurva clamp -->
+  <path d="M90,209 L308,209 L439,113 L700,113" fill="none" stroke="#1d4ed8" stroke-width="3.5" stroke-linejoin="round"/>
+
+  <!-- label batas -->
+  <text x="98" y="200" font-family="system-ui, sans-serif" font-size="15" font-weight="600" fill="#1d4ed8">min 2.25rem · 36px</text>
+  <text x="448" y="104" font-family="system-ui, sans-serif" font-size="15" font-weight="600" fill="#1d4ed8">max 3rem · 48px</text>
+  <text x="352" y="172" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#1d4ed8">5vw</text>
+
+  <!-- label sumbu tegak -->
+  <text x="82" y="311" font-family="system-ui, sans-serif" font-size="13" fill="#6b7280" text-anchor="end">24</text>
+  <text x="82" y="246" font-family="system-ui, sans-serif" font-size="13" fill="#6b7280" text-anchor="end">32</text>
+  <text x="82" y="182" font-family="system-ui, sans-serif" font-size="13" fill="#6b7280" text-anchor="end">40</text>
+  <text x="82" y="118" font-family="system-ui, sans-serif" font-size="13" fill="#6b7280" text-anchor="end">48</text>
+  <text x="82" y="53" font-family="system-ui, sans-serif" font-size="13" fill="#6b7280" text-anchor="end">56</text>
+  <text x="90" y="36" font-family="system-ui, sans-serif" font-size="13" fill="#6b7280" text-anchor="middle">px</text>
+
+  <!-- label sumbu datar -->
+  <text x="90" y="330" font-family="system-ui, sans-serif" font-size="13" fill="#6b7280" text-anchor="middle">320</text>
+  <text x="308" y="330" font-family="system-ui, sans-serif" font-size="13" fill="#6b7280" text-anchor="middle">720</text>
+  <text x="439" y="330" font-family="system-ui, sans-serif" font-size="13" fill="#6b7280" text-anchor="middle">960</text>
+  <text x="700" y="330" font-family="system-ui, sans-serif" font-size="13" fill="#6b7280" text-anchor="end">1440</text>
+  <text x="400" y="350" font-family="system-ui, sans-serif" font-size="13" fill="#6b7280" text-anchor="middle">lebar jendela (px)</text>
+
+  <!-- catatan bawah -->
+  <text x="410" y="374" font-family="system-ui, sans-serif" font-size="16" fill="#111827" text-anchor="middle">clamp(min, ideal, max): bawah, ideal, atas</text>
+</svg>

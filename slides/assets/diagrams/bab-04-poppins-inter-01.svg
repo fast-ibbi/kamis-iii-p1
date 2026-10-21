@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 380" width="820" height="380" role="img" aria-label="Dua suara huruf: Poppins dipakai untuk judul dengan berat 600 sampai 700 dan jarak rapat; Inter dipakai untuk teks isi dengan berat 400 dan line-height 1,6.">
+
+  <!-- panel kiri: suara judul -->
+  <rect x="24" y="24" width="376" height="252" rx="12" fill="#eef2ff" stroke="#1d4ed8" stroke-width="2"/>
+  <text x="48" y="56" font-family="system-ui, sans-serif" font-size="15" letter-spacing="1.2" fill="#1d4ed8">POPPINS · SUARA JUDUL</text>
+  <text x="48" y="110" font-family="system-ui, sans-serif" font-size="34" font-weight="700" fill="#111827" letter-spacing="-0.5">Belanja Tepat,</text>
+  <text x="48" y="152" font-family="system-ui, sans-serif" font-size="34" font-weight="700" fill="#111827" letter-spacing="-0.5">Kirim Cepat</text>
+  <text x="48" y="196" font-family="system-ui, sans-serif" font-size="22" font-weight="600" fill="#1d4ed8">Katalog Produk</text>
+  <rect x="48" y="216" width="266" height="32" rx="16" fill="#ffffff" stroke="#1d4ed8" stroke-width="1.5"/>
+  <text x="181" y="237" font-family="system-ui, sans-serif" font-size="14" fill="#1d4ed8" text-anchor="middle">weight 600–700 · tracking rapat</text>
+
+  <!-- panel kanan: suara isi -->
+  <rect x="420" y="24" width="376" height="252" rx="12" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+  <text x="444" y="56" font-family="system-ui, sans-serif" font-size="15" letter-spacing="1.2" fill="#475569">INTER · SUARA ISI</text>
+  <text x="444" y="98" font-family="system-ui, sans-serif" font-size="15" fill="#334155">Peralatan kerja digital untuk tim</text>
+  <text x="444" y="121" font-family="system-ui, sans-serif" font-size="15" fill="#334155">yang butuh cepat. Dikirim hari</text>
+  <text x="444" y="144" font-family="system-ui, sans-serif" font-size="15" fill="#334155">yang sama, bergaransi resmi,</text>
+  <text x="444" y="167" font-family="system-ui, sans-serif" font-size="15" fill="#334155">dan bisa dibayar di tempat.</text>
+  <rect x="444" y="216" width="308" height="32" rx="16" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="598" y="237" font-family="system-ui, sans-serif" font-size="14" fill="#475569" text-anchor="middle">weight 400 · line-height 1,6</text>
+
+  <!-- catatan kejujuran teknis -->
+  <text x="410" y="316" font-family="system-ui, sans-serif" font-size="17" fill="#6b7280" text-anchor="middle">Judul hanya sebentar dilihat, jadi boleh berkarakter;</text>
+  <text x="410" y="344" font-family="system-ui, sans-serif" font-size="17" fill="#6b7280" text-anchor="middle">isi dibaca lama, jadi harus tenang.</text>
+</svg>

@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 380" width="820" height="380" role="img" aria-label="Skala jarak Tokosaya mengikuti kelipatan 8 piksel dari 8 sampai 64 piksel, digambar dengan skala enam kali, dengan token space unit tiga menghasilkan 24 piksel.">
+
+  <!-- penggaris atas -->
+  <line x1="190" y1="64" x2="574" y2="64" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="190" y1="58" x2="190" y2="70" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="238" y1="64" x2="238" y2="72" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="286" y1="64" x2="286" y2="72" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="334" y1="64" x2="334" y2="72" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="382" y1="64" x2="382" y2="72" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="430" y1="64" x2="430" y2="72" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="478" y1="64" x2="478" y2="72" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="526" y1="64" x2="526" y2="72" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="574" y1="58" x2="574" y2="70" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="190" y="50" font-family="system-ui, sans-serif" font-size="12" fill="#6b7280" text-anchor="middle">0</text>
+  <text x="286" y="50" font-family="system-ui, sans-serif" font-size="12" fill="#6b7280" text-anchor="middle">16</text>
+  <text x="382" y="50" font-family="system-ui, sans-serif" font-size="12" fill="#6b7280" text-anchor="middle">32</text>
+  <text x="478" y="50" font-family="system-ui, sans-serif" font-size="12" fill="#6b7280" text-anchor="middle">48</text>
+  <text x="574" y="50" font-family="system-ui, sans-serif" font-size="12" fill="#6b7280" text-anchor="middle">64</text>
+  <text x="790" y="50" font-family="system-ui, sans-serif" font-size="12" fill="#9ca3af" text-anchor="end">skala 6x</text>
+
+  <!-- baris 1: x1 = 8px -->
+  <text x="176" y="96" font-family="system-ui, sans-serif" font-size="14" fill="#475569" text-anchor="end">--space-unit x 1</text>
+  <rect x="190" y="83" width="48" height="16" rx="3" fill="#1d4ed8"/>
+  <text x="248" y="96" font-family="system-ui, sans-serif" font-size="15" font-weight="600" fill="#111827">8px</text>
+
+  <!-- baris 2: x2 -->
+  <text x="176" y="128" font-family="system-ui, sans-serif" font-size="14" fill="#475569" text-anchor="end">--space-unit x 2</text>
+  <rect x="190" y="115" width="96" height="16" rx="3" fill="#1d4ed8"/>
+  <text x="296" y="128" font-family="system-ui, sans-serif" font-size="15" font-weight="600" fill="#111827">16px</text>
+
+  <!-- baris 3: x3 (disorot, dipakai padding kartu) -->
+  <text x="176" y="160" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#1d4ed8" text-anchor="end">--space-unit x 3</text>
+  <rect x="190" y="147" width="144" height="16" rx="3" fill="#1d4ed8"/>
+  <text x="344" y="160" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#1d4ed8">24px · padding kartu</text>
+
+  <!-- baris 4: x4 -->
+  <text x="176" y="192" font-family="system-ui, sans-serif" font-size="14" fill="#475569" text-anchor="end">--space-unit x 4</text>
+  <rect x="190" y="179" width="192" height="16" rx="3" fill="#1d4ed8"/>
+  <text x="392" y="192" font-family="system-ui, sans-serif" font-size="15" font-weight="600" fill="#111827">32px</text>
+
+  <!-- baris 5: x5 -->
+  <text x="176" y="224" font-family="system-ui, sans-serif" font-size="14" fill="#475569" text-anchor="end">--space-unit x 5</text>
+  <rect x="190" y="211" width="240" height="16" rx="3" fill="#1d4ed8"/>
+  <text x="440" y="224" font-family="system-ui, sans-serif" font-size="15" font-weight="600" fill="#111827">40px</text>
+
+  <!-- baris 6: x6 -->
+  <text x="176" y="256" font-family="system-ui, sans-serif" font-size="14" fill="#475569" text-anchor="end">--space-unit x 6</text>
+  <rect x="190" y="243" width="288" height="16" rx="3" fill="#1d4ed8"/>
+  <text x="488" y="256" font-family="system-ui, sans-serif" font-size="15" font-weight="600" fill="#111827">48px</text>
+
+  <!-- baris 7: x7 -->
+  <text x="176" y="288" font-family="system-ui, sans-serif" font-size="14" fill="#475569" text-anchor="end">--space-unit x 7</text>
+  <rect x="190" y="275" width="336" height="16" rx="3" fill="#1d4ed8"/>
+  <text x="536" y="288" font-family="system-ui, sans-serif" font-size="15" font-weight="600" fill="#111827">56px</text>
+
+  <!-- baris 8: x8 -->
+  <text x="176" y="320" font-family="system-ui, sans-serif" font-size="14" fill="#475569" text-anchor="end">--space-unit x 8</text>
+  <rect x="190" y="307" width="384" height="16" rx="3" fill="#1d4ed8"/>
+  <text x="584" y="320" font-family="system-ui, sans-serif" font-size="15" font-weight="600" fill="#111827">64px</text>
+
+  <!-- catatan bawah -->
+  <text x="410" y="362" font-family="system-ui, sans-serif" font-size="17" fill="#111827" text-anchor="middle">calc(var(--space-unit) * 7) = 56px</text>
+</svg>

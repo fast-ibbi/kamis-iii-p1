@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 380" width="820" height="380" role="img" aria-label="border-radius 4, 12, dan 999 piksel membuat pojok tajam, membulat, dan pill. box-shadow tiga tingkat kedalaman dari datar, kartu, sampai terangkat.">
+
+  <defs>
+    <filter id="sh-card" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+    <filter id="sh-raised" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#0f172a" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+
+  <!-- ============ panel kiri: border-radius ============ -->
+  <rect x="24" y="20" width="372" height="270" rx="12" fill="#ffffff" stroke="#e5e7eb" stroke-width="2"/>
+  <text x="44" y="50" font-family="system-ui, sans-serif" font-size="15" letter-spacing="1.2" fill="#1d4ed8">BORDER-RADIUS</text>
+
+  <rect x="48" y="96" width="64" height="64" rx="4" fill="#eef2ff" stroke="#1d4ed8" stroke-width="2"/>
+  <text x="80" y="186" font-family="system-ui, sans-serif" font-size="15" fill="#475569" text-anchor="middle">4px</text>
+
+  <rect x="140" y="96" width="64" height="64" rx="12" fill="#eef2ff" stroke="#1d4ed8" stroke-width="2"/>
+  <text x="172" y="186" font-family="system-ui, sans-serif" font-size="15" fill="#475569" text-anchor="middle">12px</text>
+
+  <rect x="232" y="110" width="136" height="36" rx="18" fill="#eef2ff" stroke="#1d4ed8" stroke-width="2"/>
+  <text x="300" y="186" font-family="system-ui, sans-serif" font-size="15" fill="#475569" text-anchor="middle">999px</text>
+
+  <text x="44" y="232" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280">999px di semua ukuran elemen selalu jadi pill</text>
+  <text x="44" y="258" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280">kartu produk memakai --radius: 12px</text>
+
+  <!-- ============ panel kanan: box-shadow ============ -->
+  <rect x="424" y="20" width="372" height="270" rx="12" fill="#ffffff" stroke="#e5e7eb" stroke-width="2"/>
+  <text x="444" y="50" font-family="system-ui, sans-serif" font-size="15" letter-spacing="1.2" fill="#1d4ed8">BOX-SHADOW</text>
+
+  <rect x="444" y="96" width="96" height="64" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="492" y="190" font-family="system-ui, sans-serif" font-size="15" fill="#475569" text-anchor="middle">datar</text>
+
+  <rect x="552" y="96" width="96" height="64" rx="10" fill="#ffffff" stroke="#eef2ff" stroke-width="1.5" filter="url(#sh-card)"/>
+  <text x="600" y="190" font-family="system-ui, sans-serif" font-size="15" fill="#475569" text-anchor="middle">kartu</text>
+
+  <rect x="660" y="96" width="96" height="64" rx="10" fill="#ffffff" stroke="#eef2ff" stroke-width="1.5" filter="url(#sh-raised)"/>
+  <text x="708" y="190" font-family="system-ui, sans-serif" font-size="15" fill="#475569" text-anchor="middle">terangkat</text>
+
+  <text x="444" y="232" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280">bayangan cuma untuk yang memang terangkat</text>
+  <text x="444" y="258" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280">--shadow-card: 0 8px 24px rgba(15,23,42,.08)</text>
+
+  <!-- ============ catatan bawah ============ -->
+  <text x="410" y="342" font-family="system-ui, sans-serif" font-size="17" fill="#111827" text-anchor="middle">Bayangan dipakai hemat: satu-dua titik per halaman</text>
+</svg>

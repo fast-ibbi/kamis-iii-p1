@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 380" width="820" height="380" role="img" aria-label="Skala tipografi Tokosaya sembilan tingkat digambar pada ukuran sebenarnya: Display 48 piksel 3 rem turun sampai Label 12 piksel 0,75 rem, lengkap dengan pemakaiannya.">
+
+  <!-- garis pemisah kolom label dan kolom spesimen -->
+  <line x1="340" y1="12" x2="340" y2="348" stroke="#e5e7eb" stroke-width="1.5" stroke-dasharray="4 6"/>
+
+  <!-- baris 1: Display 48px / 3rem -->
+  <text x="18" y="52" font-family="system-ui, sans-serif" font-size="15" fill="#111827">Display</text>
+  <text x="132" y="52" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280">48px</text>
+  <text x="196" y="52" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280">3rem</text>
+  <text x="352" y="55" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#111827" letter-spacing="-1">Tokosaya</text>
+  <text x="600" y="52" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280">judul hero beranda</text>
+
+  <!-- baris 2: Heading 1 36px / 2.25rem -->
+  <text x="18" y="104" font-family="system-ui, sans-serif" font-size="15" fill="#111827">Heading 1</text>
+  <text x="132" y="104" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280">36px</text>
+  <text x="196" y="104" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280">2.25rem</text>
+  <text x="352" y="106" font-family="system-ui, sans-serif" font-size="36" font-weight="700" fill="#111827" letter-spacing="-0.5">Tokosaya</text>
+  <text x="600" y="104" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280">judul utama halaman</text>
+
+  <!-- baris 3: Heading 2 30px / 1.875rem -->
+  <text x="18" y="148" font-family="system-ui, sans-serif" font-size="15" fill="#111827">Heading 2</text>
+  <text x="132" y="148" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280">30px</text>
+  <text x="196" y="148" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280">1.875rem</text>
+  <text x="352" y="150" font-family="system-ui, sans-serif" font-size="30" font-weight="600" fill="#111827">Tokosaya</text>
+  <text x="600" y="148" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280">judul section</text>
+
+  <!-- baris 4: Heading 3 24px / 1.5rem -->
+  <text x="18" y="184" font-family="system-ui, sans-serif" font-size="15" fill="#111827">Heading 3</text>
+  <text x="132" y="184" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280">24px</text>
+  <text x="196" y="184" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280">1.5rem</text>
+  <text x="352" y="186" font-family="system-ui, sans-serif" font-size="24" font-weight="600" fill="#111827">Tokosaya</text>
+  <text x="600" y="184" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280">judul kartu atau kolom</text>
+
+  <!-- baris 5: Body besar 20px / 1.25rem -->
+  <text x="18" y="217" font-family="system-ui, sans-serif" font-size="15" fill="#111827">Body besar</text>
+  <text x="132" y="217" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280">20px</text>
+  <text x="196" y="217" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280">1.25rem</text>
+  <text x="352" y="219" font-family="system-ui, sans-serif" font-size="20" fill="#111827">Tokosaya</text>
+  <text x="600" y="217" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280">subjudul hero dan CTA</text>
+
+  <!-- baris 6: Subjudul 18px / 1.125rem -->
+  <text x="18" y="247" font-family="system-ui, sans-serif" font-size="15" fill="#111827">Subjudul</text>
+  <text x="132" y="247" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280">18px</text>
+  <text x="196" y="247" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280">1.125rem</text>
+  <text x="352" y="249" font-family="system-ui, sans-serif" font-size="18" fill="#111827">Tokosaya</text>
+  <text x="600" y="247" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280">nama produk, lead section</text>
+
+  <!-- baris 7: Body 16px / 1rem -->
+  <text x="18" y="276" font-family="system-ui, sans-serif" font-size="15" fill="#111827">Body</text>
+  <text x="132" y="276" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280">16px</text>
+  <text x="196" y="276" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280">1rem</text>
+  <text x="352" y="278" font-family="system-ui, sans-serif" font-size="16" fill="#111827">Tokosaya</text>
+  <text x="600" y="276" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280">paragraf standar</text>
+
+  <!-- baris 8: Kecil 14px / 0.875rem -->
+  <text x="18" y="302" font-family="system-ui, sans-serif" font-size="15" fill="#111827">Kecil</text>
+  <text x="132" y="302" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280">14px</text>
+  <text x="196" y="302" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280">0.875rem</text>
+  <text x="352" y="304" font-family="system-ui, sans-serif" font-size="14" fill="#334155">Tokosaya</text>
+  <text x="600" y="302" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280">keterangan dan tabel</text>
+
+  <!-- baris 9: Label 12px / 0.75rem -->
+  <text x="18" y="326" font-family="system-ui, sans-serif" font-size="15" fill="#111827">Label</text>
+  <text x="132" y="326" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280">12px</text>
+  <text x="196" y="326" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280">0.75rem</text>
+  <text x="352" y="328" font-family="system-ui, sans-serif" font-size="12" letter-spacing="0.8" fill="#475569">TOKOSAYA</text>
+  <text x="600" y="326" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280">badge dan label form</text>
+
+  <!-- catatan bawah -->
+  <text x="18" y="366" font-family="system-ui, sans-serif" font-size="15" fill="#6b7280">digambar pada ukuran sebenarnya · basis 16px · 3rem = 48px</text>
+</svg>

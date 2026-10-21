@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 380" width="820" height="380" role="img" aria-label="Perbandingan opacity dan rgba: opacity 0,5 memudarkan seluruh kartu termasuk isinya, sedangkan background rgba memudarkan warna latar saja sehingga teks tetap tegas.">
+
+  <!-- panel kiri: opacity -->
+  <text x="80" y="52" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#111827">opacity: 0,5</text>
+  <g opacity="0.5">
+    <rect x="80" y="72" width="240" height="150" rx="12" fill="#4f46e5"/>
+    <rect x="110" y="104" width="150" height="16" rx="8" fill="#ffffff"/>
+    <text x="110" y="176" font-family="system-ui, sans-serif" font-size="22" font-weight="600" fill="#ffffff">Tokosaya</text>
+  </g>
+  <text x="200" y="256" font-family="system-ui, sans-serif" font-size="16" fill="#dc2626" text-anchor="middle">isi ikut memudar</text>
+
+  <!-- panel kanan: rgba -->
+  <text x="440" y="52" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#111827">rgba(79, 70, 229, 0,5)</text>
+  <rect x="440" y="72" width="240" height="150" rx="12" fill="rgba(79, 70, 229, 0.5)"/>
+  <rect x="470" y="104" width="150" height="16" rx="8" fill="#ffffff"/>
+  <text x="470" y="176" font-family="system-ui, sans-serif" font-size="22" font-weight="600" fill="#ffffff">Tokosaya</text>
+  <text x="560" y="256" font-family="system-ui, sans-serif" font-size="16" fill="#1d4ed8" text-anchor="middle">isi tetap tegas</text>
+
+  <!-- catatan bawah -->
+  <text x="410" y="308" font-family="system-ui, sans-serif" font-size="18" fill="#111827" text-anchor="middle">opacity memudarkan seluruh elemen beserta isinya</text>
+  <text x="410" y="340" font-family="system-ui, sans-serif" font-size="18" fill="#111827" text-anchor="middle">rgba() memudarkan warna latarnya saja</text>
+</svg>

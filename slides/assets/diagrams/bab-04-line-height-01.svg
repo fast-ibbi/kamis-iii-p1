@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 380" width="820" height="380" role="img" aria-label="Tiga paragraf berisi teks yang sama dengan line-height 1,2 yang terlalu rapat, 1,6 yang nyaman dibaca, dan 2,0 yang terlalu longgar.">
+
+  <!-- panel 1: 1,2 terlalu rapat -->
+  <rect x="25" y="30" width="240" height="268" rx="12" fill="#ffffff" stroke="#e5e7eb" stroke-width="2"/>
+  <text x="45" y="78" font-family="system-ui, sans-serif" font-size="30" font-weight="700" fill="#111827">1,2</text>
+  <line x1="41" y1="132" x2="249" y2="132" stroke="#e5e7eb" stroke-width="1"/>
+  <line x1="41" y1="150" x2="249" y2="150" stroke="#e5e7eb" stroke-width="1"/>
+  <line x1="41" y1="168" x2="249" y2="168" stroke="#e5e7eb" stroke-width="1"/>
+  <line x1="41" y1="186" x2="249" y2="186" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="45" y="136" font-family="system-ui, sans-serif" font-size="15" fill="#334155">Pembeli membaca</text>
+  <text x="45" y="154" font-family="system-ui, sans-serif" font-size="15" fill="#334155">deskripsi produk</text>
+  <text x="45" y="172" font-family="system-ui, sans-serif" font-size="15" fill="#334155">dengan tenang,</text>
+  <text x="45" y="190" font-family="system-ui, sans-serif" font-size="15" fill="#334155">lalu memutuskan.</text>
+  <text x="145" y="262" font-family="system-ui, sans-serif" font-size="16" fill="#6b7280" text-anchor="middle">terlalu rapat</text>
+
+  <!-- panel 2: 1,6 nyaman -->
+  <rect x="290" y="30" width="240" height="268" rx="12" fill="#eef2ff" stroke="#1d4ed8" stroke-width="2"/>
+  <text x="310" y="78" font-family="system-ui, sans-serif" font-size="30" font-weight="700" fill="#1d4ed8">1,6</text>
+  <line x1="306" y1="132" x2="514" y2="132" stroke="#bfdbfe" stroke-width="1"/>
+  <line x1="306" y1="156" x2="514" y2="156" stroke="#bfdbfe" stroke-width="1"/>
+  <line x1="306" y1="180" x2="514" y2="180" stroke="#bfdbfe" stroke-width="1"/>
+  <line x1="306" y1="204" x2="514" y2="204" stroke="#bfdbfe" stroke-width="1"/>
+  <text x="310" y="136" font-family="system-ui, sans-serif" font-size="15" fill="#111827">Pembeli membaca</text>
+  <text x="310" y="160" font-family="system-ui, sans-serif" font-size="15" fill="#111827">deskripsi produk</text>
+  <text x="310" y="184" font-family="system-ui, sans-serif" font-size="15" fill="#111827">dengan tenang,</text>
+  <text x="310" y="208" font-family="system-ui, sans-serif" font-size="15" fill="#111827">lalu memutuskan.</text>
+  <text x="410" y="262" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#1d4ed8" text-anchor="middle">nyaman dibaca</text>
+
+  <!-- panel 3: 2,0 terlalu longgar -->
+  <rect x="555" y="30" width="240" height="268" rx="12" fill="#ffffff" stroke="#e5e7eb" stroke-width="2"/>
+  <text x="575" y="78" font-family="system-ui, sans-serif" font-size="30" font-weight="700" fill="#111827">2,0</text>
+  <line x1="571" y1="132" x2="779" y2="132" stroke="#e5e7eb" stroke-width="1"/>
+  <line x1="571" y1="162" x2="779" y2="162" stroke="#e5e7eb" stroke-width="1"/>
+  <line x1="571" y1="192" x2="779" y2="192" stroke="#e5e7eb" stroke-width="1"/>
+  <line x1="571" y1="222" x2="779" y2="222" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="575" y="136" font-family="system-ui, sans-serif" font-size="15" fill="#334155">Pembeli membaca</text>
+  <text x="575" y="166" font-family="system-ui, sans-serif" font-size="15" fill="#334155">deskripsi produk</text>
+  <text x="575" y="196" font-family="system-ui, sans-serif" font-size="15" fill="#334155">dengan tenang,</text>
+  <text x="575" y="226" font-family="system-ui, sans-serif" font-size="15" fill="#334155">lalu memutuskan.</text>
+  <text x="675" y="262" font-family="system-ui, sans-serif" font-size="16" fill="#6b7280" text-anchor="middle">terlalu longgar</text>
+
+  <!-- catatan bawah -->
+  <text x="410" y="342" font-family="system-ui, sans-serif" font-size="18" fill="#111827" text-anchor="middle">Angka tanpa satuan ikut membesar saat font diperbesar</text>
+</svg>
