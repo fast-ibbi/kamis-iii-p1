@@ -221,21 +221,23 @@ layout itu pekerjaan CSS.
 
 # Link yang Jelas
 
+![w:1120 Link relatif menghubungkan halaman di dalam proyek dan tetap berfungsi walau folder proyek dipindahkan; link absolut menyertakan alamat lengkap dan dipakai kalau memang perlu membuka tab baru.](assets/diagrams/bab-02-html5-dan-struktur-semantik-11.svg)
+
 ```html
 <a href="tentang.html">Kenali Tokosaya</a>
 <a href="https://www.example.org"
    target="_blank" rel="noopener">Baca panduan eksternal</a>
 ```
 
-- Link relatif menghubungkan halaman dalam proyek
-- Link absolut menyertakan alamat lengkap
-- Pilih teks link yang tetap jelas pas dibaca sendiri
-- Buka tab baru cuma kalau memang perlu buat link eksternal
-
 <!--
-Link internal kayak `tentang.html` tetap berfungsi pas folder proyek dipindahkan.
-Hindari teks kayak "klik di sini": *screen reader* bisa menampilkan daftar link
-tanpa kalimat di sekitarnya.
+Tekankan bedanya sebagai dua kebiasaan menulis tautan. Link relatif dipakai untuk
+semua tautan antarahalaman Tokosaya: href-nya cukup nama file, dan tautannya tetap
+berfungsi pas folder proyek dipindahkan. Link absolut menyertakan alamat lengkap —
+href-nya alamat lengkap — jadi hanya dipakai untuk situs di luar proyek.
+
+Buka tab baru cuma kalau memang perlu buat link eksternal. Pilih teks link yang tetap
+jelas pas dibaca sendiri; hindari teks kayak "klik di sini" karena *screen reader*
+bisa menampilkan daftar link tanpa kalimat di sekitarnya.
 -->
 
 ---
@@ -576,17 +578,19 @@ Tokosaya. Setiap section punya heading dan berada di dalam satu main.
 
 # Periksa Hasil di Browser
 
-1. Buka `index.html` dan periksa judul tab
-2. Baca urutan isi dari atas ke bawah
-3. Klik link Tentang, lalu kembali ke Beranda
-4. Periksa struktur elemen dengan DevTools
-
-- Pastikan satu `h1`, satu `nav`, dan satu `main`
-- Pastikan setiap gambar punya atribut `alt`
+![w:1120 Empat langkah memeriksa halaman: buka index.html dan periksa judul tab, baca urutan isi, klik link Tentang lalu kembali, lalu periksa struktur elemen di DevTools.](assets/diagrams/bab-02-html5-dan-struktur-semantik-26.svg)
 
 <!--
-Uji dokumen tanpa CSS: apakah urutan dan maknanya masih bisa dipahami? Di
-DevTools, telusuri pohon elemen, bukan cuma menilai tampilannya.
+Ajak mahasiswa memeriksa halaman yang baru disusun, sebelum CSS masuk. Urutannya:
+buka `index.html` dan periksa judul tab, baca urutan isi dari atas ke bawah, klik
+link Tentang, lalu kembali ke Beranda, dan terakhir periksa struktur elemen dengan
+DevTools. Tanyakan di langkah mana mereka paling sering menemukan kesalahan.
+
+Uji dokumen tanpa CSS: apakah urutan dan maknanya masih bisa dipahami? Di DevTools,
+telusuri pohon elemen, bukan cuma menilai tampilannya.
+
+Pemeriksaan akhir: pastikan satu `h1`, satu `nav`, dan satu `main`, lalu pastikan
+setiap gambar punya atribut `alt`.
 -->
 
 ---

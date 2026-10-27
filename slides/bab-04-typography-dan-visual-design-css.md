@@ -164,17 +164,21 @@ lama sehingga harus tenang.
 
 # Font Sistem Berbeda di Tiap Perangkat
 
-- Browser memakai font sistem bawaan, bukan pilihan kita
-- Windows, macOS, dan Android menampilkan keluarga font yang berbeda
-- Perbedaan itu membuat identitas brand tidak konsisten
-- Solusinya web font: diunduh dari layanan online saat halaman dibuka
-- Google Fonts menyimpan ribuan typeface berlisensi terbuka
+![w:1120 Font sistem yang dipakai browser berbeda tiap perangkat, karena itu identitas brand tidak konsisten, dan solusinya adalah web font yang diunduh saat halaman dibuka.](assets/diagrams/bab-04-typography-dan-visual-design-css-09.svg)
 
 <!--
 Tanyakan siapa yang pernah membuka website dan merasa hurufnya berbeda di ponsel.
 Jawaban yang diharapkan: itu font sistem, bukan font brand. Tekankan bahwa alasan
 utamanya konsistensi identitas, bukan soal cantik atau tidak. Sebutkan bahwa
 halaman tetap harus terbuka saat font gagal diunduh.
+
+Bacakan rantai di diagram sambil menunjuk tahapnya satu per satu. Browser memakai
+font sistem bawaan, bukan pilihan kita; karena itu Windows, macOS, dan Android
+menampilkan keluarga font yang berbeda — beda tiap perangkat. Akibatnya identitas
+brand tidak konsisten: halaman yang sama, dua perangkat, bisa terlihat seperti dua
+situs yang berbeda. Solusinya web font, keluarga huruf yang diunduh saat halaman
+dibuka dari layanan online, jadi bentuk huruf tidak lagi ditentukan perangkat.
+Sebutkan juga bahwa Google Fonts menyimpan ribuan typeface berlisensi terbuka.
 -->
 
 ---
@@ -296,11 +300,7 @@ membesar saat pengguna memperbesar font di pengaturan browser. Ingatkan bahwa
 
 # Ukuran yang Berubah Tanpa Aturan
 
-- Bayangkan setiap judul ditulis dengan ukuran yang asal
-- 19px di sini, 21px di sana, 23px di tempat lain
-- Pembaca tidak menemukan pintu masuk halamannya
-- Keputusan ukuran pindah dari rasa ke sistem
-- "Terasa terlalu kecil" diganti "ini level 3, jadi 1.25rem"
+![w:1120 Tanpa skala, judul ditulis 19, 21, dan 23 piksel sehingga pembaca tidak menemukan pintu masuk halaman; dengan skala, keputusan ukuran pindah dari rasa ke sistem dan tiap judul punya level yang bisa disebut.](assets/diagrams/bab-04-typography-dan-visual-design-css-15.svg)
 
 > Skala mengubah tebakan menjadi keputusan yang dapat diulang.
 
@@ -309,6 +309,13 @@ Minta mahasiswa membuka file latihan masing-masing dan menghitung berapa ukuran
 judul berbeda yang mereka tulis. Tekankan bahwa yang diperbaiki lebih dulu adalah
 kebiasaan menebak ukuran, bukan angkanya satu per satu. Sebutkan bahwa skala hadir
 di slide berikutnya.
+
+Bacakan dua kolom diagram sebagai satu cerita. Kolom kiri, tanpa skala: bayangkan
+setiap judul ditulis dengan ukuran yang asal — 19px di sini, 21px di sana, 23px di
+tempat lain — sehingga pembaca tidak menemukan pintu masuk halamannya. Kolom kanan,
+dengan skala: keputusan ukuran pindah dari rasa ke sistem; yang tadinya "terasa
+terlalu kecil" diganti "ini level 3, jadi 1.25rem". Tutup dengan kalimat di bawah
+diagram: skala mengubah tebakan menjadi keputusan yang dapat diulang.
 -->
 
 ---
@@ -387,10 +394,7 @@ pendapat, untuk membela setiap keputusan warna di depan tim.
 
 # Tiga Tugas Warna di Antarmuka
 
-- Membangun identitas brand lewat warna utama
-- Mengarahkan perhatian dengan warna aksen
-- Menyampaikan makna lewat warna semantik
-- Jika perannya tidak jelas, warna hanya menjadi kebisingan
+![w:1120 Warna di antarmuka punya tiga tugas: membangun identitas brand lewat warna utama, mengarahkan perhatian dengan warna aksen, dan menyampaikan makna lewat warna semantik.](assets/diagrams/bab-04-typography-dan-visual-design-css-20.svg)
 
 > Inilah yang membedakan toko berwarna dari toko berwarna-warni.
 
@@ -398,6 +402,11 @@ pendapat, untuk membela setiap keputusan warna di depan tim.
 Tekankan tiga perannya satu per satu, lalu tunjukkan satu halaman yang warnanya
 terlalu banyak. Tanyakan warna mana di halaman itu yang punya peran jelas. Jawaban
 yang diharapkan: hanya satu atau dua; sisanya hanya menjadi kebisingan visual.
+
+Tiga tugas yang digambar di slide, dari atas ke bawah: membangun identitas brand
+lewat warna utama, mengarahkan perhatian dengan warna aksen, dan menyampaikan makna
+lewat warna semantik. Ingatkan bahwa jika perannya tidak jelas, warna hanya menjadi
+kebisingan — bukan identitas, bukan penunjuk arah, bukan makna.
 -->
 
 ---

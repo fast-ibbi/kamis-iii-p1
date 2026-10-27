@@ -84,13 +84,7 @@ atau jadi tambal sulam media query.
 
 # Mobile-First vs Desktop-First
 
-| Aspek | Mobile-first | Desktop-first |
-|---|---|---|
-| Gaya dasar | layar kecil, satu kolom | layar besar, multi kolom |
-| Arah media query | `min-width`, menaik | `max-width`, menurun |
-| Cocok buat | website pelanggan umum | dashboard staf, data padat |
-| Risiko utama | layar besar terasa kosong | HP jadi tambalan |
-| Kompensasi | desain ruang buat layar lebar | uji 320–576 px sejak awal |
+![w:1120 Mobile-first menulis gaya dasar untuk layar kecil dengan min-width yang menaik, cocok buat website pelanggan umum, dan kompensasinya merancang ruang buat layar lebar; desktop-first menulis gaya dasar layar besar dengan max-width yang menurun, dan kompensasinya menguji layar kecil sejak awal.](assets/diagrams/bab-13-website-responsif-dan-accessibility-05.svg)
 
 > Keduanya sama-sama sah; bedanya ada di cara berpikir dan risiko yang dijaga.
 
@@ -98,6 +92,13 @@ atau jadi tambal sulam media query.
 Bahas baris "arah media query" paling lama, karena itu yang bakal kelihatan di file
 CSS mahasiswa. Tanyakan strategi mana yang cocok buat Tokosaya, lalu minta alasannya.
 Jawaban yang diharapkan: mobile-first, karena pelanggan umumnya membuka dari HP.
+
+Lima baris perbandingannya ada di gambar, pasangan demi pasangan. Mobile-first — gaya
+dasar: layar kecil, satu kolom; media query min-width, menaik; cocok buat website
+pelanggan umum; risiko: layar besar terasa kosong; kompensasi: desain ruang buat layar
+lebar. Desktop-first — gaya dasar: layar besar, multi kolom; media query max-width,
+menurun; cocok buat dashboard staf, data padat; risiko: HP jadi tambalan; kompensasi:
+uji 320–576 px sejak awal.
 -->
 
 ---
@@ -139,22 +140,21 @@ papan. Tutup dengan kompensasinya: uji layar kecil sejak awal, bukan di akhir.
 
 # Tangga Breakpoint Tokosaya
 
-- Strategi proyek: pilih 2–3 breakpoint, sejajarkan Bootstrap
-- `578px`, `693px`, dan `1024px` itu angka ajaib, susah dirawat
-
-| Lebar | Panggilan | Grid katalog | Navigasi |
-|---|---|---|---|
-| 0 | base | 1 kolom | menumpuk |
-| 576 | sm | 2 kolom | menumpuk |
-| 768 | md | 3 kolom | 1 baris |
-| 992 | lg | 4 kolom | 1 baris |
-| 1200 | xl | 4 kolom | 1 baris |
+![w:1120 Tangga breakpoint dari kiri ke kanan: base satu kolom dengan navigasi menumpuk, sm mulai 576 px dua kolom, md mulai 768 px tiga kolom dengan navigasi satu baris, lg mulai 992 px empat kolom, xl mulai 1200 px tetap empat kolom.](assets/diagrams/bab-13-website-responsif-dan-accessibility-08.svg)
 
 <!--
 Minta mahasiswa membaca tangga ini dari kiri ke kanan dan menyebutkan di lebar berapa
 katalog berubah. Tanyakan kenapa 578px tergolong angka ajaib. Jawaban yang diharapkan:
 angkanya nggak menceritakan maksud apa pun dan nggak selaras dengan Bootstrap. Tutup
 dengan pesan bahwa keputusan breakpoint lahir dari kebutuhan konten, bukan daftar HP.
+
+Isi tangganya: base di lebar 0, 1 kolom · navigasi menumpuk; sm mulai 576 px, 2 kolom
+· navigasi menumpuk; md mulai 768 px, 3 kolom · navigasi 1 baris; lg mulai 992 px, 4
+kolom · navigasi 1 baris; xl mulai 1200 px, 4 kolom · navigasi 1 baris. Kotak md yang
+berwarna aksen itu breakpoint yang dipakai proyek ini bersama lg.
+
+Aturan umumnya: strategi proyek ialah pilih 2–3 breakpoint, sejajarkan Bootstrap.
+Sebaliknya, 578px, 693px, dan 1024px itu angka ajaib, susah dirawat.
 -->
 
 ---
@@ -399,12 +399,7 @@ bahwa target buku ini cuma butir level A dan AA, jadi jangan tenggelam di AAA.
 
 # Peta Butir A/AA yang Dibahas
 
-- Perceivable: `alt` tiap gambar dan `alt=""` buat dekoratif
-- Perceivable: kontras teks cukup, diperiksa di color picker
-- Operable: semua interaksi jalan lewat keyboard
-- Operable: ada jalan menuju konten utama lewat skip link
-- Understandable: heading berurutan, link bermakna, `lang="id"`
-- Robust: pasangan label `for` dan `id` terhubung
+![w:1120 Empat prinsip POUR sebagai cabang butir A/AA: Perceivable lewat alt tiap gambar dan kontras teks, Operable lewat keyboard dan skip link, Understandable lewat heading dan link bermakna, Robust lewat label for yang terhubung ke id.](assets/diagrams/bab-13-website-responsif-dan-accessibility-20.svg)
 
 > Aksesibilitas bukan soal skor saja; alt yang tepat tetap keputusan manusia.
 
@@ -413,6 +408,14 @@ Gunakan slide ini sebagai peta mental sebelum masuk ke praktikum. Tanyakan butir
 yang paling murah diperbaiki tapi paling besar dampaknya. Jawaban yang diharapkan:
 `alt` dan teks link. Ingatkan bahwa alat bantu mempercepat kerja, tapi keputusan soal
 gambar dekoratif atau bermakna tetap butuh orang yang paham konteks.
+
+Peta butir A dan AA ini bercabang empat, mengikuti prinsip POUR dari slide sebelumnya.
+Perceivable — alt tiap gambar dan kontras teks: pasang `alt` di tiap gambar, `alt=""`
+buat yang dekoratif, dan pastikan kontras teks cukup, diperiksa di color picker.
+Operable — keyboard dan skip link: semua interaksi jalan lewat keyboard, dan ada jalan
+menuju konten utama lewat skip link. Understandable — heading dan link bermakna:
+heading berurutan, link bermakna, `lang="id"`. Robust — label for terhubung ke id:
+pasangan label `for` dan `id` terhubung.
 -->
 
 ---
@@ -461,17 +464,21 @@ memindai halaman.
 
 # Link yang Jelas Dibaca Sendiri
 
-- Teks link harus tetap masuk akal dibaca terpisah
-- "Klik di sini" atau "selengkapnya" nggak menyebut tujuan
-- Sebut tujuannya: "Lihat katalog keyboard"
-- Uji: kumpulkan semua link jadi satu daftar, masih jelas?
-- Link ikon kayak keranjang wajib punya `aria-label`
+![w:1120 Link yang nggak jelas cuma bilang klik di sini atau selengkapnya dan ikon keranjang tanpa aria-label; link yang jelas menyebut tujuannya seperti Lihat katalog keyboard, tetap masuk akal dibaca terpisah, dan ikon keranjang wajib punya aria-label.](assets/diagrams/bab-13-website-responsif-dan-accessibility-23.svg)
 
 <!--
 Jalankan uji daftar link bareng-bareng: minta kelas membayangkan semua teks link di
 satu halaman dikumpulkan tanpa kalimat di sekitarnya. Tanyakan mana yang masih bisa
 ditebak. Jawaban yang diharapkan: yang menyebut tujuannya, bukan yang bilang "baca".
 Sebutkan bahwa link ikon keranjang nggak punya teks terlihat, jadi `aria-label` wajib.
+
+Bedakan link nggak jelas dan link jelas. Link nggak jelas: "klik di sini" nggak
+menyebut tujuan, "selengkapnya" nggak menyebut tujuan, dan ikon keranjang tanpa
+aria-label. Link jelas: "Lihat katalog keyboard" menyebut tujuannya, teksnya tetap
+masuk akal dibaca terpisah, dan ikon keranjang wajib punya aria-label.
+
+Aturan umumnya: teks link harus tetap masuk akal dibaca terpisah, dan ujinya ialah
+kumpulkan semua link jadi satu daftar, masih jelas?
 -->
 
 ---
@@ -549,10 +556,7 @@ catat apa yang terjadi.
 <a class="skip-link" href="#konten-utama">Lewati ke konten utama</a>
 ```
 
-- Link ini diletakkan paling awal di dalam `body`
-- Jadi elemen pertama yang menerima fokus pas Tab ditekan
-- `<main id="konten-utama" tabindex="-1">` jadi sasaran lompatan
-- Sesuai kriteria "bypass blocks" pada WCAG
+![w:1120 Urutan skip link: pengguna keyboard menekan Tab pertama dan fokus mendarat di skip link, lalu Enter memindahkan fokus ke konten utama.](assets/diagrams/bab-13-website-responsif-dan-accessibility-27.svg)
 
 <!--
 Tegaskan bahwa posisi elemen ini bukan pilihan gaya, melainkan syarat: harus jadi
@@ -560,6 +564,12 @@ fokus pertama. Uji selalu dengan keyboard, bukan klik, karena klik nggak akan
 menyingkap masalah fokus. Tanyakan apa yang terjadi kalau skip link tertutup elemen
 lain karena `z-index` lebih rendah. Jawaban yang diharapkan: linknya nggak kelihatan
 meski fokusnya udah pindah ke sana.
+
+Urutan yang digambar: pengguna keyboard menekan Tab pertama, fokus mendarat di skip
+link, lalu Enter membuat halaman lompat ke konten utama. Link ini diletakkan paling
+awal di dalam `body`, jadi elemen pertama yang menerima fokus pas Tab ditekan.
+`<main id="konten-utama" tabindex="-1">` jadi sasaran lompatan, dan susunannya sesuai
+kriteria "bypass blocks" pada WCAG.
 -->
 
 ---

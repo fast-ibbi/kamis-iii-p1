@@ -104,39 +104,43 @@ Ingatkan bahwa handoff bukan mengirim file, tapi mengirim keputusan.
 
 # Rantai Lima Tahap
 
-- Brief: tujuan, audiens, dan konten
-- Arsitektur informasi dan sitemap halaman
-- Wireframe: layout tanpa hiasan visual
-- UI design di Figma dengan warna dan ukuran
-- Handoff: desain dibaca lalu diterjemahkan jadi kode
+![w:1120 Lima tahap berurutan: brief berisi tujuan, audiens, dan konten; arsitektur informasi dan sitemap; wireframe berupa layout tanpa hiasan visual; UI design di Figma dengan warna dan ukuran; lalu handoff yang diterjemahkan jadi kode.](assets/diagrams/bab-14-implementasi-desain-figma-ke-html-css-06.svg)
 
 > Implementasi biasanya jauh lebih cepat kalau keputusan desainnya udah beres di depan.
 
 <!--
-Gambarkan rantai ini sebagai urutan yang nggak boleh dibolak-balik. Tanyakan tahap mana
-yang paling sering dilewati tim kecil. Jawaban yang diharapkan: wireframe, karena orang
-mau cepat masuk ke tampilan berwarna. Sebutkan bahwa tiap tahap menambah satu lapis
-keputusan yang nanti disalin ke kode.
+Gambarkan rantai ini sebagai urutan yang nggak boleh dibolak-balik: brief dijabarkan jadi
+arsitektur informasi, arsitektur dirancang jadi wireframe, wireframe dihias jadi UI design,
+lalu UI design diserahkan lewat handoff. Tiap tahap menambah satu lapis keputusan yang
+nanti disalin ke kode.
+
+Isi tiap tahap, buat dibacakan sambil menunjuk pitanya: Brief: tujuan, audiens, dan konten.
+Arsitektur informasi dan sitemap halaman. Wireframe: layout tanpa hiasan visual. UI design
+di Figma dengan warna dan ukuran. Handoff: desain dibaca lalu diterjemahkan jadi kode.
+
+Tanyakan tahap mana yang paling sering dilewati tim kecil. Jawaban yang diharapkan:
+wireframe, karena orang mau cepat masuk ke tampilan berwarna.
 -->
 
 ---
 
 # Prototip Bukan Implementasi
 
-| Pertanyaan | Prototip Figma | Implementasi kode |
-|---|---|---|
-| Bentuknya kayak apa? | simulasi interaktif desain | tampilan di perangkat nyata |
-| Gimana kalau diubah? | cepat dan murah | lewat token yang tertata |
-
-- Prototip menjawab bentuk, implementasi menjawab perilaku
-- Implementasi memuat HTML semantik, CSS bertoken, komponen Bootstrap
-- Prototip cuma di Figma, implementasi jalan di layar mana pun
+![w:1120 Prototip Figma adalah simulasi interaktif desain yang cepat dan murah diubah serta menjawab bentuk; implementasi kode adalah tampilan di perangkat nyata yang diubah lewat token tertata serta menjawab perilaku.](assets/diagrams/bab-14-implementasi-desain-figma-ke-html-css-07.svg)
 
 <!--
 Ini pasangan istilah yang paling sering tertukar di tugas. Tanyakan mana yang perlu diuji
 responsif. Jawaban yang diharapkan: implementasinya, karena prototip cuma menirukan alur
 layar. Tekankan juga bahwa interaktivitas berbasis JavaScript di luar cakupan mata kuliah
 ini, jadi bagian kayak toggle dan carousel diterjemahkan sebagai tampilan statis.
+
+Bentuknya kayak apa? Prototip Figma: simulasi interaktif desain. Implementasi kode:
+tampilan di perangkat nyata. Gimana kalau diubah? Prototip cepat dan murah, implementasi
+lewat token yang tertata.
+
+Lanjutkan dengan tiga pembeda: prototip menjawab bentuk, implementasi menjawab perilaku.
+Implementasi memuat HTML semantik, CSS bertoken, komponen Bootstrap. Prototip cuma di
+Figma, implementasi jalan di layar mana pun.
 -->
 
 ---
@@ -200,18 +204,19 @@ satu antaranak, satu ke tepi.
 
 # Auto Layout Itu Flexbox
 
-- Auto layout menata anak secara otomatis
-- Arahnya bisa searah baris, kolom, atau keduanya
-- Ada jarak antaranak dan padding di tepinya
-- Padanan CSS-nya Flexbox yang kamu pelajari di Bab 6
-- `flex-direction` menentukan arah, `gap` mengatur jarak
-- Baca auto layout jauh lebih gampang kalau udah paham Flexbox
+![w:1120 Auto layout menentukan arah anak bisa searah baris, kolom, atau keduanya, dan jarak antaranak serta padding di tepinya; padanan CSS-nya flex-direction menentukan arah dan gap mengatur jarak.](assets/diagrams/bab-14-implementasi-desain-figma-ke-html-css-11.svg)
 
 <!--
 Pakai contoh baris kartu produk terkait: di Figma dia auto layout searah baris, di kode
 jadi baris Flexbox lewat `d-flex` dan `gap`. Tanyakan kenapa analogi ini berguna. Jawaban
 yang diharapkan: kamu nggak perlu menebak jaraknya, karena tinggal menyalin angka dari
 panel desain. Ingatkan bahwa istilah Figma dan istilah CSS tetap beda.
+
+Tiga fakta yang nggak masuk gambar: auto layout menata anak secara otomatis, padanan
+CSS-nya Flexbox yang kamu pelajari di Bab 6, dan baca auto layout jauh lebih gampang
+kalau udah paham Flexbox. Di gambar, dua baris dipasangkan: arahnya bisa searah baris,
+kolom, atau keduanya dipetakan ke `flex-direction` menentukan arah, dan ada jarak antaranak
+dan padding di tepinya dipetakan ke `gap` mengatur jarak.
 -->
 
 ---
@@ -350,11 +355,7 @@ diperiksa lagi mutunya di Bab 15.
 
 # Lima Langkah Translasi Komponen
 
-- Tulis tujuan komponennya dulu, misalnya "panel detail produk"
-- Pilih elemen semantik, bukan sekadar kotak pembungkus
-- Tentukan kelas Bootstrap buat susunan dan grid
-- Tulis CSS kustom bertoken dengan komentar `/* kustom */`
-- Bandingkan hasilnya dengan frame asli biar nggak bergeser
+![w:1120 Lima langkah berurutan: tulis tujuan komponen, pilih elemen semantik, tentukan kelas Bootstrap, tulis CSS kustom bertoken, lalu bandingkan hasilnya dengan frame asli.](assets/diagrams/bab-14-implementasi-desain-figma-ke-html-css-19.svg)
 
 > Pakai utilitas Bootstrap dulu, lalu tambah CSS kustom secara terkontrol.
 
@@ -363,6 +364,11 @@ Ulang pola lima langkah ini pakai navbar dulu, baru kartu. Tekankan langkah kedu
 produk pakai `<section>` dengan `<h2>`, daftar link pakai `<ul>`. Tanyakan kenapa kelas
 utilitas dipakai lebih dulu. Jawaban yang diharapkan: supaya susunan nggak ditulis ulang
 dan CSS kustom tetap fokus ke warna serta ukuran presisi.
+
+Bacakan kelima langkahnya utuh: tulis tujuan komponennya dulu, misalnya "panel detail
+produk". Pilih elemen semantik, bukan sekadar kotak pembungkus. Tentukan kelas Bootstrap
+buat susunan dan grid. Tulis CSS kustom bertoken dengan komentar `/* kustom */`.
+Bandingkan hasilnya dengan frame asli biar nggak bergeser.
 -->
 
 ---
@@ -436,18 +442,19 @@ interpretasi bebas kalau makin lengkap.
 
 # Token Tiga Lapis, Nama Berperan
 
-- Lapis satu: color style dan text style di Figma
-- Lapis dua: blok `:root` di `css/style.css`
-- Lapis tiga: pemakaiannya di kelas komponen
-- Nama variabel mengikuti peran, bukan warnanya
-- Jadi `--clr-primary` tetap masuk akal kalau indigo diganti hijau
-- Nilai token dipakai lewat CSS kustom, nggak menimpa utilitas diam-diam
+![w:1120 Tiga lapis token: color style dan text style di Figma, lalu blok :root di css/style.css, lalu pemakaiannya di kelas komponen lewat nilai token.](assets/diagrams/bab-14-implementasi-desain-figma-ke-html-css-23.svg)
 
 <!--
 Tekankan aturan emasnya: nama variabel mengikuti peran. Tanyakan apa yang terjadi kalau
 suatu hari desainer mengganti indigo jadi hijau. Jawaban yang diharapkan: cukup blok
 `:root` yang disalin ulang, nama kelas dan komponennya nggak perlu berubah. Sebutkan juga
 pilihan resmi menimpa variabel tema Bootstrap, plus peringatannya soal versi.
+
+Sebutkan ketiga lapisnya utuh: lapis satu color style dan text style di Figma, lapis dua
+blok `:root` di `css/style.css`, lapis tiga pemakaiannya di kelas komponen. Nama variabel
+mengikuti peran, bukan warnanya, jadi `--clr-primary` tetap masuk akal kalau indigo diganti
+hijau. Ingatkan juga bahwa nilai token dipakai lewat CSS kustom, nggak menimpa utilitas
+diam-diam.
 -->
 
 ---

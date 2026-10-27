@@ -67,14 +67,7 @@ layar ujinya mulai dari HP sempit sampai monitor 24 inci.
 
 # Kenapa Box Model Belum Cukup
 
-| Pertanyaan | Yang menjawab |
-|---|---|
-| Ukuran dan jarak satu kotak | Box model Bab 5 |
-| Sisa ruang dibagi ke tiga kotak | Flexbox |
-
-- Box model mengatur kotak satu per satu
-- Flexbox membagi ruang antarkotak
-- Dulu disiasati `float` dan margin negatif
+![w:1120 Box model mengatur kotak satu per satu dan menjawab ukuran serta jarak satu kotak; flexbox membagi ruang antarkotak dan menjawab sisa ruang yang dibagi.](assets/diagrams/bab-06-flexbox-untuk-web-layout-04.svg)
 
 > Satu properti di wadah, anak-anaknya ikut tertata.
 
@@ -83,6 +76,13 @@ Tekankan bahwa box model nggak salah, cuma belum menjangkau pertanyaan pembagian
 ruang. Tanyakan siapa yang pernah pakai `float` buat menu sejajar dan repot pas
 footer jatuh ke bawah. Jawaban yang diharapkan: `float` dibuat buat teks mengalir
 di sekitar gambar, bukan buat layout. Jadi flexbox itu modul khusus antarmuka.
+
+Bacakan dua kolom di gambar sebagai satu kalimat: box model mengatur kotak satu per
+satu, sedangkan flexbox membagi ruang antarkotak. Lalu pasangkan pertanyaan dengan
+penjawabnya: box model menjawab ukuran dan jarak satu kotak, sementara flexbox
+menjawab sisa ruang yang dibagi ke tiga kotak. Sebelum flexbox, pembagian
+ruang disiasati `float` dan margin negatif, dan hasilnya gampang rusak pas footer
+jatuh ke bawah.
 -->
 
 ---
@@ -159,11 +159,13 @@ cross axis. Ingatkan bahwa dua sumbu ini tempat `justify-content` dan
 
 ---
 
-<!-- _class: compact -->
-
 # Peran Sumbu Bertukar
 
-```text
+![w:1120 Pada flex-direction row, main axis horizontal kiri ke kanan dan cross axis vertikal atas ke bawah; pada column, main axis vertikal atas ke bawah dan cross axis horizontal kiri ke kanan.](assets/diagrams/bab-06-flexbox-untuk-web-layout-09.svg)
+
+<!--
+Bacakan dua kelompok di bawah apa adanya, biar urutan sumbunya terdengar jelas:
+
 flex-direction: row
 main axis  : horizontal, kiri ke kanan
 cross axis : vertikal, atas ke bawah
@@ -171,16 +173,13 @@ cross axis : vertikal, atas ke bawah
 flex-direction: column
 main axis  : vertikal, atas ke bawah
 cross axis : horizontal, kiri ke kanan
-```
 
-- `justify-content` selalu mengurus main axis
-- `align-items` selalu mengurus cross axis
-
-<!--
 Minta kelas menutup mata dan menyebut ulang sumbu mana yang vertikal pada
 `column`. Jawaban yang diharapkan: main axis-nya vertikal, cross axis-nya
 horizontal, jadi perannya bertukar. Tekankan bahwa nama propertinya nggak
-berubah, cuma arah kerjanya yang pindah. Ini bekal buat bagian hero nanti.
+berubah, cuma arah kerjanya yang pindah. Sebutkan dua aturan tetapnya:
+`justify-content` selalu mengurus main axis, dan `align-items` selalu mengurus
+cross axis. Ini bekal buat bagian hero nanti.
 -->
 
 ---
@@ -291,18 +290,18 @@ memberi `center` pada baris kartu justru bikin kartunya bergelombang.
 
 # gap: Jarak Tanpa Margin Ganda
 
-- `gap` memberi jarak antar-flex item
-- Nggak ada margin nyempil di tepi terluar
-- Cara lama: `margin-right` tiap anak plus `:last-child`
-- `row-gap` dan `column-gap` buat nilai berbeda
+![w:1120 Dengan margin, jaraknya dibuat lewat margin-right tiap anak plus :last-child sehingga margin nyempil di tepi terluar; dengan gap, jarak lahir antar item dan tidak ada margin di tepi terluar.](assets/diagrams/bab-06-flexbox-untuk-web-layout-15.svg)
 
 > Jarak cuma lahir di antara item, tepi wadah tetap bersih.
 
 <!--
-Tanyakan kenapa margin di tiap anak menyusahkan. Jawaban yang diharapkan: margin
-ikut nyempil di tepi terluar jadi tampilan terasa nggak simetris, lalu kita
-terpaksa membersihkannya satu per satu. Sebutkan bahwa sejak flexbox, `gap` juga
-didukung Grid, jadi kebiasaan ini kepakai terus di Bab 7.
+Gambar ini dua kolom: MARGIN TIAP ANAK lawan GAP. Tanyakan kenapa margin di tiap
+anak menyusahkan. Jawaban yang diharapkan: margin ikut nyempil di tepi terluar jadi
+tampilan terasa nggak simetris, lalu kita terpaksa membersihkannya satu per satu.
+Cara lamanya `margin-right` tiap anak plus `:last-child`; cara barunya `gap`
+memberi jarak antar-flex item, jadi nggak ada margin nyempil di tepi terluar.
+Sebutkan bahwa `row-gap` dan `column-gap` bisa beda nilai, dan bahwa sejak flexbox
+`gap` juga didukung Grid, jadi kebiasaan ini kepakai terus di Bab 7.
 -->
 
 ---
@@ -515,18 +514,19 @@ kartu lain. Sebutkan juga `auto` yang artinya ikut wadah. Ingatkan bahwa
 
 # order dan Disiplinnya
 
-- Item diurutkan berdasarkan nilai `order`, default 0
-- Angka kecil mendahului angka besar
-- `order` cuma mengubah urutan visual
-- Urutan dokumen HTML tetap asli
-- Pembaca layar dan tombol Tab ikut urutan dokumen
-- Pakai buat penyesuaian kecil, bukan menyusun ulang konten
+![w:1120 Urutan visual diurutkan berdasarkan nilai order dan bisa berbeda; urutan dokumen HTML tetap asli, dan pembaca layar serta tombol Tab ikut urutan dokumen.](assets/diagrams/bab-06-flexbox-untuk-web-layout-26.svg)
 
 <!--
 Angkat isu moralnya, jangan cuma teknis. Tanyakan apa risikonya buat pengguna
 pembaca layar. Jawaban yang diharapkan: yang mereka dengar beda urutan dengan
 yang dilihat mata, jadi mereka bisa tersesat. Tekankan aturan yang aman: urutan
 dokumen selalu logis lebih dulu, baru CSS menyesuaikan sedikit.
+
+Lengkapi gambar dengan dua fakta yang belum tampak di sana: item diurutkan berdasarkan nilai
+`order`, default 0, dan angka kecil mendahului angka besar. Ingatkan bahwa `order`
+cuma mengubah urutan visual, sedangkan urutan dokumen HTML tetap asli — pembaca
+layar dan tombol Tab ikut urutan dokumen. Aturan pakainya: `order` buat penyesuaian
+kecil, bukan menyusun ulang konten.
 -->
 
 ---
@@ -548,19 +548,22 @@ tampilan cantik, tapi wadah mana yang mengatur apa.
 
 # Pola 1: Navigasi Horizontal
 
-- `<nav>` dijadikan flex container
-- Menu dan keranjang dibungkus jadi satu kelompok kanan
-- Kelompok kanan didorong pakai `space-between`
-- Atau `margin-left: auto` yang lebih ringkas
+![w:1120 Struktur site-nav: wadah flex punya dua anak langsung, merek dan kelompok kanan; kelompok kanan berisi menu dan keranjang, jadi ia turun sebagai satu blok.](assets/diagrams/bab-06-flexbox-untuk-web-layout-28.svg)
 
 > Wrap yang terkontrol: seluruh kelompok turun sebagai satu blok.
 
 <!--
+Bacakan pohonnya dulu: wadah `.site-nav` punya dua anak langsung, di kiri merek, di
+kanan kelompok kanan yang berisi menu dan keranjang. Karena menu dan keranjang
+dibungkus jadi satu kelompok kanan, seluruh kelompok kanan turun sebagai satu blok
+pas layar sempit.
+
 Tanyakan kenapa kelompok kanan perlu dibungkus elemen sendiri. Jawaban yang
 diharapkan: `space-between` bekerja paling pas dengan dua anak langsung, kalau
 anaknya tiga ruang kosongnya menyebar ke tengah dan baris kedua jadi pincang.
-Sebutkan bahwa menu hamburger butuh JavaScript, jadi bab ini pakai `wrap` yang
-murni CSS.
+Sebutkan bahwa kelompok kanan didorong pakai `space-between`, atau `margin-left:
+auto` yang lebih ringkas. Ingatkan juga bahwa menu hamburger butuh JavaScript, jadi
+bab ini pakai `wrap` yang murni CSS.
 -->
 
 ---
@@ -731,17 +734,17 @@ jendela di DevTools biar penekukannya kelihatan.
 
 # Kapan Grid Lebih Baik
 
-| Situasi | Pilih |
-|---|---|
-| Sebaris item dengan panjang alami | Flexbox + `flex-wrap` |
-| Kolom footer yang boleh menumpuk | Flexbox + `flex-wrap` |
-| Menengahkan satu gugus konten | Flexbox |
-| Katalog dengan jumlah kolom pasti | Grid (Bab 7) |
-| Struktur halaman dua dimensi | Grid (Bab 7) |
+![w:1120 Pilihan alat menurut situasi: Flexbox untuk sebaris item dengan panjang alami, kolom footer yang boleh menumpuk, dan menengahkan satu gugus konten; Grid untuk katalog dengan jumlah kolom pasti dan struktur halaman dua dimensi.](assets/diagrams/bab-06-flexbox-untuk-web-layout-34.svg)
 
 Flexbox itu satu dimensi: tiap baris diatur lokal dan nggak mengatur baris lain.
 
 <!--
+Slide ini soal pilih alat, jadi bacakan percabangannya: cabang Flexbox buat sebaris
+item dengan panjang alami, buat kolom footer yang boleh menumpuk, dan buat
+menengahkan satu gugus konten. Cabang Grid (Bab 7) buat katalog dengan jumlah kolom
+pasti dan buat struktur halaman dua dimensi. Dua situasi pertama di cabang Flexbox
+sama-sama pakai `flex-wrap`.
+
 Tanyakan sinyal desain apa yang bikin kamu pindah ke Grid. Jawaban yang
 diharapkan: kebutuhan jumlah kolom yang pasti dan rata antar-baris. Tegaskan
 bahwa keduanya nanti dipakai bareng: Grid mengurus rangka halaman, flexbox

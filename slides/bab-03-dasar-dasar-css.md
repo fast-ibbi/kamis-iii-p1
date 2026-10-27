@@ -49,14 +49,9 @@ pas aturan bertabrakan.
 
 # Struktur Rapi, Tampilan Belum
 
-Pemilik Tokosaya membuka link pratinjau, melihat sebentar, lalu bertanya.
+![w:1120 Empat keluhan pemilik Tokosaya saat membuka pratinjau, dan penyebab sebenarnya di tiap baris: font serif bawaan, gaya bawaan browser, belum ada aturan gaya, dan pesaing yang sudah punya lapisan penataan.](assets/diagrams/bab-03-dasar-dasar-css-03.svg)
 
-| Yang dia lihat | Yang sebenarnya terjadi |
-|---|---|
-| Semua huruf terasa sama | Browser memakai font serif bawaan |
-| Link biru tua bergaris bawah | Gaya bawaan browser, bukan pilihan kita |
-| Tak ada warna brand Tokosaya | Belum ada satu aturan gaya pun |
-| Website pesaing tampak rapi | Mereka udah punya lapisan penataan |
+Pemilik Tokosaya membuka link pratinjau, melihat sebentar, lalu bertanya.
 
 > HTML menyimpan struktur dan isi. Keputusan visualnya ditulis terpisah di CSS.
 
@@ -66,6 +61,12 @@ tampilannya kayak dokumen lama. Tanyakan siapa yang pernah melihat halaman HTML
 tanpa CSS. Jawaban yang diharapkan: yang tampak itu gaya bawaan browser, bukan
 keputusan kita. Tekankan bahwa HTML kedua toko sama-sama semantik; bedanya di
 lapisan penataan.
+
+Bacakan pasangan keluhannya sambil menunjuk tiap baris gambar. Yang dia lihat:
+semua huruf terasa sama, link biru tua bergaris bawah, tak ada warna brand
+Tokosaya, website pesaing tampak rapi. Yang sebenarnya terjadi: browser memakai
+font serif bawaan, gaya bawaan browser bukan pilihan kita, belum ada satu aturan
+gaya pun, mereka udah punya lapisan penataan.
 -->
 
 ---
@@ -253,11 +254,7 @@ di praktikum Tokosaya.
 
 # Tiga Selector Dasar
 
-| Selector | Penulisan | Kapan dipakai |
-|---|---|---|
-| Elemen | `p`, `h1`, `a` | aturan global buat semua elemen bertipe itu |
-| Class | `.hero-title` | gaya yang dipakai ulang di banyak elemen |
-| ID | `#pengantar` | satu titik jangkar khusus per halaman |
+![w:1120 Tiga jenis selector bercabang dari satu konsep: elemen untuk aturan global semua elemen bertipe itu, class untuk gaya yang dipakai ulang di banyak elemen, dan id untuk satu titik jangkar khusus per halaman.](assets/diagrams/bab-03-dasar-dasar-css-12.svg)
 
 > Kalau gaya itu bakal muncul lagi di tempat lain, yang kamu butuh adalah class.
 
@@ -266,6 +263,12 @@ Minta mahasiswa memilih selector buat tiga kebutuhan sebelum kamu menunjukkan
 jawabannya. Tekankan aturan praktisnya: class buat gaya yang berulang, ID buat
 yang benar-benar cuma satu. Ingatkan bahwa selector elemen nggak melihat konteks,
 jadi paragraf di footer ikut berubah.
+
+Tiga jenisnya: elemen — global buat semua elemen bertipe itu; class — gaya yang
+dipakai ulang di banyak elemen; id — satu titik jangkar khusus per halaman.
+Penulisannya: `p`, `h1`, `a` untuk elemen, `.hero-title` untuk class, dan
+`#pengantar` untuk id. Tanyakan mana yang cocok buat gaya tombol yang muncul di
+tiga halaman; jawabannya class.
 -->
 
 ---
@@ -526,53 +529,48 @@ Ingatkan bahwa `!important` sah, tapi bikin aturan berikutnya makin susah diatur
 
 # Alur Keputusan Kaskade
 
-```text
-  1. Kumpulkan semua aturan yang menyasar elemen.
-  2. Saring berdasar asal: user-agent < aturan yang kita tulis.
-  3. Urutkan dengan specificity: inline > id > class > elemen.
-  4. Bila semuanya setara, aturan yang ditulis paling akhir menang.
-```
-
-- Langkah 3 dan 4 paling sering bikin bingung pas pertama belajar
-- Urutan penulisan baru dipakai kalau kekhususannya setara
+![w:1120 Empat langkah kaskade: kumpulkan semua aturan yang menyasar elemen, saring berdasar asal, urutkan dengan specificity, lalu bila semuanya setara aturan yang ditulis paling akhir menang.](assets/diagrams/bab-03-dasar-dasar-css-24.svg)
 
 <!--
 Bacakan empat langkah ini pelan-pelan; ini rangkuman yang paling sering dipakai pas
 debugging. Siapkan satu contoh konflik sederhana di papan dan jalankan langkahnya
 bareng-bareng. Tekankan bahwa urutan penulisan bukan penentu pertama.
+
+Langkahnya, sesuai urutan gambar: Kumpulkan — semua aturan yang menyasar elemen.
+Saring asal — user-agent di bawah aturan kita. Specificity — inline, id, class,
+elemen. Urutan tulis — yang terakhir menang. Rantainya: kumpulkan semua aturan yang
+menyasar elemen, lalu saring berdasar asal (`user-agent < aturan yang kita tulis`),
+urutkan dengan specificity (`inline > id > class > elemen`), dan kalau setara aturan
+yang ditulis paling akhir menang. Langkah 3 dan 4 paling sering bikin bingung pas
+pertama belajar; urutan penulisan baru dipakai kalau kekhususannya setara.
 -->
 
 ---
 
 # Membaca Specificity
 
+![w:1120 Tangga specificity dari terkuat ke terlemah: gaya inline menang atas semuanya, selector ID, elemen dengan class, class atau pseudo-class, dan selector elemen yang paling lemah.](assets/diagrams/bab-03-dasar-dasar-css-25.svg)
+
 Specificity dinilai sebagai pasangan tiga angka `(id, class, elemen)`.
 
-| Bentuk aturan | Contoh selector | Specificity | Kekuatan |
-|---|---|---|---|
-| Selector elemen | `p` | (0, 0, 1) | paling lemah |
-| Class atau pseudo-class | `.note`, `:hover` | (0, 1, 0) | menang atas elemen |
-| Elemen + class | `p.note` | (0, 1, 1) | menang atas `.note` |
-| Selector ID | `#pengumuman` | (1, 0, 0) | menang atas semua class |
-| Gaya inline | `style="color: #DC2626"` | tertinggi | menang atas semuanya |
-
 <!--
-Ajari kelas membaca tiga angka itu sebagai tiga tingkat, bukan satu bilangan. Minta
-mereka menghitung specificity `p#pengurusan.note` sebelum kamu tunjukkan jawabannya:
-(1, 1, 1). Ingatkan bahwa satu angka id selalu mengalahkan berapa pun jumlah class.
+Ajari kelas membaca tiga angka itu sebagai tiga tingkat, bukan satu bilangan: selector
+elemen (0, 0, 1) paling lemah, class atau pseudo-class (0, 1, 0) menang atas elemen,
+elemen + class (0, 1, 1) menang atas class, selector ID (1, 0, 0) menang atas semua
+class, dan gaya inline tertinggi menang atas semuanya.
+
+Minta mereka menghitung specificity `p#pengurusan.note` sebelum kamu tunjukkan
+jawabannya: (1, 1, 1). Ingatkan bahwa satu angka id selalu mengalahkan berapa pun
+jumlah class. Bentuk penulisan tiap tingkat: `p` buat elemen, `.note` atau `:hover`
+buat class dan pseudo-class, `p.note` buat elemen + class, `#pengumuman` buat ID, dan
+`style="color: #DC2626"` buat gaya inline.
 -->
 
 ---
 
 # Inheritance: yang Diwarisi dan Bukan
 
-| Kelompok properti | Diwariskan | Contoh |
-|---|---|---|
-| Properti teks | iya | `color`, `font-family`, `line-height` |
-| Properti kotak | nggak | `border`, `padding`, `margin`, `background-color` |
-
-- `color` pada `body` cukup buat jadi warna default hampir semua teks
-- Kalau `border` ikut diwarisi, tiap anak menyalin tepi induknya
+![w:1120 Properti teks seperti color, font-family, dan line-height diwariskan ke anak; properti kotak seperti border, padding, margin, dan background-color tidak diwariskan.](assets/diagrams/bab-03-dasar-dasar-css-26.svg)
 
 > Pewarisan itu kayak warna mata yang diturunkan dari orang tua ke anak.
 
@@ -581,6 +579,11 @@ Tanyakan kenapa `border` sengaja nggak diwariskan. Jawaban yang diharapkan: kala
 diwariskan, setiap elemen anak ikut menyalin tepi induknya dan halaman jadi penuh
 garis. Lanjutkan dengan menunjukkan bahwa `line-height: 1.6` di `body` langsung
 berlaku ke seluruh teks di praktikum.
+
+Kelompok properti teks diwariskan: `color`, `font-family`, `line-height`. Kelompok
+properti kotak tidak diwariskan: `border`, `padding`, `margin`, `background-color`.
+Tekankan akibatnya: `color` pada `body` cukup buat jadi warna default hampir semua
+teks, sedangkan kalau `border` ikut diwarisi, tiap anak menyalin tepi induknya.
 -->
 
 ---

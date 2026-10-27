@@ -122,11 +122,9 @@ langsung mengikuti kode rekannya. Tekankan bahwa review jadi lebih cepat.
 
 # Batas Tanpa JavaScript
 
-- Sebagian komponen dirancang jalan lengkap dengan paket JavaScript
-- Mata kuliah ini cuma memakai lapisan visual komponen
-- Status statis ditulis manual: `show`, `collapsed`, `active`, `disabled`
-- Komponen interaktif diperlihatkan sebagai versi mati, kayak storyboard
-- Pendekatan ini jujur: kamu tahu bagian mana yang butuh JavaScript
+![w:1120](../../../../../tmp/outtest/bab-10-komponen-bootstrap-07.svg)
+
+![w:1120 Tanpa JavaScript lapisan visual komponen tetap jalan penuh dengan status statis manual dan komponen interaktif yang berhenti seperti storyboard; dengan JavaScript perilaku interaktif datang dari paket resmi Bootstrap.](assets/diagrams/bab-10-komponen-bootstrap-07.svg)
 
 > Interaksi aslinya dirangkai paket JavaScript resmi Bootstrap.
 
@@ -135,6 +133,15 @@ Katakan dengan jelas bahwa mata kuliah ini nggak memuat paket JavaScript Bootstr
 Tanyakan apa yang terjadi kalau tombol hamburger ditekan tanpa paket itu. Jawaban
 yang diharapkan: nggak ada efek apa pun pada menu. Tegaskan bahwa versi statis bukan
 kelemahan, tapi cara jujur menunjukkan batas HTML dan CSS.
+
+Panel kiri gambar itu keadaan TANPA JAVASCRIPT yang dipakai sepanjang bab: lapisan
+visual komponen tetap jalan penuh, status statis ditulis manual: `show`, `collapsed`,
+`active`, `disabled`, dan komponen interaktif jadi versi mati, kayak storyboard.
+Panel kanan DENGAN JAVASCRIPT: perilaku interaktif datang dari paket JavaScript resmi
+Bootstrap, jadi tombol hamburger benar-benar membuka menu. Sebagian komponen memang
+dirancang jalan lengkap dengan paket JavaScript, sedangkan mata kuliah ini cuma
+memakai lapisan visual komponen. Pendekatan ini jujur: kamu tahu bagian mana yang
+butuh JavaScript.
 -->
 
 ---
@@ -358,22 +365,22 @@ informasi. Ingatkan bahwa kartu nanti dipakai lagi di Bab 12 sebagai design syst
 
 # Anatomi Kelas Card
 
-| Kelas | Peran |
-|---|---|
-| `card` | Bingkai kartu |
-| `card-img-top` | Gambar menempel tepi atas dan menikung ikut lingkar kartu |
-| `card-body` | Ruang isi kartu |
-| `card-title` | Judul kartu |
-| `card-text` | Paragraf isi kartu |
+![w:1120](../../../../../tmp/outtest/bab-10-komponen-bootstrap-17.svg)
 
-- `card-subtitle` buat keterangan kecil di bawah judul
-- `card h-100` bikin kartu mengisi penuh tinggi kolom grid
+![w:1120 Kelas card adalah bingkai kartu; di dalamnya card-img-top menempelkan gambar ke tepi atas, dan card-body membuka ruang isi yang memuat card-title untuk judul serta card-text untuk paragraf.](assets/diagrams/bab-10-komponen-bootstrap-17.svg)
 
 <!--
 Tekankan bahwa satu kelas `card` melahirkan kartu produk, kartu buku, sampai kartu
 ruang ujian. Tanyakan kelas mana yang bikin gambar menempel tepi atas kartu. Jawaban
 yang diharapkan: `card-img-top`. Sebutkan bahwa tanpa kelas itu gambar tetap tampil,
 tapi nggak menyatu dengan bingkai kartunya.
+
+Bacakan gambar ini sebagai containment, bukan sebagai daftar. `card` adalah bingkai
+kartu. Anaknya dua: `card-img-top` — menempel di tepi atas dan menikung ikut
+lingkar kartu — dan `card-body` — ruang isi kartu. Di dalam `card-body` ada
+`card-title` — judul kartu — dan `card-text` — paragraf isi kartu. Dua pelengkap yang
+nggak masuk gambar: `card-subtitle` buat keterangan kecil di bawah judul, dan
+`card h-100` bikin kartu mengisi penuh tinggi kolom grid.
 -->
 
 ---
@@ -438,12 +445,9 @@ menunjuk gaya kustom yang ditulis terpisah di `css/style.css`.
 
 # Kenapa Harga Sejajar di Dasar
 
-- `h-100` menyamakan tinggi kartu dengan kolom gridnya
-- `d-flex flex-column` menyusun isi kartu menurun
-- `mt-auto` mendorong harga dan tombol menempel dasar kartu
-- Deskripsi produk boleh beda panjang, harga tetap sejajar
-- Itulah pakem harga menempel dasar kartu di Tokosaya
-- Judul `h3` memakai kelas ukuran `h6` biar outline tetap benar
+![w:1120](../../../../../tmp/outtest/bab-10-komponen-bootstrap-20.svg)
+
+![w:1120 h-100 menyamakan tinggi kartu dengan kolom grid, d-flex flex-column menyusun isi menurun, mt-auto mendorong harga ke dasar kartu, sehingga harga sejajar walau deskripsi beda panjang.](assets/diagrams/bab-10-komponen-bootstrap-20.svg)
 
 <!--
 Ketiga utilitas ini sering dilupakan, padahal inilah pakem katalog Tokosaya.
@@ -451,11 +455,23 @@ Tanyakan apa yang terjadi kalau deskripsi delapan produk panjangnya beda-beda.
 Jawaban yang diharapkan: kartu tetap rata atas dan bawah karena harga menempel dasar.
 Minta mahasiswa menulis ketiga kelas itu sekali, lalu menyalinnya buat tujuh kartu
 sisa, bukan menulis ulang dari nol.
+
+Urutan di gambar itu penjumlahan, bukan pilihan: `h-100` — tinggi kartu ikut kolom
+grid, ditambah `d-flex flex-column` — isi kartu menyusun menurun, ditambah `mt-auto` —
+harga didorong ke dasar kartu, sama dengan harga sejajar walau deskripsi beda panjang.
+`h-100` menyamakan tinggi kartu dengan kolom gridnya, dan `mt-auto` mendorong harga
+dan tombol menempel dasar kartu. Itulah pakem harga menempel dasar kartu di Tokosaya.
+Satu catatan kecil yang nggak masuk gambar: judul `h3` memakai kelas ukuran `h6` biar
+outline tetap benar.
 -->
 
 ---
 
 # Kartu Hidup di Dalam Grid
+
+![w:1120](../../../../../tmp/outtest/bab-10-komponen-bootstrap-21.svg)
+
+![w:1120 Wadah konten berupa card h-100 dengan isi gambar, badge, judul, harga, dan tombol; wadah layout berupa row g-4 yang mengendalikan jarak antarkartu dan col-12 col-sm-6 col-lg-3 yang membagi 1-2-4 kolom.](assets/diagrams/bab-10-komponen-bootstrap-21.svg)
 
 ```html
 <div class="row g-4">
@@ -465,17 +481,18 @@ sisa, bukan menulis ulang dari nol.
 </div>
 ```
 
-- Kartu nggak berdiri sendiri: ia duduk di dalam sel grid
-- Delapan kartu berputar jadi 1-2-4 kolom pas layar melebar
-- Satu baris `row g-4` mengendalikan jarak antarkartu
-- `card-group` menempelkan kartu jadi satu bingkai, cocok buat galeri
-- Pisahkan wadah konten (kartu) dari wadah layout (grid)
-
 <!--
 Tekankan pemisahan wadah konten dan wadah layout, karena itu yang bikin komponen
 gampang disusun ulang. Tanyakan apa untungnya kartu duduk di dalam sel grid, bukan
 di `card-group`. Jawaban yang diharapkan: jarak antarkartu terkendali `g-4` dan
 susunannya bisa diubah kapan pun. Sebutkan bahwa pola 1-2-4 kolom berasal dari Bab 9.
+
+Kartu nggak berdiri sendiri: ia duduk di dalam sel grid. Sisi kiri gambar itu wadah
+konten — `card h-100` — bingkai kartu produk, dengan isi kartu: gambar, badge, judul,
+harga, tombol. Sisi kanan wadah layout: `row g-4` mengendalikan jarak antarkartu, dan
+`col-12 col-sm-6 col-lg-3` membagi 1-2-4 kolom pas layar melebar, jadi delapan kartu
+berputar jadi 1-2-4 kolom. `card-group` menempelkan kartu jadi satu bingkai, cocok
+buat galeri, tapi bukan pilihan Tokosaya.
 -->
 
 ---
@@ -679,21 +696,27 @@ ketiga komponen interaktif ini alasan utama tim memuat paket JavaScript resmi.
 
 # Bootstrap Icons dan Tiga Aturan Praktis
 
+![w:1120](../../../../../tmp/outtest/bab-10-komponen-bootstrap-29.svg)
+
+![w:1120 Ikon dekoratif yang duduk di sebelah kata yang menjelaskan diberi aria-hidden true; ikon yang berdiri sendiri tanpa kata pendamping butuh aria-label.](assets/diagrams/bab-10-komponen-bootstrap-29.svg)
+
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 ```
 
-- Ikon dipasang dengan pasangan kelas `bi bi-nama-ikon`
-- Ukuran mengikuti teks, warna mewarisi kelas `text-*` wadahnya
-- Ikon dekoratif di sebelah kata diberi `aria-hidden="true"`
-- Ikon berdiri sendiri tanpa kata pendamping butuh `aria-label`
-- Ikon memang berulang: `bi bi-cart3`, `bi bi-funnel`, `bi bi-chevron-left`
-
 <!--
 Tunjukkan ikon keranjang langsung di layar, lalu matikan sementara link CDN-nya.
 Tanyakan apa yang muncul. Jawaban yang diharapkan: nama kelas ikon atau kotak kosong,
 tanda file ikon belum termuat. Ingatkan urutan link: Icons sebelum `css/style.css`.
+
+Dua aturan aksesibilitas itu yang digambar. Ikon dekoratif di sebelah kata yang
+menjelaskan diberi `aria-hidden="true"` supaya pembaca layar melewatinya dan tidak
+menyebut nama ikon. Ikon berdiri sendiri tanpa kata pendamping butuh
+`aria-label` supaya pembaca layar tahu tombol itu apa. Aturan selebihnya: ikon
+dipasang dengan pasangan kelas `bi bi-nama-ikon`, ukuran mengikuti teks, warna
+mewarisi kelas `text-*` wadahnya. Ikon memang berulang: `bi bi-cart3`,
+`bi bi-funnel`, `bi bi-chevron-left`.
 -->
 
 ---

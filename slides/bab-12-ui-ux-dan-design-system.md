@@ -87,12 +87,7 @@ selera. Semua istilah di bagian ini akan muncul lagi pas meninjau styleguide.
 
 # UI dan UX
 
-- UI: seluruh wajah visual yang dilihat dan disentuh pengguna
-- Layout, warna, huruf, tombol, sampai ikon navigasi
-- UX: seluruh rasa dan hasil selama memakai halaman
-- Mulai dari membuka halaman sampai selesai berbelanja
-- Analogi restoran: UI suasananya, UX pengalaman makannya
-- Keduanya menentukan apakah sistem benar-benar dipakai
+![w:1120 UI adalah seluruh wajah visual yang dilihat dan disentuh pengguna; UX adalah seluruh rasa dan hasil selama memakai halaman.](assets/diagrams/bab-12-ui-ux-dan-design-system-05.svg)
 
 <!--
 Bedakan dua istilah ini pelan-pelan karena sering tertukar; kalau ada koneksi, bandingkan
@@ -100,6 +95,12 @@ dua portal kampus di browser biar bedanya terasa. Tanyakan: warna tombol itu
 UI atau UX? Jawaban yang diharapkan: UI, sedangkan "saya percaya website ini" adalah UX.
 Tekankan bahwa di proyek sistem informasi, keduanya menentukan apakah portal benar-benar
 dipakai orang, bukan cuma selesai dibangun.
+
+Bacakan panelnya sebagai dua lajur yang menjawab sumbu yang sama. UI adalah seluruh
+wajah visual yang dilihat dan disentuh pengguna — layout, warna, huruf, tombol, sampai
+ikon navigasi. UX adalah seluruh rasa dan hasil selama memakai halaman, mulai dari
+membuka halaman sampai selesai berbelanja. Analogi restoran: UI suasananya, UX pengalaman
+makannya. Keduanya menentukan apakah sistem benar-benar dipakai.
 -->
 
 ---
@@ -391,18 +392,19 @@ tim industri.
 
 # Token Primitif dan Token Semantik
 
-- Primitif menyebut nilai tanpa konteks: "indigo 600"
-- Semantik menyebut peran: `--clr-danger` buat pesan bahaya
-- Peran lebih stabil daripada nilai
-- Merek boleh berganti, makna "bahaya" tetap sama
-- Token ditulis sekali di `:root`, lalu dikonsumsi `var()`
-- Nilai mentah `#4F46E5` di halaman bikin sistem bocor
+![w:1120 Token primitif menyebut nilai tanpa konteks seperti indigo 600, token semantik menyebut peran seperti clr-danger; peran lebih stabil daripada nilai.](assets/diagrams/bab-12-ui-ux-dan-design-system-20.svg)
 
 <!--
 Ini slide terpenting di bagian token; pelankan penyampaiannya. Tanyakan kenapa token
 semantik lebih tahan lama daripada token primitif. Jawaban yang diharapkan: karena
 peran nggak ikut berubah pas nilainya diganti. Tekankan disiplin `var()`: kalau satu
 halaman menulis nilai mentah, perubahan warna utama nanti cuma kena sebagian tombol.
+
+Bandingkan dua cara menamai di gambar. Primitif menyebut nilai tanpa konteks:
+"indigo 600". Semantik menyebut peran: `--clr-danger` buat pesan bahaya. Peran lebih
+stabil daripada nilai; merek boleh berganti, makna "bahaya" tetap sama. Token ditulis
+sekali di `:root`, lalu dikonsumsi `var()`, dan nilai mentah `#4F46E5` di halaman bikin
+sistem bocor.
 -->
 
 ---
@@ -454,12 +456,7 @@ selera, karena teks putih di atasnya harus tetap nyaman dibaca.
 
 # Do dan Don't Warna
 
-- Do: satu warna utama buat semua aksi penting
-- Do: hijau sukses, merah bahaya, kuning sorotan
-- Do: catat pasangan warna dan teks di styleguide
-- Don't: bikin merah kedua yang mirip
-- Don't: pakai warna sebagai satu-satunya penyampai makna
-- Don't: tulis nilai mentah di luar `:root`
+![w:1120 Tiga aturan warna yang dianjurkan berdampingan dengan tiga larangan: satu warna utama, pasangan semantik tetap, catat di styleguide lawan merah kedua, warna sebagai satu-satunya makna, dan nilai mentah di luar root.](assets/diagrams/bab-12-ui-ux-dan-design-system-23.svg)
 
 > Aturan yang sama berlaku buat tint: `rgba(22, 163, 74, 0.1)` memancarkan `--clr-success` tanpa warna baru.
 
@@ -469,30 +466,30 @@ memakai nilai mentah. Tanyakan kenapa warna nggak boleh jadi satu-satunya penyam
 makna. Jawaban yang diharapkan: pengguna dengan penglihatan warna terbatas akan
 kehilangan maknanya, jadi ikon atau teks harus ikut menjelaskan. Sebutkan bahwa tint
 adalah cara menambah latar tipis tanpa menambah warna ke sistem.
+
+Bacakan kolom kiri lebih dulu, lalu pasangannya di kanan. Do: satu warna utama buat
+semua aksi penting; hijau sukses, merah bahaya, kuning sorotan; catat pasangan warna
+dan teks di styleguide. Don't: bikin merah kedua yang mirip; pakai warna sebagai
+satu-satunya penyampai makna; tulis nilai mentah di luar `:root`.
 -->
 
 ---
 
 # Sistem Tipografi
 
-Dua keluarga huruf, dua peran.
-
-| Peran di Tokosaya | Elemen/kelas | Huruf dan bobot |
-|---|---|---|
-| Judul hero | `h1` | Poppins 700 |
-| Judul halaman | `h2` | Poppins 600 |
-| Judul kartu | `h3`/`h5` | Poppins 600 |
-| Subjudul | `.lead` | Inter 400 |
-| Teks paragraf | `body` | Inter 400 |
-
-- Poppins berbicara, Inter bercerita
-- Pergantian huruf jadi sinyal hierarki
+![w:1120 Dua keluarga huruf di Tokosaya: Poppins memikul judul hero, judul halaman, dan judul kartu; Inter memikul subjudul dan paragraf.](assets/diagrams/bab-12-ui-ux-dan-design-system-24.svg)
 
 <!--
 Tanyakan kenapa judul dan paragraf sengaja memakai keluarga huruf berbeda. Jawaban
 yang diharapkan: peran berbeda, suara berbeda, dan pergantiannya sendiri sudah jadi
 sinyal hierarki. Sebutkan bahwa Bootstrap menangani ukuran dan jarak, sedangkan file
 `css/style.css` menggantungkan keluarga huruf dari token.
+
+Dua keluarga huruf, dua peran. Nama peran dan bobotnya yang pindah dari tabel: judul
+hero pakai `h1` Poppins 700; judul halaman `h2` Poppins 600; judul kartu `h3`/`h5`
+Poppins 600; subjudul `.lead` Inter 400; teks paragraf `body` Inter 400. Poppins
+berbicara, Inter bercerita, dan pergantian huruf sendiri sudah jadi sinyal hierarki.
+Tunjuk satu halaman Tokosaya di browser sambil menyebut peran tiap simpul di gambar.
 -->
 
 ---
@@ -616,18 +613,19 @@ masuk matriks varian dan harus ada di styleguide.
 
 # Navigasi
 
-- Navbar: brand, menu baku, ikon keranjang di kanan
-- Menu baku: Beranda, Katalog, Tentang, Kontak
-- Breadcrumb buat halaman dalam
-- Link aktif ditandai `aria-current="page"`
-- Desktop bisa tampil penuh tanpa JavaScript
-- Tombol buka-tutup di layar sempit butuh JavaScript Bootstrap
+![w:1120 Navbar Tokosaya terdiri dari brand, menu baku berisi Beranda, Katalog, Tentang, Kontak, dan ikon keranjang di kanan.](assets/diagrams/bab-12-ui-ux-dan-design-system-31.svg)
 
 <!--
 Jelaskan pembagian tugasnya: bentuk visual navigasi kita kuasai, perilaku interaktifnya
 diserahkan ke JavaScript Bootstrap yang memang di luar cakupan mata kuliah ini.
 Tanyakan kenapa link halaman aktif perlu ditandai, bukan cuma diwarnai. Jawaban yang
 diharapkan: penanda itu dibacakan alat bantu, sedangkan warna cuma terlihat.
+
+Isi gambar dari atas: Navbar punya brand, menu baku, dan ikon keranjang di kanan.
+Menu baku isinya Beranda, Katalog, Tentang, Kontak. Selebihnya perilaku, jadi tidak
+digambar: breadcrumb buat halaman dalam, link aktif ditandai `aria-current="page"`,
+desktop bisa tampil penuh tanpa JavaScript, dan tombol buka-tutup di layar sempit butuh
+JavaScript Bootstrap.
 -->
 
 ---

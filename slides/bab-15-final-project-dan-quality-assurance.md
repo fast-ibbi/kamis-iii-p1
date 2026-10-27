@@ -52,13 +52,9 @@ Bab 13.
 
 # Sempurna di Laptop, Belum Siap di HP
 
-Website `tokosaya-bootstrap/` tampak matang di laptop tim, lalu dibuka pemilik toko di HP-nya.
+![w:1120 Website yang tampak matang di laptop tim muncul rusak di HP pemilik toko: katalog bergulir horizontal, kartu produk menumpuk, label form hilang dan pembaca layar bingung.](assets/diagrams/bab-15-final-project-dan-quality-assurance-03.svg)
 
-| Di laptop tim | Di HP pemilik toko |
-|---|---|
-| Hero memukau, katalog rapi | Katalog muncul dengan gulir horizontal |
-| Checkout mengalir tanpa hambatan | Kartu produk menumpuk berantakan |
-| Semua tombol kelihatan rapi | Label form hilang, pembaca layar bingung |
+Website `tokosaya-bootstrap/` tampak matang di laptop tim, lalu dibuka pemilik toko di HP-nya.
 
 > Kualitas nggak pernah tinggal menetap. Ia harus diperiksa ulang, bukan diasumsikan.
 
@@ -67,6 +63,13 @@ Ceritakan detailnya persis kayak buku: pembaca layar menyebut bidang surel sebag
 kosong" karena labelnya nggak terhubung. Tanyakan apa bedanya "terasa selesai" dengan
 "siap rilis". Jawaban yang diharapkan: yang pertama perasaan, yang kedua hasil pemeriksaan.
 Pakai analogi kalibrasi alat laboratorium kalau kelas terlihat belum kebayang.
+
+Bacakan dua kolom di gambar sebagai satu cerita, jangan dua daftar terpisah. Di laptop tim
+hero memukau, katalog rapi; di HP pemilik toko katalog muncul dengan gulir horizontal.
+Checkout mengalir tanpa hambatan di laptop, tapi kartu produk menumpuk berantakan di HP.
+Semua tombol kelihatan rapi di laptop, sementara label form hilang, pembaca layar bingung
+di HP. Tekankan bahwa tiga pasangan ini bukan tiga bug terpisah, melainkan satu pertanyaan:
+website ini pernah diuji di perangkat siapa?
 -->
 
 ---
@@ -396,21 +399,25 @@ versi dikunci sebagai rilis kandidat.
 
 # Debugging CSS di DevTools
 
+![w:1120 Empat langkah debugging CSS: mulai dari pertanyaan kenapa elemen tampil begitu, reproduksi sampai syarat cacatnya ketemu, isolasi ke elemen terkecil yang gagal, lalu verifikasi ulang dengan satu hipotesis dan satu perubahan.](assets/diagrams/bab-15-final-project-dan-quality-assurance-21.svg)
+
 | Panel | Yang ditunjukkan |
 |---|---|
 | Styles | Semua aturan, yang kalah tampil tercoret |
 | Computed | Nilai akhir yang benar-benar menyala |
-
-- Mulai dari pertanyaan: kenapa elemen ini tampil kayak ini?
-- Reproduksi: temukan syarat cacat, ambil tangkapan layar
-- Isolasi: pilih elemen terkecil yang gagal, bukan halaman
-- Hipotesis tunggal, satu perubahan, lanjut verifikasi ulang
 
 <!--
 Tunjukkan panel Styles pada satu elemen yang sengaja dibuat konflik, lalu suruh kelas
 menebak aturan mana yang menang sebelum kamu lihat Computed. Ingatkan bahwa menambah
 `!important` sebagai jawaban pertama itu kebiasaan yang menyimpan regression. Sebutkan
 bahwa empat langkah ini terasa berat di cacat pertama dan jadi instan di cacat kesepuluh.
+
+Telusuri panahnya satu per satu. Mulai dari pertanyaan: kenapa elemen tampil begitu.
+Lanjut ke reproduksi — temukan syarat cacat, ambil tangkapan layar. Setelah itu isolasi:
+pilih elemen terkecil yang gagal. Panah terakhir adalah aturan mainnya, hipotesis tunggal,
+satu perubahan, lalu verifikasi ulang: lihat lagi di halaman itu. Tekankan bahwa satu
+perubahan per putaran itulah yang bikin kamu masih tahu penyebabnya saat hasilnya berubah,
+dan utamakan panel Computed untuk membaca nilai akhir yang benar-benar menyala.
 -->
 
 ---
@@ -523,17 +530,21 @@ layar. Ingatkan bahwa semua temuan ditulis, termasuk yang belum sempat diperbaik
 
 # Langkah Kerja 1–5
 
-- Konfirmasi draft M6 lengkap sebelum QA dimulai
-- Audit struktur: validasi tiap halaman di validator W3C
-- Audit responsif: device toolbar pada 360, 768, 992 px
-- Audit aksesibilitas: lima pemeriksaan wajib per halaman
-- Peer review silang 45 menit dengan satu rekan sekelas
+![w:1120 Lima langkah kerja QA sprint berurutan: konfirmasi draft M6, audit struktur di validator W3C, audit responsif tiga breakpoint, audit aksesibilitas lima pemeriksaan, lalu peer review silang.](assets/diagrams/bab-15-final-project-dan-quality-assurance-28.svg)
 
 <!--
 Jalankan langkah ini bareng-bareng di layar, jangan cuma dibacakan. Tekankan bahwa peer
 review itu perjanjian setara: kamu me-review proyeknya sambil dia me-review proyekmu,
 biar nggak jadi review satu arah. Tanyakan apa yang biasanya cuma ditemukan mata segar.
 Jawaban yang diharapkan: asumsi tersamar yang kamu bawa sendiri sejak awal.
+
+Sebutkan lima langkahnya berurutan sambil menunjuk gambar. Pertama draft M6: pastikan
+lengkap dulu sebelum QA dimulai. Kedua audit struktur: validasi tiap halaman di validator
+W3C sampai tanpa kesalahan, karena satu tag yang nggak ditutup bikin parser menarik
+kesimpulan berantai. Ketiga audit responsif: device toolbar pada 360, 768, 992 px, jadi
+panahnya berbunyi tiga breakpoint. Keempat audit aksesibilitas: lima pemeriksaan wajib per
+halaman, dan kelimanya wajib lolos. Kelima peer review silang 45 menit dengan satu rekan
+sekelas. Peringatkan bahwa semua temuan ditulis, termasuk yang belum sempat diperbaiki.
 -->
 
 ---
@@ -696,16 +707,19 @@ paket ZIP harus bisa dibuka dan halamannya berpindah benar tanpa link mati.
 
 # Troubleshooting QA
 
-- Perubahan CSS nggak terlihat: cek simpan, cache, dan jalur `href`
-- Validator menampilkan banyak error: perbaiki yang paling atas dulu
-- Temuan muncul di halaman lain: batasi selector ke konteks komponen
-- Link 404: samakan nama file di disk dan di markup
+![w:1120 Empat gejala troubleshooting berpasangan dengan perbaikannya: CSS nggak berubah karena simpan, cache, atau jalur href; banyak error validator karena satu tag paling atas; temuan di halaman lain karena selector terlalu lebar; link 404 karena nama file beda.](assets/diagrams/bab-15-final-project-dan-quality-assurance-34.svg)
 
 <!--
-Bahas tiga masalah ini sebagai gejala yang sering bikin mahasiswa bingung, bukan sebagai
+Bahas keempat masalah ini sebagai gejala yang sering bikin mahasiswa bingung, bukan sebagai
 kesalahan pribadi. Tanyakan kenapa satu tag yang nggak ditutup bisa memunculkan lima catatan
 validator. Jawaban yang diharapkan: parser menarik kesimpulan berantai setelah tag itu.
 Tekankan bahwa perbaikan pertama bisa memangkas senarai validasi drastis.
+
+Bacakan gambar sebagai pasangan gejala dan perbaikannya, baris per baris. Perubahan CSS
+nggak terlihat: cek simpan, cache, dan jalur `href`. Validator menampilkan banyak error:
+perbaiki yang paling atas dulu. Temuan muncul di halaman lain: batasi selector ke konteks
+komponen. Link 404: samakan nama file di disk dan di markup. Tekankan bahwa tiap gejala
+punya satu pemeriksaan pendahuluan yang murah, jadi jangan langsung menambah aturan baru.
 -->
 
 ---

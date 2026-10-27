@@ -104,55 +104,64 @@ dan pesanan gagal diantar.
 
 # Empat Prinsip Desain Form
 
-| Prinsip | Intinya |
-|---|---|
-| Satu kolom | medan disusun vertikal dari atas ke bawah |
-| Label terlihat | nama medan permanen, bukan cuma placeholder |
-| Pengelompokan | medan sejenis digugus, progres terlihat jelas |
-| Tombol aksi | satu tombol utama, labelnya menyatakan akibatnya |
+![w:1120 Form yang baik berdiri di atas empat prinsip: satu kolom, label terlihat, pengelompokan medan, dan satu tombol aksi yang jelas.](assets/diagrams/bab-11-form-dan-user-interface-design-06.svg)
 
 > Form yang baik mengurangi keputusan pengguna, bukan menambahnya.
 
 <!--
-Bacakan tabel ini sebagai daftar periksa, lalu janjikan bahwa tiap baris dibahas
-satu slide sendiri setelah ini. Tanyakan prinsip mana yang paling sering
-dilanggar di form kampus yang mereka pakai. Paling banyak biasanya label dan
-tombol aksi.
+Jadikan gambar ini daftar periksa yang dibuka sepanjang bab, lalu janjikan bahwa
+tiap cabangnya dibahas satu slide sendiri setelah ini.
+
+Bacakan keempat cabangnya dari atas ke bawah: satu kolom — medan disusun vertikal
+dari atas ke bawah; label terlihat — nama medan permanen, bukan cuma
+placeholder; pengelompokan — medan sejenis digugus, progres terlihat jelas;
+tombol aksi — satu tombol utama, labelnya menyatakan akibatnya.
+
+Tanyakan prinsip mana yang paling sering dilanggar di form kampus yang mereka
+pakai. Paling banyak biasanya label dan tombol aksi.
 -->
 
 ---
 
 # Prinsip Satu Kolom
 
-- Mata manusia membaca melompat sedikit melintasi baris
-- Nggak melompat jauh melintasi kolom
-- Di HP, dua kolom bikin medan sempit dan salah ketik
-- Form satu kolom gampang dipindai pembaca layar
+![w:1120 Satu kolom: mata melompat sedikit melintasi baris, medan di HP tetap lebar, gampang dipindai pembaca layar. Dua kolom: mata melompat jauh melintasi kolom, medan sempit, angka dan huruf gampang tertukar.](assets/diagrams/bab-11-form-dan-user-interface-design-07.svg)
 
 > Satu kolom itu default. Pasangan medan pendek cuma pengecualiannya.
 
 <!--
 Tunjukkan beda form satu kolom dan tiga kolom langsung di layar kalau bisa.
+Bacakan gambar per baris: mata manusia membaca melompat sedikit melintasi baris,
+nggak melompat jauh melintasi kolom.
+
+Kolom kiri, satu kolom: medan di HP tetap lebar, dan form satu kolom gampang
+dipindai pembaca layar. Kolom kanan, dua kolom: di HP dua kolom bikin medan
+sempit, jadi angka dan huruf gampang tertukar.
+
 Tanyakan kenapa form dua kolom di HP bikin salah ketik meningkat. Jawaban yang
-diharapkan: medannya jadi sempit, angka dan huruf gampang tertukar.
+diharapkan: medannya jadi sempit, angka dan huruf gampang tertukar. Tutup dengan
+membacakan kalimat di slide.
 -->
 
 ---
 
 # Label Terlihat, Placeholder Bukan Label
 
-- Setiap medan punya label permanen di atasnya
-- Label adalah nama resmi medan buat pembaca layar
-- Placeholder hilang begitu pengguna mulai mengetik
-- Kontras placeholder biasanya lebih lemah
-- Placeholder cuma buat contoh format
+![w:1120 Label: permanen di atas medan dan dibacakan pembaca layar sebagai nama medan. Placeholder: hilang begitu pengguna mulai mengetik, kontrasnya lebih lemah, dan cuma buat contoh format.](assets/diagrams/bab-11-form-dan-user-interface-design-08.svg)
 
 > `nama@domain.id` itu contoh isian, bukan nama medan.
 
 <!--
 Tanyakan apa yang terjadi kalau satu-satunya petunjuk pada medan cuma
 placeholder. Jawaban yang diharapkan: panduannya hilang tepat pas pengguna
-mulai mengisi. Ingatkan bahwa label yang terlihat dan placeholder yang berisi
+mulai mengisi.
+
+Bandingkan dua kolom di gambar. Kolom label: setiap medan punya label permanen di
+atasnya, dan label itu nama resmi medan buat pembaca layar. Kolom placeholder:
+hilang begitu pengguna mulai mengetik, kontras placeholder biasanya lebih lemah,
+jadi ia cuma buat contoh format.
+
+Tutup dengan menegaskan bahwa label yang terlihat dan placeholder yang berisi
 contoh format itu dua hal berbeda yang saling melengkapi.
 -->
 
@@ -212,19 +221,22 @@ lagi di praktikum.
 
 # label dan Pasangan for–id
 
-- Nilai `for` pada label harus sama dengan `id` medan
-- Klik label memindahkan fokus langsung ke medannya
-- Pembaca layar membacakan label sebagai nama medan
-- Tanpa pasangan itu, yang terdengar cuma "kotak isian"
-- Aturan bab ini: setiap medan wajib punya label terhubung
+![w:1120 Nilai for pada label sama dengan id medan, sehingga klik label memindahkan fokus ke medannya, dan pembaca layar membacakan label sebagai nama medan.](assets/diagrams/bab-11-form-dan-user-interface-design-12.svg)
 
 > `aria-label` itu pelengkap, bukan pengganti label yang terlihat.
 
 <!--
+Telusuri gambar dari kiri ke kanan. Tahap pertama, pasangan `for` dan `id`:
+nilainya harus sama, dan itu juga aturan bab ini, setiap medan wajib punya label
+terhubung. Tahap kedua, klik label langsung ke medannya, jadi fokus pindah tanpa
+mouse. Tahap ketiga yang paling penting: nama medan terbaca karena pembaca layar
+membacakan label sebagai nama medan.
+
 Tunjukkan satu medan tanpa label di browser dan minta mahasiswa menebak
 gimana pembaca layar menyebutnya. Jawaban yang diharapkan: cuma "kotak isian"
 tanpa nama. Ingatkan bahwa form bisa tetap terlihat rapi walau aksesibilitasnya
-sudah turun.
+sudah turun, dan bahwa fokus di medan yang berpindah tadi hasil sambungan
+for–id, bukan kebetulan.
 -->
 
 ---
@@ -305,15 +317,19 @@ Pengiriman", persis kayak di kode praktikum.
 
 # button dan Perilaku Bawaannya
 
-- Di dalam `form`, tombol tanpa `type` dianggap tombol kirim
-- Itu perilaku bawaan HTML, bukan pilihan kita
-- Beri `type="button"` buat aksi visual atau pendamping
-- Kalau tidak, form terkirim tanpa sengaja
+![w:1120 Tombol pendamping tanpa type di dalam form dianggap tombol kirim, sehingga form langsung terkirim tanpa sengaja.](assets/diagrams/bab-11-form-dan-user-interface-design-17.svg)
 
 <!--
 Ini jebakan yang paling sering kena di praktikum. Tunjukkan tombol "Pakai" pada
-bidang kupon: kalau `type="button"`-nya lupa ditulis, seluruh form langsung
-terkirim. Minta mahasiswa memeriksa tombol di file masing-masing setelah kelas.
+bidang kupon sebagai contoh nyata: tombol pendamping kupon yang lupa
+`type="button"` masih berada di dalam form, jadi ia dianggap tombol kirim karena
+perilaku bawaan HTML, dan seluruh form langsung terkirim.
+
+Susun ulang rantainya di papan: lupa `type`, dianggap tombol kirim, lalu form
+terkirim tanpa sengaja. Tekankan bahwa ini perilaku bawaan HTML, bukan pilihan
+kita, dan satu-satunya penawarnya adalah memberi `type="button"` buat aksi
+visual atau pendamping. Minta mahasiswa memeriksa tombol di file masing-masing
+setelah kelas.
 -->
 
 ---

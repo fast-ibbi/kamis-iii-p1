@@ -50,22 +50,27 @@ mini website Tokosaya tiga halaman yang harus responsif.
 
 # Dua Permintaan, Dua Masalah
 
-- Pemilik Tokosaya minta satu ruang kerja berisi ringkasan toko
-- Rekanmu membuka `katalog.html` dari HP selebar 380 piksel
-- Kartu produk tumpang tindih dan teksnya menyempit
+![w:1120 Dua kebutuhan dan yang menanganinya: menyusun baris dan kolom sekaligus ditangani CSS Grid, halaman tetap layak di berbagai layar ditangani responsive web design.](assets/diagrams/bab-07-css-grid-dan-responsive-web-design-03.svg)
 
 | Kebutuhan | Yang menanganinya |
 |---|---|
 | Menyusun baris dan kolom sekaligus | CSS Grid |
-| Halaman tetap layak di berbagai layar | Responsive web design |
+| Halaman tetap layak di berbagai layar | responsive web design |
 
 > Layout dua dimensi itu soal struktur. Responsif itu soal strategi beradaptasi.
 
 <!--
-Ceritakan dua keluhannya berurutan: pesan pemilik toko, lalu rekan yang membuka
-katalog dari HP. Tanyakan mana yang masalah dua dimensi dan mana yang masalah
-ukuran layar. Jawaban yang diharapkan: dashboard itu wilayah Grid, katalog di HP
-itu wilayah media query. Tegaskan bahwa keduanya saling menguatkan, bukan pilihan.
+Ceritakan dua keluhannya berurutan: pesan pemilik toko yang minta satu ruang kerja
+berisi ringkasan toko, lalu rekanmu yang membuka `katalog.html` dari HP selebar 380
+piksel sampai kartu produk tumpang tindih dan teksnya menyempit. Tanyakan mana yang
+masalah dua dimensi dan mana yang masalah ukuran layar. Jawaban yang diharapkan:
+dashboard itu wilayah Grid, katalog di HP itu wilayah media query. Tegaskan bahwa
+keduanya saling menguatkan, bukan pilihan.
+
+Tabelnya dua kolom: kiri KEBUTUHAN, kanan YANG MENANGANINYA. Tutup dulu kolom kanan,
+minta kelas menebak pasangannya, baru bacakan baris demi baris: kebutuhan menyusun
+baris dan kolom sekaligus ditangani CSS Grid; kebutuhan halaman tetap layak di
+berbagai layar ditangani responsive web design.
 -->
 
 ---
@@ -125,13 +130,7 @@ selalu satu lebih banyak dari jumlah track.
 
 # Grid dan Flexbox: Kapan Pakai yang Mana
 
-| Situasi | Pilihan |
-|---|---|
-| Navigasi horizontal, footer multi kolom | Flexbox |
-| Kerangka halaman: header, nav, main, footer | Grid |
-| Kartu statistik yang harus sebaris sempurna | Grid |
-| Barisan kartu dengan panjang isi berbeda | Flexbox wrap atau Grid |
-| Satu elemen digeser sedikit dari alurnya | `position` |
+![w:1120 Flexbox bergerak dari konten menuju layout untuk navigasi horizontal dan barisan kartu; Grid bergerak dari denah menuju konten untuk kerangka halaman dan kartu statistik yang harus sebaris sempurna.](assets/diagrams/bab-07-css-grid-dan-responsive-web-design-07.svg)
 
 > Flexbox bergerak dari konten menuju layout. Grid bergerak dari denah menuju konten.
 
@@ -140,6 +139,14 @@ Tekankan dua frasa kunci: content-out lawan layout-out. Tanyakan navigasi Tokosa
 pilih yang mana. Jawaban yang diharapkan: Flexbox, karena cuma satu baris. Lanjutkan
 dengan dashboard yang butuh baris dan kolom serentak. Sebutkan juga bahwa di proyek
 nyata Grid dipakai buat kerangka, sementara Flexbox menata isi tiap selnya.
+
+Bacakan pasangannya baris demi baris: navigasi horizontal, footer multi kolom pakai
+Flexbox; kerangka halaman: header, nav, main, footer pakai Grid; kartu statistik yang
+harus sebaris sempurna pakai Grid; barisan kartu dengan panjang isi berbeda boleh
+Flexbox wrap atau Grid.
+
+Satu kasus sengaja tidak masuk gambar: satu elemen digeser sedikit dari alurnya, dan
+itu urusan `position`, bukan Grid atau Flexbox.
 -->
 
 ---
@@ -364,12 +371,7 @@ monitor kantor.
 
 # Kenapa Mobile-First
 
-- Mobile-first: gaya dasar ditulis buat layar kecil dulu
-- Strategi ini dipakai industri dan dijelaskan Wroblewski (2012)
-- Gaya tambahan ditumpuk buat layar yang makin besar
-- Kode bergerak naik, kayak jalan kecil yang diperlebar
-- Desktop-first dengan `max-width` memaksa browser membatalkan gaya
-- Kaskadenya berubah jadi tempat berburu bug
+![w:1120 Desktop-first memakai max-width sehingga gaya desktop dibatalkan satu per satu dan kaskadenya jadi tempat berburu bug; mobile-first menulis gaya dasar buat layar kecil dulu, menumpuk gaya tambahan, dan kodenya bergerak naik.](assets/diagrams/bab-07-css-grid-dan-responsive-web-design-17.svg)
 
 > Media query dalam pola ini cuma memuat bedanya, jadi pendek-pendek.
 
@@ -378,6 +380,15 @@ Ingatkan kaskade Bab 3: kalau spesifisitasnya sama, aturan yang ditulis paling
 akhir menang. Tanyakan kenapa pola `max-width` bikin kaskadenya susah dilacak.
 Jawaban yang diharapkan: gaya desktop harus dibatalkan satu per satu di layar kecil.
 Sebutkan bahwa pendekatan ini juga yang dipakai Bootstrap, jadi transisinya mulus.
+
+Dua kolom di gambar, berpasangan baris demi baris. Mobile-first: gaya dasar ditulis
+buat layar kecil dulu; gaya tambahan ditumpuk buat layar yang makin besar; kode
+bergerak naik, kayak jalan kecil yang diperlebar. Desktop-first: gaya desktop dulu,
+lalu dibatalkan satu per satu; memakai `max-width`; kaskadenya berubah jadi tempat
+berburu bug.
+
+Jangan lupa fakta yang tidak ikut digambar: strategi mobile-first dipakai industri
+dan dijelaskan Wroblewski pada 2012.
 -->
 
 ---
@@ -386,20 +397,20 @@ Sebutkan bahwa pendekatan ini juga yang dipakai Bootstrap, jadi transisinya mulu
 
 Breakpoint adalah lebar layar tempat gaya berubah, bukan daftar merek HP.
 
-| Nama | Lebar minimum | Gaya di Tokosaya |
-|---|---|---|
-| Bawaan | tanpa media query | satu kolom, font dasar |
-| `sm` | 576 px | kartu statistik dua kolom |
-| `md` | 768 px | panel navigasi geser ke kiri |
-| `lg` | 992 px | jarak meluas, sidebar 240 px |
-| `xl` | 1200 px | empat kartu sebaris, konten 1200 px |
+![w:1120 Lima mode denah Tokosaya yang menyala berurutan: satu kolom, lalu dua kolom di 576 px, navigasi geser di 768 px, sidebar 240 px di 992 px, dan empat kartu di 1200 px.](assets/diagrams/bab-07-css-grid-dan-responsive-web-design-18.svg)
 
 <!--
-Bacakan tabel ini perlahan karena angka ini dipakai sampai Bab 9. Tegaskan pesan
+Bacakan angka ini perlahan karena angka ini dipakai sampai Bab 9. Tegaskan pesan
 Wroblewski: breakpoint lahir dari konten dan tugas pengguna, bukan dari katalog
 merek HP yang tiap tahun berganti. Sebutkan juga baris terakhir konvensi Bootstrap,
 `xxl` di 1400 piksel, yang jarang dibutuhkan di proyek sekecil Tokosaya. Tanyakan
 pada lebar 820 piksel, media query mana yang sedang berlaku.
+
+Isi tabelnya, dari bawaan sampai terlebar: bawaan tanpa media query — satu kolom,
+font dasar; `sm` 576 px — kartu statistik dua kolom; `md` 768 px — panel navigasi
+geser ke kiri; `lg` 992 px — jarak meluas, sidebar 240 px; `xl` 1200 px — empat kartu
+sebaris, konten 1200 px. Tiap panah di gambar adalah peristiwa yang sama: lebar layar
+melewati batas min-width milik breakpoint berikutnya.
 -->
 
 ---
@@ -493,16 +504,7 @@ ke Bab 13; di bab ini syarat wajibnya cuma gambar nggak pernah melar.
 
 # Dua Pola Layout Responsif
 
-| Pola | Kerangkanya | Catatan |
-|---|---|---|
-| Dashboard admin | `grid-template-areas` | denah digambar ulang di 768 px |
-| Galeri produk: jalan a | jumlah kolom per breakpoint | bisa dijadwalkan bersama desainer |
-| Galeri produk: jalan b | `auto-fit` dan `minmax()` | lentur kalau jumlah kartu berubah |
-
-- Pola dashboard: header, sidebar navigasi, dan konten
-- Di layar kecil semua area ditumpuk satu kolom
-- Yang berubah cuma denahnya, markup tetap sama
-- Satu halaman sebaiknya satu pola biar bisa diprediksi
+![w:1120 Pola layout responsif bercabang dua: dashboard admin memakai grid-template-areas, denah digambar ulang di 768 px, berisi header, sidebar navigasi, dan konten; galeri produk punya jalan a jumlah kolom per breakpoint dan jalan b auto-fit dan minmax().](assets/diagrams/bab-07-css-grid-dan-responsive-web-design-22.svg)
 
 <!--
 Bandingkan dua jalan buat galeri produk: pola eksplisit per breakpoint dan pola
@@ -510,6 +512,15 @@ otomatis. Tanyakan kapan masing-masing lebih tepat. Jawaban yang diharapkan: pol
 eksplisit kalau desain menuntut jumlah kolom pasti, pola otomatis kalau jumlah
 kartunya berubah-ubah. Tekankan prinsip paling penting di slide ini: denah milik
 wadah, bukan milik tiap kartu, sehingga HTML nggak perlu diubah pas layout bergeser.
+
+Isi tabelnya: dashboard admin kerangkanya `grid-template-areas`, denah digambar ulang
+di 768 px; galeri produk punya dua jalan — jalan a: jumlah kolom per breakpoint,
+bisa dijadwalkan bersama desainer; jalan b: `auto-fit` dan `minmax()`, lentur kalau
+jumlah kartu berubah.
+
+Pola dashboard berisi header, sidebar navigasi, dan konten. Di layar kecil semua area
+ditumpuk satu kolom. Yang berubah cuma denahnya, markup tetap sama. Satu halaman
+sebaiknya satu pola biar bisa diprediksi.
 -->
 
 ---
@@ -555,18 +566,22 @@ diujikan di UTS Bab 8.
 
 # Langkah Kerja Praktikum
 
-- Tulis kerangka `admin.html`: DOCTYPE, `lang="id"`, meta charset
-- Jangan lupa meta viewport, tanpa itu semua media query gagal
-- Susun struktur semantik: `.dasbor`, header, nav, main, footer
-- Isi tabel pesanan lima baris dengan produk baku Tokosaya
-- Susun `css/admin.css` mobile-first: semua area bertumpuk
-- Uji di DevTools device toolbar pada 375 sampai 1200 piksel
+![w:1120 Lima tahap praktikum berurutan: tulis admin.html, tulis meta viewport, susun struktur semantik, susun admin.css mobile-first, lalu uji di device toolbar pada 375 sampai 1200 piksel.](assets/diagrams/bab-07-css-grid-dan-responsive-web-design-25.svg)
 
 <!--
 Jalankan langkah ini sambil didemokan di layar, jangan cuma dibacakan. Berhenti
 agak lama di langkah meta viewport; ini penyebab paling sering media query terasa
 nggak bekerja sama sekali di emulasi HP. Ingatkan bahwa urutan `<link>` di `head`
 harus `style.css` dulu, baru `admin.css`, biar tokennya terbaca.
+
+Urutan lengkapnya, sama seperti di gambar: tulis kerangka `admin.html` berisi
+DOCTYPE, meta charset, dan meta viewport; tanpa itu semua media query gagal; susun
+struktur semantik `.dasbor`, header, nav, main, footer; isi tabel pesanan lima baris
+dengan produk baku Tokosaya; susun `css/admin.css` mobile-first, semua area
+bertumpuk; terakhir uji di DevTools device toolbar pada 375 sampai 1200 piksel.
+
+Kata kerja tiap panah di gambar diambil dari langkahnya sendiri: tulis, susun, susun,
+uji.
 -->
 
 ---

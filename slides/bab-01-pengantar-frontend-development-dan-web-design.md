@@ -140,13 +140,7 @@ Peringatan: pelayan BUKAN backend; pelayan adalah penghubung keduanya.
 
 # Frontend vs Backend
 
-| Aspek | Frontend | Backend |
-|---|---|---|
-| Bekerja pada | Browser pengguna | Server |
-| Teknologi inti | HTML, CSS, framework antarmuka | Bahasa server + basis data |
-| Fokus yang diukur | Tampilan, responsif, aksesibilitas | Keandalan, keamanan, kinerja |
-| Hasil yang terlihat | Kartu produk, tombol, formulir | Stok berkurang, pesanan tersimpan |
-| Cara pengguna menilai | "Rapi dan mudah" | "Cepat, akurat, nggak bocor" |
+![w:1120 Frontend bekerja di browser pengguna dengan HTML, CSS, dan framework antarmuka; backend bekerja di server dengan bahasa server dan basis data. Fokus frontend tampilan dan aksesibilitas, fokus backend keandalan dan keamanan.](assets/diagrams/bab-01-pengantar-frontend-development-dan-web-design-08.svg)
 
 <!--
 Kunci pembeda yang harus dibawa keluar kelas: frontend mengurus penyajian dan
@@ -154,6 +148,14 @@ interaksi di layar, backend mengurus penyimpanan data dan aturan bisnis. Sebutka
 satu kalimat penolak miskonsepsi: frontend bukan bagian yang mudah dan backend bukan
 bagian yang canggih, keduanya beda jenis tantangan. Tanyakan: "Baris mana yang
 paling sulit diukur?" (Jawaban: aksesibilitas, karena nggak kasat mata.)
+
+Lima baris pembandingnya, sebut berpasangan sambil menunjuk gambar. Tempat kerja:
+frontend bekerja di browser pengguna, backend bekerja di server. Teknologi inti:
+frontend HTML, CSS, framework antarmuka; backend bahasa server plus basis data.
+Fokus yang diukur: frontend tampilan, responsif, aksesibilitas; backend keandalan,
+keamanan, kinerja. Hasil yang terlihat: frontend kartu produk, tombol, formulir;
+backend stok berkurang, pesanan tersimpan. Cara pengguna menilai: frontend dinilai
+rapi dan mudah, backend dinilai cepat, akurat, nggak bocor.
 -->
 
 ---
@@ -199,20 +201,23 @@ beri satu contoh jelek dulu biar mereka berani.
 
 # Alur Pengembangan Sistem Informasi
 
-Buka satu per satu; tanyakan "di tahap mana kita berada sekarang?" sebelum lanjut.
-
-1) **Kebutuhan bisnis** — pemilik Tokosaya ingin toko yang bisa dilihat dan dihubungi
-2) **Analisis** — siapa pengunjungnya dan proses apa yang mengalir sampai pesanan
-3) **Desain** — layout halaman, warna, hierarki tombol
-4) **Implementasi** — frontend mewujudkan rancangan; backend membangun layanan data
-5) **Pengujian & pemeliharaan** — memeriksa keduanya, lalu menjaga sistem tetap hidup
+![w:1120 Lima tahap berurutan: kebutuhan bisnis dijabarkan lewat analisis, analisis dirancang jadi desain, desain dibangun di implementasi, implementasi diuji lalu dipelihara.](assets/diagrams/bab-01-pengantar-frontend-development-dan-web-design-11.svg)
 
 <!--
+Buka satu per satu; tanyakan "di tahap mana kita berada sekarang?" sebelum lanjut.
 Alur ini adalah tulang punggung analisis kebutuhan, jadi jalankan sebagai cerita
 berurutan, bukan sebagai daftar hafalan. Tekankan bahwa urutannya nggak boleh
 dibalik, dan itulah alasan buku ini menahan Bootstrap sampai Bab 9. Kesalahan umum
 yang perlu dicegah: mahasiswa melompat langsung ke implementasi pas diberi tugas
 kelompok, lalu bingung pas rancangannya berubah di tengah jalan.
+
+Lima tahapnya, bacakan lengkap sambil menunjuk gambar. Kebutuhan bisnis: pemilik
+Tokosaya ingin toko yang bisa dilihat dan dihubungi. Analisis: siapa pengunjungnya
+dan proses apa yang mengalir sampai pesanan. Desain: layout halaman, warna, hierarki
+tombol. Implementasi: frontend mewujudkan rancangan; backend membangun layanan data.
+Pengujian & pemeliharaan: memeriksa keduanya, lalu menjaga sistem tetap hidup.
+Alurnya berurutan: kebutuhan bisnis dijabarkan lewat analisis, analisis dirancang
+jadi desain, desain dibangun di implementasi, implementasi diuji lalu dipelihara.
 -->
 
 ---
@@ -295,10 +300,7 @@ melainkan bahan bangun yang menghidupkan rancangan.
 
 # Alur Design → Code
 
-1) **Kebutuhan** diubah jadi **rancangan** — alat desain kayak Figma (Bab 14)
-2) Rancangan diuraikan menjadi **struktur** — bahasa HTML
-3) Struktur diberi **rupa** — warna, ukuran, jarak, layout
-4) Kalau kebutuhan berulang, pakai **komponen siap pakai** dari CSS framework
+![w:1120 Empat wujud berurutan: rancangan dari Figma diuraikan jadi struktur HTML, struktur diberi rupa CSS, lalu dipakai komponen siap pakai dari CSS framework.](assets/diagrams/bab-01-pengantar-frontend-development-dan-web-design-16.svg)
 
 > Desain yang jelas membuat kode menemukan jalannya, bukan mencarinya sendiri.
 
@@ -308,6 +310,10 @@ tuliskan urutannya di papan dan biarkan tertulis sampai akhir pertemuan. Tekanka
 bahwa langkah pertama bukan pekerjaan mahasiswa di mata kuliah ini: Figma dibahas di
 Bab 14, dan perannya di sana adalah membaca rancangan, bukan membuatnya dari nol.
 Peringatan: mahasiswa cenderung melewati langkah rancangan lalu mengarang tampilan.
+
+Empat wujudnya, sebut sambil menunjuk gambar. Rancangan dari Figma (Bab 14)
+diuraikan jadi struktur bahasa HTML, struktur diberi rupa warna, ukuran, jarak,
+layout, lalu kalau kebutuhan berulang, pakai komponen siap pakai dari CSS framework.
 -->
 
 ---
@@ -386,13 +392,7 @@ file, bukan halaman.)
 
 # Pola Folder Proyek Tokosaya
 
-| File / Folder | Peran |
-|---|---|
-| `index.html` | Halaman beranda |
-| `katalog.html` | Daftar produk |
-| `tentang.html`, `kontak.html` | Profil toko dan formulir kontak |
-| `css/style.css` | Satu file gaya bersama buat semua halaman |
-| `img/` | Gambar produk dan logo, semuanya berakhiran `.svg` |
+![w:1120 Satu folder proyek berisi index.html untuk beranda, katalog.html untuk daftar produk, tentang.html dan kontak.html, satu file css/style.css bersama, dan folder img berisi gambar berakhiran svg.](assets/diagrams/bab-01-pengantar-frontend-development-dan-web-design-21.svg)
 
 Tiga kebiasaan: satu CSS bersama · nama *kebab-case* · satu halaman satu file.
 
@@ -403,6 +403,11 @@ tempat menular ke semua halaman; kebab-case biar link nggak rontok karena
 perbedaan besar kecil huruf antar sistem operasi; satu file per halaman biar nggak
 ada dokumen raksasa. Peringatan: spasi dan huruf kapital pada nama file adalah
 sumber bug link paling umum buat pemula.
+
+Pohon foldernya, tunjuk satu per satu: `index.html` — halaman beranda;
+`katalog.html` — daftar produk; `tentang.html`, `kontak.html` — profil toko dan
+formulir; `css/style.css` — satu file gaya bersama; `img/` — gambar produk dan logo
+berakhiran `.svg`.
 -->
 
 ---
@@ -480,13 +485,9 @@ nanti.
 
 # Membaca Gejala, Bukan Menebak
 
-**Kalau viewport hilang:** halaman tetap tampil, tapi nggak mengikuti lebar layar perangkat — umumnya tampak besar dan perlu cubit-zoom.
+![w:1120 Tiga keluhan klien dan yang diperiksa untuk masing-masing: tombol hilang diperiksa di panel Elements, tulisan menabrak logo diperiksa lewat device toolbar, versi lama muncul diperiksa dengan memuat ulang halaman.](assets/diagrams/bab-01-pengantar-frontend-development-dan-web-design-26.svg)
 
-| Keluhan klien | Yang diperiksa |
-|---|---|
-| "Tombolnya hilang pas dibuka dari HP" | Elemen benar ada di struktur? (Elements) |
-| "Tulisannya menabrak logo" | Berapa lebar layar pengguna? (device toolbar) |
-| "Masih tampil versi yang lama" | Halaman udah dimuat ulang dengan `F5`? |
+**Kalau viewport hilang:** halaman tetap tampil, tapi nggak mengikuti lebar layar perangkat — umumnya tampak besar dan perlu cubit-zoom.
 
 <!--
 Kunci dari pasangan slide ini: keluhan pengguna hampir selalu datang dalam bahasa
@@ -494,6 +495,12 @@ antarmuka, dan tugas analis SI adalah menerjemahkannya jadi daftar periksa yang 
 dilacak. Dua pertanyaan pengubah segalanya: elemen apa yang seharusnya ada di
 struktur, dan berapa lebar layar yang dipakai. Ingatkan bahwa jawaban butir ketiga
 mini kuis sebelumnya ada di baris pertama slide ini.
+
+Dua kolom gambarnya: keluhan klien di kiri, yang diperiksa di kanan. Keluhan
+"Tombolnya hilang pas dibuka dari HP" diperiksa dengan pertanyaan: elemen benar ada
+di struktur? (Elements). Keluhan "Tulisannya menabrak logo" diperiksa dengan
+pertanyaan: berapa lebar layar pengguna? (device toolbar). Keluhan "Masih tampil
+versi yang lama" diperiksa dengan pertanyaan: halaman udah dimuat ulang dengan F5?
 -->
 
 ---

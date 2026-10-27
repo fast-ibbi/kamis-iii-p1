@@ -141,11 +141,7 @@ luntur kalau nggak ditimpa dengan CSS kustom.
 
 # Kapan Sebaiknya Menulis CSS Sendiri
 
-- Proyek kecil dengan satu-dua halaman berdesain khas
-- Pas belajar konsep dasar box model, flexbox, dan grid
-- Pas pustaka menebal file buat kebutuhan yang sedikit
-- Framework buat pola berulang dan tenggat yang ketat
-- CSS kustom buat identitas yang harus tetap khas
+![w:1120 CSS sendiri dipakai untuk proyek kecil berdesain khas, saat belajar box model, flexbox, dan grid, serta saat pustaka cuma menebal file; framework dipakai untuk pola berulang dan tenggat yang ketat.](assets/diagrams/bab-09-pengenalan-bootstrap-5-08.svg)
 
 > Bab 1 sampai 8 sengaja tanpa framework biar dasarnya kuat.
 
@@ -154,6 +150,18 @@ Tegaskan bahwa Bab 1 sampai 8 sengaja tanpa framework supaya box model, flexbox,
 grid dipahami dari akarnya. Tanyakan kapan justru lebih baik menulis CSS sendiri.
 Jawaban yang diharapkan: proyek kecil berdesain sangat khas, atau pas pustaka cuma
 menambah berat file tanpa banyak menolong.
+
+Pegangan yang dipakai di slide, sisi CSS sendiri: proyek kecil dengan satu-dua halaman
+berdesain khas, pas belajar box model, flexbox, dan grid, dan pas pustaka menebal file
+buat kebutuhan yang sedikit. Sisi framework cuma dua: pola berulang dan tenggat yang
+ketat.
+
+Satu hal yang sengaja tidak masuk gambar: CSS kustom tetap dipakai buat identitas yang
+harus tetap khas, karena bagian itulah yang tidak boleh diserahkan ke pustaka.
+
+Tanyakan lagi: kalau proyeknya kecil tapi tenggatnya ketat, mana yang menang? Jawaban
+yang diharapkan: pola berulang ditangani framework, identitas khas tetap ditulis
+sendiri.
 -->
 
 ---
@@ -218,12 +226,7 @@ Tanyakan kapan sebaiknya mengunduh file dan menyimpannya di folder proyek.
 
 # Enam Kelompok Fasilitas
 
-- Layout: container dan grid system, inti bab ini
-- Content: reboot, tipografi, tabel, gambar, dan kode
-- Forms: gaya elemen isian, dibangun penuh di Bab 11
-- Components: navbar, kartu, badge, dan alert
-- Helpers: kelas bantu kombinasi kayak clearfix
-- Utilities: kelas kecil buat jarak, tampilan, warna
+![w:1120 Enam kelompok fasilitas Bootstrap 5: layout berisi container dan grid system, content berisi reboot, tipografi, dan tabel, forms berisi gaya elemen isian, components berisi navbar, kartu, dan badge, helpers berisi kelas bantu kombinasi, utilities berisi kelas kecil buat jarak.](assets/diagrams/bab-09-pengenalan-bootstrap-5-12.svg)
 
 > Ikon nggak termuat di file CSS inti; Bootstrap Icons 1.11.3 punya link sendiri.
 
@@ -231,6 +234,15 @@ Tanyakan kapan sebaiknya mengunduh file dan menyimpannya di folder proyek.
 Peta enam kelompok ini berguna sebagai rujukan sepanjang Bab 9 sampai 12. Minta
 mahasiswa menebak ke kelompok mana navbar dan ke kelompok mana `mb-3` sebelum kamu
 jawab. Ingatkan bahwa ikon dipasang dari file terpisah.
+
+Enam kelompok fasilitas Bootstrap 5 yang digambar, lengkap dengan isinya. Layout:
+container dan grid system, inti bab ini. Content: reboot, tipografi, tabel, gambar, dan
+kode. Forms: gaya elemen isian, dibangun penuh di Bab 11. Components: navbar, kartu,
+badge, dan alert. Helpers: kelas bantu kombinasi kayak clearfix. Utilities: kelas kecil
+buat jarak, tampilan, warna.
+
+Jawaban dua tebakan tadi: navbar masuk Components, `mb-3` masuk Utilities. Dua itulah
+yang paling sering keliru di kelas.
 -->
 
 ---
@@ -351,11 +363,7 @@ Ingatkan pengecualiannya: `.container-fluid` selalu penuh.
 
 # Tiga Lapis Grid
 
-- container membungkus seluruh baris dan kolom
-- row menyusun kolom biar sejajar dalam satu baris
-- col berisi konten dan menerima gutter dari row
-- Setiap row dibayangkan sebagai penggaris 12 garis
-- Kombinasi lazim: 6+6, 4+4+4, 3×4, 2×6, 8+4
+![w:1120 Tiga lapis grid dari luar ke dalam: container membungkus seluruh baris dan kolom, row menyusun kolom biar sejajar, col berisi konten dan menerima gutter dari row.](assets/diagrams/bab-09-pengenalan-bootstrap-5-18.svg)
 
 > Angka 12 kaya faktor, jadi hampir semua layout bisa diwakili.
 
@@ -364,6 +372,14 @@ Pakai bayangan penggaris 12 garis; itu cara paling gampang menjelaskan grid.
 Tanyakan kenapa angkanya 12, bukan 10. Jawaban yang diharapkan: 12 kaya faktor,
 jadi setengah, sepertiga, seperempat, dan seperenam semuanya pas. Sebutkan pola 8+4
 yang sering dipakai buat sidebar laporan.
+
+Tiga lapis yang digambar, dari luar ke dalam: container membungkus seluruh baris dan
+kolom; row menyusun kolom biar sejajar dalam satu baris; col berisi konten dan menerima
+gutter dari row.
+
+Dua hal yang tidak masuk gambar: setiap row dibayangkan sebagai penggaris 12 garis, dan
+kombinasi lazimnya 6+6, 4+4+4, 3×4, 2×6, 8+4. Sebutkan pola 8+4 buat sidebar laporan
+sebagai contoh konkretnya.
 -->
 
 ---
@@ -415,10 +431,7 @@ menimpanya kalau kelasnya ada.
 
 # Kolom Wajib Anak Langsung dari row
 
-- Kolom harus jadi anak langsung dari row
-- Di luar row, gutter dan penyelajanan ikut lepas
-- Padding kolom nggak lagi dikompensasi margin negatif baris
-- Kesalahan ini begitu lumrah pada pemula
+![w:1120 Tanpa row, kolom ditaruh langsung di dalam container sehingga gutter dan penyelajanan ikut lepas; di dalam row, kolom jadi anak langsung dari row dan padding kolom dikompensasi margin negatif baris.](assets/diagrams/bab-09-pengenalan-bootstrap-5-21.svg)
 
 > Bungkus dulu kolomnya dengan row sebelum menulis kelas col.
 
@@ -427,6 +440,14 @@ Ini kesalahan paling sering pada pemula, jadi sisihkan waktu khusus. Tanyakan ap
 yang lepas kalau kolom ditaruh langsung di dalam container. Jawaban yang diharapkan:
 gutter nggak terbentuk karena padding kolom nggak lagi dikompensasi margin negatif
 baris. Minta mahasiswa memeriksa sendiri struktur container, row, dan col.
+
+Gambar di slide membandingkan dua susunan. Tanpa row: kolom ditaruh langsung di dalam
+container, jadi gutter dan penyelajanan ikut lepas. Di dalam row: kolom jadi anak
+langsung dari row, padding kolom dikompensasi margin negatif baris, jadi gutter
+terbentuk dan kolom sejajar.
+
+Ingatkan sekali lagi bahwa kesalahan ini begitu lumrah pada pemula, bukan tanda
+kodenya rusak.
 -->
 
 ---
@@ -546,11 +567,7 @@ sebagai kepala bagian.
 
 # Utility atau CSS Kustom
 
-- Utility buat gaya umum sekali pakai
-- Jarak, perataan, tampil, sembunyi, dan warna semantik
-- Pola berulang diangkat jadi kelas kustom `blok-elemen`
-- Contoh kelas kustom: `produk-card`, `produk-harga`
-- Identitas merek tetap berpangkal design token di `:root`
+![w:1120 Utility dipakai buat gaya umum sekali pakai seperti jarak, perataan, tampil, dan sembunyi; kelas kustom dipakai saat pola berulang diangkat jadi kelas seperti produk-card dan produk-harga, dan identitas merek tetap berpangkal design token di :root.](assets/diagrams/bab-09-pengenalan-bootstrap-5-28.svg)
 
 > Belasan kelas utility di satu elemen itu sinyal bahaya.
 
@@ -559,6 +576,14 @@ Pakai tiga aturan sederhana ini sebagai rambu praktikum. Tanyakan tanda bahaya a
 yang muncul kalau satu elemen punya belasan kelas utility. Jawaban yang diharapkan:
 polanya berulang, jadi sebaiknya diangkat jadi kelas kustom `blok-elemen`. Ingatkan
 bahwa identitas tetap berpangkal design token di `:root`.
+
+Aturan yang digambar, sisi utility: utility buat gaya umum sekali pakai, yaitu jarak,
+perataan, tampil, sembunyi, dan warna semantik. Sisi kelas kustom: pola berulang
+diangkat jadi kelas kustom, contoh: `produk-card`, `produk-harga`, dan identitas merek
+tetap berpangkal design token di `:root`.
+
+Minta mahasiswa menandai satu elemen di `index.html` praktikum yang kelasnya sudah
+lebih dari lima, lalu putuskan bersama apakah polanya berulang atau tidak.
 -->
 
 ---
