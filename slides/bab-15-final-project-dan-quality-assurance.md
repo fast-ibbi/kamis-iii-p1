@@ -108,6 +108,18 @@ jadi pemeriksaannya juga beda.
 
 ---
 
+# Contoh: Sembilan Bagian Wajib di Empat Halaman
+
+![w:1120 Empat kolom halaman Tokosaya: index dengan hero, katalog dengan delapan produk, produk dengan detail produk, dan kontak dengan form, dalam grid 4 kolom bergutter 24 piksel.](assets/diagrams/bab-15-final-project-dan-quality-assurance-06.svg)
+
+Empat halaman Tokosaya berbagi pola yang sama: `index.html` memuat hero, `katalog.html` memuat delapan produk, `produk.html` memuat detail produk, dan `kontak.html` memuat form. Dibaca sebagai grid 4 kolom, satu kolom satu halaman, jadi sembilan bagian wajib tinggal ditempel ke tempatnya masing-masing. Empat halaman saling tersambung lewat navigasi yang sama.
+
+<!--
+Tunjuk satu kolom per halaman dan tanya bagian mana yang paling sering kosong di proyek teman sekelas. Jawaban yang diharapkan: section konten di halaman produk dan footer yang lupa diperbarui. Tekankan bahwa sembilan bagian wajib itu bukan sembilan halaman — empat halaman inilah yang harus lengkap, dan polanya berulang.
+-->
+
+---
+
 # Fokus QA Tiap Bagian
 
 | Bagian | Fokus QA khas |
@@ -181,6 +193,18 @@ yang jadi sumber link mati paling umum di proyek pemula.
 
 ---
 
+# Contoh: Empat Konvensi Penamaan
+
+![w:1120 Tiga nama file yang gagal di hosting berpasangan dengan versi kebab-case-nya: Produk Baru.html menjadi produk-baru.html, IMG Keyboard.svg menjadi produk-keyboard-kx210.svg, dan style2.css menjadi css atau style.css.](assets/diagrams/bab-15-final-project-dan-quality-assurance-10.svg)
+
+Nama yang gagal biasanya tiga ini, dan nama yang lolos cuma beda tanda hubung: `Produk Baru.html` jalan di laptop tim tapi mati di hosting, sedangkan `produk-baru.html` aman karena huruf kecil semua dan tanpa spasi. `IMG Keyboard.svg` dan `style2.css` melanggar konvensi yang sama, sementara `produk-keyboard-kx210.svg` memuat kategori plus kode produk dan semua gaya tetap di `css/style.css`.
+
+<!--
+Tulis `Produk Baru.html` di papan dan tanya kenapa file itu hidup di laptop tapi mati setelah diunggah. Jawaban yang diharapkan: spasi dan huruf besar diperlakukan beda oleh sebagian server, jadi jalurnya berubah. Lanjut ke kolom kanan: kebab-case, huruf kecil, kategori plus kode produk, satu file CSS.
+-->
+
+---
+
 # HTML yang Bersih
 
 - DOCTYPE HTML5 plus `lang="id"` di elemen `html`
@@ -199,6 +223,18 @@ Sebutkan bahwa aturan ini dipakai ulang sebagai item checklist pada praktikum.
 
 ---
 
+# Contoh: HTML yang Bersih
+
+![w:1120 Kotak input surel: content 320 kali 44 piksel, padding 12 piksel, border 1 piksel, lebar total 346 piksel, dengan catatan for surel dan id surel yang saling menyambung.](assets/diagrams/bab-15-final-project-dan-quality-assurance-12.svg)
+
+Input surel di `kontak.html` nggak butuh CSS kustom: content 320 × 44 px, padding 12 px, border 1 px, jadi lebar total 346 px. Yang bikin halaman ini bersih bukan angkanya, tapi pasangan `for="surel" id="surel"` yang menyambung label ke input, plus satu `h1` per halaman dan `alt` di setiap `img`.
+
+<!--
+Minta kelas menghitung dulu sebelum menebak: 320 + 12 + 12 + 1 + 1 jadi berapa. Jawaban yang diharapkan: 346 px, dan angka itu bukan inti slide ini. Tunjuk baris content, padding, dan border di daftar kanan, lalu tanya apa yang terjadi kalau `for` dan `id` nggak nyambung — pembaca layar menyebut input itu "edit kosong".
+-->
+
+---
+
 # CSS yang Bersih
 
 - Urutan file: token `:root`, base, komponen, halaman
@@ -213,6 +249,18 @@ Minta mahasiswa menghitung berapa aturan di file mereka yang nggak pernah mengen
 apa pun. Tanyakan kenapa `.merah` dan `.fix2` jadi nama yang menyesatkan pas desain berubah.
 Jawaban yang diharapkan: namanya mendeskripsikan tampilan sesaat, bukan peran. Sebutkan
 bahwa kode mati yang dibiarkan bikin reviewer berani menghapus hal yang salah.
+-->
+
+---
+
+# Contoh: CSS yang Bersih
+
+![w:1120 Empat lapis file style.css dari atas: token :root untuk warna, radius, dan jarak, lalu base untuk reset dan tipografi dasar, lalu komponen untuk kartu dan tombol, terakhir halaman untuk gaya khusus kontak.](assets/diagrams/bab-15-final-project-dan-quality-assurance-14.svg)
+
+`style.css` Tokosaya dibaca berlapis dari atas: token `:root` buat warna, radius, jarak; lapis base buat reset dan tipografi dasar; lapis komponen buat kartu dan tombol; dan lapis halaman buat gaya khusus kontak. Nilai yang menumpang token bikin `!important` nggak pernah dibutuhkan.
+
+<!--
+Tanya kelas: lapis mana yang paling sering jadi tempat sampah di file mereka. Jawaban yang diharapkan: lapis halaman, karena aturan sekali pakai suka ditumpuk di sana. Tunjuk urutan lapisnya dari atas ke bawah, lalu tegaskan bahwa `!important` cuma muncul kalau urutan ini dilanggar.
 -->
 
 ---
@@ -249,6 +297,18 @@ Ingatkan bahwa kustom tetap boleh, cuma tempatnya bukan di sini.
 
 ---
 
+# Contoh: Utilitas Dulu, Kustom Seperlunya
+
+![w:1120 Navbar dalam kontainer 1120 piksel dengan justify-content space-between: brand 160 piksel dan empat menu 120 piksel, gap 16 piksel, sisa 416 piksel terbagi rata menjadi 104 piksel di antara lima item.](assets/diagrams/bab-15-final-project-dan-quality-assurance-17.svg)
+
+Navbar Tokosaya cukup satu kelas `d-flex` dengan `justify-content: space-between`: brand 160 px, empat menu index, katalog, produk, dan kontak masing-masing 120 px, plus gap 16 px kali empat. Totalnya 160 + 480 + 64 = 704 px dari kontainer 1120 px, jadi sisa 416 px dibagi rata menjadi 104 px di antara lima item — tanpa satu aturan kustom pun.
+
+<!--
+Minta kelas menebak dulu dari mana jarak 104 px itu datang, sebelum menghitung. Jawaban yang diharapkan: dari space-between, bukan dari margin per menu. Tunjuk pita amber di gambar dan tegaskan bahwa melebarkan satu menu cukup mengubah basisnya, nggak perlu aturan baru di `style.css`.
+-->
+
+---
+
 # Aturan Jaga dan Batas Praktis
 
 - Kustom dikasih komentar `/* kustom */` biar kelihatan
@@ -263,6 +323,18 @@ Minta kelas menunjuk satu aturan kustom di file masing-masing, lalu tanyakan apa
 komentar pengenalnya. Lanjutkan dengan risiko ganti versi Bootstrap di tengah sprint QA.
 Periksa juga versi Bootstrap di websitenya sekarang, karena buku ini mengunci 5.3.3 dan
 versi mayor baru bisa mengubah banyak kelas.
+-->
+
+---
+
+# Contoh: Aturan Jaga dan Batas Praktis
+
+![w:1120 Kartu produk: content 323 kali 96 piksel, padding 16 piksel, border 1 piksel, lebar total 357 piksel, semuanya dari kelas Bootstrap tanpa important.](assets/diagrams/bab-15-final-project-dan-quality-assurance-19.svg)
+
+Kartu produk di `col-md-4` sudah beres dari framework: border 1 px ditambah padding 16 px di kiri dan kanan, jadi content 323 × 96 px dan lebar total 357 px — itulah isi kartu yang dilihat pengguna. Semua angka itu datang dari kelas baku, jadi `style.css` nggak perlu aturan penimpa dan tetap tanpa `!important`, sementara CDN dikunci di 5.3.3.
+
+<!--
+Tanya kenapa angka 357 px itu justru bukti bahwa nggak ada yang perlu ditimpa. Jawaban yang diharapkan: karena border dan padding sudah dibawa kelas baku, penimpaan cuma menambah aturan yang harus dirawat. Sebutkan bahwa versi 5.3.3 dan 1.11.3 dikunci justru supaya angka ini nggak berubah diam-diam di tengah sprint QA.
 -->
 
 ---
@@ -340,6 +412,18 @@ sengaja tetap, biar penyisiran nggak bergantung pada ingatan.
 
 ---
 
+# Contoh: Pemindai Lima Titik
+
+![w:1120 Satu halaman dalam grid 12 kolom bergutter 24 piksel: baris navigasi penuh, baris hero penuh, tiga kartu produk selebar 4 kolom, dan baris form penuh, dengan catatan bahwa footer diperiksa terakhir.](assets/diagrams/bab-15-final-project-dan-quality-assurance-24.svg)
+
+`index.html` disisir dari atas: navigasi, hero, tiga kartu produk di grid 12 kolom, lalu form — dan titik kelima footer diperiksa terakhir. Gutter 24 px serta lebar yang sama di tiap breakpoint bikin urutan ini bisa diulang orang lain tanpa mengandalkan ingatan.
+
+<!--
+Jalankan pemindaian ini di layar sambil geser lebar, jangan cuma dibacakan. Tanyakan titik mana yang paling sering bermasalah di proyek teman sekelas; jawaban yang diharapkan: kartu produk dan form. Tunjuk baris kartu produk di gambar, lalu minta kelas menyebut lebar layar tempat baris itu mulai menumpuk.
+-->
+
+---
+
 # Browser Testing dan Uji Ulang Regresi
 
 - Chrome jadi browser utama, tambah satu browser lain
@@ -355,6 +439,18 @@ diharapkan: mesin renderingnya beda, jadi jarak bawaan elemen form bisa lain. La
 dengan aturan praktis regression: setiap perubahan kaskade disertai penyapuan navigasi
 plus satu halaman katalog, karena aturan kustom untuk satu halaman kadang mengenai
 halaman lain.
+-->
+
+---
+
+# Contoh: Browser Testing dan Uji Ulang Regresi
+
+![w:1120 Tiga keadaan pengujian: lulus, temuan, dan diperbaiki, dengan panah sapu, ubah CSS, uji ulang, dan panah balik regresi dari diperbaiki ke temuan.](assets/diagrams/bab-15-final-project-dan-quality-assurance-26.svg)
+
+Satu putaran browser testing: katalog lulus di Chrome, disapu di Firefox, muncul temuan; temuan diubah CSS-nya sampai diperbaiki, lalu diuji ulang supaya lulus lagi. Kalau aturan kustom yang sama bikin cacat kambuh di halaman lain, statusnya regresi dan harus diperbaiki sebelum disapu ulang.
+
+<!--
+Tanyakan kenapa panah balik dari diperbaiki ke lulus harus lewat uji ulang, bukan lewat perasaan. Jawaban yang diharapkan: status menang cuma setelah halaman diperiksa lagi. Tunjuk panah cacat kembali dan minta kelas menyebut perubahan kaskade seperti apa yang biasanya mengenai halaman lain — biasanya selector yang terlalu lebar.
 -->
 
 ---
@@ -376,6 +472,18 @@ pasal WCAG 2.2 yang bisa dilaporkan. Minta kelas menjalankan uji tab tanpa menye
 pada satu halaman kontak. Tanyakan kenapa skor Lighthouse tinggi bukan berarti lulus.
 Jawaban yang diharapkan: urutan baca dan makna cuma bisa dinilai manusia, jadi alatnya
 cuma penguat, bukan pengganti.
+-->
+
+---
+
+# Contoh: Lima Pemeriksaan Aksesibilitas dan Alatnya
+
+![w:1120 Urutan tab di halaman kontak: Tab pertama memberi fokus ke skip link, Tab kedua ke input surel, lalu Tab ketiga melanjutkan ke tombol kirim.](assets/diagrams/bab-15-final-project-dan-quality-assurance-28b.svg)
+
+Di halaman kontak, pengguna menekan Tab tanpa menyentuh mouse: Tab pertama memindahkan fokus skip link, Tab kedua ke fokus input surel, dan Tab ketiga ke tombol kirim. Kalau urutan fokus ini mengalir, satu dari lima pemeriksaan aksesibilitas sudah lolos.
+
+<!--
+Minta kelas menjalankan uji tab ini di perangkatnya sendiri, jangan cuma dibacakan. Tanyakan apa yang terlihat kalau indikator fokus hilang: jawaban yang diharapkan, pengguna keyboard kehilangan posisi dan berhenti di tengah form. Lanjut ke empat pemeriksaan lain: alt bermakna, kontras teks 4,5 : 1, satu `h1` per halaman, dan label yang terhubung. Ingatkan skor Lighthouse boleh tinggi, tapi urutan fokus dan makna label tetap dinilai manusia.
 -->
 
 ---
@@ -439,6 +547,18 @@ diharapkan: pengguna menyimpulkan halaman yang beda tampilan itu halaman yang te
 
 ---
 
+# Contoh: Checklist Rilis 1/3 — Isi, Brand, dan Meta
+
+![w:1120 Katalog dalam grid 12 kolom bergutter 24 piksel: dua baris berisi empat kartu produk selebar 3 kolom, dua di antaranya KX-210 dan WC-720, dengan harga Rp650.000.](assets/diagrams/bab-15-final-project-dan-quality-assurance-32.svg)
+
+`katalog.html` menampilkan delapan produk baku dalam grid 12 kolom: empat kartu per baris dengan span 3 dan gutter 24 px, dua di antaranya KX-210 dan WC-720. Setiap kartu wajib memuat nama, kategori, dan harga berformat `Rp650.000` tanpa spasi — itu item pertama checklist rilis 1/3.
+
+<!--
+Hitung bareng kelas: 4 + 4 + 4 + 4 = 12 kolom, dua baris, delapan kartu produk. Tanyakan kenapa harga harus satu format di semua kartu. Jawaban yang diharapkan: pengguna membandingkan harga dengan mata, dan format yang campur bikin perbandingan itu gagal. Lanjut minta kelas mengklik seluruh menu navigasi untuk mencari link mati.
+-->
+
+---
+
 # Checklist Rilis 2/3 — Kode, Perangkat, dan Akses
 
 - HTML lolos W3C validator tanpa kesalahan
@@ -452,6 +572,18 @@ Tanyakan kenapa item validator ditaruh di posisi paling atas. Jawaban yang dihar
 satu tag yang nggak ditutup bikin parser menarik kesimpulan berantai di baris berikutnya,
 jadi kesalahan pertama itu akarnya. Lanjutkan dengan perbandingan styleguide: setiap
 penyimpangan radius atau jarak itu temuan dengan lokasi, bukan beda selera.
+-->
+
+---
+
+# Contoh: Checklist Rilis 2/3 — Kode, Perangkat, dan Akses
+
+![w:1120 Kontainer di desktop 992 piksel: content isi halaman 960 kali 96 piksel dengan margin kiri dan kanan masing-masing 16 piksel, jadi lebar total 992 piksel.](assets/diagrams/bab-15-final-project-dan-quality-assurance-34b.svg)
+
+Kolom paling kanan test matrix: di desktop 992 px, kontainer Bootstrap menyisakan margin 16 px di kiri dan kanan, jadi content 960 × 96 px dan lebar total 992 px. Di bawah 992 px isi halaman ini wajib menyusut sendiri, dan sel matrix yang masih kosong tetap dihitung sebagai temuan.
+
+<!--
+Tunjuk margin 16 px di gambar dan tanya dari mana angka itu datang. Jawaban yang diharapkan: dari selisih lebar layar 992 px dengan kontainer 960 px, bukan dari aturan kustom. Lanjutkan ke kolom tablet 768 px dan HP 360 px, lalu minta kelas menyebut sel matrix mana yang biasanya dibiarkan kosong.
 -->
 
 ---
@@ -474,6 +606,20 @@ yang bisa dibuktikan.
 
 ---
 
+<!-- _class: compact -->
+
+# Contoh: Checklist Rilis 3/3 — Aset, Alat QA, dan Paket
+
+![w:1120 Gambar produk berukuran content 480 kali 320 piksel, tanpa border dan padding, jadi lebar total 480 piksel, dengan nama berkas produk-keyboard-kx210.svg.](assets/diagrams/bab-15-final-project-dan-quality-assurance-36.svg)
+
+Satu aset di folder `img/`: gambar produk `produk-keyboard-kx210.svg` dengan content 480 × 320 px, jadi lebar total 480 px tanpa border dan tanpa padding. Nama kebab-case, dimensi wajar, satu format tetap — begitu item aset di checklist rilis 3/3 terpenuhi dan paket `tokosaya-bootstrap-v1.0.0-rc1.zip` tinggal dirakit.
+
+<!--
+Tanya apa yang terjadi kalau gambar ini disimpan sebagai Keyboard KX210 Final.png berukuran 1600 px. Jawaban yang diharapkan: nama berspasi berisiko mati di hosting, dan berkas besar memperlambat halaman tanpa menambah informasi. Tunjuk angka 480 × 320 px dan tegaskan bahwa ukuran wajar itu keputusan sadar, bukan sisa ekspor.
+-->
+
+---
+
 # Paket Rilis Kandidat
 
 - Rilis kandidat: versi siap rilis menunggu persetujuan akhir
@@ -487,6 +633,20 @@ Bedakan deployment dan rilis kandidat dengan jelas, karena dua kata ini sering d
 sama. Tanyakan apa bedanya keputusan rilis yang terdokumentasi dengan keputusan yang
 mengikuti suasana hati. Jawaban yang diharapkan: yang terdokumentasi bisa dibantah dan
 diulang pemeriksaannya. Sebutkan bahwa nol temuan Kritis itu ukuran terukurnya.
+-->
+
+---
+
+<!-- _class: compact -->
+
+# Contoh: Paket Rilis Kandidat
+
+![w:1120 Isi paket rilis rc1: empat halaman HTML, css atau style.css, folder img, qa-checklist.html, dan laporan-temuan.html.](assets/diagrams/bab-15-final-project-dan-quality-assurance-38.svg)
+
+Paket rilis rc1 dibuka reviewer dan isinya harus bisa ditebak: empat halaman HTML yaitu index.html, katalog.html, produk.html, kontak.html, plus css/style.css, folder img/, dan dua alat QA yaitu qa-checklist.html serta laporan-temuan.html. Satu label versi, satu catatan perubahan, nol temuan Kritis.
+
+<!--
+Buka satu paket ZIP di layar dan tanya apa yang bikin reviewer percaya paket ini lengkap. Jawaban yang diharapkan: susunannya bisa ditebak tanpa membuka tiap file, dan alat QA kelihatan memisahkan diri dari produk. Tekankan bahwa rilis kandidat menunggu peer review dan dosen, jadi paket ini belum barang jadi yang langsung dipakai.
 -->
 
 ---
@@ -505,6 +665,18 @@ Tekankan bahwa skrip ini menyelamatkan kamu dari presentasi yang mengarang. Tany
 kenapa bukti QA harus punya porsi sendiri di presentasi. Jawaban yang diharapkan: biar
 penilaian berdasar bukti, bukan kesan. Ingatkan juga bahwa Bab 16 menambah tiga menit
 QA demo responsif setelah presentasi, jadi latih perpindahan breakpointnya.
+-->
+
+---
+
+# Contoh: Skrip Presentasi Tujuh Menit
+
+![w:1120 Garis waktu presentasi: masalah 60 piksel, solusi 90 piksel, demo tiga breakpoint 180 piksel, bukti QA 60 piksel, dan refleksi 60 piksel, terpakai 450 piksel dari container 480 piksel dengan sisa 30 piksel.](assets/diagrams/bab-15-final-project-dan-quality-assurance-40.svg)
+
+Skrip tujuh menit itu dihitung dari durasi: masalah 60 px, solusi 90 px, demo tiga breakpoint 180 px, bukti QA 60 px, refleksi 60 px. Terpakai 450 px dari container 480 px, jadi sisa 30 px — satu detik satu px, dengan `justify-content: flex-start` supaya urutannya kebaca dari kiri.
+
+<!--
+Minta kelas menghitung ulang: 60 + 90 + 180 + 60 + 60 = 450 detik. Tanyakan kenapa bagian demo dapat porsi paling besar. Jawaban yang diharapkan: bukti paling meyakinkan itu halaman yang bergerak di tiga breakpoint, bukan daftar fitur. Ingatkan Bab 16 menambah tiga menit demo responsif, jadi latih perpindahan breakpointnya.
 -->
 
 ---
