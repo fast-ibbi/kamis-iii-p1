@@ -270,6 +270,18 @@ pola yang sama bakal dibangun ulang dengan Grid di Bab 7.
 
 ---
 
+# Contoh: Studi Kasus: Dashboard SIAKAD
+
+![w:1120 Kartu statistik SIAKAD: content 240 x 64 piksel, padding 24 piksel, border 4 piksel, sehingga lebar total 296 piksel; padding 24 itu dari skala 8.](assets/diagrams/bab-05-css-box-model-dan-layout-15.svg)
+
+Satu kartu statistik SIAKAD: content 240 × 64 px, padding 24 px dari skala 8, border 4 px. Lebar totalnya 240 + 24 + 24 + 4 + 4 = 296 px, tingginya 64 + 24 + 24 + 4 + 4 = 120 px. Tinggi 64 px itu dua baris teks: label 24 px, jarak 8 px, angka 32 px.
+
+<!--
+Minta kelas menghitung sendiri lebar dan tinggi kartunya sebelum kamu tunjukkan angka 296 px di panel kanan. Jawaban yang diharapkan: 240 + 24 + 24 + 4 + 4 untuk lebar, lalu 64 + 24 + 24 + 4 + 4 untuk tinggi. Tunjuk baris "lebar total" — itu jumlah semua pita di atasnya, bukan angka yang ditulis di CSS. Tinggi content 64 px juga bukan angka asal: 24 px baris label, 8 px jarak, 32 px baris angka, jadi semuanya jatuh di langkah skala 8. Bandingkan dengan padding 40 px yang bikin kartu terlalu tinggi: selisihnya 16 px per sisi, jadi 32 px per kartu, dan itulah yang bikin kartu ketiga terlempar keluar layar.
+-->
+
+---
+
 <!-- _class: section -->
 <!-- _footer: '' -->
 
@@ -299,6 +311,18 @@ Tanyakan elemen apa yang bakal kamu beri padding penuh: link di dalam paragraf a
 badge di dalam daftar. Jawaban yang diharapkan: keduanya perlu perlakuan berbeda,
 dan itu inti subbab ini. Sebutkan bahwa mengubah jenis kotak lewat CSS jauh lebih
 murah daripada menambah pembungkus di HTML.
+-->
+
+---
+
+# Contoh: display Menentukan Jenis Kotak
+
+![w:1000 Pohon display: cabang block berisi p dan div, cabang inline berisi span, a, dan badge — bawaannya inline; cabang inline-block — ditulis di CSS, tanpa anggota bawaan.](assets/diagrams/bab-05-css-box-model-dan-layout-18.svg)
+
+Lima elemen kartu produk Tokosaya. Dua cabang pertama dipilihkan stylesheet browser: block berisi p dan div, inline berisi span dan a. Lalu badge — bawaannya inline, karena badge itu memang span. Cabang inline-block — ditulis di CSS: baru terisi setelah display: inline-block.
+
+<!--
+Minta kelas menebak jenis kotak tiap elemen sebelum gambarnya dibuka. Jawaban yang diharapkan: p dan div block, span dan a inline, dan badge ikut inline — bawaannya, karena dia span. Badge baru jadi inline-block setelah CSS menulis display: inline-block di kartu produk, dan itu kerjaan penulis CSS, bukan pilihan stylesheet browser. Tunjuk ketiga cabangnya, lalu tekankan bahwa cabang inline-block tidak pernah datang sendiri: satu properti display memindahkan badge tanpa menyentuh HTML sama sekali.
 -->
 
 ---
@@ -336,6 +360,18 @@ Jadikan badge sebagai contoh tunggal yang diulang terus: satu properti, tiga
 perilaku berbeda. Tanyakan apa yang terjadi kalau badge dibiarkan `inline` padahal
 padding-nya 8 px 16 px. Jawaban yang diharapkan: bentuknya remuk dan latarnya
 menempel di teks tanpa mendorong baris.
+-->
+
+---
+
+# Contoh: Badge Tokosaya Butuh inline-block
+
+![w:1120 Badge Best Seller: content 88 x 22 piksel, padding 8 16 8 16 piksel, lebar total 120 piksel, sebagai display inline-block.](assets/diagrams/bab-05-css-box-model-dan-layout-21.svg)
+
+Badge "Best Seller" di kartu produk: content 88 × 22 px, diberi padding 8 px 16 px — ditulis 8 16 8 16 px, atas bawah dulu lalu kiri kanan. Lebar totalnya 88 + 16 + 16 = 120 px dan tingginya 22 + 8 + 8 = 38 px, angka yang cuma dihormati browser kalau badge-nya display: inline-block.
+
+<!--
+Minta kelas menghitung dulu sebelum kamu tunjukkan angkanya: 88 + 16 + 16 jadi berapa, dan 22 + 8 + 8 jadi berapa. Jawaban yang diharapkan: 120 × 38 px, dan itu kotak yang benar-benar dipakai browser. Lalu tanyakan apa yang terjadi kalau badge-nya dibiarkan inline — padding atas bawahnya cuma melukis latar tanpa mendorong baris, jadi bentuknya remuk. Tunjuk pita padding di gambar: di situlah latar dan area klik badge berhenti.
 -->
 
 ---
@@ -408,6 +444,20 @@ menggulir buat tabel yang panjang.
 
 ---
 
+# Contoh: Potong Melingkar dan Gulir Panel
+
+![w:1120 Dua keadaan berdampingan. Tanpa aturan: sudut gambar tetap tajam walau kartu beradius 12 px, dan tabel 480 px memanjangkan seluruh halaman. Dengan overflow: overflow hidden memotong gambar ikut sudut kartu, dan overflow y auto menggulir panel 200 px saja.](assets/diagrams/bab-05-css-box-model-dan-layout-25.svg)
+
+Kartu Tokosaya beradius 12 px. Tanpa aturan, dua hal tetap bocor: sudut gambar tetap tajam walau kartu beradius 12 px, dan tabel 480 px memanjangkan seluruh halaman. Dengan overflow, dua-duanya beres tanpa isinya diubah: overflow: hidden memotong gambar ikut sudut kartu, dan overflow-y: auto menggulir panel 200 px saja — 480 − 200 = 280 px sisanya menunggu di dalam panel.
+
+<!--
+Tunjukkan sudut kartu yang masih tajam sebelum `overflow: hidden` dipasang; itu perbedaan yang paling mudah dilihat kelas. Tekankan prinsip besarnya: yang dibatasi adalah kotaknya, bukan isinya — radius 12 px di kartu tidak memotong sudut gambar di dalamnya sampai wadah gambarnya sendiri yang memotong lewat overflow: hidden. Lalu pindah ke panel presensi: tabel 480 px tinggi di dalam kotak 200 px, jadi 480 − 200 = 280 px menunggu di dalam panel dan halaman tidak ikut memanjang.
+
+Tanyakan dulu kenapa halaman tidak boleh ikut menggulir buat tabel yang panjang. Jawaban yang diharapkan: konteks pengguna hilang, header dan menu ikut tergeser. Tanyakan juga kapan `overflow: hidden` lebih tepat daripada `auto`: saat kontennya memang hiasan yang boleh terpotong, bukan data yang perlu dibaca sampai habis.
+-->
+
+---
+
 <!-- _class: compact -->
 
 # Elipsis: Tiga Properti Satu Kesatuan
@@ -448,6 +498,20 @@ Tunjukkan nama file panjang kayak laporan tahunan yang bikin panel melebar tanpa
 `break-word`. Sebutkan bahwa `line-clamp` tergolong prefiks vendor dan dukungannya
 perlu diperiksa di dokumentasi resmi. Tanyakan mana yang lebih aman buat teks yang
 penting: memangkas di sisi penyunting konten atau memotong otomatis.
+-->
+
+---
+
+# Contoh: Teks Panjang: Dua Resep Lain
+
+![w:1120 Dua resep berdampingan untuk nama 60 huruf yang sama. Resep 1 break-word: kata 60 huruf dipatahkan di tengah, kotak tetap 280 px, tanpa prefiks vendor. Resep 2 line-clamp: nama berhenti di dua baris, sisanya diganti tanda elipsis, masih butuh prefiks webkit.](assets/diagrams/bab-05-css-box-model-dan-layout-29.svg)
+
+Nama produk WC-720 di kartu 280 px, dua resep buat masalah yang sama. Resep 1 — break-word: kata 60 huruf dipatahkan di tengah, kotak tetap 280 px, teks turun baris, tanpa prefiks vendor. Resep 2 — line-clamp: nama berhenti di dua baris, sisanya diganti tanda elipsis, masih butuh prefiks webkit. Contoh kartu Tokosaya di bab ini memakai resep 2. Kartunya tetap 280 px: 280 − 16 − 16 − 1 − 1 = 246 px content, padding 16 px, border 1 px.
+
+<!--
+Minta kelas menyelesaikan pengurangannya: 280 − 16 − 16 − 1 − 1 jadi berapa. Jawaban yang diharapkan: 246 px, dan itulah lebar yang tersisa buat teks di dalam padding 16 px dan border 1 px. Tekankan bahwa dua resep ini menjawab dua masalah berbeda: `overflow-wrap: break-word` mematahkan satu kata yang tidak boleh melebar, sedangkan `-webkit-line-clamp` memangkas isi yang boleh dipendekkan. Contoh kartu di bab ini memakai resep kedua, jadi deskripsi berhenti di dua baris dan tingginya tidak ikut memanjang walaupun namanya 60 huruf.
+
+Tanyakan mana yang lebih aman buat nama produk: dipatahkan dengan overflow-wrap: break-word atau dipangkas dua baris dengan prefiks vendor. Jawaban yang diharapkan: dipatahkan, kalau nama itu harus terbaca utuh; dipangkas hanya kalau nama penuhnya masih bisa dibaca di tempat lain.
 -->
 
 ---
@@ -530,6 +594,18 @@ Tanyakan kenapa `z-index: 9999` dianggap kebiasaan buruk walaupun hasilnya kelih
 benar. Jawaban yang diharapkan: nilainya tidak terdokumentasi, jadi aturan berikutnya
 terpaksa menulis angka lebih besar lagi. Sebutkan bahwa susunan cukup diurus di
 elemen yang diposisikan.
+-->
+
+---
+
+# Contoh: z-index pada Elemen Diposisikan
+
+![w:1120 Tiga strata di dalam produk-media: badge Best Seller dengan position absolute, z-index 2 paling depan; gambar produk yang static, ikut alur di bawahnya; dan produk-media sendiri sebagai landasan karena position relative.](assets/diagrams/bab-05-css-box-model-dan-layout-33.svg)
+
+Tiga strata di dalam produk-media. Paling depan badge Best Seller — position absolute, z-index 2 — dan angka 2 itu satu-satunya z-index di style.css. Di bawahnya gambar produk yang static, ikut alur; kotak seperti itu tidak butuh z-index karena hanya yang diposisikan bisa diurutkan. Paling bawah produk-media sendiri: position relative, landasan badge mengukur 8 px dari tepi gambar.
+
+<!--
+Tanyakan dulu apa yang terjadi kalau badge-nya position: static — jawaban yang diharapkan: z-index diabaikan sekaligus top dan right tidak berlaku, jadi badge balik ke alur di bawah gambar dan tidak lagi menempel di pojok. Tunjuk tiga pita di gambar dari atas ke bawah: badge, gambar produk, lalu produk-media sebagai landasan tumpukan. Tekankan dua hal: gambar produk yang static tidak butuh z-index sama sekali, dan angka 2 di style.css itu satu-satunya z-index di kartu ini — tidak ada z-index 1 di file mana pun. Tutup dengan pesan slide berikutnya: pakai skala kecil 1, 2, dan 10, jangan melompat ke 9999 supaya tumpukannya masih bisa dibaca ulang.
 -->
 
 ---
