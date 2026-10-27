@@ -67,6 +67,21 @@ Tutup dengan alur kerja bab ini: audit dulu, perbaiki satu per satu, lalu cek ul
 
 ---
 
+# Contoh: Rapi di Monitor, Ambruk di HP
+
+![w:1120 Kotak kartu katalog Tokosaya dari luar ke dalam: margin nol, border 4 px, padding 16 px, dan content 280 kali 96 px berisi gambar produk, dengan lebar total 320 px karena dua kartu butuh 640 px sementara layar HP cuma 360 px.](assets/diagrams/bab-13-website-responsif-dan-accessibility-04.svg)
+
+Kartu katalog Tokosaya: content 280 × 96 px buat gambar produk, padding 16 px, border 4 px, jadi lebar total 320 px.
+
+<!--
+Tanyakan kenapa kartu 320 px yang kelihatan rapi di monitor malah bikin geser di HP.
+Jawaban yang diharapkan: lebarnya tetap, jadi dua kartu butuh 640 px, layar HP cuma
+360 px. Tunjuk pita hijau padding dan pita abu border di gambar biar kelas lihat dari
+mana angka 320 px datang.
+-->
+
+---
+
 <!-- _class: section -->
 <!-- _footer: '' -->
 
@@ -101,6 +116,7 @@ menurun; cocok buat dashboard staf, data padat; risiko: HP jadi tambalan; kompen
 uji 320–576 px sejak awal.
 -->
 
+
 ---
 
 # Kenapa Mobile-First Banyak Dipakai
@@ -120,6 +136,23 @@ Tokosaya dimulai dari satu kolom kartu produk.
 
 ---
 
+# Contoh: Kenapa Mobile-First Banyak Dipakai
+
+![w:1120 Dua baris katalog dalam grid 12 kolom bergutter 16 px: baris pertama satu kartu span 12 yang disebut katalog satu kolom, baris kedua empat kartu span 3 yang berbagi lebar 1120 px.](assets/diagrams/bab-13-website-responsif-dan-accessibility-09.svg)
+
+Baris katalog Tokosaya tetap grid 12 kolom dengan gutter 16 px; yang berubah cuma span tiap kartu.
+
+Di base satu kartu memakai span 12 — itulah katalog satu kolom — lalu mulai lg empat kartu span 3 berbagi 1120 px yang sama: 4 × 268 px + 3 × 16 px = 1120 px.
+
+<!--
+Minta kelas menghitung track-nya: (1120 − 11 × 16) ÷ 12 = 78,6 px, jadi span 3 itu
+3 × 78,6 + 2 × 16 ≈ 268 px. Tunjuk baris bawah gambar — empat kotak selebar sama itu
+lahir dari gaya dasar satu kolom, bukan dari media query tambahan. Tekankan bahwa di
+baris ini nggak ada angka ajaib, cuma 12 dan 16.
+-->
+
+---
+
 # Desktop-First: Kapan Masih Masuk Akal
 
 - Dashboard staf dan back office memang sering dibuka di desktop
@@ -134,6 +167,23 @@ Ini bagian yang sering dianggap "strategi yang salah", padahal bukan. Beri conto
 sistem akademik buat operator atau back office dengan tabel lebar. Tanyakan dua alasan
 kenapa tim sistem informasi boleh memilih desktop-first, lalu catat jawabannya di
 papan. Tutup dengan kompensasinya: uji layar kecil sejak awal, bukan di akhir.
+-->
+
+---
+
+# Contoh: Desktop-First: Kapan Masih Masuk Akal
+
+![w:1120 Tabel dashboard 8 kolom dalam wadah 1120 px dengan gutter 16 px: enam kolom isi berjajar lalu dua kolom aksi, semuanya di atas penggaris kolom 1 sampai 8.](assets/diagrams/bab-13-website-responsif-dan-accessibility-11.svg)
+
+Dashboard staf memang dirancang penuh sejak awal: tabel 8 kolom di wadah 1120 px dengan gutter 16 px, jadi tiap track (1120 − 7 × 16) ÷ 8 = 126 px.
+
+Enam kolom isi tambah dua kolom aksi menempati 8 × 126 px + 7 × 16 px = 1120 px — pas di desktop, tapi di HP 360 px tabel ini meluber 760 px.
+
+<!--
+Tanyakan apa konsekuensinya memilih desktop-first buat tabel selebar ini. Jawaban yang
+diharapkan: di 360 px nggak ada sisa ruang, jadi tabelnya dipecah manual atau dibiarkan
+geser. Tunjuk penggaris 1 sampai 8 di atas gambar: itu kolom yang sudah dipesan sebelum
+satu layar HP pun diuji.
 -->
 
 ---
@@ -211,6 +261,23 @@ Tanyakan berapa file gambar yang diunduh pengguna HP kalau `srcset` nggak dipaka
 Jawaban yang diharapkan: satu file besar yang sama buat semua layar. Tegaskan bahwa
 `max-width: 100%` cuma mencegah luber, belum menghemat unduhan. Sebutkan bahwa browser
 yang memilih file paling pas, bukan kita.
+-->
+
+---
+
+# Contoh: Gambar Responsif: `srcset` dan `sizes`
+
+![w:1120 Baris hero selebar 1120 px dibagi dua dengan basis 560 px: kotak teks hero di kiri dan kotak gambar hero di kanan, tanpa sisa ruang.](assets/diagrams/bab-13-website-responsif-dan-accessibility-16.svg)
+
+Hero Tokosaya di layar lg punya wadah 1120 px. Dengan sizes 50vw, area gambar cuma 560 px dan teks hero juga 560 px: 560 + 560 = 1120 px, sisa 0 px.
+
+Karena areanya 560 px, browser memilih hero-768.svg, bukan hero-1200.svg — 560 px sudah lewat 480w tapi belum lewat 768w.
+
+<!--
+Tanyakan berapa px yang didapat gambar kalau 50vw dipakai di wadah 1120 px. Jawaban yang
+diharapkan: 560 px, jadi file 1200w kebesaran dan browser turun ke hero-768. Tunjuk kotak
+gambar hero — letaknya di kanan karena barisnya ditulis justify-content: flex-start dengan
+basis 560 px, jadi sisa 0 px.
 -->
 
 ---
@@ -374,6 +441,21 @@ aturan. Sebutkan bahwa struktur makna yang rapi juga membantu mesin pencari.
 
 ---
 
+# Contoh: Aksesibilitas Itu Soal Siapa yang Bisa Pakai
+
+![w:1120 Pohon dari satu root Pengguna Tokosaya yang bercabang empat: pengguna screen reader, pengguna cuma keyboard, pengguna dengan penglihatan terbatas, dan pengguna koneksi lambat.](assets/diagrams/bab-13-website-responsif-dan-accessibility-24.svg)
+
+Pengguna Tokosaya bukan satu orang: ada pengguna screen reader, pengguna cuma keyboard, pengguna dengan penglihatan terbatas, dan pengguna koneksi lambat.
+
+<!--
+Tanyakan siapa yang paling dirugikan kalau tombol keranjang nggak diberi aria-label.
+Jawaban yang diharapkan: pengguna screen reader, karena yang dia dengar cuma "link, link,
+link". Lanjutkan dengan kelompok kedua yang cuma butuh urutan fokus rapi, lalu tunjukkan
+bahwa dua cabang terbawah menuntut kontras dan gambar yang ringan, bukan cincin fokus.
+-->
+
+---
+
 # POUR: Empat Prinsip WCAG
 
 | Prinsip | Artinya | Contoh |
@@ -501,6 +583,23 @@ Tekankan bahwa perbaikannya dilakukan sekali di token, bukan diulang di tiap hal
 
 ---
 
+# Contoh: Kontras AA: 4,5:1 dan 3:1
+
+![w:1120 Dua panel: teks putih di atas amber dengan rasio 2,1:1 yang gagal AA karena ambang teks normal 4,5:1; dan teks gelap di atas amber yang sama dengan rasio 6,8:1 yang lolos AA.](assets/diagrams/bab-13-website-responsif-dan-accessibility-31.svg)
+
+Teks putih di atas amber Tokosaya cuma 2,1:1, jauh di bawah ambang teks normal 4,5:1, jadi badge itu gagal AA.
+
+Versi teks gelap di atas amber yang sama rasionya 6,8:1 — di atas 4,5:1, jadi lolos AA. Yang berubah cuma warna teksnya, latarnya tetap.
+
+<!--
+Bandingkan rasio 2,1:1 di kiri dengan rasio 6,8:1 di kanan langsung di color picker,
+jangan dihitung manual. Tanyakan kenapa pasangan putih di atas amber terasa aman di mata
+padahal gagal. Tunjuk baris terakhir kedua panel: yang berubah cuma warna teks, latarnya
+tetap amber yang sama.
+-->
+
+---
+
 <!-- _class: compact -->
 
 # Focus State: Rancang Ulang, Jangan Hapus
@@ -546,6 +645,23 @@ Jawaban yang diharapkan: urutan tab jadi menyimpang dari urutan visual dan pengg
 mudah tersesat. Tekankan bahwa urutan DOM yang seharusnya membawa urutan tab.
 Tutup dengan kebiasaan penutup: tabulasi sepuluh langkah setiap halaman selesai, lalu
 catat apa yang terjadi.
+-->
+
+---
+
+# Contoh: Antarmuka Ramah Keyboard
+
+![w:1120 Empat stop Tab berurutan mengikuti DOM: logo di Tab 1, nav utama di Tab 2, kartu produk di Tab 3, dan tombol keranjang di Tab 4.](assets/diagrams/bab-13-website-responsif-dan-accessibility-34.svg)
+
+Urutan Tab di katalog.html mengikuti urutan DOM: logo (Tab 1), nav utama (Tab 2), kartu produk (Tab 3), tombol keranjang (Tab 4) — empat stop, tanpa satu pun tabindex positif.
+
+Begitu ada `tabindex="5"` di tengah halaman, urutan Tab berpisah dari urutan visual dan pengguna keyboard mendarat di tempat yang nggak dia lihat.
+
+<!--
+Tanyakan apa yang rusak kalau tombol keranjang ditulis tabindex="5". Jawaban yang
+diharapkan: Tab keempat melompat ke situ, padahal mata masih di nav utama. Tunjuk empat
+kotak berurutan di gambar — urutan itu datang dari HTML, bukan dari angka yang kamu
+tempel di atribut.
 -->
 
 ---
@@ -694,6 +810,23 @@ Sebutkan kolom tabel temuan: temuan, status sebelum, dan status sesudah.
 
 ---
 
+# Contoh: Langkah Kerja 1–7: Audit Dulu
+
+![w:1120 Rantai lima langkah audit berurutan: audit visual 360 px sampai 1200 px, audit struktur semua img punya alt, audit keyboard Tab dari awal halaman, audit kontras color picker DevTools, lalu Lighthouse kategori Accessibility.](assets/diagrams/bab-13-website-responsif-dan-accessibility-41.svg)
+
+Kerjakan langkah 1–7 di katalog.html: audit visual 360 px sampai 1200 px, lalu audit struktur semua img punya alt, audit keyboard Tab dari awal halaman, audit kontras color picker DevTools, dan Lighthouse kategori Accessibility.
+
+Audit berhenti di Lighthouse; sesudahnya baru refactor — tambah skip link dan #konten-utama di semua halaman.
+
+<!--
+Minta kelas menyebut urutan ini dari kiri ke kanan dan tanyakan kenapa audit visual duluan.
+Jawaban yang diharapkan: temuan layout paling cepat kelihatan, jadi daftar temuan cepat
+terisi. Tunjuk tahap terakhir — Lighthouse — karena di situ audit mulai berubah jadi
+refactor, dan skip link jadi pekerjaan resmi berikutnya.
+-->
+
+---
+
 <!-- _class: compact -->
 
 # Langkah Kerja 8–14: Refactor dan Uji Ulang
@@ -710,6 +843,23 @@ Ingatkan aturan penting: perbaiki satu kategori per putaran biar sebab akibatnya
 jelas. Tanyakan apa yang terjadi kalau semua dirapikan sekaligus. Jawaban yang
 diharapkan: nggak ada yang tahu perubahan mana yang menaikkan skor. Sebutkan juga
 bahwa nilai `alt` produk diambil dari dataset Tokosaya, satu sampai dua kalimat.
+-->
+
+---
+
+# Contoh: Langkah Kerja 8–14: Refactor dan Uji Ulang
+
+![w:1120 Tiga keadaan berurutan: audit 1–7 memberi ada temuan lalu masuk refactor 8–13, satu kategori selesai membawa ke uji ulang 14, dan kalau masih ada temuan panah kembali ke refactor.](assets/diagrams/bab-13-website-responsif-dan-accessibility-43.svg)
+
+Putaran refactor Tokosaya: audit 1–7, refactor 8–13, uji ulang 14.
+
+Satu putaran cuma menuntaskan satu kategori dulu — misal urutan heading — supaya pas uji ulang kelihatan perubahan mana yang menaikkan skor. Kalau uji ulang 14 masih ada temuan, balik lagi ke refactor, bukan mengulang dari nol.
+
+<!--
+Tanyakan kenapa satu kategori per putaran lebih berguna daripada merapikan semuanya
+sekaligus. Jawaban yang diharapkan: kalau semuanya diubah bareng, nggak ada yang tahu
+perubahan mana yang menaikkan skor. Tunjuk panah yang balik dari uji ulang ke refactor —
+itu satu putaran, dan di situlah letak kerja auditor yang rapi.
 -->
 
 ---
