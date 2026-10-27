@@ -69,6 +69,18 @@ terlewat. Tutup dengan pertanyaan pemandu di blockquote.
 
 ---
 
+# Contoh: Pekerjaan yang Mulai Menumpuk
+
+![w:1120 Kartu produk hasil salinan: content 280 x 96 piksel, padding 14 piksel, border 1 piksel, lebar total 310 piksel — empat piksel lebih ramping dari kartu aslinya.](assets/diagrams/bab-09-pengenalan-bootstrap-5-04.svg)
+
+Halaman keranjang menyalin kartu produk dari halaman lama, tapi padding-nya ketik 14 px, bukan 16 px. Isinya tetap content 280 × 96 px dan border-nya tetap 1 px, jadi lebar totalnya 280 + 14 + 14 + 1 + 1 = 310 px, sedangkan kartu aslinya 314 px. Selisih 4 px itu nggak kelihatan mata, dan di situlah penyalinan navbar, kartu, dan footer ke empat halaman mulai bocor.
+
+<!--
+Minta kelas menghitung dulu sebelum menebak: dengan padding 14 px, lebar total kartu produk jadi berapa. Jawaban yang diharapkan: 310 px, yaitu 280 + 14 + 14 + 1 + 1, empat piksel lebih ramping dari kartu aslinya. Tunjuk label padding di daftar kanan gambar, lalu tanyakan apa yang terjadi kalau empat halaman baru menyalin tiga komponen dengan cara yang sama.
+-->
+
+---
+
 <!-- _class: section -->
 <!-- _footer: '' -->
 
@@ -103,6 +115,18 @@ tersimpan di file pustaka, bukan di file kita.
 
 ---
 
+# Contoh: Apa Itu CSS Framework
+
+![w:1120 Kelas di HTML dibaca browser, dicocokkan ke file pustaka yang memegang aturan siap pakai, lalu aturan diterapkan sehingga tampilan jadi tanpa CSS sendiri.](assets/diagrams/bab-09-pengenalan-bootstrap-5-07.svg)
+
+Di landing page Tokosaya, satu baris `<div class="col-lg-3">` sudah cukup: HTML cuma menyebut nama kelas, file pustaka memegang aturan siap pakai buat kelas itu, dan tampilan kartu jadi tanpa CSS sendiri. Kelas di HTML dibaca browser, lalu aturan diterapkan dari file pustaka ke elemennya.
+
+<!--
+Telusuri gambar dari kiri ke kanan bareng kelas. Tanyakan siapa yang menyimpan aturannya: file kita atau file pustaka. Jawaban yang diharapkan: file pustaka, karena HTML cuma menyebut nama kelas `col-lg-3` dan nggak ada satu aturan CSS pun yang ditulis di proyek Tokosaya buat kolom itu. Tutup dengan mengingatkan bahwa inilah bedanya dengan menulis gaya dari nol.
+-->
+
+---
+
 # Manfaat Memakai Framework
 
 - Efisiensi waktu: kartu dan kolom cukup lewat kelas
@@ -121,6 +145,18 @@ ditulis orang berbeda tetap terasa serumpun.
 
 ---
 
+# Contoh: Manfaat Memakai Framework
+
+![w:1120 Kartu produk dari dua penulis berbeda tetap sama: content 280 x 96 piksel, padding 16 piksel, border 1 piksel, lebar total 314 piksel.](assets/diagrams/bab-09-pengenalan-bootstrap-5-09.svg)
+
+Dua orang di tim yang sama menulis kartu produk untuk halaman berbeda, dan dua-duanya mendarat di angka yang sama: content 280 × 96 px, padding 16 px, border 1 px, lebar total 280 + 16 + 16 + 1 + 1 = 314 px. Angkanya sama karena `p-3` sudah membawa skala 3 alias 1 rem, bukan karena kesepakatan lisan di grup chat.
+
+<!--
+Tanyakan apa yang bikin dua penulis berbeda mendarat di 314 px yang sama. Jawaban yang diharapkan: kelas `p-3` sudah membawa skalanya sendiri, jadi nggak ada yang menebak 14 atau 18 px. Tunjuk baris padding, border, dan content di daftar kanan gambar, lalu hubungkan ke manfaat yang paling terasa di tim: halaman yang ditulis orang berbeda tetap terasa serumpun.
+-->
+
+---
+
 # Batasan yang Perlu Dipertimbangkan
 
 - Tampilan cenderung seragam dan identitas merek bisa luntur
@@ -135,6 +171,18 @@ Bahas batasannya dengan jujur, jangan cuma menjual enaknya. Tanyakan apa risiko
 kesalahan eja kelas pada markup yang tampak benar. Jawaban yang diharapkan: efeknya
 senyap, gaya cuma nggak muncul dan susah dicari. Ingatkan bahwa identitas merek bisa
 luntur kalau nggak ditimpa dengan CSS kustom.
+-->
+
+---
+
+# Contoh: Batasan yang Perlu Dipertimbangkan
+
+![w:1120 Kelas class="mb3" yang tanda hubungnya kelewat dibaca apa adanya sebagai kelas asing, nggak ada aturannya, lalu dilewati diam-diam sehingga gaya nggak muncul padahal markup tampak benar.](assets/diagrams/bab-09-pengenalan-bootstrap-5-11.svg)
+
+Salah ketik satu tanda hubung: `class="mb3"` bukannya `mb-3`. Kelas itu dibaca apa adanya sebagai kelas asing, nggak ada aturannya di file pustaka, jadi dilewati diam-diam dan gaya nggak muncul — padahal markup tetap tampak benar di editor. Efek senyap inilah yang bikin salah eja kelas susah dicari.
+
+<!--
+Tanyakan kenapa efeknya disebut senyap: apa yang terlihat di editor saat kelasnya salah. Jawaban yang diharapkan: markup tetap tampak benar, dan yang hilang cuma gayanya. Tunjuk urutan panah di gambar — class="mb3" dengan tanda hubung kelewat, dibaca sebagai kelas asing, lalu dilewati diam-diam — lalu minta kelas menyebutkan cara paling cepat menemukannya, yaitu memeriksa gaya elemen di DevTools.
 -->
 
 ---
@@ -197,6 +245,18 @@ Sebutkan asal-usulnya singkat saja; yang lebih penting adalah versi terkunci 5.3
 Tanyakan kenapa dokumentasi yang lengkap itu penting buat pemula. Jawaban yang
 diharapkan: pas bingung dengan sebuah kelas, jawabannya biasanya udah tersedia,
 jadi waktu mencari solusi lebih hemat.
+-->
+
+---
+
+# Contoh: Apa Itu Bootstrap 5
+
+![w:1120 Bootstrap 5.3.3 punya dua bagian: CSS yang menyumbang grid 12 kolom dan komponen, serta JavaScript yang bundle tidak dimuat.](assets/diagrams/bab-09-pengenalan-bootstrap-5-15.svg)
+
+Satu paket Bootstrap 5.3.3 isinya dua bagian. Bagian CSS menyumbang grid 12 kolom dan komponen kayak navbar, sedangkan bagian JavaScript dikemas di file `bootstrap.bundle` dan di buku ini bundle tidak dimuat sama sekali. Jadi yang kita pakai cuma separuh paketnya, dan itu keputusan sadar yang ditulis di head.
+
+<!--
+Tanyakan versi mana yang dikunci buku ini, lalu tunjukkan angkanya di akar gambar: 5.3.3, bukan 5 terbaru. Lanjutkan ke dua cabangnya. Tanyakan bagian mana yang kita pakai dan bagian mana yang sengaja ditinggal; jawaban yang diharapkan: CSS-nya dipakai lewat CDN, sedangkan bundle JavaScript-nya nggak dimuat, padahal di situ menu lipat dan modal hidup.
 -->
 
 ---
@@ -304,6 +364,18 @@ itu keputusan sadar, bukan lupa.
 
 ---
 
+# Contoh: Tanpa Satu Baris JavaScript
+
+![w:1120 Dengan bundle, menu lipat dan modal hidup karena file .js ikut dimuat; tanpa bundle, komponen dibaca sebagai markup, status statis, dan navbar mobile lewat CSS kustom.](assets/diagrams/bab-09-pengenalan-bootstrap-5-20.svg)
+
+Dengan bundle, menu lipat dan modal hidup karena ada JavaScript yang mengurus statusnya; tanpa bundle, komponen dibaca sebagai markup dan status statis. Bedanya cuma file `.js` ikut dimuat atau tidak — dan Tokosaya versi 2 memilih sisi kanan: navbar mobile lewat CSS kustom.
+
+<!--
+Tanyakan apa yang sebenarnya hilang kalau bundle nggak dimuat. Jawaban yang diharapkan: cuma interaksinya — menu lipat dan modal nggak hidup — sedangkan gaya dan layoutnya utuh. Tunjuk dua panel gambar dan minta kelas memilih sisi mana yang dipakai buku ini, lalu tanyakan kenapa keputusan itu ditulis sebagai komentar penanda di setiap head.
+-->
+
+---
+
 <!-- _class: section -->
 <!-- _footer: '' -->
 
@@ -334,6 +406,18 @@ Tanyakan mana yang lebih nyaman buat paragraf panjang: lebar penuh atau lebar
 terbatas. Jawaban yang diharapkan: lebar terbatas, karena baris yang terlalu panjang
 melemahkan keterbacaan. Sebutkan bahwa footer gelap dan bilah pengumuman justru
 cocok pakai container-fluid.
+-->
+
+---
+
+# Contoh: Container dan Container Fluid
+
+![w:1120 Container di layar 1200 piksel: content isi halaman 1140 x 96 piksel dengan margin kiri dan kanan masing-masing 30 piksel, jadi lebar total 1200 piksel.](assets/diagrams/bab-09-pengenalan-bootstrap-5-23.svg)
+
+Di layar 1200 px, `.container` cuma memakai 1140 px: margin 30 px di kiri, margin 30 px di kanan, jadi lebar total 1140 + 30 + 30 = 1200 px. Isi halaman tetap content 1140 × 96 px, sedangkan `.container-fluid` nggak punya batas itu dan membiarkan isi halaman selebar layar.
+
+<!--
+Tanyakan berapa bagian kosong di kiri dan kanan saat layar 1200 px; jawaban yang diharapkan: 30 px di masing-masing sisi, karena 1200 − 1140 = 60 lalu dibagi dua. Tunjuk pita margin di gambar sebagai tempat kosong itu. Tutup dengan menanyakan kenapa bilah pengumuman dan footer gelap justru lebih cocok `container-fluid`.
 -->
 
 ---
@@ -398,6 +482,18 @@ Fokuskan ke tiga kelas yang wajib diasah, dan pastikan mahasiswa bisa membacanya
 sebagai jumlah garis penggaris. Tanyakan arti `col-lg-3`. Jawaban yang diharapkan:
 seperempat lebar mulai 992 px ke atas, yaitu 3 garis dari 12. Sebutkan `col-auto`
 dan `row-cols-*` sebagai varian yang jarang tapi berguna.
+-->
+
+---
+
+# Contoh: Kelas Kolom yang Wajib Diasah
+
+![w:1120 Denah 12 kolom: baris col-12 penuh, baris dua col-md-6, dan baris empat col-lg-3, dengan gutter 24 piksel di antara kolom.](assets/diagrams/bab-09-pengenalan-bootstrap-5-27.svg)
+
+Satu baris kartu di container 1140 px: `col-12` menindih 12 kolom penuh, `col-md-6` dua kolom setengah, dan `col-lg-3` empat kolom seperempat — 4 × 3 = 12 kolom, pas habis. Gutter 24 px ikut dihitung di antara kolom, jadi lebar satu `col-lg-3` bukan 1140 dibagi empat, melainkan 267 px.
+
+<!--
+Minta kelas membaca tiap kelas sebagai jumlah garis penggaris: `col-md-6` berarti 6 dari 12. Jawaban yang diharapkan: setengah, jadi dua kartu per baris mulai 768 px. Lanjutkan ke baris ketiga gambar — empat `col-lg-3` menindih 3 garis masing-masing, 4 × 3 = 12 — lalu tanyakan ke mana gutter 24 px pergi, yaitu ke celah antarkolom.
 -->
 
 ---
@@ -486,6 +582,18 @@ diaudit.
 
 ---
 
+# Contoh: Apa Itu Utility
+
+![w:1120 Kartu produk setelah diberi p-4 dan border: content 280 x 96 piksel, padding 24 piksel, border 1 piksel, lebar total 330 piksel.](assets/diagrams/bab-09-pengenalan-bootstrap-5-32.svg)
+
+Satu kelas `p-4` di kartu produk menambah padding 24 px di keempat sisi, dan `border` menyumbang 1 px: content 280 × 96 px jadi 280 + 24 + 24 + 1 + 1 = 330 px lebar total. Nggak ada satu baris CSS baru di `style.css` — cuma dua kelas ditempel, dan kartunya langsung berubah.
+
+<!--
+Tanyakan berapa baris CSS yang ditulis di `style.css` buat perubahan ini; jawaban yang diharapkan: nol, karena `p-4` dan `border` sudah ada di file pustaka. Tunjuk baris padding 24 px lalu baris content di daftar kanan gambar, dan minta kelas menghitung sendiri lebar totalnya: 330 px. Tutup dengan menanyakan kenapa utility masih lebih rapi daripada atribut `style` yang ditempel langsung.
+-->
+
+---
+
 # Pola Nama Kelas Utility
 
 - Polanya: properti, sisi, breakpoint, lalu nilai
@@ -501,6 +609,18 @@ diaudit.
 Ajari membacanya sebagai potongan, bukan hafalan: properti, sisi, breakpoint, nilai.
 Minta mahasiswa mengartikan `p-lg-4` sebelum kamu jawab. Ingatkan bahwa skala 3
 setara 1 rem, jadi masih bertalian dengan skala jarak 8 px dari bab sebelumnya.
+-->
+
+---
+
+# Contoh: Pola Nama Kelas Utility
+
+![w:1120 Kotak dengan px-4 py-2: content isi kartu 280 x 96 piksel dan padding 8 24 8 24 piksel, jadi lebar total 328 piksel.](assets/diagrams/bab-09-pengenalan-bootstrap-5-34.svg)
+
+`px-4 py-2` dibaca sebagai potongan: p, x, lalu 4 berarti padding kiri-kanan skala 4 alias 24 px, sedangkan py-2 memberi 8 px atas-bawah. Hasilnya padding 8 24 8 24 px pada content 280 × 96 px — isi kartu yang sama — jadi lebar total 328 px dan tinggi total 112 px.
+
+<!--
+Baca kelasnya sebagai potongan, bukan hafalan: p dulu, lalu sisi x, lalu skala 4. Tanyakan kenapa padding kiri-kanan 24 px tapi atas-bawah cuma 8 px; jawaban yang diharapkan: angka 4 lebih besar dari 2, dan skalanya 1,5 rem lawan 0,5 rem. Tunjuk pita padding di gambar — tebal kiri-kanan jelas beda dari atas-bawah — lalu minta kelas menyebutkan arti `p-lg-4` dengan pola yang sama.
 -->
 
 ---
@@ -545,6 +665,18 @@ jendela di layar.
 
 ---
 
+# Contoh: Menyembunyikan Elemen dengan d-none d-md-block
+
+![w:1120 Baris navbar di wadah 375 piksel: logo 200 piksel, gap 24 piksel, ikon keranjang 56 piksel, sisa 95 piksel kosong di kanan; kotak pencarian disembunyikan.](assets/diagrams/bab-09-pengenalan-bootstrap-5-37.svg)
+
+Di layar 375 px: logo 200 px + gap 24 px + ikon keranjang 56 px = 280 px, jadi sisa 95 px. Kotak pencarian disembunyikan karena butuh 400 px dan nggak kebagian tempat; mulai 768 px `d-md-block` memunculkannya lagi. `justify-content: flex-start` membiarkan sisa ruang itu menganggur, bukan melar.
+
+<!--
+Tanyakan ke mana kotak pencarian pergi di layar 375 px. Jawaban yang diharapkan: disembunyikan `d-none`, bukan dikecilkan, jadi lebarnya nggak ikut dihitung. Tunjuk pita amber sisa 95 px di ujung kanan gambar dan tanda gap 24 px, lalu tanyakan kenapa urutan `d-none` baru `d-md-block` penting saat jendela browser dilebarkan.
+-->
+
+---
+
 # Utility Tipografi
 
 - `fs-1` sampai `fs-6` sebanding hierarki h1 sampai h6
@@ -561,6 +693,18 @@ Tekankan aturan aksesibilitas yang tetap berlaku: judul tetap pakai elemen h1 sa
 h6 semantik, kelas ukuran cuma menempel. Tanyakan kenapa `div` besar dengan `fs-1`
 bukan judul yang benar. Jawaban yang diharapkan: pembaca layar nggak membacanya
 sebagai kepala bagian.
+-->
+
+---
+
+# Contoh: Utility Tipografi
+
+![w:1120 Empat lapis ukuran huruf hero Tokosaya: display-5 buat judul hero, lead buat paragraf pengantar, fs-5 buat judul kartu produk, dan fw-bold buat nama produk.](assets/diagrams/bab-09-pengenalan-bootstrap-5-39.svg)
+
+Hero Tokosaya ditulis sebagai tiga lapis ukuran: `display-5` buat judul hero, `lead` buat paragraf pengantar, lalu `fs-5` buat judul kartu produk, dan `fw-bold` buat nama produk. Elemennya tetap `<h2>` dan `<h3>` yang semantik — kelasnya cuma menempel, jadi pembaca layar tetap tahu mana kepala bagian.
+
+<!--
+Tanyakan lapis mana yang paling atas di gambar, dan kenapa dia yang paling menonjol di hero; jawaban yang diharapkan: `display-5`, karena judul hero yang paling besar. Lanjutkan ke `fs-5` yang dipakai di judul kartu produk — ukurannya turun, tapi elemennya tetap `<h3>` yang semantik. Tutup dengan pertanyaan aksesibilitas: kenapa `div` besar berkelas `display-5` bukan judul yang benar.
 -->
 
 ---
@@ -604,6 +748,18 @@ Tanyakan warna primary bawaan Bootstrap itu apa; jawaban yang diharapkan: biru,
 bukan indigo Tokosaya. Tekankan bahwa nama kelas warna itu peran, bukan warna
 mentah, sehingga `text-danger` dibaca sebagai pesan bahaya. Dari sini alasan overlay
 jadi jelas.
+-->
+
+---
+
+# Contoh: Palet Bootstrap Bukan Palet Tokosaya
+
+![w:1120 Palet bawaan Bootstrap: primary berarti biru dan warning berarti kuning; palet Tokosaya menggesernya lewat dua token, --clr-primary #4F46E5 indigo dan --bs-primary-rgb 79, 70, 229.](assets/diagrams/bab-09-pengenalan-bootstrap-5-42.svg)
+
+Di Bootstrap, primary berarti biru dan warning berarti kuning — bukan indigo dan amber Tokosaya. Yang menggeser cuma dua token di `:root`: `--clr-primary` #4F46E5 (indigo Tokosaya) dan `--bs-primary-rgb` 79, 70, 229, dua-duanya ditulis di `css/style.css` yang termuat setelah Bootstrap.
+
+<!--
+Tanyakan warna `text-primary` bawaan Bootstrap itu apa; jawaban yang diharapkan: biru, bukan indigo Tokosaya. Lanjutkan ke `text-warning` yang kuning, bukan amber. Tunjuk dua token di panel kanan gambar — cuma dua, bukan sepuluh — lalu tanyakan kenapa `css/style.css` harus termuat setelah Bootstrap.
 -->
 
 ---
