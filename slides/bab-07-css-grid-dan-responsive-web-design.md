@@ -148,9 +148,7 @@ selalu satu lebih banyak dari jumlah track.
 
 # Grid dan Flexbox: Kapan Pakai yang Mana
 
-![w:1120 Flexbox bergerak dari konten menuju layout untuk navigasi horizontal dan barisan kartu; Grid bergerak dari denah menuju konten untuk kerangka halaman dan kartu statistik yang harus sebaris sempurna.](assets/diagrams/bab-07-css-grid-dan-responsive-web-design-07.svg)
-
-> Flexbox bergerak dari konten menuju layout. Grid bergerak dari denah menuju konten.
+![w:1100 Pohon keputusan kapan pakai yang mana, bercabang dua: Flexbox dengan tiga fakta, yaitu bergerak dari konten menuju layout, navigasi horizontal dan footer multi kolom, serta barisan kartu dengan panjang isi berbeda; Grid dengan tiga fakta, yaitu bergerak dari denah menuju konten, kerangka halaman, serta kartu statistik yang harus sebaris sempurna.](assets/diagrams/bab-07-css-grid-dan-responsive-web-design-07.svg)
 
 <!--
 Tekankan dua frasa kunci: content-out lawan layout-out. Tanyakan navigasi Tokosaya
@@ -158,10 +156,12 @@ pilih yang mana. Jawaban yang diharapkan: Flexbox, karena cuma satu baris. Lanju
 dengan dashboard yang butuh baris dan kolom serentak. Sebutkan juga bahwa di proyek
 nyata Grid dipakai buat kerangka, sementara Flexbox menata isi tiap selnya.
 
-Bacakan pasangannya baris demi baris: navigasi horizontal, footer multi kolom pakai
-Flexbox; kerangka halaman: header, nav, main, footer pakai Grid; kartu statistik yang
-harus sebaris sempurna pakai Grid; barisan kartu dengan panjang isi berbeda boleh
-Flexbox wrap atau Grid.
+Bacakan cabangnya dari akar: pertanyaannya "kapan pakai yang mana". Cabang Flexbox
+berisi tiga fakta — bergerak dari konten menuju layout; navigasi horizontal, footer
+multi kolom; barisan kartu dengan panjang isi berbeda. Cabang Grid juga tiga fakta —
+bergerak dari denah menuju konten; kerangka halaman: header, nav, main, footer; kartu
+statistik yang harus sebaris sempurna. Tanyakan cabang mana yang dipilih kalau
+butirnya harus lurus di baris dan kolom sekaligus.
 
 Satu kasus sengaja tidak masuk gambar: satu elemen digeser sedikit dari alurnya, dan
 itu urusan `position`, bukan Grid atau Flexbox.
@@ -270,7 +270,7 @@ ukuran per putaran.
 
 - `column-gap` mengatur jarak antar kolom
 - `row-gap` mengatur jarak antar baris
-- `gap: 16px` menetapkan keduanya sekaligus
+- `gap: 24px` menetapkan keduanya sekaligus
 - Gap dianggap jarak di dalam kerangka, bukan milik butir
 - Jadi nggak perlu trik `:last-child` buat membuang margin ujung
 
@@ -426,8 +426,8 @@ pada lebar 820 piksel, media query mana yang sedang berlaku.
 
 Isi tabelnya, dari bawaan sampai terlebar: bawaan tanpa media query — satu kolom,
 font dasar; `sm` 576 px — kartu statistik dua kolom; `md` 768 px — panel navigasi
-geser ke kiri; `lg` 992 px — jarak meluas, sidebar 240 px; `xl` 1200 px — empat kartu
-sebaris, konten 1200 px. Tiap panah di gambar adalah peristiwa yang sama: lebar layar
+geser ke kiri; `lg` 992 px — sidebar 240 px; `xl` 1200 px — empat kartu
+sebaris. Tiap panah di gambar adalah peristiwa yang sama: lebar layar
 melewati batas min-width milik breakpoint berikutnya.
 -->
 
@@ -441,7 +441,7 @@ melewati batas min-width milik breakpoint berikutnya.
 .stat-kartu {
   display: grid;
   grid-template-columns: 1fr;
-  gap: calc(var(--space-unit) * 2);
+  gap: calc(var(--space-unit) * 3);
 }
 
 /* breakpoint pertama: mulai 576 piksel, kartu dua kolom */
@@ -584,17 +584,20 @@ diujikan di UTS Bab 8.
 
 # Contoh: Tujuan dan Kebutuhan Praktikum
 
-![w:1120 Denah 4 kolom selebar 1200 piksel: baris pertama empat kartu statistik masing-masing 288 piksel, baris kedua tabel pesanan membentang penuh, dengan gutter gap 16 px.](assets/diagrams/bab-07-css-grid-dan-responsive-web-design-26.svg)
+![w:1120 Baris kartu statistik sebagai denah 4 kolom dengan penggaris kolom 1 sampai 4: kartu 1, kartu 2, kartu 3, dan kartu 4 sama lebar, dengan gap 24 px di antaranya.](assets/diagrams/bab-07-css-grid-dan-responsive-web-design-26.svg)
 
-Dashboard admin Tokosaya menaruh empat kartu statistik sebaris di atas tabel pesanan. Di lebar 1200 px, wadah konten maksimum 1200 px dikurangi 3 × gap 16 px = 48 px, sisa 1152 px, lalu 1152 ÷ 4 = 288 px: denah 4 kolom itu memberi kartu 1, kartu 2, kartu 3, dan kartu 4 lebar 288 px masing-masing. Tabel pesanan memakai span penuh di baris kedua, bukan ikut terbagi empat.
+Dashboard admin Tokosaya menaruh empat kartu statistik sebaris. Di lebar layar 1200 px, denah `.dasbor` memberi sidebar 240 px, jadi kolom `main` yang menampung baris kartu tinggal 1200 − 240 = 960 px. `.stat-kartu` memakai `repeat(4, 1fr)` dengan gap 24 px: tiga gap memakan 3 × 24 = 72 px, sisanya 960 − 72 = 888 px, lalu 888 ÷ 4 = 222 px. Denah 4 kolom itu memberi kartu 1, kartu 2, kartu 3, dan kartu 4 lebar 222 px masing-masing. Tabel pesanan tidak ikut grid ini: grid kartu berhenti di baris itu, tabelnya tinggal di area `main` dengan wadah penggulirnya sendiri.
 
 <!--
 Tanyakan berapa lebar satu kartu statistik sebelum ada yang menghitung pakai browser.
-Jawaban yang diharapkan: 288 px, karena 1200 dikurangi tiga gap 16 px jadi 1152, baru
-dibagi empat. Tunjukkan penggaris 1 sampai 4 di atas gambar: keempat kartu sama lebar
-justru karena `1fr` membagi habis ruangnya, dan tabel pesanan di baris kedua memakai
-`span` penuh, bukan empat kolom terpisah. Ingatkan bahwa gap 16 px itu
-`calc(var(--space-unit) * 2)` dari token Bab 4, bukan angka yang dikarang.
+Jawaban yang diharapkan: 222 px. Urutan hitungnya: layar 1200 px, sidebar 240 px,
+jadi wadah kartu 960 px; tiga gap 24 px memakan 72 px; sisa 888 px dibagi empat
+jadi 222 px. Tunjukkan penggaris 1 sampai 4 di atas gambar: keempat kartu sama lebar
+justru karena `1fr` membagi habis sisa ruangnya. Gambar ini sengaja cuma memuat baris
+kartu, karena tabel pesanan bukan butir `.stat-kartu`; tabelnya tinggal di area `main`
+dan diurus wadah penggulirnya sendiri. Ingatkan bahwa gap 24 px itu
+`calc(var(--space-unit) * 3)` dari token Bab 4, yaitu 3 × 8 px, bukan angka yang
+dikarang.
 -->
 
 ---
@@ -715,7 +718,7 @@ pernah dibatalkan media query berikutnya.
 ```
 
 - Di 992 px sidebar melebar jadi 240 px
-- Di 1200 px empat kartu sebaris, konten maksimum 1200 px
+- Di 1200 px empat kartu sebaris
 - Markup nggak tersentuh sejak langkah pertama
 
 <!--
@@ -798,8 +801,8 @@ mendorong seluruh halaman melebar dan sisi kanan terpotong. Ingatkan juga supaya
 - 375 px: area bertumpuk, kartu satu kolom, tabel menggulir
 - 576 px: kartu statistik jadi dua kolom, area lain tetap
 - 768 px: navigasi geser ke kolom kiri selebar 220 piksel
-- 992 px: kolom navigasi 240 piksel, jarak kartu membesar
-- 1200 px: empat kartu sebaris, konten terpusat maksimal 1200 piksel
+- 992 px: kolom navigasi melebar jadi 240 piksel
+- 1200 px: empat kartu sebaris
 - Katalog tampil empat kolom dua baris di 1200 piksel
 
 <!--

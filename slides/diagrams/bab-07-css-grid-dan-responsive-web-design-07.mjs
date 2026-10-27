@@ -1,28 +1,35 @@
-// bab-07 · 07 — dua arah berpikir: konten menuju layout lawan denah menuju konten.
-// Baris 1 dan 2 menjawab situasinya, baris 3 menjawab arah berpikirnya. Baris
-// `position` sengaja tidak digambar — fakta itu tinggal di catatan penyaji.
+// bab-07 · 07 — dua alat, tiga fakta masing-masing, sebagai pohon keputusan.
+// Akar pertanyaannya "kapan pakai yang mana", jadi bentuknya containment, bukan
+// dua panel bersebelahan: tiap cabang menjawab pertanyaan yang sama. Fakta yang
+// tidak ikut digambar — satu elemen yang digeser sedikit dari alurnya — tetap
+// tinggal di catatan penyaji.
 export default {
   id: '07',
   slide: 'Grid dan Flexbox: Kapan Pakai yang Mana',
-  pattern: 'beforeAfter',
-  alt: 'Flexbox bergerak dari konten menuju layout untuk navigasi horizontal dan barisan kartu; Grid bergerak dari denah menuju konten untuk kerangka halaman dan kartu statistik yang harus sebaris sempurna.',
+  imgWidth: 1100,
+  pattern: 'tree',
+  alt: 'Pohon keputusan kapan pakai yang mana, bercabang dua: Flexbox dengan tiga fakta, yaitu bergerak dari konten menuju layout, navigasi horizontal dan footer multi kolom, serta barisan kartu dengan panjang isi berbeda; Grid dengan tiga fakta, yaitu bergerak dari denah menuju konten, kerangka halaman, serta kartu statistik yang harus sebaris sempurna.',
   data: {
-    left: {
-      title: 'FLEXBOX',
-      tone: 'neutral',
-      items: [
-        'navigasi horizontal, footer multi kolom',
-        'barisan kartu dengan panjang isi berbeda',
-        'bergerak dari konten menuju layout',
-      ],
-    },
-    right: {
-      title: 'GRID',
-      tone: 'acc',
-      items: [
-        'kerangka halaman: header, nav, main, footer',
-        'kartu statistik yang harus sebaris sempurna',
-        'bergerak dari denah menuju konten',
+    root: {
+      label: 'kapan pakai yang mana',
+      children: [
+        {
+          label: 'Flexbox',
+          children: [
+            { label: 'bergerak dari konten menuju layout' },
+            { label: 'navigasi horizontal, footer multi kolom' },
+            { label: 'barisan kartu dengan panjang isi berbeda' },
+          ],
+        },
+        {
+          label: 'Grid',
+          tone: 'acc',
+          children: [
+            { label: 'bergerak dari denah menuju konten' },
+            { label: 'kerangka halaman: header, nav, main, footer' },
+            { label: 'kartu statistik yang harus sebaris sempurna' },
+          ],
+        },
       ],
     },
   },
