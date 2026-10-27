@@ -66,6 +66,23 @@ yang bisa dikerjakan, karena kebutuhannya belum diterjemahkan.)
 
 ---
 
+# Contoh: Klien Berbicara Bahasa Kebutuhan
+
+![w:1120 Header selebar 1120 piksel dengan gap 24 piksel berisi Logo Tokosaya 200 piksel, Kotak pencarian 400 piksel, dan Tombol Hubungi 200 piksel; sisa 272 piksel dibagi dua jadi 136 piksel per celah.](assets/diagrams/bab-01-pengantar-frontend-development-dan-web-design-05.svg)
+
+Kalimat pemilik Tokosaya diterjemahkan jadi tiga kotak yang bisa diukur: header 1120 px dengan gap 24 px berisi Logo Tokosaya 200 px, Kotak pencarian 400 px, dan Tombol Hubungi 200 px. Jumlahnya 200 + 400 + 200 + 24 + 24 = 848 px, jadi sisa 272 px dibagi dua oleh `justify-content: space-between` menjadi 136 px per celah — angka inilah yang nanti ditulis di CSS, bukan kata "internet".
+
+<!--
+Tanyakan dulu: dari tiga kotak itu, mana yang menjawab "bisa dilihat", mana yang
+menjawab "bisa dicari", dan mana yang menjawab "bisa dihubungi"? Jawaban yang
+diharapkan: Logo Tokosaya mewakili yang dilihat, Kotak pencarian yang dicari, Tombol
+Hubungi yang dihubungi. Tunjuk baris sisa 272 px di gambar, lalu tekankan bahwa
+kalimat klien yang nggak menyebut satu pun istilah teknis tetap bisa diterjemahkan
+jadi angka selebar 1120 px.
+-->
+
+---
+
 <!-- _class: center -->
 
 # Apa yang harus **tampil**, apa yang harus **tersimpan**?
@@ -101,6 +118,22 @@ mahasiswa menganggap frontend cuma soal warna dan keindahan.
 
 ---
 
+# Contoh: Apa Itu *Frontend Development*
+
+![w:1120 Tiga lapisan bertumpuk: CSS framework di puncak menyumbang komponen siap pakai, CSS di tengah mengurus tampilan, HTML di bawah mengurus struktur.](assets/diagrams/bab-01-pengantar-frontend-development-dan-web-design-09.svg)
+
+Tiga elemen di layar — judul besar di atas, foto produk di tengah, tombol di bawahnya — lahir dari tiga lapisan yang bertumpuk. HTML lapisan paling bawah mengurus struktur, CSS di atasnya memberi tampilan, dan CSS framework di puncak menyumbang komponen siap pakai.
+
+<!--
+Minta kelas menyebut satu elemen di layar, lalu tanyakan lapisan mana yang
+mengurusnya: judul besar itu struktur atau tampilan? Jawaban yang diharapkan:
+strukturnya HTML, ukuran huruf dan warnanya CSS. Tunjuk pita paling bawah di gambar
+dan ingatkan bahwa ketiganya ditempuh berurutan sepanjang semester: HTML dulu, CSS
+setelahnya, dan CSS framework baru di Bab 9.
+-->
+
+---
+
 # Batas Lingkup: yang Bukan Frontend
 
 Buku ini adalah mata kuliah **translasi desain** — HTML dan CSS, tanpa JavaScript.
@@ -118,6 +151,22 @@ kuliah translasi desain. Ingatkan bahwa sebagian besar kebutuhan tampilan Tokosa
 (kartu produk, hero, formulir kontak, katalog) cukup dengan halaman statis.
 Peringatan: jangan sampai mahasiswa menyimpulkan JavaScript nggak penting; ia cuma
 ada di mata kuliah lain.
+-->
+
+---
+
+# Contoh: Batas Lingkup: yang Bukan Frontend
+
+![w:1120 Kolom bukan frontend berisi keranjang bertambah, logika bisnis, dan basis data; kolom tetap frontend berisi kartu produk, hero, formulir kontak, dan katalog.](assets/diagrams/bab-01-pengantar-frontend-development-dan-web-design-10.svg)
+
+Uji cepatnya satu kalimat: apakah kebutuhan ini mengubah apa yang dilihat, dibaca, atau disentuh pengguna? Keranjang bertambah, logika bisnis, dan basis data ada di kolom bukan frontend; kartu produk, hero, formulir kontak, dan katalog tetap frontend walau seluruhnya cukup halaman statis tanpa satu baris JavaScript.
+
+<!--
+Tunjuk kolom kiri dulu dan pastikan kelas paham alasannya, bukan cuma hafal namanya:
+keranjang bertambah butuh data yang tersimpan, jadi bukan pekerjaan HTML dan CSS.
+Jawaban yang diharapkan pas kamu tanya "jadi kebutuhan Tokosaya nggak terpenuhi
+dong?": terpenuhi, karena empat baris di kolom kanan cukup dengan halaman statis.
+Tutup dengan pengingat bahwa JavaScript memang ada, cuma di mata kuliah lain.
 -->
 
 ---
@@ -276,6 +325,21 @@ mengerjakan tugas?" (Jawaban: analis, karena mereka cenderung langsung menulis k
 
 ---
 
+# Contoh: Tiga Topi di Tim Kecil
+
+![w:1120 Tiga peran berurutan: Analis mencatat kebutuhan, catatan itu jadi rancangan bagi Perancang yang menata pilihan visual, lalu rancangan jadi halaman yang ditulis Implementer dengan HTML dan CSS.](assets/diagrams/bab-01-pengantar-frontend-development-dan-web-design-19.svg)
+
+Di proyek Tokosaya satu orang memakai tiga topi berurutan: Analis mencatat kebutuhan, Perancang menata pilihan visual, Implementer menulis HTML dan CSS. Catatan kebutuhan itu jadi rancangan, lalu rancangan jadi halaman — urutan inilah yang bikin halaman pertama selesai dalam satu pertemuan.
+
+<!--
+Tanyakan: topi mana yang paling sering dilupakan mahasiswa pas mengerjakan tugas?
+Jawaban yang diharapkan: Analis, karena mereka cenderung langsung menulis kode.
+Tunjuk panah pertama di gambar dan tegaskan bahwa catatan kebutuhan yang bolong nggak
+bisa ditambal di tahap Implementer; yang terjadi cuma rancangan diulang dari nol.
+-->
+
+---
+
 # Empat Istilah yang Sering Tertukar
 
 | Istilah | Lapisan | Satu kalimat pembatas |
@@ -338,6 +402,22 @@ rancangan nggak mengikuti pola standar.)
 
 ---
 
+# Contoh: Lencana *Best Seller*
+
+![w:1120 Lencana Best Seller dengan content 96 kali 24 piksel, padding 8 piksel, border 1 piksel, dan lebar total 114 piksel; Bootstrap menyelesaikannya dengan satu kelas badge.](assets/diagrams/bab-01-pengantar-frontend-development-dan-web-design-23.svg)
+
+Lencana Best Seller di pojok kartu Keyboard Mekanis KX-210 itu content 96 × 24 px, diberi padding 8 px dan border 1 px, jadi lebar total 96 + 8 + 8 + 1 + 1 = 114 px. Di HTML teks lencana cuma satu baris di dalam kartu, di CSS ia diberi latar amber dan sudut membulat, dan di Bootstrap kelak cukup satu kelas `badge`.
+
+<!--
+Minta kelas menghitung 96 + 8 + 8 + 1 + 1 sebelum kamu tunjukkan angka 114 px, karena
+lencana sekecil ini pun tetap kotak yang punya pita. Jawaban yang diharapkan pas kamu
+tanya "kalau padding-nya jadi 12 px, lebarnya berapa?": 122 px, karena padding
+dihitung dua kali, kiri dan kanan. Tunjuk pita padding di gambar, lalu ingatkan bahwa
+warna amber dan teks gelap itu urusan CSS, bukan HTML.
+-->
+
+---
+
 <!-- _class: center -->
 
 # Mini Kuis: Pilih Lapisan yang Tepat
@@ -384,8 +464,24 @@ Poin yang paling sering terlewat adalah baris terakhir. Jelaskan konvensi index:
 alamat tanpa nama file dianggap menunjuk halaman utama, dan konvensi yang sama
 bekerja di komputer sendiri pas kita dobel klik index.html. Itulah sebabnya seluruh
 proyek buku ini memakai nama index.html, bukan utama.html atau halaman1.html.
-Tanyakan: "Apa jadinya folder tanpa index.html?" (Jawaban: pengunjung melihat daftar
-file, bukan halaman.)
+Tanyakan: "Apa jadinya folder tanpa index.html?" (Jawaban: alamat pendek itu tidak
+punya halaman utama yang bisa dikirim, jadi tidak ada yang bisa dibuka di alamat itu.)
+-->
+
+---
+
+# Contoh: Anatomi Sebuah Website
+
+![w:1120 Satu Website berisi dua Halaman, index.html dan katalog.html, serta sekumpulan Aset berupa style.css dan gambar produk.](assets/diagrams/bab-01-pengantar-frontend-development-dan-web-design-27.svg)
+
+Satu Website Tokosaya berisi beberapa Halaman dan sekumpulan Aset: `index.html` dan `katalog.html` sebagai Halaman, `style.css` serta gambar produk sebagai Aset. Karena `index.html` itulah yang dibuka pas pengunjung cuma mengetik `tokosaya.id/`, nama file itu tidak boleh diganti — `utama.html` membuat alamat pendek tadi tidak lagi punya halaman utama.
+
+<!--
+Tunjuk cabang paling kiri dan tanyakan apa yang terjadi kalau `index.html` diganti nama
+jadi `utama.html`: jawaban yang diharapkan adalah alamat pendek `tokosaya.id/` tidak
+lagi punya halaman utama yang dituju. Baru setelah itu jelaskan beda Halaman dan Aset,
+karena mahasiswa sering menyebut gambar sebagai halaman. Sebutkan juga bahwa satu Aset
+seperti `style.css` dipakai bersama oleh semua Halaman.
 -->
 
 ---
@@ -431,6 +527,24 @@ terakhir penting buat Bab 2, pas link antarhalaman mulai ditulis.
 
 ---
 
+# Contoh: Domain, Hosting, dan URL
+
+![w:1120 Alamat https://tokosaya.id/katalog.html dipecah tiga kotak: https sebagai skema, tokosaya.id sebagai domain, dan katalog.html sebagai jalur file, dengan label panah :// lalu / sehingga rangkaiannya terbaca utuh tanpa garis miring ganda.](assets/diagrams/bab-01-pengantar-frontend-development-dan-web-design-30.svg)
+
+Alamat `https://tokosaya.id/katalog.html` dibaca dari kiri ke kanan lewat tiga kotak, dan label panahnya adalah pemisah aslinya: `https` adalah skema, panah `://`, `tokosaya.id` adalah domain, panah `/`, lalu `katalog.html` adalah jalur file. Rangkaiannya kembali utuh jadi `https://tokosaya.id/katalog.html` — satu garis miring sebelum jalur file, bukan dua. Karena domain dan hosting disewa terpisah, halaman ini tetap bisa dibuka dari komputer sendiri sebelum keduanya dibeli.
+
+<!--
+Bedakan dua hal yang paling sering tertukar dengan satu pertanyaan: mana yang berupa
+nama, mana yang berupa tempat? Jawaban yang diharapkan: domain itu nama, hosting itu
+tempat file disimpan. Tunjuk tiga kotak di gambar sambil menyebut `https`,
+`tokosaya.id`, dan `katalog.html`, lalu tunjuk label panahnya: `://` sesudah skema dan
+`/` sebelum jalur file. Tegaskan bahwa garis miring pembuka jalur itu sudah jadi label
+panah, jadi jangan menuliskannya lagi di depan `katalog.html`. Untuk bab ini keduanya
+belum dibutuhkan karena file dibuka langsung dari komputer sendiri.
+-->
+
+---
+
 # Cara Browser Merender Halaman
 
 ![w:1080](assets/diagrams/bab-01-pengantar-frontend-development-da-03.svg)
@@ -463,6 +577,22 @@ mengeksekusi, dan keduanya naik kelas jadi alat pengujian serius di Bab 7, 13, d
 15. Tekankan kalimat "browser membaca": ini fondasi seluruh mentalitas debugging yang
 akan dipakai sampai akhir semester. Peringatan: banyak "bug" pemula sebenarnya cuma
 file lama yang masih tampil karena halaman belum dimuat ulang.
+-->
+
+---
+
+# Contoh: Chrome DevTools: Mengamati, Bukan Mengeksekusi
+
+![w:1120 Kotak viewport HP dengan content 360 kali 640 piksel tanpa padding dan tanpa border, jadi lebar total tetap 360 piksel seperti setelan device toolbar.](assets/diagrams/bab-01-pengantar-frontend-development-dan-web-design-33.svg)
+
+Device toolbar disetel ke lebar 360 px — viewport HP tersempit yang dipakai pengunjung Tokosaya: content 360 × 640 px, tanpa padding dan tanpa border, jadi lebar total tetap 360 px.
+
+<!--
+Minta kelas menebak dulu apa yang berubah pas device toolbar disetel ke 360 px: apakah
+tulisannya mengecil, atau kolomnya yang berkurang? Jawaban yang diharapkan: kolomnya
+yang berkurang, hurufnya tetap, karena yang berubah cuma lebar viewport — judul dan
+kartu produk mengalir ke bawah. Tunjuk angka 360 px di gambar, lalu ingatkan kebiasaan
+QA-nya: simpan, muat ulang dengan F5, baru periksa di panel Elements.
 -->
 
 ---
@@ -545,6 +675,25 @@ menghemat berjam-jam.
 
 ---
 
+# Contoh: Perangkat Kerja: VS Code dan Chrome
+
+![w:1120 Tiga baris berpasangan: pengolah kata menyimpan karakter tak terlihat, tag diketik tanpa bantuan, dan kerusakan tanpa pesan galat; VS Code hanya menyimpan karakter yang diketik, memberi pelengkapan otomatis tag, dan kesalahan ditandai warna.](assets/diagrams/bab-01-pengantar-frontend-development-dan-web-design-38.svg)
+
+Di pengolah kata, karakter tak terlihat ikut tersimpan dan tag diketik tanpa bantuan, jadi kerusakan tanpa pesan galat cuma terlihat sebagai halaman yang bergeser. Di VS CODE hanya karakter yang diketik yang tersimpan, ada pelengkapan otomatis tag, dan kesalahan ditandai warna — gejalanya ketahuan sebelum halaman dibuka di browser.
+
+<!--
+Minta kelas menebak mengapa mengetik HTML di pengolah kata dilarang; jawaban yang
+diharapkan: karakter tak terlihat bikin file rusak dan gejalanya susah dilacak. Lalu
+tunjuk tiga baris kiri dan kanan sebagai pasangan dengan sumbu yang sama: karakter tak
+terlihat lawan hanya karakter yang diketik, tag diketik tanpa bantuan lawan pelengkapan
+otomatis tag, kerusakan tanpa pesan galat lawan kesalahan ditandai warna. Jangan
+memasangkan baris kiri nomor tiga dengan baris kanan nomor satu, karena keduanya bukan
+hal yang sama. Tutup dengan kebiasaan menyimpan `Ctrl+S` setiap selesai menulis, karena
+dua detik menyimpan bisa menghemat berjam-jam.
+-->
+
+---
+
 # Peta 16 Bab: Tiga Gerbang Besar
 
 | Rentang | Fokus | Proyek |
@@ -594,6 +743,7 @@ Peringatan: jangan menulis dokumen dari nol tanpa pola lengkap ini.
 
 ---
 
+<!-- _class: compact -->
 # Isi Halaman: Lima Keluarga Elemen
 
 `profil-mahasiswa/index.html` (lanjutan)
@@ -611,6 +761,7 @@ Peringatan: jangan menulis dokumen dari nol tanpa pola lengkap ini.
   <h2>Keterampilan</h2>
   <ol>
     <li>Menuliskan dokumen HTML dasar</li>
+    <li>Menata folder proyek</li>
   </ol>
 </body>
 ```
@@ -618,9 +769,11 @@ Peringatan: jangan menulis dokumen dari nol tanpa pola lengkap ini.
 <!--
 Lanjutkan mengetik dari slide sebelumnya. Yang diuji di sini adalah pilihan elemen
 berdasarkan makna, bukan selera: ul buat isi yang nggak mengenal urutan, ol buat isi
-yang urutannya bermakna. Minta mahasiswa menilai sendiri: "Bidang Minat seharusnya ul
-atau ol?" (Jawaban: ul, karena nggak ada urutan di antara minat.) Sebutkan bahwa sisa
-filenya, termasuk blok Link dengan link mailto, dilanjutkan di praktikum.
+yang urutannya bermakna — dan daftar berisi satu butir nggak bisa memperlihatkan
+urutan apa pun, jadi ol Keterampilan sengaja diberi dua butir. Minta mahasiswa menilai
+sendiri: "Bidang Minat seharusnya ul atau ol?" (Jawaban: ul, karena nggak ada urutan
+di antara minat.) Sebutkan bahwa sisa filenya, termasuk blok Link dengan link mailto,
+dilanjutkan di praktikum.
 -->
 
 ---
@@ -640,6 +793,22 @@ teks yang dibacakan pembaca layar dan yang tampil pas gambar gagal dimuat, sedan
 lompatan level heading merusak peta dokumen bagi alat bantu. Tuliskan keempatnya di
 papan sebagai daftar periksa, karena ini dipakai sebagai rubrik penilaian. Peringatan:
 mahasiswa cenderung menulis alt berisi nama file, bukan deskripsi.
+-->
+
+---
+
+# Contoh: Empat Disiplin Struktur
+
+![w:1120 Pohon dokumen profil-mahasiswa: h1 Andi Pratama menaungi h2 Bidang Minat dan h2 Keterampilan, masing-masing menaungi butir li tanpa lompatan level.](assets/diagrams/bab-01-pengantar-frontend-development-dan-web-design-43.svg)
+
+Halaman `profil-mahasiswa` dibuka dengan satu `h1` Andi Pratama, lalu `h2` Bidang Minat dan `h2` Keterampilan tanpa lompatan level. Tiap `h2` menaungi butir `li`: li Desain antarmuka web dan li Sistem informasi manajemen di bawah Bidang Minat, li Menuliskan dokumen HTML dasar dan li Menata folder proyek di bawah Keterampilan.
+
+<!--
+Tunjuk pohonnya dari atas: satu `h1`, dua `h2`, empat `li`, lalu tanyakan apa yang rusak
+kalau salah satu `h2` diganti `h3`. Jawaban yang diharapkan: peta dokumen jadi bolong,
+dan pembaca layar kehilangan urutan levelnya walau mata kita nggak melihat bedanya.
+Ingatkan dua disiplin sisanya yang nggak kelihatan di gambar: `alt` berisi deskripsi
+dan bukan nama file, serta semua tag ditulis huruf kecil.
 -->
 
 ---
