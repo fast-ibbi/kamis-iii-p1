@@ -50,21 +50,22 @@ yang selama ini menebak nilai padding.
 
 # Tiga Gejala, Satu Akar
 
-Kamu magang di tim digital Tokosaya, dan halaman katalognya berulah.
+![w:1120](assets/diagrams/bab-05-css-box-model-dan-layout-03.svg)
 
-| Yang terlihat | Dugaan awal | Yang sebenarnya |
-|---|---|---|
-| Badge terlempar ke pojok kanan | salah tulis HTML | induknya belum `relative` |
-| Kartu ketiga meluber | kontainer kekecilan | mode `content-box` menambah padding |
-| Jarak kartu 20, 18, lalu 28 px | desainnya beda | belum ada skala jarak tetap |
+Kamu magang di tim digital Tokosaya, dan halaman katalognya berulah.
 
 > Ketiga gejala itu bukan kesalahan HTML, melainkan satu akar yang sama: kotak.
 
 <!--
-Ceritakan tiga gejalanya kayak pengalaman magang di buku, jangan cuma dibacakan
-tabelnya. Tanyakan dugaan awal mahasiswa buat gejala pertama; jawaban yang
-diharapkan: itu bukan salah markup, tapi induknya belum diposisikan. Tekankan bahwa
-ketiga gejala punya satu akar, yaitu kotak, dan itu yang dibongkar sepanjang bab.
+Ceritakan tiga gejalanya kayak pengalaman magang di buku, jangan cuma dibacakan:
+badge terlempar ke pojok kanan, kartu ketiga meluber, dan jarak kartu 20, 18, lalu
+28 px. Tanyakan dugaan awal mahasiswa buat gejala pertama; jawaban yang diharapkan:
+itu bukan salah markup, tapi induknya belum diposisikan.
+
+Dugaan awal ketiga gejala itu: salah tulis HTML, kontainer kekecilan, desainnya beda.
+Yang sebenarnya: induknya belum relative, mode content-box menambah padding, belum ada
+skala jarak tetap. Tekankan bahwa ketiga gejala punya satu akar, yaitu kotak, dan itu
+yang dibongkar sepanjang bab.
 -->
 
 ---
@@ -102,17 +103,16 @@ dibaca.
 
 # Analogi Poster Berbingkai
 
-| Lapisan | Padanan di dinding kantor |
-|---|---|
-| content | kanvas poster tempat gambar dicetak |
-| padding | passe-partout di sekeliling kanvas |
-| border | bingkai kayu yang membatasi kanvas |
-| margin | jarak ke poster lain di dinding |
+![w:1120](assets/diagrams/bab-05-css-box-model-dan-layout-06.svg)
 
 > Padding itu merapikan isi ke bingkainya; margin menjaga jarak antarbingkai.
 
 <!--
 Analogi ini paling berguna buat menjelaskan keputusan desain ke rekan non-teknis.
+Padanannya: content = kanvas poster tempat gambar dicetak, padding = passe-partout di
+sekeliling kanvas, border = bingkai kayu yang membatasi kanvas, margin = jarak ke
+poster lain di dinding.
+
 Tanyakan lapisan mana yang warnanya ikut berubah kalau latar elemen diberi warna.
 Jawaban yang diharapkan: content dan padding, sedangkan border dan margin punya
 hidup sendiri.
@@ -122,42 +122,45 @@ hidup sendiri.
 
 # Padding dan Margin Bukan Hal yang Sama
 
-- Padding adalah bagian dari tubuh elemen itu sendiri
-- Klik dan latar ikut memenuhi seluruh area padding
-- Padding jadi alat utama memberi ruang napas dalam kartu
-- Margin berada di luar kotak dan selalu transparan
-- Margin cuma menahan jarak ke kotak tetangga
-- Border biasanya tipis, 1 sampai 2 px
+![w:1120](assets/diagrams/bab-05-css-box-model-dan-layout-07.svg)
 
 <!--
-Tekankan konsekuensi praktisnya: kartu berlatar putih dengan margin 32 px tetap
-menampakkan bidang kaca di sekelilingnya. Tanyakan properti mana yang harus dipakai
-kalau bidang itu mau ikut berwarna; jawabannya padding. Ingatkan juga bahwa area
-klik tombol bertambah lewat padding, bukan margin.
+Tekankan bahwa padding adalah bagian dari tubuh elemen itu sendiri: klik dan latar ikut
+memenuhi seluruh area padding, dan padding jadi alat utama memberi ruang napas dalam
+kartu. Margin berada di luar kotak dan selalu transparan — cuma menahan jarak ke kotak
+tetangga, jadi kartu berlatar putih dengan margin 32 px tetap menampakkan bidang kaca di
+sekelilingnya. Border biasanya tipis, 1 sampai 2 px, dan ia yang memisahkan keduanya.
+
+Tanyakan: kalau bidang kaca itu mau ikut berwarna, properti mana yang dipakai? Jawabannya
+padding, bukan margin. Ingatkan juga bahwa area klik tombol bertambah lewat padding, bukan
+margin.
 -->
 
 ---
 
 # Margin Vertikal Bisa Runtuh
 
-- Margin bawah dan margin atas bertetangga tidak dijumlahkan
-- Yang dipakai adalah nilai yang paling besar
-- `16px` bawah bertemu `24px` atas, jaraknya jadi 24 px
-- Padding tidak punya perilaku runtuh ini
-- Jarak satu arah lebih aman: pakai `margin-bottom` saja
+![w:1120](assets/diagrams/bab-05-css-box-model-dan-layout-08.svg)
 
 > Ritme vertikal antarseksi lebih aman distandarkan lewat padding kontainer.
 
 <!--
 Perilaku ini yang paling sering bikin mahasiswa menuduh CSS-nya rusak. Hitung
-bareng-bareng: 16 px bertemu 24 px jadi 24 px, bukan 40 px. Lanjutkan dengan
-pertanyaan kenapa padding dipilih buat ritme antarseksi, dan jawaban yang
-diharapkan: padding tidak runtuh sehingga jaraknya bisa diprediksi.
+bareng-bareng: 16px bawah bertemu 24px atas, jaraknya jadi 24 px, bukan 40 px.
+Aturannya: margin bawah dan margin atas bertetangga tidak dijumlahkan, dan yang
+dipakai adalah nilai yang paling besar. Padding tidak punya perilaku runtuh ini, jadi
+ritme antarseksi lebih aman distandarkan lewat padding kontainer.
+
+Lanjutkan dengan pertanyaan kenapa padding dipilih buat ritme antarseksi, dan jawaban
+yang diharapkan: padding tidak runtuh sehingga jaraknya bisa diprediksi. Jarak satu
+arah juga lebih aman: pakai `margin-bottom` saja.
 -->
 
 ---
 
 # Angka width Cuma Sepotong Kotak
+
+![w:1120](assets/diagrams/bab-05-css-box-model-dan-layout-09.svg)
 
 Bawaannya CSS memakai mode `box-sizing: content-box`.
 
@@ -169,14 +172,14 @@ Bawaannya CSS memakai mode `box-sizing: content-box`.
 }
 ```
 
-- Lebar di layar: `280 + 16 + 16 + 4 + 4 = 304 px`
-- Angka `width` cuma milik area konten
-- Selisih 24 px inilah yang memunculkan bilah gulir
-
 <!--
-Minta mahasiswa menghitung sendiri sebelum kamu tunjukkan 304 px di layar. Buka
-panel Computed di DevTools dan tunjukkan angka yang sama persis. Tanyakan kenapa
-kartu yang "seharusnya" muat tiga di satu baris jadi meluber sepuluh piksel.
+Minta mahasiswa menghitung sendiri sebelum kamu tunjukkan 304 px di layar. Angka
+`width` cuma milik area konten: 280 px ditambah padding (kiri 16 px, kanan 16 px)
+ditambah border (kiri 4 px, kanan 4 px), jadi lebar di layar 304 px. Buka panel
+Computed di DevTools dan tunjukkan angka yang sama persis.
+
+Selisih 24 px inilah yang memunculkan bilah gulir. Tanyakan kenapa kartu yang
+"seharusnya" muat tiga di satu baris jadi meluber sepuluh piksel.
 -->
 
 ---
@@ -196,14 +199,12 @@ kartu yang "seharusnya" muat tiga di satu baris jadi meluber sepuluh piksel.
 
 `File: tokosaya-css/css/style.css`
 
-- Selector `*` menjangkau seluruh elemen
-- `*::before` dan `*::after` ikut disamakan
-- Angka `width` jadi lebar kotak utuh
-- Konten menyusut kalau padding membesar
-- Pasang sekali di awal, jangan dicampur dua mode
-
 <!--
-Tekankan bahwa satu aturan ini mengubah arti semua angka lebar di seluruh file.
+Tekankan bahwa satu aturan ini mengubah arti semua angka lebar di seluruh file:
+selector `*` menjangkau seluruh elemen, `*::before` dan `*::after` ikut disamakan,
+angka `width` jadi lebar kotak utuh, dan konten menyusut kalau padding membesar.
+Pasang sekali di awal, jangan dicampur dua mode.
+
 Sebutkan bahwa mencampur `content-box` dan `border-box` di satu proyek adalah sumber
 bug layout yang paling sunyi. Tanyakan apa yang terjadi pada konten kalau padding
 diperbesar di mode ini; jawabannya: konten yang menyusut, bukan kotaknya.
@@ -339,15 +340,15 @@ menempel di teks tanpa mendorong baris.
 
 `File: tokosaya-css/css/style.css`
 
-- Celah itu sebenarnya spasi yang kamu tulis di HTML
-- `inline-block` memperlakukan kotak kayak kata
-- Wadah disetel nol, anggotanya dikembalikan sendiri
-
 <!--
 Tunjukkan celahnya dulu di browser sebelum kamu jelaskan triknya, karena gejalanya
-kelihatan kayak bug. Tekankan pasangan aturannya: wadah `font-size: 0`, anggota
-`font-size` eksplisit. Sebutkan bahwa Bab 6 akan mengganti seluruh trik ini dengan
-`gap` pada Flexbox, jadi ini bekal memahami kenapa Flexbox ada.
+kelihatan kayak bug. Celah itu sebenarnya spasi yang kamu tulis di HTML, dan
+`inline-block` memperlakukan kotak kayak kata. Tekankan pasangan aturannya: wadah
+`font-size: 0`, anggota `font-size` eksplisit — wadah disetel nol, anggotanya
+dikembalikan sendiri.
+
+Sebutkan bahwa Bab 6 akan mengganti seluruh trik ini dengan `gap` pada Flexbox, jadi
+ini bekal memahami kenapa Flexbox ada.
 -->
 
 ---
@@ -404,15 +405,14 @@ menggulir buat tabel yang panjang.
 
 `File: tokosaya-css/css/style.css`
 
-- Tanpa `overflow: hidden`, tanda potongnya tidak muncul
-- Tanpa `white-space: nowrap`, tidak ada yang terpotong
-- Tambahkan atribut `title` supaya nama penuh tetap terbaca
-
 <!--
 Minta mahasiswa menghapus satu properti satu per satu dan mengamati akibatnya;
-ketiganya memang satu kesatuan. Tekankan bagian `title`: memotong teks yang tidak
-bisa diamati kembali adalah kegagalan informasi, bukan keindahan tipografi.
-Tanyakan di mana pola ini bakal dipakai di kartu produk.
+ketiganya memang satu kesatuan. Tanpa `overflow: hidden` tanda potongnya tidak muncul,
+dan tanpa `white-space: nowrap` tidak ada yang terpotong.
+
+Tekankan bagian `title`: tambahkan atribut `title` supaya nama penuh tetap terbaca,
+karena memotong teks yang tidak bisa diamati kembali adalah kegagalan informasi, bukan
+keindahan tipografi. Tanyakan di mana pola ini bakal dipakai di kartu produk.
 -->
 
 ---
@@ -452,21 +452,18 @@ dan jarak yang tidak konsisten.
 
 # Lima Nilai position
 
-| Nilai | Perilaku singkat |
-|---|---|
-| `static` | bawaan; ikut alur dokumen, diatur lewat margin |
-| `relative` | bergeser dari posisinya, tempatnya tetap |
-| `absolute` | lepas dari alur, menempel leluhur terdekat |
-| `fixed` | menempel viewport, diam walau halaman digulir |
-| `sticky` | ikut alur sampai titik geser, lalu lengket |
-
-- `relative` lebih sering dipakai sebagai landasan daripada penggeser
+![w:1120](assets/diagrams/bab-05-css-box-model-dan-layout-23.svg)
 
 <!--
-Tekankan kalimat paling penting di tabel ini: `relative` adalah landasan buat
-anaknya yang `absolute`. Tanyakan apa landasan sebuah kotak `absolute` kalau tidak
-ada satu pun leluhur yang diposisikan. Jawaban yang diharapkan: halaman itu sendiri,
-dan itulah badge yang terlempar ke pojok layar.
+Tekankan kalimat paling penting di slide ini: relative lebih sering dipakai sebagai
+landasan daripada penggeser, dan `relative` adalah landasan buat anaknya yang
+`absolute`. Tanyakan apa landasan sebuah kotak `absolute` kalau tidak ada satu pun
+leluhur yang diposisikan. Jawaban yang diharapkan: halaman itu sendiri, dan itulah
+badge yang terlempar ke pojok layar.
+
+Lima nilainya: static: bawaan, ikut alur dokumen; relative: bergeser dari posisinya;
+absolute: lepas dari alur; fixed: menempel viewport; sticky: ikut alur sampai titik
+geser.
 -->
 
 ---
@@ -490,14 +487,14 @@ dan itulah badge yang terlempar ke pojok layar.
 
 `File: tokosaya-css/css/style.css`
 
-- `absolute` mencari leluhur yang diposisikan
-- Tanpa `relative` di induk, badge lari ke pojok halaman
-
 <!--
 Demonstrasikan ini langsung: hapus `position: relative` sebentar, muat ulang, dan
 biarkan kelas melihat badge terlempar. Kembalikan lalu tekankan bahwa 8 px itu jarak
-dari tepi gambar, bukan dari halaman. Ingatkan bahwa kotak `absolute` tidak menggeser
-teks di bawahnya karena sudah keluar dari alur.
+dari tepi gambar, bukan dari halaman.
+
+`absolute` mencari leluhur yang diposisikan. Tanpa `relative` di induk, badge lari ke
+pojok halaman. Ingatkan bahwa kotak `absolute` tidak menggeser teks di bawahnya karena
+sudah keluar dari alur.
 -->
 
 ---
@@ -580,15 +577,14 @@ kriteria Target Size WCAG 2.2 menetapkan area sentuh minimal 24 × 24 px.
 
 `File: tokosaya-css/css/style.css`
 
-- Komentar `8 × n` yang menegakkan disiplin skala
-- Kalau butuh lebih lega, lompat ke langkah berikutnya
-- Jangan geser 3 px; pilih langkah skala yang terdekat
-
 <!--
-Buka file aslinya dan hitung satu per satu langkah skalanya bareng kelas. Tekankan
-kebiasaan yang dituntut: setiap angka baru harus punya pasangan di skala. Tanyakan
-apa yang harus dilakukan kalau kartu terasa perlu lebih beruang; jawaban yang
-diharapkan: naik dari 16 ke 24 atau 32, bukan ke 21.
+Buka file aslinya dan hitung satu per satu langkah skalanya bareng kelas. Yang
+menegakkan disiplinnya adalah komentar `8 × n`. Kalau butuh lebih lega, lompat ke
+langkah berikutnya; jangan geser 3 px, pilih langkah skala yang terdekat.
+
+Tekankan kebiasaan yang dituntut: setiap angka baru harus punya pasangan di skala.
+Tanyakan apa yang harus dilakukan kalau kartu terasa perlu lebih beruang; jawaban
+yang diharapkan: naik dari 16 ke 24 atau 32, bukan ke 21.
 -->
 
 ---
@@ -648,13 +644,11 @@ periksa jalur `<link>` dulu kalau gaya tidak muncul sama sekali.
 
 `File: tokosaya-css/index.html`
 
-- Satu kartu satu `li`, bukan kumpulan `div`
-- `produk-media` menampung gambar sekaligus badge
-- `width` dan `height` disamakan rasio gambar
-- Tidak ada satu pun gaya inline di HTML
-
 <!--
-Tekankan pembagian tugasnya: HTML membawa peran, CSS membawa keputusan visual.
+Tekankan pembagian tugasnya: HTML membawa peran, CSS membawa keputusan visual. Satu
+kartu satu `li`, bukan kumpulan `div`; `produk-media` menampung gambar sekaligus badge;
+`width` dan `height` disamakan rasio gambar; dan tidak ada satu pun gaya inline di HTML.
+
 Tanyakan kenapa angka `width` dan `height` disamakan rasio gambarnya. Jawaban yang
 diharapkan: supaya layout tidak melompat pas gambar selesai termuat. Pastikan semua
 nama class konsisten kebab-case sebelum kelas lanjut ke file gaya.
@@ -685,17 +679,16 @@ nama class konsisten kebab-case sebelum kelas lanjut ke file gaya.
 
 `File: tokosaya-css/css/style.css`
 
-- `vertical-align: top` bikin deret kartu sejajar atas
-- `width` 280 px ditahan `max-width: 100%`
-- Margin 16 dan 32 px ikut langkah skala 8
-- Padding badan kartu 16 px memberi ruang napas
-
 <!--
 Tunjukkan gejala sebelum `vertical-align: top`: kartu dengan isi lebih panjang bikin
-deretnya bergerigi. Tanyakan kenapa `max-width: 100%` penting walaupun kartunya sudah
-punya lebar tetap. Jawaban yang diharapkan: biar kartu menyusut di layar sempit
-daripada memaksa bilah gulir. Sebutkan bahwa `overflow: hidden` di media akan
-ditambahkan kalau latar media diberi warna.
+deretnya bergerigi. `vertical-align: top` bikin deret kartu sejajar atas, `width`
+280 px ditahan `max-width: 100%`, margin 16 dan 32 px ikut langkah skala 8, dan
+padding badan kartu 16 px memberi ruang napas.
+
+Tanyakan kenapa `max-width: 100%` penting walaupun kartunya sudah punya lebar tetap.
+Jawaban yang diharapkan: biar kartu menyusut di layar sempit daripada memaksa bilah
+gulir. Sebutkan bahwa `overflow: hidden` di media akan ditambahkan kalau latar media
+diberi warna.
 -->
 
 ---
@@ -720,19 +713,19 @@ masih memakai file gaya dari cache.
 
 # Troubleshooting Paling Sering
 
-| Gejala | Penyebab |
-|---|---|
-| Kartu sejajar tepi bawah berbeda | `vertical-align` bawaan masih baseline |
-| Ada celah tipis antarkartu | spasi di HTML antar `inline-block` |
-| Jarak terasa lebih pendek | margin vertikal runtuh |
-| Badge lari ke pojok halaman | induk belum `position: relative` |
-| Kartu meluber dan muncul bilah gulir | mode `content-box` masih aktif |
+![w:1120](assets/diagrams/bab-05-css-box-model-dan-layout-34.svg)
 
 <!--
-Jadikan tabel ini daftar periksa pas kelas praktikum, bukan bahan bacaan. Tanyakan
-gejala mana yang paling sering mereka temui di tugas sebelumnya. Tekankan bahwa
-semua gejala ini bisa dipastikan lewat diagram kotak di DevTools sebelum satu baris
-CSS diubah.
+Jadikan gambar ini daftar periksa pas kelas praktikum, bukan bahan bacaan. Gejala dan
+penyebabnya: kartu sejajar tepi bawah berbeda karena vertical-align bawaan masih
+baseline; ada celah tipis antarkartu karena spasi di HTML antar inline-block; jarak
+terasa lebih pendek karena margin vertikal runtuh; badge lari ke pojok halaman karena
+induk belum position: relative; kartu meluber dan muncul bilah gulir karena mode
+content-box masih aktif.
+
+Tanyakan gejala mana yang paling sering mereka temui di tugas sebelumnya. Tekankan
+bahwa semua gejala ini bisa dipastikan lewat diagram kotak di DevTools sebelum satu
+baris CSS diubah.
 -->
 
 ---
