@@ -582,6 +582,23 @@ diujikan di UTS Bab 8.
 
 ---
 
+# Contoh: Tujuan dan Kebutuhan Praktikum
+
+![w:1120 Denah 4 kolom selebar 1200 piksel: baris pertama empat kartu statistik masing-masing 288 piksel, baris kedua tabel pesanan membentang penuh, dengan gutter gap 16 px.](assets/diagrams/bab-07-css-grid-dan-responsive-web-design-26.svg)
+
+Dashboard admin Tokosaya menaruh empat kartu statistik sebaris di atas tabel pesanan. Di lebar 1200 px, wadah konten maksimum 1200 px dikurangi 3 × gap 16 px = 48 px, sisa 1152 px, lalu 1152 ÷ 4 = 288 px: denah 4 kolom itu memberi kartu 1, kartu 2, kartu 3, dan kartu 4 lebar 288 px masing-masing. Tabel pesanan memakai span penuh di baris kedua, bukan ikut terbagi empat.
+
+<!--
+Tanyakan berapa lebar satu kartu statistik sebelum ada yang menghitung pakai browser.
+Jawaban yang diharapkan: 288 px, karena 1200 dikurangi tiga gap 16 px jadi 1152, baru
+dibagi empat. Tunjukkan penggaris 1 sampai 4 di atas gambar: keempat kartu sama lebar
+justru karena `1fr` membagi habis ruangnya, dan tabel pesanan di baris kedua memakai
+`span` penuh, bukan empat kolom terpisah. Ingatkan bahwa gap 16 px itu
+`calc(var(--space-unit) * 2)` dari token Bab 4, bukan angka yang dikarang.
+-->
+
+---
+
 # Langkah Kerja Praktikum
 
 ![w:1120 Lima tahap praktikum berurutan: tulis admin.html, tulis meta viewport, susun struktur semantik, susun admin.css mobile-first, lalu uji di device toolbar pada 375 sampai 1200 piksel.](assets/diagrams/bab-07-css-grid-dan-responsive-web-design-25.svg)
