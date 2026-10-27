@@ -1380,6 +1380,20 @@ function mockupGrid(data, ctx) {
   }
 
   const gridTop = PAD + RULER_H + 10
+  const gridBottom = gridTop + rows.length * rowH + (rows.length - 1) * rowGap
+  // The column lines are the concept: they run unbroken from the ruler through
+  // every row, so a reader can check that span 4 and span 8 really do start and
+  // end on the same track. Cells are drawn on top, so the lines only show
+  // through the gutters — where the column line actually lives.
+  for (let col = 0; col <= columns; col++) {
+    const x = Math.min(PAD + col * (trackS + gutterS), width - PAD)
+    c.path(`M${num(x)} ${num(PAD + RULER_H)} V${num(gridBottom)}`, {
+      stroke: ctx.tones.slate.fg,
+      sw: 1,
+      dash: '3 4',
+    })
+  }
+
   for (let r = 0; r < rows.length; r++) {
     const y = gridTop + r * (rowH + rowGap)
     let col = 0

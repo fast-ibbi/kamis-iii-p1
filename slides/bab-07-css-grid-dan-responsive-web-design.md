@@ -109,6 +109,24 @@ siapa yang sebelumnya menyusun HTML dulu baru bingung mengatur posisinya.
 
 ---
 
+# Contoh: Apa Itu CSS Grid
+
+![w:1120 Denah 12 kolom dengan penggaris bernomor: baris span 12 penuh, baris span 4 dan span 8, baris span 3, span 3, dan span 6, dengan gutter 16 piksel.](assets/diagrams/bab-07-css-grid-dan-responsive-web-design-06.svg)
+
+Satu denah, tiga baris, semuanya berjumlah 12 kolom: baris pertama span 12 penuh, baris kedua span 4 lalu span 8, baris ketiga span 3, span 3, dan span 6. Tepi kolomnya tetap satu garis dari atas ke bawah, dan gutter 16 px menjaga jarak antarbutir.
+
+<!--
+Minta kelas menghitung tiap baris: 12, lalu 4 + 8, lalu 3 + 3 + 6 — semuanya 12
+kolom. Jawaban yang diharapkan: yang menjaga ketiganya lurus bukan lebar butir,
+tapi denah 12 kolom yang sudah ditetapkan lebih dulu. Itulah bedanya dengan
+Flexbox yang membagi ruang berdasarkan isi. Tunjukkan angka 1 sampai 12 di
+penggaris atas gambar supaya kelas bisa menunjuk kolom mana yang ditempati tiap
+butir, lalu bandingkan baris kedua dan ketiga: jumlah butirnya beda, garis
+kolomnya sama.
+-->
+
+---
+
 <!-- _class: compact -->
 
 # Tiga Istilah di Dalam Grid
