@@ -102,6 +102,24 @@ isinya. Ingatkan bahwa tipografi bukan hiasan, melainkan alat komunikasi layanan
 
 ---
 
+# Contoh: Menyusun Typeface, Bukan Sekadar Memilih
+
+![w:1120 Dua kolom nilai properti CSS untuk teks Tokosaya: kolom kiri judul 1rem atau 16 px, isi 1rem, semua font-weight 400, sehingga tidak ada yang menonjol; kolom kanan judul 3rem atau 48 px dengan font-weight 700 dan isi tetap 400, sehingga judul terbaca sebagai judul.](assets/diagrams/bab-04-typography-dan-visual-design-css-07.svg)
+
+Judul hero Tokosaya memakai `font-family: 'Poppins'` dan isinya memakai Inter di kedua versi; typeface-nya tidak berubah, yang berbeda hanya susunan propertinya. Di versi yang sekadar memilih, judul 1rem atau 16 px dan isi 1rem, semua font-weight 400, jadi tidak ada yang menonjol. Di versi yang menyusun, judul 3rem atau 48 px dengan font-weight 700, isi tetap 400 dan 1rem pada basis 16 px, jadi judul terbaca sebagai judul.
+
+<!--
+Bandingkan dua kolom. SVG tidak dapat memuat web font, jadi keduanya membandingkan
+nilai propertinya, bukan bentuk hurufnya; bentuk aslinya dibuka di browser seperti
+pada slide Poppins dan Inter. Tanyakan apa yang berubah padahal typeface-nya identik.
+Jawaban yang diharapkan: yang bekerja bukan pilihan typeface-nya, tetapi susunan
+propertinya — 16 px menjadi 48 px pada judul, 400 menjadi 700, isinya tidak
+disentuh. Tunjuk kolom SEKADAR MEMILIH lebih dulu, lalu kolom MENYUSUN, lalu minta
+satu layar di kampus yang masih memakai versi pertama.
+-->
+
+---
+
 <!-- _class: compact split-left -->
 
 # Typeface dan Font
@@ -137,6 +155,24 @@ Kaitkan tiga contoh itu dengan layanan di sekitar kampus, bukan dengan toko onli
 Minta mahasiswa menyebut satu layar yang menurut mereka paling sulit dibaca dan
 jelaskan alasannya. Tutup dengan kalimat Norman: desain yang baik jujur soal
 fungsinya.
+-->
+
+---
+
+# Contoh: Mengapa Tipografi Penting
+
+![w:1120 Rantai sebab-akibat: teks ditata asal membuat pembaca lelah, akibatnya informasi tidak ditemukan, dan solusinya hierarki yang jelas dengan judul 3rem dan instruksi 1rem.](assets/diagrams/bab-04-typography-dan-visual-design-css-10.svg)
+
+Satu layar portal rumah sakit menulis instruksi obat dengan ukuran dan ketebalan seragam, sama seperti catatan kaki. Teks ditata asal seperti itu membuat pembaca lelah, berhenti di tengah kalimat, lalu informasi tidak ditemukan sebelum sampai ke isinya. Ganti jadi hierarki yang jelas — judul 3rem, instruksi 1rem — supaya judul tampak seperti judul.
+
+<!--
+Bacakan rantai di gambar sebagai satu kalimat: teks ditata asal, karena itu pembaca
+lelah; akibatnya informasi tidak ditemukan; solusinya hierarki yang jelas. Setelah
+itu balik arahnya: minta mahasiswa menyebut properti mana yang harus dikembalikan
+ke seragam supaya rantai ini rusak lagi. Jawaban yang diharapkan: cukup `font-size`
+dan `font-weight` judulnya, isinya tidak perlu diubah. Tunjuk dua angka di akhir
+gambar sebagai buktinya: judul 3rem atau 48 px, isi 1rem atau 16 px, jadi judul
+tiga kali ukuran isinya.
 -->
 
 ---
@@ -450,6 +486,24 @@ hiasan membuat maknanya pudar.
 
 ---
 
+# Contoh: Warna Semantik
+
+![w:1120 Dua kolom: kolom kiri warna hiasan yang dipilih supaya ramai dan tidak punya makna, sehingga status harus ditulis dan dibaca; kolom kanan warna semantik Tokosaya, hijau 16A34A untuk tersedia, amber F59E0B untuk Best Seller, dan indigo 4F46E5 untuk Baru, sehingga maknanya terbaca sebelum teksnya.](assets/diagrams/bab-04-typography-dan-visual-design-css-26.svg)
+
+Tiga badge di kartu produk Tokosaya tidak menulis penjelasan apa pun. Ketiga badge itu hijau `#16A34A` tersedia, amber `#F59E0B` Best Seller, indigo `#4F46E5` Baru — satu warna untuk satu makna, dan maknanya terbaca sebelum teksnya. Warna hiasan bekerja sebaliknya: warnanya dipilih supaya ramai, tidak ada makna yang menempel, dan status harus ditulis dan dibaca.
+
+<!--
+Mulai dari kartu produk sungguhan, bukan dari daftar ini: tutup tulisan di badge,
+lalu minta kelas menebak arti tiap warna hanya dari warnanya. Lanjutkan dengan
+pertanyaan yang belum dijawab slide induk: apa yang terjadi kalau muncul status
+keempat. Jawaban yang diharapkan: status baru harus lebih dulu diberi makna di
+palet, karena warna di luar palet tidak dipakai tanpa alasan. Tunjuk pasangan hex
+dan nama tokennya, lalu ingatkan bahwa komponen memakai `var(--clr-success)`,
+bukan `#16A34A`, seperti di blok token.
+-->
+
+---
+
 # Contrast Ratio dan Ambang AA
 
 - Seberapa kontras warna teks dibanding latarnya
@@ -464,6 +518,22 @@ hiasan membuat maknanya pudar.
 Jangan masuk ke rumus luminansinya; cukup tunjukkan ambangnya dan cara memakainya.
 Buka penghitung contrast ratio sekali di depan kelas sebagai contoh. Tekankan
 kalimat penutupnya, lalu sebutkan bahwa audit formalnya diulang di Bab 13.
+-->
+
+---
+
+# Contoh: Contrast Ratio dan Ambang AA
+
+![w:1120 Dua kolom keputusan ambang AA: kolom kiri gagal ambang AA berisi 1:1 teks tidak terlihat sebagai batas bawah, teks normal di bawah 4,5:1, dan teks besar 24 px di bawah 3:1; kolom kanan lolos ambang AA berisi 21:1 hitam di atas putih sebagai batas atas, teks normal minimal 4,5:1, dan teks besar 24 px cukup 3:1.](assets/diagrams/bab-04-typography-dan-visual-design-css-28.svg)
+
+Rentangnya dari 1:1 teks tidak terlihat, batas bawah, sampai 21:1 hitam di atas putih, batas atas. Ambang AA memotong rentang itu: teks normal di bawah 4,5:1 gagal ambang AA, sedangkan teks normal minimal 4,5:1 lolos ambang AA; teks besar 24 px cukup 3:1, sedangkan teks besar 24 px di bawah 3:1 gagal. Di palet Tokosaya, teks `#1E293B` di atas kartu putih `#FFFFFF` lolos, sedangkan hijau `#16A34A` hanya 3,3:1 — cukup untuk teks besar 24 px, gagal untuk label 12 px.
+
+<!--
+Tanyakan apakah label hijau 12 px di kartu produk lolos AA. Jawaban yang diharapkan:
+tidak — 3,3:1 hanya cukup untuk teks besar 24 px ke atas, sedangkan label kecil butuh
+4,5:1. Lalu tunjuk dua kolom gambar: yang gagal di kiri, yang lolos di kanan, dengan
+batas bawah 1:1 dan batas atas 21:1 sebagai ujung rentangnya. Tutup dengan jalan
+keluarnya: teks hijau dipindah ke tint, teksnya pakai warna gelap.
 -->
 
 ---
