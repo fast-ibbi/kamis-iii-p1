@@ -72,16 +72,16 @@ keraguan pembeli dengan konsistensi: keraguan visual langsung mengikis kepercaya
 
 # Contoh: Saat Aturan Visual Cuma Ada di Kepala Orang
 
-![w:1120 Rantai empat simpul: Tokosaya 2019 dikerjakan dua orang, tim membesar karena Rara merekrut dua desainer lepas, dalam dua minggu lahir tiga warna dan tiga lengkung, lalu kepercayaan turun sampai pembeli ragu.](assets/diagrams/bab-12-ui-ux-dan-design-system-04.svg)
+![w:1120 Rantai tiga simpul: Tokosaya 2019 dikerjakan dua orang, lalu tim membesar karena Rara merekrut dua desainer lepas dan satu penulis konten, dan karena tak ada aturan tertulis pembeli jadi ragu dan takut website palsu.](assets/diagrams/bab-12-ui-ux-dan-design-system-04.svg)
 
-Tokosaya 2019 masih dikerjakan dua orang, jadi tampilannya seragam dengan sendirinya. Begitu tim membesar karena Rara merekrut dua desainer lepas, dalam dua minggu lahir tiga warna, tiga lengkung, dan jarak kartu yang beda-beda — semuanya tanpa aturan tertulis. Ujungnya kepercayaan turun: pembeli ragu, takut website palsu.
+Tokosaya 2019 masih dikerjakan dua orang, jadi tampilannya seragam dengan sendirinya. Begitu Rara merekrut dua desainer lepas, satu penulis konten, tim membesar dan dalam dua minggu lahir tiga warna, tiga lengkung, dan jarak kartu yang beda-beda — semuanya tanpa aturan tertulis. Ujungnya pembeli ragu dan takut website palsu.
 
 <!--
-Tanyakan siapa yang salah menurut kamu: desainer lepasnya, Rara, atau sistemnya.
-Jawaban yang diharapkan: nggak ada aturan tertulis, jadi setiap orang menafsir ulang.
-Tunjuk simpul terakhir di gambar — pembeli ragu bukan karena tombolnya jelek, tapi
-karena nggak ada patokan resmi yang bisa dibaca. Setelah itu sebut radius 12, 4, dan
-20 piksel sebagai bukti tafsirnya bercabang.
+Telusuri rantai ini dari kiri ke kanan, bukan dari atas ke bawah: dua orang, lalu
+tiga perekrutan, lalu keraguan pembeli. Tanyakan di panah mana masalahnya sebenarnya
+lahir — hampir semua kelas menjawab di panah kedua, saat tim membesar tanpa aturan
+tertulis. Tutup dengan mengaitkan simpul terakhir ke kutipan pembeli di slide
+sebelumnya, lalu sebut radius 12, 4, dan 20 piksel sebagai bukti tafsirnya bercabang.
 -->
 
 ---
@@ -205,16 +205,16 @@ pendaftaran, antrean layanan, atau keranjang checkout.
 
 # Contoh: Usability
 
-![w:1120 Dua panel label tombol: Klik di sini memaksa pengguna mencari konteks dan berpikir keras sebelum mengklik, sedangkan Lihat Katalog langsung menyampaikan tujuan sebelum diklik.](assets/diagrams/bab-12-ui-ux-dan-design-system-11.svg)
+![w:1120 Dua panel label tombol, tiga baris berpasangan: label Klik di sini tidak menyebut apa yang dibuka, pengguna harus mencari konteks di sekitarnya, dan tujuan tombol tidak terbaca sebelum diklik; label Lihat Katalog menyebut apa yang dibuka, konteks tidak perlu dicari, dan tujuan terbaca sebelum diklik.](assets/diagrams/bab-12-ui-ux-dan-design-system-11.svg)
 
-Dua label tombol di halaman keranjang Tokosaya. "Klik di sini" memaksa pengguna mencari konteks, jadi tujuan tombol tidak terbaca dan pengguna berpikir keras sebelum mengklik. "Lihat Katalog" langsung menyampaikan tujuan, sehingga tujuan sudah terbaca sebelum diklik dan pengguna tidak perlu berpikir keras.
+Dua label tombol di halaman keranjang Tokosaya. Label KLIK DI SINI tidak menyebut apa yang dibuka, jadi pengguna harus mencari konteks di sekitarnya dan tujuan tombol tidak terbaca sebelum diklik. Label LIHAT KATALOG menyebut apa yang dibuka, konteks tidak perlu dicari, dan tujuan terbaca sebelum diklik.
 
 <!--
-Tanyakan label mana yang lebih baik sebelum kamu sebut jawabannya, lalu minta alasannya.
-Jawaban yang diharapkan: "Lihat Katalog", karena tujuannya terbaca sebelum diklik.
-Tunjuk dua panel: yang kiri bikin orang berhenti dan menebak, yang kanan bikin orang
-langsung jalan. Ingatkan bahwa masalah usability paling sering muncul di halaman penting
-yang rumit — formulir pendaftaran, antrean layanan, keranjang checkout.
+Panel kiri dan panel kanan menjawab tiga pertanyaan yang sama: apa yang dibuka,
+apakah konteks harus dicari, dan apakah tujuan terbaca sebelum diklik. Minta kelas
+menutup panel kanan dengan tangan dan menebak sendiri isi labelnya; tebakan mereka
+biasanya sudah mendekati Lihat Katalog. Sesudah itu barulah hubungkan ke formulir
+pendaftaran dan antrean layanan, tempat label yang kabur paling mahal ongkosnya.
 -->
 
 ---
@@ -238,16 +238,16 @@ jadi rasa nggak percaya pada layanannya.
 
 # Contoh: Affordance
 
-![w:1120 Tombol Lihat Katalog: content 120 x 24 piksel, padding 16 piksel di keempat sisi, lebar total 152 piksel dan tinggi 56 piksel, dengan radius 12 piksel.](assets/diagrams/bab-12-ui-ux-dan-design-system-13.svg)
+![w:1120 Tombol Lihat Katalog: content 134 x 24 piksel, padding 16 piksel di keempat sisi, lebar total 166 piksel atau dua kolom grid, dan tinggi total 56 piksel.](assets/diagrams/bab-12-ui-ux-dan-design-system-13.svg)
 
-Tombol `Lihat Katalog` di hero Tokosaya: content 120 × 24 px lalu padding 16 px di keempat sisi, jadi lebar total 120 + 16 + 16 = 152 px dan tingginya 24 + 16 + 16 = 56 px. Area yang bisa ditekan bukan cuma teksnya, melainkan seluruh kotak 152 × 56 px itu; latar dengan radius 12 piksel itulah isyarat yang membuat jari tahu harus menekan di mana.
+Tombol `Lihat Katalog`: content 134 × 24 px ditambah padding 16 px di keempat sisi, jadi lebar total 166 px dan tinggi total 56 piksel (24 + 16 + 16 = 56). Lebar 166 px itu 2 × 71 + 24, yaitu dua kolom grid 12 kolom — sama dengan slot tombol di slide Alignment. Area kliknya seluruh kotak 166 × 56 px, bukan cuma hurufnya.
 
 <!--
-Minta kelas menebak luas area klik tombol ini sebelum kamu tunjuk angka 152 × 56 px.
-Jawaban yang diharapkan: seluruh kotak, bukan cuma hurufnya, karena padding ikut
-terhitung. Tunjuk pita padding di gambar, lalu bandingkan dengan teks putih polos tanpa
-latar dan tanpa batas — nggak ada isyarat, jadi pengguna ragu mengklik, dan keraguan itu
-melebar jadi rasa nggak percaya pada layanannya.
+Tunjuk pita padding di gambar lebih dulu: seluruh pita itu ikut bisa diklik, bukan cuma
+huruf di tengahnya. Minta kelas menebak luas area klik sebelum kamu sebut 166 × 56 px;
+hampir semua akan menjawab selebar teksnya saja. Sesudah angkanya keluar, baru sebut
+bahwa yang membuat kotak ini terbaca sebagai tombol adalah latar penuh yang mengisi
+seluruh area itu — dan bahwa padding serta lebar slotnya datang dari grid, bukan selera.
 -->
 
 ---
@@ -352,15 +352,17 @@ berikutnya. Sebutkan bahwa kelas Bootstrap cuma alat; disiplin yang menentukan.
 
 # Contoh: Alignment
 
-![w:1120 Tiga elemen hero Tokosaya di grid 12 kolom: judul span 12, paragraf span 8, dan tombol span 4, ketiganya mulai di garis kolom pertama yang sama.](assets/diagrams/bab-12-ui-ux-dan-design-system-18.svg)
+![w:1120 Tiga elemen hero Tokosaya di grid 12 kolom: judul span 12, paragraf span 8, dan tombol span 2 selebar 166 piksel, ketiganya mulai di garis kolom pertama yang sama.](assets/diagrams/bab-12-ui-ux-dan-design-system-18.svg)
 
-Tiga elemen hero Tokosaya di grid 12 kolom, lebar 1120 piksel, gutter 24 piksel: judul di span 12, paragraf di span 8, dan tombol di span 4. Ketiganya mulai di garis kolom pertama yang sama, jadi mata tinggal turun lurus; begitu paragraf dibuat rata tengah, tepi kirinya bergerigi dan pembaca kehilangan awal baris berikutnya.
+Tiga elemen hero Tokosaya di grid 12 kolom selebar 1120 piksel: judul di span 12, paragraf di span 8, dan tombol di span 2 — 2 × 71 + 24 = 166 piksel, sama dengan tombol Lihat Katalog di slide Affordance. Ketiganya mulai di garis kolom pertama yang sama; begitu paragraf dibuat rata tengah, tepi kirinya bergerigi.
 
 <!--
-Tanyakan kenapa rata tengah berbahaya buat paragraf panjang. Jawaban yang diharapkan:
-tepi kiri yang bergerigi bikin mata sulit menemukan awal baris berikutnya. Tunjuk garis
-kolom pertama di gambar — ketiga kotak mulai dan berhenti di garis yang sama, padahal
-garis itu nggak pernah digambar di CSS, cuma ditangkap mata lewat tepi yang sejajar.
+Hitung kolomnya bersama kelas: baris pertama penuh 12 kolom, baris kedua berhenti di
+kolom kedelapan, baris ketiga cuma dua kolom — tapi tepi kirinya tetap satu garis.
+Tunjuk garis putus-putus di sisi kiri yang melintasi ketiga baris; itulah garis yang
+tidak pernah ditulis di CSS dan cuma ditangkap mata lewat tepi yang sejajar. Kalau ada
+waktu, minta mereka membayangkan paragrafnya diubah jadi rata tengah, lalu sebutkan
+apa yang hilang dari tepi itu.
 -->
 
 ---
@@ -385,16 +387,17 @@ kontras teks akan diuji lebih jauh di Bab 13.
 
 # Contoh: Contrast
 
-![w:1120 Satu kartu produk dengan dua pengaturan kontras: semua sama membuat tidak ada yang menonjol, sedangkan judul 32 piksel dan keterangan 14 piksel memberi satu tumpuan.](assets/diagrams/bab-12-ui-ux-dan-design-system-19.svg)
+![w:1120 Dua perlakuan pada satu kartu produk di grid 12 kolom: baris pertama judul dan keterangan masing-masing 6 kolom dan semuanya netral sehingga tidak ada yang menonjol, baris kedua judul 9 kolom berwarna aksen dan keterangan 3 kolom netral sehingga judul jadi satu tumpuan.](assets/diagrams/bab-12-ui-ux-dan-design-system-19.svg)
 
-Satu kartu produk Tokosaya, dua pengaturan kontras. Di versi SEMUA SAMA, judul dan keterangan satu ukuran, jadi tidak ada yang menonjol dan mata tidak tahu mulai dari mana. Di versi ADA TUMPUAN, judul 32 piksel, keterangan 14 piksel, dan teks `--clr-body` di kartu putih — satu pembeda, bukan halaman warna-warni.
+Kartu yang sama, dua perlakuan, diukur di grid 12 kolom: di baris pertama semua selnya netral dan judul serta keterangan masing-masing 6 kolom (6 + 6 = 12), jadi tidak ada yang menonjol. Di baris kedua judul mengambil 9 kolom dan berwarna aksen, keterangan tinggal 3 kolom (9 + 3 = 12), jadi judulnya tiga kali lebih lebar sekaligus satu-satunya yang berwarna. Itu yang dimaksud contrast: satu pembeda mencolok yang bisa dihitung, bukan halaman penuh warna.
 
 <!--
-Koreksi dulu anggapan bahwa contrast berarti halaman berwarna-warni: di sini kontrasnya
-cuma ukuran huruf. Tanyakan kenapa menyamakan semua ukuran juga menghapus hierarki.
-Jawaban yang diharapkan: nggak ada lagi yang menonjol. Tunjuk baris kedua panel kanan,
-32 piksel lawan 14 piksel — selisihnya lebih dari dua kali, dan itu tumpuan yang nggak
-butuh warna baru.
+Minta kelas membandingkan dua baris itu dengan mata dulu, sebelum ada angka: baris mana
+yang langsung punya tumpuan. Setelah jawabannya keluar, hitung kolomnya bersama — 6 + 6
+= 12 lawan 9 + 3 = 12 — dan tunjukkan bahwa yang berubah cuma pembagian kolomnya.
+Kalau ada yang bertanya soal ukuran huruf, jelaskan bahwa judul 32 piksel lawan
+keterangan 14 piksel adalah cara lain mendapat tumpuan yang sama; gambar ini memakai
+lebar kolom supaya selisihnya bisa dicocokkan dengan penggaris di atasnya.
 -->
 
 ---
@@ -418,15 +421,16 @@ menegaskan bahwa keempat alat inilah yang nanti jadi token dan kelas.
 
 # Contoh: Repetition
 
-![w:1120 Delapan kartu katalog Tokosaya di grid 12 kolom: dua baris berisi empat kartu p-kartu masing-masing selebar 3 kolom dengan gutter 24 piksel.](assets/diagrams/bab-12-ui-ux-dan-design-system-22.svg)
+![w:1120 Dua panel bertolak belakang: panel kiri wujud baru tanpa alasan berisi satu kartu dibuat dengan wujud sendiri, lahir komponen kedua yang harus dirawat, dan pola di mata pembaca jadi pecah; panel kanan wujud diulang berisi delapan kartu katalog memakai kelas p-kartu yang sama, satu komponen saja yang dirawat, dan pola terbentuk dan katalog cepat dipindai.](assets/diagrams/bab-12-ui-ux-dan-design-system-22.svg)
 
-Delapan kartu katalog Tokosaya di grid 12 kolom, gutter 24 piksel: empat kartu span 3 per baris, dua baris, semuanya kelas `p-kartu` dan berlengkung 12 piksel. Karena wujudnya diulang apa adanya, mata langsung membentuk pola dan tahu di mana badge, harga, dan tombol akan muncul; satu kartu yang dibuat dengan wujud baru tanpa alasan diam-diam menambah komponen yang harus dirawat.
+Wujud diulang jauh lebih murah daripada wujud baru tanpa alasan. Delapan kartu katalog memakai kelas `p-kartu` yang sama: satu komponen saja yang dirawat, pola terbentuk dan katalog cepat dipindai, dan lengkung 12 pikselnya tidak perlu diingat ulang di tiap baris. Begitu satu kartu dibuat dengan wujud sendiri, lahir komponen kedua yang harus dirawat dan pola di mata pembaca jadi pecah.
 
 <!--
-Tanyakan apa yang terjadi kalau satu kartu dibuat dengan wujud baru tanpa alasan.
-Jawaban yang diharapkan: lahir komponen kedua yang harus ikut dirawat. Tunjuk delapan
-kotak di gambar — semuanya kotak yang sama persis, dan justru pengulangan itulah yang
-bikin katalog cepat dipindai, seperti melihat rak minuman.
+Bacakan kolom kanan dulu sebagai keadaan yang sudah benar, baru kolom kiri sebagai
+godaan yang wajar: satu desainer ingin kartu promonya tampil beda. Tanyakan siapa yang
+akhirnya membayar ongkos komponen kedua itu — biasanya orang yang cuti waktu fitur itu
+harus diubah. Tutup dengan menyebut bahwa badge, harga, dan tombol tetap di tempat yang
+sama di kedelapan kartu, dan justru itu yang membuat katalog bisa dipindai tanpa dibaca.
 -->
 
 ---
@@ -465,19 +469,17 @@ Bootstrap yang kamu pakai sejak Bab 9 sebenarnya design system publik.
 
 # Contoh: Apa Itu Design System
 
-![w:1120 Satu berkas induk Design System Tokosaya dengan lima cabang: token, komponen, pola, aturan, dan dokumentasi.](assets/diagrams/bab-12-ui-ux-dan-design-system-25.svg)
+![w:1120 Satu berkas induk Design System Tokosaya dengan lima cabang, tiga di antaranya membawa contoh: token berisi clr-primary, komponen berisi p-kartu, dokumentasi berisi styleguide.html; cabang pola dan aturan tidak diberi contoh.](assets/diagrams/bab-12-ui-ux-dan-design-system-25.svg)
 
-Design System Tokosaya dibaca sebagai satu berkas induk: token, komponen, pola, aturan, dan dokumentasi. Keputusan visualnya tinggal di satu tempat, jadi anggota baru cukup membuka satu sumber kebenaran alih-alih bertanya ke kepala orang.
+Satu berkas induk, lima cabang: token, komponen, pola, aturan, dokumentasi. Tiga di antaranya sudah berisi contoh nyata — `--clr-primary`, `p-kartu`, `styleguide.html` — jadi anggota baru cukup membuka satu sumber kebenaran.
 
 <!--
-Isi tiap cabangnya: token seperti `--clr-primary` dan `--radius`, komponen seperti
-`p-kartu` dan `.btn-utama`, pola urutan badge sampai aksi, aturan satu `h1` per halaman,
-dan dokumentasi berupa `styleguide.html`.
-Kembali ke analogi buku resep: tanpa resep, tiap cabang kafe punya rasa sendiri dan
-mereknya pecah. Tanyakan apa bedanya design system dan design token; jawaban yang
-diharapkan: token itu satu lapisan, design system itu bangunannya. Tunjuk lima cabang di
-gambar, lalu ingatkan bahwa Bootstrap yang kamu pakai sejak Bab 9 sebenarnya design
-system publik.
+Setiap cabang di gambar punya contoh yang sudah kamu pakai sejak Bab 9: `--clr-primary`
+lahir di blok token, `p-kartu` di komponen, `styleguide.html` di dokumentasi. Dua cabang
+yang sengaja dibiarkan kosong, pola dan aturan, baru bisa diisi setelah kamu menulis
+urutan kartu dan aturan satu `h1` per halaman. Tanyakan cabang mana yang paling sering
+kosong di proyek mahasiswa; jawabannya hampir selalu dokumentasi, karena menulisnya
+terasa seperti pekerjaan tambahan padahal itu yang membuat sistem bisa diwariskan.
 -->
 
 ---
@@ -520,19 +522,21 @@ tim industri.
 
 # Contoh: Lima Manfaat Design System
 
-![w:1120 Design System bercabang lima: konsistensi, kecepatan, pemeliharaan, komunikasi, dan adaptasi.](assets/diagrams/bab-12-ui-ux-dan-design-system-28.svg)
+![w:1080 Dua panel berpasangan baris per baris: tanpa design system, tiap halaman menafsir warna sendiri, dimulai dari nol, ganti satu warna sisanya ketinggalan, tiap komponen punya nama sendiri, anggota baru harus bertanya ke orang; dengan design system, semua halaman lahir dari token yang sama, tim menyalin pola, ganti satu token semua halaman ikut berubah, satu kosakata buat menyebut komponen, anggota baru cukup membaca satu halaman.](assets/diagrams/bab-12-ui-ux-dan-design-system-28.svg)
 
-Lima manfaat versi Tokosaya, satu per cabang: konsistensi, kecepatan, pemeliharaan, komunikasi, dan adaptasi. Semuanya datang dari satu sumber kebenaran yang sama, dan buat tim sekecil Tokosaya yang paling terasa justru kecepatan dan adaptasi.
+Panel kiri dan panel kanan di gambar memakai lima baris yang sama: kiri menyebut apa yang terjadi kalau aturan visualnya tidak tertulis, kanan menyebut manfaat yang dibayar. Buat tim sekecil Tokosaya, dua baris yang paling terasa justru kecepatan dan adaptasi.
 
 <!--
-Arti tiap cabang, kalau kelas minta: konsistensi karena semua halaman lahir dari token
-yang sama, kecepatan karena tim menyalin pola dan nggak mulai dari nol, pemeliharaan
-karena ganti satu token semua halaman ikut berubah, komunikasi karena satu kosakata buat
-menyebut komponen, adaptasi karena anggota baru cukup membaca satu halaman.
-Kaitkan dengan keluhan di awal bab supaya nggak terasa hafalan: keluhan Rara itu kegagalan
-konsistensi dan pemeliharaan. Tanyakan manfaat mana yang paling terasa buat tim kecil;
-jawaban yang diharapkan: kecepatan dan adaptasi. Tunjuk lima cabang, lalu sebut bahwa
-Design System Tokosaya memang mini, tapi susunannya sama kayak tim industri.
+Bacakan panel kiri lebih dulu, satu baris satu keluhan: tiap halaman menafsir warna
+sendiri, tiap halaman dimulai dari nol, ganti satu warna dan sisanya ketinggalan, tiap
+komponen punya nama sendiri, anggota baru harus bertanya ke orang. Pasangannya di panel
+kanan persis baris per baris — konsistensi: semua halaman lahir dari token yang sama;
+kecepatan: tim menyalin pola dan tidak mulai dari nol; pemeliharaan: ganti satu token dan
+semua halaman ikut berubah; komunikasi: satu kosakata buat menyebut komponen; adaptasi:
+anggota baru cukup membaca satu halaman.
+Sebut dulu judul kedua panelnya, TANPA DESIGN SYSTEM lawan DENGAN DESIGN SYSTEM, lalu
+tanyakan pasangan mana yang paling mendesak buat Tokosaya — biasanya konsistensi, karena
+keluhan Rara di awal bab persis itu.
 -->
 
 ---
@@ -661,15 +665,17 @@ bahwa aturan ini bukan detail sepele, karena nanti diuji lagi di Bab 13.
 
 # Contoh: Disiplin Tipografi
 
-![w:1120 Grid 12 kolom membandingkan dua panjang baris: paragraf yang dibatasi 8 kolom untuk menjaga 60 sampai 75 karakter, dan baris selebar halaman 12 kolom yang terlalu panjang.](assets/diagrams/bab-12-ui-ux-dan-design-system-35.svg)
+![w:1120 Grid 12 kolom membandingkan dua panjang baris: paragraf yang dibatasi 6 kolom atau 546 piksel untuk menjaga 60 sampai 75 karakter, dan baris selebar halaman 12 kolom yang terlalu panjang.](assets/diagrams/bab-12-ui-ux-dan-design-system-35.svg)
 
-Panjang baris diukur di grid 12 kolom, lebar 1120 piksel dan gutter 24 piksel: paragraf dibatasi 8 kolom supaya barisnya tetap 60 sampai 75 karakter, sedangkan baris selebar halaman memaksa mata berjalan jauh sebelum kembali ke kiri. Satu `h1` per halaman tetap dipegang, dan jenjang heading turun h1 ke h2 ke h3 tanpa melompat.
+Panjang baris diukur di grid 12 kolom, lebar 1120 piksel dan gutter 24 piksel: 1120 − 11 × 24 = 856, dibagi 12 jadi 71 piksel per kolom. Paragraf dibatasi 6 kolom — 6 × 71 + 5 × 24 = 546 piksel — karena baris 60 sampai 75 karakter memang selebar itu pada teks 16 piksel, sedangkan baris selebar halaman memaksa mata berjalan jauh sebelum kembali ke kiri. Satu `h1` per halaman tetap dipegang, dan jenjang heading turun h1 ke h2 ke h3 tanpa melompat.
 
 <!--
-Tanyakan kenapa baris yang terlalu panjang melelahkan mata. Jawaban yang diharapkan: pas
-kembali ke baris berikutnya, pembaca sering salah baris. Tunjuk dua bar di gambar — yang
-berhenti di kolom 8 dan yang menyentuh kolom 12 — lalu bilang terus terang bahwa span 8
-di sini cuma cara menggambar batas 60 sampai 75 karakter, bukan angka keramat.
+Tunjuk dua bar di gambar dari atas: yang berhenti di kolom keenam dan yang menyentuh
+kolom kedua belas. Minta kelas menghitung sendiri 6 × 71 + 5 × 24 = 546 piksel, lalu
+tanyakan berapa karakter yang muat di situ — jawabannya sekitar 60 sampai 75, dan itu
+sebabnya batas bawahnya bukan angka keramat. Kalau ada yang bertahan dengan baris
+selebar halaman, minta mereka membaca satu paragraf panjang di layar lebar lalu
+menyebutkan baris mana yang tadi terlewat.
 -->
 
 ---
@@ -754,16 +760,16 @@ komponen baru tanpa alasan.
 
 # Contoh: Kartu Produk
 
-![w:1120 Kartu produk Tokosaya: content 324 x 96 piksel, padding 16 piksel, lebar total 356 piksel, dengan radius 12 piksel.](assets/diagrams/bab-12-ui-ux-dan-design-system-40.svg)
+![w:1120 Kelas p-kartu selebar 356 piksel sebagai akar, dengan enam cabang berurutan: badge, ikon, judul, keterangan, harga, dan aksi.](assets/diagrams/bab-12-ui-ux-dan-design-system-40.svg)
 
-Satu kartu produk Tokosaya selebar 4 kolom dari grid 12 kolom: 4 × 71 + 3 × 24 = 356 piksel. Padding 16 px di dalamnya menyisakan content 324 × 96 px — isi kartu 324 px, lalu 324 + 16 + 16 = 356 px sebagai lebar total — dan radius 12 piksel memotong sudut luarnya. Keenam bagian kartu, dari badge sampai aksi, semuanya lahir di dalam kotak yang satu ini.
+Satu kartu produk Tokosaya selebar 4 kolom: 4 × 71 + 3 × 24 = 356 piksel. Keenam cabangnya menggantung pada kelas `p-kartu 356 piksel` itu, dengan urutan yang tetap.
 
 <!--
-Tekankan urutan bagian kartu: badge, ikon, judul, keterangan, harga, aksi. Tanyakan
-kenapa kartu Best Seller dan Stok Terbatas tetap satu kelas `p-kartu`; jawabannya: yang
-berubah cuma badge-nya. Tunjuk pita padding 16 piksel di gambar — itu jarak "di dalam"
-yang kamu lihat di DevTools — lalu ingatkan bahwa 24 piksel antar kartu dipegang gutter
-grid, bukan margin kartunya.
+Susuri pohonnya dari akar ke kanan: satu kelas, enam bagian, urutan yang selalu sama.
+Tanyakan apa yang terjadi kalau harga dipindah ke atas judul; jawabannya bukan soal
+selera, tapi pola pindai pembeli yang harus dipelajari ulang di setiap kartu. Sebut juga
+bahwa 356 piksel itu datang dari grid, bukan dari isi kartunya — sebab itu kartu Best
+Seller dan Stok Terbatas bisa berbagi kelas yang sama tanpa saling bertabrakan.
 -->
 
 ---
@@ -835,11 +841,11 @@ dokumentasinya.
 Halaman `styleguide.html` dibaca sebagai grid 12 kolom: `h1` selebar 12 kolom, swatch warna span 4 dengan sampel tipografi span 8, skala jarak span 6 dengan catatan do and don't span 6, dan varian tombol span 12. Tiga pembaca menemukan yang dicarinya di satu halaman ini.
 
 <!--
-Sebutkan tiga pembaca styleguide — desainer, penulis kode, penjaga merek — dan apa yang
-dicari masing-masing. Tanyakan kenapa dokumentasi yang nggak bisa dilihat biasanya juga
-nggak dipatuhi; jawabannya: orang mau menyalin dari contoh nyata, bukan dari daftar nama.
-Tunjuk penggaris kolom di gambar — swatch dan sampel tipografi sengaja beda lebar supaya
-mata berhenti, tapi keduanya tetap dihitung dari 12 kolom yang sama.
+Telusuri gambarnya baris demi baris: satu `h1` penuh 12 kolom, lalu 4 lawan 8, lalu 6
+lawan 6, lalu varian tombol penuh lagi. Tanyakan kenapa halaman dokumentasi pun tunduk
+pada grid yang sama; sebabnya, styleguide adalah contoh pertama yang akan disalin orang
+lain. Minta kelas memilih satu baris yang mau mereka ubah di proyeknya, lalu pastikan
+alasan yang mereka sebut menyangkut token, bukan selera.
 -->
 
 ---
