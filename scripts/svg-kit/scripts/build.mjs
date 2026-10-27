@@ -153,7 +153,12 @@ function readSpecs(specsDir, deckSlug) {
       ],
     }
   }
-  const files = readdirSync(specsDir).filter((f) => extname(f) === '.mjs').sort()
+  const files = readdirSync(specsDir).filter((f) => extname(f) === '.mjs')
+    // FORK: satu folder spec dipakai bersama oleh 14 deck, sedangkan `id` sebuah
+    // spec hanya unik DI DALAM satu deck. Tanpa saringan ini setiap deck memuat
+    // seluruh spec repo, saling bertabrakan soal id, dan gagal mengikat heading
+    // milik deck lain. Nama berkas spec sudah membawa slug deck: pakai itu.
+    .filter((f) => !deckSlug || f.startsWith(`${deckSlug}-`)).sort()
   const specs = []
   const errors = []
   for (const f of files) {
@@ -225,7 +230,16 @@ function levenshtein(a, b) {
 
 /* ----------------------------------------------------------------- insertion */
 
-const IMG_LINE = (width, src) => `![w:${width}](${src})`
+// FORK: sertakan `alt` supaya Marp menghasilkan <img alt="…"> dan bukan alt kosong.
+// Tanpa ini seluruh diagram tidak terbaca pembaca layar padahal SVG-nya punya
+// aria-label; teks alt pada markdown Marp menempati slot yang sama dengan direktif w:.
+const IMG_LINE = (width, alt, src) => {
+  const text = String(alt ?? '')
+    .replace(/[\[\]]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+  return `![w:${width}${text ? ` ${text}` : ''}](${src})`
+}
 
 function imageRefLine(slideText, src) {
   const re = new RegExp(`^!\\[[^\\]]*\\]\\(${src.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\)\\s*$`, 'm')
@@ -579,7 +593,7 @@ async function main() {
       const fresh = splitSlides(source)
       const bound = fresh.find((s) => norm(s.heading) === norm(d.slideHeading))
       if (!bound) { report.errors.push(`internal: lost slide "${d.slideHeading}" while inserting`); continue }
-      const line = IMG_LINE(d.imgWidth, d.src)
+      const line = IMG_LINE(d.imgWidth, d.alt, d.src)
       const res = wireImage(source, bound, line)
       source = res.source
       d.wired = res.status
