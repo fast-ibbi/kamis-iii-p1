@@ -68,18 +68,26 @@ kuat lawan tanpa bayangan, dan review ikut lama. Arahkan diskusi ke ide komponen
 
 # Contoh: Elemen yang Benar-Benar Disentuh Pengguna
 
-![w:1120 Kartu produk di layar 360 piksel: content 360 kali 160 px berisi gambar kartu, border 1 px di tiap sisi, lebar total 362 px, dengan overflow hidden yang memotong gambar mengikuti radius.](assets/diagrams/bab-10-komponen-bootstrap-04.svg)
+![w:1120 Kartu produk di layar 360 piksel: kotak bergaris tepi 1 px di keempat sisi yang isinya content gambar kartu 358 kali 160 px, dengan legenda border 1 px, content 358 kali 160 px, dan lebar total 360 px.](assets/diagrams/bab-10-komponen-bootstrap-04.svg)
 
-Kartu produk itu satu dari tiga elemen yang disentuh pengguna, jadi angkanya harus satu buat semua: content gambar kartu 360 × 160 px, border 1 px di tiap sisi, lebar total 362 px = 360 + 1 + 1. `overflow: hidden` yang memotong gambarnya mengikuti radius.
+Di layar HP 360 piksel `.container` tampil lebar penuh (Bab 9), jadi kolom kartu memenuhi lebar: lebar total 360 px. `box-sizing: border-box` global bikin border 1 px di keempat sisi masuk ke dalam, jadi content gambar kartu 358 × 160 px, karena 358 + 1 + 1 = 360 px.
 
 <!--
-Tunjuk tepi kartu di gambar dulu: pita tipis di kiri-kanan itu border 1 px, kotak
-putih di tengahnya content 360 × 160 px milik `card-img-top` yang dipasangi `w-100`.
-Tanyakan ke kelas, kalau tiap orang menulis bingkai kartunya sendiri, lebar totalnya
-bakal jadi berapa — jawaban yang diharapkan: 360, 364, atau 368 px, dan selisih segitu
-yang bikin kartu di sebelahnya kelihatan melenceng. Tutup dengan `overflow: hidden`
-di `.produk-card`: itu yang bikin sudut gambar tetap ikut radius, bukan sudut tajam
-nyelip kayak versi tulisan sendiri.
+Tunjuk bingkai kartu di gambar: garis tepi tipis 1 px mengelilingi keempat sisi, dan
+kotak putih di dalamnya content gambar kartu 358 × 160 px milik `card-img-top`.
+Legenda di sebelah kanan menggambar angka yang sama: border 1 px, content 358 × 160 px,
+dan lebar total 360 px; angka di bawah gambar menulis ulang penjumlahannya. Karena
+tebalnya cuma 1 px, garis itu di proyektor cuma terbaca sebagai garis rambut —
+angkanya yang diperiksa di legenda, bukan dengan mengukur gambarnya.
+
+Tegaskan modelnya sebelum berhitung: `box-sizing: border-box` global bikin `width`
+berarti lebar kotak utuh, jadi border diambil dari dalam, bukan ditambahkan ke luar.
+Tanyakan ke kelas, kalau tiap orang menulis bingkai kartunya sendiri dengan tebal
+border berbeda, apa yang bergeser — jawaban yang diharapkan: content gambarnya yang
+menyusut, sedangkan lebar totalnya tetap 360 px, dan selisih segitu yang bikin kartu
+di sebelahnya kelihatan melenceng. Tutup dengan `overflow: hidden` di `.produk-card`:
+itu yang bikin sudut gambar tetap ikut radius, bukan sudut tajam nyelip kayak versi
+tulisan sendiri.
 -->
 
 ---
@@ -120,17 +128,22 @@ ukuran layar. Ingatkan bahwa kamu nggak perlu menemukan ulang roda box model.
 
 # Contoh: Apa Itu Komponen Antarmuka
 
-![w:1120 Satu resep col-12 col-sm-6 col-lg-3 di grid 12 kolom: baris pertama dua belas kolom, baris kedua dua sel enam kolom, baris ketiga empat sel tiga kolom, untuk tiga lebar uji 360 / 768 / 1200 piksel.](assets/diagrams/bab-10-komponen-bootstrap-06.svg)
+![w:1080 Empat lapis satu komponen card: di dasar markup standar div.card dan div.card-body, di atasnya kelas gaya berupa radius, bayangan, jarak, lalu variant warna text-bg-warning, dan di puncak aturan lebar layar col-12 col-sm-6 col-lg-3.](assets/diagrams/bab-10-komponen-bootstrap-06.svg)
 
-`col-12 col-sm-6 col-lg-3` itu satu baris kelas, bukan tiga aturan. Di grid 12 kolom `col-12` memakan dua belas kolom, `col-sm-6` dua sel enam kolom, `col-lg-3` empat sel tiga kolom, untuk lebar uji 360 / 768 / 1200 piksel.
+Satu komponen `card` itu tumpukan empat lapis yang sudah disiapkan, dan cuma lapis bawah yang kamu tulis. Markup standar dari dokumentasi: `div.card` dan `div.card-body`. Kelas gaya: radius, bayangan, jarak. Variant warna: `text-bg-warning`. Aturan lebar layar: `col-12 col-sm-6 col-lg-3` yang sudah bekerja tanpa satu baris CSS pun.
 
 <!--
-Tunjuk penggaris 1 sampai 12 di atas gambar, lalu minta kelas menjumlahkan sendiri:
-3 + 3 + 3 + 3 = 12, jadi empat kartu pas satu baris. Tanyakan apa yang terjadi kalau
-baris kelasnya cuma ditulis `col-12` — jawaban yang diharapkan: kartu tetap satu
-kolom sampai layar selebar apa pun, jadi di 1200 piksel pun cuma ada satu kartu per
-baris. Sebutkan bahwa tiga aturan lebar itu sudah ada sebelum kamu menulis satu baris
-CSS, persis kayak papan furnitur yang sudah dipotong.
+Bacakan gambar dari bawah ke atas, karena itu urutan menulisnya. Lapis dasar markup
+standar `div.card` dan `div.card-body` — satu-satunya lapis yang kamu ketik sendiri.
+Di atasnya kelas gaya: radius, bayangan, jarak, semuanya sudah ditulis Bootstrap.
+Lalu variant warna `text-bg-warning` yang tinggal diganti nama kelasnya. Puncaknya
+aturan lebar layar `col-12 col-sm-6 col-lg-3`, yang membuat komponen yang sama jadi
+satu, dua, atau empat sel tanpa kamu menulis media query.
+
+Tanyakan lapis mana yang paling sering dilupakan pemula — jawaban yang diharapkan:
+aturan lebar layarnya, karena orang cuma menyalin `card` lalu bingung kenapa
+kartunya melebar penuh di desktop. Sebutkan bahwa pola 1-2-4 kolom ini sudah dilatih
+di Bab 9, jadi di sini kamu cuma memakainya ulang buat komponen.
 -->
 
 ---
