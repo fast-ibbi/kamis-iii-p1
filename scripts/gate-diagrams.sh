@@ -18,12 +18,16 @@ for f in slides/*.md; do
 done
 
 echo
-echo "=== 2. jumlah slide tidak boleh berubah (Replace, bukan split) ==="
+echo "=== 2. jumlah slide harus sama dengan baseline yang di-versioning ==="
 node scripts/svg-kit/scripts/build.mjs slides/bab-05-css-box-model-dan-layout.md --audit --json >/dev/null 2>&1
 node - <<'EOF'
 const { execFileSync } = require('node:child_process')
 const { readdirSync, readFileSync } = require('node:fs')
-const base = JSON.parse(readFileSync('/tmp/baseline-counts.json', 'utf8'))
+// Baseline tinggal di dalam repo, bukan di /tmp: berkas di /tmp tidak pernah
+// bisa jadi baseline yang jujur karena hilang begitu mesin restart dan tidak
+// pernah ikut ke CI. Mengubah jumlah slide itu boleh — yang dilarang adalah
+// mengubahnya tanpa mengubah berkas ini di commit yang sama.
+const base = JSON.parse(readFileSync('scripts/slide-baseline.json', 'utf8'))
 let bad = 0
 for (const f of readdirSync('slides').filter((x) => x.endsWith('.md')).sort()) {
   const j = JSON.parse(execFileSync('node', ['scripts/svg-kit/scripts/build.mjs', `slides/${f}`, '--audit', '--json'], { encoding: 'utf8' }))
@@ -56,7 +60,7 @@ for f in slides/*.md; do
   slug=$(basename "$f" .md)
   npx --no-install marp "$f" -o "/tmp/gate-pdf/$slug.pdf" --allow-local-files >/dev/null 2>&1
   got=$(pdfinfo "/tmp/gate-pdf/$slug.pdf" 2>/dev/null | awk '/^Pages:/{print $2}')
-  want=$(node -e "const j=require('/tmp/baseline-counts.json');process.stdout.write(String(j['$slug'].slides))")
+  want=$(node -e "const j=require('./scripts/slide-baseline.json');process.stdout.write(String(j['$slug'].slides))")
   if [ "$got" = "$want" ]; then echo "ok     $slug  $got halaman"; else echo "GAGAL  $slug  $got != $want"; fail=1; fi
 done
 

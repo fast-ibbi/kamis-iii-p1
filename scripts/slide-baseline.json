@@ -1,0 +1,58 @@
+{
+  "bab-01-pengantar-frontend-development-dan-web-design.md": {
+    "slides": 49,
+    "withImage": 18
+  },
+  "bab-02-html5-dan-struktur-semantik.md": {
+    "slides": 31,
+    "withImage": 3
+  },
+  "bab-03-dasar-dasar-css.md": {
+    "slides": 45,
+    "withImage": 11
+  },
+  "bab-04-typography-dan-visual-design-css.md": {
+    "slides": 42,
+    "withImage": 19
+  },
+  "bab-05-css-box-model-dan-layout.md": {
+    "slides": 47,
+    "withImage": 17
+  },
+  "bab-06-flexbox-untuk-web-layout.md": {
+    "slides": 43,
+    "withImage": 12
+  },
+  "bab-07-css-grid-dan-responsive-web-design.md": {
+    "slides": 38,
+    "withImage": 9
+  },
+  "bab-09-pengenalan-bootstrap-5.md": {
+    "slides": 51,
+    "withImage": 18
+  },
+  "bab-10-komponen-bootstrap.md": {
+    "slides": 40,
+    "withImage": 7
+  },
+  "bab-11-form-dan-user-interface-design.md": {
+    "slides": 49,
+    "withImage": 16
+  },
+  "bab-12-ui-ux-dan-design-system.md": {
+    "slides": 50,
+    "withImage": 18
+  },
+  "bab-13-website-responsif-dan-accessibility.md": {
+    "slides": 47,
+    "withImage": 14
+  },
+  "bab-14-implementasi-desain-figma-ke-html-css.md": {
+    "slides": 51,
+    "withImage": 18
+  },
+  "bab-15-final-project-dan-quality-assurance.md": {
+    "slides": 52,
+    "withImage": 18
+  }
+}
