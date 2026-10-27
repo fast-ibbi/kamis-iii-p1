@@ -185,6 +185,25 @@ tertinggal dan tampil beda sendiri.
 
 ---
 
+# Contoh: Satu Gaya Pusat, Banyak Halaman
+
+![w:1120 Satu file style.css memberi gaya ke empat halaman Tokosaya sekaligus: index.html, katalog.html, tentang.html, dan kontak.html.](assets/diagrams/bab-03-dasar-dasar-css-09.svg)
+
+Warna identitas Tokosaya diganti dari #4F46E5 jadi #4338CA: cukup satu baris di
+`style.css`, lalu `index.html`, `katalog.html`, `tentang.html`, dan `kontak.html`
+ikut berubah karena semuanya menarik file yang sama lewat `<link>`. Cara lama butuh
+4 halaman × 10 baris gaya = 40 baris disunting manual, dan satu halaman yang
+terlewat langsung tampil beda.
+
+<!--
+Tunjuk akarnya dulu: satu file `style.css`, lalu empat anak yang semuanya menarik
+gaya dari file itu. Tanyakan apa yang terlihat kalau satu halaman lupa diberi
+`<link>`. Jawaban yang diharapkan: halaman itu balik ke gaya bawaan browser dan
+kelihatan beda sendiri. Minta kelas menuliskan angka 40 baris tadi di catatan.
+-->
+
+---
+
 # Inline, Internal, dan External
 
 | Aspek | Inline | Internal | External |
@@ -292,6 +311,26 @@ desain berubah. Jawaban yang diharapkan: namanya jadi menyesatkan.
 
 ---
 
+# Contoh: Penamaan Class dengan Kebab-Case
+
+![w:1120 Nama class yang sama ditulis dua cara: camelCase dengan .siteNav, .heroTitle, dan .produkCard, lawan kebab-case dengan .site-nav, .hero-title, dan .produk-card.](assets/diagrams/bab-03-dasar-dasar-css-15.svg)
+
+Badge "Best Seller" Tokosaya bertulis #1E293B di atas #F59E0B. Nama berbasis peran
+menuliskan maksudnya: `.site-nav`, `.hero-title`, `.produk-card`. Konvensi proyek
+memakai kebab-case — huruf kecil bertanda hubung — bukan camelCase seperti
+`.siteNav`, `.heroTitle`, `.produkCard`, dan bukan nama tampilan seperti `.merah-kecil`.
+
+<!--
+Tanyakan: enam bulan lagi kamu buka file ini, dari nama `.merah-kecil` kamu tahu
+elemennya buat apa? Jawaban yang diharapkan: nggak, paling cuma tahu warnanya dulu
+merah. Lalu bandingkan dua kolom di gambar: barisnya sejajar, elemennya sama, cuma
+bedanya penulisan. `.siteNav` dan `.site-nav` sama-sama navigasi situs; yang kanan
+yang dipakai proyek ini. Ingatkan polanya: huruf kecil, kata disambung tanda
+hubung, bukan camelCase.
+-->
+
+---
+
 # Grouping dan Descendant
 
 ```css
@@ -334,6 +373,24 @@ di dalam elemen ber-class itu, nggak peduli seberapa dalam posisinya.
 Katakan dengan jelas bahwa ini tanpa JavaScript, sesuai cakupan mata kuliah. Tunjukkan
 `:focus` sambil menabrak tombol Tab di laptop yang diproyeksikan biar kelas melihat
 fokus itu nyata. Sebutkan bahwa penulisannya menempel tanpa spasi, misal `a:hover`.
+-->
+
+---
+
+# Contoh: Lima Pseudo-Class Dasar
+
+![w:600 Lima pseudo-class bercabang dari satu konsep: :hover kursor di atas elemen, :focus menerima fokus keyboard, :first-child anak pertama, :last-child anak terakhir, dan :nth-child() pola odd dan even.](assets/diagrams/bab-03-dasar-dasar-css-19.svg)
+
+Di navigasi Tokosaya, `:hover` kursor di atas elemen dan `.site-nav a:hover` jadi
+#4F46E5; `:focus` menerima fokus keyboard lewat `outline: 2px`. Di daftar menu,
+`:first-child` anak pertama, `:last-child` anak terakhir, dan `:nth-child()` pola
+odd dan even menyala selang-seling.
+
+<!--
+Tanya satu per satu: apa bedanya `:hover` dan `:focus`? Jawaban yang diharapkan:
+`:hover` butuh kursor mouse, `:focus` bisa dicapai tombol Tab. Tunjuk lima cabang di
+gambar dan ingatkan semuanya jalan tanpa satu baris JavaScript. Minta kelas menunjuk
+mana yang menyala karena posisi anak, bukan karena sentuhan pengguna.
 -->
 
 ---
@@ -491,6 +548,28 @@ sisi aksesibilitasnya. Peringatkan juga bahwa `em` bersarang bisa menumpuk.
 
 ---
 
+# Contoh: Lima Satuan CSS
+
+![w:600 Lima satuan CSS bercabang dari satu konsep, masing-masing dengan acuannya: px nilai tetap, % ikut kotak induk, em ikut font elemen sendiri, rem ikut font akar, dan vw dan vh ikut viewport.](assets/diagrams/bab-03-dasar-dasar-css-27.svg)
+
+Judul hero Tokosaya ditulis `2rem`: 32px kalau font akar 16px, dan 40px kalau font
+akar 20px. Kelima satuan CSS ini alternatif, bukan bertingkat; yang membedakan cuma
+acuannya — `px` nilai tetap, `%` ikut kotak induk, `em` ikut font elemen sendiri,
+`rem` ikut font akar, dan `vw` dan `vh` ikut viewport.
+
+<!--
+Bacakan kelima cabang sambil menyebut acuannya: `px` nilai tetap, nggak mengacu ke
+apa pun; `%` ikut lebar atau tinggi kotak induk; `em` ikut font elemen itu sendiri;
+`rem` ikut font akar, 1rem = 16px; `vw` dan `vh` 1/100 dari lebar dan tinggi
+viewport. Tegaskan kelimanya alternatif, bukan bertingkat — tidak ada yang "di atas"
+yang lain, pilihan ditentukan kebutuhan. Ulangi pertanyaan deck: kalau pengguna
+memperbesar font dasar browser, mana yang ikut membesar? Jawaban yang diharapkan:
+`rem`, karena dia mengacu ke font akar, sedangkan `px` nggak ikut. Tekankan `vw` dan
+`vh` bergantung penuh pada layar, jadi jangan dipakai buat ukuran font.
+-->
+
+---
+
 # Memilih Satuan Sesuai Keperluan
 
 | Keperluan | Satuan disarankan | Alasan singkat |
@@ -523,6 +602,28 @@ Pakai analogi pemilihan seragam kalau kelas terlihat bingung: ada kebijakan
 pemerintah, ada aturan sekolah. Tanyakan siapa yang menang antara link biru bawaan
 browser dan aturan `a` yang kita tulis. Jawaban yang diharapkan: aturan kita.
 Ingatkan bahwa `!important` sah, tapi bikin aturan berikutnya makin susah diatur.
+-->
+
+---
+
+# Contoh: Kaskade: Siapa yang Menang
+
+![w:1120 Tumpukan kekuatan kaskade: aturan kita + !important di puncak sebagai penanda darurat, aturan kita di tengah dengan catatan kalau setara yang ditulis paling akhir menang, dan gaya bawaan browser sebagai lapisan paling bawah.](assets/diagrams/bab-03-dasar-dasar-css-28.svg)
+
+Link di `.site-nav` lahir dari browser sebagai biru tua bergaris bawah, tapi aturan
+kita menang: `a { color: #4F46E5; }` membuatnya indigo, sedangkan gaya bawaan browser
+— user-agent, paling lemah — tetap di dasar. `!important` bukan sumber aturan keempat,
+cuma penanda pada aturan kita + !important: darurat, hindari jadi kebiasaan. Kalau
+setara, yang ditulis paling akhir menang.
+
+<!--
+Tanyakan siapa yang menang antara biru tua bawaan browser dan aturan
+`.site-nav a { color: #4F46E5; }`. Jawaban yang diharapkan: aturan kita, karena gaya
+bawaan browser, pita paling bawah, selalu kalah. Lanjut: kalau dua aturan kita
+sama-sama menyasar link yang sama, siapa menang? Jawaban: yang ditulis paling akhir —
+itu catatan di pita tengah gambar. Tunjuk pita paling atas: `!important` bukan
+sumber aturan keempat, cuma penanda darurat pada aturan kita, dan dia menang atas
+urutan penulisan.
 -->
 
 ---
@@ -638,6 +739,26 @@ Bahas dua kesalahan yang paling sering muncul di tugas: `!important` dan selecto
 kepanjangan. Minta mahasiswa memeriksa file masing-masing dan menghitung berapa
 banyak `!important` yang mereka tulis. Tanyakan kenapa specificity yang terlalu
 tinggi bikin aturan susah diganti nanti.
+-->
+
+---
+
+# Contoh: Kebiasaan yang Bikin CSS Susah Dirawat
+
+![w:1120 Tiga kebiasaan buruk — !important buat tiap konflik, selector #navigasi ul li a.tautan, dan gaya inline di HTML produksi — dibandingkan dengan kebiasaan yang dirawat: satu file gaya, selector seperlunya, dan membiarkan kaskade bekerja.](assets/diagrams/bab-03-dasar-dasar-css-34.svg)
+
+Satu kasus dari tugas: `.nav-link` cukup (0, 1, 0), tapi yang ditulis
+`#navigasi ul li a.tautan` dengan specificity (1, 1, 3). Tambah `!important` buat
+tiap konflik dan gaya inline di HTML produksi, dan `style.css` jadi susah dirawat —
+versi yang dirawat cuma butuh satu file gaya, selector seperlunya, biarkan kaskade
+bekerja.
+
+<!--
+Hitung specificity `#navigasi ul li a.tautan` bareng-bareng: satu id, satu class, tiga
+elemen, jadi (1, 1, 3). Tanyakan kenapa angka itu bikin masalah nanti. Jawaban yang
+diharapkan: aturan penggantinya butuh specificity minimal sama, jadi selector baru
+makin panjang. Tunjuk kolom kanan dan tegaskan tiga kebiasaan buruk di kiri itu yang
+paling sering muncul di tugas.
 -->
 
 ---
