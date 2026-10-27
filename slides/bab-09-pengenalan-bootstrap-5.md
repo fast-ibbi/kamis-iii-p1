@@ -147,12 +147,12 @@ ditulis orang berbeda tetap terasa serumpun.
 
 # Contoh: Manfaat Memakai Framework
 
-![w:1120 Kartu produk dari dua penulis berbeda tetap sama: content 280 x 96 piksel, padding 16 piksel, border 1 piksel, lebar total 314 piksel.](assets/diagrams/bab-09-pengenalan-bootstrap-5-09.svg)
+![w:1120 Dua penulis, satu angka: Penulis A dan Penulis B sama-sama menulis kartu produk dengan content 280 x 96 piksel, padding 16 piksel, border 1 piksel, jadi lebar total 314 piksel di kedua halaman.](assets/diagrams/bab-09-pengenalan-bootstrap-5-09.svg)
 
-Dua orang di tim yang sama menulis kartu produk untuk halaman berbeda, dan dua-duanya mendarat di angka yang sama: content 280 × 96 px, padding 16 px, border 1 px, lebar total 280 + 16 + 16 + 1 + 1 = 314 px. Angkanya sama karena `p-3` sudah membawa skala 3 alias 1 rem, bukan karena kesepakatan lisan di grup chat.
+Dua orang di tim yang sama menulis kartu produk untuk dua halaman berbeda: Penulis A dan Penulis B. Dua-duanya mendarat di angka yang sama — content 280 × 96 px, padding 16 px, border 1 px, lebar total 314 px, hasil 280 + 16 + 16 + 1 + 1. Angkanya sama karena `p-3` sudah membawa skala 3 alias 1 rem, bukan karena kesepakatan lisan di grup chat.
 
 <!--
-Tanyakan apa yang bikin dua penulis berbeda mendarat di 314 px yang sama. Jawaban yang diharapkan: kelas `p-3` sudah membawa skalanya sendiri, jadi nggak ada yang menebak 14 atau 18 px. Tunjuk baris padding, border, dan content di daftar kanan gambar, lalu hubungkan ke manfaat yang paling terasa di tim: halaman yang ditulis orang berbeda tetap terasa serumpun.
+Tanyakan apa yang bikin Penulis A dan Penulis B mendarat di 314 px yang sama, padahal dua-duanya menulis di halaman berbeda. Jawaban yang diharapkan: kelas `p-3` sudah membawa skalanya sendiri, jadi nggak ada yang menebak 14 atau 18 px. Bandingkan baris nomor 1 sampai 4 di kedua panel gambar — isinya sama persis dari atas ke bawah, dan itulah bukti angkanya nggak bergantung pada siapa yang menulis. Tutup dengan manfaat yang paling terasa di tim: halaman yang ditulis orang berbeda tetap terasa serumpun.
 -->
 
 ---
@@ -288,12 +288,11 @@ Tanyakan kapan sebaiknya mengunduh file dan menyimpannya di folder proyek.
 
 ![w:1120 Enam kelompok fasilitas Bootstrap 5: layout berisi container dan grid system, content berisi reboot, tipografi, dan tabel, forms berisi gaya elemen isian, components berisi navbar, kartu, dan badge, helpers berisi kelas bantu kombinasi, utilities berisi kelas kecil buat jarak.](assets/diagrams/bab-09-pengenalan-bootstrap-5-12.svg)
 
-> Ikon nggak termuat di file CSS inti; Bootstrap Icons 1.11.3 punya link sendiri.
-
 <!--
 Peta enam kelompok ini berguna sebagai rujukan sepanjang Bab 9 sampai 12. Minta
 mahasiswa menebak ke kelompok mana navbar dan ke kelompok mana `mb-3` sebelum kamu
-jawab. Ingatkan bahwa ikon dipasang dari file terpisah.
+jawab. Ikon nggak termuat di file CSS inti; Bootstrap Icons 1.11.3 punya link sendiri,
+jadi pengingatnya diucapkan saja di kelas, nggak perlu memakan ruang slide.
 
 Enam kelompok fasilitas Bootstrap 5 yang digambar, lengkap dengan isinya. Layout:
 container dan grid system, inti bab ini. Content: reboot, tipografi, tabel, gambar, dan
@@ -412,12 +411,12 @@ cocok pakai container-fluid.
 
 # Contoh: Container dan Container Fluid
 
-![w:1120 Container di layar 1200 piksel: content isi halaman 1140 x 96 piksel dengan margin kiri dan kanan masing-masing 30 piksel, jadi lebar total 1200 piksel.](assets/diagrams/bab-09-pengenalan-bootstrap-5-23.svg)
+![w:1120 Dua panel sejajar di layar 1200 piksel: .container mengisi 1140 piksel dengan margin 30 piksel kiri dan 30 piksel kanan sehingga lebar totalnya 1200 piksel, sedangkan .container-fluid mengisi 1200 piksel penuh dengan margin 0 piksel dan lebar total 1200 piksel.](assets/diagrams/bab-09-pengenalan-bootstrap-5-23.svg)
 
-Di layar 1200 px, `.container` cuma memakai 1140 px: margin 30 px di kiri, margin 30 px di kanan, jadi lebar total 1140 + 30 + 30 = 1200 px. Isi halaman tetap content 1140 × 96 px, sedangkan `.container-fluid` nggak punya batas itu dan membiarkan isi halaman selebar layar.
+Di layar 1200 px, `.container` cuma memakai 1140 px: isi halaman 1140 px, margin 30 px kiri dan 30 px kanan, jadi lebar total 1140 + 30 + 30 = 1200 px. `.container-fluid` nggak punya batas itu: isi halaman 1200 px selebar layar, margin 0 px kiri dan 0 px kanan, jadi lebar total 1200 px. Baris nomor 1 sampai 3 di gambar membandingkan dua-duanya pada sumbu yang sama — isi halaman, margin, lalu lebar total.
 
 <!--
-Tanyakan berapa bagian kosong di kiri dan kanan saat layar 1200 px; jawaban yang diharapkan: 30 px di masing-masing sisi, karena 1200 − 1140 = 60 lalu dibagi dua. Tunjuk pita margin di gambar sebagai tempat kosong itu. Tutup dengan menanyakan kenapa bilah pengumuman dan footer gelap justru lebih cocok `container-fluid`.
+Tanyakan berapa bagian kosong di kiri dan kanan saat layar 1200 px; jawaban yang diharapkan: 30 px di masing-masing sisi, karena 1200 − 1140 = 60 lalu dibagi dua. Tunjuk baris margin di panel kiri, lalu baris yang sama di panel kanan yang isinya 0 px — bedanya cuma satu batas, bukan fitur tambahan. Tutup dengan menanyakan kenapa bilah pengumuman dan footer gelap justru lebih cocok `container-fluid`.
 -->
 
 ---
@@ -665,14 +664,16 @@ jendela di layar.
 
 ---
 
+<!-- _class: compact -->
+
 # Contoh: Menyembunyikan Elemen dengan d-none d-md-block
 
-![w:1120 Baris navbar di wadah 375 piksel: logo 200 piksel, gap 24 piksel, ikon keranjang 56 piksel, sisa 95 piksel kosong di kanan; kotak pencarian disembunyikan.](assets/diagrams/bab-09-pengenalan-bootstrap-5-37.svg)
+![w:1120 Baris navbar di wadah 375 piksel dengan justify-content: flex-start: logo 200 piksel, gap 24 piksel, ikon keranjang 56 piksel, lalu pita amber garis putus-putus 95 piksel di ujung kanan yang menandai sisa ruang kosong — bukan butir ketiga.](assets/diagrams/bab-09-pengenalan-bootstrap-5-37.svg)
 
-Di layar 375 px: logo 200 px + gap 24 px + ikon keranjang 56 px = 280 px, jadi sisa 95 px. Kotak pencarian disembunyikan karena butuh 400 px dan nggak kebagian tempat; mulai 768 px `d-md-block` memunculkannya lagi. `justify-content: flex-start` membiarkan sisa ruang itu menganggur, bukan melar.
+Di layar 375 px: logo 200 px + gap 24 px + ikon keranjang 56 px = 280 px, jadi sisa 95 px. Kotak pencarian disembunyikan karena butuh 400 px dan nggak kebagian tempat; mulai 768 px `d-md-block` memunculkannya lagi. `justify-content: flex-start` membiarkan sisa ruang itu menganggur, bukan melar — pita amber garis putus-putus di ujung kanan gambar itu ruang kosong, bukan butir ketiga, jadi butirnya tetap dua: logo dan ikon keranjang.
 
 <!--
-Tanyakan ke mana kotak pencarian pergi di layar 375 px. Jawaban yang diharapkan: disembunyikan `d-none`, bukan dikecilkan, jadi lebarnya nggak ikut dihitung. Tunjuk pita amber sisa 95 px di ujung kanan gambar dan tanda gap 24 px, lalu tanyakan kenapa urutan `d-none` baru `d-md-block` penting saat jendela browser dilebarkan.
+Tanyakan ke mana kotak pencarian pergi di layar 375 px. Jawaban yang diharapkan: disembunyikan `d-none`, bukan dikecilkan, jadi lebarnya nggak ikut dihitung. Tunjuk pita amber garis putus-putus 95 px di ujung kanan gambar: itu ruang kosong yang menganggur, bukan butir ketiga — butirnya cuma logo dan ikon keranjang. Sebut juga tanda gap 24 px di bawah pita, lalu tanyakan kenapa urutan `d-none` baru `d-md-block` penting saat jendela browser dilebarkan.
 -->
 
 ---
@@ -699,12 +700,12 @@ sebagai kepala bagian.
 
 # Contoh: Utility Tipografi
 
-![w:1120 Empat lapis ukuran huruf hero Tokosaya: display-5 buat judul hero, lead buat paragraf pengantar, fs-5 buat judul kartu produk, dan fw-bold buat nama produk.](assets/diagrams/bab-09-pengenalan-bootstrap-5-39.svg)
+![w:1120 Tiga lapis ukuran huruf hero Tokosaya dari atas ke bawah: display-5 buat judul hero, lead buat paragraf pengantar, dan fs-5 buat judul kartu produk.](assets/diagrams/bab-09-pengenalan-bootstrap-5-39.svg)
 
-Hero Tokosaya ditulis sebagai tiga lapis ukuran: `display-5` buat judul hero, `lead` buat paragraf pengantar, lalu `fs-5` buat judul kartu produk, dan `fw-bold` buat nama produk. Elemennya tetap `<h2>` dan `<h3>` yang semantik — kelasnya cuma menempel, jadi pembaca layar tetap tahu mana kepala bagian.
+Hero Tokosaya ditulis sebagai tiga lapis ukuran, dan gambar menyusunnya dari yang paling menonjol ke bawah: `display-5` buat judul hero, `lead` buat paragraf pengantar, lalu `fs-5` buat judul kartu produk. Nama produk bukan lapis keempat — `fw-bold` itu bobot huruf, bukan ukuran, jadi dia nggak ikut tangga. Elemennya tetap `<h2>` dan `<h3>` yang semantik — kelasnya cuma menempel, jadi pembaca layar tetap tahu mana kepala bagian.
 
 <!--
-Tanyakan lapis mana yang paling atas di gambar, dan kenapa dia yang paling menonjol di hero; jawaban yang diharapkan: `display-5`, karena judul hero yang paling besar. Lanjutkan ke `fs-5` yang dipakai di judul kartu produk — ukurannya turun, tapi elemennya tetap `<h3>` yang semantik. Tutup dengan pertanyaan aksesibilitas: kenapa `div` besar berkelas `display-5` bukan judul yang benar.
+Tanyakan lapis mana yang paling atas di gambar; jawaban yang diharapkan: `display-5`, karena lapis itu yang dipakai buat judul hero — yang paling besar dan paling menonjol di halaman. Lanjutkan ke `fs-5` yang dipakai di judul kartu produk: ukurannya turun, tapi elemennya tetap `<h3>` yang semantik. Tutup dengan dua pertanyaan aksesibilitas: kenapa `div` besar berkelas `display-5` bukan judul yang benar, dan kenapa `fw-bold` nggak pernah masuk tangga ukuran.
 -->
 
 ---
@@ -754,12 +755,12 @@ jadi jelas.
 
 # Contoh: Palet Bootstrap Bukan Palet Tokosaya
 
-![w:1120 Palet bawaan Bootstrap: primary berarti biru dan warning berarti kuning; palet Tokosaya menggesernya lewat dua token, --clr-primary #4F46E5 indigo dan --bs-primary-rgb 79, 70, 229.](assets/diagrams/bab-09-pengenalan-bootstrap-5-42.svg)
+![w:1120 Dua panel sejajar, baris per baris: baris pertama primary bawaan Bootstrap berarti biru, sedangkan palet Tokosaya menggesernya jadi indigo #4F46E5; baris kedua warning bawaan Bootstrap berarti kuning, sedangkan Tokosaya memakai amber.](assets/diagrams/bab-09-pengenalan-bootstrap-5-42.svg)
 
-Di Bootstrap, primary berarti biru dan warning berarti kuning — bukan indigo dan amber Tokosaya. Yang menggeser cuma dua token di `:root`: `--clr-primary` #4F46E5 (indigo Tokosaya) dan `--bs-primary-rgb` 79, 70, 229, dua-duanya ditulis di `css/style.css` yang termuat setelah Bootstrap.
+Di Bootstrap, primary berarti biru dan warning berarti kuning — bukan indigo dan amber Tokosaya. Palet Tokosaya menggeser dua peran yang sama itu: primary jadi indigo #4F46E5 dan warning jadi amber, dijajarkan baris per baris di gambar supaya kelihatan bahwa yang digeser peran yang sama, bukan kelas baru. Yang menggeser cuma dua token di `:root`: `--clr-primary` #4F46E5 (indigo Tokosaya) dan `--bs-primary-rgb` 79, 70, 229, dua-duanya ditulis di `css/style.css` yang termuat setelah Bootstrap.
 
 <!--
-Tanyakan warna `text-primary` bawaan Bootstrap itu apa; jawaban yang diharapkan: biru, bukan indigo Tokosaya. Lanjutkan ke `text-warning` yang kuning, bukan amber. Tunjuk dua token di panel kanan gambar — cuma dua, bukan sepuluh — lalu tanyakan kenapa `css/style.css` harus termuat setelah Bootstrap.
+Tanyakan warna `text-primary` bawaan Bootstrap itu apa; jawaban yang diharapkan: biru, bukan indigo Tokosaya. Lanjutkan ke `text-warning` yang kuning, bukan amber. Tunjuk baris 1 di kedua panel gambar — primary berarti biru di kiri, primary jadi indigo #4F46E5 di kanan — lalu baris 2 dengan pergeseran yang sama untuk warning. Kata kuncinya dua token, bukan sepuluh; tutup dengan kenapa `css/style.css` harus termuat setelah Bootstrap.
 -->
 
 ---

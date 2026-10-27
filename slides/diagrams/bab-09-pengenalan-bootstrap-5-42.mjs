@@ -1,10 +1,11 @@
-// bab-09 · 42 (slide ke-42) — peran warna bawaan Bootstrap lawan token Tokosaya.
-// Dua baris per sisi, sumbu yang sama: arti sebuah nama kelas warna.
+// bab-09 · 42 (slide ke-42) — peran warna bawaan Bootstrap lawan palet Tokosaya.
+// Dua baris yang sepadan: baris 1 soal primary, baris 2 soal warning. Jadi panel
+// kiri dan kanan dibaca berpasangan dari atas ke bawah, bukan sebagai dua daftar.
 export default {
   id: '42',
   slide: 'Contoh: Palet Bootstrap Bukan Palet Tokosaya',
   pattern: 'beforeAfter',
-  alt: 'Palet bawaan Bootstrap: primary berarti biru dan warning berarti kuning; palet Tokosaya menggesernya lewat dua token, --clr-primary #4F46E5 indigo dan --bs-primary-rgb 79, 70, 229.',
+  alt: 'Dua panel sejajar, baris per baris: baris pertama primary bawaan Bootstrap berarti biru, sedangkan palet Tokosaya menggesernya jadi indigo #4F46E5; baris kedua warning bawaan Bootstrap berarti kuning, sedangkan Tokosaya memakai amber.',
   imgWidth: 1120,
   data: {
     left: {
@@ -13,9 +14,9 @@ export default {
       items: ['primary berarti biru', 'warning berarti kuning'],
     },
     right: {
-      title: 'TOKOSAYA',
+      title: 'PALET TOKOSAYA',
       tone: 'acc',
-      items: ['--clr-primary #4F46E5 indigo', '--bs-primary-rgb 79, 70, 229'],
+      items: ['primary jadi indigo #4F46E5', 'warning jadi amber'],
     },
   },
 }
