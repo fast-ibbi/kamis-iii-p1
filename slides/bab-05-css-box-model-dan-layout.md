@@ -272,12 +272,12 @@ pola yang sama bakal dibangun ulang dengan Grid di Bab 7.
 
 # Contoh: Studi Kasus: Dashboard SIAKAD
 
-![w:1120 Kartu statistik SIAKAD: content 240 x 64 piksel, padding 24 piksel, border 4 piksel, sehingga lebar total 296 piksel; padding 24 itu dari skala 8.](assets/diagrams/bab-05-css-box-model-dan-layout-15.svg)
+![w:1120 Dua panel kartu statistik SIAKAD dengan isi dan border yang sama: kiri padding 40 px per sisi dengan tinggi kartu 152 px, kanan padding 24 px per sisi dengan tinggi kartu 120 px.](assets/diagrams/bab-05-css-box-model-dan-layout-15.svg)
 
-Satu kartu statistik SIAKAD: content 240 × 64 px, padding 24 px dari skala 8, border 4 px. Lebar totalnya 240 + 24 + 24 + 4 + 4 = 296 px, tingginya 64 + 24 + 24 + 4 + 4 = 120 px. Tinggi 64 px itu dua baris teks: label 24 px, jarak 8 px, angka 32 px.
+Satu kartu statistik SIAKAD, content 240 × 64 px dan border 4 px tiap sisi, jadi yang bisa digeser cuma paddingnya. Dengan padding 40 px per sisi, tinggi kartu 152 px (64 + 40 + 40 + 4 + 4), dan kartu terlalu tinggi. Dengan padding 24 px per sisi, angka dari skala 8, tinggi kartu 120 px (64 + 24 + 24 + 4 + 4): hemat 32 px per kartu tanpa mengubah satu pun isinya. Tinggi 64 px itu tetap dua baris teks — label 24 px, jarak 8 px, angka 32 px.
 
 <!--
-Minta kelas menghitung sendiri lebar dan tinggi kartunya sebelum kamu tunjukkan angka 296 px di panel kanan. Jawaban yang diharapkan: 240 + 24 + 24 + 4 + 4 untuk lebar, lalu 64 + 24 + 24 + 4 + 4 untuk tinggi. Tunjuk baris "lebar total" — itu jumlah semua pita di atasnya, bukan angka yang ditulis di CSS. Tinggi content 64 px juga bukan angka asal: 24 px baris label, 8 px jarak, 32 px baris angka, jadi semuanya jatuh di langkah skala 8. Bandingkan dengan padding 40 px yang bikin kartu terlalu tinggi: selisihnya 16 px per sisi, jadi 32 px per kartu, dan itulah yang bikin kartu ketiga terlempar keluar layar.
+Minta kelas menghitung tinggi kartunya sendiri sebelum kamu tunjukkan angka 152 px. Jawaban yang diharapkan: 64 + 40 + 40 + 4 + 4 = 152 px, sedangkan padding 24 px cuma 64 + 24 + 24 + 4 + 4 = 120 px. Tunjuk dua panel di gambar: kiri padding 40 px, kanan padding 24 px, dan baris pertama kedua panel sama persis — jadi yang dibandingkan memang paddingnya, bukan bentuk kartunya. Tekankan hasilnya per kartu: 32 px lebih pendek, dan karena ketiga kartu berbagi satu baris, tinggi barisnya ikut turun 32 px tanpa satu pun data hilang. Sebutkan bahwa 40 px tidak ada di daftar langkah 8, 16, 24, 32, 48, dan 64 px, sementara 24 px jatuh tepat di salah satunya — jadi perbaikannya bukan angka asal.
 -->
 
 ---

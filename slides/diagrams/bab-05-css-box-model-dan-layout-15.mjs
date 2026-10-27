@@ -1,21 +1,38 @@
-// bab-05 · 15 — kartu statistik SIAKAD setelah padding dirapikan ke skala 8.
-// padding 40 px bikin kartu terlalu tinggi; 24 px masih langkah skala 8.
-// Tinggi content 64 px itu dua baris teks statistik: 24 px label + 8 px jarak +
-// 32 px angka. Semua angka bisa dijumlah sendiri di panel kanan:
-// lebar 240 + 24 + 24 + 4 + 4 = 296, tinggi 64 + 24 + 24 + 4 + 4 = 120.
-// border sengaja 4 px, bukan 1 px: pita 1 px hilang di skala gambar.
+// bab-05 · 15 — kenapa padding 40 px bikin kartu statistik SIAKAD terlalu tinggi.
+// Pertanyaannya sengaja beda dari spec 12: di sana pertanyaannya "max-width
+// memotong apa?", jadi yang digambar pita kotaknya. Di sini pertanyaannya
+// "padding mana yang dipakai, dan berapa ongkosnya?", jadi yang dibandingkan
+// dua nilai padding pada kartu yang isinya sama persis.
+// Tinggi content 64 px (label 24 + jarak 8 + angka 32) dan border 4 px tiap sisi
+// tidak berubah di kedua panel, jadi selisihnya murni dari padding:
+// 64 + 40 + 40 + 4 + 4 = 152 px lawan 64 + 24 + 24 + 4 + 4 = 120 px.
+// Selisih 152 - 120 = 32 px per kartu. Tanpa footer: tiga baris sudah mengisi
+// panel sampai tepi bawah, jadi catatan kaki akan menabrak baris ketiga
+// (beforeAfter menaruh footer 32 px dari tepi bawah panel, bukan di bawah baris).
 export default {
   id: '15',
   slide: 'Contoh: Studi Kasus: Dashboard SIAKAD',
-  pattern: 'mockup',
-  alt: 'Kartu statistik SIAKAD: content 240 x 64 piksel, padding 24 piksel, border 4 piksel, sehingga lebar total 296 piksel; padding 24 itu dari skala 8.',
+  pattern: 'beforeAfter',
+  alt: 'Dua panel kartu statistik SIAKAD dengan isi dan border yang sama: kiri padding 40 px per sisi dengan tinggi kartu 152 px, kanan padding 24 px per sisi dengan tinggi kartu 120 px.',
   imgWidth: 1120,
   data: {
-    kind: 'box',
-    content: { w: 240, h: 64, label: 'kartu statistik' },
-    padding: [24, 24, 24, 24],
-    border: [4, 4, 4, 4],
-    margin: [0, 0, 0, 0],
-    footer: 'dari skala 8',
+    left: {
+      title: 'PADDING 40 PX',
+      tone: 'red',
+      items: [
+        'content 240 × 64 px',
+        'padding 40 px per sisi',
+        'tinggi kartu 152 px',
+      ],
+    },
+    right: {
+      title: 'PADDING 24 PX',
+      tone: 'acc',
+      items: [
+        'content 240 × 64 px',
+        'padding 24 px per sisi',
+        'tinggi kartu 120 px',
+      ],
+    },
   },
 }
