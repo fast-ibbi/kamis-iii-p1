@@ -634,21 +634,22 @@ saling memeriksa kedua halaman dan menunjukkan buktinya di markup.
 
 ![w:1120 Satu dokumen index.html dengan lima kelompok pemeriksaan: dokumen diawali DOCTYPE dan html lang, head berisi charset, viewport, description, dan title unik, heading berisi satu h1 lalu h2, konten berupa tabel buat data dan gambar alt, serta bagian berupa landmark dan teks link.](assets/diagrams/bab-02-html5-dan-struktur-semantik-29.svg)
 
-Ambil `index.html` Tokosaya, matikan CSS, lalu periksa dokumennya dari lima sisi sekaligus: dokumen diawali `DOCTYPE` dan `html lang="id"`, lalu metadata, heading, konten, dan nama bagian. Kelima kelompok itu nggak saling menunggu, jadi urutannya bebas.
+Ambil `index.html` Tokosaya, matikan CSS, lalu periksa dokumennya dari lima sisi sekaligus: dokumen diawali `DOCTYPE` dan `html lang="id"`, lalu `head`, heading, konten, dan bagian halaman. Kelima kelompok itu nggak saling menunggu, jadi urutannya bebas.
 
 <!--
 Minta kelas memeriksa satu dokumen yang sama, bukan melompat ke bagian yang paling
-mereka ingat. Empat kelompoknya: `head`: charset, viewport, description, title
-unik; heading: satu `h1` lalu `h2`; konten: tabel buat data, gambar alt; bagian:
-landmark dan teks link.
+mereka ingat. Lima kelompoknya: dokumen diawali `DOCTYPE` dan `html lang="id"`;
+`head`: charset, viewport, description, title unik; heading: satu `h1` lalu `h2`;
+konten: tabel buat data, gambar alt; bagian: landmark dan teks link.
 
 Tanyakan: kalau `DOCTYPE`-nya lupa ditulis, ketahuan dari mana? Jawaban yang
 diharapkan: browser masuk mode quirks, dan itu cuma kelihatan setelah CSS masuk,
 jadi periksa sekarang selagi markup-nya masih telanjang.
 
-Dua hal yang sengaja nggak masuk gambar karena buktinya belum ada di Beranda:
-label form (halaman `kontak.html` masih sebatas tautan di navigasi, form dibahas
-di Bab 11) dan `h3` (heading Beranda berhenti di `h2`).
+Dua hal dari daftar enam yang sengaja nggak masuk gambar karena buktinya belum
+ada di Beranda: label form (`index.html` di praktikum ini belum punya satu pun
+`<form>`, jadi belum ada label yang bisa diperiksa; kalau nanti halamanmu punya
+form, butir label form tetap berlaku) dan `h3` (heading Beranda berhenti di `h2`).
 -->
 
 ---
