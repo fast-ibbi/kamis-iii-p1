@@ -1,13 +1,14 @@
 // bab-13 · 41 — langkah 1–7 sebagai rantai audit, bukan daftar centang.
-// `flow` dipilih, bukan `layers`: enam lapisan menuntut kanvas 510 px dan itu
-// menghabiskan ruang prosa di slide. Lima tahap (Lighthouse jadi tahap terakhir)
-// masih jujur, dan langkah skip link tetap disebut di prosa sebagai pintu masuk
-// refactor.
+// `flow` dipilih, bukan `layers`: lima lapisan menuntut kanvas 510 px dan itu
+// menghabiskan ruang prosa di slide. Lima tahap di gambar, sisanya disebut di
+// prosa: langkah 1–7 dipadatkan jadi lima tahap audit, dan dua langkah lain —
+// skip link serta #konten-utama — bukan audit halaman, jadi baru dipasang waktu
+// refactor mulai. Angka 5 + 2 = 7 itulah yang membuat judul slide ini utuh.
 export default {
   id: '41',
   slide: 'Contoh: Langkah Kerja 1–7: Audit Dulu',
   pattern: 'flow',
-  alt: 'Rantai lima langkah audit berurutan: audit visual 360 px sampai 1200 px, audit struktur semua img punya alt, audit keyboard Tab dari awal halaman, audit kontras color picker DevTools, lalu Lighthouse kategori Accessibility.',
+  alt: 'Rantai lima tahap audit berurutan: audit visual 360 px sampai 1200 px, audit struktur semua img punya alt, audit keyboard Tab dari awal halaman, audit kontras color picker DevTools, lalu Lighthouse kategori Accessibility.',
   imgWidth: 1120,
   data: {
     steps: [

@@ -71,7 +71,7 @@ Tutup dengan alur kerja bab ini: audit dulu, perbaiki satu per satu, lalu cek ul
 
 ![w:1120 Kotak kartu katalog Tokosaya dari luar ke dalam: margin nol, border 4 px, padding 16 px, dan content 280 kali 96 px berisi gambar produk, dengan lebar total 320 px karena dua kartu butuh 640 px sementara layar HP cuma 360 px.](assets/diagrams/bab-13-website-responsif-dan-accessibility-04.svg)
 
-Kartu katalog Tokosaya: content 280 × 96 px buat gambar produk, padding 16 px, border 4 px, jadi lebar total 320 px.
+Kartu katalog Tokosaya: content 280 × 96 px buat gambar produk, padding 16 px, border 4 px, jadi lebar total 320 px. Dua kartu butuh 640 px, layar HP cuma 360 px — sisanya terpotong.
 
 <!--
 Tanyakan kenapa kartu 320 px yang kelihatan rapi di monitor malah bikin geser di HP.
@@ -99,7 +99,7 @@ atau jadi tambal sulam media query.
 
 # Mobile-First vs Desktop-First
 
-![w:1120 Mobile-first menulis gaya dasar untuk layar kecil dengan min-width yang menaik, cocok buat website pelanggan umum, dan kompensasinya merancang ruang buat layar lebar; desktop-first menulis gaya dasar layar besar dengan max-width yang menurun, dan kompensasinya menguji layar kecil sejak awal.](assets/diagrams/bab-13-website-responsif-dan-accessibility-05.svg)
+![w:1120 Mobile-first: gaya dasar layar kecil, satu kolom; media query min-width, menaik; cocok buat website pelanggan umum; risiko: layar besar terasa kosong — kompensasi: desain ruang buat layar lebar. Desktop-first: gaya dasar layar besar, multi kolom; media query max-width, menurun; cocok buat dashboard staf, data padat; risiko: HP jadi tambalan — kompensasi: uji 320–576 px sejak awal.](assets/diagrams/bab-13-website-responsif-dan-accessibility-05.svg)
 
 > Keduanya sama-sama sah; bedanya ada di cara berpikir dan risiko yang dijaga.
 
@@ -108,12 +108,13 @@ Bahas baris "arah media query" paling lama, karena itu yang bakal kelihatan di f
 CSS mahasiswa. Tanyakan strategi mana yang cocok buat Tokosaya, lalu minta alasannya.
 Jawaban yang diharapkan: mobile-first, karena pelanggan umumnya membuka dari HP.
 
-Lima baris perbandingannya ada di gambar, pasangan demi pasangan. Mobile-first — gaya
-dasar: layar kecil, satu kolom; media query min-width, menaik; cocok buat website
-pelanggan umum; risiko: layar besar terasa kosong; kompensasi: desain ruang buat layar
-lebar. Desktop-first — gaya dasar: layar besar, multi kolom; media query max-width,
-menurun; cocok buat dashboard staf, data padat; risiko: HP jadi tambalan; kompensasi:
-uji 320–576 px sejak awal.
+Empat baris perbandingan di gambar, pasangan demi pasangan. Mobile-first — gaya dasar:
+layar kecil, satu kolom; media query min-width, menaik; cocok buat website pelanggan
+umum; risiko: layar besar terasa kosong — kompensasi: desain ruang buat layar lebar.
+Desktop-first — gaya dasar: layar besar, multi kolom; media query max-width, menurun;
+cocok buat dashboard staf, data padat; risiko: HP jadi tambalan — kompensasi: uji
+320–576 px sejak awal. Baris terakhir sengaja menggabungkan risiko dan kompensasinya:
+risiko tanpa pasangannya cuma keluhan.
 -->
 
 
@@ -443,15 +444,19 @@ aturan. Sebutkan bahwa struktur makna yang rapi juga membantu mesin pencari.
 
 # Contoh: Aksesibilitas Itu Soal Siapa yang Bisa Pakai
 
-![w:1120 Pohon dari satu root Pengguna Tokosaya yang bercabang empat: pengguna screen reader, pengguna cuma keyboard, pengguna dengan penglihatan terbatas, dan pengguna koneksi lambat.](assets/diagrams/bab-13-website-responsif-dan-accessibility-24.svg)
+![w:1120 Pohon dari satu root Pengguna Tokosaya yang bercabang empat: pengguna screen reader dengan alt yang bermakna, pengguna cuma keyboard dengan urutan fokus, pengguna dengan penglihatan terbatas dengan kontras, dan pengguna koneksi lambat dengan gambar yang ringan.](assets/diagrams/bab-13-website-responsif-dan-accessibility-24.svg)
 
 Pengguna Tokosaya bukan satu orang: ada pengguna screen reader, pengguna cuma keyboard, pengguna dengan penglihatan terbatas, dan pengguna koneksi lambat.
+
+Tiap kelompok menuntut perbaikan yang beda: alt yang bermakna, urutan fokus, kontras, dan gambar yang ringan.
 
 <!--
 Tanyakan siapa yang paling dirugikan kalau tombol keranjang nggak diberi aria-label.
 Jawaban yang diharapkan: pengguna screen reader, karena yang dia dengar cuma "link, link,
 link". Lanjutkan dengan kelompok kedua yang cuma butuh urutan fokus rapi, lalu tunjukkan
-bahwa dua cabang terbawah menuntut kontras dan gambar yang ringan, bukan cincin fokus.
+bahwa dua cabang terbawah — penglihatan terbatas dan koneksi lambat — menuntut kontras
+dan gambar yang ringan, bukan cincin fokus. Kolom paling kanan pohon itu yang menamai
+pekerjaannya, jadi kelas bisa membaca sendiri perbaikan mana untuk siapa.
 -->
 
 ---
@@ -585,17 +590,18 @@ Tekankan bahwa perbaikannya dilakukan sekali di token, bukan diulang di tiap hal
 
 # Contoh: Kontras AA: 4,5:1 dan 3:1
 
-![w:1120 Dua panel: teks putih di atas amber dengan rasio 2,1:1 yang gagal AA karena ambang teks normal 4,5:1; dan teks gelap di atas amber yang sama dengan rasio 6,8:1 yang lolos AA.](assets/diagrams/bab-13-website-responsif-dan-accessibility-31.svg)
+![w:1120 Dua panel amber sejajar, masing-masing menyebut pasangan warna yang diuji. Kiri, putih di atas amber: rasio 2,1:1, ambang teks normal 4,5:1, gagal AA. Kanan, teks gelap di atas amber yang sama: rasio 6,8:1, ambang teks normal 4,5:1, lolos AA.](assets/diagrams/bab-13-website-responsif-dan-accessibility-31.svg)
 
-Teks putih di atas amber Tokosaya cuma 2,1:1, jauh di bawah ambang teks normal 4,5:1, jadi badge itu gagal AA.
+Teks putih di atas amber Tokosaya dapat rasio 2,1:1, jauh di bawah ambang teks normal 4,5:1 — badge itu gagal AA.
 
-Versi teks gelap di atas amber yang sama rasionya 6,8:1 — di atas 4,5:1, jadi lolos AA. Yang berubah cuma warna teksnya, latarnya tetap.
+Versi teks gelap di atas amber yang sama dapat rasio 6,8:1, di atas ambang 4,5:1 yang sama — lolos AA. Yang berubah cuma warna teksnya; warna latar amber-nya nggak disentuh.
 
 <!--
-Bandingkan rasio 2,1:1 di kiri dengan rasio 6,8:1 di kanan langsung di color picker,
-jangan dihitung manual. Tanyakan kenapa pasangan putih di atas amber terasa aman di mata
-padahal gagal. Tunjuk baris terakhir kedua panel: yang berubah cuma warna teks, latarnya
-tetap amber yang sama.
+Bandingkan rasio 2,1:1 di kiri dengan 6,8:1 di kanan langsung di color picker DevTools,
+jangan dihitung manual. Panel di gambar cuma memuat rasionya, bukan contoh warna aslinya —
+pasangan putih dan amber-nya justru dilihat di DevTools. Tanyakan kenapa pasangan putih di
+atas amber terasa aman di mata padahal gagal. Tunjuk baris kedua kedua panel: ambangnya
+sama, 4,5:1. Yang beda cuma rasio di baris pertama dan verdict di baris ketiga.
 -->
 
 ---
@@ -804,7 +810,8 @@ baris pun skrip yang perlu dipahami di mata kuliah ini.
 <!--
 Demokan langkah ini di layar, jangan cuma dibacakan. Berhenti di langkah audit
 keyboard karena di situlah temuan paling banyak muncul. Ingatkan bahwa skip link
-biasanya belum ada di proyek Bab 12, dan itu memang bagian refactor di bab ini.
+biasanya belum ada di proyek Bab 12, jadi dia tetap masuk daftar audit sebagai langkah
+berikutnya, tapi baru benar-benar dipasang waktu refactor mulai.
 Sebutkan kolom tabel temuan: temuan, status sebelum, dan status sesudah.
 -->
 
@@ -812,17 +819,18 @@ Sebutkan kolom tabel temuan: temuan, status sebelum, dan status sesudah.
 
 # Contoh: Langkah Kerja 1–7: Audit Dulu
 
-![w:1120 Rantai lima langkah audit berurutan: audit visual 360 px sampai 1200 px, audit struktur semua img punya alt, audit keyboard Tab dari awal halaman, audit kontras color picker DevTools, lalu Lighthouse kategori Accessibility.](assets/diagrams/bab-13-website-responsif-dan-accessibility-41.svg)
+![w:1120 Rantai lima tahap audit berurutan: audit visual 360 px sampai 1200 px, audit struktur semua img punya alt, audit keyboard Tab dari awal halaman, audit kontras color picker DevTools, lalu Lighthouse kategori Accessibility.](assets/diagrams/bab-13-website-responsif-dan-accessibility-41.svg)
 
 Kerjakan langkah 1–7 di katalog.html: audit visual 360 px sampai 1200 px, lalu audit struktur semua img punya alt, audit keyboard Tab dari awal halaman, audit kontras color picker DevTools, dan Lighthouse kategori Accessibility.
 
-Audit berhenti di Lighthouse; sesudahnya baru refactor — tambah skip link dan #konten-utama di semua halaman.
+Gambar meringkas langkah 1–7 jadi lima tahap, karena dua langkah sisanya — tambahkan skip link dan #konten-utama di semua halaman — bukan audit halaman. Dua langkah itu baru dipasang waktu refactor mulai.
 
 <!--
 Minta kelas menyebut urutan ini dari kiri ke kanan dan tanyakan kenapa audit visual duluan.
 Jawaban yang diharapkan: temuan layout paling cepat kelihatan, jadi daftar temuan cepat
-terisi. Tunjuk tahap terakhir — Lighthouse — karena di situ audit mulai berubah jadi
-refactor, dan skip link jadi pekerjaan resmi berikutnya.
+terisi. Tunjuk tahap terakhir — Lighthouse — karena di situ audit satu halaman selesai.
+Sebutkan dua langkah yang nggak masuk gambar: tambah skip link dan #konten-utama, yang baru
+dipasang saat refactor mulai.
 -->
 
 ---
@@ -849,7 +857,7 @@ bahwa nilai `alt` produk diambil dari dataset Tokosaya, satu sampai dua kalimat.
 
 # Contoh: Langkah Kerja 8–14: Refactor dan Uji Ulang
 
-![w:1120 Tiga keadaan berurutan: audit 1–7 memberi ada temuan lalu masuk refactor 8–13, satu kategori selesai membawa ke uji ulang 14, dan kalau masih ada temuan panah kembali ke refactor.](assets/diagrams/bab-13-website-responsif-dan-accessibility-43.svg)
+![w:1120 Tiga keadaan dalam satu baris: audit 1–7, panah ada temuan menuju refactor 8–13 yang disorot, panah kategori menuju uji ulang 14 yang juga disorot, dan panah kembali ke refactor berlabel masih ada temuan.](assets/diagrams/bab-13-website-responsif-dan-accessibility-43.svg)
 
 Putaran refactor Tokosaya: audit 1–7, refactor 8–13, uji ulang 14.
 
@@ -859,7 +867,9 @@ Satu putaran cuma menuntaskan satu kategori dulu — misal urutan heading — su
 Tanyakan kenapa satu kategori per putaran lebih berguna daripada merapikan semuanya
 sekaligus. Jawaban yang diharapkan: kalau semuanya diubah bareng, nggak ada yang tahu
 perubahan mana yang menaikkan skor. Tunjuk panah yang balik dari uji ulang ke refactor —
-itu satu putaran, dan di situlah letak kerja auditor yang rapi.
+itu satu putaran, dan di situlah letak kerja auditor yang rapi. Dua keadaan yang disorot
+di gambar — refactor 8–13 dan uji ulang 14 — persis lingkup slide ini; audit 1–7 dibiarkan
+netral karena sudah selesai di slide sebelumnya.
 -->
 
 ---
