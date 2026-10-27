@@ -67,7 +67,17 @@ const PROBE = `
 <pre id="ovf-report" style="display:none"></pre>
 <script>
 function ovfMeasure(){
+  // Marp memecah satu slide markdown menjadi sampai tiga <section> kalau slide
+  // itu memakai advanced background (background gambar di samping isi): satu
+  // "background", satu "content" (isi aslinya), dan satu "pseudo" (lapisan
+  // kosong untuk header/footer). Hanya "content" yang mewakili satu halaman PDF.
+  // Kalau ketiganya ikut dihitung, jumlah slide membengkak (bab-04 terbaca 62
+  // padahal PDF-nya 38 halaman) dan nomor slide di pesan ikut bergeser.
   var secs=[].slice.call(document.querySelectorAll('section'))
+      .filter(function(s){
+        var ab=s.getAttribute('data-marpit-advanced-background');
+        return ab!=='background'&&ab!=='pseudo';
+      })
       .filter(function(s,i,a){return a.indexOf(s)===i});
   var out=[], sisa=[], tabel=[];
   secs.forEach(function(s,i){
