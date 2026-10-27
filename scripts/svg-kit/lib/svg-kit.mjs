@@ -211,7 +211,10 @@ class Canvas {
     return lines.length
   }
 
-  rect(x, y, w, h, { fill = 'none', stroke = 'none', rx = 0, sw = 1.5, dash = null } = {}) {
+  // `register: false` opts a rect out of finalize()'s overlap guard. Only the
+  // mockup pattern uses it: a box model nests by definition, so containment is
+  // asserted against the parent instead of being reported as an overlap.
+  rect(x, y, w, h, { fill = 'none', stroke = 'none', rx = 0, sw = 1.5, dash = null, register = true } = {}) {
     if (x < -0.5 || y < -0.5 || x + w > this.width + 0.5 || y + h > this.height + 0.5) {
       throw new FitError(
         `a ${Math.round(w)}×${Math.round(h)} box at (${Math.round(x)},${Math.round(y)}) ` +
@@ -223,7 +226,7 @@ class Canvas {
       `<rect x="${num(x)}" y="${num(y)}" width="${num(w)}" height="${num(h)}" rx="${num(rx)}" ` +
         `fill="${fill}" stroke="${stroke}" stroke-width="${num(sw)}"${dashAttr}/>`,
     )
-    if (fill !== 'none' || stroke !== 'none') this.rects.push({ x, y, w, h })
+    if (register && (fill !== 'none' || stroke !== 'none')) this.rects.push({ x, y, w, h })
   }
 
   path(d, { fill = 'none', stroke = 'none', sw = 1.5, marker = null, dash = null } = {}) {
@@ -995,7 +998,439 @@ export const stateMachine = {
   },
 }
 
-export const PATTERNS = { flow, layers, beforeAfter, tree, sequence, stateMachine }
+/* 7 — mockup: CSS geometry, drawn to scale -------------------------------- */
+//
+// Every other pattern lays out TEXT: chips, panels, rows. A mockup lays out
+// BOXES, so the relationship it draws is geometric — what sits inside what,
+// how wide each part really is, and where the leftover space goes. That is the
+// one thing a student cannot reconstruct from prose, which is why the pattern
+// exists at all.
+//
+// Containment is legal here and is therefore ASSERTED rather than rejected:
+// finalize()'s overlap guard would fire on every nested zone. Zones are drawn
+// with `register: false` and checked against their parent by `nested()`.
+
+function fourSides(value, what) {
+  const v = Array.isArray(value) ? value : [value, value, value, value]
+  if (v.length !== 4 || v.some((n) => !Number.isFinite(n) || n < 0)) {
+    throw new FitError(
+      `${what} must be a non-negative number or [top, right, bottom, left], got ${JSON.stringify(value)}`,
+    )
+  }
+  return v
+}
+
+function nested(outer, inner, what) {
+  const eps = 0.5
+  if (
+    inner.x < outer.x - eps ||
+    inner.y < outer.y - eps ||
+    inner.x + inner.w > outer.x + outer.w + eps ||
+    inner.y + inner.h > outer.y + outer.h + eps
+  ) {
+    throw new FitError(
+      `${what} does not sit inside its parent box — the mockup's own dimensions are inconsistent.`,
+    )
+  }
+}
+
+const mockupWidth = (data) => (Array.isArray(data.canvas) ? data.canvas[0] : MAX_WIDTH)
+
+function mockupBox(data, ctx) {
+  const pad = fourSides(data.padding ?? 0, 'padding')
+  const bor = fourSides(data.border ?? 0, 'border')
+  const mar = fourSides(data.margin ?? 0, 'margin')
+  const cw = data.content?.w ?? 240
+  const ch = data.content?.h ?? 88
+  if (!Number.isFinite(cw) || cw <= 0 || !Number.isFinite(ch) || ch <= 0) {
+    throw new FitError('content needs a positive { w, h } in px — the box model math starts there')
+  }
+
+  const totalW = cw + pad[1] + pad[3] + bor[1] + bor[3] + mar[1] + mar[3]
+  const totalH = ch + pad[0] + pad[2] + bor[0] + bor[2] + mar[0] + mar[2]
+
+  const width = mockupWidth(data)
+  const LIST_W = 360
+  const GAP_X = 40
+  const drawW = width - 2 * PAD - LIST_W - GAP_X
+  const drawHMax = 300
+  const scale = Math.min(drawW / totalW, drawHMax / totalH)
+
+  const same = (v) => v.every((n) => n === v[0])
+  const rows = []
+  if (mar.some((n) => n > 0)) {
+    rows.push({ tone: 'amber', name: 'margin', value: same(mar) ? `${mar[0]} px` : `${mar.join(' ')} px` })
+  }
+  if (bor.some((n) => n > 0)) {
+    rows.push({
+      tone: 'border',
+      name: 'border',
+      value: same(bor) ? `${bor[0]} px` : `${bor.join(' ')} px`,
+    })
+  }
+  if (pad.some((n) => n > 0)) {
+    rows.push({ tone: 'green', name: 'padding', value: same(pad) ? `${pad[0]} px` : `${pad.join(' ')} px` })
+  }
+  rows.push({ tone: 'acc', name: 'content', value: `${cw} × ${ch} px` })
+
+  const ROW_H = 34
+  const listH = rows.length * ROW_H + 8 + 26
+  const footerH = data.footer ? 30 : 0
+  const neededH = 2 * PAD + Math.max(totalH * scale, listH) + footerH
+  const { height } = resolveCanvas(data, neededH)
+
+  const c = new Canvas(width, height, ctx.palette, ctx.tones)
+  const areaH = height - 2 * PAD - footerH
+  const x0 = PAD + (drawW - totalW * scale) / 2
+  const y0 = PAD + (areaH - totalH * scale) / 2
+  const R = (mx, my, mw, mh) => ({ x: x0 + mx * scale, y: y0 + my * scale, w: mw * scale, h: mh * scale })
+
+  const marginBox = R(0, 0, totalW, totalH)
+  const borderBox = R(mar[3], mar[0], totalW - mar[3] - mar[1], totalH - mar[0] - mar[2])
+  const paddingBox = R(
+    mar[3] + bor[3],
+    mar[0] + bor[0],
+    borderBox.w / scale - bor[3] - bor[1],
+    borderBox.h / scale - bor[0] - bor[2],
+  )
+  const contentBox = R(mar[3] + bor[3] + pad[3], mar[0] + bor[0] + pad[0], cw, ch)
+  nested(marginBox, borderBox, 'the border box')
+  nested(borderBox, paddingBox, 'the padding box')
+  nested(paddingBox, contentBox, 'the content box')
+
+  if (mar.some((n) => n > 0)) {
+    c.rect(marginBox.x, marginBox.y, marginBox.w, marginBox.h, {
+      fill: ctx.tones.amber.soft,
+      stroke: ctx.tones.amber.border,
+      rx: 6,
+      dash: '6 4',
+      register: false,
+    })
+  }
+  c.rect(borderBox.x, borderBox.y, borderBox.w, borderBox.h, {
+    fill: ctx.palette.border,
+    stroke: ctx.palette.muted,
+    rx: 4,
+    register: false,
+  })
+  c.rect(paddingBox.x, paddingBox.y, paddingBox.w, paddingBox.h, {
+    fill: ctx.tones.green.soft,
+    stroke: ctx.tones.green.border,
+    rx: 2,
+    register: false,
+  })
+  c.rect(contentBox.x, contentBox.y, contentBox.w, contentBox.h, {
+    fill: '#ffffff',
+    stroke: ctx.tones.acc.border,
+    sw: 1.5,
+    rx: 2,
+    register: false,
+  })
+
+  if (data.content?.label) {
+    c.lineOf(data.content.label, contentBox.x + 8, contentBox.y, {
+      width: contentBox.w - 16,
+      height: contentBox.h,
+    }, {
+      size: 16,
+      bold: true,
+      anchor: 'middle',
+      what: `content label "${data.content.label}" — shorten it or drop the label`,
+    })
+  }
+
+  const listX = PAD + drawW + GAP_X
+  const listTop = PAD + Math.max(0, (areaH - listH) / 2)
+  rows.forEach((row, i) => {
+    const y = listTop + i * ROW_H
+    // `border` has no tone of its own: the band is the theme's own border colour,
+    // which is exactly what the swatch should show.
+    const swatch =
+      row.tone === 'border'
+        ? { fill: ctx.palette.border, stroke: ctx.palette.muted }
+        : { fill: ctx.tones[row.tone].soft, stroke: ctx.tones[row.tone].border }
+    c.rect(listX, y + 6, 22, 16, { ...swatch, rx: 3, register: false })
+    c.text(row.name, listX + 34, y + 20, { size: 16 })
+    c.text(row.value, listX + LIST_W, y + 20, { size: 16, anchor: 'end', tone: 'muted' })
+  })
+  const totalY = listTop + rows.length * ROW_H + 8
+  c.text('lebar total', listX, totalY + 18, { size: 16, bold: true })
+  c.text(`${totalW} px`, listX + LIST_W, totalY + 18, { size: 16, bold: true, anchor: 'end', tone: 'acc' })
+
+  if (data.footer) {
+    c.text(data.footer, PAD, height - 16, { size: 15, tone: 'muted' })
+  }
+  return c
+}
+
+function mockupFlex(data, ctx) {
+  const container = data.container ?? 1000
+  const items = data.items ?? []
+  if (items.length < 2 || items.length > 5) {
+    throw new FitError(
+      `mockup flex takes 2–5 items, got ${items.length}. One item shows nothing about distribution; ` +
+        `six or more cannot stay legible at 14px.`,
+    )
+  }
+  const gap = data.gap ?? 0
+  const basis = items.map((it, i) => {
+    const b = it.basis
+    if (!Number.isFinite(b) || b <= 0) {
+      throw new FitError(`flex item ${i + 1} needs a positive "basis" in px — the free space is that arithmetic`)
+    }
+    return b
+  })
+  const used = basis.reduce((a, b) => a + b, 0) + gap * (items.length - 1)
+  const free = container - used
+  if (free < -0.5) {
+    throw new FitError(
+      `items plus gaps need ${Math.round(used)}px but the container is ${container}px — over by ` +
+        `${Math.round(used - container)}px. Fix the numbers, not the picture.`,
+    )
+  }
+  const justify = data.justify ?? 'flex-start'
+  const KNOWN = ['flex-start', 'flex-end', 'center', 'space-between', 'space-around', 'space-evenly']
+  if (!KNOWN.includes(justify)) {
+    throw new FitError(`unknown justify-content "${justify}" — one of ${KNOWN.join(', ')}`)
+  }
+
+  let cursor = 0
+  let extra = 0
+  if (justify === 'flex-end') cursor = free
+  else if (justify === 'center') cursor = free / 2
+  else if (justify === 'space-around') {
+    extra = free / items.length
+    cursor = extra / 2
+  } else if (justify === 'space-evenly') {
+    extra = free / (items.length + 1)
+    cursor = extra
+  } else if (justify === 'space-between') {
+    extra = items.length > 1 ? free / (items.length - 1) : 0
+  }
+
+  const spans = []
+  items.forEach((it, i) => {
+    spans.push({ x: cursor, w: basis[i], item: it })
+    cursor += basis[i]
+    if (i < items.length - 1) cursor += gap + extra
+  })
+
+  const segs = []
+  if (spans[0].x > 0.5) segs.push({ x: 0, w: spans[0].x })
+  for (let i = 0; i < spans.length - 1; i++) {
+    const endA = spans[i].x + spans[i].w
+    const leftover = spans[i + 1].x - endA - gap
+    if (leftover > 0.5) segs.push({ x: endA + gap, w: leftover })
+  }
+  const last = spans[spans.length - 1]
+  const tail = container - (last.x + last.w)
+  if (tail > 0.5) segs.push({ x: container - tail, w: tail })
+
+  const width = mockupWidth(data)
+  const bandH = 104
+  const neededH = 2 * PAD + 30 + bandH + 46
+  const { height } = resolveCanvas(data, neededH)
+  const c = new Canvas(width, height, ctx.palette, ctx.tones)
+
+  c.text(`justify-content: ${justify}`, PAD, PAD + 14, { size: 16, bold: true, tone: 'acc' })
+
+  const scale = (width - 2 * PAD) / container
+  const bandY = PAD + 30
+  const X = (v) => PAD + v * scale
+
+  c.rect(PAD, bandY, container * scale, bandH, {
+    fill: '#ffffff',
+    stroke: ctx.tones.slate.border,
+    rx: 8,
+    dash: '6 4',
+    register: false,
+  })
+
+  for (const seg of segs) {
+    c.rect(X(seg.x), bandY + 6, seg.w * scale, bandH - 12, {
+      fill: ctx.tones.amber.soft,
+      stroke: ctx.tones.amber.border,
+      rx: 4,
+      dash: '4 3',
+      register: false,
+    })
+    if (seg.w * scale >= 58) {
+      c.lineOf(`${Math.round(seg.w)} px`, X(seg.x), bandY + 6, { width: seg.w * scale, height: bandH - 12 }, {
+        size: 14,
+        anchor: 'middle',
+        tone: 'amber',
+        what: `free-space label in a ${Math.round(seg.w * scale)}px segment`,
+      })
+    }
+  }
+
+  spans.forEach((span, i) => {
+    // Items are peers, not stages: one tone for all of them, so the only
+    // contrast in the picture is items versus free space.
+    const tone = span.item.tone ?? 'acc'
+    const t = ctx.tones[tone]
+    c.rect(X(span.x), bandY + 6, span.w * scale, bandH - 12, {
+      fill: tone === 'neutral' ? ctx.palette.surface : t.soft,
+      stroke: t.border,
+      rx: 6,
+      register: false,
+    })
+    c.lineOf(span.item.label ?? `item ${i + 1}`, X(span.x), bandY + 6, {
+      width: span.w * scale,
+      height: bandH - 12,
+    }, {
+      size: 15,
+      bold: true,
+      anchor: 'middle',
+      what: `flex item label "${span.item.label}" in a ${Math.round(span.w * scale)}px box`,
+    })
+    // The basis is what makes the free-space arithmetic checkable by eye:
+    // basis sum + gaps + free must land on the container width.
+    c.text(`${span.w} px`, X(span.x + span.w / 2), bandY + bandH - 14, {
+      size: 14,
+      anchor: 'middle',
+      tone: 'muted',
+    })
+  })
+
+  const baseY = bandY + bandH + 20
+  // The declared gap needs its own mark. Without it the picture asserts a gap
+  // size while drawing only the free spaces, so 24 px is unverifiable by eye —
+  // and the whole point of this mockup is that the reader can check the numbers.
+  if (gap > 0 && spans.length > 1) {
+    const a = spans[0]
+    const x1 = X(a.x + a.w)
+    const x2 = X(a.x + a.w + gap)
+    const tick = bandY + bandH + 5
+    c.path(`M${num(x1)} ${num(tick)} v6 H${num(x2)} v-6`, { stroke: ctx.palette.muted, sw: 1.2 })
+    c.text(`gap ${gap} px`, (x1 + x2) / 2, tick + 20, { size: 14, anchor: 'middle', tone: 'muted' })
+  }
+  // One fact per label: provenance matches labels against the slide text, and a
+  // compound "wadah X · sisa Y" line can never be quoted naturally in prose.
+  c.text(`sisa ${Math.round(free)} px`, width - PAD, baseY + 4, { size: 14, anchor: 'end', tone: 'muted' })
+  if (data.footer) {
+    c.text(data.footer, width - PAD, baseY + 24, { size: 14, anchor: 'end', tone: 'amber' })
+  }
+  return c
+}
+
+function mockupGrid(data, ctx) {
+  const columns = data.columns ?? 12
+  if (!Number.isInteger(columns) || columns < 2 || columns > 12) {
+    throw new FitError(`mockup grid needs 2–12 columns, got ${JSON.stringify(columns)}`)
+  }
+  const rows = data.rows ?? []
+  if (rows.length < 1 || rows.length > 4) {
+    throw new FitError(`mockup grid takes 1–4 rows, got ${rows.length}. More rows cannot stay legible.`)
+  }
+  const gutter = data.gutter ?? 16
+  const container = data.container ?? 1120
+  const track = (container - gutter * (columns - 1)) / columns
+
+  const rowSpans = rows.map((row, ri) => {
+    if (!row.length) throw new FitError(`grid row ${ri + 1} is empty`)
+    const spans = row.map((cell, ci) => {
+      const s = cell.span ?? 1
+      if (!Number.isInteger(s) || s < 1) {
+        throw new FitError(`row ${ri + 1} cell ${ci + 1} needs a positive integer "span"`)
+      }
+      return s
+    })
+    const sum = spans.reduce((a, b) => a + b, 0)
+    if (sum > columns) {
+      throw new FitError(`row ${ri + 1} spans ${sum} of ${columns} columns — over by ${sum - columns}`)
+    }
+    return spans
+  })
+
+  const rowH = 54
+  const rowGap = 14
+  const legendH = 28
+  const RULER_H = 24
+  const neededH = 2 * PAD + RULER_H + 10 + rows.length * rowH + (rows.length - 1) * rowGap + legendH
+  const width = mockupWidth(data)
+  const { height } = resolveCanvas(data, neededH)
+  const c = new Canvas(width, height, ctx.palette, ctx.tones)
+
+  const scale = (width - 2 * PAD) / container
+  const gutterS = gutter * scale
+  const trackS = track * scale
+  const X = (v) => PAD + v * scale
+
+  // The ruler is the point of a grid mockup: cells fill the space where the
+  // tracks would be, so without stating the tracks the picture shows a stack of
+  // boxes and teaches nothing about columns. Drawn once, above the rows.
+  for (let col = 0; col < columns; col++) {
+    const x = PAD + col * (trackS + gutterS)
+    c.rect(x, PAD, trackS, RULER_H, {
+      fill: ctx.tones.slate.soft,
+      stroke: ctx.tones.slate.border,
+      dash: '3 3',
+      rx: 2,
+      register: false,
+    })
+    if (trackS >= 18) {
+      c.text(String(col + 1), x + trackS / 2, PAD + RULER_H - 7, {
+        size: 14,
+        anchor: 'middle',
+        tone: 'muted',
+        collected: false,
+      })
+    }
+  }
+
+  const gridTop = PAD + RULER_H + 10
+  for (let r = 0; r < rows.length; r++) {
+    const y = gridTop + r * (rowH + rowGap)
+    let col = 0
+    rowSpans[r].forEach((span, ci) => {
+      const cell = rows[r][ci]
+      const x = PAD + col * (trackS + gutterS)
+      const w = span * trackS + (span - 1) * gutterS
+      const tone = cell.tone ?? 'acc'
+      const t = ctx.tones[tone]
+      c.rect(x, y, w, rowH, {
+        fill: t.soft,
+        stroke: t.border,
+        sw: 1.5,
+        rx: 4,
+        register: false,
+      })
+      c.lineOf(cell.label ?? `col-${span}`, x, y, { width: w, height: rowH }, {
+        size: 15,
+        bold: true,
+        anchor: 'middle',
+        what: `grid cell label "${cell.label}" in a ${span}-span cell`,
+      })
+      col += span
+    })
+  }
+
+  c.text(`${columns} kolom`, PAD, height - 14, { size: 14, tone: 'muted' })
+  if (data.footer) {
+    c.text(data.footer, width - PAD, height - 14, { size: 14, anchor: 'end', tone: 'muted' })
+  }
+  return c
+}
+
+export const mockup = {
+  name: 'mockup',
+  use: 'CSS geometry to scale — box-model zones, flex free space, grid spans.',
+  imgWidth: 1120,
+  height: 380,
+  render({ data }, ctx) {
+    const kind = data.kind
+    if (kind === 'box') return mockupBox(data, ctx)
+    if (kind === 'flex') return mockupFlex(data, ctx)
+    if (kind === 'grid') return mockupGrid(data, ctx)
+    throw new FitError(
+      `mockup needs "kind": "box", "flex" or "grid" — got ${JSON.stringify(kind)}. ` +
+        `Boxes with no geometry in them belong in flow/beforeAfter, not here.`,
+    )
+  },
+}
+
+export const PATTERNS = { flow, layers, beforeAfter, tree, sequence, stateMachine, mockup }
 
 /* --------------------------------------------------------------- dispatcher */
 

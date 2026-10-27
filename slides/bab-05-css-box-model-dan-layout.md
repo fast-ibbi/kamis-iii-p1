@@ -50,7 +50,7 @@ yang selama ini menebak nilai padding.
 
 # Tiga Gejala, Satu Akar
 
-![w:1120](assets/diagrams/bab-05-css-box-model-dan-layout-03.svg)
+![w:1120 Tiga dugaan awal yang salah, dan penyebab sebenarnya di tiap baris: induk belum relative, mode content-box, dan belum ada skala jarak.](assets/diagrams/bab-05-css-box-model-dan-layout-03.svg)
 
 Kamu magang di tim digital Tokosaya, dan halaman katalognya berulah.
 
@@ -103,7 +103,7 @@ dibaca.
 
 # Analogi Poster Berbingkai
 
-![w:1120](assets/diagrams/bab-05-css-box-model-dan-layout-06.svg)
+![w:1120 Empat lapisan kotak dianalogikan poster di dinding: content kanvas, padding passe-partout, border bingkai kayu, margin jarak ke poster lain.](assets/diagrams/bab-05-css-box-model-dan-layout-06.svg)
 
 > Padding itu merapikan isi ke bingkainya; margin menjaga jarak antarbingkai.
 
@@ -122,7 +122,7 @@ hidup sendiri.
 
 # Padding dan Margin Bukan Hal yang Sama
 
-![w:1120](assets/diagrams/bab-05-css-box-model-dan-layout-07.svg)
+![w:1120 Padding adalah bagian dari tubuh elemen, jadi latar dan area klik ikut memenuhinya; margin berada di luar kotak, transparan, dan cuma menahan jarak ke kotak tetangga.](assets/diagrams/bab-05-css-box-model-dan-layout-07.svg)
 
 <!--
 Tekankan bahwa padding adalah bagian dari tubuh elemen itu sendiri: klik dan latar ikut
@@ -140,7 +140,7 @@ margin.
 
 # Margin Vertikal Bisa Runtuh
 
-![w:1120](assets/diagrams/bab-05-css-box-model-dan-layout-08.svg)
+![w:1120 Margin bawah dan margin atas bertetangga tidak dijumlahkan, yang dipakai nilai paling besar; padding tidak punya perilaku runtuh ini.](assets/diagrams/bab-05-css-box-model-dan-layout-08.svg)
 
 > Ritme vertikal antarseksi lebih aman distandarkan lewat padding kontainer.
 
@@ -160,7 +160,7 @@ arah juga lebih aman: pakai `margin-bottom` saja.
 
 # Angka width Cuma Sepotong Kotak
 
-![w:1120](assets/diagrams/bab-05-css-box-model-dan-layout-09.svg)
+![w:1120 Lebar 280 piksel hanya area konten; padding 16 piksel kiri-kanan dan border 4 piksel kiri-kanan ditambahkan di luarnya, sehingga lebarnya 304 piksel.](assets/diagrams/bab-05-css-box-model-dan-layout-09.svg)
 
 Bawaannya CSS memakai mode `box-sizing: content-box`.
 
@@ -227,6 +227,23 @@ sempit kartu memilih menyusut daripada memaksa bilah gulir. Tanyakan kenapa kita
 nggak mengunci `height` pada paragraf yang isinya bisa bertambah. Jawaban yang
 diharapkan: teks yang terpotong adalah kegagalan aksesibilitas, jadi pakai
 `min-height`.
+-->
+
+---
+
+# Contoh: Menahan Kotak dengan min dan max
+
+![w:1120 Kotak gambar produk: content 240 x 96 piksel, padding 16 piksel, border 4 piksel, lebar total 280 piksel setelah max-width 100 persen.](assets/diagrams/bab-05-css-box-model-dan-layout-12.svg)
+
+Gambar produk dipatok 280 px, tapi induk kartunya cuma 240 px. Aturan `max-width: 100%` yang menang, jadi lebar content turun ke 240 × 96 px; padding 16 px dan border 4 px tetap ditambahkan di luarnya, sehingga lebar total 280 px dan halaman tidak bergulir ke samping.
+
+<!--
+Minta kelas menghitung sendiri sebelum kamu tunjukkan angkanya: 240 + 16 + 16 + 4 + 4
+= 280 px. Jawaban yang diharapkan: `max-width` tidak mengecilkan isi kotak, ia cuma
+memberi batas atas, jadi yang berubah hanya lebar kontennya. Sebutkan nama baris
+"lebar total" di gambar — angka terakhir itu jumlah semua pita di atasnya, bukan
+angka yang ditulis di CSS. Bandingkan dengan kartu yang content-nya dibiarkan 280 px
+di induk 240 px: itulah yang memaksa bilah gulir muncul.
 -->
 
 ---
@@ -452,7 +469,7 @@ dan jarak yang tidak konsisten.
 
 # Lima Nilai position
 
-![w:1120](assets/diagrams/bab-05-css-box-model-dan-layout-23.svg)
+![w:1120 Properti position punya lima nilai: static ikut alur dokumen, relative bergeser dari posisinya, absolute lepas dari alur, fixed menempel viewport, sticky ikut alur sampai titik geser.](assets/diagrams/bab-05-css-box-model-dan-layout-23.svg)
 
 <!--
 Tekankan kalimat paling penting di slide ini: relative lebih sering dipakai sebagai
@@ -535,6 +552,23 @@ kaca pembesarnya tiap blok.
 
 ---
 
+# Contoh: Skala Jarak Delapan Piksel
+
+![w:1120 Tiga kartu 280 piksel di wadah 1120 piksel dengan gap 24 piksel; space-between membagi sisa 232 piksel menjadi dua celah 116 piksel.](assets/diagrams/bab-05-css-box-model-dan-layout-28.svg)
+
+Tiga kartu produk 280 px berjajar di wadah 1120 px dengan `gap 24 px`. Sisa 232 px dibagi rata oleh `justify-content: space-between`, jadi tiap celah membengkak jadi 116 px — dan 116 bukan kelipatan 8, irama jaraknya langsung patah.
+
+<!--
+Ini contoh paling berguna di bab ini: minta kelas membagi 116 dengan 8 dan temukan
+sisanya. Jawaban yang diharapkan: `space-between` membagi sisa ruang tanpa peduli
+skala jarak, jadi celahnya keluar dari sistem 8 px. Tekankan bahwa `gap` tetap 24 px
+— yang membengkak cuma sisa ruang di antaranya. Pesan praktisnya: kalau irama jarak
+harus dijaga, jangan biarkan `space-between` yang menentukan celah. Sebutkan Kartu 1,
+Kartu 2, dan Kartu 3 dari kiri ke kanan supaya kelas mengikuti gambarnya.
+-->
+
+---
+
 # Kapan padding, Kapan margin
 
 - Padding adalah bagian dari komponen itu sendiri
@@ -549,6 +583,23 @@ Ulangi padanan fisiknya: padding adalah jarak foto ke tepi paspotor, margin adal
 jarak antar paspotor di dinding. Tanyakan siapa yang selama ini memakai margin buat
 melebarkan tombol; itu kebiasaan yang paling sering muncul di tugas. Sebutkan bahwa
 kriteria Target Size WCAG 2.2 menetapkan area sentuh minimal 24 × 24 px.
+-->
+
+---
+
+# Contoh: Kapan padding, Kapan margin
+
+![w:1120 Tombol dengan content 120 x 40 piksel, padding 16 piksel, border 1 piksel, dan margin 16 piksel; pita padding ikut berwarna, pita margin tetap transparan.](assets/diagrams/bab-05-css-box-model-dan-layout-30.svg)
+
+Tombol `Tambah ke Keranjang` punya content 120 × 40 px, diberi padding 16 px, border 1 px, dan margin 16 px. Angka padding dan margin sama, tapi cuma padding yang ikut mewarnai latar dan memperluas area klik; margin cuma mendorong tetangganya menjauh.
+
+<!--
+Tanyakan mana dari dua pita 16 px itu yang bisa diklik. Jawaban yang diharapkan:
+pita padding, karena ia bagian dari kotak tombol, sedangkan pita margin transparan dan
+bukan milik elemen. Sebutkan lebar total 186 px sebagai hasil 120 + 16 + 16 + 1 + 1 +
+16 + 16, lalu bandingkan dengan ambang Target Size WCAG 24 × 24 px: tombol ini lolos
+karena content-nya sudah 40 px. Ingatkan bahwa margin tetap tidak kelihatan walau
+diberi latar, karena latar elemen berhenti di batas border.
 -->
 
 ---
@@ -713,7 +764,7 @@ masih memakai file gaya dari cache.
 
 # Troubleshooting Paling Sering
 
-![w:1120](assets/diagrams/bab-05-css-box-model-dan-layout-34.svg)
+![w:1120 Lima gejala kartu produk dan penyebabnya: vertical-align baseline, spasi antar inline-block, margin runtuh, induk tanpa position relative, dan mode content-box yang masih aktif.](assets/diagrams/bab-05-css-box-model-dan-layout-34.svg)
 
 <!--
 Jadikan gambar ini daftar periksa pas kelas praktikum, bukan bahan bacaan. Gejala dan
