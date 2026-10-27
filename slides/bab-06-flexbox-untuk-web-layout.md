@@ -65,6 +65,29 @@ layar ujinya mulai dari HP sempit sampai monitor 24 inci.
 
 ---
 
+# Contoh: Wireframe Baru dari Desainer
+
+![w:1120 Dua panel berisi empat baris berpasangan. Panel kiri sebelum revisi: logo dan empat link belum terpisah, Keranjang belum di ujung kanan, delapan kartu dipaksa muat satu baris, kartu gepeng, teksnya rusak. Panel kanan sesudah revisi: logo tetap di kiri, empat link ke kanan, tombol Keranjang paling ujung, delapan kartu boleh turun baris, kartu tetap 250 px, teksnya utuh.](assets/diagrams/bab-06-flexbox-untuk-web-layout-05.svg)
+
+Panel kiri keadaan sebelum revisi: logo dan empat link belum terpisah, Keranjang belum di ujung kanan, delapan kartu dipaksa muat satu baris sampai kartu gepeng, teksnya rusak. Panel kanan sesudah revisi: logo tetap di kiri, empat link ke kanan, tombol Keranjang paling ujung, delapan kartu boleh turun baris, kartu tetap 250 px, teksnya utuh.
+
+<!--
+Mulai dari panel kiri: itu yang terjadi kalau delapan kartu dipaksa muat satu
+baris — kartunya gepeng dan teksnya rusak. Barulah pindah ke panel kanan dan
+bacakan brief-nya sambil menunjuk tiap barisnya.
+
+Tanyakan butir mana yang nggak bisa diselesaikan dengan menambah properti di satu
+kotak. Jawaban yang diharapkan: nggak ada satu pun, karena yang membagi ruang
+adalah wadahnya, bukan tiap kartu. Sebutkan angkanya pelan-pelan: 250 + 24 + 250 =
+524 px dari 768 px, sisa 244 px, sedangkan kartu ketiga minta 250 px ditambah
+jarak 24 px — 274 px — jadi dia turun baris. Delapan kartu berarti empat baris.
+
+Tahan diri dulu: jangan sebut nama properti apa pun di slide ini. Propertinya
+baru masuk setelah slide kenapa box model belum cukup.
+-->
+
+---
+
 # Kenapa Box Model Belum Cukup
 
 ![w:1120 Box model mengatur kotak satu per satu dan menjawab ukuran serta jarak satu kotak; flexbox membagi ruang antarkotak dan menjawab sisa ruang yang dibagi.](assets/diagrams/bab-06-flexbox-untuk-web-layout-04.svg)
@@ -117,6 +140,22 @@ Kata "satu dimensi" adalah kata kunci di paragraf ini; tulis di papan dan
 lingkari. Tanyakan apa maksudnya satu arah, bukan kisi dua arah. Jawaban yang
 diharapkan: item mengalir di satu jalur saja, ke kanan atau ke bawah, sedangkan
 baris dan kolom sekaligus adalah urusan Grid di Bab 7.
+-->
+
+---
+
+# Contoh: Apa Itu Flexbox
+
+![w:1120 Tiga tahap: display flex ditulis di induk, anak langsung jadi flex item, lalu item mengalir di satu jalur.](assets/diagrams/bab-06-flexbox-untuk-web-layout-08.svg)
+
+`display: flex` ditulis di induk — di Tokosaya cukup satu deklarasi di wadah `.site-nav` — dan anak langsung jadi flex item: merek, menu, dan keranjang. Item-item itu lalu mengalir di satu jalur, satu arah saja: `row` atau `column`, jadi nggak ada baris dan kolom sekaligus seperti Grid.
+
+<!--
+Tanyakan apa yang berubah di HTML setelah `display: flex` ditulis. Jawaban yang
+diharapkan: nggak ada satu baris pun yang disentuh; satu deklarasi CSS di wadah,
+dan semua anak langsungnya otomatis jadi flex item. Tunjuk kotak terakhir di
+gambar: yang dipelajari di bab ini cuma satu jalur, `row` atau `column`,
+sedangkan baris dan kolom sekaligus itu urusan Grid di Bab 7.
 -->
 
 ---
@@ -198,6 +237,22 @@ Pakai analogi ini kalau kelas mulai bingung, tapi jangan dibacakan dua kali.
 Tanyakan gimana lorongnya berubah kalau penghuni berdiri memanjang menyusuri
 lorong. Jawaban yang diharapkan: itu `column`, kamera berbalik arah, dan peran
 dua sumbu ikut bertukar. Ingatkan bahwa analogi cuma alat bantu ingat.
+-->
+
+---
+
+# Contoh: Analogi Lorong Asrama
+
+![w:1120 Lorong 1120 px berisi tiga pintu kamar selebar 240 px; sisa 400 px dibagi space-between menjadi dua celah 200 px sehingga pintu pertama dan terakhir menempel ujung lorong.](assets/diagrams/bab-06-flexbox-untuk-web-layout-13.svg)
+
+Lorong 1120 px dengan tiga pintu kamar selebar 240 px: 3 × 240 px = 720 px, jadi sisa 400 px. `justify-content: space-between` membagi sisa itu ke dua celah di antara pintu, 200 px per celah, sehingga pintu pertama dan terakhir tetap menempel ujung lorong.
+
+<!--
+Tanyakan ke mana kameranya berjalan di gambar ini. Jawaban yang diharapkan:
+menyusuri lorong dari ujung ke ujung, dan itu jalur sumbu utama. Tunjuk dua celah
+amber 200 px: renggangan itu bukan margin yang kita tulis, tapi sisa 400 px yang
+dibagi `justify-content`. Ingatkan bahwa arah tegak lurus lorong — maju-mundurnya
+penghuni — diurus `align-items`, dan itu nggak kelihatan di potongan satu baris.
 -->
 
 ---
@@ -343,6 +398,27 @@ atau `row-gap` belum ditulis, jadi jarak antarbaris nggak ada. Sebutkan bahwa
 
 ---
 
+# Contoh: Efek Samping Penekukan
+
+![w:1120 Tiga kotak berurutan dengan dua panah berlabel: sisa ruang baris habis, panah flex-wrap, wadah punya dua baris, panah row-gap, lalu align-items urus antar-baris.](assets/diagrams/bab-06-flexbox-untuk-web-layout-21.svg)
+
+Empat kartu 250 px plus tiga gap 24 px sudah memakai 1072 px dari 1120 px, jadi lima kartu berjajar butuh 1346 px dan kartu kelima turun baris lewat `flex-wrap: wrap`. Begitu sisa ruang baris habis dan wadah punya dua baris, `align-items` urus antar-baris — bukan lagi perataan dalam baris — dan row-gap 24 px menjaga dua baris itu nggak menempel.
+
+<!--
+Bacakan urutan akibatnya sambil menunjuk tiap kotak: sisa ruang baris habis,
+wadah punya dua baris, baru `align-items` pindah tugas. Tunjuk kotak ketiga: di
+situ pekerjaan `align-items` berpindah, dari perataan dalam satu baris jadi
+perataan antarbaris.
+
+Tanyakan apa yang terjadi kalau `row-gap` dihapus dari wadah ini. Jawaban yang
+diharapkan: dua baris itu langsung menempel, karena tanpa `gap` jarak antarbarisnya
+nol. Jadi `row-gap: 24 px` di CSS-nya bukan hiasan — dia yang menjaga baris kedua.
+Minta kelas menyusutkan jendela lalu menyebutkan persis kapan kartu kelima turun:
+saat barisnya butuh 1346 px, bukan 1120 px.
+-->
+
+---
+
 # Lima Properti Container
 
 | Properti | Yang diatur |
@@ -392,6 +468,22 @@ Gunakan contoh dua kolom: satu grow 1, satu grow 2. Tanyakan apakah kolom kedua
 jadi dua kali lebih lebar secara keseluruhan. Jawaban yang diharapkan: nggak,
 yang dua kali cuma porsi sisa ruangnya, karena basis dihitung lebih dulu.
 Tekankan urutan berpikirnya: basis dulu, baru kelebihannya dibagi.
+-->
+
+---
+
+# Contoh: Mengatur Ukuran Item
+
+![w:1120 Dua kolom di wadah 1120 px: kolom konten dan kolom samping masing-masing basis 240 px dengan gap 16 px, menyisakan 624 px yang menjadi bahan flex-grow.](assets/diagrams/bab-06-flexbox-untuk-web-layout-25.svg)
+
+Dua kolom di wadah 1120 px: kolom konten dan kolom samping, masing-masing basis 240 px, dipisah gap 16 px — 240 + 240 + 16 = 496 px, jadi sisa 624 px menganggur di kanan selama grow nol dan `justify-content: flex-start`. Begitu `flex-grow` diisi 1 dan 2, sisa 624 px itu dipecah jadi 208 px dan 416 px: kolom konten 448 px, kolom samping 656 px.
+
+<!--
+Tanyakan apakah kolom samping jadi dua kali lebih lebar dari kolom konten.
+Jawaban yang diharapkan: nggak — 656 px lawan 448 px, karena yang dua kali cuma
+porsi sisa ruangnya. Tunjuk pita amber di gambar: 624 px itulah bahan yang dibagi
+grow, sedangkan 240 px tiap kolom sudah dipatok `flex-basis` lebih dulu. Tekankan
+lagi urutan berpikirnya: basis dulu, baru kelebihannya dibagi.
 -->
 
 ---
