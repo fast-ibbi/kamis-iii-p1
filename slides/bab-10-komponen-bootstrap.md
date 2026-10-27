@@ -66,6 +66,24 @@ kuat lawan tanpa bayangan, dan review ikut lama. Arahkan diskusi ke ide komponen
 
 ---
 
+# Contoh: Elemen yang Benar-Benar Disentuh Pengguna
+
+![w:1120 Kartu produk di layar 360 piksel: content 360 kali 160 px berisi gambar kartu, border 1 px di tiap sisi, lebar total 362 px, dengan overflow hidden yang memotong gambar mengikuti radius.](assets/diagrams/bab-10-komponen-bootstrap-04.svg)
+
+Kartu produk itu satu dari tiga elemen yang disentuh pengguna, jadi angkanya harus satu buat semua: content gambar kartu 360 × 160 px, border 1 px di tiap sisi, lebar total 362 px = 360 + 1 + 1. `overflow: hidden` yang memotong gambarnya mengikuti radius.
+
+<!--
+Tunjuk tepi kartu di gambar dulu: pita tipis di kiri-kanan itu border 1 px, kotak
+putih di tengahnya content 360 × 160 px milik `card-img-top` yang dipasangi `w-100`.
+Tanyakan ke kelas, kalau tiap orang menulis bingkai kartunya sendiri, lebar totalnya
+bakal jadi berapa — jawaban yang diharapkan: 360, 364, atau 368 px, dan selisih segitu
+yang bikin kartu di sebelahnya kelihatan melenceng. Tutup dengan `overflow: hidden`
+di `.produk-card`: itu yang bikin sudut gambar tetap ikut radius, bukan sudut tajam
+nyelip kayak versi tulisan sendiri.
+-->
+
+---
+
 <!-- _class: section -->
 <!-- _footer: '' -->
 
@@ -100,6 +118,23 @@ ukuran layar. Ingatkan bahwa kamu nggak perlu menemukan ulang roda box model.
 
 ---
 
+# Contoh: Apa Itu Komponen Antarmuka
+
+![w:1120 Satu resep col-12 col-sm-6 col-lg-3 di grid 12 kolom: baris pertama dua belas kolom, baris kedua dua sel enam kolom, baris ketiga empat sel tiga kolom, untuk tiga lebar uji 360 / 768 / 1200 piksel.](assets/diagrams/bab-10-komponen-bootstrap-06.svg)
+
+`col-12 col-sm-6 col-lg-3` itu satu baris kelas, bukan tiga aturan. Di grid 12 kolom `col-12` memakan dua belas kolom, `col-sm-6` dua sel enam kolom, `col-lg-3` empat sel tiga kolom, untuk lebar uji 360 / 768 / 1200 piksel.
+
+<!--
+Tunjuk penggaris 1 sampai 12 di atas gambar, lalu minta kelas menjumlahkan sendiri:
+3 + 3 + 3 + 3 = 12, jadi empat kartu pas satu baris. Tanyakan apa yang terjadi kalau
+baris kelasnya cuma ditulis `col-12` — jawaban yang diharapkan: kartu tetap satu
+kolom sampai layar selebar apa pun, jadi di 1200 piksel pun cuma ada satu kartu per
+baris. Sebutkan bahwa tiga aturan lebar itu sudah ada sebelum kamu menulis satu baris
+CSS, persis kayak papan furnitur yang sudah dipotong.
+-->
+
+---
+
 # Tiga Alasan Komponen Hemat Biaya
 
 | Alasan | Yang terjadi |
@@ -122,7 +157,6 @@ langsung mengikuti kode rekannya. Tekankan bahwa review jadi lebih cepat.
 
 # Batas Tanpa JavaScript
 
-![w:1120](../../../../../tmp/outtest/bab-10-komponen-bootstrap-07.svg)
 
 ![w:1120 Tanpa JavaScript lapisan visual komponen tetap jalan penuh dengan status statis manual dan komponen interaktif yang berhenti seperti storyboard; dengan JavaScript perilaku interaktif datang dari paket resmi Bootstrap.](assets/diagrams/bab-10-komponen-bootstrap-07.svg)
 
@@ -365,7 +399,6 @@ informasi. Ingatkan bahwa kartu nanti dipakai lagi di Bab 12 sebagai design syst
 
 # Anatomi Kelas Card
 
-![w:1120](../../../../../tmp/outtest/bab-10-komponen-bootstrap-17.svg)
 
 ![w:1120 Kelas card adalah bingkai kartu; di dalamnya card-img-top menempelkan gambar ke tepi atas, dan card-body membuka ruang isi yang memuat card-title untuk judul serta card-text untuk paragraf.](assets/diagrams/bab-10-komponen-bootstrap-17.svg)
 
@@ -445,7 +478,6 @@ menunjuk gaya kustom yang ditulis terpisah di `css/style.css`.
 
 # Kenapa Harga Sejajar di Dasar
 
-![w:1120](../../../../../tmp/outtest/bab-10-komponen-bootstrap-20.svg)
 
 ![w:1120 h-100 menyamakan tinggi kartu dengan kolom grid, d-flex flex-column menyusun isi menurun, mt-auto mendorong harga ke dasar kartu, sehingga harga sejajar walau deskripsi beda panjang.](assets/diagrams/bab-10-komponen-bootstrap-20.svg)
 
@@ -469,7 +501,6 @@ outline tetap benar.
 
 # Kartu Hidup di Dalam Grid
 
-![w:1120](../../../../../tmp/outtest/bab-10-komponen-bootstrap-21.svg)
 
 ![w:1120 Wadah konten berupa card h-100 dengan isi gambar, badge, judul, harga, dan tombol; wadah layout berupa row g-4 yang mengendalikan jarak antarkartu dan col-12 col-sm-6 col-lg-3 yang membagi 1-2-4 kolom.](assets/diagrams/bab-10-komponen-bootstrap-21.svg)
 
@@ -696,7 +727,6 @@ ketiga komponen interaktif ini alasan utama tim memuat paket JavaScript resmi.
 
 # Bootstrap Icons dan Tiga Aturan Praktis
 
-![w:1120](../../../../../tmp/outtest/bab-10-komponen-bootstrap-29.svg)
 
 ![w:1120 Ikon dekoratif yang duduk di sebelah kata yang menjelaskan diberi aria-hidden true; ikon yang berdiri sendiri tanpa kata pendamping butuh aria-label.](assets/diagrams/bab-10-komponen-bootstrap-29.svg)
 
