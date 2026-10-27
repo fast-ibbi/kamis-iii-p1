@@ -5,7 +5,7 @@ description: Author SVG teaching diagrams for Marp lecture slides — picks the 
 
 # Slide Diagrams
 
-Turn the relational parts of a Marp deck into SVGs that survive a projector: six
+Turn the relational parts of a Marp deck into SVGs that survive a projector: seven
 fixed patterns, no hand-placed coordinates, text measured before it is drawn, and
 a build that refuses to emit anything illegible.
 
@@ -13,7 +13,7 @@ a build that refuses to emit anything illegible.
 one `.svg` per diagram in `<deckDir>/assets/diagrams/`, and exactly one added
 `![w:…](…)` line per diagram in the deck.
 
-**What this skill does NOT do:** draw anything outside the six patterns, edit the
+**What this skill does NOT do:** draw anything outside the seven patterns, edit the
 prose of a slide, rebuild diagrams in decks you are not working on, or claim a
 diagram looks right without having looked at it.
 
@@ -50,7 +50,7 @@ slide produces five diagrams on the first four slides and none afterwards.
 ### 2. Apply the selection test
 
 Read `references/pedagogy.md`. Only slides whose **relationships are the content**
-qualify, and only 3–6 per chapter. A slide that does not fit one of the six
+qualify, and only 3–6 per chapter. A slide that does not fit one of the seven
 patterns does not get a diagram — that is a successful outcome, not a gap.
 
 A **whole deck at once** ("visualise this chapter", "convert this text to images") is
@@ -130,8 +130,11 @@ notes.
 
 - **No coordinates.** A spec supplies data; the pattern owns geometry. If you find
   yourself wanting `x`/`y`, the content is wrong for every pattern — say so.
-- **Six patterns, closed set.** `flow`, `layers`, `beforeAfter`, `tree`,
-  `sequence`, `stateMachine`. Adding a seventh is a library change, not a diagram.
+- **Seven patterns, closed set.** `flow`, `layers`, `beforeAfter`, `tree`,
+  `sequence`, `stateMachine`, `mockup`. Adding an eighth is a library change, not a
+  diagram. `mockup` is this repo's own addition and is documented in `FORK.md`; it
+  exists because the other six only ever draw text in panels, and a CSS course needs
+  pictures that show real geometry.
 - **Never go below 14px, and never let the slide scale it below 13px.** The kit
   refuses the first; the build warns about the second, because a 1160-unit canvas at
   `w:720` turns a legal 14px label into 8.7px on the projector. Fit is not legible.
@@ -184,7 +187,7 @@ it defaulted — it never silently guesses.
 ## Relationship to marp-slides
 
 `marp-slides` builds decks and owns Mermaid for quick sketches. This skill owns
-**student-facing teaching diagrams**. When a slide's content fits one of the six
+**student-facing teaching diagrams**. When a slide's content fits one of the seven
 relational patterns, use this skill rather than a Mermaid fence: Mermaid's layout
 engine has no notion of a slide's text budget and cannot produce themed panels,
 annotated rows, or routed state arcs.

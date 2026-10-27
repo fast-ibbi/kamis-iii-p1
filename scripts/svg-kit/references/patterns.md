@@ -1,7 +1,7 @@
-# The six patterns — data contracts
+# The seven patterns — data contracts
 
 A spec names a pattern and hands it data. It never supplies a coordinate: the
-pattern owns geometry, wrapping, and text fitting. These are the only six
+pattern owns geometry, wrapping, and text fitting. These are the only seven
 patterns that exist. If content fits none of them, that is the answer to
 "should this slide have a diagram" — it should not.
 
@@ -15,6 +15,7 @@ Read this table first, then the section for the pattern you picked.
 | `tree` | Containment: what hangs off what | ≤ 9 nodes, depth ≤ 3 levels | 1120 |
 | `sequence` | Messages exchanged over time | 2–4 actors, 2–7 messages | 1120 |
 | `stateMachine` | Modes and the events that change them | 2–5 states | 1040 |
+| `mockup` | CSS geometry drawn to scale — zones, free space, spans | 1 box, or 2–5 flex items, or 1–4 grid rows | 1120 |
 
 Every spec is one `.mjs` file exporting one object:
 
@@ -22,7 +23,7 @@ Every spec is one `.mjs` file exporting one object:
 export default {
   id: '05',                       // required (or derive from the -NN.mjs filename)
   slide: 'Deklaratif vs Imperatif', // required: the EXACT `## ` heading
-  pattern: 'beforeAfter',         // required: one of the six
+  pattern: 'beforeAfter',         // required: one of the seven
   alt: '…',                       // optional: <title> text for screen readers
   imgWidth: 1120,                 // optional: override the ![w:] width
   data: { … },                    // required: this pattern's payload
@@ -197,3 +198,97 @@ id, or an unroutable edge (usually caused by too many states for one row).
 
 Use it for: form states, auth states, media playback. If the states form a plain
 straight line with no branch and no return, use `flow` instead — it is calmer.
+
+---
+
+## `mockup` — CSS geometry, drawn to scale
+
+This is a local addition (see `FORK.md`). It exists because every other pattern draws
+**text in panels**: none of them can show a box, a width, a gap, or a span. For a
+frontend course a picture that does not show geometry teaches almost nothing, so this
+pattern draws borders, padding bands, free space and column tracks to real scale.
+
+Three layouts, chosen by `data.kind`.
+
+### `kind: 'box'` — the box model
+
+```js
+data: {
+  kind: 'box',
+  content: { w: 240, h: 96, label: 'gambar produk' },
+  padding: [16, 16, 16, 16],   // [top, right, bottom, left], CSS px
+  border: [4, 4, 4, 4],
+  margin: [0, 0, 0, 0],
+  footer: 'max-width: 100%',
+}
+```
+
+Draws nested margin/border/padding/content bands at one uniform scale, next to a
+legend listing every value plus a computed `lebar total`. Scale is chosen to fill the
+canvas, so the picture shows the RATIO of the bands, not their CSS pixel size.
+
+Fails when: `content` has no positive `w`/`h`, or `content.label` does not fit its box —
+shorten or drop the label. `footer` and the row names are drawn labels, so they must
+appear in the slide text like any other.
+
+Use it for: padding versus margin, `box-sizing`, `max-width` clamping, border weights.
+
+### `kind: 'flex'` — a flex line's free space
+
+```js
+data: {
+  kind: 'flex',
+  justify: 'space-between',
+  container: 1120,
+  gap: 24,
+  items: [{ label: 'Kartu 1', basis: 280 }, { label: 'Kartu 2', basis: 280 }],
+}
+```
+
+Items are drawn with their real `basis`; leftover space is drawn as amber regions
+labelled in px, so the reader can add it up. The declared `gap` gets its own dimension
+callout under the first gap — without it the picture would assert a gap size while
+drawing only the free space, and neither number could be checked by eye.
+
+`justify` is one of `flex-start`, `flex-end`, `center`, `space-between`,
+`space-around`, `space-evenly`.
+
+Fails when: fewer than 2 or more than 5 items, an item has no positive `basis`, the
+items plus gaps exceed `container`, or an item label does not fit its box.
+
+Use it for: `justify-content`, `gap` versus `space-between`, `flex-basis` arithmetic.
+
+### `kind: 'grid'` — columns and spans
+
+```js
+data: {
+  kind: 'grid',
+  columns: 12,
+  gutter: 16,
+  container: 1120,
+  rows: [
+    [{ label: 'span 12', span: 12 }],
+    [{ label: 'span 4', span: 4 }, { label: 'span 8', span: 8 }],
+  ],
+  footer: 'gutter 16 px',
+}
+```
+
+A numbered track ruler sits above the rows, and dashed column lines run from it down
+through every row. The lines are drawn **before** the cells, so they only show through
+the gutters — which is where a column line actually lives. That ruler plus those lines
+are the point of the pattern: without them the cells fill the space where the tracks
+would be and the picture teaches nothing about columns.
+
+Fails when: `columns` is outside 2–12, there are fewer than 1 or more than 4 rows, a
+row's spans exceed `columns`, or a cell label does not fit.
+
+Use it for: 12-column grids, Bootstrap `col-*`, `span`, gutters.
+
+### What `mockup` deliberately does not do
+
+- No coordinates, same as every other pattern. If you want to place a box by hand, the
+  content is wrong for this pattern.
+- No arbitrary nested HTML. It draws zones, free space and tracks — not a page.
+- It does not relax the 14px floor or the fit checks. A mockup that cannot fit is
+  telling you the example has too many parts for one picture.
