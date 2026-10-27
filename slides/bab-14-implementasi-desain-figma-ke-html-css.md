@@ -309,12 +309,12 @@ jadi periksa dokumentasi resmi Bootstrap 5.3 kalau root diubah.
 
 # Contoh: Hitung Grid dan Kelas Bootstrap
 
-![w:1120 Frame 1440 px: margin 150 px di kiri dan kanan, content 1140 x 96 px, lebar total 1440 px, dan satu kolom grid 73 px.](assets/diagrams/bab-14-implementasi-desain-figma-ke-html-css-18.svg)
+![w:1120 Denah dua belas kolom di atas kontainer 1140 px dengan gutter 24 px: ruler bernomor 1 sampai 12, satu baris .col-12 penuh, lalu dua sel col-6 masing-masing setengah lebar.](assets/diagrams/bab-14-implementasi-desain-figma-ke-html-css-18.svg)
 
-Frame 1440 px dikurangi margin 150 px di kiri dan 150 px di kanan menyisakan content 1140 × 96 px, jadi lebar total tetap 1440 px. Kontainer itu lalu dibagi 12 kolom: (1140 − 11 × 24) ÷ 12 = 73 px per kolom.
+Kontainer 1140 px itu dibagi 12 kolom dengan gutter 24 px, jadi satu kolom (1140 − 11 × 24) ÷ 12 = 73 px. Baris `.col-12` menutup dua belas track di gambar, sedangkan `col-6` menutup enam. Frame 1440 px sendiri = 150 + 1140 + 150, jadi margin kiri dan kanan yang 150 px itulah yang menyisakan kontainer selebar ini.
 
 <!--
-Kerjakan pengurangannya di papan: 1440 − 150 − 150 = 1140. Tanyakan kenapa sisanya 150 px, bukan angka lain. Jawaban yang diharapkan: kontainer Bootstrap berhenti tumbuh di 1140 px, jadi sisa 300 px dibagi dua sama rata. Tunjuk pita margin kiri-kanan di gambar, lalu baris lebar total 1440 px di panel kanan. Nilai di panel itu ditulis urut atas, kanan, bawah, kiri, jadi margin 0 150 0 150 px artinya cuma kiri dan kanan yang diberi 150 px.
+Kerjakan pengurangannya di papan: 1440 − 150 − 150 = 1140. Tanyakan kenapa sisanya 300 px dibagi dua sama rata. Jawaban yang diharapkan: kontainer Bootstrap berhenti tumbuh di 1140 px. Lalu tunjuk ruler di gambar: 12 track, 11 celah 24 px, jadi (1140 − 11 × 24) ÷ 12 = 73 px per kolom. Cocokkan dua baris di bawah ruler, `.col-12` yang menutup dua belas track dan `col-6` yang menutup enam, supaya kelas Bootstrap tidak cuma jadi nama.
 -->
 
 ---
@@ -345,7 +345,7 @@ bahwa nama gaya Figma bakal jadi nama variabel CSS.
 Panel Local styles di Figma cuma punya dua cabang: text style dan color style. Contoh isinya, text style memuat Title 1 32 px sampai Caption 14 px, sedangkan color style memuat Warna/Primary #4F46E5 dan Warna/Body #334155.
 
 <!--
-Tanyakan kenapa daftar gaya berlabel lebih andal daripada mengklik teks satu per satu di kanvas. Jawaban yang diharapkan: daftar itu langsung menunjukkan konsistensi dan niat desainernya. Tunjuk cabang color style lalu sebutkan bahwa slide setelah ini membongkar tokennya satu per satu.
+Bacakan pohonnya dari kiri ke kanan: satu panel Local styles, dua cabang, lalu dua contoh isi di tiap cabang. Tanyakan mana yang bakal jadi variabel CSS dan mana yang jadi aturan tipografi. Jawaban yang diharapkan: color style jadi variabel di blok `:root`, text style jadi ukuran dan ketebalan di kelas. Sebutkan bahwa cabang yang sama di Figma bisa berisi belasan gaya, jadi yang dipilih di sini cuma yang benar-benar dipakai `produk.html`.
 -->
 
 ---
@@ -397,10 +397,10 @@ Tokosaya yang udah dipakai sejak Bab 4.
 
 ![w:1120 Empat baris berpasangan: Warna/Primary #4F46E5 jadi --clr-primary: #4F46E5, Warna/Accent #F59E0B jadi --clr-accent: #F59E0B, Warna/Dark #1E293B jadi --clr-dark: #1E293B, dan Warna/Body #334155 jadi --clr-body: #334155.](assets/diagrams/bab-14-implementasi-desain-figma-ke-html-css-48.svg)
 
-Nama color style dan nama variabel memang beda, tapi hex-nya disalin apa adanya: Warna/Primary #4F46E5 jadi --clr-primary: #4F46E5, Warna/Accent #F59E0B jadi --clr-accent: #F59E0B, Warna/Dark #1E293B jadi --clr-dark: #1E293B, dan Warna/Body #334155 jadi --clr-body: #334155.
+Nama color style dan nama variabel memang beda, tapi hex-nya sama persis: Warna/Primary #4F46E5 jadi --clr-primary: #4F46E5, Warna/Accent #F59E0B jadi --clr-accent: #F59E0B, Warna/Dark #1E293B jadi --clr-dark: #1E293B, dan Warna/Body #334155 jadi --clr-body: #334155.
 
 <!--
-Pasangkan baris kiri dan kanan satu per satu: yang di Figma dan yang di CSS isinya sama, cuma namanya beda. Tanyakan apa untungnya menyalin hex satu kali di blok `:root`. Jawaban yang diharapkan: perubahan desain cukup disalin di satu blok, dan semua badge ikut berubah.
+Pasangkan baris kiri dan kanan satu per satu: yang di Figma dan yang di CSS isinya sama, cuma namanya beda. Kedua panel sengaja netral karena tidak ada sisi yang salah, dan hex di kedua kolom sama persis. Tanyakan apa untungnya menyalin hex satu kali di blok `:root`. Jawaban yang diharapkan: perubahan desain cukup disalin di satu blok, dan semua badge ikut berubah.
 -->
 
 ---
@@ -429,7 +429,7 @@ itu datang dari desain, jadi jangan dihilangkan pas menulis kode.
 Dua kehati-hatian sejak awal cuma soal font dan kontras. Font dipanggil lewat Google Fonts dengan fallback sans-serif di belakangnya, sementara kontras dicek langsung di pasangan tokennya: #334155 di atas #FFFFFF.
 
 <!--
-Tanyakan apa yang terjadi kalau Google Fonts gagal dimuat di jaringan kampus. Jawaban yang diharapkan: teks tetap terbaca karena fallback sans-serif mengambil alih. Tunjuk cabang kontras lalu tegaskan bahwa keputusan aksesibilitas itu datang dari desain, bukan tambahan di akhir.
+Susuri dua cabangnya sendiri-sendiri. Cabang font: dua baris di bawahnya adalah panggilan Google Fonts dan fallback sans-serif, jadi satu baris bisa gagal tanpa mematikan halaman. Cabang kontras: yang diperiksa bukan warna favorit, tapi pasangan #334155 di atas #FFFFFF, dan pasangan itu diambil dari token, bukan dari hex liar. Minta mahasiswa menunjuk pasangan lain di `produk.html` yang perlu dicek dengan cara yang sama, misalnya teks badge di atas `--clr-accent`.
 -->
 
 ---
@@ -515,12 +515,12 @@ bahwa catatan perilaku wajib ditulis, jangan cuma diingat di kepala.
 
 # Contoh: Keadaan Interaktif Ditranslasi Statis
 
-![w:1120 Empat keadaan: menu tertutup dan menu terbuka berpindah lewat klik menu dan klik lagi; keranjang kosong dan keranjang terisi berpindah lewat tambah item dan hapus item.](assets/diagrams/bab-14-implementasi-desain-figma-ke-html-css-30.svg)
+![w:1120 Empat keadaan dalam dua pasang: menu tertutup dan menu terbuka (netral) berpindah lewat klik menu dan klik lagi; keranjang masih kosong dan keranjang sudah terisi (beraksen) berpindah lewat tambah item dan hapus item.](assets/diagrams/bab-14-implementasi-desain-figma-ke-html-css-30.svg)
 
-Menu punya dua keadaan, menu tertutup dan menu terbuka, dengan pemicunya klik menu lalu klik lagi untuk menutup. Keranjang juga dua: keranjang kosong dan keranjang terisi, yang berpindah lewat tambah item atau hapus item.
+Menu punya dua keadaan, menu tertutup dan menu terbuka, dengan pemicunya klik menu lalu klik lagi untuk menutup. Keranjang juga dua, keranjang masih kosong dan keranjang sudah terisi, yang berpindah lewat tambah item atau hapus item. Pasangan menu digambar netral dan pasangan keranjang beraksen, supaya dua mesin ini tidak terbaca sebagai satu rantai empat langkah.
 
 <!--
-Tanyakan kenapa dua pasang keadaan ini tetap harus digambar walaupun halamannya statis. Jawaban yang diharapkan: keadaan itulah yang menentukan kelas mana yang dipasang di HTML, jadi tanpa gambarnya kelasnya cuma ditebak. Tunjuk pasangan kanan: keranjang terisi cukup ditampilkan apa adanya sebagai bentuk jadi, lalu tulis di catatan bahwa perilaku JavaScript-nya di luar cakupan.
+Tanyakan kenapa dua pasang keadaan ini tetap harus digambar walaupun halamannya statis. Jawaban yang diharapkan: keadaan itulah yang menentukan kelas mana yang dipasang di HTML, jadi tanpa gambarnya kelasnya cuma ditebak. Tunjuk pasangan beraksen di kanan: keranjang masih kosong dan keranjang sudah terisi, lalu tegaskan keduanya cuma bentuk jadi yang ditampilkan statis, sementara klik menu, tambah item, dan hapus item dicatat sebagai perilaku JavaScript di luar cakupan.
 -->
 
 ---
@@ -728,6 +728,17 @@ Tanyakan apa risikonya membangun semua komponen dulu baru mencari selisihnya di 
 
 # Praktik: Membangun `produk.html`
 
+<style scoped>
+h1 code {
+  font-family: inherit;
+  font-size: 1em;
+  font-weight: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+</style>
+
 - Lanjutkan folder proyek `tokosaya-bootstrap/` dari Bab 9
 - Bangun file baru `produk.html` di dalam folder itu
 - Kembangkan `css/style.css` yang sudah ada
@@ -745,6 +756,17 @@ sebelah halaman baru.
 ---
 
 # Contoh: Praktik: Membangun `produk.html`
+
+<style scoped>
+h1 code {
+  font-family: inherit;
+  font-size: 1em;
+  font-weight: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+</style>
 
 ![w:1120 Denah 12 kolom halaman produk.html: baris col-12 penuh, baris col-lg-7 dan col-lg-5, lalu tiga kartu col-md-4 dengan gutter 24 px.](assets/diagrams/bab-14-implementasi-desain-figma-ke-html-css-42.svg)
 
@@ -764,8 +786,7 @@ Minta kelas menebak kelas Bootstrap tiap baris sebelum kamu tunjukkan gambarnya.
 - Susun kerangka HTML dengan lima bagian utama
 - Tulis blok `:root` penuh dan aturan dasar halaman
 - Tambahkan kelas tiap komponen sesuai angka spesifikasi
-- Uji di lebar 1440, 768, dan 375 piksel
-- Jalankan checklist, catat hasilnya di `catatan-fidelity.txt`
+- Uji di lebar 1440, 768, dan 375 piksel, lalu jalankan checklist dan catat hasilnya di `catatan-fidelity.txt`
 
 <!--
 Jalankan langkah ini sambil didemokan di layar, jangan cuma dibacakan. Sering-sering
@@ -779,12 +800,12 @@ yang diharapkan: biar nggak ada nilai yang ditaksir.
 
 # Contoh: Langkah Kerja Praktikum
 
-![w:1120 Lima langkah berurutan: spesifikasi, kerangka HTML, token di blok :root, kelas per komponen, lalu uji lebar 1440, 768, dan 375 piksel.](assets/diagrams/bab-14-implementasi-desain-figma-ke-html-css-44.svg)
+![w:1120 Lima langkah berurutan: spesifikasi, kerangka HTML, token di blok :root dengan aturan dasar halaman, kelas per komponen, lalu checklist setelah uji 1440, 768, 375 piksel.](assets/diagrams/bab-14-implementasi-desain-figma-ke-html-css-44.svg)
 
-Baca spesifikasi dulu, lalu susun kerangka lima bagian, token dulu di blok `:root`, kelas sesuai angka, terakhir uji lebar 1440, 768, dan 375 piksel. Urutan ini yang bikin angka desain nggak sempat ditaksir.
+Baca spesifikasi dulu, lalu susun kerangka lima bagian, token dulu di blok `:root` berikut aturan dasar halaman, kelas sesuai angka, dan tutup dengan checklist setelah uji 1440, 768, 375 piksel. Urutan ini yang bikin angka desain nggak sempat ditaksir, karena langkah terakhir memeriksa ulang yang sudah ditulis.
 
 <!--
-Jalankan urutannya sambil didemokan di layar, jangan cuma dibacakan. Tanyakan kenapa spesifikasi dibaca dua kali: sebelum menulis kode dan sebelum menyalin angka. Jawaban yang diharapkan: biar nggak ada nilai yang ditaksir, dan itu penyebab revisi paling sering. Tunjuk langkah terakhir, karena di situlah kesetiaan halaman baru benar-benar diuji.
+Bacakan lima kotaknya sambil menyebut catatan di bawah dua kotak: token cuma berguna kalau aturan dasar halaman ikut ditulis, dan checklist baru bisa dijalankan setelah halaman diuji di 1440, 768, 375 piksel. Tanyakan kenapa checklist ditaruh paling akhir, bukan di tengah. Jawaban yang diharapkan: yang diperiksa adalah hasil yang sudah jadi, jadi urutannya tidak bisa ditukar. Tunjuk panah terakhir sebagai satu-satunya langkah yang memeriksa, bukan membangun.
 -->
 
 ---

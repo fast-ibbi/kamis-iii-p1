@@ -1,6 +1,7 @@
 // bab-14 · 48 (slide ke-23) — satu warna, dua nama: color style di Figma dan
-// variabel di CSS. Hex-nya identik, jadi yang berubah cuma label; itulah inti
-// kalimat "nilai disalin apa adanya" di slide token.
+// variabel di CSS. Dua sisinya benar dan hex-nya identik, jadi kedua panel
+// memakai tone netral: tidak ada sisi yang dicat sebagai "salah", dan kalimat
+// di slide yang menyebut hex-nya identik.
 // id 48 dipakai karena id 23 sudah terpakai spec "Token Tiga Lapis, Nama Berperan".
 export default {
   id: '48',
@@ -11,7 +12,7 @@ export default {
   data: {
     left: {
       title: 'DI FIGMA',
-      tone: 'red',
+      tone: 'neutral',
       items: [
         'Warna/Primary #4F46E5',
         'Warna/Accent #F59E0B',
@@ -21,7 +22,7 @@ export default {
     },
     right: {
       title: 'DI CSS',
-      tone: 'acc',
+      tone: 'neutral',
       items: [
         '--clr-primary: #4F46E5',
         '--clr-accent: #F59E0B',

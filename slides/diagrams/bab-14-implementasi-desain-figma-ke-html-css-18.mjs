@@ -1,18 +1,22 @@
 // bab-14 · 18 — frame 1440 px dipotong margin 150 px di dua sisi, sisanya
-// kontainer 1140 px. Gambar ini yang membuat angka (1140 − 11 × 24) ÷ 12 = 73
-// masuk akal: pengurangannya diambil dari lebar frame, bukan dari perasaan.
+// kontainer 1140 px yang dipecah jadi dua belas track. Ruler dan garis kolom
+// yang membuat angka (1140 − 11 × 24) ÷ 12 = 73 bisa diperiksa di gambar,
+// bukan cuma di kalimat.
 export default {
   id: '18',
   slide: 'Contoh: Hitung Grid dan Kelas Bootstrap',
   pattern: 'mockup',
-  alt: 'Frame 1440 px: margin 150 px di kiri dan kanan, content 1140 x 96 px, lebar total 1440 px, dan satu kolom grid 73 px.',
+  alt: 'Denah dua belas kolom di atas kontainer 1140 px dengan gutter 24 px: ruler bernomor 1 sampai 12, satu baris .col-12 penuh, lalu dua sel col-6 masing-masing setengah lebar.',
   imgWidth: 1120,
   data: {
-    kind: 'box',
-    content: { w: 1140, h: 96, label: 'kontainer' },
-    padding: [0, 0, 0, 0],
-    border: [0, 0, 0, 0],
-    margin: [0, 150, 0, 150],
-    footer: 'frame 1440 px',
+    kind: 'grid',
+    columns: 12,
+    gutter: 24,
+    container: 1140,
+    rows: [
+      [{ label: '.col-12', span: 12 }],
+      [{ label: 'col-6', span: 6 }, { label: 'col-6', span: 6 }],
+    ],
+    footer: 'kontainer 1140 px',
   },
 }
