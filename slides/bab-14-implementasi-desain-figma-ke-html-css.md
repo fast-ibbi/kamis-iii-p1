@@ -69,6 +69,18 @@ unit publikasi.
 
 ---
 
+# Contoh: Desain Udah Jadi, Tapi Hasilnya Meleset
+
+![w:1120 Dua panel: yang dikirim cuma satu gambar rapi sehingga ukuran ditaksir mata, jarak cuma ditebak, dan judul diperkecil sendiri; yang dibutuhkan adalah frame 1440 px, judul 32 px, gutter 24 px, dan radius 12 px.](assets/diagrams/bab-14-implementasi-desain-figma-ke-html-css-04.svg)
+
+Yang dikirim cuma satu gambar rapi, jadi ukuran ditaksir mata, jarak cuma ditebak, dan judul diperkecil sendiri. Yang dibutuhkan justru angka: frame 1440 px, judul 32 px, gutter 24 px, dan radius 12 px — empat nilai yang nanti disalin ke CSS.
+
+<!--
+Tanyakan kenapa revisi tetap datang padahal file desainnya ada. Jawaban yang diharapkan: yang dikirim cuma gambar, bukan angka. Tunjuk panel kanan: frame 1440 px, judul 32 px, gutter 24 px, radius 12 px — empat angka itu yang bikin hasil di browser bisa diperiksa, bukan diperdebatkan.
+-->
+
+---
+
 <!-- _class: section -->
 <!-- _footer: '' -->
 
@@ -98,6 +110,18 @@ Tekankan analogi arsitek dan kontraktor; ini pegangan buat seluruh bab. Tanyakan
 gambar kerja nggak memuat angka dimensi, siapa yang bakal menanggung akibatnya?
 Jawaban yang diharapkan: dua-duanya, karena hasil bangunannya jadi berbeda dari rencana.
 Ingatkan bahwa handoff bukan mengirim file, tapi mengirim keputusan.
+-->
+
+---
+
+# Contoh: Apa Itu Handoff
+
+![w:1120 Percakapan handoff dua arah: desainer mengirim frame 1440 px, kontainer 1140 px, dan 7 color style, lalu pengembang membalas dengan revisi warna badge.](assets/diagrams/bab-14-implementasi-desain-figma-ke-html-css-47.svg)
+
+Handoff Tokosaya yang benar: desainer menyerahkan frame 1440 px, kontainer 1140 px, dan 7 color style dalam satu lembar. Pengembang yang menerima angka itu nggak perlu menebak, jadi balasannya cukup revisi warna badge, bukan bongkar ulang halaman.
+
+<!--
+Bacakan alurnya sebagai percakapan, bukan sebagai daftar file: desainer mengirim tiga fakta, pengembang membalas satu. Tanyakan apa yang terjadi kalau kiriman pertama cuma gambar tanpa angka. Jawaban yang diharapkan: pengembang balik bertanya, dan revisi warna badge jadi telat.
 -->
 
 ---
@@ -178,6 +202,18 @@ bikin hirarki HTML mulai kelihatan sendiri.
 
 ---
 
+# Contoh: Frame dan Layer di Figma
+
+![w:1120 Frame 1440 px bercabang tiga: header, section produk-detail yang berisi layer gambar dan panel harga, lalu footer.](assets/diagrams/bab-14-implementasi-desain-figma-ke-html-css-12.svg)
+
+Di Figma, frame 1440 px punya tiga layer utama: header, section produk-detail, dan footer. Bedah section-nya, isinya cuma dua layer lagi, yaitu gambar dan panel harga.
+
+<!--
+Susuri urutan ini dari luar ke dalam sambil menunjuk panel kiri Figma. Tanyakan layer mana yang bakal jadi elemen HTML tersendiri. Jawaban yang diharapkan: section produk-detail, karena dia yang membungkus gambar dan panel harga. Sebutkan bahwa frame tablet 768 px dan HP 375 px punya susunan layer yang sama.
+-->
+
+---
+
 <!-- _class: compact -->
 
 # Istilah Figma dan Padanannya
@@ -239,6 +275,18 @@ bahwa angka grid disalin sekali saja, lalu dipakai ulang di semua komponen.
 
 ---
 
+# Contoh: Column Grid Dua Belas Kolom
+
+![w:1120 Denah 12 kolom dengan penggaris bernomor: baris span 12 penuh, baris span 6 dan span 6, baris span 4 tiga kali, dan baris span 8 lalu span 4, dengan gutter 24 px.](assets/diagrams/bab-14-implementasi-desain-figma-ke-html-css-16.svg)
+
+Kontainer 1140 px dibagi 12 kolom dengan gutter 24 px, jadi satu kolom 73 px. Semua kombinasi tetap pas: span 12 penuh, span 6 + span 6, span 4 + span 4 + span 4, dan span 8 + span 4.
+
+<!--
+Minta kelas menjumlahkan tiap baris: 12, lalu 6 + 6, lalu 4 + 4 + 4, lalu 8 + 4. Jawaban yang diharapkan: semuanya 12 kolom, dan itu sebabnya layout tetap lurus walau jumlah butirnya beda. Tunjukkan angka 1 sampai 12 di penggaris atas gambar supaya kelas bisa menunjuk kolom yang ditempati tiap butir.
+-->
+
+---
+
 <!-- _class: compact -->
 
 # Hitung Grid dan Kelas Bootstrap
@@ -259,6 +307,18 @@ jadi periksa dokumentasi resmi Bootstrap 5.3 kalau root diubah.
 
 ---
 
+# Contoh: Hitung Grid dan Kelas Bootstrap
+
+![w:1120 Frame 1440 px: margin 150 px di kiri dan kanan, content 1140 x 96 px, lebar total 1440 px, dan satu kolom grid 73 px.](assets/diagrams/bab-14-implementasi-desain-figma-ke-html-css-18.svg)
+
+Frame 1440 px dikurangi margin 150 px di kiri dan 150 px di kanan menyisakan content 1140 × 96 px, jadi lebar total tetap 1440 px. Kontainer itu lalu dibagi 12 kolom: (1140 − 11 × 24) ÷ 12 = 73 px per kolom.
+
+<!--
+Kerjakan pengurangannya di papan: 1440 − 150 − 150 = 1140. Tanyakan kenapa sisanya 150 px, bukan angka lain. Jawaban yang diharapkan: kontainer Bootstrap berhenti tumbuh di 1140 px, jadi sisa 300 px dibagi dua sama rata. Tunjuk pita margin kiri-kanan di gambar, lalu baris lebar total 1440 px di panel kanan. Nilai di panel itu ditulis urut atas, kanan, bawah, kiri, jadi margin 0 150 0 150 px artinya cuma kiri dan kanan yang diberi 150 px.
+-->
+
+---
+
 # Text Style dan Color Style
 
 - Desainer yang rapi nggak mewarnai teks satu per satu
@@ -274,6 +334,18 @@ Ingatkan Bab 12: konsep token desain sebenarnya udah kenal, cuma bentuknya beda.
 kenapa daftar gaya berlabel lebih andal daripada mengklik teks satu-satu. Jawaban yang
 diharapkan: daftar itu langsung menunjukkan konsistensi dan niat desainernya. Sebutkan
 bahwa nama gaya Figma bakal jadi nama variabel CSS.
+-->
+
+---
+
+# Contoh: Text Style dan Color Style
+
+![w:1120 Panel Local styles bercabang dua: text style berisi Title 1 32 px sampai Caption 14 px, dan color style berisi Warna/Primary #4F46E5 serta Warna/Body #334155.](assets/diagrams/bab-14-implementasi-desain-figma-ke-html-css-20.svg)
+
+Panel Local styles di Figma cuma punya dua cabang: text style dan color style. Contoh isinya, text style memuat Title 1 32 px sampai Caption 14 px, sedangkan color style memuat Warna/Primary #4F46E5 dan Warna/Body #334155.
+
+<!--
+Tanyakan kenapa daftar gaya berlabel lebih andal daripada mengklik teks satu per satu di kanvas. Jawaban yang diharapkan: daftar itu langsung menunjukkan konsistensi dan niat desainernya. Tunjuk cabang color style lalu sebutkan bahwa slide setelah ini membongkar tokennya satu per satu.
 -->
 
 ---
@@ -321,6 +393,18 @@ Tokosaya yang udah dipakai sejak Bab 4.
 
 ---
 
+# Contoh: Warna Berlabel Jadi Token
+
+![w:1120 Empat baris berpasangan: Warna/Primary #4F46E5 jadi --clr-primary: #4F46E5, Warna/Accent #F59E0B jadi --clr-accent: #F59E0B, Warna/Dark #1E293B jadi --clr-dark: #1E293B, dan Warna/Body #334155 jadi --clr-body: #334155.](assets/diagrams/bab-14-implementasi-desain-figma-ke-html-css-48.svg)
+
+Nama color style dan nama variabel memang beda, tapi hex-nya disalin apa adanya: Warna/Primary #4F46E5 jadi --clr-primary: #4F46E5, Warna/Accent #F59E0B jadi --clr-accent: #F59E0B, Warna/Dark #1E293B jadi --clr-dark: #1E293B, dan Warna/Body #334155 jadi --clr-body: #334155.
+
+<!--
+Pasangkan baris kiri dan kanan satu per satu: yang di Figma dan yang di CSS isinya sama, cuma namanya beda. Tanyakan apa untungnya menyalin hex satu kali di blok `:root`. Jawaban yang diharapkan: perubahan desain cukup disalin di satu blok, dan semua badge ikut berubah.
+-->
+
+---
+
 # Dua Kehati-hatian Sejak Awal
 
 - Font harus dipanggil lewat Google Fonts, bukan diasumsikan ada
@@ -334,6 +418,18 @@ Tanyakan apa yang terjadi pada halaman kalau Google Fonts gagal dimuat di jaring
 Jawaban yang diharapkan: teks tetap terbaca lewat fallback generik. Lanjutkan dengan
 mengaitkan kontras ke WCAG yang dibahas di Bab 13; tekankan bahwa keputusan aksesibilitas
 itu datang dari desain, jadi jangan dihilangkan pas menulis kode.
+-->
+
+---
+
+# Contoh: Dua Kehati-hatian Sejak Awal
+
+![w:1120 Dua cabang kehati-hatian: font yang dipanggil lewat Google Fonts dengan fallback sans-serif, dan kontras #334155 di atas #FFFFFF.](assets/diagrams/bab-14-implementasi-desain-figma-ke-html-css-25.svg)
+
+Dua kehati-hatian sejak awal cuma soal font dan kontras. Font dipanggil lewat Google Fonts dengan fallback sans-serif di belakangnya, sementara kontras dicek langsung di pasangan tokennya: #334155 di atas #FFFFFF.
+
+<!--
+Tanyakan apa yang terjadi kalau Google Fonts gagal dimuat di jaringan kampus. Jawaban yang diharapkan: teks tetap terbaca karena fallback sans-serif mengambil alih. Tunjuk cabang kontras lalu tegaskan bahwa keputusan aksesibilitas itu datang dari desain, bukan tambahan di akhir.
 -->
 
 ---
@@ -413,6 +509,18 @@ Tanyakan kenapa mendisplay keadaan statis bukan langkah mundur. Jawaban yang dih
 karena itu melatih membedah state desain, hal yang paling menentukan rasa jadi sebuah UI.
 Sebutkan bahwa pendekatan yang sama dipakai pas Bab 11 menata keadaan formulir. Ingatkan
 bahwa catatan perilaku wajib ditulis, jangan cuma diingat di kepala.
+-->
+
+---
+
+# Contoh: Keadaan Interaktif Ditranslasi Statis
+
+![w:1120 Empat keadaan: menu tertutup dan menu terbuka berpindah lewat klik menu dan klik lagi; keranjang kosong dan keranjang terisi berpindah lewat tambah item dan hapus item.](assets/diagrams/bab-14-implementasi-desain-figma-ke-html-css-30.svg)
+
+Menu punya dua keadaan, menu tertutup dan menu terbuka, dengan pemicunya klik menu lalu klik lagi untuk menutup. Keranjang juga dua: keranjang kosong dan keranjang terisi, yang berpindah lewat tambah item atau hapus item.
+
+<!--
+Tanyakan kenapa dua pasang keadaan ini tetap harus digambar walaupun halamannya statis. Jawaban yang diharapkan: keadaan itulah yang menentukan kelas mana yang dipasang di HTML, jadi tanpa gambarnya kelasnya cuma ditebak. Tunjuk pasangan kanan: keranjang terisi cukup ditampilkan apa adanya sebagai bentuk jadi, lalu tulis di catatan bahwa perilaku JavaScript-nya di luar cakupan.
 -->
 
 ---
@@ -528,6 +636,18 @@ toleransi ± 2 piksel buat selisih kecil akibat pembulatan browser.
 
 ---
 
+# Contoh: Apa Itu Fidelity
+
+![w:1120 Dua panel: diukur perasaan cuma kelihatannya mirip, kira-kira sudah pas, dan selisih kecil diabaikan; diukur spesifikasi memakai radius 12 px, gutter 24 px, jarak kelipatan 8, dan toleransi plus minus 2 px.](assets/diagrams/bab-14-implementasi-desain-figma-ke-html-css-36.svg)
+
+Fidelity selalu diukur ke lembar spesifikasi: radius 12 px, gutter 24 px, jarak kelipatan 8, dan toleransi ± 2 px. Kalau ukurannya cuma kelihatannya mirip, kira-kira sudah pas, dan selisih kecil diabaikan, tidak ada angka yang bisa diperbaiki.
+
+<!--
+Pasangkan dua judul panelnya sebelum membahas isinya: diukur perasaan di kiri, diukur spesifikasi di kanan. Tanyakan kenapa panel kiri nggak bisa dipakai buat menilai pekerjaan orang lain. Jawaban yang diharapkan: karena "mirip" nggak bisa dibuktikan, sedangkan radius 12 px dan gutter 24 px bisa. Tunjuk baris toleransi ± 2 px sebagai satu-satunya selisih yang boleh dimaafkan.
+-->
+
+---
+
 <!-- _class: compact -->
 
 # Checklist Fidelity 1–5
@@ -592,6 +712,18 @@ berkurang, sama kayak kisah di awal bab.
 
 ---
 
+# Contoh: Dua Kebiasaan Menjaga Fidelity
+
+![w:1120 Empat langkah berulang: salin nilai apa adanya, beri nama jadi token, bandingkan, lalu lanjut komponen berikutnya.](assets/diagrams/bab-14-implementasi-desain-figma-ke-html-css-40.svg)
+
+Kebiasaan pertama: salin nilai apa adanya dari panel desain, lalu beri nama jadi token kalau angkanya dipakai lebih dari dua kali. Kebiasaan kedua: bandingkan satu komponen dulu, lalu uji, baru lanjut komponen berikutnya.
+
+<!--
+Tanyakan apa risikonya membangun semua komponen dulu baru mencari selisihnya di akhir. Jawaban yang diharapkan: selisihnya menumpuk dan asalnya susah dilacak. Tunjuk panah kedua di gambar, yaitu langkah beri nama, lalu sebutkan bahwa token cuma dipakai kalau nilainya berulang lebih dari dua kali.
+-->
+
+---
+
 <!-- _class: compact -->
 
 # Praktik: Membangun `produk.html`
@@ -608,6 +740,18 @@ Katakan bahwa hasil praktikum bab ini adalah input pemeriksaan mutu di Bab 15. T
 kenapa gambar produk disiapkan sejak awal. Jawaban yang diharapkan: karena ukuran aset dan
 batasan kolom saling memengaruhi. Ingatkan supaya `katalog.html` dari Bab 10 tetap utuh di
 sebelah halaman baru.
+-->
+
+---
+
+# Contoh: Praktik: Membangun `produk.html`
+
+![w:1120 Denah 12 kolom halaman produk.html: baris col-12 penuh, baris col-lg-7 dan col-lg-5, lalu tiga kartu col-md-4 dengan gutter 24 px.](assets/diagrams/bab-14-implementasi-desain-figma-ke-html-css-42.svg)
+
+Halaman produk.html disusun di atas kontainer 1140 px dengan gutter 24 px: baris .col-12 penuh, lalu .col-lg-7 untuk gambar dan .col-lg-5 untuk panel harga, lalu tiga kartu .col-md-4. Barisnya 7 + 5 dan 4 + 4 + 4, jadi keduanya tetap berjumlah 12 kolom.
+
+<!--
+Minta kelas menebak kelas Bootstrap tiap baris sebelum kamu tunjukkan gambarnya. Tanyakan kenapa panel harga dapat 5 kolom, bukan 6. Jawaban yang diharapkan: angka grid di desain memang membagi begitu, dan itu yang dibaca dari frame, bukan dari selera. Tunjuk baris ketiga: tiga kartu .col-md-4 yang nanti jadi satu kolom di HP.
 -->
 
 ---
@@ -629,6 +773,18 @@ berhenti di langkah pertama, karena kesalahan paling banyak terjadi pas spesifik
 dibaca sekilas. Tanyakan kenapa angka spesifikasi disalin dulu sebelum rapi-rapi. Jawaban
 yang diharapkan: biar nggak ada nilai yang ditaksir.
 
+-->
+
+---
+
+# Contoh: Langkah Kerja Praktikum
+
+![w:1120 Lima langkah berurutan: spesifikasi, kerangka HTML, token di blok :root, kelas per komponen, lalu uji lebar 1440, 768, dan 375 piksel.](assets/diagrams/bab-14-implementasi-desain-figma-ke-html-css-44.svg)
+
+Baca spesifikasi dulu, lalu susun kerangka lima bagian, token dulu di blok `:root`, kelas sesuai angka, terakhir uji lebar 1440, 768, dan 375 piksel. Urutan ini yang bikin angka desain nggak sempat ditaksir.
+
+<!--
+Jalankan urutannya sambil didemokan di layar, jangan cuma dibacakan. Tanyakan kenapa spesifikasi dibaca dua kali: sebelum menulis kode dan sebelum menyalin angka. Jawaban yang diharapkan: biar nggak ada nilai yang ditaksir, dan itu penyebab revisi paling sering. Tunjuk langkah terakhir, karena di situlah kesetiaan halaman baru benar-benar diuji.
 -->
 
 ---

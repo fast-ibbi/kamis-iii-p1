@@ -1,6 +1,6 @@
-// bab-14 · 07 — prototip dan implementasi sebagai dua model, tiga baris berpasangan:
-// bentuknya, cara mengubahnya, dan pertanyaan yang dijawabnya. Sisi implementasi
-// yang diberi aksen karena itu yang dibangun sepanjang bab ini.
+// bab-14 · 07 — prototip dan implementasi berdiri di dua sumbu yang berbeda:
+// bentuk dan perilaku. Dua panel disandingkan supaya kelas melihat bahwa yang
+// dipindahkan ke kode bukan cuma tampilannya, tapi juga cara ia berubah.
 export default {
   id: '07',
   slide: 'Prototip Bukan Implementasi',
