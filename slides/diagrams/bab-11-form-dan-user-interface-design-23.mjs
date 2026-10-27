@@ -1,18 +1,28 @@
-// bab-11 · 23 — fieldset sebagai wadah: legend jadi judul, tiga radio jadi isi.
-// Konteks kelompok terbawa karena radionya memang anak dari fieldset itu.
+// bab-11 · 23 — yang diuji bukan urutan DOM, tapi apa yang terdengar: tanpa
+// fieldset, radio kedua kehilangan nama kelompoknya. Dulu legend digambar sebagai
+// saudara radio, jadi terbaca "legend cuma item lain di dalam himpunan".
 export default {
   id: '23',
   slide: 'Contoh: fieldset dan legend',
-  pattern: 'tree',
-  alt: 'Satu fieldset Pilihan Pengiriman memuat legend sebagai judul kelompok dan tiga radio di dalamnya: radio pertama, radio kedua, dan radio ketiga.',
+  pattern: 'beforeAfter',
+  alt: 'Kiri tanpa fieldset: pembaca layar cuma membacakan radio kedua, pengguna harus menebak kelompok mana, dan tiap radio terasa berdiri sendiri. Kanan dengan fieldset: legend membacakan Pilihan Pengiriman, konteks kelompok terbawa ke radio kedua, dan tiga radio terbaca sebagai satu unit.',
   data: {
-    root: {
-      label: 'fieldset Pilihan Pengiriman',
-      children: [
-        { label: 'legend' },
-        { label: 'radio pertama' },
-        { label: 'radio kedua' },
-        { label: 'radio ketiga' },
+    left: {
+      title: 'TANPA FIELDSET',
+      tone: 'red',
+      items: [
+        'cuma membacakan "radio kedua"',
+        'pengguna harus menebak kelompok mana',
+        'tiap radio terasa berdiri sendiri',
+      ],
+    },
+    right: {
+      title: 'DENGAN FIELDSET',
+      tone: 'acc',
+      items: [
+        'legend membacakan Pilihan Pengiriman',
+        'konteks kelompok terbawa ke radio kedua',
+        'tiga radio terbaca sebagai satu unit',
       ],
     },
   },

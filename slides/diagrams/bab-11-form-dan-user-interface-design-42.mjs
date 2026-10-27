@@ -1,27 +1,30 @@
-// bab-11 · 42 — status kesalahan: warna saja vs warna plus kalimat.
-// Baris kiri dan kanan sama-sama tiga, jadi bisa dibaca berpasangan.
+// bab-11 · 42 — tiga praktik aksesibilitas, tiga baris berpasangan.
+// Judulnya "tiga praktik", jadi gambarnya juga tiga: label yang terlihat,
+// autocomplete yang menyebut tujuan medan, dan pesan kesalahan yang tertulis.
+// Dulu panel kiri sudah "bingkai merah" lalu panel kanan "menambah warna" —
+// mustahil, karena warna merahnya sudah ada di kiri.
 export default {
   id: '42',
   slide: 'Contoh: Tiga Praktik Aksesibilitas Form',
   pattern: 'beforeAfter',
-  alt: 'Kiri: bingkai merah saja, informasi cuma lewat warna, sehingga pengguna buta warna nggak terbantu apa-apa. Kanan: warna dan pesan tertulis, pesan kesalahan tertulis di bawah medan dan dibacakan pembaca layar.',
+  alt: 'Kiri praktik dilanggar: label cuma diganti placeholder, tujuan medan nggak ditandai autocomplete, dan bingkai merah saja tanpa pesan tertulis. Kanan praktik dipenuhi: label terlihat terhubung for–id, autocomplete menyebut tujuan medan, dan pesan kesalahan tertulis di bawah medan.',
   data: {
     left: {
-      title: 'BINGKAI MERAH SAJA',
+      title: 'PRAKTIK DILANGGAR',
       tone: 'red',
       items: [
-        'bingkai merah saja',
-        'informasi cuma lewat warna',
-        'pengguna buta warna nggak terbantu apa-apa',
+        'label cuma diganti placeholder',
+        'tujuan medan nggak ditandai autocomplete',
+        'bingkai merah saja, tanpa pesan tertulis',
       ],
     },
     right: {
-      title: 'WARNA DAN PESAN TERTULIS',
+      title: 'PRAKTIK DIPENUHI',
       tone: 'acc',
       items: [
+        'label terlihat terhubung for–id',
+        'autocomplete menyebut tujuan medan',
         'pesan kesalahan tertulis di bawah medan',
-        'pesan menyebut cara memperbaikinya',
-        'pembaca layar membacakan pesan itu',
       ],
     },
   },

@@ -120,13 +120,14 @@ dan pesanan gagal diantar.
 
 # Contoh: Form Itu Pintu Masuk Data
 
-![w:1120 Satu form kontak Tokosaya menaungi empat kontrol: label Pesan, input email, select kategori, dan tombol Kirim Pesan, semuanya terkirim sebagai satu kesatuan.](assets/diagrams/bab-11-form-dan-user-interface-design-05.svg)
+![w:1080 Satu form kontak Tokosaya menaungi lima kontrol: input nama, input email, select kategori, textarea pesan, dan tombol Kirim Pesan, semuanya terkirim sebagai satu kesatuan.](assets/diagrams/bab-11-form-dan-user-interface-design-05.svg)
 
-Satu form kontak Tokosaya memuat empat kontrol: label Pesan, input email, select kategori, dan tombol Kirim Pesan. Keempatnya menggantung pada satu form dan terkirim sebagai satu kesatuan, jadi satu alamat keliru di input email sudah cukup bikin pesanan gagal diantar.
+Satu form kontak Tokosaya memuat lima kontrol: input nama, input email, select kategori, textarea pesan, dan tombol Kirim Pesan. Kelimanya menggantung pada satu form dan terkirim sebagai satu kesatuan, jadi satu alamat keliru di input email sudah cukup bikin balasan Tokosaya nyasar ke alamat yang salah.
 
 <!--
-Tunjuk akarnya dulu: semua kontrol menggantung pada satu form, dan itulah arti
-satu kesatuan data. Tanyakan apa akibatnya kalau satu kontrol saja nggak ikut
+Tunjuk akarnya dulu: kelima kontrol menggantung pada satu form, dan itulah arti
+satu kesatuan data. Perhatikan juga bahwa label tidak digambar di sini, karena
+label bukan kontrol: ia cuma nama medan. Tanyakan apa akibatnya kalau satu kontrol saja nggak ikut
 terkirim. Jawaban yang diharapkan: data di basis data jadi nggak lengkap, dan
 tim CS harus menebak alamat yang benar. Tutup dengan mengingatkan bahwa validasi
 browser cuma menyaring format, bukan menjamin isinya benar.
@@ -219,17 +220,20 @@ bagian mana yang harus diperiksa dulu.
 
 # Contoh: Pengelompokan dan Progres
 
-![w:1120 Denah 12 kolom halaman keranjang: Daftar item selebar 8 kolom dengan Ringkasan biaya 4 kolom, lalu Pilihan pengiriman 8 kolom dengan Tombol utama 4 kolom, dipisahkan gutter 16 piksel.](assets/diagrams/bab-11-form-dan-user-interface-design-09.svg)
+![w:1120 Denah 12 kolom halaman keranjang dengan tiga zona: Daftar item selebar 8 kolom berdampingan dengan Ringkasan biaya 4 kolom, lalu Pilihan pengiriman 8 kolom tepat di bawah Daftar item, dipisahkan gutter 16 piksel.](assets/diagrams/bab-11-form-dan-user-interface-design-09.svg)
 
-Halaman keranjang Tokosaya dibagi 12 kolom dengan gutter 16 px: Daftar item dan Pilihan pengiriman masing-masing selebar 8 kolom, sedangkan Ringkasan biaya dan Tombol utama selebar 4 kolom. Karena 8 + 4 = 12, kedua zona berdiri berdampingan dalam satu baris, dan tiap zona tetap dipisahkan gutter yang sama lebarnya.
+Halaman keranjang Tokosaya dibagi 12 kolom dengan gutter 16 px dan berisi tiga zona. Karena 8 + 4 = 12, Daftar item yang selebar 8 kolom berdampingan dengan Ringkasan biaya yang selebar 4 kolom; Pilihan pengiriman yang juga 8 kolom menyusul tepat di bawah Daftar item, jadi 4 kolom di kanannya dibiarkan kosong. Urutan baca dari atas ke bawah itulah progresnya: pengguna memeriksa item, memilih pengiriman, lalu membaca Ringkasan biaya di kolom kanan.
 
 <!--
 Bacakan penggarisnya: 12 kolom, dan tiap zona menempati track yang bisa dihitung
 sendiri oleh mahasiswa. Tanyakan kenapa Daftar item dapat 8 kolom sementara
 Ringkasan biaya cuma 4. Jawaban yang diharapkan: daftar item perlu ruang buat
-nama produk dan harga, ringkasan cukup buat beberapa angka. Tekankan bahwa
-progres terlihat karena tiap zona punya batas sendiri, bukan karena ada garis
-hiasan di antaranya.
+nama produk dan harga, ringkasan cukup buat beberapa angka.
+
+Tekankan bahwa yang membuat progres terlihat bukan garis hiasan, tapi urutan
+baca: Daftar item dulu, Pilihan pengiriman sesudahnya, Ringkasan biaya terakhir.
+Sebutkan juga bahwa halamannya cuma tiga zona, jadi jangan menambah zona keempat
+yang nggak ada di keranjang Tokosaya.
 -->
 
 ---
@@ -348,16 +352,21 @@ datanya gampang diolah. Sebutkan `selected` dan `optgroup` sekilas saja.
 
 # Contoh: textarea dan select
 
-![w:1120 Kotak textarea: area tulis 320 kali 120 piksel, dibungkus padding 6 12 6 12 piksel dan border 1 piksel, sehingga lebar totalnya 346 piksel dan tingginya 134 piksel.](assets/diagrams/bab-11-form-dan-user-interface-design-19.svg)
+![w:1120 Kiri textarea: buat isian panjang kayak pesan, area tulis 320 kali 120 piksel dari rows 5, lebar total 346 piksel dan tinggi 134 piksel. Kanan select: buat pilihan yang sudah jelas dan terbatas, pilihannya seragam, dan salah ketik berkurang.](assets/diagrams/bab-11-form-dan-user-interface-design-19.svg)
 
-Textarea pesan di kontak.html memakai rows 5 → 5 × 24 px, jadi area tulis 320 × 120 px. Tambah padding 6 12 6 12 px dan border 1 px di tiap sisi: lebar total 346 px (320 + 12 + 12 + 1 + 1) dan tinggi 134 px (120 + 6 + 6 + 1 + 1).
+Dua elemen ini sama-sama menampung isian, cuma bentuk pilihannya beda. Textarea buat isian panjang kayak pesan: di kontak.html textarea pesan memakai rows 5 → 5 × 24 px, jadi area tulis 320 × 120 px; tambah padding 6 12 6 12 px dan border 1 px di tiap sisi, lebar total 346 px, tinggi 134 px (120 + 6 + 6 + 1 + 1). Select buat pilihan yang sudah jelas dan terbatas, misalnya kategori produk: pilihannya seragam dan salah ketik berkurang.
 
 <!--
 Tinggi awal textarea itu cuma rows dikali tinggi satu baris, bukan angka ajaib.
 Tanyakan kenapa rows 5 lebih aman daripada tinggi tetap dalam piksel. Jawaban
 yang diharapkan: rows ikut ukuran font pengguna, jadi form tetap terbaca saat
-teks diperbesar. Tunjuk pita padding dan kotak content di gambar: padding 12 px
-kiri-kanan itu yang bikin teks nggak menempel ke bingkai.
+teks diperbesar.
+
+Telusuri kedua panel. Panel kiri: isinya ditulis di antara tag pembuka dan
+penutup, beda dengan input yang menyimpan isinya di atribut value. Panel kanan:
+isinya dipilih dari daftar option, jadi nggak ada yang perlu diketik dan salah
+ketik berkurang. Bandingkan baris pertamanya: textarea buat isian panjang kayak
+pesan, select buat pilihan yang sudah jelas dan terbatas.
 -->
 
 ---
@@ -381,16 +390,20 @@ persetujuan dan langganan.
 
 # Contoh: checkbox dan radio
 
-![w:1120 Kiri: checkbox boleh dipilih lebih dari satu sekaligus, tiap kotak berdiri sendiri, cocok buat persetujuan dan langganan. Kanan: radio cuma satu pilihan per kelompok, satu kelompok wajib name yang sama, sehingga pilihannya saling meniadakan.](assets/diagrams/bab-11-form-dan-user-interface-design-21.svg)
+![w:1120 Kiri checkbox: boleh dipilih lebih dari satu sekaligus, tiap kotak berdiri sendiri, cocok buat persetujuan dan langganan. Kanan radio: cuma boleh satu pilihan per kelompok, satu kelompok wajib name yang sama, cocok buat pilihan sesi ujian.](assets/diagrams/bab-11-form-dan-user-interface-design-21.svg)
 
-Di satu kelompok radio, semua pilihan memakai name yang sama, jadi memilih satu otomatis membatalkan yang lain. Checkbox boleh dipilih lebih dari satu sekaligus, dan itulah sebabnya ia cocok buat persetujuan dan langganan yang memang boleh lebih dari satu.
+Checkbox boleh dipilih lebih dari satu sekaligus dan tiap kotak berdiri sendiri, jadi ia cocok buat persetujuan dan langganan. Radio cuma boleh satu pilihan per kelompok: satu kelompok wajib name yang sama, dan dari name itu pilihannya saling meniadakan, jadi ia cocok buat pilihan sesi ujian.
 
 <!--
+Kedua panel memakai warna yang sama karena checkbox dan radio sama-sama benar;
+yang beda cuma aturannya, bukan mana yang lebih baik. Bacakan baris per baris.
+Baris pertama: berapa pilihan yang boleh diambil. Baris kedua: checkbox
+membiarkan tiap kotak berdiri sendiri, radio menuntut satu kelompok memakai name
+yang sama. Baris ketiga: tempat pemakaiannya.
+
 Tanyakan apa akibatnya kalau dua radio sesi ujian salah ditulis jadi checkbox.
 Jawaban yang diharapkan: pengguna bisa memilih pagi dan sore sekaligus, lalu
-datanya nggak masuk akal. Tunjuk kolom radio: satu kelompok wajib name yang
-sama, dan dari name itu pilihannya saling meniadakan; di kolom checkbox tiap
-kotak berdiri sendiri.
+datanya nggak masuk akal.
 -->
 
 ---
@@ -414,16 +427,20 @@ Pengiriman", persis kayak di kode praktikum.
 
 # Contoh: fieldset dan legend
 
-![w:1120 Satu fieldset Pilihan Pengiriman memuat legend sebagai judul kelompok dan tiga radio di dalamnya: radio pertama, radio kedua, dan radio ketiga.](assets/diagrams/bab-11-form-dan-user-interface-design-23.svg)
+![w:1120 Kiri tanpa fieldset: pembaca layar cuma membacakan radio kedua, pengguna harus menebak kelompok mana, dan tiap radio terasa berdiri sendiri. Kanan dengan fieldset: legend membacakan Pilihan Pengiriman, konteks kelompok terbawa ke radio kedua, dan tiga radio terbaca sebagai satu unit.](assets/diagrams/bab-11-form-dan-user-interface-design-23.svg)
 
-Satu fieldset Pilihan Pengiriman berisi legend sebagai judul kelompoknya, plus radio pertama, radio kedua, dan radio ketiga. Karena legend menempel pada fieldset, pengguna yang masuk ke radio kedua tetap mendengar nama kelompoknya.
+Legend itu judul kelompok, jadi yang menentukan bukan urutan DOM-nya, tapi apa yang terdengar. Tanpa fieldset, pembaca layar cuma membacakan "radio kedua", jadi pengguna harus menebak kelompok mana yang dimaksud dan tiap radio terasa berdiri sendiri. Dengan fieldset, legend membacakan Pilihan Pengiriman, konteks kelompok terbawa ke radio kedua, dan tiga radio terbaca sebagai satu unit.
 
 <!--
 Bayangkan pembaca layar cuma menyebut nama radionya saja, jadi konteksnya harus
 datang dari fieldset. Tanyakan apa yang didengar pengguna kalau ketiga radio itu
 nggak dibungkus fieldset. Jawaban yang diharapkan: cuma "radio kedua", tanpa
-nama kelompok, dan pengguna harus menebak ini kelompok yang mana. Ingatkan bahwa
-legend itu satu-satunya judul kelompok yang dikenali browser.
+nama kelompok, dan pengguna harus menebak ini kelompok yang mana.
+
+Telusuri gambar baris per baris: baris pertama soal apa yang didengar, baris
+kedua soal konteks kelompok, baris ketiga soal apakah ketiga radio terasa satu
+unit. Ingatkan bahwa legend itu satu-satunya judul kelompok yang dikenali
+browser, dan judulnya Pilihan Pengiriman persis kayak di kode praktikum.
 -->
 
 ---
@@ -515,16 +532,20 @@ seperti blok abu-abu yang bikin mata cepat lelah.
 
 # Contoh: Kenapa Kelas Form Bootstrap
 
-![w:1120 Satu kelompok medan 360 kali 88 piksel dengan mb-3: pita margin 0 0 16 0 piksel hanya muncul di bawah kotak, sehingga lebar total tetap 360 piksel dan jarak ke kelompok berikutnya 16 piksel.](assets/diagrams/bab-11-form-dan-user-interface-design-28.svg)
+![w:1120 Kiri HTML polos: tampil beda antar browser, jarak antar kelompok belum konsisten, hasilnya terasa mentah. Kanan dengan kelas Bootstrap: tampilan diseragamkan, mb-3 memberi jarak 16 px antar kelompok, form-label dan form-control bikin hasilnya rapi.](assets/diagrams/bab-11-form-dan-user-interface-design-28.svg)
 
-Ambil satu kelompok medan 360 × 88 px dan pasang mb-3 = 16 px. Margin-nya cuma tumbuh di bawah, 0 0 16 0 px, jadi lebar total tetap 360 px karena margin vertikal nggak menambah lebar kotak, dan 16 px itulah jarak ke kelompok berikutnya.
+HTML polos tampil beda antar browser, jarak antar kelompok belum konsisten, dan hasilnya terasa mentah. Bootstrap merapikannya dengan satu set kelas: tampilan diseragamkan, mb-3 memberi jarak 16 px antar kelompok, form-label dan form-control bikin hasilnya rapi. Ambil satu kelompok medan 360 × 88 px: mb-3 = 16 px cuma tumbuh di bawah, 0 0 16 0 px, jadi lebar total tetap 360 px karena margin vertikal nggak menambah lebar kotak.
 
 <!--
-Tunjuk pita amber yang cuma ada di bawah: itu mb-3, dan arahnya memang cuma
-satu. Tanyakan apa yang terjadi kalau semua kelompok medan dirapatkan tanpa
-jarak. Jawaban yang diharapkan: form terasa seperti blok abu-abu panjang dan
-mata cepat lelah. Tegaskan bahwa kotak content tetap 360 × 88 px, jadi jarak itu
-nggak mengubah ukuran medannya.
+Bacakan panel kiri dulu: tanpa kelas apa pun, tiap browser punya pendapat sendiri
+soal tampilan medan, jaraknya belum konsisten, dan hasilnya terasa mentah. Lalu
+panel kanan: satu set kelas menyelesaikan tiga hal sekaligus, jadi bukan cuma
+soal jarak.
+
+Tanyakan apa yang terjadi kalau semua kelompok medan dirapatkan tanpa jarak.
+Jawaban yang diharapkan: form terasa seperti blok abu-abu panjang dan mata cepat
+lelah. Tegaskan bahwa mb-3 cuma menambah margin bawah 16 px, jadi ukuran medannya
+sendiri nggak berubah: 360 × 88 px tetap 360 × 88 px.
 -->
 
 ---
@@ -636,15 +657,19 @@ arti kolomnya tanpa membaca instruksi panjang.
 
 # Contoh: input-group: Medan dengan Lampiran
 
-![w:1120 Baris input-group selebar 416 piksel: medan kupon 360 piksel langsung menempel pada tombol Pakai 56 piksel dengan gap 0, sehingga sisa ruang 0 piksel.](assets/diagrams/bab-11-form-dan-user-interface-design-33.svg)
+![w:1120 Kiri tanpa input-group: medan kupon dan tombol Pakai berdiri sendiri, jarak tiap elemen diatur terpisah, batas baris isian jadi kabur. Kanan dengan input-group: medan kupon 360 piksel menempel tombol Pakai 56 piksel, gap 0 jadi nggak ada celah, lebar baris 416 piksel dan sisa 0 piksel.](assets/diagrams/bab-11-form-dan-user-interface-design-33.svg)
 
-Di bidang kupon keranjang Tokosaya, medan kupon 360 px disandingkan dengan tombol Pakai 56 px. Karena input-group gap 0, keduanya menempel tanpa celah: 360 + 56 = 416 px, dan sisa 0 px di ujung baris.
+Di bidang kupon keranjang Tokosaya, input-group menyandingkan medan kupon dengan tombolnya. Tanpa input-group, medan kupon dan tombol Pakai berdiri sendiri: jarak tiap elemen diatur terpisah dan batas baris isian jadi kabur. Dengan input-group, medan kupon 360 px menempel tombol Pakai 56 px — gap 0, jadi nggak ada celah — sehingga 360 + 56 = 416 px: lebar baris 416 px, sisa 0 px di ujung baris.
 
 <!--
 Tanyakan kenapa lampiran itu bukan sekadar hiasan. Jawaban yang diharapkan:
-pengguna langsung tahu arti kolomnya tanpa membaca instruksi panjang. Di gambar,
-input-group ini cuma justify-content: flex-start dengan gap 0, jadi medan kupon
-dan tombol Pakai benar-benar menempel, nggak ada celah satu piksel pun.
+pengguna langsung tahu arti kolomnya tanpa membaca instruksi panjang.
+
+Telusuri kedua panel. Kiri: dua elemen yang berdiri sendiri, jadi batas baris
+isiannya kabur dan pengguna harus menebak mana yang bagian dari medan. Kanan:
+satu baris isian, medan kupon 360 px langsung menempel tombol Pakai 56 px karena
+gap-nya nol. Tekankan bahwa 360 + 56 = 416 px itu pas, jadi nggak ada sisa ruang
+yang perlu dijelaskan.
 -->
 
 ---
@@ -807,29 +832,31 @@ halaman.
 
 # Contoh: Fokus Harus Terlihat dan Urutan Tab
 
-![w:1120 Empat perhentian fokus di form kontak: Nama sebagai perhentian pertama, Email dan medan berikutnya, Kategori karena select ikut kena Tab, lalu Kirim Pesan sebagai perhentian terakhir.](assets/diagrams/bab-11-form-dan-user-interface-design-40.svg)
+![w:1120 Lima perhentian fokus di form kontak berurutan: Nama sebagai perhentian pertama, lalu Telepon, Email, dan Kategori karena select ikut kena Tab, dan Kirim Pesan sebagai perhentian terakhir. Textarea Pesan juga kena Tab di antara Kategori dan tombol.](assets/diagrams/bab-11-form-dan-user-interface-design-40.svg)
 
-Di form kontak Tokosaya, Nama jadi perhentian pertama, Email dan medan berikutnya menyusul, lalu Kategori karena select ikut kena Tab, dan Kirim Pesan sebagai perhentian terakhir. Urutannya sama dengan urutan dokumen, jadi tiga kali tekan Tab dari Nama sudah sampai di tombol tanpa satu pun lompatan.
+Di form kontak Tokosaya, Nama jadi perhentian pertama, medan kedua Telepon, medan ketiga Email, lalu Kategori karena select ikut kena Tab, dan Kirim Pesan sebagai perhentian terakhir. Textarea Pesan juga kena Tab di antara Kategori dan tombol, jadi gambar ini menyorot lima perhentian, bukan seluruhnya. Urutannya sama dengan urutan dokumen, jadi tiap tekan Tab cuma maju satu medan tanpa satu pun lompatan.
 
 <!--
 Tekan Tab di laptop yang diproyeksikan biar kelas lihat cincin fokusnya nyata.
 Tanyakan kenapa tabindex positif sebaiknya dihindari. Jawaban yang diharapkan:
 nilainya merusak urutan alami dan bikin pengguna keyboard melompat nggak karuan.
-Tunjuk panah Tab di gambar: urutannya persis susunan elemen di dokumen, bukan
-susunan yang kelihatan bagus di layar.
+
+Urutan di gambar persis susunan elemen di kontak.html: Nama, Nomor Telepon,
+Email, select Kategori, textarea Pesan, lalu tombol Kirim Pesan. Gambar cuma
+memuat lima perhentian, jadi sebutkan bahwa Pesan tetap kena Tab di antara
+Kategori dan tombol — dia cuma nggak muat digambar. Tunjuk panah Tab: satu panah,
+satu perpindahan, tanpa lompatan.
 -->
 
 ---
 
 # Tiga Praktik Aksesibilitas Form
 
-- Label eksplisit terhubung `for`–`id` sejak awal
-- Placeholder jangan menggantikan label yang terlihat
+- Label terlihat dan terhubung `for`–`id`; placeholder bukan label
 - `autocomplete` menjelaskan tujuan medan ke browser
-- Pesan status ditulis, bukan cuma diwakili warna
-- Bingkai merah nggak menolong pengguna buta warna
+- Pesan kesalahan ditulis, bukan cuma diwakili warna
 
-> Empat hal ini fondasi WCAG 2.2 yang paling sering dicek.
+> Tiga hal ini fondasi WCAG 2.2 yang paling sering dicek.
 
 <!--
 Tanyakan kenapa bingkai merah saja nggak cukup buat menyampaikan kesalahan.
@@ -842,16 +869,20 @@ Bab 13 dengan alatnya sendiri.
 
 # Contoh: Tiga Praktik Aksesibilitas Form
 
-![w:1120 Kiri: bingkai merah saja, informasi cuma lewat warna, sehingga pengguna buta warna nggak terbantu apa-apa. Kanan: warna dan pesan tertulis, pesan kesalahan tertulis di bawah medan dan dibacakan pembaca layar.](assets/diagrams/bab-11-form-dan-user-interface-design-42.svg)
+![w:1120 Kiri praktik dilanggar: label cuma diganti placeholder, tujuan medan nggak ditandai autocomplete, dan bingkai merah saja tanpa pesan tertulis. Kanan praktik dipenuhi: label terlihat terhubung for–id, autocomplete menyebut tujuan medan, dan pesan kesalahan tertulis di bawah medan.](assets/diagrams/bab-11-form-dan-user-interface-design-42.svg)
 
-Lihat dua medan kupon yang sama-sama salah. Versi pertama cuma memakai bingkai merah saja, dan informasi cuma lewat warna bikin pengguna buta warna nggak terbantu apa-apa. Versi kedua menambah warna dan pesan tertulis: pesan kesalahan tertulis di bawah medan, pesan menyebut cara memperbaikinya, dan pembaca layar membacakan pesan itu.
+Bandingkan dua kolom untuk tiga praktik yang sama. Kolom kiri praktik dilanggar: label cuma diganti placeholder, tujuan medan nggak ditandai autocomplete, dan bingkai merah saja tanpa pesan tertulis. Kolom kanan praktik dipenuhi: label terlihat terhubung for–id, autocomplete menyebut tujuan medan, dan pesan kesalahan tertulis di bawah medan yang menyebut cara memperbaikinya.
 
 <!--
 Tanyakan kenapa bingkai merah saja nggak cukup buat menyampaikan kesalahan.
 Jawaban yang diharapkan: informasi nggak boleh disampaikan lewat warna saja, jadi
-pesan tertulis itu wajib. Tunjuk panel kiri lalu panel kanan, dan tegaskan bahwa
-pasangan is-invalid plus invalid-feedback yang mereka tulis di
-latihan/status-form.html sudah memenuhi syarat ini tanpa satu baris JavaScript.
+pesan tertulis itu wajib.
+
+Telusuri gambar baris per baris, karena tiap baris adalah satu praktik. Baris
+pertama soal label yang terlihat, baris kedua soal autocomplete, baris ketiga soal
+pesan kesalahan. Tegaskan bahwa pasangan is-invalid plus invalid-feedback yang
+mereka tulis di latihan/status-form.html sudah memenuhi baris ketiga tanpa satu
+baris JavaScript.
 -->
 
 ---
