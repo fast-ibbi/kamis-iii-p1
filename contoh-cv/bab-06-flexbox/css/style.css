@@ -1,0 +1,366 @@
+/* ---------- Rizky CV style.css — v2 (Bab 4) ---------- */
+
+/* kustom — design token website CV */
+:root {
+  --clr-primary: #0F766E;
+  --clr-primary-dark: #115E59;
+  --clr-accent: #F59E0B;
+  --clr-dark: #0F172A;
+  --clr-body: #334155;
+  --clr-muted: #64748B;
+  --clr-bg: #F8FAFC;
+  --clr-surface: #FFFFFF;
+  --clr-border: #E2E8F0;
+  --clr-success: #15803D;
+  --clr-danger: #DC2626;
+  --font-heading: 'Poppins', 'Segoe UI', sans-serif;
+  --font-body: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+  --radius: 12px;
+  --shadow-card: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --space-unit: 8px;
+}
+
+/* ---------- Dasar halaman ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--clr-body);
+  background-color: var(--clr-bg);
+  line-height: 1.6;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- Heading ---------- */
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  color: var(--clr-dark);
+  line-height: 1.25;
+  margin: 0 0 calc(var(--space-unit) * 2);
+}
+
+h1 {
+  font-size: clamp(2.25rem, 5vw, 3rem);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+/* ---------- Link ---------- */
+a {
+  color: var(--clr-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--clr-primary-dark);
+  text-decoration: underline;
+}
+
+a:focus {
+  outline: 2px solid var(--clr-primary);
+  outline-offset: 2px;
+}
+
+/* ---------- Header dan navigasi ---------- */
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-unit);
+  padding: calc(var(--space-unit) * 2) calc(var(--space-unit) * 3);
+  background-color: var(--clr-surface);
+  border-bottom: 1px solid var(--clr-border);
+}
+
+.site-brand img {
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: var(--radius);
+}
+
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--space-unit) * 1.5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav li {
+  margin-right: 0;
+}
+
+.site-nav a {
+  font-weight: 600;
+  color: var(--clr-body);
+}
+
+.site-nav a:hover,
+.site-nav a:focus {
+  color: var(--clr-primary);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--space-unit) * 2);
+  padding: calc(var(--space-unit) * 7) calc(var(--space-unit) * 3);
+  text-align: center;
+  background-color: var(--clr-surface);
+  border-bottom: 1px solid var(--clr-border);
+}
+
+.hero p,
+.hero figure {
+  margin: 0;
+}
+
+.hero-title {
+  letter-spacing: -0.02em;
+}
+
+.hero .lead {
+  font-size: 1.125rem;
+  color: var(--clr-muted);
+  max-width: 46ch;
+}
+
+.hero figure {
+  margin: calc(var(--space-unit) * 3) 0;
+}
+
+.hero img {
+  border-radius: var(--radius);
+  border: 1px solid var(--clr-border);
+  box-shadow: var(--shadow-card);
+}
+
+.hero figcaption {
+  color: var(--clr-muted);
+  font-size: 0.875rem;
+}
+
+/* ---------- Bagian isi ---------- */
+section {
+  padding: calc(var(--space-unit) * 7) calc(var(--space-unit) * 3);
+}
+
+section h2 {
+  margin-bottom: calc(var(--space-unit) * 3);
+}
+
+.section-lead {
+  max-width: 60ch;
+  margin: 0 auto calc(var(--space-unit) * 4);
+  color: var(--clr-muted);
+}
+
+/* ---------- Kartu proyek (Bab 5, baris lentur di Bab 6) ---------- */
+.proyek-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: calc(var(--space-unit) * 3);
+}
+
+.proyek-card {
+  position: relative;
+  flex: 1 1 300px;
+  max-width: 380px;
+  margin: 0;
+  padding: 0;
+  background-color: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.proyek-card img {
+  width: 100%;
+}
+
+/* Badge menempel di pojok gambar */
+.proyek-card .badge {
+  position: absolute;
+  top: calc(var(--space-unit) * 1.5);
+  left: calc(var(--space-unit) * 1.5);
+  z-index: 1;
+}
+
+.proyek-body {
+  padding: calc(var(--space-unit) * 3);
+}
+
+.proyek-nama {
+  font-size: 1.25rem;
+  margin: 0 0 var(--space-unit);
+}
+
+.proyek-kategori {
+  margin: 0 0 var(--space-unit);
+  color: var(--clr-muted);
+  font-size: 0.875rem;
+}
+
+/* Deskripsi dua baris, sisanya dipotong elipsis */
+.proyek-deskripsi {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0 0 calc(var(--space-unit) * 2);
+}
+
+.proyek-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-unit);
+  margin: 0;
+  padding-top: calc(var(--space-unit) * 2);
+  border-top: 1px solid var(--clr-border);
+  font-size: 0.875rem;
+  color: var(--clr-muted);
+}
+
+.proyek-meta a {
+  font-weight: 600;
+}
+
+/* Baris tabel: selang-seling latar supaya mata tidak melompat */
+tbody tr:nth-child(even) {
+  background-color: var(--clr-bg);
+}
+
+tbody tr:first-child td {
+  border-top: 2px solid var(--clr-border);
+}
+
+/* ---------- Tabel ---------- */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: var(--clr-surface);
+}
+
+caption {
+  text-align: left;
+  padding-bottom: var(--space-unit);
+  color: var(--clr-muted);
+}
+
+th,
+td {
+  text-align: left;
+  padding: var(--space-unit);
+  border-bottom: 1px solid var(--clr-border);
+}
+
+th {
+  font-family: var(--font-heading);
+  color: var(--clr-dark);
+  background-color: var(--clr-bg);
+}
+
+/* ---------- Badge status proyek ---------- */
+.badge {
+  display: inline-block;
+  padding: 2px var(--space-unit);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid var(--clr-border);
+}
+
+.badge-unggulan {
+  color: var(--clr-dark);
+  background-color: var(--clr-accent);
+}
+
+.badge-selesai {
+  color: var(--clr-surface);
+  background-color: var(--clr-success);
+}
+
+.badge-berjalan {
+  color: var(--clr-surface);
+  background-color: var(--clr-danger);
+}
+
+/* ---------- Kontak ---------- */
+.kontak address {
+  max-width: 52ch;
+  font-style: normal;
+  padding: calc(var(--space-unit) * 3);
+  background-color: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+}
+
+/* ---------- Tombol ajakan ---------- */
+.btn-cta {
+  display: inline-block;
+  padding: var(--space-unit) calc(var(--space-unit) * 2);
+  border-radius: var(--radius);
+  background-color: var(--clr-primary);
+  color: var(--clr-surface);
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+.btn-cta:hover {
+  background-color: var(--clr-primary-dark);
+  color: var(--clr-surface);
+  text-decoration: none;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(var(--space-unit) * 2);
+  padding: calc(var(--space-unit) * 3);
+  background-color: var(--clr-dark);
+  color: var(--clr-border);
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer .footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--space-unit) * 2);
+  margin-left: auto;
+}
+
+.site-footer a {
+  color: var(--clr-surface);
+}
