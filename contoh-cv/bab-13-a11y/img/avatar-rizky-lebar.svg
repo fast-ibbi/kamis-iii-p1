@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" role="img" aria-labelledby="t2">
+  <title id="t2">Ilustrasi profil Rizky Ardiansyah versi lebar</title>
+  <rect width="720" height="300" fill="#F8FAFC"/>
+  <g stroke="#E2E8F0"><path d="M0 100h720M0 200h720M180 0v300M360 0v300M540 0v300"/></g>
+  <circle cx="150" cy="150" r="86" fill="#CCFBF1"/>
+  <circle cx="150" cy="132" r="50" fill="#0F766E"/>
+  <path d="M150 196c-56 0-92 32-99 76a20 20 0 0 0 20 24h158a20 20 0 0 0 20-24c-7-44-43-76-99-76z" fill="#115E59"/>
+  <rect x="282" y="112" width="220" height="20" rx="10" fill="#0F172A"/>
+  <rect x="282" y="148" width="360" height="12" rx="6" fill="#94A3B8"/>
+  <rect x="282" y="172" width="300" height="12" rx="6" fill="#CBD5E1"/>
+  <rect x="282" y="206" width="132" height="34" rx="17" fill="#F59E0B"/>
+  <text x="348" y="228" text-anchor="middle" font-family="Inter, Segoe UI, sans-serif" font-size="16" font-weight="600" fill="#0F172A">HTML · CSS</text>
+</svg>
