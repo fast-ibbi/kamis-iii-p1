@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" role="img" aria-label="Pratinjau Form Pendaftaran Seminar">
+  <rect width="480" height="270" fill="#F8FAFC"/>
+  <rect x="90" y="24" width="300" height="222" rx="12" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <rect x="112" y="44" width="120" height="12" rx="6" fill="#0F172A"/>
+  <g fill="#94A3B8"><rect x="112" y="72" width="60" height="7" rx="3"/><rect x="112" y="124" width="60" height="7" rx="3"/><rect x="112" y="176" width="70" height="7" rx="3"/></g>
+  <g fill="#F1F5F9" stroke="#CBD5E1"><rect x="112" y="86" width="256" height="26" rx="6"/><rect x="112" y="138" width="256" height="26" rx="6"/><rect x="112" y="190" width="256" height="26" rx="6"/></g>
+  <rect x="112" y="228" width="86" height="8" rx="4" fill="#0F766E"/>
+</svg>
