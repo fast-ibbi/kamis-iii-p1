@@ -1,0 +1,198 @@
+/* ---------- Rizky CV style.css — v1 (Bab 3) ---------- */
+
+/* ---------- Dasar halaman ---------- */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+  color: #334155;
+  background-color: #F8FAFC;
+  line-height: 1.6;
+}
+
+/* ---------- Heading ---------- */
+h1,
+h2,
+h3 {
+  color: #1E293B;
+  line-height: 1.25;
+  margin: 0 0 16px;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+h2 {
+  font-size: 28px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+/* ---------- Link ---------- */
+a {
+  color: #0F766E;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #115E59;
+  text-decoration: underline;
+}
+
+a:focus {
+  outline: 2px solid #0F766E;
+  outline-offset: 2px;
+}
+
+/* ---------- Header dan navigasi ---------- */
+.site-header {
+  display: block;
+  padding: 16px 24px;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.site-brand img {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.site-nav ul {
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav li {
+  display: inline-block;
+  margin-right: 12px;
+}
+
+.site-nav li:last-child {
+  margin-right: 0;
+}
+
+.site-nav a {
+  font-weight: 600;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  padding: 32px 24px;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.hero-title {
+  font-size: 40px;
+  letter-spacing: -0.02em;
+}
+
+.hero figure {
+  margin: 24px 0;
+}
+
+.hero img {
+  border-radius: 12px;
+  border: 1px solid #E2E8F0;
+}
+
+.hero figcaption {
+  color: #64748B;
+  font-size: 14px;
+}
+
+/* ---------- Bagian isi ---------- */
+section {
+  padding: 32px 24px;
+}
+
+/* Baris tabel: selang-seling latar supaya mata tidak melompat */
+tbody tr:nth-child(even) {
+  background-color: #FFFFFF;
+}
+
+tbody tr:first-child td {
+  border-top: 2px solid #E2E8F0;
+}
+
+/* ---------- Tabel ---------- */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: #FFFFFF;
+}
+
+caption {
+  text-align: left;
+  padding-bottom: 8px;
+  color: #64748B;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+th {
+  color: #1E293B;
+  background-color: #F8FAFC;
+}
+
+/* ---------- Badge status proyek ---------- */
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid #E2E8F0;
+}
+
+.badge-selesai {
+  color: #FFFFFF;
+  background-color: #15803D;
+}
+
+.badge-berjalan {
+  color: #1E293B;
+  background-color: #F59E0B;
+  opacity: 0.95;
+}
+
+/* ---------- Tombol ajakan ---------- */
+.btn-cta {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 12px;
+  background-color: #0F766E;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+.btn-cta:hover {
+  background-color: #115E59;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  padding: 24px;
+  background-color: #1E293B;
+  color: #E2E8F0;
+}
+
+.site-footer a {
+  color: #F8FAFC;
+}
+
+/* ---------- Catatan specificity (laboratorium kaskade) ----------
+   .site-nav a        (0, 1, 1)  menang atas  a        (0, 0, 1)
+   #kontak            (1, 0, 0)  menang atas  .kontak  (0, 1, 0)
+   Bila dua aturan sama kuat, yang ditulis paling akhir yang menang.
+*/
