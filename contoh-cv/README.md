@@ -51,6 +51,10 @@ Tanpa koneksi, halaman tetap terbaca karena setiap keluarga huruf punya fallback
 
 Folder `index.html` di akar adalah daftar klik-able keempat belas tahap itu.
 
+Ingin membandingkan kode antar tahap tanpa mengunduh zip tiap tag? Lihat
+[`PERBANDINGAN.md`](PERBANDINGAN.md) — berisi tautan diff GitHub antar tahap, daftar
+tag → commit, dan pemakaian `scripts/compare-contoh-cv.sh`.
+
 Setiap folder punya `README.md` sendiri yang menjelaskan **pekerjaan pada bab itu**: apa
 yang berubah dari folder sebelumnya (berkas mana, baris berapa, aturan CSS apa), cara
 memeriksanya di DevTools, dan apa yang diwariskan ke bab berikutnya. Mulailah dari
