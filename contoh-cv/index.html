@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Contoh proyek website CV Rizky Ardiansyah: 14 tahap kumulatif dari HTML dasar sampai quality assurance, mengikuti slide Frontend Development dan Web Design.">
+  <title>Contoh Proyek Website CV — 14 Tahap</title>
+  <style>
+    :root {
+      --clr-primary: #0F766E;
+      --clr-primary-dark: #115E59;
+      --clr-accent: #F59E0B;
+      --clr-dark: #0F172A;
+      --clr-body: #334155;
+      --clr-muted: #64748B;
+      --clr-bg: #F8FAFC;
+      --clr-surface: #FFFFFF;
+      --clr-border: #E2E8F0;
+      --radius: 12px;
+      --space: 8px;
+      --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+      color: var(--clr-body);
+      background: var(--clr-bg);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 { font-family: 'Poppins', 'Segoe UI', sans-serif; color: var(--clr-dark); line-height: 1.25; }
+
+    a { color: var(--clr-primary); }
+    a:hover { color: var(--clr-primary-dark); }
+    a:focus-visible { outline: 3px solid var(--clr-primary); outline-offset: 2px; }
+
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 calc(var(--space) * 3); }
+
+    .skip {
+      position: absolute; top: -100px; left: calc(var(--space) * 2);
+      background: var(--clr-dark); color: #fff; padding: 8px 16px; border-radius: var(--radius);
+    }
+    .skip:focus { top: 8px; color: #fff; }
+
+    header.hero {
+      background: var(--clr-surface);
+      border-bottom: 1px solid var(--clr-border);
+      padding: calc(var(--space) * 8) 0 calc(var(--space) * 6);
+    }
+
+    .hero h1 { font-size: clamp(2rem, 4vw, 2.75rem); margin: 0 0 calc(var(--space) * 2); }
+    .hero p { max-width: 62ch; margin: 0 0 calc(var(--space) * 3); }
+    .hero .meta { font-size: 0.875rem; color: var(--clr-muted); }
+
+    .badge {
+      display: inline-block; padding: 2px 8px; border-radius: 999px;
+      background: #CCFBF1; color: var(--clr-primary-dark);
+      font-size: 0.75rem; font-weight: 600; border: 1px solid var(--clr-border);
+    }
+
+    main { padding: calc(var(--space) * 6) 0; }
+
+    .grid { display: grid; gap: calc(var(--space) * 3); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+
+    .card {
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: calc(var(--space) * 3);
+      display: flex; flex-direction: column;
+    }
+
+    .card .bab { font-size: 0.75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--clr-primary); }
+    .card h2 { font-size: 1.125rem; margin: 4px 0 calc(var(--space) * 1); }
+    .card h2 a { text-decoration: none; }
+    .card h2 a:hover { text-decoration: underline; }
+    .card p { margin: 0 0 calc(var(--space) * 2); font-size: 0.9375rem; }
+    .card .files { margin: auto 0 0; font-size: 0.8125rem; color: var(--clr-muted); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+    .note {
+      background: var(--clr-surface); border: 1px solid var(--clr-border);
+      border-left: 4px solid var(--clr-accent);
+      border-radius: var(--radius); padding: calc(var(--space) * 3);
+      margin-bottom: calc(var(--space) * 5);
+    }
+    .note p { margin: 0; }
+
+    footer { background: var(--clr-dark); color: var(--clr-border); padding: calc(var(--space) * 4) 0; font-size: 0.875rem; }
+    footer a { color: #fff; }
+  </style>
+</head>
+<body>
+
+  <a class="skip" href="#daftar">Langsung ke daftar tahap</a>
+
+  <header class="hero">
+    <div class="wrap">
+      <p><span class="badge">Studi kasus</span></p>
+      <h1>Website CV Rizky Ardiansyah</h1>
+      <p>Empat belas tahap kumulatif yang mengikuti slide <em>Frontend Development dan
+         Web Design</em>. Setiap folder adalah website CV yang utuh pada tingkat kemampuan
+         bab itu: buka dua folder berurutan untuk melihat persis apa yang ditambahkan satu
+         pertemuan.</p>
+      <p class="meta">HTML dan CSS murni · Bootstrap 5.3.3 (CSS saja) mulai Bab 9 · tanpa
+        JavaScript · konten berbahasa Indonesia</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <div class="note">
+      <p><strong>Cara membaca:</strong> folder tanpa CSS (Bab 1–2) masih polos dan itu
+        memang tujuannya. Mulai Bab 3 gaya masuk lewat satu berkas
+        <code>css/style.css</code>. Di Bab 9 tata letak pindah ke Bootstrap, dan berkas
+        kustom menyusut jadi token, tipografi, serta overlay palet.</p>
+    </div>
+
+    <h2 id="daftar" style="margin-bottom: calc(var(--space) * 3)">Daftar tahap</h2>
+
+    <div class="grid">
+
+      <article class="card">
+        <p class="bab">Bab 1</p>
+        <h2><a href="bab-01-profil-html/index.html">Profil HTML pertama</a></h2>
+        <p>Halaman profil dengan <code>h1</code>, gambar, daftar, dan satu halaman rencana
+           yang saling tertaut. Belum ada CSS.</p>
+        <p class="files">index.html · rencana.html · img/</p>
+      </article>
+
+      <article class="card">
+        <p class="bab">Bab 2</p>
+        <h2><a href="bab-02-semantik/index.html">Struktur semantik</a></h2>
+        <p>Landmark <code>header</code>, <code>nav</code>, <code>main</code>,
+           <code>section</code>, <code>article</code>, dan <code>footer</code> untuk dua
+           halaman.</p>
+        <p class="files">index.html · tentang.html · img/</p>
+      </article>
+
+      <article class="card">
+        <p class="bab">Bab 3</p>
+        <h2><a href="bab-03-css-dasar/index.html">Dasar-dasar CSS</a></h2>
+        <p>Satu <code>style.css</code> untuk dua halaman: selector, class hook, pseudo-class,
+           dan specificity.</p>
+        <p class="files">+ css/style.css</p>
+      </article>
+
+      <article class="card">
+        <p class="bab">Bab 4</p>
+        <h2><a href="bab-04-tipografi/index.html">Tipografi dan visual</a></h2>
+        <p>Google Fonts Poppins dan Inter, skala <code>rem</code>, <code>clamp()</code>, dan
+           blok design token pertama.</p>
+        <p class="files">css/style.css (token)</p>
+      </article>
+
+      <article class="card">
+        <p class="bab">Bab 5</p>
+        <h2><a href="bab-05-box-model/index.html">Box model dan kartu</a></h2>
+        <p>Enam kartu proyek dengan <code>border-box</code> global, badge di pojok gambar,
+           dan deskripsi berelipsis.</p>
+        <p class="files">index.html · css/style.css</p>
+      </article>
+
+      <article class="card">
+        <p class="bab">Bab 6</p>
+        <h2><a href="bab-06-flexbox/index.html">Flexbox</a></h2>
+        <p>Navigasi, hero, baris kartu, dan footer jadi flex container; jarak memakai
+           <code>gap</code>.</p>
+        <p class="files">css/style.css (flex)</p>
+      </article>
+
+      <article class="card">
+        <p class="bab">Bab 7</p>
+        <h2><a href="bab-07-grid/index.html">Grid dan responsif</a></h2>
+        <p>Kartu proyek pindah ke CSS Grid, media query mobile-first, tabel yang bisa
+           digulir.</p>
+        <p class="files">css/style.css (grid + media)</p>
+      </article>
+
+      <article class="card">
+        <p class="bab">Bab 9</p>
+        <h2><a href="bab-09-bootstrap/index.html">Bootstrap 5</a></h2>
+        <p>Tata letak ditulis ulang dengan container, grid 12 kolom, dan utility. CSS kustom
+           tinggal token dan overlay palet.</p>
+        <p class="files">index.html · tentang.html · css/style.css</p>
+      </article>
+
+      <article class="card">
+        <p class="bab">Bab 10</p>
+        <h2><a href="bab-10-komponen/index.html">Komponen</a></h2>
+        <p>Navbar, kartu, badge, alert, breadcrumb, pagination, list group, dan halaman
+           <a href="bab-10-komponen/komponen.html">komponen internal</a>.</p>
+        <p class="files">+ komponen.html</p>
+      </article>
+
+      <article class="card">
+        <p class="bab">Bab 11</p>
+        <h2><a href="bab-11-form/index.html">Form kontak</a></h2>
+        <p>Form satu kolom dengan label terlihat, fieldset, input-group, status validasi, dan
+           atribut autocomplete.</p>
+        <p class="files">index.html (§kontak) · komponen.html</p>
+      </article>
+
+      <article class="card">
+        <p class="bab">Bab 12</p>
+        <h2><a href="bab-12-design-system/index.html">Design system</a></h2>
+        <p>Halaman <a href="bab-12-design-system/styleguide.html">styleguide</a>: swatch
+           token, skala tipe, skala jarak, matriks varian, dan do/don't.</p>
+        <p class="files">+ styleguide.html</p>
+      </article>
+
+      <article class="card">
+        <p class="bab">Bab 13</p>
+        <h2><a href="bab-13-a11y/index.html">Responsif dan aksesibilitas</a></h2>
+        <p>Skip link, cincin fokus, <code>picture</code> untuk komposisi berbeda, navigasi
+           menumpuk tanpa JavaScript.</p>
+        <p class="files">index.html · css/style.css (fokus)</p>
+      </article>
+
+      <article class="card">
+        <p class="bab">Bab 14</p>
+        <h2><a href="bab-14-figma/index.html#proyek-detail">Figma ke kode</a></h2>
+        <p>Panel detail proyek 7:5 hasil translasi frame, proyek terkait, dan catatan
+           fidelity.</p>
+        <p class="files">index.html (§proyek-detail) · catatan-fidelity.txt</p>
+      </article>
+
+      <article class="card">
+        <p class="bab">Bab 15</p>
+        <h2><a href="bab-15-final/qa.html">QA dan rilis</a></h2>
+        <p>Checklist rilis tiga bagian, matriks uji, laporan temuan enam baris, dan refactor
+           CSS hasil temuan.</p>
+        <p class="files">+ qa.html</p>
+      </article>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p style="margin: 0 0 8px">Contoh proyek untuk mata kuliah Frontend Development dan
+        Web Design · <a href="../readme.md">README repositori</a> ·
+        <a href="README.md">catatan contoh proyek</a></p>
+      <p style="margin: 0">&copy; 2025 · Semua gambar adalah SVG yang ditulis sendiri, tanpa
+        berkas biner.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
