@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" role="img" aria-labelledby="t">
+  <title id="t">Ilustrasi profil Rizky Ardiansyah</title>
+  <rect width="480" height="480" rx="24" fill="#F8FAFC"/>
+  <g stroke="#E2E8F0" stroke-width="1">
+    <path d="M0 120h480M0 240h480M0 360h480M120 0v480M240 0v480M360 0v480"/>
+  </g>
+  <circle cx="240" cy="196" r="96" fill="#CCFBF1"/>
+  <circle cx="240" cy="182" r="58" fill="#0F766E"/>
+  <path d="M240 252c-64 0-104 36-112 88a24 24 0 0 0 24 28h176a24 24 0 0 0 24-28c-8-52-48-88-112-88z" fill="#115E59"/>
+  <rect x="300" y="300" width="112" height="30" rx="15" fill="#F59E0B"/>
+  <text x="356" y="320" text-anchor="middle" font-family="Inter, Segoe UI, sans-serif" font-size="15" font-weight="600" fill="#0F172A">HTML · CSS</text>
+  <rect x="36" y="36" width="96" height="30" rx="15" fill="#0F172A"/>
+  <text x="84" y="56" text-anchor="middle" font-family="Inter, Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF">2023</text>
+</svg>
