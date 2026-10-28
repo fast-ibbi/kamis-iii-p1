@@ -4,6 +4,7 @@ export default {
   id: '06',
   slide: 'Analogi Poster Berbingkai',
   pattern: 'layers',
+  imgWidth: 1100,
   alt: 'Empat lapisan kotak dianalogikan poster di dinding: content kanvas, padding passe-partout, border bingkai kayu, margin jarak ke poster lain.',
   data: {
     layers: [

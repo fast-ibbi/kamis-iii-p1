@@ -5,6 +5,7 @@ export default {
   id: '08',
   slide: 'Margin Vertikal Bisa Runtuh',
   pattern: 'beforeAfter',
+  imgWidth: 1160,
   alt: 'Margin bawah dan margin atas bertetangga tidak dijumlahkan, yang dipakai nilai paling besar; padding tidak punya perilaku runtuh ini.',
   data: {
     left: {

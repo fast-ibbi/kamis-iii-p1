@@ -167,12 +167,17 @@ lengkap beserta reset ringkas.
 
 **Tujuan Pembelajaran:**
 
-1. Anatomi box model: content, padding, border, margin.
-2. Hitungan lebar total kotak di content-box dan border-box.
-3. Pemasangan `box-sizing: border-box` global dan alasannya.
-4. Perilaku display: block, inline, dan inline-block.
-5. Penanganan overflow dan pemenggalan teks panjang.
-6. Position, z-index, dan sistem jarak skala 8px.
+1. Anatomi kotak: content, padding, border, margin, dari dalam ke luar.
+2. Hitungan lebar total di `content-box` dan `border-box`.
+3. Menahan ukuran dengan `min-width`, `max-width`, dan `min-height`.
+4. Pemasangan `box-sizing: border-box` global dan alasannya.
+5. Perilaku `display`: `block`, `inline`, dan `inline-block`.
+6. Penanganan `overflow` dan pemenggalan teks panjang.
+7. Posisi kotak: `position`, `z-index`, dan skala jarak 8 px.
+
+**Studi kasus tambahan:** satu pasang slide memakai dashboard **SIAKAD** — tiga kartu
+informasi fakultas yang terlalu tinggi — sebagai contoh hitungan tinggi kotak. Maksudnya
+supaya mahasiswa melihat aturan yang sama bekerja pada proyek yang bukan Tokosaya.
 
 **Praktikum:** menulis ulang `index.html` (hero dan delapan kartu) dan `css/style.css` (token,
 reset, komponen); memastikan aturan `box-sizing` ada di paling atas setelah token; memeriksa
