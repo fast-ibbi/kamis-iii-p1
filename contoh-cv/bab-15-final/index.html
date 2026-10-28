@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portofolio Rizky Ardiansyah, mahasiswa semester 5 Sistem Informasi: keahlian frontend dan enam proyek kuliah.">
+  <title>Rizky Ardiansyah — Mahasiswa Sistem Informasi</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Langsung ke konten utama</a>
+
+  <header class="site-header bg-white border-bottom">
+    <div class="container d-flex flex-wrap align-items-center justify-content-between gap-2 py-2">
+      <a class="site-brand" href="index.html">
+        <img src="img/logo-rizky.svg" alt="" width="40" height="40">
+        <span>Rizky Ardiansyah</span>
+      </a>
+      <nav aria-label="Navigasi utama">
+        <ul class="nav flex-wrap gap-3">
+          <li class="nav-item"><a class="nav-link p-0" href="index.html" aria-current="page">Beranda</a></li>
+          <li class="nav-item"><a class="nav-link p-0" href="#keahlian">Keahlian</a></li>
+          <li class="nav-item"><a class="nav-link p-0" href="#proyek">Proyek</a></li>
+          <li class="nav-item"><a class="nav-link p-0" href="tentang.html">Tentang</a></li>
+          <li class="nav-item"><a class="nav-link p-0" href="#kontak">Kontak</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+
+    <section class="hero bg-white border-bottom py-5" id="beranda">
+      <div class="container">
+        <div class="row align-items-center g-4 g-lg-5">
+          <div class="col-lg-7">
+            <h1 class="mb-3">Rizky Ardiansyah</h1>
+            <p class="lead text-secondary mb-4">Mahasiswa semester 5 Sistem Informasi yang
+               belajar membangun antarmuka web yang rapi, responsif, dan mudah dipakai.</p>
+            <div class="d-flex flex-wrap gap-2">
+              <a class="btn btn-cv" href="#proyek">Lihat proyek</a>
+              <a class="btn btn-outline-cv" href="#kontak">Hubungi saya</a>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <figure class="m-0">
+              <picture>
+                <source media="(max-width: 767.98px)" srcset="img/avatar-rizky-lebar.svg">
+                <img class="img-fluid rounded-3 border" src="img/avatar-rizky.svg"
+                     alt="Ilustrasi profil Rizky Ardiansyah" width="480" height="480"
+                     loading="eager" decoding="async">
+              </picture>
+              <figcaption class="small text-secondary mt-2">Yogyakarta · terbuka untuk
+                magang frontend.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-5" id="keahlian">
+      <div class="container">
+        <h2 class="mb-2">Keahlian</h2>
+        <p class="text-secondary mb-4">Alat dan kemampuan yang sudah dipakai di proyek nyata.</p>
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center gap-3">
+            <span><i class="bi bi-code-slash me-2 text-secondary" aria-hidden="true"></i>HTML5 semantik</span>
+            <span class="badge text-bg-light border">Mahir</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center gap-3">
+            <span><i class="bi bi-bounding-box me-2 text-secondary" aria-hidden="true"></i>CSS box model</span>
+            <span class="badge text-bg-light border">Mahir</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center gap-3">
+            <span><i class="bi bi-distribute-horizontal me-2 text-secondary" aria-hidden="true"></i>Flexbox</span>
+            <span class="badge text-bg-light border">Mahir</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center gap-3">
+            <span><i class="bi bi-grid-3x3-gap me-2 text-secondary" aria-hidden="true"></i>CSS Grid</span>
+            <span class="badge text-bg-light border">Menengah</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center gap-3">
+            <span><i class="bi bi-bootstrap me-2 text-secondary" aria-hidden="true"></i>Bootstrap 5</span>
+            <span class="badge text-bg-light border">Menengah</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center gap-3">
+            <span><i class="bi bi-vector-pen me-2 text-secondary" aria-hidden="true"></i>Figma</span>
+            <span class="badge text-bg-light border">Dasar</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center gap-3">
+            <span><i class="bi bi-universal-access me-2 text-secondary" aria-hidden="true"></i>Aksesibilitas dasar</span>
+            <span class="badge text-bg-light border">Dasar</span>
+          </li>
+        </ul>
+        <p class="text-secondary small mt-3 mb-0">Tingkat dinilai dari tugas yang sudah
+          dinilai dosen, bukan dari perkiraan sendiri.</p>
+      </div>
+    </section>
+
+    <section class="py-5 bg-white border-top border-bottom" id="proyek">
+      <div class="container">
+        <h2 class="mb-2">Proyek</h2>
+        <p class="text-secondary mb-4">Enam proyek kuliah dan magang, dari dashboard sampai
+           halaman pendaftaran.</p>
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+          <div class="col">
+            <article class="card proyek-card h-100">
+              <div class="position-relative">
+                <span class="badge badge-unggulan proyek-badge">Unggulan</span>
+                <img class="card-img-top" loading="lazy" decoding="async" src="img/proyek-siakad.svg"
+                     alt="Pratinjau Dashboard SIAKAD dengan grafik batang" width="480" height="270">
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h3 class="card-title h5 mb-1">Dashboard SIAKAD</h3>
+                <p class="text-secondary small mb-2">Magang · 2025 · Bootstrap 5, CSS Grid</p>
+                <p class="card-text">Halaman ringkasan akademik untuk staf program studi:
+                   jumlah mahasiswa aktif, rekap kehadiran, dan grafik nilai per angkatan.</p>
+                <p class="proyek-meta mt-auto mb-0 pt-3">Frontend · <a href="#proyek">Lihat detail</a></p>
+              </div>
+            </article>
+          </div>
+
+          <div class="col">
+            <article class="card proyek-card h-100">
+              <div class="position-relative">
+                <span class="badge badge-selesai proyek-badge">Selesai</span>
+                <img class="card-img-top" loading="lazy" decoding="async" src="img/proyek-katalog-umkm.svg"
+                     alt="Pratinjau Katalog UMKM Sari Rasa berisi enam kartu produk" width="480" height="270">
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h3 class="card-title h5 mb-1">Katalog UMKM Sari Rasa</h3>
+                <p class="text-secondary small mb-2">Tugas besar · 2024 · HTML, Flexbox</p>
+                <p class="card-text">Katalog enam produk makanan ringan dengan saringan kategori,
+                   badge ketersediaan, dan kartu yang tetap rapi saat layar menyempit.</p>
+                <p class="proyek-meta mt-auto mb-0 pt-3">Frontend · <a href="#proyek">Lihat detail</a></p>
+              </div>
+            </article>
+          </div>
+
+          <div class="col">
+            <article class="card proyek-card h-100">
+              <div class="position-relative">
+                <span class="badge badge-selesai proyek-badge">Selesai</span>
+                <img class="card-img-top" loading="lazy" decoding="async" src="img/proyek-landing-kelas.svg"
+                     alt="Pratinjau Landing Kelas Online dengan bagian hero gelap" width="480" height="270">
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h3 class="card-title h5 mb-1">Landing Kelas Online</h3>
+                <p class="text-secondary small mb-2">Latihan · 2024 · Bootstrap 5</p>
+                <p class="card-text">Halaman pendaftaran kelas pemrograman: hero, tiga paket harga,
+                   dan tabel perbandingan fasilitas yang bisa digulir di layar kecil.</p>
+                <p class="proyek-meta mt-auto mb-0 pt-3">Frontend · <a href="#proyek">Lihat detail</a></p>
+              </div>
+            </article>
+          </div>
+
+          <div class="col">
+            <article class="card proyek-card h-100">
+              <div class="position-relative">
+                <span class="badge badge-selesai proyek-badge">Selesai</span>
+                <img class="card-img-top" loading="lazy" decoding="async" src="img/proyek-profil-desa.svg"
+                     alt="Pratinjau Website Profil Desa dengan bagian hijau" width="480" height="270">
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h3 class="card-title h5 mb-1">Website Profil Desa</h3>
+                <p class="text-secondary small mb-2">KKN · 2025 · HTML, CSS Grid</p>
+                <p class="card-text">Profil desa wisata: potensi UMKM, jadwal kegiatan, dan kontak
+                   perangkat desa dalam satu halaman yang bisa dibuka dari ponsel.</p>
+                <p class="proyek-meta mt-auto mb-0 pt-3">Frontend · <a href="#proyek">Lihat detail</a></p>
+              </div>
+            </article>
+          </div>
+
+          <div class="col">
+            <article class="card proyek-card h-100">
+              <div class="position-relative">
+                <span class="badge badge-selesai proyek-badge">Selesai</span>
+                <img class="card-img-top" loading="lazy" decoding="async" src="img/proyek-form-seminar.svg"
+                     alt="Pratinjau Form Pendaftaran Seminar dengan tiga medan isian" width="480" height="270">
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h3 class="card-title h5 mb-1">Form Pendaftaran Seminar</h3>
+                <p class="text-secondary small mb-2">Tugas · 2024 · Form HTML, aksesibilitas</p>
+                <p class="card-text">Form pendaftaran seminar kampus dengan label terlihat, status
+                   validasi, dan urutan tab yang bisa ditelusuri dari keyboard.</p>
+                <p class="proyek-meta mt-auto mb-0 pt-3">Frontend · <a href="#proyek">Lihat detail</a></p>
+              </div>
+            </article>
+          </div>
+
+          <div class="col">
+            <article class="card proyek-card h-100">
+              <div class="position-relative">
+                <span class="badge badge-berjalan proyek-badge">Berjalan</span>
+                <img class="card-img-top" loading="lazy" decoding="async" src="img/proyek-tokosaya.svg"
+                     alt="Pratinjau proyek Tokosaya dengan tiga kartu produk indigo" width="480" height="270">
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h3 class="card-title h5 mb-1">Tokosaya</h3>
+                <p class="text-secondary small mb-2">Proyek mata kuliah · 2025 · HTML, CSS, Figma</p>
+                <p class="card-text">Toko online UMKM yang dibangun bertahap sepanjang semester:
+                   dari kerangka semantik sampai panel detail produk hasil translasi Figma.</p>
+                <p class="proyek-meta mt-auto mb-0 pt-3">Frontend · <a href="#proyek">Lihat detail</a></p>
+              </div>
+            </article>
+          </div>
+
+        </div>
+
+        <nav class="mt-4" aria-label="Halaman proyek">
+          <ul class="pagination justify-content-center mb-0">
+            <li class="page-item disabled"><span class="page-link">...</span></li>
+            <li class="page-item active" aria-current="page"><span class="page-link">1</span></li>
+            <li class="page-item"><a class="page-link" href="#proyek">2</a></li>
+            <li class="page-item"><a class="page-link" href="#proyek">3</a></li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+
+    <section class="py-5" id="proyek-detail">
+      <div class="container">
+
+        <nav aria-label="breadcrumb" class="mb-3">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
+            <li class="breadcrumb-item"><a href="#proyek">Proyek</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Dashboard SIAKAD</li>
+          </ol>
+        </nav>
+
+        <div class="page-head mb-4">
+          <h2 class="mb-2">Detail proyek: Dashboard SIAKAD</h2>
+          <p class="text-secondary mb-0">Frame P-PROYEK-01 hasil translasi dari Figma,
+            diperiksa pada 1440, 768, dan 375 piksel.</p>
+        </div>
+
+        <div class="row g-4 align-items-start">
+
+          <div class="col-lg-7">
+            <figure class="m-0">
+              <img class="img-fluid border rounded-3" src="img/proyek-siakad.svg"
+                   alt="Pratinjau Dashboard SIAKAD: sidebar gelap, tiga kartu statistik, dan grafik batang"
+                   width="480" height="270" loading="lazy" decoding="async">
+              <figcaption class="small text-secondary mt-2">Tampilan 1440 piksel sesuai frame
+                desain. Di layar sempit sidebar menumpuk di atas konten.</figcaption>
+            </figure>
+
+            <div class="bg-white border rounded-3 p-4 mt-4">
+              <h3 class="h5 mb-3">Spesifikasi singkat</h3>
+              <div class="table-responsive">
+                <table class="table table-sm align-middle mb-0">
+                  <caption class="visually-hidden">Spesifikasi teknis Dashboard SIAKAD</caption>
+                  <tbody>
+                    <tr><th scope="row" class="w-50">Peran</th><td>Frontend (magang)</td></tr>
+                    <tr><th scope="row">Lingkup</th><td>4 halaman statis</td></tr>
+                    <tr><th scope="row">Teknologi</th><td>HTML, Bootstrap 5.3, CSS Grid</td></tr>
+                    <tr><th scope="row">Durasi</th><td>6 minggu, 2 hari per minggu</td></tr>
+                    <tr><th scope="row">Kontribusi</th><td>Grid dasbor, tabel rekap, state fokus</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-5">
+            <div class="produk-panel bg-white border rounded-3 p-4">
+              <span class="badge badge-unggulan mb-3">Unggulan</span>
+              <h3 class="produk-nama h3 mb-2">Dashboard SIAKAD</h3>
+              <p class="produk-kategori text-secondary mb-2">Magang · Sistem Informasi Akademik</p>
+              <p class="produk-harga h4 mb-3">12.480 mahasiswa aktif</p>
+
+              <h4 class="h6 text-uppercase text-secondary mb-2">Hasil</h4>
+              <ul class="mb-4">
+                <li>Waktu muat halaman ringkas turun dari 4,1 s ke 1,3 s.</li>
+                <li>Rekap kehadiran sebelumnya dua berkas Excel, kini satu tabel.</li>
+                <li>Tiga staf prodi memakai halaman ini setiap awal pekan.</li>
+              </ul>
+
+              <a class="btn btn-cv produk-cta" href="mailto:rizky.ardiansyah@mail.utn.ac.id">
+                <i class="bi bi-envelope me-2" aria-hidden="true"></i>Tanya tentang proyek ini
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <section class="proyek-terkait mt-5">
+          <h3 class="h4 mb-3">Proyek terkait</h3>
+          <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+              <article class="card proyek-card h-100">
+                <img class="card-img-top" src="img/proyek-katalog-umkm.svg" loading="lazy" decoding="async"
+                     alt="Pratinjau Katalog UMKM Sari Rasa" width="480" height="270">
+                <div class="card-body">
+                  <h4 class="card-title h6 mb-1">Katalog UMKM Sari Rasa</h4>
+                  <p class="small text-secondary mb-0">HTML, Flexbox</p>
+                </div>
+              </article>
+            </div>
+            <div class="col">
+              <article class="card proyek-card h-100">
+                <img class="card-img-top" src="img/proyek-landing-kelas.svg" loading="lazy" decoding="async"
+                     alt="Pratinjau Landing Kelas Online" width="480" height="270">
+                <div class="card-body">
+                  <h4 class="card-title h6 mb-1">Landing Kelas Online</h4>
+                  <p class="small text-secondary mb-0">Bootstrap 5</p>
+                </div>
+              </article>
+            </div>
+            <div class="col">
+              <article class="card proyek-card h-100">
+                <img class="card-img-top" src="img/proyek-tokosaya.svg" loading="lazy" decoding="async"
+                     alt="Pratinjau proyek Tokosaya" width="480" height="270">
+                <div class="card-body">
+                  <h4 class="card-title h6 mb-1">Tokosaya</h4>
+                  <p class="small text-secondary mb-0">HTML, CSS, Figma</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </section>
+
+    <section class="py-5" id="kontak">
+      <div class="container">
+        <h2 class="mb-2">Kontak</h2>
+        <p class="text-secondary mb-4">Paling cepat lewat surel; saya cek setiap hari kerja.</p>
+        <div class="alert alert-success d-flex align-items-start gap-2" role="status">
+          <i class="bi bi-check-circle mt-1" aria-hidden="true"></i>
+          <p class="mb-0">Terbuka untuk magang frontend mulai Februari 2026 — dua hari kerja
+            per minggu di Yogyakarta atau remote.</p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-7">
+            <form class="bg-white border rounded-3 p-4" action="mailto:rizky.ardiansyah@mail.utn.ac.id"
+                  method="post" enctype="text/plain">
+              <h3 class="h5 mb-3">Kirim pesan</h3>
+
+              <fieldset class="mb-4">
+                <legend class="h6 text-uppercase text-secondary">Data diri</legend>
+
+                <div class="mb-3">
+                  <label class="form-label" for="nama">Nama lengkap</label>
+                  <input class="form-control" id="nama" name="nama" type="text"
+                         autocomplete="name" placeholder="Contoh: Sari Wulandari" required>
+                  <p class="form-text">Nama yang akan saya balas di surel.</p>
+                </div>
+
+                <div class="mb-0">
+                  <label class="form-label" for="surel">Alamat surel</label>
+                  <div class="input-group">
+                    <span class="input-group-text" id="surel-at">@</span>
+                    <input class="form-control" id="surel" name="surel" type="email"
+                           autocomplete="email" placeholder="nama@contoh.com"
+                           aria-describedby="surel-at surel-bantuan" required>
+                  </div>
+                  <p class="form-text" id="surel-bantuan">Dipakai hanya untuk membalas pesan ini.</p>
+                </div>
+              </fieldset>
+
+              <div class="mb-3">
+                <label class="form-label" for="subjek">Subjek</label>
+                <select class="form-select" id="subjek" name="subjek" required>
+                  <option value="">Pilih salah satu</option>
+                  <option value="magang">Tawaran magang</option>
+                  <option value="proyek">Kerja sama proyek kampus</option>
+                  <option value="lain">Lainnya</option>
+                </select>
+              </div>
+
+              <fieldset class="mb-3">
+                <legend class="form-label">Jenis kolaborasi</legend>
+                <div class="form-check">
+                  <input class="form-check-input" id="kolab-magang" name="kolaborasi" type="radio" value="magang" checked>
+                  <label class="form-check-label" for="kolab-magang">Magang</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" id="kolab-proyek" name="kolaborasi" type="radio" value="proyek">
+                  <label class="form-check-label" for="kolab-proyek">Proyek kampus</label>
+                </div>
+                <div class="form-check mb-0">
+                  <input class="form-check-input" id="kolab-lain" name="kolaborasi" type="radio" value="lain">
+                  <label class="form-check-label" for="kolab-lain">Lainnya</label>
+                </div>
+              </fieldset>
+
+              <div class="mb-3">
+                <label class="form-label" for="pesan">Pesan</label>
+                <textarea class="form-control" id="pesan" name="pesan" rows="4"
+                          placeholder="Tulis kebutuhan, tenggat, dan tautan bila ada." required></textarea>
+                <p class="form-text">Sebutkan tenggat dan tautan berkas bila ada.</p>
+              </div>
+
+              <div class="form-check mb-4">
+                <input class="form-check-input" id="setuju" name="setuju" type="checkbox" required>
+                <label class="form-check-label" for="setuju">
+                  Saya setuju data di form ini dipakai untuk membalas pesan.
+                </label>
+              </div>
+
+              <button class="btn btn-cv" type="submit">
+                <i class="bi bi-send me-2" aria-hidden="true"></i>Kirim pesan
+              </button>
+            </form>
+          </div>
+
+          <div class="col-lg-5">
+            <address class="bg-white border rounded-3 p-4 mb-4">
+              <strong class="d-block mb-2 font-heading">Rizky Ardiansyah</strong>
+              Surel: <a href="mailto:rizky.ardiansyah@mail.utn.ac.id">rizky.ardiansyah@mail.utn.ac.id</a><br>
+              Telepon: <a href="tel:+6281234567890">+62 812-3456-7890</a><br>
+              Domisili: Sleman, Daerah Istimewa Yogyakarta
+            </address>
+            <div class="bg-white border rounded-3 p-4">
+              <h3 class="h6 text-uppercase text-secondary mb-2">Waktu balasan</h3>
+              <p class="mb-0">Senin sampai Jumat, 08.00 &ndash; 17.00 WIB. Di luar jam itu
+                pesan tetap masuk dan dibalas hari kerja berikutnya.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer py-4 mt-auto">
+    <div class="container d-flex flex-wrap align-items-center justify-content-between gap-3">
+      <address class="mb-0">
+        Rizky Ardiansyah · <a href="mailto:rizky.ardiansyah@mail.utn.ac.id">rizky.ardiansyah@mail.utn.ac.id</a>
+      </address>
+      <nav class="d-flex flex-wrap gap-3" aria-label="Navigasi footer">
+        <a href="index.html">Beranda</a>
+        <a href="index.html#proyek">Proyek</a>
+        <a href="tentang.html">Tentang</a>
+        <a href="index.html#proyek-detail">Detail proyek</a>
+        <a href="index.html#kontak">Kontak</a>
+        <a href="styleguide.html">Styleguide</a>
+        <a href="qa.html">Checklist QA</a>
+      </nav>
+      <p class="mb-0 small">&copy; 2025 Rizky Ardiansyah.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

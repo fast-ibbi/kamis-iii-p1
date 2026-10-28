@@ -1,0 +1,41 @@
+CATATAN FIDELITY — Frame P-PROYEK-01 (Dashboard SIAKAD)
+Website CV Rizky Ardiansyah · Bab 14
+Diperiksa: 1440 px, 768 px, 375 px · Chrome 130 · tanpa JavaScript
+
+RASIO DAN GRID
+[ok] Panel detail memakai row g-4 dengan col-lg-7 (gambar + spesifikasi)
+     dan col-lg-5 (panel informasi), sama seperti frame 7:5.
+[ok] Proyek terkait memakai col-12 col-md-4 sehingga tiga kartu sejajar
+     di desktop dan menumpuk di ponsel.
+[ok] Jarak antarkartu 24 px (g-4), jarak dalam kartu 24 px (p-4).
+
+TOKEN
+[ok] Semua warna diambil dari :root; tidak ada heksa di luar blok itu.
+[ok] Sudut kartu, panel, dan tombol memakai --radius 12 px.
+[ok] Bayangan kartu memakai --shadow-card, bukan nilai baru.
+
+TIPOGRAFI
+[ok] Judul panel memakai --font-heading (Poppins 600).
+[ok] Teks isi memakai --font-body (Inter 400) dengan line-height 1.6.
+[ok] Angka utama (12.480) memakai skala h4 sesuai text style di Figma.
+
+KOMPONEN
+[ok] Badge "Unggulan" memakai --clr-accent dengan teks --clr-dark.
+[ok] Tombol CTA memakai .btn-cv: latar --clr-primary, hover --clr-primary-dark.
+[ok] Breadcrumb memakai aria-current="page" pada item terakhir.
+
+KEADAAN INTERAKTIF
+[ok] Hover tombol = keadaan hover di Figma (teal gelap).
+[ok] Fokus keyboard terlihat: outline 3 px --clr-primary.
+[!] Menu dan tombol tutup pada desain asli butuh JavaScript; di sini
+    ditampilkan statis dan dicatat sebagai di luar cakupan mata kuliah.
+
+CATATAN PERBAIKAN
+[perbaiki] Jarak judul ke breadcrumb awalnya 24 px, seharusnya 16 px
+           (--space-unit * 2). Sudah diperbaiki.
+[perbaiki] Tinggi gambar panel sempat 1:1 karena width/height tidak ditulis;
+           sudah diberi width="480" height="270" agar rasio 16:9 terjaga.
+
+KESIMPULAN
+9 dari 9 butir checklist fidelity lolos pada tiga lebar uji. Satu butir
+keadaan interaktif dicatat sebagai keterbatasan, bukan kegagalan.

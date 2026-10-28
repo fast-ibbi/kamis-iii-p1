@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Checklist rilis dan laporan temuan QA untuk website CV Rizky Ardiansyah.">
+  <title>Checklist QA — Website CV Rizky</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Langsung ke konten utama</a>
+
+  <header class="site-header bg-white border-bottom">
+    <div class="container d-flex flex-wrap align-items-center justify-content-between gap-2 py-2">
+      <a class="site-brand" href="index.html">
+        <img src="img/logo-rizky.svg" alt="" width="40" height="40">
+        <span>Rizky Ardiansyah</span>
+      </a>
+      <nav aria-label="Navigasi utama">
+        <ul class="nav flex-wrap gap-3">
+          <li class="nav-item"><a class="nav-link p-0" href="index.html">Beranda</a></li>
+          <li class="nav-item"><a class="nav-link p-0" href="tentang.html">Tentang</a></li>
+          <li class="nav-item"><a class="nav-link p-0" href="styleguide.html">Styleguide</a></li>
+          <li class="nav-item"><a class="nav-link p-0" href="qa.html" aria-current="page">QA</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+
+    <div class="bg-white border-bottom py-4">
+      <div class="container">
+        <nav aria-label="breadcrumb" class="mb-3">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Checklist QA</li>
+          </ol>
+        </nav>
+        <h1 class="mb-2">Checklist Rilis</h1>
+        <p class="text-secondary mb-0">Laporan QA sprint untuk kandidat rilis
+          <strong>v1.0.0</strong> · diperiksa 12 Desember 2025 · Chrome 130, Firefox 132,
+          Safari 18 pada 1440, 768, dan 375 piksel.</p>
+      </div>
+    </div>
+
+    <section class="py-5">
+      <div class="container">
+        <div class="alert alert-success d-flex align-items-start gap-2" role="status">
+          <i class="bi bi-check-circle mt-1" aria-hidden="true"></i>
+          <p class="mb-0">Kandidat rilis dinyatakan <strong>siap</strong>: seluruh temuan
+            tingkat tinggi sudah ditutup, dua temuan sedang punya tiket tindak lanjut.</p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-4">
+            <div class="bg-white border rounded-3 p-4 h-100">
+              <h2 class="h5 mb-3">1. Isi, merek, dan meta</h2>
+              <ul class="list-unstyled mb-0">
+                <li class="d-flex gap-2 mb-2"><i class="bi bi-check-square-fill text-token-success" aria-hidden="true"></i><span>Satu <code>h1</code> per halaman, heading tidak melompat.</span></li>
+                <li class="d-flex gap-2 mb-2"><i class="bi bi-check-square-fill text-token-success" aria-hidden="true"></i><span>Setiap halaman punya <code>title</code> dan <code>description</code> sendiri.</span></li>
+                <li class="d-flex gap-2 mb-2"><i class="bi bi-check-square-fill text-token-success" aria-hidden="true"></i><span>Nama, surel, dan telepon konsisten di header, kontak, dan footer.</span></li>
+                <li class="d-flex gap-2 mb-0"><i class="bi bi-check-square-fill text-token-success" aria-hidden="true"></i><span>Tagline dan merek memakai satu penulisan.</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="bg-white border rounded-3 p-4 h-100">
+              <h2 class="h5 mb-3">2. Kode, perangkat, dan akses</h2>
+              <ul class="list-unstyled mb-0">
+                <li class="d-flex gap-2 mb-2"><i class="bi bi-check-square-fill text-token-success" aria-hidden="true"></i><span>Tidak ada heksa di luar <code>:root</code>; kelas kustom berkomentar.</span></li>
+                <li class="d-flex gap-2 mb-2"><i class="bi bi-check-square-fill text-token-success" aria-hidden="true"></i><span>Tiga breakpoint diuji tanpa luber horizontal.</span></li>
+                <li class="d-flex gap-2 mb-2"><i class="bi bi-check-square-fill text-token-success" aria-hidden="true"></i><span>Skip link, fokus terlihat, dan urutan tab wajar.</span></li>
+                <li class="d-flex gap-2 mb-0"><i class="bi bi-check-square-fill text-token-success" aria-hidden="true"></i><span>Kontras teks kecil minimal 4,5:1.</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="bg-white border rounded-3 p-4 h-100">
+              <h2 class="h5 mb-3">3. Aset, alat QA, dan paket</h2>
+              <ul class="list-unstyled mb-0">
+                <li class="d-flex gap-2 mb-2"><i class="bi bi-check-square-fill text-token-success" aria-hidden="true"></i><span>Semua gambar punya <code>alt</code>; yang dekoratif memakai <code>alt=""</code>.</span></li>
+                <li class="d-flex gap-2 mb-2"><i class="bi bi-check-square-fill text-token-success" aria-hidden="true"></i><span>Tidak ada berkas yatim di <code>img/</code>.</span></li>
+                <li class="d-flex gap-2 mb-2"><i class="bi bi-check-square-fill text-token-success" aria-hidden="true"></i><span>Checklist fidelity Bab 14 tersimpan di <code>catatan-fidelity.txt</code>.</span></li>
+                <li class="d-flex gap-2 mb-0"><i class="bi bi-check-square-fill text-token-success" aria-hidden="true"></i><span>Folder rilis berisi HTML, CSS, dan img tanpa berkas kerja.</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-5 bg-white border-top border-bottom">
+      <div class="container">
+        <h2 class="h3 mb-3">Matriks uji</h2>
+        <p class="text-secondary">Lima pemeriksaan pada tiga lebar layar.</p>
+        <div class="table-responsive">
+          <table class="table table-bordered align-middle mb-0">
+            <caption>Matriks uji lintas perangkat kandidat rilis v1.0.0</caption>
+            <thead>
+              <tr>
+                <th scope="col">Pemeriksaan</th>
+                <th scope="col">375 px</th>
+                <th scope="col">768 px</th>
+                <th scope="col">1440 px</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Tidak ada luber horizontal</th><td>lolos</td><td>lolos</td><td>lolos</td></tr>
+              <tr><th scope="row">Navigasi bisa dipakai tanpa JS</th><td>lolos</td><td>lolos</td><td>lolos</td></tr>
+              <tr><th scope="row">Kartu proyek tetap 16:9</th><td>lolos</td><td>lolos</td><td>lolos</td></tr>
+              <tr><th scope="row">Tabel bisa digulir di dalam wadah</th><td>lolos</td><td>lolos</td><td>tidak perlu</td></tr>
+              <tr><th scope="row">Fokus keyboard terlihat</th><td>lolos</td><td>lolos</td><td>lolos</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-5">
+      <div class="container">
+        <h2 class="h3 mb-3">Laporan temuan</h2>
+        <p class="text-secondary">Diurutkan dari tingkat tertinggi. Tingkat: tinggi, sedang,
+          rendah.</p>
+        <div class="table-responsive">
+          <table class="table table-striped align-middle mb-0">
+            <caption>Daftar temuan QA dan tindakannya</caption>
+            <thead>
+              <tr>
+                <th scope="col">No</th>
+                <th scope="col">Halaman</th>
+                <th scope="col">Temuan</th>
+                <th scope="col">Tingkat</th>
+                <th scope="col">Tindakan</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>01</td><td>index.html</td>
+                <td>Kartu proyek tanpa <code>width</code>/<code>height</code> sehingga tinggi melompat saat gambar dimuat.</td>
+                <td><span class="badge badge-berjalan">Tinggi</span></td>
+                <td>Tambahkan atribut ukuran dan <code>loading="lazy"</code>.</td>
+                <td>Tutup</td>
+              </tr>
+              <tr>
+                <td>02</td><td>index.html</td>
+                <td>Fokus keyboard pada tautan kartu tidak terlihat di latar putih.</td>
+                <td><span class="badge badge-berjalan">Tinggi</span></td>
+                <td>Ganti <code>outline: none</code> dengan cincin 3 px token primer.</td>
+                <td>Tutup</td>
+              </tr>
+              <tr>
+                <td>03</td><td>tentang.html</td>
+                <td>Tabel pendidikan meluber 12 px pada 375 px.</td>
+                <td><span class="badge badge-unggulan">Sedang</span></td>
+                <td>Bungkus dengan <code>.table-responsive</code>.</td>
+                <td>Tutup</td>
+              </tr>
+              <tr>
+                <td>04</td><td>index.html</td>
+                <td>Badge status hanya dibedakan warna, teks kecil.</td>
+                <td><span class="badge badge-unggulan">Sedang</span></td>
+                <td>Teks badge dipertahankan; kontras amber diperiksa ulang.</td>
+                <td>Tutup</td>
+              </tr>
+              <tr>
+                <td>05</td><td>styleguide.html</td>
+                <td>Contoh tombol nonaktif masih bisa difokus.</td>
+                <td><span class="badge text-bg-light border">Rendah</span></td>
+                <td>Dokumentasikan sebagai contoh visual statis.</td>
+                <td>Tunda</td>
+              </tr>
+              <tr>
+                <td>06</td><td>index.html</td>
+                <td>Menu tidak punya keadaan buka-tutup di layar sempit.</td>
+                <td><span class="badge text-bg-light border">Rendah</span></td>
+                <td>Di luar cakupan: butuh JavaScript. Menu ditumpuk, bukan disembunyikan.</td>
+                <td>Diterima</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-5 bg-white border-top">
+      <div class="container">
+        <h2 class="h3 mb-3">Refactor CSS hasil temuan</h2>
+        <p class="text-secondary">Tiga aturan yang berubah karena laporan di atas.</p>
+        <pre class="bg-light border rounded-3 p-4 mb-3"><code>/* kustom — temuan 02: fokus tidak boleh dihapus */
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible {
+  outline: 3px solid var(--clr-primary);
+  outline-offset: 2px;
+}
+
+/* kustom — temuan 01: rasio gambar dikunci */
+.proyek-card .card-img-top {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+/* kustom — temuan 03: tabel lebar digulir di dalam wadah */
+.table-responsive {
+  border-radius: var(--radius);
+  border: 1px solid var(--clr-border);
+}</code></pre>
+        <p class="mb-0"><a class="btn btn-outline-cv" href="index.html">
+          <i class="bi bi-arrow-left me-2" aria-hidden="true"></i>Kembali ke beranda</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer py-4 mt-auto">
+    <div class="container d-flex flex-wrap align-items-center justify-content-between gap-3">
+      <address class="mb-0">
+        Rizky Ardiansyah · <a href="mailto:rizky.ardiansyah@mail.utn.ac.id">rizky.ardiansyah@mail.utn.ac.id</a>
+      </address>
+      <nav class="d-flex flex-wrap gap-3" aria-label="Navigasi footer">
+        <a href="index.html">Beranda</a>
+        <a href="tentang.html">Tentang</a>
+        <a href="styleguide.html">Styleguide</a>
+        <a href="qa.html">Checklist QA</a>
+      </nav>
+      <p class="mb-0 small">&copy; 2025 Rizky Ardiansyah · v1.0.0</p>
+    </div>
+  </footer>
+
+</body>
+</html>
