@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" role="img" aria-label="Pratinjau Landing Kelas Online">
+  <rect width="480" height="270" fill="#0F172A"/>
+  <rect x="20" y="20" width="72" height="10" rx="5" fill="#0F766E"/>
+  <g fill="#475569"><rect x="330" y="21" width="36" height="8" rx="4"/><rect x="378" y="21" width="36" height="8" rx="4"/><rect x="426" y="21" width="34" height="8" rx="4"/></g>
+  <rect x="20" y="64" width="230" height="18" rx="6" fill="#F8FAFC"/>
+  <rect x="20" y="92" width="180" height="18" rx="6" fill="#F8FAFC"/>
+  <g fill="#334155"><rect x="20" y="126" width="240" height="8" rx="4"/><rect x="20" y="146" width="200" height="8" rx="4"/></g>
+  <rect x="20" y="176" width="104" height="32" rx="8" fill="#0F766E"/>
+  <rect x="136" y="176" width="104" height="32" rx="8" fill="none" stroke="#475569" stroke-width="2"/>
+  <rect x="280" y="64" width="180" height="144" rx="12" fill="#115E59"/>
+  <circle cx="370" cy="118" r="26" fill="#0F766E"/>
+  <path d="M362 106l24 12-24 12z" fill="#F8FAFC"/>
+  <rect x="310" y="160" width="120" height="10" rx="5" fill="#CCFBF1" opacity=".7"/>
+  <rect x="310" y="180" width="90" height="8" rx="4" fill="#CCFBF1" opacity=".4"/>
+  <g fill="#334155"><rect x="20" y="232" width="60" height="8" rx="4"/><rect x="100" y="232" width="60" height="8" rx="4"/><rect x="180" y="232" width="60" height="8" rx="4"/><rect x="260" y="232" width="60" height="8" rx="4"/></g>
+</svg>
