@@ -5,7 +5,7 @@ paginate: true
 size: 16:9
 lang: id
 title: "Bab 5 — CSS Box Model dan Layout"
-description: "Anatomi box model, box-sizing, display, overflow, position, dan skala jarak 8px pada kartu produk Tokosaya."
+description: "Anatomi box model, box-sizing, display, overflow, position, dan skala jarak 8 px pada kartu produk Tokosaya."
 footer: "Bab 5 · CSS Box Model dan Layout"
 ---
 
@@ -15,59 +15,66 @@ footer: "Bab 5 · CSS Box Model dan Layout"
 
 # CSS Box Model dan Layout
 
-**Bab 5** · Menghitung kotak, bukan menebak jarak
+## Memahami Ukuran, Tampilan, dan Posisi Elemen
 
-Studi kasus: **Tokosaya**
+**Bab 5**
 
 <!--
-Buka dengan pertanyaan: kenapa halaman yang HTML-nya udah rapi masih bisa meleset
-beberapa piksel? Bab ini ngubah cara kerja dari menebak jarak jadi ngitung kotak.
-Hasil akhirnya satu komponen kartu produk Tokosaya yang bisa kamu inspeksi sendiri.
+Buka dengan pertanyaan yang muncul di praktikum: mengapa halaman yang HTML-nya sudah rapi
+masih meleset beberapa piksel? Bab ini mengubah cara kerja dari menebak jarak menjadi
+menghitung kotak.
+
+Sebutkan bahwa hasil akhir bab adalah satu kartu produk yang dapat diperiksa sendiri lewat
+DevTools, dan bahwa seluruh hitungan di sini tetap berlaku ketika Flexbox dan Grid dibahas
+pada bab berikutnya.
 -->
 
 ---
+
+<!-- _class: compact -->
+
+# Subtopik Bab Ini
+
+- Anatomi CSS Box Model
+- Perhitungan ukuran kotak
+- Pengaturan batas ukuran elemen
+- Perilaku properti `display`
+- Penanganan `overflow` dan teks panjang
+- Pengaturan posisi elemen dengan `position` dan `z-index`
+- Penerapan skala jarak 8 px
+
+<!--
+Bacakan daftar ini sebagai peta bab, bukan sebagai bahan hafalan: tujuh butir, dan setiap
+butir akan mendapat slide sendiri.
+
+Minta mahasiswa menandai satu butir yang paling asing bagi mereka. Tandaan itu dipakai lagi
+pada slide Latihan, karena soal latihan disusun mengikuti urutan yang sama.
+-->
+
+---
+
 <!-- _class: compact -->
 
 # Tujuan Pembelajaran
 
-Setelah menyelesaikan bab ini, kamu bisa:
+Setelah menyelesaikan bab ini, peserta diharapkan mampu:
 
-- Anatomi kotak: content, padding, border, margin, dari dalam ke luar
-- Hitungan lebar total di `content-box` dan `border-box`
-- Menahan ukuran dengan `min-width`, `max-width`, dan `min-height`
-- Pemasangan `box-sizing: border-box` global dan alasannya
-- Perilaku `display`: `block`, `inline`, dan `inline-block`
-- Penanganan `overflow` dan pemenggalan teks panjang
-- Posisi kotak: `position`, `z-index`, dan skala jarak 8 px
-
-<!--
-Bacakan tujuh butir ini sebagai janji, bukan daftar. Tiap butir punya rangkaian yang
-sama sepanjang bab: definisi, kenapa penting, hitungan atau demo DevTools, lalu salah
-kaprah yang harus kamu kenali.
-
-Hubungkan dengan Bab 4: token warna dan huruf udah siap, bab ini nambahin jarak dan
-penghitungan. Tanyain siapa yang selama ini ngira `width` itu lebar kotak yang keliatan
-di layar; jawaban itu yang dibongkar di butir kedua.
--->
-
----
-
-# Tiga Gejala, Satu Akar
-
-![w:1120 Tiga dugaan awal yang salah, dan penyebab sebenarnya di tiap baris: induk belum relative, mode content-box, dan belum ada skala jarak.](assets/diagrams/bab-05-css-box-model-dan-layout-03.svg)
-
-Kamu magang di tim digital Tokosaya. Katalognya berulah: badge terlempar ke pojok halaman, kartu ketiga meluber, dan jarak antarkartu 12, 17, lalu 28 px padahal di desain ketiganya sama.
-
-> Ketiga gejala itu bukan salah HTML, tapi satu akar yang sama: kotak.
+1. Menjelaskan anatomi kotak CSS yang terdiri dari `content`, `padding`, `border`, dan `margin`.
+2. Menghitung lebar total elemen menggunakan `content-box` dan `border-box`.
+3. Mengendalikan ukuran elemen menggunakan `min-width`, `max-width`, dan `min-height`.
+4. Menerapkan `box-sizing: border-box` secara global dan menjelaskan manfaatnya.
+5. Membedakan perilaku `display: block`, `inline`, dan `inline-block`.
+6. Menangani konten yang melampaui batas kotak menggunakan `overflow` dan aturan pemenggalan teks.
+7. Mengatur posisi dan urutan tumpukan elemen menggunakan `position` dan `z-index`.
+8. Menerapkan skala jarak berbasis kelipatan 8 px untuk menghasilkan layout yang konsisten.
 
 <!--
-Ceritakan tiga gejalanya sebagai pengalaman magang, jangan cuma dibacakan: badge
-terlempar ke pojok kanan, kartu ketiga meluber, dan jarak kartu 12, 17, lalu 28 px.
+Delapan butir ini adalah kontrak penilaian bab: setiap butir akan diuji lewat satu soal
+latihan, dan slide Cek Daftar Komponen tidak lagi dipakai sebagai rubrik.
 
-Tanyain dugaan awal mereka buat ketiga gejala; jawaban yang diharapkan: salah tulis
-HTML, kontainer kekecilan, dan desainnya beda — ketiganya salah. Yang sebenarnya:
-induknya belum `relative`, mode `content-box` menambah padding, dan belum ada skala
-jarak tetap.
+Tanyakan butir mana yang paling sulit dibayangkan; jawaban yang sering muncul adalah butir
+ketujuh. Tegaskan bahwa urutan butir sama dengan urutan slide, sehingga mahasiswa dapat
+memakai slide Tujuan ini sebagai daftar periksa mandiri.
 -->
 
 ---
@@ -75,247 +82,397 @@ jarak tetap.
 <!-- _class: section -->
 <!-- _footer: '' -->
 
-# Kotak dan Cara Menghitungnya
+# Bagian 1 · Kotak dan Ukurannya
 
 ## Lapisan, hitungan, dan satu mode untuk semua
 
 <!--
-Transisi dari gejala ke alat ukurnya. Bagian pertama inilah yang paling ngubah cara
-berpikir: setelah paham lapisannya, layout jadi soal aritmetika, bukan selera.
+Transisi dari daftar tujuan ke alat ukurnya. Bagian ini mengubah cara berpikir: setelah
+lapisan kotak dipahami, layout menjadi soal aritmetika, bukan selera.
 
-Tahan dulu soal `display` dan `position`; keduanya masuk bagian kedua dan ketiga.
+Tahan dahulu soal `display` dan `position`; keduanya masuk Bagian 2 dan Bagian 3.
 -->
 
 ---
-
 
 <!-- _class: compact -->
 
-# Anatomi Kotak: Empat Lapisan
+# Pengenalan CSS Box Model
 
-![w:650 Diagram kotak CSS berlapis: margin paling luar, di dalamnya border, lalu padding, dan content di tengah](assets/diagrams/bab-05-box-model-01.svg)
+**Apa itu CSS Box Model?**
 
-- Urutan dari dalam ke luar: content, padding, border, margin
-- Content menyimpan isi; padding ruang dalam yang ikut berwarna dan bisa diklik
-- Border garis pemisah; margin ruang luar yang selalu transparan
+CSS Box Model adalah konsep yang menjelaskan bagaimana browser menghitung ruang yang digunakan oleh setiap elemen HTML.
 
-> Padding ikut berwarna; margin tidak pernah.
+Setiap elemen dapat dipandang sebagai sebuah kotak yang terdiri dari empat lapisan:
+
+- **Content:** area utama yang menampilkan teks, gambar, atau konten lainnya.
+- **Padding:** ruang di antara konten dan border.
+- **Border:** garis pembatas yang mengelilingi konten dan padding.
+- **Margin:** ruang di luar border untuk memisahkan elemen dari elemen lain.
+
+**Mengapa penting?**
+
+- Mengatur ukuran elemen dengan akurat.
+- Mengontrol jarak antarelemen.
+- Mencegah layout melebar melebihi container.
+- Membantu membuat desain responsif dan konsisten.
 
 <!--
-Tunjuk dari tengah ke luar: content, padding, border, margin. Tekankan dua fakta yang
-nentuin semua hitungan nanti: padding ikut mewarnai latar dan ikut bisa diklik,
-sedangkan margin nggak dua-duanya.
+Bacakan definisi sekali, lalu berhenti dan tunjukkan satu elemen di layar. Empat lapisan itu
+bukan istilah tambahan: setiap nilai `width`, `padding`, `border`, dan `margin` di berkas CSS
+mahasiswa akan mengisi salah satu lapisan tersebut.
 
-Tanyain lapisan mana yang bikin kartu terasa lega pas dibaca; jawaban yang diharapkan:
-padding, karena ia bagian dari kotak dan ikut berwarna. Sebutkan urutan itu juga urutan
-kerja: kalau lebar meleset, periksa padding dulu, lalu border, terakhir margin.
+Tanyakan lapisan mana yang membuat kartu terasa lega saat dibaca; jawaban yang diharapkan
+adalah padding, karena padding adalah bagian dari kotak dan ikut berwarna. Ingatkan bahwa
+urutan kerja pemeriksaan selalu dari dalam ke luar: content, padding, border, margin.
 -->
 
 ---
-
 
 <!-- _class: compact -->
 
-# Analogi Poster Berbingkai
+# Diagram: Empat Lapisan Kotak
 
-![w:1100 Empat lapisan kotak dianalogikan poster di dinding: content kanvas, padding passe-partout, border bingkai kayu, margin jarak ke poster lain.](assets/diagrams/bab-05-css-box-model-dan-layout-06.svg)
+![w:1120 Kotak CSS berlapis dari dalam ke luar: content 300 × 150 px, padding 16 px, border 2 px, dan margin 24 px.](assets/diagrams/bab-05-css-box-model-dan-layout-01.svg)
 
-- Content adalah kanvas tempat gambar dicetak
-- Padding adalah passe-partout: masih milik poster, ikut berwarna
-- Border adalah bingkai kayu: batas yang ikut dihitung
-- Margin adalah jarak ke poster lain: tidak dimiliki siapa pun
+Urutan lapisan CSS Box Model adalah:
+
+**Content → Padding → Border → Margin**
+
+Ukuran pada gambar: content 300 × 150 px, padding 16 px, border 2 px, margin 24 px, lebar total 384 px.
 
 <!--
-Analogi ini yang paling berguna pas kamu harus menjelaskan keputusan desain ke rekan
-non-teknis: content adalah kanvas poster tempat gambar dicetak, padding adalah
-passe-partout di sekeliling kanvas, border adalah bingkai kayu yang membatasi kanvas,
-dan margin adalah jarak ke poster lain di dinding.
+Tunjuk dari tengah ke luar sambil menyebut nama lapisannya, satu per satu. Tekankan dua fakta
+yang menentukan semua hitungan berikutnya: padding ikut mewarnai latar dan ikut dapat diklik,
+sedangkan margin tidak keduanya.
 
-Tanyain lapisan mana yang ikut berubah kalau latar elemen dikasih warna; jawaban yang
-diharapkan: content dan padding. Lanjut pertanyaan kedua: kalau poster tetangga mau
-dirapatkan, lapisan mana yang digeser? Jawabannya margin — kamu lagi ngatur hubungan
-antarkotak, bukan ngatur kotaknya.
+Tanyakan lapisan mana yang berubah ketika latar elemen diberi warna; jawaban yang diharapkan
+adalah content dan padding. Lanjutkan dengan pertanyaan kedua: jika dua kartu ingin
+dirapatkan, lapisan mana yang digeser? Jawabannya margin, karena yang diatur adalah hubungan
+antarkotak.
 -->
 
 ---
-
-# Padding dan Margin Bukan Hal yang Sama
-
-![w:1120 Padding adalah bagian dari tubuh elemen, jadi latar dan area klik ikut memenuhinya; margin berada di luar kotak, transparan, dan cuma menahan jarak ke kotak tetangga.](assets/diagrams/bab-05-css-box-model-dan-layout-07.svg)
-
-- Padding milik elemen: latar dan area klik ikut memenuhinya
-- Margin di luar kotak: transparan, tidak bisa diklik
-- Border tipis, 1 sampai 2 px, jadi garis pemisah keduanya
-- Klik tombol yang bertambah luas selalu hasil padding, bukan margin
-
-<!--
-Tekankan bahwa padding itu bagian dari tubuh elemen itu sendiri: klik dan latar ikut
-memenuhi seluruh area padding. Margin berada di luar kotak dan selalu transparan — kartu
-berlatar putih dengan margin 32 px tetap nampakin bidang kaca di sekelilingnya.
-
-Tanyain: kalau bidang kaca itu mau ikut berwarna, properti mana yang dipakai? Jawaban
-yang diharapkan: padding, bukan margin. Lanjut ke kasus tombol: tombol yang gampang
-dipencet nambah luasnya karena padding; margin cuma nyorong tetangganya menjauh.
--->
-
----
-
-
 <!-- _class: compact -->
 
-# Margin Vertikal Bisa Runtuh
+# Anatomi Kotak: Dari Dalam ke Luar (1/4)
+**1. Content**
 
-![w:1160 Margin bawah dan margin atas bertetangga tidak dijumlahkan, yang dipakai nilai paling besar; padding tidak punya perilaku runtuh ini.](assets/diagrams/bab-05-css-box-model-dan-layout-08.svg)
-
-- Margin bawah 16 px bertemu margin atas 24 px: jaraknya 24 px, bukan 40 px
-- Yang dipakai nilai terbesar, bukan hasil penjumlahan
-- Padding tidak punya perilaku runtuh ini
-- Cara periksa: klik dua kotak di DevTools, lihat pita marginnya jadi satu
-
-> Ritme vertikal antarseksi lebih aman distandarkan lewat padding kontainer.
-
-<!--
-Hitung bareng-bareng: 16 px bawah ketemu 24 px atas, jaraknya jadi 24 px, bukan 40 px.
-Aturannya: margin bawah dan margin atas bertetangga nggak dijumlahkan, yang dipakai
-adalah nilai yang paling besar. Inilah yang bikin mahasiswa nuduh CSS-nya rusak padahal browser cuma
-jalanin aturan runtuh.
-
-Cara memeriksanya: pilih dua kotak bertetangga di DevTools, pita margin keduanya menyatu
-dan angkanya cuma muncul sekali. Tanyain kenapa padding yang dipilih buat ritme
-antarseksi; jawaban yang diharapkan: padding nggak runtuh, jadi jaraknya bisa diprediksi.
--->
-
----
-
-
-<!-- _class: compact -->
-
-# Angka width Cuma Sepotong Kotak
-
-![w:1160 Lebar 280 piksel hanya area konten; padding 16 piksel kiri-kanan dan border 4 piksel kiri-kanan ditambahkan di luarnya, sehingga lebarnya 320 piksel.](assets/diagrams/bab-05-css-box-model-dan-layout-09.svg)
+Area untuk isi elemen, seperti teks, gambar, atau komponen.
 
 ```css
-.panel {
-  width: 280px;      /* hanya area konten */
-  padding: 16px;     /* ditambahkan di luar */
-  border: 4px solid #4F46E5;
+.card {
+  width: 300px;
+  height: 150px;
 }
 ```
 
-- 280 + 16 + 16 + 4 + 4 = 320 px lebar di layar
-- Selisih 40 px itulah yang memunculkan bilah gulir horizontal
-
-> Angka yang kamu tulis bukan angka yang dipakai browser.
-
 <!--
-Minta mereka ngitung sendiri sebelum kamu tunjukin 320 px di layar. Angka `width` cuma
-milik area konten: 280 px ditambah padding kiri-kanan 16 px dan border kiri-kanan 4 px,
-jadi lebar di layar 280 + 32 + 8 = 320 px. Rinciannya: padding 16 px (kiri 16 px,
-kanan 16 px) dan border 4 px (kiri 4 px, kanan 4 px).
+Tekankan bahwa `width` dan `height` hanya mengatur lapisan content. Pada slide ini belum ada
+border, sehingga angka yang ditulis masih sama dengan lebar kotak yang terlihat.
 
-Tanyain kenapa kartu yang "seharusnya" muat tiga di satu baris jadi meluber sepuluh
-piksel; jawaban yang diharapkan: padding dan border nambah lebar di luar 280 px. Ini akar
-gejala kedua di apersepsi.
+Tanyakan apa yang berubah ketika padding ditambahkan pada slide berikutnya; jawaban yang
+diharapkan adalah kotak menjadi lebih tinggi dan lebih lebar. Ukuran content di sini adalah
+titik awal semua hitungan.
 -->
-
 ---
-
-# Studi Kasus: Dashboard SIAKAD
-
-Fakultas merancang ulang dashboard mahasiswa: tiga kartu informasi utama.
-
-- Padding 40 px bikin kartu terlalu tinggi
-- Jarak di dalam kartu campur: 12, 17, dan 28 px
-- Kartu ketiga terlempar keluar layar laptop
-- Kolom kartu tidak sejajar di tepi atas
-- Perbaikan: padding 24 px dan 16 px dari skala 8
-
-> Box model bukan urusan estetika, tapi kecepatan pengguna memahami data.
-
-<!--
-Ceritakan dampaknya dari perilaku layar, bukan dari angka statistik: kartu yang terlalu
-tinggi maksa pengguna menggulir buat membandingkan dua angka yang seharusnya
-bersebelahan.
-
-Tanyain kenapa jarak 17 px antara label dan nilainya justru mecah kelompok informasi;
-jawaban yang diharapkan: mata membacanya kayak dua blok berbeda, jadi angkanya nggak
-lagi keliatan sebagai satu pasangan. Pola yang sama dibangun ulang dengan Grid di Bab 7.
--->
-
----
-
-# Contoh: Studi Kasus: Dashboard SIAKAD
-
-![w:1120 Dua panel kartu statistik SIAKAD dengan isi dan border yang sama: kiri padding 40 px per sisi dengan tinggi kartu 152 px, kanan padding 24 px per sisi dengan tinggi kartu 120 px.](assets/diagrams/bab-05-css-box-model-dan-layout-15.svg)
-
-Satu kartu statistik SIAKAD, content 240 × 64 px dan border 4 px tiap sisi, jadi yang bisa digeser cuma paddingnya. Dengan padding 40 px per sisi, tinggi kartu 152 px (64 + 40 + 40 + 4 + 4), dan kartu terlalu tinggi. Dengan padding 24 px per sisi, angka dari skala 8, tinggi kartu 120 px (64 + 24 + 24 + 4 + 4): hemat 32 px per kartu tanpa mengubah satu pun isinya. Tinggi 64 px itu tetap dua baris teks — label 24 px, jarak 8 px, angka 32 px.
-
-<!--
-Minta kelas ngitung tinggi kartunya sendiri sebelum kamu tunjukin 152 px. Jawaban yang
-diharapkan: 64 + 40 + 40 + 4 + 4 = 152 px, sedangkan padding 24 px cuma
-64 + 24 + 24 + 4 + 4 = 120 px.
-
-Tunjuk dua panel di gambar: kiri padding 40 px, kanan 24 px, dan baris pertama kedua
-panel sama persis. Tekankan hasilnya per kartu: 32 px lebih pendek tanpa satu pun data
-hilang. Sebutkan 40 px nggak ada di daftar 8, 16, 24, 32, 48, dan 64 px.
--->
-
----
-
-# Menahan Kotak dengan min dan max
-
-- `width` tanpa nilai lain mengikuti lebar induk
-- `min-width` menjaga kotak tidak pernah lebih sempit dari batasnya
-- `max-width: 100%` mencegah gambar meluber dari kartu
-- `width: 280px` plus `max-width: 100%` pola klasik kartu
-- `.container` dibatasi 960 px supaya baris teks nyaman dibaca
-
-<!--
-Satu pertanyaan buat kelima baris: siapa yang nentuin ukuran kotak ini — induknya,
-browser, atau batas yang kita tulis?
-
-Tanyain kenapa kita nggak ngunci `height` di paragraf yang isinya bisa nambah; jawaban
-yang diharapkan: teks yang kepotong itu kegagalan aksesibilitas, jadi pakai
-`min-height`. Tekankan bahwa `min-width` dan `max-width` itu dua batas berlawanan arah,
-dan keduanya nggak ngunci ukuran kayak `width`.
--->
-
----
-
-
 <!-- _class: compact -->
 
-# Batas Atas dan Batas Bawah
+# Anatomi Kotak: Dari Dalam ke Luar (2/4)
+**2. Padding**
 
-![w:1160 Dua arah batas: max-width menahan kotak dari atas sehingga boleh menyusut, min-width dan min-height menahan dari bawah sehingga boleh membesar.](assets/diagrams/bab-05-css-box-model-dan-layout-38.svg)
-
-- `max-width` adalah batas atas: kotak boleh menyusut, tidak boleh melebar
-- `min-width` dan `min-height` adalah batas bawah: kotak boleh membesar, tidak boleh remuk
-- `min-height: 240px` menahan kartu yang isinya masih pendek
-- `width` mengunci; `min` dan `max` cuma menahan
-
-> Satu properti mengunci, dua lainnya cuma menahan.
-
-<!--
-Ini slide yang membedakan "menahan" dari "mengunci": angka di `width` itu keputusan
-final, sedangkan angka di `min` dan `max` cuma rambu. Tekankan arah rambunya —
-`max-width` nahan dari atas, `min-width` dan `min-height` nahan dari bawah.
-
-Tanyain: kalau layar menyempit, mana yang lebih dulu kerja, `width: 280px` atau
-`max-width: 100%`? Jawaban yang diharapkan: `max-width` yang menang, karena ia batas
-atas yang nggak boleh dilanggar. Rambu atas itulah yang dipakai gambar dan kartu di
-layar sempit; sedangkan `min-width: 200px` menahan kolom samping supaya nggak habis
-dimakan layar sempit.
--->
-
----
-
-<!-- _class: compact -->
-
-# Satu Aturan border-box Global
+Jarak antara konten dan border.
 
 ```css
-/* Semua kotak dihitung dari tepi border ke tepi border */
+.card {
+  padding: 16px;
+}
+```
+
+<!--
+Tanyakan berapa tambahan lebar dari `padding: 16px`; jawaban yang diharapkan adalah 32 px,
+karena singkatan empat sisi menambahkan 16 px di kiri dan 16 px di kanan.
+
+Tegaskan bahwa padding adalah bagian dari kotak: latar elemen ikut mewarnainya dan area klik
+ikut meluas. Inilah alasan tombol yang lebih mudah dipencet selalu soal padding, bukan margin.
+-->
+---
+<!-- _class: compact -->
+
+# Anatomi Kotak: Dari Dalam ke Luar (3/4)
+**3. Border**
+
+Garis yang mengelilingi padding dan konten.
+
+```css
+.card {
+  border: 2px solid #333;
+}
+```
+
+<!--
+Bedakan padding dan border dari letaknya: padding berada di dalam border, border menjadi garis
+yang mengelilingi padding dan content. Keduanya sama-sama menambah ukuran kotak yang terlihat.
+
+Tanyakan berapa tambahan lebar dari `border: 2px`; jawaban yang diharapkan adalah 4 px, yaitu
+2 px di kiri dan 2 px di kanan. Ingatkan bahwa `2px` di sini adalah ketebalan, bukan ukuran
+kotak.
+-->
+---
+<!-- _class: compact -->
+
+# Anatomi Kotak: Dari Dalam ke Luar (4/4)
+**4. Margin**
+
+Jarak di luar border untuk memisahkan elemen dari elemen lain.
+
+```css
+.card {
+  margin: 24px;
+}
+```
+
+**Catatan:** Padding dan border memengaruhi ukuran kotak yang terlihat, sedangkan margin menambah ruang di luar kotak tersebut.
+
+<!--
+Kunci slide ini pada kalimat catatan: padding dan border masuk hitungan ukuran kotak, margin
+tidak. Kalimat itu yang dipakai terus sampai slide perhitungan lebar total.
+
+Tanyakan berapa lebar kotak jika `width: 300px`, padding 16 px, dan border 2 px dipakai
+bersama; jawaban yang diharapkan adalah 336 px. Jika ada yang menjawab 300 px, lanjutkan ke
+slide berikutnya tanpa mengoreksi lebih dahulu.
+-->
+---
+
+<!-- _class: compact -->
+
+# Perbedaan Padding dan Margin (1/2)
+
+Keduanya sama-sama mengatur jarak, tetapi memiliki fungsi berbeda.
+
+| Properti  | Fungsi                            | Lokasi                           |
+| --------- | --------------------------------- | -------------------------------- |
+| `padding` | Memberikan ruang di dalam elemen  | Di antara content dan border     |
+| `margin`  | Memberikan jarak dari elemen lain | Di luar border                   |
+| `border`  | Membentuk garis pembatas          | Mengelilingi content dan padding |
+
+**Contoh:**
+
+```css
+.card {
+  padding: 20px;
+  margin: 16px;
+  border: 2px solid steelblue;
+}
+```
+
+<!--
+Bacakan tabel dari kolom Lokasi, bukan dari kolom Properti: yang membedakan keduanya adalah
+letaknya, bukan namanya.
+
+Tanyakan mengapa `border` ikut masuk tabel padahal bukan pengatur jarak; jawaban yang
+diharapkan adalah karena border menjadi batas yang memisahkan padding dari margin. Tanpa
+border, batas antara padding dan margin tidak terlihat di layar dan perhitungan jadi sukar
+diperiksa.
+-->
+
+---
+
+<!-- _class: compact -->
+
+# Perbedaan Padding dan Margin (2/2)
+
+**Penjelasan:**
+
+- Konten memiliki ruang tambahan 20 px di setiap sisi.
+- Border memiliki ketebalan 2 px.
+- Elemen memiliki jarak luar 16 px di setiap sisi.
+
+**Kapan digunakan?**
+
+- Gunakan `padding` agar isi elemen tidak menempel pada tepinya.
+- Gunakan `margin` untuk mengatur jarak antarkomponen.
+
+<!--
+Hubungkan tiga butir penjelasan dengan contoh kode pada slide sebelumnya, angka per angka.
+Sebutkan bahwa 20 px pada padding berarti total tambahan 40 px pada satu sumbu, sedangkan
+16 px pada margin tidak menambah ukuran kotak.
+
+Tanyakan properti mana yang dipakai agar tombol lebih mudah dipencet; jawaban yang diharapkan
+adalah padding, karena area klik mengikuti padding. Kasus sebaliknya: memberi napas antar
+dua kartu adalah urusan margin.
+-->
+
+---
+<!-- _class: compact -->
+
+# Perhitungan Lebar Total dengan content-box (1/3)
+Secara default, browser menggunakan:
+
+```css
+box-sizing: content-box;
+```
+
+Pada model ini, nilai `width` hanya mengatur lebar area content. Padding dan border ditambahkan di luar ukuran tersebut.
+
+<!--
+Sebutkan bahwa `content-box` adalah bawaan browser, jadi bukan pilihan yang diambil
+pengembang. Inilah alasan hitungan sering meleset pada proyek pertama.
+
+Tanyakan berapa bagian dari kotak yang diatur oleh `width`; jawaban yang diharapkan hanya area
+content. Lanjutkan ke rumus pada slide berikutnya.
+-->
+---
+<!-- _class: compact -->
+
+# Perhitungan Lebar Total dengan content-box (2/3)
+**Rumus lebar total:**
+
+```text
+Lebar total =
+width + padding kiri + padding kanan
+       + border kiri + border kanan
+```
+
+**Contoh:**
+
+```css
+.box {
+  width: 300px;
+  padding: 20px;
+  border: 5px solid black;
+}
+```
+
+<!--
+Minta mahasiswa menuliskan rumus ini di catatan, karena dipakai dua kali: sekali untuk
+`content-box` dan sekali untuk `border-box`.
+
+Tanyakan bagian mana dari rumus yang tidak melibatkan margin; jawaban yang diharapkan adalah
+seluruhnya, karena margin berada di luar kotak. Setelah rumus disepakati, hitung bersama pada
+slide berikutnya.
+-->
+---
+<!-- _class: compact -->
+
+# Perhitungan Lebar Total dengan content-box (3/3)
+**Perhitungan:**
+
+```text
+Lebar content = 300 px
+Padding       = 20 + 20 = 40 px
+Border        = 5 + 5 = 10 px
+
+Lebar total   = 300 + 40 + 10
+              = 350 px
+```
+
+**Kesimpulan:** Kotak yang ditetapkan memiliki `width: 300px` ternyata menggunakan lebar visual 350 px, belum termasuk margin.
+
+<!--
+Hitung bersama-sama di papan, jangan dibacakan. Minta satu mahasiswa menyebut angka padding
+horizontal, satu menyebut border horizontal, lalu jumlahkan.
+
+Tanyakan selisih 50 px itu berasal dari mana; jawaban yang diharapkan adalah 40 px padding
+ditambah 10 px border. Simpan angka 350 px, karena slide diagram berikutnya membandingkannya
+dengan `border-box`.
+-->
+---
+
+<!-- _class: compact -->
+
+# Diagram: Ukuran di Dua Mode
+
+![w:1120 content-box memakai lebar 350 px, border-box memakai lebar 300 px dengan content tinggal 250 px.](assets/diagrams/bab-05-css-box-model-dan-layout-02.svg)
+
+`content-box`: width 300 px ditambah padding dan border, sehingga lebar 350 px di layar. `border-box`: padding dan border diambil dari dalam width, sehingga lebar 300 px dengan content 250 px.
+
+<!--
+Perlihatkan bahwa kotak yang sama menghasilkan dua lebar berbeda hanya karena satu properti.
+Tunjuk angka 350 px dan 300 px pada diagram, lalu tunjuk content 250 px di sisi kanan.
+
+Tanyakan mengapa content pada `border-box` menyusut; jawaban yang diharapkan adalah karena
+padding dan border diambil dari dalam nilai `width`. Tegaskan bahwa tidak ada yang hilang:
+ruang yang sama, hanya cara menghitungnya yang berbeda.
+-->
+
+---
+
+<!-- _class: compact -->
+
+# Perhitungan Lebar Total dengan border-box (1/2)
+
+Dengan `box-sizing: border-box`, nilai `width` sudah mencakup content, padding, dan border.
+
+**Contoh:**
+
+```css
+.box {
+  box-sizing: border-box;
+  width: 300px;
+  padding: 20px;
+  border: 5px solid black;
+}
+```
+
+**Perhitungan:**
+
+```text
+Lebar total       = 300 px
+Padding horizontal = 40 px
+Border horizontal  = 10 px
+
+Lebar content     = 300 - 40 - 10
+                  = 250 px
+```
+
+<!--
+Perhatikan tanda kurang pada perhitungan: padding dan border dikurangkan dari `width`, bukan
+ditambahkan. Inilah satu-satunya perbedaan aritmetika antara kedua mode.
+
+Tanyakan berapa lebar content jika padding dinaikkan menjadi 30 px; jawaban yang diharapkan
+adalah 240 px, karena `width` tetap 300 px. Jika ada yang menjawab 260 px, mereka masih
+memakai cara berpikir `content-box`.
+-->
+
+---
+
+<!-- _class: compact -->
+
+# Perhitungan Lebar Total dengan border-box (2/2)
+
+**Perbandingan:**
+
+| Komponen           | `content-box` | `border-box` |
+| ------------------ | ------------- | ------------ |
+| Nilai `width`      | 300 px        | 300 px       |
+| Padding horizontal | 40 px         | 40 px        |
+| Border horizontal  | 10 px         | 10 px        |
+| Lebar kotak total  | 350 px        | 300 px       |
+
+**Kesimpulan:** `border-box` membuat ukuran luar elemen lebih mudah diprediksi.
+
+<!--
+Bacakan tabel baris demi baris dari bawah ke atas: lebar total dulu, baru penyusunnya. Cara
+membaca ini memperjelas bahwa tiga baris pertama identik, dan hanya baris terakhir yang
+berbeda.
+
+Tanyakan mode mana yang dipilih jika kartu harus muat tiga dalam container 960 px dengan jarak
+antarkartu 16 px; jawaban yang diharapkan adalah `border-box` dengan lebar kartu 300 px,
+sehingga 300 + 300 + 300 + 32 masih di bawah 960 px.
+-->
+
+---
+
+<!-- _class: compact -->
+
+# Memahami box-sizing: border-box Global (1/2)
+
+Dalam proyek web, developer sering menerapkan `border-box` kepada semua elemen agar pengaturan ukuran lebih konsisten.
+
+**Contoh:**
+
+```css
 *,
 *::before,
 *::after {
@@ -323,741 +480,1268 @@ dimakan layar sempit.
 }
 ```
 
-`File: tokosaya-css/css/style.css`
+**Penjelasan:**
+
+- `*` memilih semua elemen.
+- `*::before` memilih pseudo-element `::before`.
+- `*::after` memilih pseudo-element `::after`.
+- `border-box` memastikan padding dan border termasuk dalam perhitungan `width` dan `height`.
 
 <!--
-Tekankan bahwa satu aturan ini ngubah arti semua angka lebar di seluruh file: selector
-`*` menjangkau semua elemen, `*::before` dan `*::after` ikut disamakan, dan angka
-`width` jadi lebar kotak utuh.
+Tekankan bahwa aturan ini ditulis sekali di awal berkas gaya, sebelum aturan lain. Jika
+diletakkan di tengah, komponen yang sudah dihitung akan berubah ukuran tanpa sebab yang
+jelas.
 
-Pasang sekali di awal file, setelah token dan sebelum komponen. Tanyain apa yang terjadi
-ke konten kalau padding diperbesar di mode ini; jawaban yang diharapkan: kontennya yang
-menyusut, bukan kotaknya.
+Tanyakan mengapa `::before` dan `::after` perlu disebut terpisah; jawaban yang diharapkan
+adalah karena pseudo-element tidak termasuk pemilih `*`. Tanpa keduanya, elemen hias yang
+dibuat lewat pseudo-element tetap memakai `content-box`.
 -->
 
 ---
 
-# Kenapa border-box Jadi Pilihan Global
+<!-- _class: compact -->
 
-- Angka di mockup desainer sudah termasuk padding dan border
-- Satu mode berarti lebar di CSS sama dengan lebar di DevTools
-- Padding membesar menyusutkan isi, bukan melebarkan kotak
-- Lebar dua kartu bisa dijumlah langsung: 280 + 280 + gap
-- Mencampur dua mode membuat setiap hitungan harus diperiksa ulang
+# Memahami box-sizing: border-box Global (2/2)
 
-> Lebar yang kamu tulis adalah lebar yang kamu lihat.
+**Alasan penerapan global:**
+
+1. Mempermudah perhitungan dimensi komponen.
+2. Mengurangi risiko elemen melampaui lebar container.
+3. Mempermudah pembuatan grid dan layout responsif.
+4. Membuat ukuran komponen lebih konsisten antarbagian aplikasi.
+
+**Catatan:** `border-box` tidak memasukkan margin ke dalam ukuran `width` atau `height`.
 
 <!--
-Alasan terkuat ada di baris keempat: di `border-box`, penjumlahan lebar kartu bisa
-dipercaya tanpa ngitung padding tiap komponen satu per satu.
+Hubungkan keempat alasan dengan gejala yang akan muncul nanti: bilah gulir horizontal, kartu
+yang tidak sejajar, dan grid yang jebol. Semuanya berakar pada perhitungan yang tidak dapat
+diprediksi.
 
-Tanyain kenapa nyampur dua mode dianggap lebih bahaya daripada milih mode yang "kurang
-nyaman"; jawaban yang diharapkan: komponen yang salah mode nggak keliatan rusak di satu
-tempat, ia cuma nggeser layout di tempat lain, jadi bug-nya muncul jauh dari penyebabnya.
+Tanyakan apakah `border-box` menyelesaikan seluruh masalah ukuran; jawaban yang diharapkan
+adalah tidak, karena margin tetap di luar perhitungan. Sebutkan bahwa catatan di slide ini
+adalah batas resmi dari solusi yang sedang dipelajari.
 -->
 
 ---
+
+<!-- _class: compact -->
+
+# Mengendalikan Ukuran dengan min-width dan max-width (1/2)
+
+Properti ini menentukan batas minimum dan maksimum lebar elemen.
+
+**`min-width`**
+
+Menentukan lebar minimum elemen.
+
+```css
+.card {
+  min-width: 240px;
+}
+```
+
+Elemen tidak akan menyusut di bawah 240 px akibat perhitungan ukuran normalnya, meskipun konten atau container yang sempit dapat menimbulkan overflow.
+
+<!--
+Tegaskan bahwa `min-width` adalah lantai, bukan pengganti `width`. Elemen normal dapat lebih
+lebar dari 240 px; yang dilarang hanya menyusut di bawahnya.
+
+Tanyakan apa yang terjadi jika container lebih sempit dari 240 px; jawaban yang diharapkan
+adalah elemen tetap 240 px dan muncul overflow. Sebutkan bahwa akibat ini dibahas pada
+Bagian 2, sehingga mahasiswa mengenali nama gejalanya lebih dahulu.
+-->
+
+---
+
+<!-- _class: compact -->
+
+# Mengendalikan Ukuran dengan min-width dan max-width (2/2)
+
+**`max-width`**
+
+Menentukan lebar maksimum elemen.
+
+```css
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+```
+
+**Manfaat:**
+
+- Container dapat mengikuti lebar layar.
+- Lebarnya tidak akan melebihi 1200 px.
+- Margin otomatis membantu memusatkan container ketika tersedia ruang.
+
+**Penerapan umum:** layout responsif, kartu produk, formulir, dan area konten utama.
+
+<!--
+Baca pasangan `width: 100%` dan `max-width: 1200px` sebagai satu kesatuan: 100% membuat
+container mengikuti layar, `max-width` menghentikannya pada batas yang nyaman dibaca.
+`margin-inline: auto` hanya berfungsi karena masih ada sisa ruang.
+
+Tanyakan apa yang terjadi pada layar selebar 1600 px; jawaban yang diharapkan adalah container
+tetap 1200 px dan sisanya menjadi margin kiri dan kanan. Jika `margin-inline: auto` dihapus,
+container menempel ke kiri meskipun lebarnya benar.
+-->
+
+---
+
+<!-- _class: compact -->
+
+# Mengendalikan Tinggi dengan min-height (1/2)
+
+`min-height` menetapkan tinggi minimum sebuah elemen tanpa membatasi pertumbuhannya pada ukuran tersebut.
+
+**Contoh:**
+
+```css
+.hero {
+  min-height: 300px;
+  padding: 24px;
+}
+```
+
+**Artinya:**
+
+- Elemen memiliki tinggi minimum 300 px.
+- Jika konten bertambah, elemen dapat menjadi lebih tinggi.
+- Konten tidak harus dipaksa masuk ke kotak dengan tinggi tetap.
+
+<!--
+Bandingkan dengan `height` yang mengunci, dan `min-height` yang hanya menetapkan lantai.
+Sebutkan kasus yang sering terjadi: hero section dengan `height` tetap lalu judul dua baris
+terpotong.
+
+Tanyakan properti mana yang dipakai untuk panel informasi yang panjangnya berubah-ubah;
+jawaban yang diharapkan adalah `min-height`, agar panel tumbuh bersama isinya. Ingatkan bahwa
+konten yang tidak muat tetap menjadi urusan `overflow` pada Bagian 2.
+-->
+
+---
+
+<!-- _class: compact -->
+
+# Mengendalikan Tinggi dengan min-height (2/2)
+
+**Perbandingan:**
+
+| Properti     | Fungsi                            |
+| ------------ | --------------------------------- |
+| `min-height` | Menetapkan tinggi minimum         |
+| `height`     | Menetapkan tinggi yang ditentukan |
+| `max-width`  | Membatasi lebar maksimum          |
+| `min-width`  | Membatasi lebar minimum           |
+
+**Contoh penggunaan:** hero section, kartu artikel, panel informasi, dan area konten yang panjangnya bervariasi.
+
+<!--
+Bacakan tabel sebagai dua pasang: tinggi di atas, lebar di bawah. Kesalahan yang sering
+terjadi adalah menukar pasangan, misalnya memakai `max-width` untuk mengatur tinggi.
+
+Tanyakan properti mana yang tetap harus dipakai jika tinggi minimum sudah ditetapkan dan
+konten justru lebih pendek; jawaban yang diharapkan adalah `min-height` saja, karena elemen
+akan memakai tinggi minimum tersebut. Lanjutkan ke Bagian 2 dengan menyebut bahwa jenis
+kotak menentukan apa yang terjadi ketika isi tidak muat.
+-->
+
+---
+
 <!-- _class: section -->
 <!-- _footer: '' -->
 
-# Jenis Kotak dan Konten Meluber
+# Bagian 2 · Jenis Kotak dan Konten Meluber
 
 ## Kotak jenis apa, dan ke mana isinya pergi
 
 <!--
-Transisi dari hitungan ke perilaku. Bagian ini yang paling banyak memunculkan pertanyaan
-di kelas: banyak "kesalahan styling" sebenarnya cuma perilaku bawaan elemen yang belum
-dipahami, bukan kode yang salah.
+Pindah dari ukuran ke perilaku. Bagian ini menjawab pertanyaan yang berbeda: bukan berapa
+besar kotaknya, tetapi kotak ini berjenis apa dan apa yang terjadi ketika isinya tidak muat.
+
+Katakan bahwa `display` dan `overflow` adalah dua properti yang paling sering diubah tanpa
+dipahami, sehingga gejalanya muncul jauh dari penyebabnya.
 -->
 
 ---
-
-# display Menentukan Jenis Kotak
-
-- Properti `display` memilih jenis kotak elemen
-- Nilai bawaannya ditetapkan stylesheet browser
-- `p`, `div`, `h1`, dan `ul` berperilaku `block`
-- `span`, `a`, `strong`, dan `em` berperilaku `inline`
-- Jenis kotak bisa diubah tanpa menyentuh HTML
-
-<!--
-Tekankan bahwa nilai bawaan itu bukan pilihanmu — stylesheet browser yang
-menetapkannya lewat selector `p { display: block }` dan sejenisnya.
-
-Demo: buka DevTools, pilih satu `span`, tunjuk baris `display: inline` di panel
-Computed. Tanyain elemen apa yang bakal kamu kasih padding penuh: link di dalam paragraf
-atau badge di dalam daftar. Jawaban yang diharapkan: dua-duanya perlu perlakuan berbeda.
--->
-
----
-
-# Contoh: display Menentukan Jenis Kotak
-
-![w:1000 Pohon display: cabang block berisi p dan div, cabang inline berisi span, a, dan badge — bawaannya inline; cabang inline-block — ditulis di CSS, tanpa anggota bawaan.](assets/diagrams/bab-05-css-box-model-dan-layout-18.svg)
-
-Lima elemen kartu produk Tokosaya. Dua cabang pertama dipilihkan stylesheet browser: block berisi p dan div, inline berisi span dan a. Lalu badge — bawaannya inline, karena badge itu memang span. Cabang inline-block — ditulis di CSS: baru terisi setelah display: inline-block.
-
-<!--
-Minta kelas nebak jenis kotak tiap elemen sebelum gambarnya dibuka. Jawaban yang
-diharapkan: p dan div block, span dan a inline, badge ikut inline karena bawaannya —
-dia memang span.
-
-Tunjuk ketiga cabangnya, lalu tekankan bahwa cabang `inline-block` nggak pernah datang
-sendiri: satu properti `display` mindahin badge tanpa nyentuh HTML sama sekali.
--->
-
----
-
-# block, inline, dan inline-block
-
-| Perilaku | block | inline | inline-block |
-|---|---|---|---|
-| Mulai baris baru | ya | tidak | tidak |
-| `width` dan `height` | berlaku | diabaikan | berlaku |
-| `margin` atas dan bawah | berlaku | diabaikan | berlaku |
-| `padding` atas dan bawah | mendorong teks | cuma melukis latar | mendorong baris |
-| Contoh | `p`, `div`, `ul` | `span`, `a` | badge, tombol |
-
-<!--
-Bahas kolom `inline` paling lama, karena di situ letak kebingungannya: padding
-atas-bawahnya keliatan tapi nggak nggeser apa pun. Minta mereka nebak kenapa
-`width: 120px` di `span` nggak ngefek sama sekali; jawaban yang diharapkan: dimensi
-elemen inline memang diabaikan browser.
-
-Tunjukkan buktinya di DevTools: pilih sebuah `span`, panel Computed melaporkan lebar
-yang ngikutin teks, bukan angka yang kamu tulis.
--->
-
----
-
-# Badge Tokosaya Butuh inline-block
-
-- Badge "Best Seller" adalah label kecil dekat harga
-- Sebagai `inline`, padding dan dimensinya diabaikan
-- Sebagai `block`, badge memaksa baris baru
-- Sebagai `inline-block`, kotak penuh tapi tetap mengalir
-- Pola yang sama dipakai buat item navigasi
-
-<!--
-Jadikan badge contoh tunggal yang diulang terus: satu properti, tiga perilaku berbeda.
-Tanyain apa yang terjadi kalau badge dibiarkan `inline` padahal padding-nya 8 px 16 px;
-jawaban yang diharapkan: bentuknya remuk dan latarnya nempel di teks tanpa nyorong baris.
-
-Sebutkan item navigasi pakai pola yang sama, jadi yang kamu pelajari di badge berlaku di
-menu. Tanyain mana yang lebih tepat buat badge; jawaban yang diharapkan: `inline-block`,
-karena `block` maksa badge turun ke baris sendiri dan misahin dari harga.
--->
-
----
-
-# Contoh: Badge Tokosaya Butuh inline-block
-
-![w:1120 Badge Best Seller: content 88 x 22 piksel, padding 8 16 8 16 piksel, lebar total 120 piksel, sebagai display inline-block.](assets/diagrams/bab-05-css-box-model-dan-layout-21.svg)
-
-Badge "Best Seller" di kartu produk: content 88 × 22 px, diberi `padding: 8px 16px` — dua nilai, jadi atas-bawah 8 px dan kiri-kanan 16 px (empat nilai ditulis atas, kanan, bawah, kiri: `8 16 8 16 px`). Lebar totalnya 88 + 16 + 16 = 120 px dan tingginya 22 + 8 + 8 = 38 px, angka yang cuma dihormati browser kalau badge-nya display: inline-block.
-
-<!--
-Minta mereka ngitung dulu sebelum kamu tunjukin angkanya: 88 + 16 + 16 jadi berapa, dan
-22 + 8 + 8 jadi berapa. Jawaban yang diharapkan: 120 × 38 px, dan itu kotak yang
-beneran dipakai browser.
-
-Sambungkan dengan slide anatomi: padding ikut nambah kotak, jadi angka 120 px itu udah
-termasuk padding. Tanyain apa yang terjadi kalau badge-nya dibiarkan inline; jawaban
-yang diharapkan: padding atas-bawahnya cuma melukis latar tanpa nyorong baris.
--->
-
----
-
 <!-- _class: compact -->
 
-# Salah Kaprah: Celah Tipis Antar Kotak
+# Memahami Properti display (1/4)
+Properti `display` menentukan bagaimana elemen berpartisipasi dalam layout.
+
+Tiga nilai dasar yang perlu dipahami:
+
+1. `block`
+2. `inline`
+3. `inline-block`
+
+<!--
+Mulai dari pertanyaan yang mudah diperiksa di layar: elemen mana yang selalu memulai baris
+baru? Jawaban yang diharapkan adalah `div`, `section`, dan `p`, yang dibahas pada slide
+berikutnya.
+
+Tegaskan bahwa `display` berbicara tentang perilaku layout, bukan tentang jenis tag. Sebutkan
+bahwa ketiga nilai ini dibahas satu per satu, dan setiap nilai mendapat slide sendiri.
+-->
+---
+<!-- _class: compact -->
+
+# Memahami Properti display (2/4)
+**`display: block`**
+
+- Biasanya dimulai pada baris baru.
+- Secara default, mengambil lebar yang tersedia pada containing block.
+- Mendukung pengaturan `width` dan `height`.
 
 ```css
-.daftar-produk {
-  font-size: 0;                /* hapus celah spasi antar item */
+div {
+  display: block;
 }
+```
 
-.produk-card {
+Elemen yang umumnya bersifat block secara default adalah `div`, `section`, dan `p`.
+
+<!--
+Tanyakan mengapa `block` dapat diberi `width` dan `height`; jawaban yang diharapkan adalah
+karena kotaknya mengambil lebar penuh containing block, sehingga ukurannya bermakna.
+
+Minta mahasiswa memperhatikan baris baru yang dibuat oleh elemen block: setiap elemen block
+mendorong tetangganya ke baris berikutnya. Tahan dulu `inline`, dan minta mereka memperhatikan
+perbedaan itu pada slide berikutnya.
+-->
+---
+<!-- _class: compact -->
+
+# Memahami Properti display (3/4)
+**`display: inline`**
+
+- Mengalir bersama teks pada baris yang sama.
+- Tidak membuat baris baru dengan sendirinya.
+- `width` dan `height` tidak mengatur ukuran kotak inline non-replaced seperti yang dilakukan pada block.
+- Padding dan border horizontal tetap terlihat, sedangkan padding dan border vertikal tidak mengubah tinggi baris seperti elemen block.
+
+```css
+span {
+  display: inline;
+}
+```
+
+<!--
+Tekankan kata non-replaced pada butir ketiga, dan sebutkan contoh replaced element seperti
+`img` yang berperilaku berbeda. Tanpa catatan itu, mahasiswa akan menganggap `width` pada
+`inline` selalu diabaikan.
+
+Tanyakan mengapa `padding` vertikal pada `inline` tidak menambah tinggi baris; jawaban yang
+diharapkan adalah karena latar boleh melebar, tetapi baris tetap dihitung dari tinggi teks.
+Uji langsung di DevTools bila waktu memungkinkan.
+-->
+---
+<!-- _class: compact -->
+
+# Memahami Properti display (4/4)
+**`display: inline-block`**
+
+- Dapat berada dalam aliran baris yang sama.
+- Mendukung pengaturan `width` dan `height`.
+- Tetap memiliki karakter kotak seperti block.
+
+```css
+.badge {
   display: inline-block;
-  font-size: 16px;             /* kembalikan ukuran teks kartu */
+  width: 100px;
+  padding: 8px;
 }
 ```
 
-- Celah itu spasi yang kamu tulis di HTML, bukan margin atau padding
-- `inline-block` memperlakukan kotak seperti kata, jadi spasi ikut dihitung
-
-`File: tokosaya-css/css/style.css`
-
-> Celah yang nggak berasal dari margin mana pun hampir selalu berasal dari spasi.
-
 <!--
-Tunjukkan celahnya dulu di browser sebelum kamu jelaskan triknya, karena gejalanya
-keliatan kayak bug: dua kartu `inline-block` bersebelahan punya celah 4 sampai 5 px yang
-nggak berasal dari margin mana pun.
+Posisikan `inline-block` sebagai jalan tengah: mengalir seperti `inline`, tetapi dapat diukur
+seperti `block`. Sebutkan bahwa nilai inilah yang dipakai pada kartu produk di akhir bab.
 
-Cara memeriksa: pilih dua kartu di DevTools, pastikan margin dan padding keduanya nol —
-celahnya tetap ada. Jawaban yang diharapkan: celahnya dari spasi atau baris baru di
-antara `</li>` dan `<li>`. Sebutkan Bab 6 ngganti trik ini dengan `gap`.
+Tanyakan mengapa badge lebih cocok memakai `inline-block` daripada `inline`; jawaban yang
+diharapkan adalah karena badge perlu lebar dan padding yang benar-benar dihitung. Lanjutkan
+dengan slide diagram untuk membandingkan ketiganya dalam satu gambar.
 -->
-
 ---
 
-# overflow: Nasib Konten Meluber
+<!-- _class: compact -->
 
-| Nilai | Perilaku |
-|---|---|
-| `visible` | bawaan; konten menumpang keluar kotak |
-| `hidden` | memotong tanpa bilah gulir |
-| `scroll` | selalu menampilkan bilah gulir |
-| `auto` | bilah gulir cuma kalau diperlukan |
+# Diagram: Tiga Jenis Kotak
 
-- `auto` adalah pilihan aman buat panel yang isinya dinamis
-- `overflow` tidak mengubah hitungan lebar kotak
+![w:1120 Properti display memiliki tiga nilai dasar: block, inline, dan inline-block.](assets/diagrams/bab-05-css-box-model-dan-layout-03.svg)
+
+Tiga nilai `display: block`, `display: inline`, dan `display: inline-block` dibandingkan pada alur baris yang sama.
 
 <!--
-Empat nilai, satu pertanyaan: mau diapakan isi yang nggak muat. Tekankan urutan kerjanya:
-`border-box` dulu, baru `overflow` sebagai pengaman visual — `overflow` nggak memperbaiki
-hitungan, ia cuma ngatur tampilannya.
+Tunjuk perbedaan dari kiri ke kanan: `block` memulai baris baru, `inline` mengalir bersama
+teks, `inline-block` mengalir tetapi tetap dapat diukur.
 
-Tanyain bedanya `scroll` dan `auto`; jawaban yang diharapkan: `scroll` nampilin bilah
-walaupun kontennya muat, jadi keliatan berlebihan dan makan ruang.
--->
-
----
-
-# Potong Melingkar dan Gulir Panel
-
-- Kartu ber-radius 12 px masih menampakkan sudut gambar yang tajam
-- `overflow: hidden` di media memotong gambar ikut sudut kartu
-- Tabel presensi panjang dibungkus wadah bertinggi terbatas
-- `overflow-y: auto` bikin panel menggulir sendiri
-- Halaman tidak ikut tergulir, konteks pengguna tetap terjaga
-
-<!--
-Tunjukkan sudut kartu yang masih tajam sebelum `overflow: hidden` dipasang; itu
-perbedaan yang paling gampang dilihat kelas. Prinsip besarnya: yang dibatasi kotaknya,
-bukan isinya — radius 12 px di kartu nggak motong sudut gambar di dalamnya sampai wadah
-gambarnya sendiri yang motong.
-
-Tanyain apa akibatnya kalau seluruh halaman yang menggulir buat tabel panjang; jawaban
-yang diharapkan: konteks pengguna hilang, header dan menu ikut kegeser.
--->
-
----
-
-# Contoh: Potong Melingkar dan Gulir Panel
-
-![w:1120 Dua keadaan berdampingan. Tanpa aturan: sudut gambar tetap tajam walau kartu beradius 12 px, dan tabel 480 px memanjangkan seluruh halaman. Dengan overflow: overflow hidden memotong gambar ikut sudut kartu, dan overflow y auto menggulir panel 200 px saja.](assets/diagrams/bab-05-css-box-model-dan-layout-25.svg)
-
-Kartu Tokosaya beradius 12 px. Tanpa aturan, dua hal tetap bocor: sudut gambar tetap tajam walau kartu beradius 12 px, dan tabel 480 px memanjangkan seluruh halaman. Dengan overflow, dua-duanya beres tanpa isinya diubah: overflow: hidden memotong gambar ikut sudut kartu, dan overflow-y: auto menggulir panel 200 px saja — 480 − 200 = 280 px sisanya menunggu di dalam panel.
-
-<!--
-Angkanya bisa dihitung sendiri: 480 − 200 = 280 px yang nunggu di dalam panel, dan itu
-jumlah yang sama dengan yang tadinya memanjangkan halaman.
-
-Tanyain kenapa `overflow-y` yang dipakai dan bukan `overflow`; jawaban yang diharapkan:
-supaya cuma arah vertikal yang digulir, panel nggak tiba-tiba bisa digeser ke samping.
-Dua aturan di gambar ini nyelesaiin dua gejala berbeda: sudut tajam dan halaman memanjang.
+Tanyakan nilai mana yang dipakai untuk menu navigasi mendatar; jawaban yang diharapkan
+adalah `inline-block`, karena setiap butir harus sebaris dan memiliki jarak yang pasti.
+Peringatkan bahwa jawaban itu hanya berlaku sampai Flexbox dibahas pada Bab 6.
 -->
 
 ---
 
 <!-- _class: compact -->
 
-# Elipsis: Tiga Properti Satu Kesatuan
+# Perbandingan block, inline, dan inline-block (1/2)
+
+| Karakteristik         | `block`                      | `inline`                        | `inline-block`           |
+| --------------------- | ---------------------------- | ------------------------------- | ------------------------ |
+| Memulai baris baru    | Ya, umumnya                  | Tidak                           | Tidak, umumnya           |
+| `width` dan `height`  | Ya                           | Tidak untuk inline non-replaced | Ya                       |
+| Mengikuti aliran teks | Tidak seperti inline         | Ya                              | Ya                       |
+| Cocok untuk           | Container dan bagian halaman | Teks dan tautan                 | Badge dan tombol sebaris |
+
+**Contoh:**
+
+```html
+<div class="block">Block</div>
+<span class="inline">Inline</span>
+<span class="inline-block">Inline-block</span>
+```
+
+<!--
+Bacakan tabel per kolom, bukan per baris: satu nilai `display` sampai habis, baru pindah ke
+nilai berikutnya. Cara ini menjaga perbedaan antarkolom tetap terlihat.
+
+Tanyakan baris mana yang paling sering menjebak; jawaban yang diharapkan adalah baris
+`width` dan `height` pada `inline`, karena latar boleh melebar sementara ukuran kotaknya
+tidak berubah. Lanjutkan ke contoh kode untuk membuktikannya.
+-->
+
+---
+
+<!-- _class: compact -->
+
+# Perbandingan block, inline, dan inline-block (2/2)
 
 ```css
-.nama-terpotong {
-  white-space: nowrap;         /* larang teks turun ke baris baru */
-  overflow: hidden;            /* potong bagian yang keluar */
-  text-overflow: ellipsis;     /* tampilkan tanda potong */
+.block {
+  display: block;
+}
+
+.inline {
+  display: inline;
+}
+
+.inline-block {
+  display: inline-block;
+  width: 120px;
+  padding: 8px;
 }
 ```
 
-`File: tokosaya-css/css/style.css`
-
-> Memotong teks tanpa jejak adalah kegagalan informasi, bukan keindahan.
+**Inti pembelajaran:** pilih `display` berdasarkan perilaku layout yang dibutuhkan, bukan sekadar jenis tag HTML.
 
 <!--
-Minta mahasiswa nghapus satu properti satu per satu dan ngamatin akibatnya; ketiganya
-memang satu kesatuan. Tanpa `overflow: hidden` tanda potongnya nggak muncul, dan tanpa
-`white-space: nowrap` nggak ada yang kepotong.
+Tegaskan kalimat inti: tag dan `display` adalah dua hal berbeda. `div` dapat dijadikan
+`inline`, `span` dapat dijadikan `block`, dan aturan gaya yang menang adalah yang terakhir
+dibaca browser.
 
-Tekankan atribut `title`: tambahin supaya nama penuh tetap kebaca, karena motong teks
-yang nggak bisa diamati lagi itu kegagalan informasi. Tanyain di mana pola ini bakal
-dipakai di kartu produk; jawaban yang diharapkan: nama produk, bukan harga.
+Tanyakan mengapa memilih berdasarkan jenis tag berbahaya; jawaban yang diharapkan adalah
+karena kebutuhan layout dapat berubah tanpa tag berubah. Tutup Bagian 2 dengan menyebut bahwa
+jenis kotak hanya menentukan aliran; isi yang tidak muat diatur oleh `overflow`.
 -->
 
 ---
+<!-- _class: compact -->
 
-# Teks Panjang: Dua Resep Lain
+# Memahami overflow (1/4)
+`overflow` mengatur apa yang terjadi ketika konten melampaui area kotak, khususnya pada elemen yang memiliki batas ukuran.
 
-- `overflow-wrap: break-word` mematahkan kata yang super panjang
-- Cocok buat URL atau nama file yang tidak boleh melebar
-- `-webkit-line-clamp` membatasi deskripsi jadi dua baris
-- Teknik clamp masih memakai prefiks vendor
-- Putusan desainnya tetap sama: kotak yang dibatasi, bukan konten
+**Nilai yang umum digunakan:**
+
+**`visible`**
+
+Konten yang melampaui kotak tetap terlihat.
+
+```css
+.box {
+  overflow: visible;
+}
+```
 
 <!--
-Tunjukkan nama file panjang kayak laporan tahunan yang bikin panel melebar tanpa
-`break-word`. Sebutkan `line-clamp` masih pakai prefiks vendor dan dukungannya perlu
-diperiksa di dokumentasi resmi.
+Sebutkan bahwa `visible` adalah nilai bawaan, sehingga konten yang meluber adalah perilaku
+normal, bukan kerusakan. Ini menjelaskan mengapa bilah gulir horizontal muncul tanpa ada
+properti yang ditulis.
 
-Tanyain mana yang lebih aman buat teks penting: motong di sisi penyunting konten atau
-motong otomatis; jawaban yang diharapkan: motong di sisi konten lebih aman, karena
-keputusannya diambil sadar dan nggak bergantung dukungan browser.
+Tanyakan mengapa konten yang meluber dapat menutupi elemen lain; jawaban yang diharapkan
+adalah karena kotaknya tidak berubah ukuran, hanya isinya yang keluar.
+-->
+---
+<!-- _class: compact -->
+
+# Memahami overflow (2/4)
+**`hidden`**
+
+Konten yang melampaui area kotak dipotong dan tidak dapat digulir melalui mekanisme overflow tersebut.
+
+```css
+.box {
+  overflow: hidden;
+}
+```
+
+<!--
+Tegaskan bahwa `hidden` memotong isi tanpa memberi cara membacanya. Pemotongan juga
+menyembunyikan informasi, sehingga perlu dipertimbangkan dari sisi aksesibilitas.
+
+Tanyakan kapan `hidden` tetap pilihan yang benar; jawaban yang diharapkan adalah ketika bagian
+yang terpotong memang hiasan, misalnya gambar latar yang berlebih. Bandingkan dengan nilai
+berikutnya yang menyediakan cara menggulir.
+-->
+---
+<!-- _class: compact -->
+
+# Memahami overflow (3/4)
+**`auto`**
+
+Browser menyediakan mekanisme scroll ketika diperlukan.
+
+```css
+.box {
+  max-height: 200px;
+  overflow: auto;
+}
+```
+
+<!--
+Tekankan bahwa `auto` bergantung pada kebutuhan: bilah gulir muncul hanya jika isi melebihi
+kotak. Inilah alasan `auto` paling sering dipakai bersama `max-height`.
+
+Tanyakan apa yang terjadi jika `max-height` dihapus; jawaban yang diharapkan adalah elemen
+tumbuh mengikuti isinya, sehingga tidak ada yang perlu digulir. Lanjutkan ke `scroll` untuk
+melihat perilaku yang selalu menyediakan bilah gulir.
+-->
+---
+<!-- _class: compact -->
+
+# Memahami overflow (4/4)
+**`scroll`**
+
+Menjadikan elemen sebagai area scroll; scrollbar dapat ditampilkan meskipun kontennya tidak melampaui kotak, bergantung pada browser dan sistem operasi.
+
+```css
+.box {
+  max-height: 200px;
+  overflow: scroll;
+}
+```
+
+**Contoh penggunaan:** panel percakapan, tabel yang panjang, daftar aktivitas, dan kotak dengan tinggi terbatas.
+
+<!--
+Bandingkan `auto` dan `scroll` dari sisi tampilan: `auto` menampilkan bilah gulir hanya bila
+perlu, `scroll` selalu menyediakan ruang untuk bilah gulir. Pada beberapa sistem, `scroll`
+menyisakan jalur kosong yang membuat lebar konten tidak simetris.
+
+Tanyakan mengapa `auto` lebih sering dipilih; jawaban yang diharapkan adalah karena tampilan
+bilah gulir hanya muncul saat dibutuhkan. Tekankan bahwa `overflow` bekerja pada sumbu,
+sehingga `overflow-x` dan `overflow-y` dapat diatur terpisah.
+-->
+---
+
+<!-- _class: compact -->
+
+# Diagram: Konten Meluber
+
+![w:1120 isi menumpang keluar kotak pada visible; memotong isi dan tidak menyediakan cara menggulir pada hidden.](assets/diagrams/bab-05-css-box-model-dan-layout-04.svg)
+
+Kotak berukuran tetap dengan isi yang lebih panjang. `overflow: visible` membiarkan isi menumpang keluar kotak dan kotak tidak berubah ukuran; `overflow: hidden` memotong isi dan tidak menyediakan cara menggulir.
+
+<!--
+Minta mahasiswa menebak lebih dahulu: apa yang terlihat di layar jika `overflow` tidak
+ditulis? Jawaban yang diharapkan adalah isi menumpang keluar kotak, sesuai nilai `visible`.
+
+Tanyakan apa yang berubah jika `overflow: hidden` dipasang; jawaban yang diharapkan adalah isi
+terpotong pada batas kotak dan tidak ada cara menggulir. Lanjutkan ke slide berikutnya, karena
+teks panjang punya aturan pemenggalan sendiri.
 -->
 
 ---
+<!-- _class: compact -->
 
-# Contoh: Teks Panjang: Dua Resep Lain
+# Menangani Teks yang Terlalu Panjang (1/3)
+Teks panjang, seperti URL atau rangkaian karakter tanpa spasi, dapat melampaui batas container.
 
-![w:1120 Dua resep berdampingan untuk nama 60 huruf yang sama. Resep 1 break-word: kata 60 huruf dipatahkan di tengah, kotak tetap 280 px, tanpa prefiks vendor. Resep 2 line-clamp: nama berhenti di dua baris, sisanya diganti tanda elipsis, masih butuh prefiks webkit.](assets/diagrams/bab-05-css-box-model-dan-layout-29.svg)
+**`overflow-wrap: anywhere`**
 
-Nama produk WC-720 di kartu 280 px, dua resep buat masalah yang sama. Resep 1 — break-word: kata 60 huruf dipatahkan di tengah, kotak tetap 280 px, teks turun baris, tanpa prefiks vendor. Resep 2 — line-clamp: nama berhenti di dua baris, sisanya diganti tanda elipsis, masih butuh prefiks webkit. Contoh kartu Tokosaya di bab ini memakai resep 2. Kartunya tetap 280 px: 280 − 16 − 16 − 1 − 1 = 246 px content, padding 16 px, border 1 px.
+Mengizinkan browser memutus rangkaian karakter panjang pada titik yang diperlukan.
+
+```css
+.text {
+  overflow-wrap: anywhere;
+}
+```
 
 <!--
-Minta kelas nyelesein pengurangannya: 280 − 16 − 16 − 1 − 1 jadi berapa. Jawaban yang
-diharapkan: 246 px, dan itulah lebar yang tersisa buat teks di dalam padding 16 px dan
-border 1 px.
+Sebutkan bahwa masalah ini berbeda dari `overflow`: kotaknya cukup, tetapi satu kata tidak
+muat dalam satu baris. Tanpa aturan pemenggalan, kata itulah yang mendorong lebar container.
 
-Tekankan dua resep ini jawab dua masalah berbeda: `overflow-wrap` matahin satu kata yang
-nggak boleh melebar, `-webkit-line-clamp` mangkas isi yang boleh dipendekkan. Contoh
-kartu di bab ini pakai resep kedua.
+Tanyakan apa yang terjadi pada URL panjang tanpa aturan ini; jawaban yang diharapkan adalah
+URL tetap satu baris dan container melebar atau muncul gulir horizontal. Lanjutkan ke nilai
+berikutnya untuk membandingkan cara pemenggalannya.
 -->
-
 ---
+<!-- _class: compact -->
+
+# Menangani Teks yang Terlalu Panjang (2/3)
+**`word-break: break-all`**
+
+Memungkinkan pemutusan karakter di berbagai posisi, termasuk di tengah kata.
+
+```css
+.text {
+  word-break: break-all;
+}
+```
+
+Gunakan secara hati-hati karena dapat membuat kata biasa lebih sulit dibaca.
+
+<!--
+Bedakan dua motif: `overflow-wrap: anywhere` dipakai untuk keselamatan layout, sedangkan
+`word-break: break-all` mengubah kebiasaan pemenggalan kata. Yang kedua memotong di mana saja,
+termasuk di tengah kata yang sebenarnya dapat dipindah ke baris berikutnya.
+
+Tanyakan baris peringatan pada slide: mengapa pemenggalan agresif menurunkan keterbacaan?
+Jawaban yang diharapkan adalah karena mata kehilangan bentuk kata. Batasi pemakaiannya pada
+kolom yang memang sempit.
+-->
+---
+<!-- _class: compact -->
+
+# Menangani Teks yang Terlalu Panjang (3/3)
+**`text-overflow: ellipsis`**
+
+Menampilkan tanda elipsis saat teks terpotong pada kondisi yang sesuai.
+
+```css
+.title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+```
+
+Properti tersebut biasanya digunakan bersama `overflow: hidden` dan `white-space: nowrap` untuk membuat teks satu baris dengan tanda `...`.
+
+**Praktik yang disarankan:** gunakan `overflow-wrap: anywhere` untuk URL panjang dan gunakan ellipsis ketika ruang tampilan memang sengaja dibatasi.
+
+<!--
+Tegaskan bahwa `text-overflow` tidak bekerja sendiri: tanpa `white-space: nowrap` teks akan
+membungkus, dan tanpa `overflow: hidden` tidak ada yang dipotong. Ketiganya adalah satu paket.
+
+Tanyakan mengapa nama produk yang dipotong perlu atribut `title`; jawaban yang diharapkan
+adalah agar isi lengkapnya tetap dapat dibaca, baik lewat tetikus maupun pembaca layar.
+Hubungkan dengan praktik yang disarankan pada baris terakhir.
+-->
+---
+
 <!-- _class: section -->
 <!-- _footer: '' -->
 
-# Posisi Kotak dan Irama Jarak
+# Bagian 3 · Posisi, Tumpukan, dan Jarak
 
-## Di mana kotak duduk, dan berapa jaraknya
+## Di mana elemen berdiri, dan siapa menutupi siapa
 
 <!--
-Pindah dari "kotak jenis apa ini" ke "di mana kotak ini duduk dan berapa jaraknya".
-Bagian ini nyelesaiin dua gejala di apersepsi sekaligus: badge yang terlempar ke pojok
-halaman dan jarak antarkartu yang nggak konsisten.
+Bagian ini menjawab dua pertanyaan yang sering dicampur: di mana elemen ditempatkan, dan
+siapa yang tampil di atas ketika dua elemen bertumpuk. Posisi dan `z-index` adalah dua
+properti berbeda, meskipun selalu dipakai bersama.
+
+Ingatkan bahwa sampai titik ini semua elemen masih mengikuti alur dokumen.
 -->
 
 ---
-
-
 <!-- _class: compact -->
 
-# Lima Nilai position
+# Memahami Properti position (1/5)
+`position` mengatur metode penempatan elemen.
 
-![w:1020 Properti position punya lima nilai: static ikut alur dokumen, relative bergeser dari posisinya, absolute lepas dari alur, fixed menempel viewport, sticky ikut alur sampai titik geser.](assets/diagrams/bab-05-css-box-model-dan-layout-23.svg)
+**`static`**
 
-- `static` dan `relative` ikut alur; `relative` bergeser dari posisinya
-- `absolute` lepas dari alur, diukur dari leluhur yang diposisikan
-- `fixed` lepas dari alur dan diukur dari viewport
-- `sticky` ikut alur sampai titik geser, lalu menempel
-
-<!--
-Kalimat paling penting di slide ini: `relative` lebih sering dipakai buat landasan
-daripada buat nggeser, dan landasan itulah gunanya buat anak yang `absolute`. Lima
-nilainya: static — bawaan, ikut alur dokumen; relative — bergeser dari posisinya;
-absolute — lepas dari alur; fixed — menempel viewport; sticky — ikut alur sampai titik
-geser.
-
-Tanyain apa landasan sebuah kotak `absolute` kalau nggak ada satu pun leluhur yang
-diposisikan; jawaban yang diharapkan: halaman itu sendiri, dan itulah badge yang terlempar
-ke pojok layar di apersepsi. Jawaban itu dibuktikan di slide berikutnya.
--->
-
----
-
-<!-- _class: compact -->
-
-# Badge Menempel di Pojok Gambar
+Posisi normal dalam aliran dokumen. Ini merupakan nilai default.
 
 ```css
-.produk-media {
-  position: relative;        /* badge diukur dari tepi gambar */
+.box {
+  position: static;
+}
+```
+
+<!--
+Tegaskan bahwa `static` adalah bawaan, sehingga seluruh elemen sebelum slide ini masih berada
+di alur dokumen. Nilai ini tidak dapat digeser dengan `top`, `left`, `right`, atau `bottom`.
+
+Tanyakan apa yang terjadi jika `top: 8px` ditambahkan pada elemen `static`; jawaban yang
+diharapkan adalah tidak ada yang berubah. Gejala ini sering dilaporkan sebagai bug, padahal
+penyebabnya hanya nilai `position` yang belum diubah.
+-->
+---
+<!-- _class: compact -->
+
+# Memahami Properti position (2/5)
+**`relative`**
+
+Elemen tetap menempati tempatnya dalam aliran dokumen, tetapi dapat digeser dari posisi normalnya.
+
+```css
+.box {
+  position: relative;
+  top: 8px;
+  left: 8px;
+}
+```
+
+<!--
+`relative` bergeser secara visual, tetapi ruang aslinya tetap dipesan, jadi tetangga tidak ikut
+bergerak. Inilah yang membuat `relative` aman untuk menggeser elemen tanpa merusak alur.
+
+Tanyakan ke arah mana elemen bergeser jika `top: 8px` dan `left: 8px` dipakai; jawaban yang
+diharapkan adalah 8 px ke bawah dan 8 px ke kanan dari posisi normal.
+-->
+---
+<!-- _class: compact -->
+
+# Memahami Properti position (3/5)
+**`absolute`**
+
+Elemen dikeluarkan dari aliran normal dan diposisikan berdasarkan containing block yang sesuai, sering kali dibentuk oleh ancestor dengan `position` selain `static`.
+
+```css
+.card {
+  position: relative;
 }
 
-.produk-badge {
+.badge {
   position: absolute;
   top: 8px;
   right: 8px;
-  z-index: 2;
 }
 ```
 
-`File: tokosaya-css/css/style.css`
-
-- `absolute` mencari leluhur yang diposisikan, bukan induk terdekat di HTML
-- Tanpa `relative` di induk, badge lari ke pojok halaman
-- Kotak `absolute` tidak menggeser teks di bawahnya karena sudah keluar dari alur
-
 <!--
-Demonstrasikan ini langsung: hapus `position: relative` sebentar, muat ulang, biarkan
-kelas lihat badge terlempar. Kembalikan, lalu tekankan bahwa 8 px itu jarak dari tepi
-gambar, bukan dari halaman.
+Tekankan bahwa elemen `absolute` keluar dari alur, sehingga ruangnya tidak lagi dipesan dan
+elemen lain dapat menempatinya. Inilah sebabnya badge dapat diletakkan di atas gambar tanpa
+mendorong isi kartu.
 
-Tanyain kenapa `top` dan `right` nggak ngefek apa pun kalau induknya `static`; jawaban
-yang diharapkan: nggak ada leluhur yang diposisikan, jadi acuannya viewport.
+Tanyakan apa yang terjadi jika `.card` tidak memakai `position: relative`; jawaban yang
+diharapkan adalah badge menempel pada ancestor berikutnya yang diposisikan, sering kali seluruh
+halaman.
 -->
-
 ---
-
-
 <!-- _class: compact -->
 
-# z-index pada Elemen Diposisikan
+# Memahami Properti position (4/5)
+**`fixed`**
 
-![w:1160 Dua keadaan: pada elemen static, z-index diabaikan sehingga badge kembali ke alur di bawah gambar; pada elemen diposisikan, top dan right diukur dari induk dan z-index 2 menaruh badge di depan.](assets/diagrams/bab-05-css-box-model-dan-layout-40.svg)
-
-- `z-index` mengatur urutan tumpukan kotak yang bertumpuk
-- Hanya bekerja kalau `position` bukan `static`
-- Pakai skala kecil yang direncanakan: 1, 2, dan 10
-- Hindari loncatan ke 9999 yang bikin susah di-debug
-
-<!--
-Tunjuk dua panel: di kiri `position: static`, jadi `z-index` diabaikan browser dan badge
-balik ke alur di bawah gambar; di kanan elemen diposisikan, `top` dan `right` diukur
-dari induk, dan `z-index` 2 naruh badge di depan.
-
-Tanyain kenapa `z-index: 9999` dianggap kebiasaan buruk walaupun hasilnya keliatan
-benar; jawaban yang diharapkan: nilainya nggak terdokumentasi, jadi aturan berikutnya
-terpaksa nulis angka lebih besar lagi.
--->
-
----
-
-# Contoh: z-index pada Elemen Diposisikan
-
-![w:1120 Tiga strata di dalam produk-media: badge Best Seller dengan position absolute, z-index 2 paling depan; gambar produk yang static, ikut alur di bawahnya; dan produk-media sendiri sebagai landasan karena position relative.](assets/diagrams/bab-05-css-box-model-dan-layout-33.svg)
-
-Tiga strata di dalam produk-media. Paling depan badge Best Seller — position absolute, z-index 2 — dan angka 2 itu satu-satunya z-index di style.css. Di bawahnya gambar produk yang static, ikut alur; kotak seperti itu tidak butuh z-index karena hanya yang diposisikan bisa diurutkan. Paling bawah produk-media sendiri: position relative, landasan badge mengukur 8 px dari tepi gambar.
-
-<!--
-Tanyain dulu apa yang terjadi kalau badge dibiarkan `position: static`; jawaban yang
-diharapkan: `z-index` diabaikan sekaligus `top` dan `right` nggak berlaku, jadi badge
-balik ke alur di bawah gambar.
-
-Tunjuk tiga pita di gambar dari atas ke bawah: badge, gambar produk, lalu produk-media
-sebagai landasan. Tekankan angka 2 di `style.css` itu satu-satunya `z-index` di kartu
-ini — nggak ada `z-index: 1` di file mana pun, dan itu memang disengaja.
--->
-
----
-
-# Skala Jarak Delapan Piksel
-
-- Sistem jarak dibangun dari basis `--space-unit: 8px`
-- Langkahnya 8, 16, 24, 32, 48, dan 64 px
-- Setiap jarak harus jatuh di salah satu langkah itu
-- Delapan membagi rata lebar layar 320, 640, 960, dan 1280
-- Langkah 4 px cuma buat koreksi mikro, ditulis di komentar
-
-> Jarak yang bisa dihitung lebih mudah dirawat daripada jarak yang ditebak.
-
-<!--
-Tanyain kenapa 8 yang dipilih, bukan 5 atau 7; jawaban yang diharapkan: angkanya membagi
-rata lebar layar umum tanpa sisa, jadi jarak dan kolom bisa dibagi tanpa pecahan piksel.
-
-Tekankan efeknya ke pengguna: bagian yang nggak berkaitan muncul pada takaran seragam,
-jadi mata nggak perlu ganti ukuran kaca pembesarnya tiap blok. Langkah 4 px boleh, asal
-ditulis di komentar dan bukan jadi kebiasaan.
--->
-
----
-
-# Kapan padding, Kapan margin
-
-- Padding adalah bagian dari komponen itu sendiri
-- Padding memperluas latar sekaligus area klik tombol
-- Margin memisahkan komponen dari tetangganya
-- Jarak vertikal antarseksi lebih aman lewat padding kontainer
-- Padding 8 px per sisi menaikkan tombol di atas ambang WCAG 24 px
-
-<!--
-Ulangi padanan fisiknya: padding itu jarak foto ke tepi passe-partout, margin itu jarak
-antar passe-partout di dinding. Tanyain siapa yang selama ini pakai margin buat melebarkan
-tombol; itu kebiasaan yang paling sering muncul di tugas, dan jawabannya selalu padding.
-
-Sebutkan kriteria Target Size dari WCAG 2.2 menetapkan area sentuh minimal 24 × 24 px,
-jadi padding punya fungsi aksesibilitas, bukan cuma estetika.
--->
-
----
-
-<!-- _class: compact -->
-
-# Jarak Baku Proyek Tokosaya
+Elemen umumnya diposisikan terhadap viewport dan tetap berada di tempat yang sama ketika halaman digulir.
 
 ```css
-.hero {
-  padding: 64px 0;             /* 8 × 8 — jeda besar antarseksi */
-}
-
-.hero-subtitle {
-  margin: 0 0 32px;            /* 8 × 4 — jarak ke tombol CTA */
-}
-
-.produk-body {
-  padding: 16px;               /* 8 × 2 — ruang napas dalam kartu */
-}
-
-.produk-card {
-  margin: 0 16px 32px 0;       /* 8 × 2 dan 8 × 4 */
+.button-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
 }
 ```
 
-`File: tokosaya-css/css/style.css`
+<!--
+Tanyakan elemen apa yang biasanya memakai `fixed`; jawaban yang diharapkan adalah tombol
+kembali ke atas, navigasi tetap, dan pemberitahuan yang selalu terlihat.
+
+Tegaskan bahwa `fixed` tidak peduli pada posisi induknya: acuannya viewport. Ingatkan bahwa
+`fixed` tetap membuat elemen keluar dari alur dokumen.
+-->
+---
+<!-- _class: compact -->
+
+# Memahami Properti position (5/5)
+**`sticky`**
+
+Elemen berperilaku seperti elemen dalam aliran normal sampai mencapai ambang posisi tertentu saat scrolling, lalu dapat menempel dalam batas scroll container yang relevan.
+
+```css
+.header {
+  position: sticky;
+  top: 0;
+}
+```
 
 <!--
-Buka file aslinya dan hitung satu per satu langkah skalanya bareng kelas. Yang negakkan
-disiplinnya adalah komentar `8 × n`: setiap angka baru harus punya pasangan di skala.
+Jelaskan `sticky` sebagai dua perilaku berurutan: mengalir seperti biasa, lalu menempel ketika
+ambang tercapai. Sebutkan bahwa `top: 0` adalah ambangnya, bukan jarak permanen.
 
-Cara memeriksa: telusuri seluruh file dan tandai nilai yang bukan kelipatan 8 — angka
-kayak 21 px atau 37 px itu utang yang bakal nagih pas layar menyempit. Tanyain apa yang
-harus dilakukan kalau kartu terasa perlu lebih beruang; jawaban yang diharapkan: naik
-dari 16 ke 24 atau 32, bukan ke 21.
+Tanyakan mengapa `sticky` kadang terlihat tidak bekerja; jawaban yang diharapkan adalah karena
+ancestornya memiliki `overflow` tersembunyi atau tinggi yang membatasi, sehingga area
+menempelnya habis sebelum elemen menempel.
+-->
+---
+
+<!-- _class: compact -->
+
+# Diagram: Lima Nilai position
+
+![w:1120 Properti position memiliki lima nilai: static, relative, absolute, fixed, dan sticky.](assets/diagrams/bab-05-css-box-model-dan-layout-05.svg)
+
+Kelima nilai `position` — `static`, `relative`, `absolute`, `fixed`, dan `sticky` — beserta perannya terhadap alur dokumen.
+
+<!--
+Bacakan dari atas ke bawah: `static` dan `relative` masih memesan ruang, `absolute` keluar
+dari alur, `fixed` menempel pada viewport, dan `sticky` menempel bersyarat.
+
+Tanyakan nilai mana yang dipakai untuk tombol kembali ke atas; jawaban yang diharapkan
+adalah `fixed`. Lanjutkan dengan pertanyaan pembeda: nilai mana yang tetap memesan ruang
+meskipun digeser? Jawabannya `relative`.
 -->
 
+---
+<!-- _class: compact -->
+
+# Memahami z-index (1/2)
+`z-index` mengatur urutan tumpukan elemen ketika elemen saling bertumpuk dalam konteks penumpukan yang relevan.
+
+**Contoh:**
+
+```css
+.card {
+  position: relative;
+  z-index: 1;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+}
+```
+
+**Penjelasan:**
+
+- Elemen dengan urutan tumpukan lebih tinggi dapat tampil di atas elemen lain dalam konteks yang sesuai.
+- `z-index` bukan jaminan bahwa elemen akan berada di atas semua elemen lain.
+- Konteks penumpukan (*stacking context*) dapat membatasi perbandingan nilai `z-index`.
+- Pada elemen biasa, `z-index` umumnya berlaku untuk elemen yang diposisikan dan item flex atau grid.
+
+<!--
+Tekankan butir kedua: `z-index` tidak bekerja seperti lapisan global. Nilai 1000 pada modal
+tetap berada di bawah elemen lain jika keduanya berada pada konteks penumpukan yang berbeda.
+
+Tanyakan mengapa `z-index: 9999` kadang tidak menolong; jawaban yang diharapkan adalah karena
+ancestornya membentuk konteks penumpukan baru. Sebutkan contoh pembentuk konteks: `transform`,
+`filter`, dan `opacity`.
+-->
+---
+<!-- _class: compact -->
+
+# Memahami z-index (2/2)
+**Contoh penggunaan:**
+
+- Dropdown menu.
+- Tooltip.
+- Dialog atau modal.
+- Navigasi yang menempel.
+- Lapisan overlay.
+
+**Praktik yang baik:** tetapkan skala `z-index` yang terencana agar nilai tidak terus bertambah tanpa aturan.
+
+<!--
+Minta mahasiswa mengurutkan kelima contoh berdasarkan kepentingannya di layar. Jawaban yang
+diharapkan menempatkan modal dan overlay paling atas, tooltip di atas konten, dan dropdown
+sedikit di atas konten biasa.
+
+Tanyakan mengapa skala lebih baik daripada angka bebas; jawaban yang diharapkan adalah karena
+skala mencegah perang nilai dan memudahkan penelusuran. Berikan contoh skala kecil, misalnya
+1 untuk konten, 10 untuk dropdown, dan 100 untuk modal.
+-->
+---
+<!-- _class: compact -->
+
+# Skala Jarak 8 px (1/3)
+Skala jarak 8 px adalah pendekatan desain yang menggunakan kelipatan 8 px untuk menjaga konsistensi jarak dan ukuran.
+
+**Contoh skala:**
+
+| Nama      | Ukuran |
+| --------- | ------ |
+| `space-1` | 8 px   |
+| `space-2` | 16 px  |
+| `space-3` | 24 px  |
+| `space-4` | 32 px  |
+| `space-5` | 40 px  |
+| `space-6` | 48 px  |
+| `space-8` | 64 px  |
+
+<!--
+Tanyakan mengapa angkanya melompat dari `space-6` ke `space-8`; jawaban yang diharapkan adalah
+karena kelipatan delapan, bukan urutan nomor, sehingga nama menandai ukurannya.
+
+Tanyakan berapa nilai `space-7`; jawaban yang diharapkan adalah 56 px. Latihan kecil ini
+memastikan mahasiswa membaca tabel sebagai sistem, bukan sebagai daftar hafalan.
+-->
+---
+<!-- _class: compact -->
+
+# Skala Jarak 8 px (2/2)
+**Contoh penerapan:**
+
+```css
+:root {
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+}
+
+.card {
+  padding: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.button {
+  padding: var(--space-1) var(--space-2);
+}
+```
+
+**Manfaat:**
+
+- Membuat layout lebih konsisten.
+- Memudahkan pemeliharaan desain.
+- Mengurangi penggunaan angka jarak yang tidak teratur.
+- Membantu menyelaraskan jarak antarbagian UI.
+
+**Catatan:** skala 8 px merupakan panduan desain, bukan aturan wajib CSS. Jarak 4 px atau nilai lain tetap dapat digunakan ketika dibutuhkan.
+
+<!--
+Tunjukkan bahwa variabel memindahkan keputusan jarak ke satu tempat: mengubah `--space-3`
+sekaligus mengubah semua padding yang memakainya. Inilah nilai praktis dari skala, bukan
+sekadar kerapian angka.
+
+Tanyakan mengapa angka 17 px sebaiknya dihindari; jawaban yang diharapkan adalah karena ia
+tidak termasuk skala, sehingga jarak sukar diprediksi. Sebutkan catatan pada slide: 4 px tetap
+sah untuk koreksi optis.
+-->
 ---
 
 <!-- _class: section -->
 <!-- _footer: '' -->
 
-# Praktik: Kartu Produk Tokosaya
+# Bagian 4 · Praktik
 
-## Delapan kartu dengan jarak yang bisa dihitung
+## Satu kartu produk, lima kesalahan, lima latihan
 
 <!--
-Masuk ke praktikum. Ingatkan bahwa hasil akhirnya bukan halaman cantik, melainkan satu
-komponen kartu yang setiap jaraknya bisa dipertanggungjawabkan. Sebutkan kartu inilah
-yang nanti disusun ulang dengan Flexbox di Bab 6, jadi markup dan kelasnya dipakai lagi.
+Bagian ini tidak menambah konsep baru. Semua yang dibahas sebelumnya dipakai bersama pada satu
+komponen, lalu diperiksa lewat daftar kesalahan dan latihan.
+
+Sebutkan bahwa kartu produk di sini adalah kelanjutan Tokosaya dari Bab 4, sehingga hasilnya
+dapat dipakai langsung pada proyek praktikum.
 -->
 
 ---
-
-
 <!-- _class: compact -->
 
-# Cara Memeriksa Kotak di DevTools
-
-![w:1160 Empat langkah memeriksa kotak: inspeksi elemen lewat klik kanan, baca diagram kotak di panel Computed, uji box-sizing dengan mematikannya, lalu hitung ulang content ditambah padding dan border.](assets/diagrams/bab-05-css-box-model-dan-layout-39.svg)
-
-- Inspeksi: klik kanan elemen, lalu pilih Inspect
-- Computed: baca diagram kotak dan angka yang dilaporkan browser
-- Uji box-sizing: matikan sebentar di panel Styles, bandingkan lebarnya
-- Hitung ulang: cocokkan `content + padding + border` dengan angka di panel
-
-<!--
-Jalankan urutan ini sekali di layar sebelum kelas ngerjain sendiri: inspeksi elemen lewat
-klik kanan, Computed buat baca diagram kotak, uji `box-sizing` dengan mematikannya
-sebentar, lalu hitung ulang dan cocokkan angkanya.
-
-Tanyain langkah mana yang paling sering dilewatkan; jawaban yang diharapkan: langkah
-terakhir, padahal itu satu-satunya langkah yang membuktikan hitunganmu benar. Tekankan
-tangkapan layar langkah ketiga dan keempat dipakai sebagai bukti penilaian.
--->
-
----
-
-# Langkah Praktikum
-
-1. Buka folder proyek `tokosaya-css/` dan siapkan delapan gambar produk
-2. Tulis ulang `index.html` dengan hero dan delapan kartu
-3. Tulis ulang `css/style.css` dengan token, reset, dan komponen
-4. Pastikan aturan `box-sizing` ada di paling atas setelah token
-5. Buka di browser, pastikan tidak ada bilah gulir horizontal
-6. Periksa diagram kotak `.produk-card`, lalu matikan `box-sizing` sebentar
-
-<!--
-Jalankan langkah ini sambil didemokan di layar, jangan cuma dibacakan. Langkah lima dan
-enam yang paling berharga: kelas lihat sendiri pembeda `content-box` dan `border-box` di
-proyek nyata, pakai urutan empat langkah di slide sebelumnya.
-
-Ingatkan nyimpen file sebelum muat ulang, dan periksa jalur `<link>` dulu kalau gaya
-nggak muncul sama sekali. Tanyain langkah mana yang paling sering gagal; jawaban yang
-diharapkan: langkah tiga, biasanya karena nama kelas di HTML dan CSS nggak sama.
--->
-
----
-
-<!-- _class: compact -->
-
-# Anatomi Kartu di index.html
+# Studi Kasus: Membuat Kartu Produk (1/3)
+Gabungkan Box Model, batas ukuran, display, dan skala jarak untuk membangun komponen kartu.
 
 ```html
-<li class="produk-card">
-  <div class="produk-media">
-    <img src="img/produk-keyboard-kx210.svg"
-         alt="Keyboard mekanis KX-210 berwarna gelap"
-         width="280" height="160">
-    <span class="produk-badge produk-badge-accent">Best Seller</span>
-  </div>
-  <div class="produk-body">
-    <p class="produk-kategori">Aksesori Input</p>
-    <h3 class="produk-nama">Keyboard Mekanis KX-210</h3>
-    <p class="produk-harga">Rp650.000</p>
-  </div>
-</li>
+<div class="product-card">
+  <span class="product-badge">Baru</span>
+  <h2>Nama Produk</h2>
+  <p>
+    Deskripsi produk yang dapat memuat teks panjang
+    tanpa merusak layout.
+  </p>
+  <button>Beli Sekarang</button>
+</div>
 ```
-
-`File: tokosaya-css/index.html`
-
-<!--
-Tekankan pembagian tugasnya: HTML bawa peran, CSS bawa keputusan visual. Satu kartu satu
-`li`, bukan kumpulan `div`; `produk-media` nampung gambar sekaligus badge dan itulah kotak
-yang diposisikan `relative`; nggak ada satu pun gaya inline di HTML.
-
-Tanyain kenapa angka `width` dan `height` disamakan rasio gambarnya; jawaban yang
-diharapkan: supaya layout nggak melompat pas gambar selesai termuat. Pastikan semua nama
-class konsisten kebab-case sebelum kelas lanjut ke file gaya.
--->
-
----
-
-<!-- _class: compact -->
-
-# Aturan Kartu di style.css
 
 ```css
-.produk-card {
-  display: inline-block;
-  vertical-align: top;
-  width: 280px;
-  max-width: 100%;
-  margin: 0 16px 32px 0;
-  background-color: var(--clr-surface);
-  border: 1px solid var(--clr-border);
-  border-radius: var(--radius);
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-.produk-body {
-  padding: 16px;
+.product-card {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  min-height: 220px;
+  padding: 24px;
+  border: 1px solid #ccc;
+  margin: 16px;
 }
 ```
 
-`File: tokosaya-css/css/style.css`
-
 <!--
-Tunjukkan gejala sebelum `vertical-align: top`: kartu dengan isi lebih panjang bikin
-deretnya bergerigi. Setiap baris di blok ini mewakili satu tujuan: `display` dan
-`vertical-align`, `width` dan `max-width`, margin serta padding dari skala 8, dan border
-yang ikut dihitung.
+Baca struktur HTML sebagai urutan lapisan yang akan diberi gaya: pembungkus, badge, judul,
+deskripsi, dan tombol. Sebutkan bahwa badge ditulis lebih dahulu agar mudah diposisikan
+terhadap pembungkusnya.
 
-Tanyain kenapa `max-width: 100%` penting walaupun kartunya udah punya lebar tetap;
-jawaban yang diharapkan: biar kartu menyusut di layar sempit daripada maksa bilah gulir.
+Tanyakan peran `.product-card` pada blok CSS ini; jawaban yang diharapkan adalah empat peran
+sekaligus: `border-box` untuk hitungan, `relative` sebagai landasan badge, `max-width` menahan
+lebar, dan `min-height` memberi tinggi minimum.
 -->
-
 ---
+<!-- _class: compact -->
 
-# Hasil yang Diharapkan
+# Studi Kasus: Membuat Kartu Produk (2/3)
+```css
+.product-badge {
+  display: inline-block;
+  padding: 8px;
+}
 
-- Header putih dengan empat link navigasi berderet
-- Hero dengan judul besar dan tombol indigo
-- Delapan kartu berbaris tiga per baris
-- Badge berwarna di pojok kanan atas setiap gambar
-- Sudut gambar membulat ikut radius kartu
-- Kartu menyusut tanpa bilah gulir di lebar 480 px
+.product-card p {
+  overflow-wrap: anywhere;
+}
+
+.product-card button {
+  display: inline-block;
+  padding: 8px 16px;
+}
+```
 
 <!--
-Bandingkan tampilan sebelum dan sesudah langsung di browser, jangan cuma menampilkan slide
-ini. Buat nggak tiap baris, tanyain tujuan mana yang membuktikannya: badge di pojok,
-sudut membulat, kartu menyusut tanpa gulir, jarak rapi.
+Hubungkan tiga aturan ini dengan tiga masalah berbeda: `inline-block` agar badge dapat diukur,
+`overflow-wrap` agar deskripsi panjang tidak melebarkan kartu, dan padding pada tombol agar
+area klik lebih luas.
 
-Kalau ada yang belum berubah, curigai jalur `<link>` dulu sebelum nuduh kodenya salah.
-Ingatkan hard refresh dengan Ctrl+F5 kalau browser masih pakai file gaya dari cache.
+Tanyakan mana yang menyelesaikan masalah lebar kartu dan mana yang menyelesaikan masalah
+kenyamanan menekan; jawaban yang diharapkan adalah `overflow-wrap` dan padding tombol. Tegaskan
+bahwa keduanya tidak saling menggantikan.
 -->
-
 ---
+<!-- _class: compact -->
 
-# Troubleshooting Paling Sering
+# Studi Kasus: Membuat Kartu Produk (3/3)
+```css
+.product-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 1;
+}
+```
 
-![w:1120 Lima gejala kartu produk dan penyebabnya: vertical-align baseline, spasi antar inline-block, margin runtuh, induk tanpa position relative, dan mode content-box yang masih aktif.](assets/diagrams/bab-05-css-box-model-dan-layout-34.svg)
+**Hasil yang diharapkan:**
+
+- Lebar kartu tidak melebihi 320 px.
+- Padding dan border sudah termasuk dalam perhitungan lebar.
+- Tinggi minimum kartu adalah 220 px.
+- Badge berada di sudut kanan atas kartu.
+- Teks panjang dapat membungkus ketika diperlukan.
+- Jarak komponen mengikuti skala kelipatan 8 px.
 
 <!--
-Jadikan gambar ini daftar periksa saat kelas praktikum, bukan bahan bacaan. Gejala dan
-penyebabnya: kartu sejajar tepi bawah berbeda karena `vertical-align` bawaan masih
-baseline; ada celah tipis antarkartu karena spasi di HTML antar `inline-block`; jarak
-terasa lebih pendek karena margin vertikal runtuh; badge lari ke pojok halaman karena
-induk belum `position: relative`; kartu meluber dan muncul bilah gulir karena mode
-`content-box` masih aktif.
+Uji tiap butir hasil di DevTools, satu per satu, dengan panel Computed sebagai bukti. Butir
+kedua dibuktikan dengan mematikan `box-sizing` sebentar dan melihat lebar kartu berubah.
 
-Tanyain gejala mana yang paling sering mereka temui di tugas sebelumnya. Tekankan bahwa
-semua gejala ini bisa dipastikan lewat diagram kotak di DevTools sebelum satu baris CSS
-diubah.
+Tanyakan butir mana yang gagal jika `position: relative` dihapus dari `.product-card`; jawaban
+yang diharapkan adalah butir keempat, karena badge akan menempel pada halaman. Ingatkan bahwa
+`z-index: 1` hanya bermakna karena badge sudah diposisikan.
 -->
-
 ---
 
 <!-- _class: compact -->
 
-# Latihan
+# Diagram: Kartu Produk
 
-- Dua kartu bermargin bawah 16 px dan margin atas 24 px: berapa jarak nyatanya, dan kenapa?
-- Hitung lebar total `width: 260px; padding: 16px; border: 4px solid;` di kedua mode
-- Sempitkan kartu 280 px ke induk 240 px: properti mana yang menang?
-- Matikan `box-sizing` di DevTools, catat lebar `.produk-card` sebelum dan sesudah
-- Ubah `.nav-item` jadi `display: block`, amati, lalu jelaskan kenapa berantakan
-- Pasang pola elipsis pada nama WC-720, uji dengan nama 60 huruf, isi atribut `title`
-- Audit semua `padding` dan `margin`, tandai yang bukan kelipatan 8
+![w:1120 Kartu produk: content 270 × 170 px, padding 24 px, border 1 px, dan margin 16 px di dalam max-width 320 px.](assets/diagrams/bab-05-css-box-model-dan-layout-06.svg)
 
-> Tuliskan perhitungan dan alasannya, bukan cuma nama propertinya.
+Kartu yang sama digambarkan dengan ukuran sebenarnya: content 270 × 170 px, padding 24 px, border 1 px, dan margin 16 px di dalam `max-width: 320px`, dengan lebar total 352 px.
 
 <!--
-Tujuh butir, satu per tujuan di slide Tujuan Pembelajaran. Kerjakan butir pertama
-bareng-bareng di papan, sisanya buat latihan mandiri.
+Tunjuk bahwa padding 24 px berada di dalam kotak, sedangkan margin 16 px berada di luar.
+Tegaskan bahwa lebar total 320 px sudah mencakup padding dan border, sesuai `border-box`.
 
-Butir pertama: jawabannya 24 px, karena margin vertikal runtuh ke nilai terbesar. Butir
-kedua: 300 px di `content-box`, dan di `border-box` kotaknya tetap 260 px dengan content
-220 px. Butir ketiga: `max-width: 100%` yang menang, lebar total 280 px. Butir keenam
-nuntut atribut `title`, bukan cuma tiga properti CSS.
+Tanyakan apa yang berubah jika `padding` dinaikkan menjadi 32 px tanpa mengubah `width`;
+jawaban yang diharapkan adalah lebar luar tetap 320 px dan content menyusut 16 px. Jika
+`box-sizing` diganti ke `content-box`, lebar luar justru bertambah.
 -->
 
+---
+<!-- _class: compact -->
+
+# Kesalahan Umum dan Cara Menghindarinya (1/3)
+**Kesalahan 1: Lebar elemen lebih besar dari perkiraan**
+
+**Penyebab:** menggunakan `content-box` tanpa memperhitungkan padding dan border.
+
+**Solusi:**
+
+```css
+* {
+  box-sizing: border-box;
+}
+```
+
+<!--
+Sajikan kesalahan ini sebagai pasangan sebab-akibat, bukan sebagai butir hafalan. Gejalanya
+muncul di proyek pertama dan dapat dibuktikan dalam satu menit di DevTools.
+
+Tanyakan gejala yang terlihat di layar; jawaban yang diharapkan adalah bilah gulir horizontal,
+karena lebar total melebihi container. Tegaskan bahwa ini bukan salah browser, melainkan
+selisih antara angka yang ditulis dan angka yang dipakai.
+-->
+---
+<!-- _class: compact -->
+
+# Kesalahan Umum dan Cara Menghindarinya (2/3)
+**Kesalahan 2: Konten keluar dari kotak**
+
+**Penyebab:** teks panjang atau konten yang tidak dapat membungkus.
+
+**Solusi:**
+
+```css
+.text {
+  overflow-wrap: anywhere;
+}
+```
+
+<!--
+Hubungkan kesalahan ini dengan slide teks panjang: kotak sudah benar, tetapi isinya tidak mau
+membungkus. Perbaikannya satu properti, bukan perubahan lebar.
+
+Tanyakan apakah memperbesar `width` menyelesaikan masalah; jawaban yang diharapkan adalah
+tidak, karena URL panjang akan tetap menjadi satu kesatuan. Sebutkan bahwa solusi ini juga
+melindungi kartu ketika nama produk sangat panjang.
+-->
+---
+<!-- _class: compact -->
+
+# Kesalahan Umum dan Cara Menghindarinya (3/3)
+**Kesalahan 3: Menggunakan `z-index` tetapi elemen tetap berada di belakang**
+
+**Penyebab:** konteks penumpukan atau aturan posisi yang tidak dipahami.
+
+**Solusi:** periksa ancestor, stacking context, dan jenis elemen.
+
+**Kesalahan 4: Semua jarak menggunakan angka berbeda**
+
+**Penyebab:** tidak memiliki sistem spacing.
+
+**Solusi:** gunakan variabel CSS dan skala jarak yang konsisten.
+
+**Kesalahan 5: Menggunakan tinggi tetap untuk konten dinamis**
+
+**Penyebab:** tinggi elemen ditentukan tanpa mempertimbangkan pertambahan isi.
+
+**Solusi:** pertimbangkan `min-height` dan biarkan elemen berkembang sesuai kebutuhan.
+
+<!--
+Kelompokkan tiga kesalahan ini sebagai kesalahan sistem, bukan kesalahan sintaks: tidak ada
+pesan galat di konsol, tetapi hasilnya tidak dapat diprediksi.
+
+Tanyakan kesalahan mana yang paling mahal untuk diperbaiki di akhir proyek; jawaban yang
+diharapkan adalah kesalahan keempat, karena menyentuh seluruh berkas. Dua kesalahan lain cukup
+diperbaiki secara lokal.
+-->
+---
+<!-- _class: compact -->
+
+# Latihan dan Evaluasi (1/3)
+**Latihan 1: Menghitung ukuran kotak**
+
+Sebuah elemen memiliki:
+
+```css
+.box {
+  width: 200px;
+  padding: 10px;
+  border: 2px solid black;
+}
+```
+
+Pertanyaan:
+
+1. Berapa lebar total dengan `content-box`?
+2. Berapa lebar total dengan `border-box` jika `width` tetap 200 px?
+3. Berapa lebar content pada masing-masing model?
+
+<!--
+Kerjakan Latihan 1 bersama-sama di papan, karena soalnya menghitung dan jawabannya harus
+disepakati sebelum lanjut.
+
+Minta tiga mahasiswa menuliskan jawabannya di papan, satu pertanyaan per orang, dan biarkan
+kelas menilai. Simpan jawaban itu sampai slide kunci jawaban dibuka, agar terlihat apakah
+hitungan kelas cocok dengan kunci.
+-->
+---
+<!-- _class: compact -->
+
+# Latihan dan Evaluasi (2/3)
+**Latihan 2: Memilih `display`**
+
+Tentukan nilai `display` yang paling sesuai untuk:
+
+1. Container utama halaman.
+2. Kata atau tautan di dalam paragraf.
+3. Badge kecil yang harus berada sebaris dan memiliki ukuran tertentu.
+
+**Latihan 3: Menangani teks panjang**
+
+Buat elemen yang dapat menampilkan URL panjang tanpa menyebabkan container melebar.
+
+<!--
+Latihan 2 dikerjakan mandiri, lalu dibahas dengan acungan tangan. Tanyakan alasan pilihan,
+bukan hanya nilainya; jawaban yang diharapkan adalah `block` untuk container, `inline` untuk
+tautan, dan `inline-block` untuk badge.
+
+Latihan 3 dinilai dari berkas, bukan dari hafalan: tidak boleh ada gulir horizontal pada lebar
+1280 px. Minta mahasiswa membuktikannya dengan menyempitkan jendela.
+-->
+---
+<!-- _class: compact -->
+
+# Latihan dan Evaluasi (3/3)
+**Latihan 4: Membuat badge**
+
+Buat kartu dengan badge pada sudut kanan atas menggunakan `position: relative` dan `position: absolute`.
+
+**Latihan 5: Menerapkan skala jarak**
+
+Buat sebuah kartu dengan:
+
+- Padding 24 px.
+- Jarak bawah 16 px.
+- Jarak badge dari tepi atas dan kanan 8 px.
+
+<!--
+Latihan 4 dan 5 dapat digabung dalam satu berkas, karena keduanya membangun komponen yang
+sama. Yang dinilai adalah bukti di layar, bukan panjang CSS-nya.
+
+Tanyakan apa yang harus dibuktikan pada tiap latihan; jawaban yang diharapkan adalah badge
+menempel pada kartu saat halaman digulir untuk Latihan 4, dan semua jarak merupakan kelipatan
+8 untuk Latihan 5.
+-->
+---
+<!-- _class: compact -->
+
+# Kunci Jawaban Latihan (1/3)
+**Jawaban Latihan 1**
+
+Untuk `content-box`:
+
+```text
+Lebar total = 200 + (10 × 2) + (2 × 2)
+            = 224 px
+```
+
+Untuk `border-box`:
+
+```text
+Lebar total = 200 px
+Lebar content = 200 - 20 - 4
+              = 176 px
+```
+
+<!--
+Bandingkan dengan jawaban yang ditulis di papan: 224 px dan 176 px. Jika ada yang menjawab
+176 px untuk `content-box`, mereka sudah menghitung dengan cara `border-box`.
+
+Tanyakan mengapa lebar content berbeda meskipun `width: 200px` sama; jawaban yang diharapkan
+adalah karena `border-box` mengambil padding dan border dari dalam nilai `width`.
+-->
+---
+<!-- _class: compact -->
+
+# Kunci Jawaban Latihan (2/3)
+Lebar content pada `content-box` adalah 200 px, sedangkan pada `border-box` adalah 176 px.
+
+**Jawaban Latihan 2**
+
+1. Container utama: `block`.
+2. Tautan dalam paragraf: `inline`.
+3. Badge sebaris dengan ukuran tertentu: `inline-block`.
+
+**Jawaban Latihan 3**
+
+```css
+.url {
+  overflow-wrap: anywhere;
+}
+```
+
+<!--
+Sahihkan Latihan 2 dengan alasan, bukan hanya kunci: container memenuhi lebar, tautan mengalir
+bersama teks, dan badge harus dapat diukur.
+
+Tanyakan apakah `word-break: break-all` diterima untuk Latihan 3; jawaban yang diharapkan
+adalah diterima secara teknis, tetapi `overflow-wrap: anywhere` lebih aman karena tidak
+memenggal kata biasa.
+-->
+---
+<!-- _class: compact -->
+
+# Kunci Jawaban Latihan (3/3)
+**Jawaban Latihan 4**
+
+```css
+.card {
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+```
+
+**Jawaban Latihan 5**
+
+```css
+.card {
+  padding: 24px;
+  margin-bottom: 16px;
+}
+
+.badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+```
+
+Pastikan `.card` juga menggunakan `position: relative` agar badge diposisikan terhadap kartu.
+
+<!--
+Tunjukkan bahwa kedua jawaban menghasilkan CSS yang hampir sama, dan itulah intinya: satu
+komponen dapat menjawab beberapa tujuan sekaligus.
+
+Tutup dengan mengaitkan ke daftar kesalahan umum: satu deklarasi yang hilang, gejala yang jauh
+dari penyebabnya. Ingatkan bahwa berkas ini dipakai kembali pada praktikum Bab 6.
+-->
 ---
 
 <!-- _class: compact -->
 
-# Cek Daftar Komponen Kartu
+# Kesimpulan
 
-- Padding dan margin tidak tertukar; area klik tombol melebar lewat padding
-- `width` di CSS cocok dengan lebar yang dilaporkan panel Computed
-- `.produk-card` punya `max-width: 100%`; `.container` dibatasi 960 px
-- `box-sizing: border-box` global di awal file, setelah token
-- Kartu `inline-block` dan `vertical-align: top`, tanpa celah spasi
-- Media memakai `overflow: hidden`; nama produk punya `title`
-- Media `relative`, badge `absolute` dengan `z-index: 2`, jarak kelipatan 8
+Poin penting yang perlu diingat:
 
-<!--
-Minta mahasiswa saling memeriksa file pakai daftar ini dan menunjukkan buktinya langsung
-di kode. Urutan barisnya sama dengan urutan tujuan, jadi pemeriksa dan yang diperiksa
-pakai kriteria yang sama dengan penilaian.
-
-Tanyain nilai mana yang ternyata bisa dihapus karena udah diwarisi atau udah diatur
-induknya. Ingatkan bahwa baris terakhir nggak bisa dibuktikan tanpa buka DevTools pada
-lebar 1280 px.
--->
-
----
-
-<!-- _class: compact -->
-
-# Rangkuman
-
-- Box model berlapis dari content, padding, border, sampai margin
-- Margin vertikal bertetangga runtuh ke nilai terbesar; padding tidak
-- `content-box` menambah padding ke luar; `border-box` memotongnya dari dalam
-- `min` dan `max` menahan ukuran dari bawah dan atas; `width` mengunci
-- `display` memilih jenis kotak; `overflow` dan elipsis mengatur isi yang tidak muat
-- `relative` landasan `absolute`, `z-index` pakai skala kecil
-- Jarak selalu dari skala 8 px, dan tombol melebar lewat padding
+1. CSS Box Model terdiri dari content, padding, border, dan margin.
+2. `content-box` menambahkan padding dan border di luar nilai `width`.
+3. `border-box` memasukkan padding dan border ke dalam nilai `width`.
+4. `min-width`, `max-width`, dan `min-height` membantu mengendalikan ukuran elemen.
+5. `block`, `inline`, dan `inline-block` memiliki perilaku layout yang berbeda.
+6. `overflow` dan aturan pemenggalan teks membantu mengendalikan konten yang melampaui kotak.
+7. `position` dan `z-index` mengatur penempatan serta tumpukan elemen.
+8. Skala jarak 8 px membantu menghasilkan desain yang konsisten dan mudah dipelihara.
 
 <!--
-Tutup dengan pesan utama: layout yang bisa dihitung jauh lebih gampang dirawat daripada
-layout yang ditebak. Tujuh baris ini urutannya sama dengan daftar Tujuan Pembelajaran.
+Tutup dengan pesan bahwa layout yang dapat dihitung lebih mudah dirawat daripada layout yang
+ditebak. Kedelapan butir ini urutannya sama dengan slide Tujuan Pembelajaran, sehingga dapat
+dipakai sebagai daftar periksa sebelum ujian.
 
-Sebutkan Bab 6 ngganti trik `inline-block` dan `font-size: 0` dengan Flexbox, `gap`, dan
-`justify-content`. Ingatkan bahwa penghitungan kotak di bab ini tetap berlaku di semua
-model layout berikutnya — Flexbox dan Grid nggak ngubah cara browser ngitung padding dan
-border.
+Minta mahasiswa menyebut satu butir yang masih belum jelas; catat butir yang paling banyak
+disebut, dan jadikan pembuka pada pertemuan berikutnya. Sebutkan bahwa Bab 6 menggantikan
+trik `inline-block` dengan Flexbox, sementara seluruh hitungan kotak di bab ini tetap
+berlaku.
 -->
 
 ---
@@ -1065,18 +1749,15 @@ border.
 <!-- _class: lead -->
 <!-- _footer: '' -->
 
-# Tugas dan Refleksi
+# Pesan Penutup
 
-Susun `tokosaya-css/statistik.html` berisi panel "Ringkasan Tokosaya": empat kotak statistik berderet `inline-block`, seluruh jarak dari skala 8 px, dan satu badge `position: absolute`.
-
-**Pertanyaan refleksi:** kapan kamu memilih `overflow: hidden` daripada `auto`?
+Memahami CSS Box Model dan perilaku layout adalah fondasi penting untuk membangun antarmuka web yang rapi, responsif, konsisten, dan mudah dikembangkan.
 
 <!--
-Tugas individu: kumpulkan file HTML, CSS, tangkapan diagram kotak satu kartu, dan catatan
-singkat pilihan margin atau padding pada tiap jarak. Nilai ketepatan skala 8 px, badge
-yang beneran nempel di kartu, dan nggak adanya bilah gulir horizontal di lebar 1280 px.
+Tutup sesi dengan satu kalimat yang menautkan bab ini ke seluruh mata kuliah: hitungan kotak
+adalah dasar dari setiap model layout yang akan dipakai sampai proyek akhir.
 
-Tekankan yang dinilai bukan jarak yang cantik, tapi jarak yang bisa
-dipertanggungjawabkan — dan praktikumnya sudah nyiapin urutan empat langkah buat
-membuktikannya di DevTools.
+Tanyakan satu hal yang akan mereka periksa lebih dahulu di proyek berikutnya; jawaban yang
+diharapkan adalah diagram kotak di panel Computed. Sebutkan bahwa berkas kartu produk dari
+latihan dipakai kembali pada praktikum Bab 6.
 -->
