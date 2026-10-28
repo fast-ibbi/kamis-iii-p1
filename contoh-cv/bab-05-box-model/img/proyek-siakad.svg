@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" role="img" aria-label="Pratinjau Dashboard SIAKAD">
+  <rect width="480" height="270" fill="#F8FAFC"/>
+  <rect width="96" height="270" fill="#0F172A"/>
+  <rect x="16" y="20" width="64" height="10" rx="5" fill="#0F766E"/>
+  <g fill="#334155"><rect x="16" y="52" width="64" height="8" rx="4"/><rect x="16" y="72" width="52" height="8" rx="4"/><rect x="16" y="92" width="60" height="8" rx="4"/></g>
+  <g fill="#FFFFFF" stroke="#E2E8F0"><rect x="116" y="24" width="100" height="58" rx="10"/><rect x="228" y="24" width="100" height="58" rx="10"/><rect x="340" y="24" width="116" height="58" rx="10"/></g>
+  <g fill="#0F766E"><rect x="128" y="38" width="42" height="8" rx="4"/><rect x="240" y="38" width="42" height="8" rx="4"/><rect x="352" y="38" width="42" height="8" rx="4"/></g>
+  <g fill="#94A3B8"><rect x="128" y="56" width="66" height="6" rx="3"/><rect x="240" y="56" width="66" height="6" rx="3"/><rect x="352" y="56" width="66" height="6" rx="3"/></g>
+  <rect x="116" y="100" width="340" height="146" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <g fill="#0F766E"><rect x="140" y="200" width="26" height="30" rx="4"/><rect x="180" y="176" width="26" height="54" rx="4"/><rect x="220" y="152" width="26" height="78" rx="4"/><rect x="260" y="188" width="26" height="42" rx="4"/><rect x="300" y="164" width="26" height="66" rx="4"/></g>
+  <g fill="#F59E0B"><rect x="340" y="140" width="26" height="90" rx="4"/><rect x="380" y="170" width="26" height="60" rx="4"/></g>
+  <path d="M140 128h292" stroke="#E2E8F0" stroke-width="2"/>
+</svg>

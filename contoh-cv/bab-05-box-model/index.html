@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portofolio Rizky Ardiansyah, mahasiswa semester 5 Sistem Informasi: keahlian frontend dan enam proyek kuliah.">
+  <title>Rizky Ardiansyah — Mahasiswa Sistem Informasi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="site-brand" href="index.html">
+      <img src="img/logo-rizky.svg" alt="Rizky Ardiansyah" width="48" height="48">
+    </a>
+    <nav class="site-nav" aria-label="Navigasi utama">
+      <ul>
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="#keahlian">Keahlian</a></li>
+        <li><a href="#proyek">Proyek</a></li>
+        <li><a href="tentang.html">Tentang</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero" id="beranda">
+      <h1 class="hero-title">Rizky Ardiansyah</h1>
+      <p class="lead">Mahasiswa semester 5 Sistem Informasi yang belajar membangun antarmuka
+         web yang rapi, responsif, dan mudah dipakai.</p>
+      <figure>
+        <img src="img/avatar-rizky.svg" alt="Ilustrasi profil Rizky Ardiansyah"
+             width="240" height="240">
+        <figcaption>Yogyakarta · terbuka untuk magang frontend.</figcaption>
+      </figure>
+      <p><a class="btn-cta" href="#proyek">Lihat proyek saya</a></p>
+    </section>
+
+    <section class="proyek" id="proyek">
+      <h2>Proyek</h2>
+      <p class="section-lead">Enam proyek kuliah dan magang, dari dashboard sampai
+         halaman pendaftaran. Semua dikerjakan dengan HTML dan CSS tanpa JavaScript.</p>
+
+      <article class="proyek-card">
+        <span class="badge badge-unggulan">Unggulan</span>
+        <img src="img/proyek-siakad.svg" alt="Pratinjau Dashboard SIAKAD dengan grafik batang"
+             width="480" height="270">
+        <div class="proyek-body">
+          <h3 class="proyek-nama">Dashboard SIAKAD</h3>
+          <p class="proyek-kategori">Magang · 2025 · Bootstrap 5, CSS Grid</p>
+          <p class="proyek-deskripsi">Halaman ringkasan akademik untuk staf program studi:
+             jumlah mahasiswa aktif, rekap kehadiran, dan grafik nilai per angkatan.</p>
+          <p class="proyek-meta">Peran: frontend · <a href="#proyek-siakad">Lihat detail</a></p>
+        </div>
+      </article>
+
+      <article class="proyek-card">
+        <span class="badge badge-selesai">Selesai</span>
+        <img src="img/proyek-katalog-umkm.svg" alt="Pratinjau Katalog UMKM Sari Rasa berisi enam kartu produk"
+             width="480" height="270">
+        <div class="proyek-body">
+          <h3 class="proyek-nama">Katalog UMKM Sari Rasa</h3>
+          <p class="proyek-kategori">Tugas besar · 2024 · HTML, CSS Flexbox</p>
+          <p class="proyek-deskripsi">Katalog enam produk makanan ringan dengan saringan kategori,
+             badge ketersediaan, dan kartu yang tetap rapi saat layar menyempit.</p>
+          <p class="proyek-meta">Peran: frontend · <a href="#proyek">Lihat detail</a></p>
+        </div>
+      </article>
+
+      <article class="proyek-card">
+        <span class="badge badge-selesai">Selesai</span>
+        <img src="img/proyek-landing-kelas.svg" alt="Pratinjau Landing Kelas Online dengan bagian hero gelap"
+             width="480" height="270">
+        <div class="proyek-body">
+          <h3 class="proyek-nama">Landing Kelas Online</h3>
+          <p class="proyek-kategori">Latihan · 2024 · Bootstrap 5</p>
+          <p class="proyek-deskripsi">Halaman pendaftaran kelas pemrograman: hero, tiga paket harga,
+             dan tabel perbandingan fasilitas yang bisa digulir di layar kecil.</p>
+          <p class="proyek-meta">Peran: frontend · <a href="#proyek">Lihat detail</a></p>
+        </div>
+      </article>
+
+      <article class="proyek-card">
+        <span class="badge badge-selesai">Selesai</span>
+        <img src="img/proyek-profil-desa.svg" alt="Pratinjau Website Profil Desa dengan bagian hijau"
+             width="480" height="270">
+        <div class="proyek-body">
+          <h3 class="proyek-nama">Website Profil Desa</h3>
+          <p class="proyek-kategori">KKN · 2025 · HTML, CSS Grid</p>
+          <p class="proyek-deskripsi">Profil desa wisata: potensi UMKM, jadwal kegiatan, dan kontak
+             perangkat desa dalam satu halaman yang bisa dibuka dari ponsel.</p>
+          <p class="proyek-meta">Peran: frontend · <a href="#proyek">Lihat detail</a></p>
+        </div>
+      </article>
+
+      <article class="proyek-card">
+        <span class="badge badge-selesai">Selesai</span>
+        <img src="img/proyek-form-seminar.svg" alt="Pratinjau Form Pendaftaran Seminar dengan tiga medan isian"
+             width="480" height="270">
+        <div class="proyek-body">
+          <h3 class="proyek-nama">Form Pendaftaran Seminar</h3>
+          <p class="proyek-kategori">Tugas · 2024 · Form HTML, aksesibilitas</p>
+          <p class="proyek-deskripsi">Form pendaftaran seminar kampus dengan label terlihat, status
+             validasi, dan urutan tab yang bisa ditelusuri dari keyboard.</p>
+          <p class="proyek-meta">Peran: frontend · <a href="#proyek">Lihat detail</a></p>
+        </div>
+      </article>
+
+      <article class="proyek-card">
+        <span class="badge badge-berjalan">Berjalan</span>
+        <img src="img/proyek-tokosaya.svg" alt="Pratinjau proyek Tokosaya dengan tiga kartu produk indigo"
+             width="480" height="270">
+        <div class="proyek-body">
+          <h3 class="proyek-nama">Tokosaya</h3>
+          <p class="proyek-kategori">Proyek mata kuliah · 2025 · HTML, CSS, Figma</p>
+          <p class="proyek-deskripsi">Toko online UMKM yang dibangun bertahap sepanjang semester:
+             dari kerangka semantik sampai panel detail produk hasil translasi Figma.</p>
+          <p class="proyek-meta">Peran: frontend · <a href="#proyek">Lihat detail</a></p>
+        </div>
+      </article>
+    </section>
+
+    <section class="keahlian" id="keahlian">
+      <h2>Keahlian</h2>
+      <ul>
+        <li>HTML5 semantik</li>
+        <li>CSS: selector, box model, Flexbox, Grid</li>
+        <li>Bootstrap 5 (CSS saja)</li>
+        <li>Figma: membaca desain dan mengambil token</li>
+        <li>Aksesibilitas dasar: kontras, alt text, urutan heading</li>
+      </ul>
+    </section>
+
+    <section class="kontak" id="kontak">
+      <h2>Kontak</h2>
+      <address>
+        Surel: <a href="mailto:rizky.ardiansyah@mail.utn.ac.id">rizky.ardiansyah@mail.utn.ac.id</a><br>
+        Telepon: <a href="tel:+6281234567890">+62 812-3456-7890</a><br>
+        Domisili: Sleman, Daerah Istimewa Yogyakarta
+      </address>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <address>
+      Rizky Ardiansyah · <a href="mailto:rizky.ardiansyah@mail.utn.ac.id">rizky.ardiansyah@mail.utn.ac.id</a>
+    </address>
+    <p>Belajar HTML dan CSS, satu halaman setiap pertemuan.</p>
+    <p>&copy; 2025 Rizky Ardiansyah.</p>
+  </footer>
+
+</body>
+</html>
