@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" role="img" aria-label="Pratinjau proyek Tokosaya">
+  <rect width="480" height="270" fill="#EEF2FF"/>
+  <rect width="480" height="96" fill="#4F46E5"/>
+  <rect x="20" y="16" width="76" height="10" rx="5" fill="#FFFFFF"/>
+  <g fill="#C7D2FE"><rect x="320" y="17" width="40" height="8" rx="4"/><rect x="372" y="17" width="40" height="8" rx="4"/><rect x="424" y="17" width="36" height="8" rx="4"/></g>
+  <rect x="20" y="46" width="200" height="16" rx="6" fill="#FFFFFF"/>
+  <rect x="20" y="70" width="130" height="8" rx="4" fill="#C7D2FE"/>
+  <g fill="#FFFFFF" stroke="#E2E8F0"><rect x="20" y="116" width="136" height="128" rx="10"/><rect x="172" y="116" width="136" height="128" rx="10"/><rect x="324" y="116" width="136" height="128" rx="10"/></g>
+  <g fill="#E0E7FF"><rect x="32" y="128" width="112" height="52" rx="6"/><rect x="184" y="128" width="112" height="52" rx="6"/><rect x="336" y="128" width="112" height="52" rx="6"/></g>
+  <g fill="#4F46E5"><rect x="32" y="192" width="80" height="9" rx="4"/><rect x="184" y="192" width="80" height="9" rx="4"/><rect x="336" y="192" width="80" height="9" rx="4"/></g>
+  <g fill="#F59E0B"><rect x="32" y="210" width="40" height="10" rx="5"/><rect x="184" y="210" width="40" height="10" rx="5"/></g>
+  <rect x="336" y="210" width="40" height="10" rx="5" fill="#16A34A"/>
+</svg>

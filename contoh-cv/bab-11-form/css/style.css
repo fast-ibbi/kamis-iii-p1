@@ -1,0 +1,201 @@
+/* ---------- Rizky CV style.css — v3 (Bab 9, Bootstrap) ----------
+   Semua aturan tata letak pindah ke kelas Bootstrap.
+   File ini hanya menyimpan token, tipografi, dan overlay palet.
+   ------------------------------------------------------------- */
+
+/* kustom — design token website CV */
+:root {
+  --clr-primary: #0F766E;
+  --clr-primary-dark: #115E59;
+  --clr-accent: #F59E0B;
+  --clr-dark: #0F172A;
+  --clr-body: #334155;
+  --clr-muted: #64748B;
+  --clr-bg: #F8FAFC;
+  --clr-surface: #FFFFFF;
+  --clr-border: #E2E8F0;
+  --clr-success: #15803D;
+  --clr-danger: #DC2626;
+  --font-heading: 'Poppins', 'Segoe UI', sans-serif;
+  --font-body: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+  --radius: 12px;
+  --shadow-card: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --space-unit: 8px;
+}
+
+/* ---------- Overlay palet Bootstrap (tanpa hex baru) ---------- */
+body {
+  font-family: var(--font-body);
+  color: var(--clr-body);
+  background-color: var(--clr-bg);
+}
+
+.btn-cv {
+  --bs-btn-bg: var(--clr-primary);
+  --bs-btn-border-color: var(--clr-primary);
+  --bs-btn-color: #FFFFFF;
+  --bs-btn-hover-bg: var(--clr-primary-dark);
+  --bs-btn-hover-border-color: var(--clr-primary-dark);
+  --bs-btn-hover-color: #FFFFFF;
+  --bs-btn-active-bg: var(--clr-primary-dark);
+  --bs-btn-active-border-color: var(--clr-primary-dark);
+  --bs-btn-focus-shadow-rgb: 15, 118, 110;
+  border-radius: var(--radius);
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+.btn-outline-cv {
+  --bs-btn-color: var(--clr-primary);
+  --bs-btn-border-color: var(--clr-primary);
+  --bs-btn-hover-bg: var(--clr-primary);
+  --bs-btn-hover-border-color: var(--clr-primary);
+  --bs-btn-hover-color: #FFFFFF;
+  border-radius: var(--radius);
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+/* ---------- Tipografi ---------- */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  color: var(--clr-dark);
+  line-height: 1.25;
+}
+
+h1 {
+  font-size: clamp(2.25rem, 5vw, 3rem);
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.lead {
+  max-width: 52ch;
+}
+
+
+/* kustom — batasi ukuran ilustrasi hero di layar lebar */
+.hero figure img {
+  max-width: 360px;
+  margin-inline: auto;
+}
+
+/* ---------- Navigasi ---------- */
+.site-header .nav-link {
+  color: var(--clr-body);
+  font-weight: 600;
+}
+
+.site-header .nav-link:hover,
+.site-header .nav-link:focus {
+  color: var(--clr-primary);
+}
+
+.site-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-unit);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--clr-dark);
+  text-decoration: none;
+}
+
+.site-brand img {
+  border-radius: var(--radius);
+}
+
+/* ---------- Komponen kustom ---------- */
+.proyek-card {
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  transition: transform 0.15s ease;
+}
+
+.proyek-card:hover {
+  transform: translateY(-4px);
+}
+
+.proyek-card .card-img-top {
+  border-bottom: 1px solid var(--clr-border);
+  border-radius: 0;
+}
+
+.proyek-badge {
+  position: absolute;
+  top: calc(var(--space-unit) * 1.5);
+  left: calc(var(--space-unit) * 1.5);
+  z-index: 1;
+}
+
+.proyek-meta {
+  background-color: var(--clr-bg);
+  border-top: 1px solid var(--clr-border);
+  font-size: 0.875rem;
+  color: var(--clr-muted);
+}
+
+/* ---------- Form ---------- */
+.form-label {
+  color: var(--clr-dark);
+  font-weight: 600;
+}
+
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+  border-color: var(--clr-primary);
+  box-shadow: 0 0 0 0.25rem rgba(15, 118, 110, 0.25);
+}
+
+.form-control::placeholder {
+  color: var(--clr-muted);
+  opacity: 1;
+}
+
+fieldset legend {
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  background-color: var(--clr-dark);
+  color: var(--clr-border);
+}
+
+.site-footer a {
+  color: var(--clr-surface);
+}
+
+.site-footer address {
+  margin-bottom: 0;
+}
+
+/* ---------- Badge semantik memakai token ---------- */
+.badge-unggulan {
+  background-color: var(--clr-accent);
+  color: var(--clr-dark);
+}
+
+.badge-selesai {
+  background-color: var(--clr-success);
+  color: #FFFFFF;
+}
+
+.badge-berjalan {
+  background-color: var(--clr-danger);
+  color: #FFFFFF;
+}
