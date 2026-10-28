@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" role="img" aria-label="Pratinjau Katalog UMKM Sari Rasa">
+  <rect width="480" height="270" fill="#F8FAFC"/>
+  <rect width="480" height="44" fill="#FFFFFF"/>
+  <rect x="20" y="16" width="80" height="12" rx="6" fill="#0F766E"/>
+  <g fill="#CBD5E1"><rect x="300" y="18" width="40" height="8" rx="4"/><rect x="352" y="18" width="40" height="8" rx="4"/><rect x="404" y="18" width="40" height="8" rx="4"/></g>
+  <g fill="#FFFFFF" stroke="#E2E8F0">
+    <rect x="20" y="64" width="136" height="86" rx="10"/><rect x="172" y="64" width="136" height="86" rx="10"/><rect x="324" y="64" width="136" height="86" rx="10"/>
+    <rect x="20" y="164" width="136" height="86" rx="10"/><rect x="172" y="164" width="136" height="86" rx="10"/><rect x="324" y="164" width="136" height="86" rx="10"/>
+  </g>
+  <g fill="#CCFBF1"><rect x="32" y="76" width="112" height="40" rx="6"/><rect x="184" y="76" width="112" height="40" rx="6"/><rect x="336" y="76" width="112" height="40" rx="6"/><rect x="32" y="176" width="112" height="40" rx="6"/><rect x="184" y="176" width="112" height="40" rx="6"/><rect x="336" y="176" width="112" height="40" rx="6"/></g>
+  <g fill="#334155"><rect x="32" y="124" width="70" height="8" rx="4"/><rect x="184" y="124" width="70" height="8" rx="4"/><rect x="336" y="124" width="70" height="8" rx="4"/><rect x="32" y="224" width="70" height="8" rx="4"/><rect x="184" y="224" width="70" height="8" rx="4"/><rect x="336" y="224" width="70" height="8" rx="4"/></g>
+  <g fill="#F59E0B"><rect x="32" y="138" width="38" height="10" rx="5"/><rect x="184" y="138" width="38" height="10" rx="5"/><rect x="336" y="138" width="38" height="10" rx="5"/></g>
+</svg>

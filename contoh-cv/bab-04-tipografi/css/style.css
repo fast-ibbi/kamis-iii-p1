@@ -1,0 +1,231 @@
+/* ---------- Rizky CV style.css — v2 (Bab 4) ---------- */
+
+/* kustom — design token website CV */
+:root {
+  --clr-primary: #0F766E;
+  --clr-primary-dark: #115E59;
+  --clr-accent: #F59E0B;
+  --clr-dark: #0F172A;
+  --clr-body: #334155;
+  --clr-muted: #64748B;
+  --clr-bg: #F8FAFC;
+  --clr-surface: #FFFFFF;
+  --clr-border: #E2E8F0;
+  --clr-success: #15803D;
+  --clr-danger: #DC2626;
+  --font-heading: 'Poppins', 'Segoe UI', sans-serif;
+  --font-body: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+  --radius: 12px;
+  --shadow-card: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --space-unit: 8px;
+}
+
+/* ---------- Dasar halaman ---------- */
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--clr-body);
+  background-color: var(--clr-bg);
+  line-height: 1.6;
+}
+
+/* ---------- Heading ---------- */
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  color: var(--clr-dark);
+  line-height: 1.25;
+  margin: 0 0 calc(var(--space-unit) * 2);
+}
+
+h1 {
+  font-size: clamp(2.25rem, 5vw, 3rem);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+/* ---------- Link ---------- */
+a {
+  color: var(--clr-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--clr-primary-dark);
+  text-decoration: underline;
+}
+
+a:focus {
+  outline: 2px solid var(--clr-primary);
+  outline-offset: 2px;
+}
+
+/* ---------- Header dan navigasi ---------- */
+.site-header {
+  padding: calc(var(--space-unit) * 2) calc(var(--space-unit) * 3);
+  background-color: var(--clr-surface);
+  border-bottom: 1px solid var(--clr-border);
+}
+
+.site-brand img {
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: var(--radius);
+}
+
+.site-nav ul {
+  margin: var(--space-unit) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav li {
+  display: inline-block;
+  margin-right: calc(var(--space-unit) * 1.5);
+}
+
+.site-nav li:last-child {
+  margin-right: 0;
+}
+
+.site-nav a {
+  font-weight: 600;
+  color: var(--clr-body);
+}
+
+.site-nav a:hover,
+.site-nav a:focus {
+  color: var(--clr-primary);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  padding: calc(var(--space-unit) * 7) calc(var(--space-unit) * 3);
+  background-color: var(--clr-surface);
+  border-bottom: 1px solid var(--clr-border);
+}
+
+.hero-title {
+  letter-spacing: -0.02em;
+}
+
+.hero .lead {
+  font-size: 1.125rem;
+  color: var(--clr-muted);
+  max-width: 46ch;
+}
+
+.hero figure {
+  margin: calc(var(--space-unit) * 3) 0;
+}
+
+.hero img {
+  border-radius: var(--radius);
+  border: 1px solid var(--clr-border);
+  box-shadow: var(--shadow-card);
+}
+
+.hero figcaption {
+  color: var(--clr-muted);
+  font-size: 0.875rem;
+}
+
+/* ---------- Bagian isi ---------- */
+section {
+  padding: calc(var(--space-unit) * 7) calc(var(--space-unit) * 3);
+}
+
+section h2 {
+  margin-bottom: calc(var(--space-unit) * 3);
+}
+
+/* Baris tabel: selang-seling latar supaya mata tidak melompat */
+tbody tr:nth-child(even) {
+  background-color: var(--clr-bg);
+}
+
+tbody tr:first-child td {
+  border-top: 2px solid var(--clr-border);
+}
+
+/* ---------- Tabel ---------- */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: var(--clr-surface);
+}
+
+caption {
+  text-align: left;
+  padding-bottom: var(--space-unit);
+  color: var(--clr-muted);
+}
+
+th,
+td {
+  text-align: left;
+  padding: var(--space-unit);
+  border-bottom: 1px solid var(--clr-border);
+}
+
+th {
+  font-family: var(--font-heading);
+  color: var(--clr-dark);
+  background-color: var(--clr-bg);
+}
+
+/* ---------- Badge status proyek ---------- */
+.badge {
+  display: inline-block;
+  padding: 2px var(--space-unit);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid var(--clr-border);
+}
+
+.badge-selesai {
+  color: var(--clr-surface);
+  background-color: var(--clr-success);
+}
+
+.badge-berjalan {
+  color: var(--clr-dark);
+  background-color: var(--clr-accent);
+  opacity: 0.95;
+}
+
+/* ---------- Tombol ajakan ---------- */
+.btn-cta {
+  display: inline-block;
+  padding: var(--space-unit) calc(var(--space-unit) * 2);
+  border-radius: var(--radius);
+  background-color: var(--clr-primary);
+  color: var(--clr-surface);
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+.btn-cta:hover {
+  background-color: var(--clr-primary-dark);
+  color: var(--clr-surface);
+  text-decoration: none;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  padding: calc(var(--space-unit) * 3);
+  background-color: var(--clr-dark);
+  color: var(--clr-border);
+}
+
+.site-footer a {
+  color: var(--clr-surface);
+}
