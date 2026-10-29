@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 13 · 06 perlindungan luber — Website Responsif dan Accessibility</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: kotak sempit 200 px, baris kartu 620 px, dan token warna */
+  :root { --font-heading: 'Poppins', sans-serif; --clr-dark: #111827; }
+  .demo * { box-sizing: border-box; }
+  .demo .bingkai {
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+  .demo .bingkai-luber { overflow-x: auto; }
+  .demo .dua { display: flex; flex-wrap: wrap; gap: 14px; }
+  .demo .dua > .bingkai { flex: 1 1 280px; }
+  .demo .label {
+    display: block;
+    margin-bottom: 8px;
+    color: #6b7280;
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .demo .catatan { display: block; margin-top: 8px; font-size: 12.5px; color: #6b7280; }
+  .demo .sempit {
+    width: 200px;
+    border: 1px dashed #b45309;
+    border-radius: 4px;
+    padding: 6px 8px;
+    background: #fffbeb;
+  }
+  .demo .nama { margin: 0; font-size: 15px; line-height: 1.4; }
+  .demo .wadah-620 { width: 620px; max-width: 100%; }
+  .demo .kartu {
+    padding: 10px;
+    background: #e0f2fe;
+    border: 1px solid #0369a1;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+  .demo .petunjuk { margin: 0 0 10px; font-size: 13px; color: #6b7280; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .luber h1,
+  .luber h2,
+  .luber h3,
+  .luber .hero-title {
+    font-family: var(--font-heading);
+    color: var(--clr-dark);
+    overflow-wrap: break-word; /* kustom: proteksi luber judul */
+  }
+
+  .baris-kartu {
+    display: flex;
+    gap: 16px;
+  }
+
+  .baris-kartu > .kartu {
+    flex: 1 1 0;
+    min-width: 0; /* tanpa ini, isi panjang mendorong lebar induk */
+  }
+
+  /* panggung: baris pembanding yang sengaja dibiarkan tanpa min-width */
+  .demo .baris-tanpa > .kartu { flex: 1 1 0; }
+  .demo .baris-dengan > .kartu { flex: 1 1 0; min-width: 0; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 13 · Website Responsif dan Accessibility</strong> · 06 perlindungan luber</p>
+    <h1>Perlindungan dari Luber</h1>
+    <p>Penggeser horizontal sering muncul padahal media querynya sudah benar. Penyebabnya satu elemen bandel: nama produk tanpa spasi, gambar berukuran tetap, atau anak flex yang menolak menyempit. Empat kebiasaan kecil di halaman ini menjaga Tokosaya rapi dari 320 px sampai 1400 px.</p>
+
+    <h2>Teks panjang tanpa spasi</h2>
+<pre><code class="language-css">h1, h2, h3, .hero-title {
+  font-family: var(--font-heading);
+  color: var(--clr-dark);
+  overflow-wrap: break-word; /* kustom: proteksi luber judul */
+}</code></pre>
+    <div class="demo">
+      <div class="dua">
+        <div class="bingkai bingkai-luber">
+          <span class="label">tanpa overflow-wrap</span>
+          <div class="sempit">
+            <h3 class="nama">KeyboardMekanisKX210WirelessRGB</h3>
+          </div>
+          <span class="catatan">Nama produk tanpa spasi menembus kotak 200 px dan ikut melebarkan halaman.</span>
+        </div>
+        <div class="bingkai luber">
+          <span class="label">overflow-wrap: break-word</span>
+          <div class="sempit">
+            <h3 class="nama">KeyboardMekanisKX210WirelessRGB</h3>
+          </div>
+          <span class="catatan">Kotaknya tetap 200 px; kata yang kepanjangan dipatahkan ke baris berikutnya.</span>
+        </div>
+      </div>
+    </div>
+    <p><code>overflow-wrap: break-word</code> mematahkan kata hanya kalau memang tidak muat. Nilai <code>anywhere</code> lebih agresif dan dipakai kalau kotaknya benar-benar sempit.</p>
+
+    <h2>Anak flex yang menolak menyempit</h2>
+    <p>Anak langsung kontainer flex punya lebar minimum sebesar isi terpanjangnya. Selama minimum itu tidak dinolkan, induknya ikut melebar walaupun lebarnya sudah diatur.</p>
+<pre><code class="language-css">.baris-kartu {
+  display: flex;
+  gap: 16px;
+}
+
+.baris-kartu &gt; .kartu {
+  flex: 1 1 0;
+  min-width: 0;
+}</code></pre>
+    <div class="demo">
+      <p class="petunjuk">Dua baris dengan isi yang sama di dalam wadah 620 px. Baris pertama sengaja tanpa <code>min-width: 0</code>.</p>
+      <div class="bingkai bingkai-luber">
+        <span class="label">tanpa min-width: 0</span>
+        <div class="wadah-620">
+          <div class="baris-kartu baris-tanpa">
+            <div class="kartu">KeyboardMekanisKX210WirelessRGB</div>
+            <div class="kartu">MouseOptikM220SilentClick</div>
+          </div>
+        </div>
+        <span class="catatan">Isi terpanjang menahan lebar minimum, jadi barisnya melewati 620 px.</span>
+      </div>
+      <div class="bingkai" style="margin-top: 14px;">
+        <span class="label">dengan min-width: 0</span>
+        <div class="wadah-620">
+          <div class="baris-kartu baris-dengan">
+            <div class="kartu">KeyboardMekanisKX210WirelessRGB</div>
+            <div class="kartu">MouseOptikM220SilentClick</div>
+          </div>
+        </div>
+        <span class="catatan">Kedua kartu menyempit sama lebar, lalu isinya dipatahkan.</span>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="(620px - 16px) / 2 = 302">Di wadah 620 px dengan gutter 16 px, tiap kartu dapat <strong>302 px</strong>.</p>
+
+    <h2>Empat kebiasaan yang menjaga</h2>
+    <ul>
+      <li><code>img-fluid</code> membuat gambar ikut menyempit bersama wadahnya</li>
+      <li><code>overflow-wrap: break-word</code> atau <code>anywhere</code> untuk teks panjang</li>
+      <li><code>min-width: 0</code> pada anak langsung kontainer flex</li>
+      <li>hindari lebar piksel tetap pada elemen yang harus mengalir</li>
+    </ul>
+    <p>Kartu katalog Tokosaya yang lebarnya dipatok 320 px di demo pertama bab ini adalah contoh kebiasaan keempat. Begitu lebarnya dibiarkan mengalir, dua kartu bisa masuk layar 360 px tanpa satu pun penggeser.</p>
+    <nav class="nav">
+      <a href="05-tipografi-clamp.html">← 05 tipografi clamp</a>
+      <span>06 / 16</span>
+      <a href="07-navigasi-menumpuk.html">07 navigasi menumpuk →</a>
+    </nav>
+  </div>
+</body>
+</html>

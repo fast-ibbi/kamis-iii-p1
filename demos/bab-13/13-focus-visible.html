@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 13 · 13 focus visible — Website Responsif dan Accessibility</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  :root { --clr-primary-dark: #1e3a8a; }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: 3px solid var(--clr-primary-dark);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* panggung: dua panel berdampingan, satu tanpa cincin dan satu dengan cincin
+     yang meniru keadaan fokus */
+  .demo * { box-sizing: border-box; }
+  .demo .petunjuk { margin: 0 0 10px; font-size: 13px; color: #6b7280; }
+  .demo .dua { display: flex; flex-wrap: wrap; gap: 14px; }
+  .demo .bingkai {
+    flex: 1 1 280px;
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+  .demo .label {
+    display: block;
+    margin-bottom: 8px;
+    color: #6b7280;
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .demo .catatan { display: block; margin-top: 8px; font-size: 12.5px; color: #6b7280; }
+  .demo .baris-aksi { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 0 0 8px; }
+  .demo .tombol {
+    padding: 8px 14px;
+    background: #1d4ed8;
+    border: 0;
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 14px;
+  }
+  .demo .tautan { color: #1d4ed8; font-size: 14px; }
+  .demo .tanpa-fokus a,
+  .demo .tanpa-fokus button { outline: none; }
+  .demo .dengan-fokus a,
+  .demo .dengan-fokus button {
+    outline: 3px solid var(--clr-primary-dark);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  .demo .tanpa-cincin { margin: 0; font-size: 13px; color: #6b7280; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 13 · Website Responsif dan Accessibility</strong> · 13 focus visible</p>
+    <h1>Focus State: Rancang Ulang, Jangan Hapus</h1>
+    <p>Cincin fokus adalah satu-satunya tanda posisi bagi pengguna keyboard. Menghapusnya dengan <code>outline: none</code> tanpa pengganti membuat mereka tersesat di halaman sendiri.</p>
+
+    <h2>Aturannya</h2>
+<pre><code class="language-css">a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--clr-primary-dark);
+  outline-offset: 2px;
+  border-radius: 4px;
+}</code></pre>
+    <p><code>outline</code> menggambar cincin di luar kotak elemen, dan <code>outline-offset</code> mendorongnya <strong>2 px</strong> lebih jauh supaya tidak menutupi isi. Elemen yang sama juga diberi <code>border-radius</code> agar cincinnya mengikuti sudut tombol.</p>
+    <p class="hitung" data-hitung="3 + 2 = 5">Cincin setebal <strong>3 px</strong> yang digambar <strong>2 px</strong> di luar tepi memakan ruang sampai 5 px dari tepi elemen.</p>
+
+    <h2>Tanpa fokus dan dengan fokus</h2>
+    <p>Panel kanan memakai aturan yang sama seperti di atas; panel kiri meniru kebiasaan lama, yaitu cincin bawaan dimatikan.</p>
+    <div class="demo">
+      <p class="petunjuk">Teks di bawah cincin bukan hiasan: ia yang memberi tahu di mana posisi pengguna keyboard.</p>
+      <div class="dua">
+        <div class="bingkai tanpa-fokus">
+          <span class="label">tanpa cincin fokus</span>
+          <p class="baris-aksi">
+            <a class="tautan" href="12-kontras-aa.html">Lihat katalog</a>
+            <button class="tombol" type="button">Tambah ke keranjang</button>
+          </p>
+          <p class="tanpa-cincin">Mana yang sedang difokuskan? Tidak ada tandanya.</p>
+        </div>
+        <div class="bingkai dengan-fokus">
+          <span class="label">dengan cincin fokus</span>
+          <p class="baris-aksi">
+            <a class="tautan" href="12-kontras-aa.html">Lihat katalog</a>
+            <button class="tombol" type="button">Tambah ke keranjang</button>
+          </p>
+          <p class="tanpa-cincin">Cincin gelap 3 px menandai posisi; tombolnya tetap terbaca sebagai tombol.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Kenapa <code>:focus-visible</code>, bukan <code>:focus</code></h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Keadaan</th><th><code>:focus</code></th><th><code>:focus-visible</code></th></tr>
+      </thead>
+      <tbody>
+        <tr><td>diklik pakai mouse</td><td>cincin muncul</td><td>cincin tidak muncul</td></tr>
+        <tr><td>dilewati dengan Tab</td><td>cincin muncul</td><td>cincin muncul</td></tr>
+      </tbody>
+    </table>
+    <p>Pemula sering mematikan <code>outline</code> karena cincin bawaannya terasa kurang cantik waktu elemen diklik dengan mouse. <code>:focus-visible</code> menyelesaikan masalah itu: mouse tetap rapi, jalur Tab tetap kelihatan.</p>
+    <p>Coba tekan Tab di halaman ini: cincin muncul pada tautan dan tombol, termasuk tautan navigasi di paling bawah.</p>
+    <nav class="nav">
+      <a href="12-kontras-aa.html">← 12 kontras aa</a>
+      <span>13 / 16</span>
+      <a href="14-skip-link.html">14 skip link →</a>
+    </nav>
+  </div>
+</body>
+</html>

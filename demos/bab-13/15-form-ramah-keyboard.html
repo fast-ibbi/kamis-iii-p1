@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 13 · 15 form ramah keyboard — Website Responsif dan Accessibility</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     Kelas di bawah ini meniru kelas Bootstrap yang dipakai deck,
+     supaya markup contoh bisa dirender tanpa memuat Bootstrap.
+     ============================================================ */
+  .mb-3 {
+    margin: 0 0 12px;
+  }
+
+  .form-label {
+    display: block;
+    margin: 0 0 4px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #9ca3af;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  .form-check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .form-check-input {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+  }
+
+  .form-check-label {
+    font-size: 14px;
+  }
+
+  .fs-6 {
+    font-size: 13px;
+  }
+
+  /* panggung: dua lembar, satu dengan label yang tidak terhubung */
+  .demo * { box-sizing: border-box; }
+  .demo .petunjuk { margin: 0 0 10px; font-size: 13px; color: #6b7280; }
+  .demo .dua { display: flex; flex-wrap: wrap; gap: 14px; }
+  .demo .lembar {
+    flex: 1 1 280px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+  .demo .label-lembar {
+    display: block;
+    margin: 0 0 10px;
+    color: #6b7280;
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .demo .catatan { display: block; margin-top: 8px; font-size: 12.5px; color: #6b7280; }
+  .demo fieldset { margin: 0 0 12px; padding: 8px 12px 10px; border: 1px solid #e5e7eb; border-radius: 6px; }
+  .demo legend { padding: 0 4px; }
+  .demo .palsu {
+    display: block;
+    margin: 0 0 4px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .demo .tombol-kirim {
+    padding: 9px 16px;
+    background: #1d4ed8;
+    border: 0;
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 13 · Website Responsif dan Accessibility</strong> · 15 form ramah keyboard</p>
+    <h1>Form yang Ramah Keyboard</h1>
+    <p>Form adalah tempat paling sering pengguna keyboard tersandung. Dua hal yang paling menentukan: label yang benar-benar terhubung ke input, dan kelompok pilihan yang diberi konteks.</p>
+
+    <h2>Markup-nya</h2>
+<pre><code class="language-html">&lt;div class="mb-3"&gt;
+  &lt;label for="email" class="form-label"&gt;Alamat email&lt;/label&gt;
+  &lt;input type="email" class="form-control" id="email" name="email"
+         autocomplete="email" required&gt;
+&lt;/div&gt;
+&lt;fieldset class="mb-3"&gt;
+  &lt;legend class="fs-6"&gt;Kebutuhan Anda&lt;/legend&gt;
+  &lt;div class="form-check"&gt;
+    &lt;input class="form-check-input" type="radio" name="topik" id="topik-beli" value="beli"&gt;
+    &lt;label class="form-check-label" for="topik-beli"&gt;Pertanyaan produk&lt;/label&gt;
+  &lt;/div&gt;
+&lt;/fieldset&gt;</code></pre>
+
+    <h2>Hasil yang dirender</h2>
+    <div class="demo">
+      <p class="petunjuk">Klik teks labelnya: kursor langsung masuk ke kotak yang tepat. Itu tanda pasangan <code>for</code> dan <code>id</code>-nya benar.</p>
+      <div class="dua">
+        <div class="lembar">
+          <span class="label-lembar">label terhubung</span>
+          <form action="index.html" method="get">
+            <div class="mb-3">
+              <label for="email" class="form-label">Alamat email</label>
+              <input type="email" class="form-control" id="email" name="email" autocomplete="email" required>
+            </div>
+            <fieldset class="mb-3">
+              <legend class="fs-6">Kebutuhan Anda</legend>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="topik" id="topik-beli" value="beli">
+                <label class="form-check-label" for="topik-beli">Pertanyaan produk</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="topik" id="topik-layanan" value="layanan">
+                <label class="form-check-label" for="topik-layanan">Layanan pesanan</label>
+              </div>
+            </fieldset>
+            <button class="tombol-kirim" type="submit">Kirim pesan</button>
+          </form>
+          <span class="catatan">Ketiga kolom masuk urutan Tab. Radiogroup dibacakan bersama legendanya: "Kebutuhan Anda, Pertanyaan produk, radio".</span>
+        </div>
+        <div class="lembar">
+          <span class="label-lembar">label tidak terhubung</span>
+          <form action="index.html" method="get">
+            <div class="mb-3">
+              <span class="palsu">Alamat email</span>
+              <input type="email" class="form-control" id="email-lepas" name="email_lepas" required>
+            </div>
+            <fieldset class="mb-3">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="topik-lepas" id="topik-lepas" value="beli">
+                <label class="form-check-label" for="topik-lepas">Pertanyaan produk</label>
+              </div>
+            </fieldset>
+            <button class="tombol-kirim" type="submit">Kirim pesan</button>
+          </form>
+          <span class="catatan">Label hanya tulisan biasa: klik labelnya tidak memfokuskan input, dan screen reader tidak menyebut nama kolom. Fieldset-nya juga tidak ada.</span>
+        </div>
+      </div>
+    </div>
+
+    <h2>Tiga hal yang dijaga</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Hal</th><th>Akibat kalau terlewat</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>label for</code> cocok persis dengan <code>id</code> input</td><td>klik label tidak menyalakan input, dan screen reader tidak membaca nama kolomnya</td></tr>
+        <tr><td><code>fieldset</code> dan <code>legend</code> untuk radio group</td><td>pengguna mendengar empat pilihan tanpa tahu pertanyaannya</td></tr>
+        <tr><td><code>type="email"</code> dan <code>autocomplete="email"</code></td><td>keyboard HP tidak menyaring ke layout surel, dan pengisian otomatis tidak menolong</td></tr>
+      </tbody>
+    </table>
+    <p>Jangan memalsukan tombol dengan elemen netral seperti <code>div</code> atau <code>span</code>: elemen seperti itu tidak bisa difokuskan dan tidak menanggapi Enter maupun spasi. Tombol asli dan tautan ber-<code>href</code> sudah bisa difokuskan tanpa bantuan.</p>
+    <nav class="nav">
+      <a href="14-skip-link.html">← 14 skip link</a>
+      <span>15 / 16</span>
+      <a href="16-audit-tokosaya.html">16 audit tokosaya →</a>
+    </nav>
+  </div>
+</body>
+</html>

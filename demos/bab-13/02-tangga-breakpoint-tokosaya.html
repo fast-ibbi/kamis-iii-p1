@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 13 · 02 tangga breakpoint tokosaya — Website Responsif dan Accessibility</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: tiap baris tangga memakai lebar asli, jadi kotak demo bergulir */
+  .demo * { box-sizing: border-box; }
+  .demo .tangga { margin: 0; padding: 0; list-style: none; zoom: 0.7; }
+  .demo .anak-tangga { margin: 0 0 14px; }
+  .demo .anak-tangga:last-child { margin-bottom: 0; }
+  .demo .layar {
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+    border-radius: 6px;
+    padding: 8px;
+  }
+  .demo .layar-360 { width: 360px; }
+  .demo .layar-576 { width: 576px; }
+  .demo .layar-768 { width: 768px; }
+  .demo .layar-992 { width: 992px; }
+  .demo .layar-1200 { width: 1200px; }
+  .demo .label {
+    display: block;
+    margin-bottom: 6px;
+    color: #6b7280;
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .demo .label b { color: #1d4ed8; }
+  .demo .sel {
+    padding: 8px 6px;
+    background: #e0f2fe;
+    border: 1px solid #0369a1;
+    border-radius: 4px;
+    font-size: 12.5px;
+    text-align: center;
+  }
+  .demo .catatan { display: block; margin-top: 6px; font-size: 12.5px; color: #6b7280; }
+  .demo .petunjuk { margin: 0 0 10px; font-size: 13px; color: #6b7280; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .katalog {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  @media (min-width: 768px) {
+    .katalog {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (min-width: 992px) {
+    .katalog {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  /* panggung: tangga Bootstrap 5.3 dipatok per wadah, karena media query
+     membaca viewport sungguhan */
+  .demo .layar-360 .katalog { grid-template-columns: 1fr; }
+  .demo .layar-576 .katalog { grid-template-columns: repeat(2, 1fr); }
+  .demo .layar-768 .katalog { grid-template-columns: repeat(3, 1fr); }
+  .demo .layar-992 .katalog { grid-template-columns: repeat(4, 1fr); }
+  .demo .layar-1200 .katalog { grid-template-columns: repeat(4, 1fr); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 13 · Website Responsif dan Accessibility</strong> · 02 tangga breakpoint tokosaya</p>
+    <h1>Tangga Breakpoint Tokosaya</h1>
+    <p>Breakpoint lahir dari kebutuhan konten, bukan dari daftar HP di toko. Tangga di bawah dibaca dari kiri ke kanan: makin lebar layarnya, makin banyak kolom katalog yang masuk.</p>
+
+    <h2>Tangga lima anak</h2>
+    <p>Lebar tiap wadah mensimulasikan viewport, sedangkan nama anak tangganya mengikuti skala Bootstrap 5.3. Angka di tiap label tetap angka aslinya — mulai 0, 576, 768, 992, dan 1200 px — hanya tampilannya yang diperkecil menjadi 0,7 supaya keenam baris muat di kolom isi.</p>
+    <div class="demo">
+      <p class="petunjuk">Perhatikan jumlah kolom dan keadaan navigasi di tiap anak tangga. Baris terlebar 1200 px, jadi seluruh tangga ditampilkan pada skala 0,7.</p>
+      <ul class="tangga">
+        <li class="anak-tangga">
+          <div class="layar layar-360">
+            <span class="label">base · mulai 0 px <b>· dipakai proyek</b></span>
+            <div class="katalog">
+              <div class="sel">kartu 1</div>
+              <div class="sel">kartu 2</div>
+            </div>
+            <span class="catatan">1 kolom · navigasi menumpuk</span>
+          </div>
+        </li>
+        <li class="anak-tangga">
+          <div class="layar layar-576">
+            <span class="label">sm · mulai 576 px</span>
+            <div class="katalog">
+              <div class="sel">kartu 1</div>
+              <div class="sel">kartu 2</div>
+              <div class="sel">kartu 3</div>
+              <div class="sel">kartu 4</div>
+            </div>
+            <span class="catatan">2 kolom · navigasi menumpuk</span>
+          </div>
+        </li>
+        <li class="anak-tangga">
+          <div class="layar layar-768">
+            <span class="label">md · mulai 768 px <b>· dipakai proyek</b></span>
+            <div class="katalog">
+              <div class="sel">kartu 1</div>
+              <div class="sel">kartu 2</div>
+              <div class="sel">kartu 3</div>
+              <div class="sel">kartu 4</div>
+            </div>
+            <span class="catatan">3 kolom · navigasi 1 baris</span>
+          </div>
+        </li>
+        <li class="anak-tangga">
+          <div class="layar layar-992">
+            <span class="label">lg · mulai 992 px <b>· dipakai proyek</b></span>
+            <div class="katalog">
+              <div class="sel">kartu 1</div>
+              <div class="sel">kartu 2</div>
+              <div class="sel">kartu 3</div>
+              <div class="sel">kartu 4</div>
+            </div>
+            <span class="catatan">4 kolom · navigasi 1 baris</span>
+          </div>
+        </li>
+        <li class="anak-tangga">
+          <div class="layar layar-1200">
+            <span class="label">xl · mulai 1200 px</span>
+            <div class="katalog">
+              <div class="sel">kartu 1</div>
+              <div class="sel">kartu 2</div>
+              <div class="sel">kartu 3</div>
+              <div class="sel">kartu 4</div>
+            </div>
+            <span class="catatan">4 kolom · navigasi 1 baris</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <p class="hitung" data-hitung="(992px - 3 * 16px) / 4 = 236">Di lg, empat kolom bergutter 16 px jadi <strong>236 px</strong> per kartu.</p>
+    <p class="hitung" data-hitung="(1200px - 3 * 16px) / 4 = 288">Di xl, kolomnya tetap empat, hanya lebarnya naik jadi <strong>288 px</strong>.</p>
+
+    <h2>Satu strategi ditulis di kepala berkas</h2>
+    <p>Proyek Tokosaya cuma memilih dua anak tangga: md 768 dan lg 992. Dua angka itu yang muncul di media query kustom, dan keputusannya ditulis sebagai komentar di atas berkas supaya enam bulan lagi masih terbaca.</p>
+<pre><code class="language-css">/* ============================================================
+   Tokosaya — css/style.css (versi Bab 13)
+   Strategi breakpoint: base (&lt; 768px), md 768px, lg 992px
+   (selaras dengan Bootstrap 5.3)
+   ============================================================ */
+.katalog {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .katalog {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .katalog {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}</code></pre>
+    <p>Kelas Bootstrap <code>col-md-4</code> dan <code>col-lg-3</code> ikut bicara 768 dan 992. Kalau CSS kustom memakai 700 px, ada dua strategi yang bertabrakan dan layout berubah di tempat yang tidak terdokumentasikan. Itu sebabnya 578px, 693px, dan 1024px disebut angka ajaib: angkanya tidak menceritakan maksud apa pun dan tidak selaras dengan Bootstrap.</p>
+    <p>Urutan tautan stylesheet juga ikut menentukan: Bootstrap dulu, CSS kustom setelahnya.</p>
+    <nav class="nav">
+      <a href="01-mobile-first-vs-desktop-first.html">← 01 mobile-first vs desktop-first</a>
+      <span>02 / 16</span>
+      <a href="03-gambar-srcset-sizes.html">03 gambar srcset sizes →</a>
+    </nav>
+  </div>
+</body>
+</html>

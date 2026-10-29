@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 13 · 10 heading berurutan — Website Responsif dan Accessibility</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: dua pohon heading dan satu kartu produk */
+  .demo * { box-sizing: border-box; }
+  .demo .petunjuk { margin: 0 0 10px; font-size: 13px; color: #6b7280; }
+  .demo .dua { display: flex; flex-wrap: wrap; gap: 14px; }
+  .demo .bingkai {
+    flex: 1 1 300px;
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+  .demo .label {
+    display: block;
+    margin-bottom: 8px;
+    color: #6b7280;
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .demo .catatan { display: block; margin-top: 8px; font-size: 12.5px; color: #6b7280; }
+  .demo .pohon { margin: 0; padding: 0; list-style: none; font-size: 13.5px; }
+  .demo .pohon li {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin: 0 0 4px;
+    padding: 3px 0;
+  }
+  .demo .pohon .l2 { padding-left: 18px; }
+  .demo .pohon .l3 { padding-left: 36px; }
+  .demo .pohon .l4 { padding-left: 54px; }
+  .demo .tag {
+    flex: none;
+    min-width: 26px;
+    padding: 1px 5px;
+    background: #eef2ff;
+    border: 1px solid #c7d2fe;
+    border-radius: 4px;
+    color: #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 11.5px;
+    text-align: center;
+  }
+  .demo .salah { color: #b45309; font-weight: 600; }
+  .demo .kartu-produk {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 12px;
+    max-width: 260px;
+  }
+  .demo .h6 { font-size: 12.5px; }
+  .demo .produk-card-title { margin: 0 0 4px; }
+  .demo .harga { margin: 0; font-size: 13px; color: #6b7280; }
+
+  /* ============================================================
+     kode slide — bab ini tidak punya aturan CSS pelajaran
+     Satu-satunya blok kode adalah markup heading, jadi tidak ada
+     deklarasi CSS yang perlu dicerminkan di sini.
+     ============================================================ */
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 13 · Website Responsif dan Accessibility</strong> · 10 heading berurutan</p>
+    <h1>Heading Berurutan, Bukan Soal Ukuran</h1>
+    <p>Heading itu peta daftar isi buat pengguna screen reader. Satu <code>h1</code> per halaman, lalu turun bertingkat tanpa melompat. Ukuran tampilan tidak menentukan level heading.</p>
+
+    <h2>Dua pohon heading</h2>
+    <div class="demo">
+      <p class="petunjuk">Pohon kiri melompat dari h1 ke h4; pohon kanan turun satu demi satu.</p>
+      <div class="dua">
+        <div class="bingkai">
+          <span class="label">melompat</span>
+          <ul class="pohon">
+            <li><span class="tag">h1</span> Tokosaya</li>
+            <li class="l2"><span class="tag">h2</span> Katalog</li>
+            <li class="l3"><span class="tag">h3</span> Keyboard</li>
+            <li class="l4"><span class="tag salah">h4</span> Jam Layanan</li>
+          </ul>
+          <span class="catatan">Jam Layanan ditulis h4 karena ukurannya terasa pas. Pengguna screen reader kehilangan satu tingkat.</span>
+        </div>
+        <div class="bingkai">
+          <span class="label">berurutan</span>
+          <ul class="pohon">
+            <li><span class="tag">h1</span> Tokosaya</li>
+            <li class="l2"><span class="tag">h2</span> Katalog</li>
+            <li class="l3"><span class="tag">h3</span> Keyboard</li>
+            <li class="l2"><span class="tag">h2</span> Jam Layanan</li>
+          </ul>
+          <span class="catatan">Jam Layanan satu tingkat dengan Katalog: keduanya bagian dari halaman, bukan isi kartu produk.</span>
+        </div>
+      </div>
+    </div>
+
+    <h2>Level semantik, ukuran visual</h2>
+    <p>Kalau ukuran bawaan <code>h2</code> terasa terlalu besar untuk judul kartu, kecilkan lewat kelas — jangan turunkan levelnya.</p>
+<pre><code class="language-html">&lt;h2 class="h6 produk-card-title"&gt;Keyboard Mekanis KX-210&lt;/h2&gt;</code></pre>
+    <div class="demo">
+      <div class="kartu-produk">
+        <h2 class="h6 produk-card-title">Keyboard Mekanis KX-210</h2>
+        <p class="harga">Rp 749.000</p>
+      </div>
+      <p class="petunjuk" style="margin-top: 10px;">Judul di atas tetap <code>h2</code> di dalam pohon heading; kelas <code>h6</code> yang membuatnya tampil kecil.</p>
+    </div>
+    <p>Kelas <code>h6</code> datang dari Bootstrap dan hanya mengubah ukuran huruf. Yang dibacakan alat bantu tetap level heading-nya, bukan ukuran hurufnya.</p>
+
+    <h2>Aturannya</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Aturan</th><th>Alasan</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>satu <code>h1</code> per halaman</td><td>judul halaman, satu saja</td></tr>
+        <tr><td>turun bertingkat tanpa melompat</td><td>peta isi tetap bisa diikuti</td></tr>
+        <tr><td>judul kartu produk tetap <code>h2</code></td><td>ukurannya diurus kelas, bukan level</td></tr>
+      </tbody>
+    </table>
+    <p>Urutan heading yang benar juga memudahkan siapa pun memindai halaman, bukan cuma pengguna alat bantu.</p>
+    <nav class="nav">
+      <a href="09-alt-text-bermakna.html">← 09 alt text bermakna</a>
+      <span>10 / 16</span>
+      <a href="11-link-jelas.html">11 link jelas →</a>
+    </nav>
+  </div>
+</body>
+</html>

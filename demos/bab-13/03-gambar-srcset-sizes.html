@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 13 · 03 gambar srcset sizes — Website Responsif dan Accessibility</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: area gambar selebar 560 px, seperti separuh hero 1120 px */
+  .demo * { box-sizing: border-box; }
+  .demo .area-560 { width: 560px; max-width: 100%; }
+  .demo .bingkai {
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+    border-radius: 6px;
+    padding: 8px;
+  }
+  .demo .label {
+    display: block;
+    margin-bottom: 8px;
+    color: #6b7280;
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .demo .catatan { display: block; margin-top: 8px; font-size: 12.5px; color: #6b7280; }
+  .demo .kandidat {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 13px;
+  }
+  .demo .kandidat li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 6px;
+    padding: 6px 10px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+  }
+  .demo .kandidat .pil {
+    margin-left: auto;
+    padding: 2px 8px;
+    background: #1d4ed8;
+    border-radius: 999px;
+    color: #ffffff;
+    font-size: 12px;
+  }
+  .demo .pita {
+    height: 10px;
+    background: #cbd5e1;
+    border-radius: 999px;
+  }
+  .demo .petunjuk { margin: 0 0 10px; font-size: 13px; color: #6b7280; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .hero-img {
+    display: block;
+    border-radius: 4px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 13 · Website Responsif dan Accessibility</strong> · 03 gambar srcset sizes</p>
+    <h1>Gambar Responsif: <code>srcset</code> dan <code>sizes</code></h1>
+    <p>Satu baris <code>max-width: 100%</code> mencegah gambar meluber, tetapi berkas yang diunduh tetap sama besar di semua layar. <code>srcset</code> dan <code>sizes</code> yang menghemat unduhan.</p>
+
+    <h2>Yang dicegah <code>max-width</code>, dan yang belum</h2>
+<pre><code class="language-css">img {
+  max-width: 100%;
+  height: auto;
+}</code></pre>
+    <div class="demo">
+      <p class="petunjuk">Area gambar di bawah selebar 560 px. Gambarnya ikut menyempit, tetapi berkas yang diunduh tetap hero-1200.svg.</p>
+      <div class="bingkai">
+        <span class="label">tanpa srcset · satu berkas untuk semua layar</span>
+        <div class="area-560">
+          <img class="hero-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='675' viewBox='0 0 1200 675'%3E%3Crect width='1200' height='675' fill='%23e0f2fe'/%3E%3Crect x='420' y='110' width='360' height='240' rx='12' fill='%2394a3b8'/%3E%3Crect x='300' y='390' width='600' height='80' rx='12' fill='%23cbd5e1'/%3E%3Crect x='60' y='520' width='1080' height='30' fill='%230369a1'/%3E%3C/svg%3E" alt="Susunan keyboard, mouse, dan monitor Tokosaya" width="1200" height="675">
+        </div>
+        <span class="catatan">hero-1200.svg: 1200 px, dikecilkan tampilannya ke 560 px. Unduhannya tetap 1200 px.</span>
+      </div>
+    </div>
+
+    <h2>Menawarkan beberapa berkas: <code>srcset</code> dan <code>sizes</code></h2>
+<pre><code class="language-html">&lt;img src="img/hero-480.svg"
+     srcset="img/hero-480.svg 480w,
+             img/hero-768.svg 768w,
+             img/hero-1200.svg 1200w"
+     sizes="(min-width: 992px) 50vw, 100vw"
+     alt="Susunan keyboard, mouse, dan monitor Tokosaya"
+     width="1200" height="675"
+     class="hero-img"&gt;</code></pre>
+    <p><code>srcset</code> menawarkan beberapa berkas beserta lebar aslinya. <code>sizes</code> menjelaskan berapa lebar area yang ditempati gambar itu, jadi browser punya cukup keterangan untuk memilih. Yang memilih browser, bukan kita.</p>
+    <div class="demo">
+      <p class="petunjuk">Tiga kandidat yang ditawarkan, dengan yang dipilih browser di area 560 px ditandai.</p>
+      <div class="bingkai">
+        <span class="label">kandidat srcset</span>
+        <ul class="kandidat">
+          <li><span>hero-480.svg</span><span class="pita" style="width: 96px;"></span><span>480w</span></li>
+          <li><span>hero-768.svg</span><span class="pita" style="width: 154px;"></span><span>768w</span><span class="pil">dipilih</span></li>
+          <li><span>hero-1200.svg</span><span class="pita" style="width: 240px;"></span><span>1200w</span></li>
+        </ul>
+        <span class="catatan">Area 560 px sudah lewat 480w tetapi belum lewat 768w, jadi browser turun ke hero-768.svg.</span>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="560px * 2 = 1120">Dengan <code>sizes="50vw"</code>, area gambar <strong>560 px</strong> itu tepat separuh dari hero 1120 px.</p>
+    <p>Perhatikan pula: berkas di demo ini memakai alamat <code>data:image/svg+xml</code> supaya halaman tetap berjalan tanpa jaringan. Di proyek nyata, tiga kandidat <code>srcset</code> itu berkas gambar sungguhan: <code>hero-480.svg</code>, <code>hero-768.svg</code>, dan <code>hero-1200.svg</code> di folder <code>img</code>. Alamat data tidak bisa dipakai sebagai kandidat <code>srcset</code> karena memuat tanda koma, jadi di sini kandidatnya ditampilkan sebagai kotak berlabel.</p>
+    <p><code>alt</code> tetap wajib di setiap variasi gambar. Ganti resolusi berkas tidak mengganti kewajiban menulis teks alternatif.</p>
+    <nav class="nav">
+      <a href="02-tangga-breakpoint-tokosaya.html">← 02 tangga breakpoint tokosaya</a>
+      <span>03 / 16</span>
+      <a href="04-elemen-picture.html">04 elemen picture →</a>
+    </nav>
+  </div>
+</body>
+</html>

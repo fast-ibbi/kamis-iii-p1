@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 13 · 01 mobile-first vs desktop-first — Website Responsif dan Accessibility</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: wadah berlebar tetap yang mensimulasikan viewport */
+  .demo * { box-sizing: border-box; }
+  .demo .dua { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; }
+  .demo .layar {
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+    border-radius: 6px;
+    padding: 10px;
+  }
+  .demo .layar-360 { width: 360px; }
+  .demo .layar-380 { width: 380px; }
+  .demo .layar-768 { width: 768px; }
+  .demo .layar-992 { width: 992px; }
+  .demo .layar-hp { width: 360px; overflow: hidden; }
+  .demo .nama-layar {
+    display: block;
+    margin-bottom: 8px;
+    color: #6b7280;
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .demo .baris-kartu { display: flex; }
+  /* kartu dipatok 320 px di dalam baris, jadi kelebihan lebarnya benar-benar terpotong */
+  .demo .baris-kartu .kartu { flex: 0 0 auto; }
+  .demo .isi-kartu {
+    margin: 0;
+    height: 96px;
+    background: #e0f2fe;
+    border: 1px solid #0369a1;
+    border-radius: 4px;
+    font-size: 13px;
+    text-align: center;
+  }
+  .demo .sel { min-height: 96px; background: #fde68a; border: 1px solid #b45309; border-radius: 4px; font-size: 13px; padding: 6px; }
+  .demo .petunjuk { margin: 0 0 8px; font-size: 13px; color: #6b7280; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .kartu {
+    box-sizing: border-box;
+    width: 320px;
+    padding: 16px;
+    border: 4px solid #e5e7eb;
+  }
+
+  .katalog {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  @media (min-width: 768px) {
+    .katalog {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .panel-admin {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  @media (max-width: 767px) {
+    .panel-admin {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* panggung: hasil media query dipatok per wadah, karena media query membaca
+     viewport sungguhan, bukan lebar wadah */
+  .demo .layar-380 .katalog { grid-template-columns: 1fr; }
+  .demo .layar-768 .katalog { grid-template-columns: repeat(2, 1fr); }
+  .demo .layar-380 .panel-admin { grid-template-columns: 1fr; }
+  .demo .layar-768 .panel-admin { grid-template-columns: repeat(4, 1fr); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 13 · Website Responsif dan Accessibility</strong> · 01 mobile-first vs desktop-first</p>
+    <h1>Mobile-First dan Desktop-First: Dua Arah Menulis Media Query</h1>
+    <p>Keduanya sama-sama sah. Yang membedakan cuma arah berpikirnya: dari layar kecil melebar, atau dari layar besar menyempit. Halaman ini memperlihatkan keduanya berdampingan, lengkap dengan risiko yang dijaga masing-masing.</p>
+
+    <h2>Contoh yang memicunya: kartu 320 px di layar 360 px</h2>
+    <p>Kartu katalog Tokosaya punya content 280 × 96 px untuk gambar produk, padding 16 px, dan border 4 px. Dengan <code>box-sizing: border-box</code>, lebarnya jadi 320 px — rapi di monitor, tetapi dua kartu langsung meluber di layar HP.</p>
+<pre><code class="language-css">.kartu {
+  box-sizing: border-box;
+  width: 320px;
+  padding: 16px;
+  border: 4px solid #e5e7eb;
+}</code></pre>
+    <div class="demo">
+      <p class="petunjuk">Wadah di bawah selebar 360 px — lebarnya mensimulasikan viewport HP, bukan lebar jendela peramban.</p>
+      <div class="layar layar-hp">
+        <span class="nama-layar">layar 360 px</span>
+        <div class="baris-kartu">
+          <div class="kartu"><p class="isi-kartu">kartu 1</p></div>
+          <div class="kartu"><p class="isi-kartu">kartu 2</p></div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="320px - 16px*2 - 4px*2 = 280">Content <strong>280 px</strong> setelah padding dan border dihitung.</p>
+    <p class="hitung" data-hitung="320px * 2 - 360 = 280">Dua kartu butuh <strong>640 px</strong>, layar HP cuma 360 px — 280 px terpotong.</p>
+
+    <h2>Mobile-first: gaya dasar layar kecil, <code>min-width</code> menaik</h2>
+    <p>Gaya dasar ditulis untuk layar kecil. Media query <code>min-width</code> tinggal menambah, bukan menimpa, jadi tidak ada aturan yang saling berkelahi.</p>
+<pre><code class="language-css">.katalog {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .katalog {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}</code></pre>
+    <div class="demo">
+      <p class="petunjuk">Dua wadah berdampingan. Lebar keduanya mensimulasikan viewport, jadi hasil media query-nya dipatok per wadah.</p>
+      <div class="dua">
+        <div class="layar layar-380">
+          <span class="nama-layar">layar 380 px · satu kolom</span>
+          <div class="katalog">
+            <div class="sel">kartu 1</div>
+            <div class="sel">kartu 2</div>
+          </div>
+        </div>
+        <div class="layar layar-768">
+          <span class="nama-layar">layar 768 px · dua kolom</span>
+          <div class="katalog">
+            <div class="sel">kartu 1</div>
+            <div class="sel">kartu 2</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="(768px - 16px) / 2 = 376">Di layar 768 px, dua kolom bergutter 16 px jadi <strong>376 px</strong> per kartu.</p>
+
+    <h2>Desktop-first: gaya dasar layar besar, <code>max-width</code> menurun</h2>
+    <p>Kebalikannya. Gaya dasar ditulis untuk layar besar, lalu media query <code>max-width</code> merapikan tampilan sempit. Cocok untuk dashboard staf dan data padat.</p>
+<pre><code class="language-css">.panel-admin {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 767px) {
+  .panel-admin {
+    grid-template-columns: 1fr;
+  }
+}</code></pre>
+    <div class="demo">
+      <div class="dua">
+        <div class="layar layar-380">
+          <span class="nama-layar">layar 380 px · satu kolom</span>
+          <div class="panel-admin">
+            <div class="sel">kolom 1</div>
+            <div class="sel">kolom 2</div>
+            <div class="sel">kolom 3</div>
+            <div class="sel">kolom 4</div>
+          </div>
+        </div>
+        <div class="layar layar-768">
+          <span class="nama-layar">layar 768 px · empat kolom</span>
+          <div class="panel-admin">
+            <div class="sel">kolom 1</div>
+            <div class="sel">kolom 2</div>
+            <div class="sel">kolom 3</div>
+            <div class="sel">kolom 4</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Risiko dan kompensasinya</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Baris</th><th>Mobile-first</th><th>Desktop-first</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Gaya dasar</td><td>layar kecil, satu kolom</td><td>layar besar, multi kolom</td></tr>
+        <tr><td>Media query</td><td><code>min-width</code>, menaik</td><td><code>max-width</code>, menurun</td></tr>
+        <tr><td>Cocok buat</td><td>website pelanggan umum</td><td>dashboard staf, data padat</td></tr>
+        <tr><td>Risiko</td><td>layar besar terasa kosong</td><td>HP jadi tambalan</td></tr>
+        <tr><td>Kompensasi</td><td>desain ruang buat layar lebar</td><td>uji 320–576 px sejak awal</td></tr>
+      </tbody>
+    </table>
+    <p>Untuk Tokosaya, pilihannya <strong>mobile-first</strong>, karena pelanggan umumnya membuka katalog dari HP. Risiko tanpa pasangannya cuma keluhan; yang di kanan tabel sengaja berpasangan.</p>
+    <nav class="nav">
+      <span>—</span>
+      <span>01 / 16</span>
+      <a href="02-tangga-breakpoint-tokosaya.html">02 tangga breakpoint tokosaya →</a>
+    </nav>
+  </div>
+</body>
+</html>

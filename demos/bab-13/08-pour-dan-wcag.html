@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 13 · 08 pour dan wcag — Website Responsif dan Accessibility</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: kartu pengguna dan kartu prinsip */
+  .demo * { box-sizing: border-box; }
+  .demo .petunjuk { margin: 0 0 10px; font-size: 13px; color: #6b7280; }
+  .demo .orang {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .demo .orang li {
+    flex: 1 1 190px;
+    margin: 0;
+    padding: 10px 12px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 13.5px;
+  }
+  .demo .orang strong { display: block; margin-bottom: 2px; font-size: 13.5px; }
+  .demo .orang span { color: #4b5563; }
+  .demo .pour {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .demo .kartu-pour {
+    padding: 10px 12px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-top: 3px solid #1d4ed8;
+    border-radius: 6px;
+    font-size: 13.5px;
+  }
+  .demo .kartu-pour h3 { margin: 0 0 4px; font-size: 14px; }
+  .demo .kartu-pour p { margin: 0; font-size: 13px; color: #4b5563; }
+  .demo .butir {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .demo .kartu-butir {
+    padding: 10px 12px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 13.5px;
+  }
+  .demo .kartu-butir h3 { margin: 0 0 6px; font-size: 14px; }
+  .demo .kartu-butir ul { margin: 0; padding-left: 18px; font-size: 13px; color: #4b5563; }
+
+  /* ============================================================
+     kode slide — bab ini tidak punya aturan CSS pelajaran
+     Contoh yang ditampilkan di badan halaman hanya markup HTML
+     dan tabel prinsip, jadi tidak ada deklarasi CSS yang perlu
+     dicerminkan di sini.
+     ============================================================ */
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 13 · Website Responsif dan Accessibility</strong> · 08 pour dan wcag</p>
+    <h1>POUR dan Tingkat Kepatuhan WCAG</h1>
+    <p>Aksesibilitas bukan fitur tambahan. Di layanan publik ia soal hak pengguna: siapa yang bisa memakai halaman kita, dan siapa yang tertinggal. WCAG 2.2 dari W3C merangkumnya jadi empat prinsip, dengan tiga tingkat kepatuhan.</p>
+
+    <h2>Siapa yang dilayani</h2>
+    <p>Pengguna Tokosaya belum tentu satu orang. Empat kelompok di bawah menuntut perbaikan yang berbeda-beda.</p>
+    <div class="demo">
+      <ul class="orang">
+        <li><strong>Pengguna screen reader</strong><span>butuh alt yang bermakna, bukan nama berkas</span></li>
+        <li><strong>Pengguna cuma keyboard</strong><span>butuh urutan fokus yang logis dan terlihat</span></li>
+        <li><strong>Pengguna penglihatan terbatas</strong><span>butuh kontras teks yang cukup</span></li>
+        <li><strong>Pengguna koneksi lambat</strong><span>butuh gambar yang ringan</span></li>
+      </ul>
+    </div>
+    <p>Kolom paling kanan itu yang menamai pekerjaannya. Kalau tombol keranjang tidak diberi <code>aria-label</code>, yang terdengar oleh screen reader hanya "link, link, link".</p>
+
+    <h2>Empat prinsip POUR</h2>
+    <div class="demo">
+      <p class="petunjuk">POUR: Perceivable, Operable, Understandable, Robust.</p>
+      <div class="pour">
+        <div class="kartu-pour">
+          <h3>Perceivable</h3>
+          <p>dapat dipersepsi — <code>alt</code> buat gambar, teks buat audio</p>
+        </div>
+        <div class="kartu-pour">
+          <h3>Operable</h3>
+          <p>dapat dioperasikan — navigasi dan form jalan lewat keyboard</p>
+        </div>
+        <div class="kartu-pour">
+          <h3>Understandable</h3>
+          <p>dapat dipahami — bahasa jelas, label input jelas</p>
+        </div>
+        <div class="kartu-pour">
+          <h3>Robust</h3>
+          <p>teguh — markup benar, dibaca penuh alat bantu</p>
+        </div>
+      </div>
+    </div>
+    <table class="tabel">
+      <thead>
+        <tr><th>Tingkat</th><th>Kedudukan</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>A</td><td>dasar</td></tr>
+        <tr><td>AA</td><td>lazim diwajibkan</td></tr>
+        <tr><td>AAA</td><td>tertinggi</td></tr>
+      </tbody>
+    </table>
+    <p>Target bab ini cuma butir level A dan AA, jadi jangan tenggelam di AAA. Acuannya WCAG 2.2 terbitan W3C.</p>
+
+    <h2>Peta butir A/AA yang dibahas</h2>
+    <p>Tiap prinsip punya butir yang bisa diperiksa satu per satu di Tokosaya.</p>
+    <div class="demo">
+      <div class="butir">
+        <div class="kartu-butir">
+          <h3>Perceivable</h3>
+          <ul>
+            <li><code>alt</code> di tiap gambar, <code>alt=""</code> buat yang dekoratif</li>
+            <li>kontras teks cukup, diperiksa di color picker</li>
+          </ul>
+        </div>
+        <div class="kartu-butir">
+          <h3>Operable</h3>
+          <ul>
+            <li>semua interaksi jalan lewat keyboard</li>
+            <li>ada jalan menuju konten utama lewat skip link</li>
+          </ul>
+        </div>
+        <div class="kartu-butir">
+          <h3>Understandable</h3>
+          <ul>
+            <li>heading berurutan</li>
+            <li>link bermakna, dan <code>lang="id"</code> di akar dokumen</li>
+          </ul>
+        </div>
+        <div class="kartu-butir">
+          <h3>Robust</h3>
+          <ul>
+            <li>pasangan label <code>for</code> dan <code>id</code> terhubung</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+<pre><code class="language-html">&lt;html lang="id"&gt;</code></pre>
+    <p>Atribut bahasa itu satu baris, tetapi ia yang memberi tahu alat bantu cara membacakan halaman. Tanpanya, pembaca layar bisa melafalkan teks Indonesia dengan aturan bahasa Inggris.</p>
+    <p><strong>Ingat:</strong> aksesibilitas bukan soal skor saja. Alat bantu mempercepat kerja, tetapi keputusan soal gambar dekoratif atau bermakna tetap butuh orang yang paham konteksnya.</p>
+    <nav class="nav">
+      <a href="07-navigasi-menumpuk.html">← 07 navigasi menumpuk</a>
+      <span>08 / 16</span>
+      <a href="09-alt-text-bermakna.html">09 alt text bermakna →</a>
+    </nav>
+  </div>
+</body>
+</html>

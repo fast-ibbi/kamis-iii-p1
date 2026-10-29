@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 13 · 14 skip link — Website Responsif dan Accessibility</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  :root { --clr-primary-dark: #1e3a8a; }
+
+  .skip-link {
+    position: absolute;
+    top: -48px;
+    left: 16px;
+    z-index: 1080;
+    background: var(--clr-primary-dark);
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 0 0 8px 8px;
+    text-decoration: none;
+    transition: top 0.15s ease-in-out;
+  }
+
+  .skip-link:focus { top: 0; }
+
+  /* panggung: puncak halaman tiruan, 90 px, dengan link yang dipotong di atasnya */
+  .demo * { box-sizing: border-box; }
+  .demo .petunjuk { margin: 0 0 10px; font-size: 13px; color: #6b7280; }
+  .demo .dua { display: flex; flex-wrap: wrap; gap: 14px; }
+  .demo .bingkai {
+    flex: 1 1 300px;
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+  .demo .label {
+    display: block;
+    margin-bottom: 8px;
+    color: #6b7280;
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .demo .catatan { display: block; margin-top: 8px; font-size: 12.5px; color: #6b7280; }
+  .demo .layar {
+    height: 90px;
+    overflow: hidden;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+  }
+  .demo .kepala-layar {
+    position: relative;
+    height: 56px;
+    padding: 10px 14px;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .demo .merek { display: block; font-size: 15px; font-weight: 700; }
+  .demo .menu { display: block; font-size: 12.5px; color: #6b7280; }
+  .demo .isi { margin: 0; padding: 10px 14px; font-size: 13px; color: #4b5563; }
+  .demo .tampil .skip-link { top: 0; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 13 · Website Responsif dan Accessibility</strong> · 14 skip link</p>
+    <h1>Skip Link: Link Pertama di Body</h1>
+    <p>Skip link adalah tautan pertama di dalam <code>body</code>, jadi elemen pertama yang menerima fokus saat Tab ditekan. Posisinya bukan pilihan gaya, melainkan syarat. Ini susunan yang sesuai kriteria <em>bypass blocks</em> pada WCAG.</p>
+
+    <h2>Markup-nya</h2>
+<pre><code class="language-html">&lt;a class="skip-link" href="#konten-utama"&gt;Lewati ke konten utama&lt;/a&gt;</code></pre>
+    <p>Sasar lompatannya adalah konten utama. Di demo ini tautannya diarahkan ke berkas demo lain supaya tetap bisa diklik; di proyek Tokosaya tujuannya <code>#konten-utama</code>, dan di bawah ini sasaran itu ditandai menerima fokus.</p>
+<pre><code class="language-html">&lt;main id="konten-utama" tabindex="-1"&gt;</code></pre>
+    <p><code>tabindex="-1"</code> membuat <code>main</code> bisa menerima fokus dari lompatan, tanpa ikut masuk urutan Tab biasa.</p>
+
+    <h2>CSS-nya: muncul pas fokus</h2>
+<pre><code class="language-css">.skip-link {
+  position: absolute;
+  top: -48px;
+  left: 16px;
+  z-index: 1080;
+  background: var(--clr-primary-dark);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 0 0 8px 8px;
+  text-decoration: none;
+  transition: top 0.15s ease-in-out;
+}
+.skip-link:focus { top: 0; }</code></pre>
+    <p>Normalnya link disembunyikan di atas layar lewat <code>top: -48px</code>, lalu turun ke <code>top: 0</code> saat menerima fokus. Jangan pakai <code>display: none</code> atau <code>visibility: hidden</code>: elemen yang disembunyikan begitu tidak bisa menerima fokus, jadi pengguna keyboard tidak akan pernah sampai ke sana.</p>
+
+    <h2>Hasil yang dirender</h2>
+    <div class="demo">
+      <p class="petunjuk">Panel kanan meniru keadaan setelah Tab pertama ditekan. Di halaman ini, coba tekan Tab dari awal: tautan pertama yang muncul adalah skip link yang sama.</p>
+      <div class="dua">
+        <div class="bingkai">
+          <span class="label">sebelum fokus · top: -48px</span>
+          <div class="layar">
+            <div class="kepala-layar">
+              <a class="skip-link" href="15-form-ramah-keyboard.html">Lewati ke konten utama</a>
+              <span class="merek">Tokosaya</span>
+              <span class="menu">Beranda · Katalog · Kontak</span>
+            </div>
+            <p class="isi">Konten utama halaman</p>
+          </div>
+          <span class="catatan">Link ada di DOM dan tetap menerima Tab pertama, tetapi tergambar di atas tepi layar.</span>
+        </div>
+        <div class="bingkai tampil">
+          <span class="label">menerima fokus · top: 0</span>
+          <div class="layar">
+            <div class="kepala-layar">
+              <a class="skip-link" href="15-form-ramah-keyboard.html">Lewati ke konten utama</a>
+              <span class="merek">Tokosaya</span>
+              <span class="menu">Beranda · Katalog · Kontak</span>
+            </div>
+            <p class="isi">Konten utama halaman</p>
+          </div>
+          <span class="catatan">Masuknya digeser selama 0,15 detik, jadi tidak melompat tiba-tiba.</span>
+        </div>
+      </div>
+    </div>
+
+    <h2>Tiga hal yang harus pas</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Syarat</th><th>Kalau salah</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>ditaruh paling awal di dalam <code>body</code></td><td>bukan fokus pertama, jadi tidak menolong siapa pun</td></tr>
+        <tr><td>nama kelas HTML dan CSS identik</td><td>salah ketik satu huruf membuat link tidak pernah muncul</td></tr>
+        <tr><td><code>z-index</code> cukup tinggi</td><td>tertutup elemen lain, linknya tidak kelihatan meski fokus sudah pindah</td></tr>
+      </tbody>
+    </table>
+    <p>Ujinya selalu dengan keyboard, bukan klik: klik tidak akan menyingkap masalah fokus. Tekan Tab satu kali, pastikan link muncul, lalu Enter — fokus harus pindah ke konten utama.</p>
+    <nav class="nav">
+      <a href="13-focus-visible.html">← 13 focus visible</a>
+      <span>14 / 16</span>
+      <a href="15-form-ramah-keyboard.html">15 form ramah keyboard →</a>
+    </nav>
+  </div>
+</body>
+</html>

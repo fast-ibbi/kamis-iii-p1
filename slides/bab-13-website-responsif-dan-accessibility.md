@@ -115,6 +115,7 @@ Desktop-first — gaya dasar: layar besar, multi kolom; media query max-width, m
 cocok buat dashboard staf, data padat; risiko: HP jadi tambalan — kompensasi: uji
 320–576 px sejak awal. Baris terakhir sengaja menggabungkan risiko dan kompensasinya:
 risiko tanpa pasangannya cuma keluhan.
+Demo: demos/bab-13/01-mobile-first-vs-desktop-first.html — dua wadah 380 px dan 768 px diperagakan berdampingan sebagai pengganti viewport.
 -->
 
 
@@ -206,6 +207,7 @@ berwarna aksen itu breakpoint yang dipakai proyek ini bersama lg.
 
 Aturan umumnya: strategi proyek ialah pilih 2–3 breakpoint, sejajarkan Bootstrap.
 Sebaliknya, 578px, 693px, dan 1024px itu angka ajaib, susah dirawat.
+Demo: demos/bab-13/02-tangga-breakpoint-tokosaya.html — lima anak tangga ditampilkan dengan lebar aslinya, plus aritmetika gutter tiap breakpoint.
 -->
 
 ---
@@ -262,6 +264,7 @@ Tanyakan berapa file gambar yang diunduh pengguna HP kalau `srcset` nggak dipaka
 Jawaban yang diharapkan: satu file besar yang sama buat semua layar. Tegaskan bahwa
 `max-width: 100%` cuma mencegah luber, belum menghemat unduhan. Sebutkan bahwa browser
 yang memilih file paling pas, bukan kita.
+Demo: demos/bab-13/03-gambar-srcset-sizes.html — kandidat 480w, 768w, dan 1200w ditandai bersama area 560 px yang memilih di antaranya.
 -->
 
 ---
@@ -308,6 +311,7 @@ Tanyakan apa yang terjadi kalau urutan `source` dibalik, 576 px dulu di atas. Ja
 yang diharapkan: source 576 px selalu cocok buat layar besar juga, padahal ia
 ditujukan buat layar sempit. Jelaskan bedanya: `picture` mengganti komposisi gambar,
 `srcset` pada `img` cuma mengganti resolusi dari komposisi yang sama.
+Demo: demos/bab-13/04-elemen-picture.html — dua komposisi hero dirender berdampingan untuk 576 px dan 992 px.
 -->
 
 ---
@@ -333,6 +337,7 @@ Tanyakan apa yang biasanya digantikan oleh satu baris clamp ini. Jawaban yang
 diharapkan: tiga media query terpisah buat setiap ukuran judul. Tunjukkan di browser
 sambil melebarkan jendela biar kelas melihat judulnya tumbuh terus, bukan melompat
 pas 768 px. Sebutkan bahwa nilai tengahnya boleh gabungan satuan.
+Demo: demos/bab-13/05-tipografi-clamp.html — judul clamp() bisa dilihat tumbuh, dengan batas bawah 28 px dan batas atas 44 px.
 -->
 
 ---
@@ -357,6 +362,7 @@ Tanyakan kenapa penggeser horizontal muncul padahal media querynya udah benar. J
 yang diharapkan: ada satu elemen bandel, misalnya nama produk tanpa spasi atau gambar
 berukuran tetap di dalam baris flex. Tekankan bahwa empat kebiasaan kecil di slide ini
 yang menjaga halaman tetap rapi dari 320 px sampai 1400 px.
+Demo: demos/bab-13/06-perlindungan-luber.html — nama produk tanpa spasi dan anak flex tanpa min-width: 0 diperlihatkan sebagai dua penyebab luber.
 -->
 
 ---
@@ -377,6 +383,7 @@ Ini slide yang paling sering ditanyakan waktu praktikum. Tanyakan pola mana yang
 buat empat link Tokosaya, lalu minta alasannya. Jawaban yang diharapkan: pola menumpuk,
 karena nggak butuh ikon hamburger dan tiap link jadi target sentuh penuh. Ingatkan
 bahwa ikon hamburger resmi Bootstrap bergantung pada file skrip, jadi di luar cakupan.
+Demo: demos/bab-13/07-navigasi-menumpuk.html — menu yang sama berdiri di wadah 360 px dan 992 px, menumpuk lalu sebaris.
 -->
 
 ---
@@ -457,6 +464,7 @@ link". Lanjutkan dengan kelompok kedua yang cuma butuh urutan fokus rapi, lalu t
 bahwa dua cabang terbawah — penglihatan terbatas dan koneksi lambat — menuntut kontras
 dan gambar yang ringan, bukan cincin fokus. Kolom paling kanan pohon itu yang menamai
 pekerjaannya, jadi kelas bisa membaca sendiri perbaikan mana untuk siapa.
+Demo: demos/bab-13/08-pour-dan-wcag.html — empat kelompok pengguna dan empat prinsip POUR dipetakan ke butir A/AA.
 -->
 
 ---
@@ -524,6 +532,7 @@ Minta kelas menulis alt buat garis pemisah ornamen, baru tunjukkan jawabannya. J
 yang diharapkan: `alt=""`, karena gambar itu murni hiasan. Lanjutkan dengan kesalahan
 paling umum, yaitu mengulang nama produk di alt dan di judul kartu sehingga pengguna
 mendengar dua kali. Tekankan cukup satu tempat yang paling bermakna.
+Demo: demos/bab-13/09-alt-text-bermakna.html — tiga alt berdampingan lengkap dengan kalimat yang didengar pengguna screen reader.
 -->
 
 ---
@@ -545,6 +554,7 @@ diharapkan: `h2`, bukan `h4` cuma karena ukurannya terasa pas. Tekankan pemisaha
 level semantik dan ukuran visual, lalu tunjukkan `class="h6"` pada `h2` di katalog
 sebagai buktinya. Ingatkan bahwa urutan heading yang benar juga memudahkan siapa pun
 memindai halaman.
+Demo: demos/bab-13/10-heading-berurutan.html — pohon heading yang melompat dibandingkan dengan yang berurutan, plus h2 berkelas h6.
 -->
 
 ---
@@ -566,6 +576,7 @@ masuk akal dibaca terpisah, dan ikon keranjang wajib punya aria-label.
 
 Aturan umumnya: teks link harus tetap masuk akal dibaca terpisah, dan ujinya ialah
 kumpulkan semua link jadi satu daftar, masih jelas?
+Demo: demos/bab-13/11-link-jelas.html — uji daftar link dan ikon keranjang dengan dan tanpa aria-label.
 -->
 
 ---
@@ -602,6 +613,7 @@ jangan dihitung manual. Panel di gambar cuma memuat rasionya, bukan contoh warna
 pasangan putih dan amber-nya justru dilihat di DevTools. Tanyakan kenapa pasangan putih di
 atas amber terasa aman di mata padahal gagal. Tunjuk baris kedua kedua panel: ambangnya
 sama, 4,5:1. Yang beda cuma rasio di baris pertama dan verdict di baris ketiga.
+Demo: demos/bab-13/12-kontras-aa.html — pasangan putih dan gelap di atas amber yang sama dirender dengan rasio 2,1:1 dan 6,8:1.
 -->
 
 ---
@@ -632,6 +644,7 @@ bawaannya terasa kurang cantik waktu diklik pakai mouse. Jelaskan bahwa
 `:focus-visible` menyelesaikan masalah itu: mouse tetap rapi, jalur Tab tetap
 kelihatan. Sebutkan juga bahwa `outline-offset` menggambar cincin di luar elemen
 supaya tampilannya nggak ketutupan.
+Demo: demos/bab-13/13-focus-visible.html — dua panel berdampingan, satu tanpa cincin fokus dan satu dengan cincin 3 px.
 -->
 
 ---
@@ -692,6 +705,7 @@ link, lalu Enter membuat halaman lompat ke konten utama. Link ini diletakkan pal
 awal di dalam `body`, jadi elemen pertama yang menerima fokus pas Tab ditekan.
 `<main id="konten-utama" tabindex="-1">` jadi sasaran lompatan, dan susunannya sesuai
 kriteria "bypass blocks" pada WCAG.
+Demo: demos/bab-13/14-skip-link.html — keadaan top: -48px dan top: 0 diperlihatkan pada puncak halaman tiruan.
 -->
 
 ---
@@ -757,6 +771,7 @@ Tanyakan apa dua hal yang hilang kalau label nggak terhubung ke input. Jawaban y
 diharapkan: klik label nggak menyalakan input, dan screen reader nggak membaca nama
 kolomnya. Tunjukkan radio group tanpa `fieldset` biar kelas mendengar bedanya.
 Ingatkan juga untuk nggak pernah memalsukan tombol pakai elemen netral.
+Demo: demos/bab-13/15-form-ramah-keyboard.html — form dengan label terhubung dibandingkan dengan label yang hanya tulisan biasa.
 -->
 
 ---
@@ -792,6 +807,7 @@ Bacakan kebutuhan praktikum lalu pastikan semua orang punya lima halaman dan fol
 `img`. Tekankan bahwa panel perangkat dan Lighthouse adalah fitur browser: mahasiswa
 cuma membuka tab, menekan tombol, dan membaca temuan. Katakan bahwa nggak ada satu
 baris pun skrip yang perlu dipahami di mata kuliah ini.
+Demo: demos/bab-13/16-audit-tokosaya.html — rantai lima tahap audit dan satu putaran refactor 8–13 dengan uji ulang 14.
 -->
 
 ---
@@ -944,6 +960,7 @@ berikutnya.
 - `clamp()` bikin tipografi mengalir, `overflow-wrap` menahan luber
 - WCAG POUR: alt, heading, link, kontras, dan focus
 - Pengujian pakai panel perangkat dan Lighthouse DevTools
+**Demo:** seluruh konsep bab ini bisa dicoba di [demos/bab-13/index.html](demos/bab-13/index.html).
 
 <!--
 Tutup dengan pesan utama: rapi di satu layar belum cukup, halaman harus bisa dipakai

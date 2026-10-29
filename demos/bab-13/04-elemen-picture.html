@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 13 · 04 elemen picture — Website Responsif dan Accessibility</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: dua wadah berlebar tetap yang mensimulasikan viewport */
+  .demo * { box-sizing: border-box; }
+  .demo .bingkai {
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+    border-radius: 6px;
+    padding: 8px;
+  }
+  .demo .layar-576 { width: 576px; }
+  .demo .layar-992 { width: 992px; zoom: 0.85; }
+  .demo img { max-width: 100%; height: auto; }
+  .demo .label {
+    display: block;
+    margin-bottom: 8px;
+    color: #6b7280;
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .demo .catatan { display: block; margin-top: 8px; font-size: 12.5px; color: #6b7280; }
+  .demo .ruang { margin: 0 0 14px; }
+  .demo .petunjuk { margin: 0 0 10px; font-size: 13px; color: #6b7280; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .hero-img {
+    display: block;
+    border-radius: 4px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 13 · Website Responsif dan Accessibility</strong> · 04 elemen picture</p>
+    <h1><code>picture</code>: Ganti Komposisi Gambar</h1>
+    <p><code>picture</code> dipakai kalau gambar yang sama perlu <em>komposisi</em> berbeda di layar berbeda: hero lebar untuk desktop, hero tegak untuk HP. Ini bedanya dengan <code>srcset</code> pada <code>img</code>, yang cuma mengganti resolusi dari komposisi yang sama.</p>
+
+    <h2>Markup-nya</h2>
+<pre><code class="language-html">&lt;picture&gt;
+  &lt;!-- browser memilih source pertama yang medianya cocok --&gt;
+  &lt;source media="(min-width: 992px)" srcset="img/hero-1200.svg"&gt;
+  &lt;source media="(min-width: 576px)" srcset="img/hero-768.svg"&gt;
+  &lt;img src="img/hero-480.svg"
+       alt="Susunan keyboard, mouse, dan monitor Tokosaya"
+       width="1200" height="675"
+       class="hero-img"&gt;
+&lt;/picture&gt;</code></pre>
+    <p>Urutan <code>source</code> dimulai dari kondisi terlebar. Browser memilih <code>source</code> pertama yang cocok, jadi kalau urutannya dibalik, <code>source</code> 576 px selalu menang bahkan di layar besar — padahal ia ditujukan untuk layar sempit.</p>
+
+    <h2>Hasil yang dirender</h2>
+    <p>Dua wadah di bawah lebarnya mensimulasikan viewport. Tiap wadah menampilkan komposisi yang dipilih browser pada lebar itu.</p>
+    <div class="demo">
+      <p class="petunjuk">Perhatikan susunan objeknya, bukan cuma ukurannya. Panel 992 px ditampilkan pada skala 0,85 supaya muat di kolom isi; angka breakpoint-nya tetap 992 px.</p>
+      <div class="ruang bingkai">
+        <span class="label">layar 576 px · source kedua · hero-768.svg</span>
+        <div class="layar-576">
+          <img class="hero-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='768' height='432' viewBox='0 0 768 432'%3E%3Crect width='768' height='432' fill='%23e0f2fe'/%3E%3Crect x='304' y='60' width='160' height='120' rx='8' fill='%2394a3b8'/%3E%3Crect x='224' y='200' width='320' height='44' rx='8' fill='%23cbd5e1'/%3E%3Crect x='60' y='380' width='648' height='20' fill='%230369a1'/%3E%3C/svg%3E" alt="Susunan keyboard, mouse, dan monitor Tokosaya" width="1200" height="675">
+        </div>
+        <span class="catatan">Objek ditumpuk: monitor di atas, keyboard di bawahnya.</span>
+      </div>
+      <div class="ruang bingkai">
+        <span class="label">layar 992 px · source pertama · hero-1200.svg · tampilan 0,85</span>
+        <div class="layar-992">
+          <img class="hero-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='675' viewBox='0 0 1200 675'%3E%3Crect width='1200' height='675' fill='%23e0f2fe'/%3E%3Crect x='520' y='90' width='240' height='180' rx='10' fill='%2394a3b8'/%3E%3Crect x='120' y='420' width='380' height='56' rx='10' fill='%23cbd5e1'/%3E%3Crect x='560' y='430' width='120' height='38' rx='19' fill='%23cbd5e1'/%3E%3Crect x='760' y='420' width='320' height='56' rx='10' fill='%23cbd5e1'/%3E%3Crect x='60' y='600' width='1080' height='24' fill='%230369a1'/%3E%3C/svg%3E" alt="Susunan keyboard, mouse, dan monitor Tokosaya" width="1200" height="675">
+        </div>
+        <span class="catatan">Objek berjajar: keyboard, mouse, dan monitor berbagi satu baris.</span>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="675 / 1200 = 0.5625">Atribut <code>width="1200"</code> dan <code>height="675"</code> memberi rasio <strong>0,5625</strong> — 16:9. Selama rasionya tertulis, layout tidak melompat ketika gambar selesai dimuat.</p>
+
+    <h2>Batasnya</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Alat</th><th>Yang diganti</th><th>Contoh pemakaian</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>srcset</code> pada <code>img</code></td><td>resolusi, komposisi tetap</td><td>foto produk yang sama di kartu sempit dan lebar</td></tr>
+        <tr><td><code>picture</code> dengan <code>source</code></td><td>komposisi sekaligus berkasnya</td><td>hero yang berubah susunan di HP dan desktop</td></tr>
+      </tbody>
+    </table>
+    <p>Semua <code>source</code> tetap butuh <code>img</code> di dalamnya: itulah yang menampilkan <code>alt</code> dan yang dipakai kalau tidak ada media yang cocok. Di proyek nyata berkas <code>hero-480.svg</code>, <code>hero-768.svg</code>, dan <code>hero-1200.svg</code> ada sungguhan di folder <code>img</code>; demo ini memakai alamat <code>data:image/svg+xml</code> supaya tetap berjalan tanpa jaringan.</p>
+    <nav class="nav">
+      <a href="03-gambar-srcset-sizes.html">← 03 gambar srcset sizes</a>
+      <span>04 / 16</span>
+      <a href="05-tipografi-clamp.html">05 tipografi clamp →</a>
+    </nav>
+  </div>
+</body>
+</html>

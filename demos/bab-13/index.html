@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo Bab 13 — Website Responsif dan Accessibility</title>
+<style>
+  :root { --ink: #111827; --muted: #6b7280; --accent: #1d4ed8; --border: #e5e7eb; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 48px 20px 64px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: var(--ink);
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 820px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .kepala a { color: var(--accent); text-decoration: none; }
+  h1 { margin: 0 0 10px; font-size: 28px; line-height: 1.25; }
+  .pengantar { margin: 0 0 32px; color: var(--muted); font-size: 16px; }
+  ol { margin: 0; padding: 0; list-style: none; counter-reset: demo; }
+  li {
+    counter-increment: demo;
+    border-top: 1px solid var(--border);
+    padding: 16px 0;
+  }
+  li a {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  li a::before {
+    content: counter(demo, decimal-leading-zero) "  ";
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  li p { margin: 4px 0 0; font-size: 15px; color: var(--muted); }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><a href="../index.html">← Semua bab</a> · Demo Bab 13</p>
+    <h1>Demo Bab 13 — Website Responsif dan Accessibility</h1>
+    <p class="pengantar">16 berkas contoh, satu berkas per konsep slide. Tiap berkas
+    menampilkan kode contoh beserta hasil yang benar-benar dirender, tanpa JavaScript.</p>
+    <ol>
+    <li>
+      <a href="01-mobile-first-vs-desktop-first.html">01 mobile-first vs desktop-first</a>
+      <p>Keduanya sama-sama sah. Yang membedakan cuma arah berpikirnya: dari layar kecil melebar, atau dari layar besar menyempit. Halaman ini memperlihatkan keduanya berdampingan, lengk…</p>
+    </li>
+    <li>
+      <a href="02-tangga-breakpoint-tokosaya.html">02 tangga breakpoint tokosaya</a>
+      <p>Breakpoint lahir dari kebutuhan konten, bukan dari daftar HP di toko. Tangga di bawah dibaca dari kiri ke kanan: makin lebar layarnya, makin banyak kolom katalog yang masuk.</p>
+    </li>
+    <li>
+      <a href="03-gambar-srcset-sizes.html">03 gambar srcset sizes</a>
+      <p>Satu baris max-width: 100% mencegah gambar meluber, tetapi berkas yang diunduh tetap sama besar di semua layar. srcset dan sizes yang menghemat unduhan.</p>
+    </li>
+    <li>
+      <a href="04-elemen-picture.html">04 elemen picture</a>
+      <p>picture dipakai kalau gambar yang sama perlu komposisi berbeda di layar berbeda: hero lebar untuk desktop, hero tegak untuk HP. Ini bedanya dengan srcset pada img, yang cuma men…</p>
+    </li>
+    <li>
+      <a href="05-tipografi-clamp.html">05 tipografi clamp</a>
+      <p>Tipografi cair berarti ukuran huruf mengalir mengikuti lebar layar, tanpa loncatan di satu titik. Satu baris clamp() menggantikan tiga media query terpisah untuk setiap ukuran j…</p>
+    </li>
+    <li>
+      <a href="06-perlindungan-luber.html">06 perlindungan luber</a>
+      <p>Penggeser horizontal sering muncul padahal media querynya sudah benar. Penyebabnya satu elemen bandel: nama produk tanpa spasi, gambar berukuran tetap, atau anak flex yang menol…</p>
+    </li>
+    <li>
+      <a href="07-navigasi-menumpuk.html">07 navigasi menumpuk</a>
+      <p>Pola menumpuk tidak butuh ikon hamburger. Di layar kecil daftar link ditumpuk vertikal, di tablet ke atas menjadi satu baris. Semuanya CSS murni: satu properti flex-direction ya…</p>
+    </li>
+    <li>
+      <a href="08-pour-dan-wcag.html">08 pour dan wcag</a>
+      <p>Aksesibilitas bukan fitur tambahan. Di layanan publik ia soal hak pengguna: siapa yang bisa memakai halaman kita, dan siapa yang tertinggal. WCAG 2.2 dari W3C merangkumnya jadi …</p>
+    </li>
+    <li>
+      <a href="09-alt-text-bermakna.html">09 alt text bermakna</a>
+      <p>alt menggambarkan kegunaan gambar dalam konteks halaman, bukan isi berkasnya. Nama berkas bukan alt: sebut nama produknya. Gambar dekoratif memakai alt=&quot;&quot; supaya dilewati.</p>
+    </li>
+    <li>
+      <a href="10-heading-berurutan.html">10 heading berurutan</a>
+      <p>Heading itu peta daftar isi buat pengguna screen reader. Satu h1 per halaman, lalu turun bertingkat tanpa melompat. Ukuran tampilan tidak menentukan level heading.</p>
+    </li>
+    <li>
+      <a href="11-link-jelas.html">11 link jelas</a>
+      <p>Screen reader bisa mengumpulkan semua tautan di satu halaman jadi satu daftar, tanpa kalimat di sekitarnya. Teks link harus tetap masuk akal saat dibaca terpisah.</p>
+    </li>
+    <li>
+      <a href="12-kontras-aa.html">12 kontras aa</a>
+      <p>Kontras adalah rasio terang antara warna teks dan latarnya. Yang diukur bukan cantik atau tidaknya pasangan warna, melainkan berapa besar bedanya di mata.</p>
+    </li>
+    <li>
+      <a href="13-focus-visible.html">13 focus visible</a>
+      <p>Cincin fokus adalah satu-satunya tanda posisi bagi pengguna keyboard. Menghapusnya dengan outline: none tanpa pengganti membuat mereka tersesat di halaman sendiri.</p>
+    </li>
+    <li>
+      <a href="14-skip-link.html">14 skip link</a>
+      <p>Skip link adalah tautan pertama di dalam body, jadi elemen pertama yang menerima fokus saat Tab ditekan. Posisinya bukan pilihan gaya, melainkan syarat. Ini susunan yang sesuai …</p>
+    </li>
+    <li>
+      <a href="15-form-ramah-keyboard.html">15 form ramah keyboard</a>
+      <p>Form adalah tempat paling sering pengguna keyboard tersandung. Dua hal yang paling menentukan: label yang benar-benar terhubung ke input, dan kelompok pilihan yang diberi konteks.</p>
+    </li>
+    <li>
+      <a href="16-audit-tokosaya.html">16 audit tokosaya</a>
+      <p>Praktikum bab ini tidak menambah halaman baru. Yang dikerjakan merapikan lima halaman tokosaya-bootstrap yang sudah ada, lalu mencatat temuannya di daftar periksa 14 butir. Alat…</p>
+    </li>
+    </ol>
+  </div>
+</body>
+</html>
