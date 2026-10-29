@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 12 · 09 contrast — UI/UX dan Design System</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: satu kartu produk, dua perlakuan, diukur pada grid 12 kolom */
+  .demo .kartu-uji {
+    padding: 16px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+  }
+  .demo .label-baris {
+    margin: 0 0 8px;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+  .demo .garis {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+    align-items: baseline;
+  }
+  .demo .garis h3 { margin: 0; line-height: 1.3; }
+  .demo .garis p { margin: 0; }
+  .demo .dua-lajur {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .demo .besar {
+    margin: 0 0 8px;
+    font-size: 32px;
+    font-weight: 700;
+    color: #1E293B;
+  }
+  .demo .kecil {
+    margin: 0;
+    font-size: 14px;
+    color: #334155;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .kartu-netral h3 {
+    grid-column: span 6;
+    font-size: 16px;
+    font-weight: 400;
+    color: #334155;
+  }
+
+  .kartu-netral p {
+    grid-column: span 6;
+    font-size: 16px;
+    color: #334155;
+  }
+
+  .kartu-aksen h3 {
+    grid-column: span 9;
+    font-size: 16px;
+    font-weight: 600;
+    color: #F59E0B;
+  }
+
+  .kartu-aksen p {
+    grid-column: span 3;
+    font-size: 16px;
+    color: #334155;
+  }
+
+  .judul-besar {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1E293B;
+  }
+
+  .keterangan-kecil {
+    font-size: 14px;
+    color: #334155;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 12 · UI/UX dan Design System</strong> · 09 Contrast</p>
+    <h1>Contrast: Satu Pembeda Mencolok, Bukan Halaman Penuh Warna</h1>
+    <p>Contrast adalah perbedaan mencolok antara elemen yang harus dibedakan. Pembedanya bisa warna, ukuran, atau bobot huruf. Yang penting bukan banyaknya warna, melainkan ada tidaknya satu pembeda yang bisa dihitung.</p>
+
+    <h2>Semua netral: tidak ada yang menonjol</h2>
+    <p>Judul dan keterangan sama-sama netral dan masing-masing mengambil 6 kolom dari 12 kolom. Isinya lengkap, tetapi tidak ada bagian yang menarik mata lebih dulu.</p>
+<pre><code class="language-css">.kartu-netral h3 {
+  grid-column: span 6;
+  font-size: 16px;
+  font-weight: 400;
+  color: #334155;
+}
+
+.kartu-netral p {
+  grid-column: span 6;
+  font-size: 16px;
+  color: #334155;
+}</code></pre>
+    <div class="demo">
+      <p class="label-baris">Netral: 6 + 6 = 12 kolom</p>
+      <div class="kartu-uji">
+        <div class="garis kartu-netral">
+          <h3>Monitor IPS 24" MR-241</h3>
+          <p>Monitor IPS 24 inci full HD yang jernih</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Satu pembeda: judul 9 kolom dan warna aksen</h2>
+    <p>Kartu yang sama, dengan judul mengambil 9 kolom dan berwarna aksen, sedangkan keterangannya tinggal 3 kolom. Judulnya kini tiga kali lebih lebar sekaligus satu-satunya yang berwarna.</p>
+<pre><code class="language-css">.kartu-aksen h3 {
+  grid-column: span 9;
+  font-size: 16px;
+  font-weight: 600;
+  color: #F59E0B;
+}
+
+.kartu-aksen p {
+  grid-column: span 3;
+  font-size: 16px;
+  color: #334155;
+}</code></pre>
+    <div class="demo">
+      <p class="label-baris">Aksen: 9 + 3 = 12 kolom</p>
+      <div class="kartu-uji">
+        <div class="garis kartu-aksen">
+          <h3>Monitor IPS 24" MR-241</h3>
+          <p>Monitor IPS 24 inci full HD yang jernih</p>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="6 + 6 = 12">Pembagian pertama <strong>12 kolom</strong>, tanpa satu pun sel yang menonjol.</p>
+    <p class="hitung" data-hitung="9 + 3 = 12">Pembagian kedua juga <strong>12 kolom</strong>; yang berubah cuma pembagiannya, bukan jumlah kolomnya.</p>
+
+    <h2>Ukuran dan bobot juga pembeda</h2>
+    <p>Cara lain mendapat tumpuan yang sama: judul 32 piksel berhadapan dengan keterangan 14 piksel. Teks <code>--clr-body</code> di kartu putih tetap nyaman dibaca, jadi yang membedakan adalah ukurannya, bukan warnanya.</p>
+<pre><code class="language-css">.judul-besar {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1E293B;
+}
+
+.keterangan-kecil {
+  font-size: 14px;
+  color: #334155;
+}</code></pre>
+    <div class="demo">
+      <div class="kartu-uji">
+        <p class="besar">Monitor IPS 24" MR-241</p>
+        <p class="kecil">Monitor IPS 24 inci full HD yang jernih, garansi resmi 12 bulan.</p>
+      </div>
+    </div>
+
+    <h2>Yang perlu diingat</h2>
+    <ul>
+      <li>Contrast bukan halaman penuh warna-warni.</li>
+      <li>Kalau semua kontras, nggak ada yang benar-benar kontras.</li>
+      <li>Teks <code>--clr-body</code> di kartu putih tetap nyaman dibaca.</li>
+      <li>Judul 32 piksel dibanding keterangan 14 piksel sudah cukup jadi tumpuan.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> contrast adalah keputusan tentang satu pembeda, bukan kumpulan warna. Ambang kontras teks akan diuji lebih jauh di Bab 13.</p>
+    <nav class="nav">
+      <a href="08-alignment.html">← 08 alignment</a>
+      <span>09 / 16</span>
+      <a href="10-empat-lapisan-design-system.html">10 empat-lapisan-design-system →</a>
+    </nav>
+  </div>
+</body>
+</html>

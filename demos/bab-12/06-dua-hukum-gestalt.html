@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 12 · 06 dua-hukum-gestalt — UI/UX dan Design System</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: dua susunan formulir berdampingan, isi medannya sama */
+  .demo .dua-lajur {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .demo .panel {
+    padding: 16px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+  }
+  .demo .label-baris {
+    margin: 0 0 12px;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+  .demo .medan label {
+    font-size: 14px;
+    color: #334155;
+  }
+  .demo .kolom {
+    box-sizing: border-box;
+    width: 100%;
+    height: 32px;
+    padding: 0 8px;
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .form-salah .medan {
+    margin-bottom: 8px;
+  }
+
+  .form-salah label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #334155;
+  }
+
+  .form-benar .medan {
+    margin-bottom: 8px;
+  }
+
+  .form-benar label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #334155;
+  }
+
+  .form-benar .rumpun + .rumpun {
+    margin-top: 24px;
+  }
+
+  .form-benar .judul-rumpun {
+    margin: 0 0 8px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 12 · UI/UX dan Design System</strong> · 06 Dua hukum gestalt</p>
+    <h1>Dua Hukum Gestalt: Kedekatan dan Kemiripan</h1>
+    <p>Mata mengelompokkan apa yang berdekatan dan apa yang serupa. Kedekatan berkata elemen berdempel dibaca sebagai satu kelompok; kemiripan berkata elemen serupa dibaca sebagai satu rumpun. Formulir di bawah memakai empat medan yang sama, hanya jaraknya yang berbeda.</p>
+
+    <h2>Salah bagi: semua jarak 8 piksel</h2>
+    <p>Empat medan diberi jarak 8 piksel seragam, jadi kelompok identitas dan kelompok pengiriman melebur jadi satu tumpukan. Mata harus bekerja lebih keras untuk menemukan batasnya.</p>
+<pre><code class="language-css">.form-salah .medan {
+  margin-bottom: 8px;
+}
+
+.form-salah label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #334155;
+}</code></pre>
+    <div class="demo">
+      <div class="panel form-salah">
+        <p class="label-baris">Semua jarak 8 px</p>
+        <div class="medan">
+          <label>Nama Lengkap</label>
+          <input class="kolom" type="text">
+        </div>
+        <div class="medan">
+          <label>Email</label>
+          <input class="kolom" type="text">
+        </div>
+        <div class="medan">
+          <label>Kota</label>
+          <input class="kolom" type="text">
+        </div>
+        <div class="medan">
+          <label>Pesan</label>
+          <input class="kolom" type="text">
+        </div>
+      </div>
+    </div>
+
+    <h2>Benar bagi: dua kelompok yang jelas</h2>
+    <p>Di dalam kelompok, label dan kolomnya tetap berjarak 8 piksel — label dan kolomnya adalah satu pasangan. Antar kelompok diberi jarak 24 piksel, jadi batasnya terbaca tanpa garis pemisah.</p>
+<pre><code class="language-css">.form-benar .medan {
+  margin-bottom: 8px;
+}
+
+.form-benar label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #334155;
+}
+
+.form-benar .rumpun + .rumpun {
+  margin-top: 24px;
+}
+
+.form-benar .judul-rumpun {
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #6b7280;
+}</code></pre>
+    <div class="demo">
+      <div class="panel form-benar">
+        <p class="label-baris">8 px di dalam kelompok, 24 px antar kelompok</p>
+        <div class="rumpun">
+          <p class="judul-rumpun">Identitas</p>
+          <div class="medan">
+            <label>Nama Lengkap</label>
+            <input class="kolom" type="text">
+          </div>
+          <div class="medan">
+            <label>Email</label>
+            <input class="kolom" type="text">
+          </div>
+        </div>
+        <div class="rumpun">
+          <p class="judul-rumpun">Pengiriman</p>
+          <div class="medan">
+            <label>Kota</label>
+            <input class="kolom" type="text">
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="8px + 24px = 32">Jarak 8 px di dalam kelompok ditambah 24 px antar kelompok mencapai <strong>32 px</strong>, yaitu batas atas rentang 24–32 piksel yang dipakai untuk memisahkan dua kumpulan.</p>
+
+    <h2>Kedua hukum itu jadi dasar sistem jarak</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Hukum</th><th>Yang dikelompokkan</th><th>Jarak yang dipakai</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Kedekatan</td><td>label dengan kolom isiannya</td><td>8 piksel</td></tr>
+        <tr><td>Kedekatan</td><td>kelompok identitas dengan kelompok pengiriman</td><td>24 sampai 32 piksel</td></tr>
+        <tr><td>Kemiripan</td><td>semua label; semua kolom isian</td><td>bentuk dan warna yang sama</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Inti pembelajaran:</strong> kelompok tidak digambar dengan garis, melainkan dengan selisih jarak. Begitu semua jarak disamakan, kelompoknya hilang walaupun isinya tetap lengkap.</p>
+    <nav class="nav">
+      <a href="05-affordance.html">← 05 affordance</a>
+      <span>06 / 16</span>
+      <a href="07-whitespace.html">07 whitespace →</a>
+    </nav>
+  </div>
+</body>
+</html>

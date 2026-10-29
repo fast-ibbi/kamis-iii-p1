@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 12 · 08 alignment — UI/UX dan Design System</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: garis putus-putus di kiri hanya penggaris bantu, bukan dekorasi halaman */
+  .demo .hero {
+    padding: 16px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-left: 2px dashed #9ca3af;
+    border-radius: 12px;
+  }
+  .demo .label-baris {
+    margin: 0 0 8px;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+  .demo .hero h3 { font-size: 24px; line-height: 1.3; }
+  .demo .hero p { font-size: 16px; color: #334155; }
+  .demo .aksi {
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 16px;
+    background: #4F46E5;
+    color: #ffffff;
+    border-radius: 12px;
+    font-size: 14px;
+  }
+  .demo .dua-lajur {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 8px;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .grid-12 {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+  }
+
+  .span-12 {
+    grid-column: span 12;
+  }
+
+  .span-8 {
+    grid-column: span 8;
+  }
+
+  .span-2 {
+    grid-column: span 2;
+  }
+
+  .hero-acak h3 {
+    margin: 0 0 8px 24px;
+  }
+
+  .hero-acak p {
+    margin: 0 0 10px 40px;
+  }
+
+  .paragraf-tengah {
+    text-align: center;
+  }
+
+  .paragraf-kiri {
+    text-align: left;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 12 · UI/UX dan Design System</strong> · 08 Alignment</p>
+    <h1>Alignment: Satu Garis Tak Terlihat yang Menahan Semua</h1>
+    <p>Alignment menempatkan elemen pada garis tak terlihat yang sama. Garisnya tidak pernah digambar di CSS; mata menangkapnya lewat tepi yang sejajar. Hero Tokosaya di bawah disusun di grid 12 kolom selebar 1120 piksel dengan gutter 24 piksel.</p>
+
+    <h2>Tiga elemen, satu garis kolom pertama</h2>
+    <p>Judul di span 12, paragraf di span 8, dan tombol di span 2. Ketiganya mulai di garis kolom pertama yang sama; garis putus-putus di kiri kotak hanya penggaris bantu.</p>
+<pre><code class="language-css">.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+}
+
+.span-12 {
+  grid-column: span 12;
+}
+
+.span-8 {
+  grid-column: span 8;
+}
+
+.span-2 {
+  grid-column: span 2;
+}</code></pre>
+    <div class="demo">
+      <p class="label-baris">Sejajar: judul 12 kolom, paragraf 8, tombol 2</p>
+      <div class="hero">
+        <div class="grid-12">
+          <h3 class="span-12">Peralatan Kerja Digital untuk Semua</h3>
+          <p class="span-8">Keyboard, mouse, hingga monitor. Semua yang dibutuhkan meja kerja rapi, dikirim dalam satu pesanan.</p>
+          <span class="aksi span-2">Lihat Katalog</span>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="24px * 11 = 264">Sebelas gutter 24 px memakan <strong>264 px</strong> dari lebar 1120 px; sisa 856 px dibagi 12 menjadi 71 piksel per kolom, dan tombol span 2 berukuran 2 × 71 + 24 = 166 piksel. Di halaman demo ini grid mengikuti lebar layar, jadi kolomnya lebih sempit; angka di atas adalah ukuran pada grid 1120 piksel di dek.</p>
+
+    <h2>Terlalu banyak perataan membuat garisnya hilang</h2>
+    <p>Di versi bawah, judul digeser 24 piksel dan paragraf 40 piksel. Isinya sama, tetapi tepi kirinya tidak lagi satu garis sehingga pemindaian naik-turun jadi lebih lambat.</p>
+<pre><code class="language-css">.hero-acak h3 {
+  margin: 0 0 8px 24px;
+}
+
+.hero-acak p {
+  margin: 0 0 10px 40px;
+}</code></pre>
+    <div class="demo">
+      <p class="label-baris">Acak: tiap elemen punya tepi sendiri</p>
+      <div class="hero hero-acak">
+        <div class="grid-12">
+          <h3 class="span-12">Peralatan Kerja Digital untuk Semua</h3>
+          <p class="span-8">Keyboard, mouse, hingga monitor. Semua yang dibutuhkan meja kerja rapi, dikirim dalam satu pesanan.</p>
+          <span class="aksi">Lihat Katalog</span>
+        </div>
+      </div>
+    </div>
+
+    <h2>Rata kiri atau rata tengah</h2>
+    <p>Paragraf panjang selalu rata kiri: tepi kiri yang lurus membuat mata mudah menemukan awal baris berikutnya. Rata tengah dipakai untuk elemen tunggal, seperti judul pendek atau keterangan di bawah ikon.</p>
+<pre><code class="language-css">.paragraf-tengah {
+  text-align: center;
+}
+
+.paragraf-kiri {
+  text-align: left;
+}</code></pre>
+    <div class="demo">
+      <div class="dua-lajur">
+        <div>
+          <p class="label-baris">Rata tengah</p>
+          <p class="paragraf-tengah">Keyboard, mouse, hingga monitor. Semua yang dibutuhkan meja kerja rapi, dikirim dalam satu pesanan.</p>
+        </div>
+        <div>
+          <p class="label-baris">Rata kiri</p>
+          <p class="paragraf-kiri">Keyboard, mouse, hingga monitor. Semua yang dibutuhkan meja kerja rapi, dikirim dalam satu pesanan.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Yang perlu diingat</h2>
+    <ul>
+      <li>Teks kartu mulai dari garis vertikal yang sama.</li>
+      <li>Paragraf panjang rata kiri; rata tengah hanya untuk elemen tunggal.</li>
+      <li>Jangan mencampur terlalu banyak perataan dalam satu kolom.</li>
+      <li>Kelas perataan cuma alat; disiplin yang menentukan hasilnya.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> garis kolom tidak pernah ditulis di CSS, tetapi ia yang membuat halaman terasa tenang. Menggeser satu elemen saja sudah cukup untuk menghapus garis itu dari mata.</p>
+    <nav class="nav">
+      <a href="07-whitespace.html">← 07 whitespace</a>
+      <span>08 / 16</span>
+      <a href="09-contrast.html">09 contrast →</a>
+    </nav>
+  </div>
+</body>
+</html>

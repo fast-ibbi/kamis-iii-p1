@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 12 · 07 whitespace — UI/UX dan Design System</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: dua kartu produk Tokosaya, isinya sama, padding-nya berbeda */
+  .demo .label-atas {
+    margin: 16px 0 8px;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+  .demo .label-baris {
+    margin: 0 0 8px;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+  .demo .kartu-sesak h3,
+  .demo .kartu-bernafas h3 { margin: 0 0 8px; font-size: 18px; line-height: 1.3; }
+  .demo .kartu-sesak p,
+  .demo .kartu-bernafas p { margin: 0 0 8px; font-size: 14px; color: #334155; }
+  .demo .kartu-sesak .badge,
+  .demo .kartu-bernafas .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    background: #F59E0B;
+    border-radius: 999px;
+    font-size: 12px;
+    color: #1E293B;
+  }
+  .demo .kartu-sesak .gambar,
+  .demo .kartu-bernafas .gambar {
+    height: 96px;
+    margin-bottom: 8px;
+    background: #E2E8F0;
+    border-radius: 8px;
+    font-size: 13px;
+    text-align: center;
+    line-height: 96px;
+    color: #6b7280;
+  }
+  .demo .kartu-sesak .harga,
+  .demo .kartu-bernafas .harga { font-weight: 600; color: #1E293B; }
+  .demo .kartu-sesak .aksi,
+  .demo .kartu-bernafas .aksi {
+    box-sizing: border-box;
+    display: inline-block;
+    margin-right: 8px;
+    padding: 8px 16px;
+    background: #4F46E5;
+    color: #ffffff;
+    border-radius: 12px;
+    font-size: 13px;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .kartu-sesak {
+    box-sizing: border-box;
+    width: 356px;
+    padding: 0;
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+  }
+
+  .kartu-bernafas {
+    box-sizing: border-box;
+    width: 356px;
+    padding: 24px;
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+  }
+
+  .kartu-bernafas h3 {
+    margin: 0 0 8px;
+  }
+
+  .kartu-bernafas .harga {
+    margin: 0 0 16px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 12 · UI/UX dan Design System</strong> · 07 Whitespace</p>
+    <h1>Whitespace Bukan Ruang Terbuang</h1>
+    <p>Ruang kosong punya tiga tugas: memberi napas, memisahkan kelompok, dan mengarahkan fokus. Kartu produk yang sama di bawah dipakai dua kali; yang berbeda hanya jarak di dalamnya.</p>
+
+    <h2>Tak bernafas: semua nempel</h2>
+    <p>Badge, judul, keterangan, harga, dan tombol berdempet tanpa padding. Semuanya terbaca, tetapi tidak ada satu pun bagian yang bisa dipandang lebih dulu.</p>
+<pre><code class="language-css">.kartu-sesak {
+  box-sizing: border-box;
+  width: 356px;
+  padding: 0;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+}</code></pre>
+    <div class="demo">
+      <p class="label-baris">Padding 0</p>
+      <div class="kartu-sesak">
+        <span class="badge">Best Seller</span>
+        <div class="gambar">gambar</div>
+        <h3>Monitor IPS 24" MR-241</h3>
+        <p>Monitor IPS 24 inci full HD yang jernih</p>
+        <p class="harga">Rp1.899.000</p>
+        <span class="aksi">Tambah ke Keranjang</span><span class="aksi">Detail</span>
+      </div>
+    </div>
+
+    <h2>Bernafas: padding 16 sampai 24 piksel</h2>
+    <p>Dengan padding 24 piksel di dalam kartu dan 8 sampai 16 piksel antar bagiannya, badge, judul, harga, dan tombol terbaca sebagai empat kelompok terpisah.</p>
+<pre><code class="language-css">.kartu-bernafas {
+  box-sizing: border-box;
+  width: 356px;
+  padding: 24px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+}
+
+.kartu-bernafas h3 {
+  margin: 0 0 8px;
+}
+
+.kartu-bernafas .harga {
+  margin: 0 0 16px;
+}</code></pre>
+    <div class="demo">
+      <p class="label-baris">Padding 0</p>
+      <div class="kartu-sesak">
+        <span class="badge">Best Seller</span>
+        <div class="gambar">gambar</div>
+        <h3>Monitor IPS 24" MR-241</h3>
+        <p>Monitor IPS 24 inci full HD yang jernih</p>
+        <p class="harga">Rp1.899.000</p>
+        <span class="aksi">Tambah</span>
+      </div>
+      <p class="label-atas">Padding 24 px</p>
+      <div class="kartu-bernafas">
+        <span class="badge">Best Seller</span>
+        <div class="gambar">gambar</div>
+        <h3>Monitor IPS 24" MR-241</h3>
+        <p>Monitor IPS 24 inci full HD yang jernih</p>
+        <p class="harga">Rp1.899.000</p>
+        <span class="aksi">Tambah</span>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="356px - 24px*2 = 308">Lebar kartu 356 px dikurangi padding 24 px di kiri dan kanan menyisakan <strong>308 px</strong> untuk isinya; seluruh sisa itu dipakai teks dan gambar, bukan dibuang.</p>
+
+    <h2>Tiga tugas ruang kosong</h2>
+    <ul>
+      <li>Napas: teks tidak menempel pada tepi kotak, jadi mata punya tempat berhenti.</li>
+      <li>Batas kelompok: jarak antarbagian kartu 8 sampai 16 piksel memisahkan kelompoknya.</li>
+      <li>Fokus: ruang yang lapang di sekitar satu elemen membuat elemen itu menonjol.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> ruang kosong memandu mata, bukan ruang sia-sia. Angka 16 sampai 24 piksel adalah contoh konkret, bukan angka keramat; yang penting selisihnya cukup untuk terbaca sebagai kelompok.</p>
+    <nav class="nav">
+      <a href="06-dua-hukum-gestalt.html">← 06 dua-hukum-gestalt</a>
+      <span>07 / 16</span>
+      <a href="08-alignment.html">08 alignment →</a>
+    </nav>
+  </div>
+</body>
+</html>

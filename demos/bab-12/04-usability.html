@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 12 · 04 usability — UI/UX dan Design System</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: dua panel label tombol di halaman keranjang Tokosaya */
+  .demo .dua-lajur {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .demo .panel {
+    padding: 16px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+  }
+  .demo .label-baris {
+    margin: 0 0 12px;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+  .demo .jawab {
+    margin: 12px 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 13.5px;
+    color: #334155;
+  }
+  .demo .jawab li { margin: 0 0 6px; padding-left: 18px; position: relative; }
+  .demo .jawab li::before { content: "·"; position: absolute; left: 4px; color: #6b7280; }
+  .demo .keranjang {
+    margin: 0 0 12px;
+    font-size: 13.5px;
+    color: #334155;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .tombol-kabur {
+    box-sizing: border-box;
+    width: 166px;
+    padding: 16px;
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    color: #334155;
+    text-align: center;
+  }
+
+  .tombol-jelas {
+    box-sizing: border-box;
+    width: 166px;
+    padding: 16px;
+    background: #4F46E5;
+    color: #FFFFFF;
+    border-radius: 12px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 12 · UI/UX dan Design System</strong> · 04 Usability</p>
+    <h1>Usability: Label yang Sudah Menjawab Sebelum Diklik</h1>
+    <p>Usability adalah sejauh mana antarmuka membantu pengguna mencapai tujuan: efektif, efisien, dan memuaskan. Ukurannya satu pertanyaan Steve Krug — apakah pengguna harus berpikir keras untuk memakainya? Label tombol adalah tempat pertanyaan itu paling cepat terjawab.</p>
+
+    <h2>Dua label di halaman keranjang</h2>
+    <p>Kedua tombol di bawah berukuran sama: lebar 166 piksel, padding 16 piksel di keempat sisi. Yang berbeda hanya labelnya — dan itu sudah cukup untuk mengubah berapa banyak pikiran yang dibutuhkan sebelum mengklik.</p>
+<pre><code class="language-css">.tombol-kabur {
+  box-sizing: border-box;
+  width: 166px;
+  padding: 16px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  color: #334155;
+  text-align: center;
+}
+
+.tombol-jelas {
+  box-sizing: border-box;
+  width: 166px;
+  padding: 16px;
+  background: #4F46E5;
+  color: #FFFFFF;
+  border-radius: 12px;
+  text-align: center;
+}</code></pre>
+    <div class="demo">
+      <div class="dua-lajur">
+        <div class="panel">
+          <p class="label-baris">Label kabur</p>
+          <p class="keranjang">Keranjang Anda berisi 2 barang.</p>
+          <div class="tombol-kabur">Klik di sini</div>
+          <ul class="jawab">
+            <li>Apa yang dibuka: tidak disebutkan</li>
+            <li>Konteks harus dicari di sekitarnya</li>
+            <li>Tujuan tidak terbaca sebelum diklik</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <p class="label-baris">Label jelas</p>
+          <p class="keranjang">Keranjang Anda berisi 2 barang.</p>
+          <div class="tombol-jelas">Lihat Katalog</div>
+          <ul class="jawab">
+            <li>Apa yang dibuka: katalog</li>
+            <li>Konteks tidak perlu dicari</li>
+            <li>Tujuan terbaca sebelum diklik</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="166px - 16px*2 = 134">Lebar 166 px itu termasuk padding: dengan <code>box-sizing: border-box</code> isinya tinggal <strong>134 px</strong>, jadi label panjang seperti "Klik di sini untuk melihat semua produk" tidak muat tanpa terpotong.</p>
+
+    <h2>Tiga pertanyaan yang sama, dua jawaban</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Pertanyaan</th><th>"Klik di sini"</th><th>"Lihat Katalog"</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Apa yang dibuka?</td><td>tidak disebutkan</td><td>katalog</td></tr>
+        <tr><td>Apakah konteks harus dicari?</td><td>ya, dari kalimat sekitarnya</td><td>tidak</td></tr>
+        <tr><td>Apakah tujuan terbaca sebelum diklik?</td><td>tidak</td><td>ya</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Di mana masalah usability paling mahal</h2>
+    <ul>
+      <li>Halaman yang rumit dan menegangkan, bukan halaman yang santai.</li>
+      <li>Formulir pendaftaran, tempat satu label kabur menghentikan seluruh proses.</li>
+      <li>Antrean layanan, tempat pengguna sudah tidak sabar sejak awal.</li>
+      <li>Keranjang checkout, tempat keraguan langsung berubah jadi pembelian yang batal.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> usability bukan soal tampilan bagus, melainkan soal berapa banyak pikiran yang harus dikeluarkan pengguna. Label yang menyebut tujuannya memangkas satu tebakan — dan tebakan itulah yang paling mahal di halaman penting.</p>
+    <nav class="nav">
+      <a href="03-konsistensi-dan-repetition.html">← 03 konsistensi-dan-repetition</a>
+      <span>04 / 16</span>
+      <a href="05-affordance.html">05 affordance →</a>
+    </nav>
+  </div>
+</body>
+</html>

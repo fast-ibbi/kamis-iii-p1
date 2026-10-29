@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 12 · 02 hierarki-visual — UI/UX dan Design System</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: dua kartu hero, kiri tanpa hierarki, kanan berjenjang */
+  .demo .hero {
+    padding: 16px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+  }
+  .demo .label-baris {
+    margin: 0 0 8px;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+  .demo .dua-lajur {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .datar h3,
+  .datar p,
+  .datar .aksi {
+    margin: 0 0 8px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #334155;
+  }
+
+  .datar .aksi {
+    text-decoration: underline;
+  }
+
+  .berjenjang h3 {
+    margin: 0 0 8px;
+    font-size: 32px;
+    font-weight: 700;
+    color: #1E293B;
+  }
+
+  .berjenjang p {
+    margin: 0 0 16px;
+    font-size: 16px;
+    color: #334155;
+  }
+
+  .berjenjang .aksi {
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 16px;
+    background: #4F46E5;
+    color: #FFFFFF;
+    border-radius: 12px;
+    text-decoration: none;
+  }
+
+  .satu-pegas h3 {
+    margin: 0 0 8px;
+    font-size: 32px;
+    font-weight: 400;
+    color: #334155;
+  }
+
+  .empat-pegas h3 {
+    margin: 0 0 24px;
+    font-size: 32px;
+    font-weight: 700;
+    color: #1E293B;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 12 · UI/UX dan Design System</strong> · 02 Hierarki visual</p>
+    <h1>Hierarki Visual: Satu Tumpuan, Sisanya Penjelas</h1>
+    <p>Pengguna memindai layar dalam hitungan detik, bukan membaca kata demi kata. Hierarki visual mengatur urutan pemindaian itu: satu tumpuan besar lebih dulu, penjelasnya menyusul. Halaman di bawah memakai isi yang sama, hanya hierarkinya yang berbeda.</p>
+
+    <h2>Tanpa hierarki: semua teks sama besar</h2>
+    <p>Semua baris memakai ukuran, ketebalan, dan warna yang sama, jadi mata tidak tahu harus mulai dari mana — dan tombol promonya justru bukan aksi utama.</p>
+<pre><code class="language-css">.datar h3,
+.datar p,
+.datar .aksi {
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #334155;
+}
+
+.datar .aksi {
+  text-decoration: underline;
+}</code></pre>
+    <div class="demo">
+      <p class="label-baris">Tanpa hierarki</p>
+      <div class="hero datar">
+        <h3>BELANJA TEPAT KIRIM CEPAT</h3>
+        <p>Rp diskon keranjang kontak tentang</p>
+        <p class="aksi">klik promo</p>
+      </div>
+    </div>
+
+    <h2>Dengan hierarki: satu tumpuan besar</h2>
+    <p>Judul mengambil ukuran 32 piksel, ketebalan 700, dan warna paling tegas; subjudul turun jadi penjelas; aksinya berupa tombol indigo.</p>
+<pre><code class="language-css">.berjenjang h3 {
+  margin: 0 0 8px;
+  font-size: 32px;
+  font-weight: 700;
+  color: #1E293B;
+}
+
+.berjenjang p {
+  margin: 0 0 16px;
+  font-size: 16px;
+  color: #334155;
+}
+
+.berjenjang .aksi {
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 16px;
+  background: #4F46E5;
+  color: #FFFFFF;
+  border-radius: 12px;
+  text-decoration: none;
+}</code></pre>
+    <div class="demo">
+      <p class="label-baris">Dengan hierarki</p>
+      <div class="hero berjenjang">
+        <h3>Peralatan Kerja Digital untuk Semua</h3>
+        <p>Keyboard, mouse, hingga monitor</p>
+        <span class="aksi">Lihat Katalog</span>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="32px / 16px = 2">Judul <strong>32 px</strong> tepat dua kali teks penjelas <strong>16 px</strong>; satu lompatan ukuran saja sudah cukup membuat mata berhenti lebih dulu di judul.</p>
+
+    <h2>Pegasnya: ukuran, ketebalan, warna, posisi, dan jarak</h2>
+    <p>Ukuran saja biasanya belum cukup. Di bawah ini dua judul berukuran sama; yang kedua memakai ketebalan, warna, dan jarak sekaligus, sehingga tumpuannya jauh lebih tegas.</p>
+<pre><code class="language-css">.satu-pegas h3 {
+  margin: 0 0 8px;
+  font-size: 32px;
+  font-weight: 400;
+  color: #334155;
+}
+
+.empat-pegas h3 {
+  margin: 0 0 24px;
+  font-size: 32px;
+  font-weight: 700;
+  color: #1E293B;
+}</code></pre>
+    <div class="demo">
+      <div class="dua-lajur">
+        <div class="hero satu-pegas">
+          <p class="label-baris">Satu pegas</p>
+          <h3>Peralatan Kerja Digital</h3>
+          <p>hanya ukuran yang berbeda.</p>
+        </div>
+        <div class="hero empat-pegas">
+          <p class="label-baris">Empat pegas</p>
+          <h3>Peralatan Kerja Digital</h3>
+          <p>ukuran, ketebalan, warna, jarak.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Yang perlu diingat</h2>
+    <ul>
+      <li>Hierarki mengarahkan pemindaian, bukan menghias halaman.</li>
+      <li>Pegasnya: ukuran, ketebalan, warna, posisi, dan jarak.</li>
+      <li>Satu pegas biasanya nggak cukup; gabungkan dua atau tiga.</li>
+      <li>Satu halaman sebaiknya punya satu tumpuan utama, bukan lima.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> hierarki adalah keputusan tentang apa yang dibaca pertama. Kalau semua teks sama besar, halaman menyerahkan keputusan itu ke pengguna yang cuma punya beberapa detik.</p>
+    <nav class="nav">
+      <a href="01-ui-dan-ux.html">← 01 ui-dan-ux</a>
+      <span>02 / 16</span>
+      <a href="03-konsistensi-dan-repetition.html">03 konsistensi-dan-repetition →</a>
+    </nav>
+  </div>
+</body>
+</html>

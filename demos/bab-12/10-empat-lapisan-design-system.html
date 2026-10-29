@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 12 · 10 empat-lapisan-design-system — UI/UX dan Design System</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: tumpukan lapisan, dari token di atas sampai halaman di bawah */
+  .demo .lapisan {
+    padding: 12px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+  }
+  .demo .label-lapisan {
+    margin: 0 0 8px;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+  .demo .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 16px;
+    padding: 0;
+    list-style: none;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13px;
+  }
+  .demo .chips li {
+    margin: 0;
+    padding: 2px 8px;
+    background: #eef2ff;
+    border: 1px solid #c7d2fe;
+    border-radius: 999px;
+    color: #1d4ed8;
+  }
+  .demo .p-kartu { max-width: 356px; }
+  .demo .p-kartu h3 { margin: 0 0 4px; font-size: 15px; }
+  .demo .p-kartu p { margin: 0 0 8px; font-size: 13.5px; }
+  .demo .badge {
+    box-sizing: border-box;
+    display: inline-block;
+    margin-bottom: 8px;
+    padding: 2px 8px;
+    background: var(--clr-accent);
+    border-radius: 999px;
+    font-size: 12px;
+    color: #FFFFFF;
+  }
+  .demo .badge-bahaya {
+    box-sizing: border-box;
+    display: inline-block;
+    margin-bottom: 8px;
+    padding: 2px 8px;
+    background: var(--clr-danger);
+    border-radius: 999px;
+    font-size: 12px;
+    color: #FFFFFF;
+  }
+  .demo .gambar {
+    height: 64px;
+    margin-bottom: 8px;
+    background: #E2E8F0;
+    border-radius: 8px;
+    font-size: 13px;
+    text-align: center;
+    line-height: 64px;
+    color: #6b7280;
+  }
+  .demo .aksi {
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 8px 16px;
+    background: var(--clr-primary);
+    color: #FFFFFF;
+    border-radius: 12px;
+    font-size: 13px;
+  }
+  .demo .header-toko h4 { margin: 0; font-size: 16px; color: var(--clr-dark); }
+  .demo .header-toko p { margin: 0; font-size: 13px; }
+  .demo .baris-nyata { margin-top: 16px; }
+  /* tema pengganti: satu kelas yang menimpa satu token, tanpa menyentuh komponen */
+  .demo .tema-ganti {
+    --clr-primary: #16A34A;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  :root {
+    --clr-primary: #4F46E5;
+    --clr-primary-dark: #4338CA;
+    --clr-accent: #F59E0B;
+    --clr-success: #16A34A;
+    --clr-danger: #DC2626;
+    --clr-surface: #FFFFFF;
+    --clr-border: #E2E8F0;
+    --clr-dark: #1E293B;
+    --clr-body: #334155;
+    --radius: 12px;
+    --shadow-card: 0 8px 24px rgba(15, 23, 42, 0.08);
+    --space-unit: 8px;
+  }
+
+  .p-kartu {
+    box-sizing: border-box;
+    padding: 16px;
+    background: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-card);
+  }
+
+  .p-kartu .harga {
+    margin: 0 0 16px;
+    color: var(--clr-dark);
+  }
+
+  .baris-kartu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .header-toko {
+    padding: 16px;
+    background: var(--clr-surface);
+    border-bottom: 1px solid var(--clr-border);
+  }
+
+  .tema-ganti {
+    --clr-primary: #16A34A;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 12 · UI/UX dan Design System</strong> · 10 Empat lapisan design system</p>
+    <h1>Empat Lapisan Design System: Token, Komponen, Halaman</h1>
+    <p>Setiap lapisan dipakai lapisan di atasnya. Token menyediakan nilai, komponen mengonsumsi nilai itu, halaman mengonsumsi komponen, dan pengguna akhirnya melihat halamannya. Pola dan dokumentasi melengkapi dua lapisan sisanya.</p>
+
+    <h2>Lapisan 1 — token</h2>
+    <p>Semua keputusan visual tinggal di satu blok <code>:root</code> di paling atas <code>css/style.css</code>. Tidak ada halaman yang boleh menulis nilai mentah.</p>
+<pre><code class="language-css">:root {
+  --clr-primary: #4F46E5;
+  --clr-primary-dark: #4338CA;
+  --clr-accent: #F59E0B;
+  --clr-success: #16A34A;
+  --clr-danger: #DC2626;
+  --clr-surface: #FFFFFF;
+  --clr-border: #E2E8F0;
+  --clr-dark: #1E293B;
+  --clr-body: #334155;
+  --radius: 12px;
+  --shadow-card: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --space-unit: 8px;
+}</code></pre>
+    <div class="demo">
+      <div class="lapisan">
+        <p class="label-lapisan">Lapisan 1 · token</p>
+        <ul class="chips">
+          <li>--clr-primary</li>
+          <li>--clr-accent</li>
+          <li>--clr-danger</li>
+          <li>--radius</li>
+          <li>--space-unit</li>
+        </ul>
+        <p>Nilai-nilai ini yang dibaca lapisan di bawahnya lewat <code>var()</code>.</p>
+      </div>
+    </div>
+
+    <h2>Lapisan 2 — komponen</h2>
+    <p>Komponen tidak menyimpan nilai; ia memanggil token. Karena itu lengkung, bayangan, dan latarnya otomatis ikut kalau token berubah.</p>
+<pre><code class="language-css">.p-kartu {
+  box-sizing: border-box;
+  padding: 16px;
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+}
+
+.p-kartu .harga {
+  margin: 0 0 16px;
+  color: var(--clr-dark);
+}</code></pre>
+    <div class="demo">
+      <div class="lapisan">
+        <p class="label-lapisan">Lapisan 2 · komponen p-kartu</p>
+        <div class="p-kartu">
+          <span class="badge">Best Seller</span>
+          <div class="gambar">gambar</div>
+          <h3>Monitor IPS 24" MR-241</h3>
+          <p>Monitor IPS 24 inci full HD yang jernih</p>
+          <p class="harga">Rp1.899.000</p>
+          <span class="aksi">Tambah ke Keranjang</span>
+        </div>
+      </div>
+    </div>
+
+    <h2>Lapisan 3 — halaman</h2>
+    <p>Halaman menyusun komponen memakai jarak dari token yang sama: gutter antarkartu 24 piksel, yaitu 3 × <code>--space-unit</code>.</p>
+<pre><code class="language-css">.baris-kartu {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.header-toko {
+  padding: 16px;
+  background: var(--clr-surface);
+  border-bottom: 1px solid var(--clr-border);
+}</code></pre>
+    <div class="demo">
+      <div class="lapisan">
+        <p class="label-lapisan">Lapisan 3 · halaman katalog</p>
+        <div class="header-toko">
+          <h4>Tokosaya</h4>
+          <p>Beranda · Katalog · Tentang · Kontak</p>
+        </div>
+        <div class="baris-kartu baris-nyata">
+          <div class="p-kartu">
+            <span class="badge">Best Seller</span>
+            <h3>Monitor IPS 24" MR-241</h3>
+            <p class="harga">Rp1.899.000</p>
+            <span class="aksi">Tambah</span>
+          </div>
+          <div class="p-kartu">
+            <span class="badge-bahaya">Stok Terbatas</span>
+            <h3>Keyboard Mekanik K-87</h3>
+            <p class="harga">Rp899.000</p>
+            <span class="aksi">Tambah</span>
+          </div>
+          <div class="p-kartu">
+            <span class="badge">Baru</span>
+            <h3>Mouse Nirkabel M-2</h3>
+            <p class="harga">Rp349.000</p>
+            <span class="aksi">Tambah</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Ganti satu token, seluruh halaman ikut berubah</h2>
+    <p>Dua baris di bawah memakai komponen yang sama persis. Yang berbeda hanya satu baris: <code>--clr-primary</code> ditimpa di dalam pembungkusnya. Tombol, badge, dan tautan langsung mengikuti tanpa satu pun aturan komponen disentuh.</p>
+<pre><code class="language-css">.tema-ganti {
+  --clr-primary: #16A34A;
+}</code></pre>
+    <div class="demo">
+      <div class="baris-kartu">
+        <div class="p-kartu">
+          <span class="badge">Best Seller</span>
+          <h3>Keyboard Mekanik K-87</h3>
+          <p class="harga">Rp899.000</p>
+          <span class="aksi">Tambah</span>
+        </div>
+        <div class="p-kartu tema-ganti">
+          <span class="badge">Best Seller</span>
+          <h3>Keyboard Mekanik K-87</h3>
+          <p class="harga">Rp899.000</p>
+          <span class="aksi">Tambah</span>
+        </div>
+        <div class="p-kartu">
+          <span class="badge">Baru</span>
+          <h3>Mouse Nirkabel M-2</h3>
+          <p class="harga">Rp349.000</p>
+          <span class="aksi">Tambah</span>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="8px * 3 = 24">Gutter 24 piksel itu <strong>3 × 8 piksel</strong>, dan angka 8 piksel datang dari <code>--space-unit</code>, bukan dari selera tiap halaman.</p>
+
+    <h2>Yang perlu diingat</h2>
+    <ul>
+      <li>Token di atas, komponen di tengah, halaman di bawah.</li>
+      <li>Mengubah <code>--clr-primary</code> ikut mengubah tombol, badge, dan link di semua halaman.</li>
+      <li>Dua lapisan sisanya, pola dan dokumentasi, dibahas setelah ini.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> lapisan di atas tidak pernah menyimpan nilai sendiri. Begitu satu halaman menulis nilai mentah, ia keluar dari bangunan dan perubahan berikutnya cuma kena sebagian.</p>
+    <nav class="nav">
+      <a href="09-contrast.html">← 09 contrast</a>
+      <span>10 / 16</span>
+      <a href="11-token-primitif-dan-semantik.html">11 token-primitif-dan-semantik →</a>
+    </nav>
+  </div>
+</body>
+</html>

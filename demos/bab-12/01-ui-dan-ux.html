@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 12 · 01 ui-dan-ux — UI/UX dan Design System</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: dua panel berdampingan, kiri wajah halaman, kanan perjalanan pemakaian */
+  .demo .label-panel {
+    margin: 0 0 8px;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+  .demo .panel h3 { margin: 0 0 6px; font-size: 20px; line-height: 1.3; }
+  .demo .panel p { margin: 0 0 10px; font-size: 14px; color: #334155; }
+  .demo .tombol-panel {
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 8px 16px;
+    background: #4F46E5;
+    color: #ffffff;
+    border-radius: 12px;
+    font-size: 14px;
+  }
+  .demo .langkah { margin: 0; padding-left: 20px; font-size: 14px; color: #334155; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .dua-lajur {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .panel {
+    padding: 16px;
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 12 · UI/UX dan Design System</strong> · 01 UI dan UX</p>
+    <h1>UI dan UX: Wajah Halaman dan Rasa Memakainya</h1>
+    <p>UI adalah seluruh wajah visual yang dilihat dan disentuh pengguna: layout, warna, huruf, tombol, sampai ikon navigasi. UX adalah seluruh rasa dan hasil selama memakai halaman, mulai dari membuka halaman sampai selesai berbelanja. Dua panel di bawah memakai satu halaman yang sama untuk memisahkan kedua sumbu itu.</p>
+
+    <h2>Dua lajur: yang terlihat dan yang dijalani</h2>
+    <p>Panel kiri memperlihatkan wajah halamannya; panel kanan memperlihatkan perjalanan yang dilalui pengguna di halaman itu.</p>
+<pre><code class="language-css">.dua-lajur {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}</code></pre>
+    <div class="demo">
+      <div class="dua-lajur">
+        <div class="panel">
+          <p class="label-panel">UI · yang terlihat</p>
+          <h3>Peralatan Kerja Digital untuk Semua</h3>
+          <p>Keyboard, mouse, hingga monitor.</p>
+          <span class="tombol-panel">Lihat Katalog</span>
+        </div>
+        <div class="panel">
+          <p class="label-panel">UX · yang dijalani</p>
+          <ol class="langkah">
+            <li>Membuka halaman Tokosaya</li>
+            <li>Mencari produk yang dicari</li>
+            <li>Mengisi keranjang</li>
+            <li>Selesai berbelanja</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <p>Warna tombol indigo di panel kiri itu UI. Kalimat <em>saya percaya website ini</em> sesudah memakainya itu UX.</p>
+
+    <h2>Isi tiap sumbu</h2>
+<pre><code class="language-css">.panel {
+  padding: 16px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+}</code></pre>
+    <div class="demo">
+      <div class="dua-lajur">
+        <div class="panel">
+          <p class="label-panel">UI — yang diatur</p>
+          <p>Layout, warna, huruf, tombol, dan ikon navigasi. Semua yang tampak di layar dan bisa disentuh.</p>
+        </div>
+        <div class="panel">
+          <p class="label-panel">UX — yang dirasakan</p>
+          <p>Rasa selama memakai halaman: mudah, cepat, dan cukup dipercaya untuk menyelesaikan belanja.</p>
+        </div>
+      </div>
+    </div>
+    <p>Analogi restoran: UI adalah suasana ruangannya, UX adalah pengalaman makan malamnya. Di proyek sistem informasi keduanya menentukan apakah portal benar-benar dipakai orang, bukan cuma selesai dibangun.</p>
+    <p class="hitung" data-hitung="16px * 2 = 32">Satu panel memakai padding <strong>16 px</strong> di kiri dan kanan, jadi isinya kehilangan <strong>32 px</strong> lebar untuk ruang kosong; dua panel berdampingan kehilangan dua kali lipat.</p>
+
+    <h2>Yang perlu diingat</h2>
+    <ul>
+      <li>UI: seluruh wajah visual yang dilihat dan disentuh pengguna.</li>
+      <li>UX: seluruh rasa dan hasil selama memakai halaman.</li>
+      <li>Warna tombol itu UI; kepercayaan pada situs itu UX.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> dua istilah ini bukan sinonim. Yang pertama bisa dipotret, yang kedua hanya bisa diceritakan pengguna setelah selesai memakainya.</p>
+    <nav class="nav">
+      <span>—</span>
+      <span>01 / 16</span>
+      <a href="02-hierarki-visual.html">02 hierarki-visual →</a>
+    </nav>
+  </div>
+</body>
+</html>

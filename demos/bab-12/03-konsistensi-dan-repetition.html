@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 12 · 03 konsistensi-dan-repetition — UI/UX dan Design System</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: kartu katalog Tokosaya, tiga per baris pada grid 12 kolom */
+  .demo .label-baris {
+    margin: 0 0 8px;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+  .demo .label-baris + .grid-12 { margin-bottom: 16px; }
+  .demo .p-kartu h3 { margin: 0 0 4px; font-size: 15px; line-height: 1.3; }
+  .demo .p-kartu p { margin: 0; font-size: 13.5px; color: #334155; }
+  .demo .kartu-gambar {
+    height: 56px;
+    margin-bottom: 8px;
+    background: #E2E8F0;
+    border-radius: 8px;
+    font-size: 13px;
+    text-align: center;
+    line-height: 56px;
+    color: #6b7280;
+  }
+  .demo .harga { font-weight: 600; color: #1E293B; }
+  .demo .kartu-tombol {
+    box-sizing: border-box;
+    display: inline-block;
+    margin-top: 8px;
+    padding: 8px 16px;
+    background: #4F46E5;
+    color: #ffffff;
+    border-radius: 12px;
+    font-size: 13px;
+  }
+  .demo .kartu-baru {
+    padding: 16px;
+    border: 1px dashed #9ca3af;
+    border-radius: 20px;
+    background: #F8FAFC;
+    font-size: 13px;
+    color: #334155;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .grid-12 {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+  }
+
+  .span-4 {
+    grid-column: span 4;
+  }
+
+  .p-kartu {
+    box-sizing: border-box;
+    padding: 16px;
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+  }
+
+  .kartu-nyeleneh {
+    margin-left: 8px;
+    border-radius: 20px;
+  }
+
+  .kartu-baru {
+    border-radius: 20px;
+    background: #F8FAFC;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 12 · UI/UX dan Design System</strong> · 03 Konsistensi dan repetition</p>
+    <h1>Konsistensi dan Repetition: Wujud Serupa yang Diulang</h1>
+    <p>Elemen yang mirip tampil dan bekerja dengan cara yang mirip, sehingga pengguna belajar sekali lalu bisa mengulanginya. Wujud yang diulang membuat pola terbentuk, dan pola itulah yang membuat katalog cepat dipindai.</p>
+
+    <h2>Konsistensi: satu garis kolom, satu lengkung</h2>
+    <p>Dua baris katalog di grid 12 kolom dengan gutter 24 piksel. Setiap kartu memakai kelas <code>p-kartu</code> selebar 4 kolom, lengkung 12 piksel, dan warna tombol yang sama; baris kedua mulai di garis kolom yang sama persis dengan baris pertama.</p>
+<pre><code class="language-css">.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+}
+
+.span-4 {
+  grid-column: span 4;
+}
+
+.p-kartu {
+  box-sizing: border-box;
+  padding: 16px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+}</code></pre>
+    <p>Bandingkan dengan baris kedua di bawah, tempat satu kartu digeser 8 piksel dan lengkungnya diganti 20 piksel. Isinya sama, tetapi halaman langsung terasa beda.</p>
+<pre><code class="language-css">.kartu-nyeleneh {
+  margin-left: 8px;
+  border-radius: 20px;
+}</code></pre>
+    <div class="demo">
+      <p class="label-baris">Baris pertama: 12, 12, 12</p>
+      <div class="grid-12">
+        <div class="p-kartu span-4">
+          <div class="kartu-gambar">gambar</div>
+          <h3>Monitor IPS 24" MR-241</h3>
+          <p>Monitor IPS 24 inci full HD yang jernih</p>
+          <p class="harga">Rp1.899.000</p>
+          <span class="kartu-tombol">Tambah ke Keranjang</span>
+        </div>
+        <div class="p-kartu span-4">
+          <div class="kartu-gambar">gambar</div>
+          <h3>Keyboard Mekanik K-87</h3>
+          <p>Switch taktil, kabel USB-C</p>
+          <p class="harga">Rp899.000</p>
+          <span class="kartu-tombol">Tambah ke Keranjang</span>
+        </div>
+        <div class="p-kartu span-4">
+          <div class="kartu-gambar">gambar</div>
+          <h3>Mouse Nirkabel M-2</h3>
+          <p>Sensor 4000 dpi, baterai tahan lama</p>
+          <p class="harga">Rp349.000</p>
+          <span class="kartu-tombol">Tambah ke Keranjang</span>
+        </div>
+      </div>
+      <p class="label-baris">Baris kedua: satu kartu digeser 8 px, lengkungnya 20 px</p>
+      <div class="grid-12">
+        <div class="p-kartu span-4">
+          <div class="kartu-gambar">gambar</div>
+          <h3>Monitor IPS 24" MR-241</h3>
+          <p>Monitor IPS 24 inci full HD yang jernih</p>
+          <p class="harga">Rp1.899.000</p>
+          <span class="kartu-tombol">Tambah ke Keranjang</span>
+        </div>
+        <div class="p-kartu span-4 kartu-nyeleneh">
+          <div class="kartu-gambar">gambar</div>
+          <h3>Keyboard Mekanik K-87</h3>
+          <p>Switch taktil, kabel USB-C</p>
+          <p class="harga">Rp899.000</p>
+          <span class="kartu-tombol">Tambah ke Keranjang</span>
+        </div>
+        <div class="p-kartu span-4">
+          <div class="kartu-gambar">gambar</div>
+          <h3>Mouse Nirkabel M-2</h3>
+          <p>Sensor 4000 dpi, baterai tahan lama</p>
+          <p class="harga">Rp349.000</p>
+          <span class="kartu-tombol">Tambah ke Keranjang</span>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="71*4 + 24*3 = 356">Pada grid 1120 piksel dengan gutter 24 piksel, satu kartu 4 kolom berukuran 4 × 71 + 3 × 24 = <strong>356 piksel</strong>. Angka itu tidak ditulis di kartu; ia datang dari garis kolom, dan justru karena itu keenam kartu selalu selebar sama.</p>
+
+    <h2>Repetition: delapan kartu, satu kelas</h2>
+    <p>Delapan kartu katalog memakai kelas <code>p-kartu</code> yang sama: satu komponen saja yang dirawat, pola terbentuk, dan lengkung 12 pikselnya tidak perlu diingat ulang di tiap baris. Begitu satu kartu dibuat dengan wujud sendiri, lahirlah komponen kedua yang harus dirawat.</p>
+<pre><code class="language-css">.kartu-baru {
+  border-radius: 20px;
+  background: #F8FAFC;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}</code></pre>
+    <div class="demo">
+      <p class="label-baris">Delapan kartu, satu kelas p-kartu</p>
+      <div class="grid-12">
+        <div class="p-kartu span-4">
+          <div class="kartu-gambar">gambar</div>
+          <h3>Kopi Bubuk 250 g</h3>
+          <p class="harga">Rp85.000</p>
+        </div>
+        <div class="p-kartu span-4">
+          <div class="kartu-gambar">gambar</div>
+          <h3>Teh Hijau</h3>
+          <p class="harga">Rp32.000</p>
+        </div>
+        <div class="p-kartu span-4">
+          <div class="kartu-gambar">gambar</div>
+          <h3>Gula Aren Cair</h3>
+          <p class="harga">Rp48.000</p>
+        </div>
+        <div class="p-kartu span-4">
+          <div class="kartu-gambar">gambar</div>
+          <h3>Madu Hutan</h3>
+          <p class="harga">Rp120.000</p>
+        </div>
+        <div class="p-kartu span-4">
+          <div class="kartu-gambar">gambar</div>
+          <h3>Beras Merah</h3>
+          <p class="harga">Rp92.000</p>
+        </div>
+        <div class="p-kartu span-4">
+          <div class="kartu-gambar">gambar</div>
+          <h3>Keripik Singkong</h3>
+          <p class="harga">Rp18.000</p>
+        </div>
+        <div class="p-kartu span-4">
+          <div class="kartu-gambar">gambar</div>
+          <h3>Sabun Sereh</h3>
+          <p class="harga">Rp25.000</p>
+        </div>
+        <div class="p-kartu span-4">
+          <div class="kartu-gambar">gambar</div>
+          <h3>Air Mineral</h3>
+          <p class="harga">Rp56.000</p>
+        </div>
+      </div>
+      <p class="label-baris">Satu kartu dengan wujud sendiri</p>
+      <div class="kartu-baru">kartu promo: lengkung 20 px, latar sendiri, bayangan sendiri — komponen kedua yang harus dirawat.</div>
+    </div>
+
+    <h2>Yang perlu diingat</h2>
+    <ul>
+      <li>Tombol utama selalu indigo <code>--clr-primary</code>; kartu produk selalu berlengkung 12 piksel.</li>
+      <li>Link aktif di navigasi selalu ditebalkan, bukan cuma diwarnai.</li>
+      <li>Pengguna belajar sekali, lalu bisa mengulanginya di halaman mana pun.</li>
+      <li>Wujud baru tanpa alasan menambah satu komponen yang harus dirawat.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> konsistensi bekerja pada sumbu waktu — pengguna tidak perlu belajar ulang. Repetition bekerja pada sumbu ruang — pola yang sama diulang membuat katalog bisa dipindai tanpa dibaca.</p>
+    <nav class="nav">
+      <a href="02-hierarki-visual.html">← 02 hierarki-visual</a>
+      <span>03 / 16</span>
+      <a href="04-usability.html">04 usability →</a>
+    </nav>
+  </div>
+</body>
+</html>

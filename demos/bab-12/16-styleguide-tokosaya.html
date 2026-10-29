@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 12 · 16 styleguide-tokosaya — UI/UX dan Design System</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: halaman styleguide Tokosaya sebagai contoh utuh */
+  .demo .blok {
+    box-sizing: border-box;
+    padding: 16px;
+    background: #ffffff;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+  }
+  .demo .label-baris {
+    margin: 0 0 8px;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+  .demo .sg-judul {
+    margin: 0 0 4px;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: #1E293B;
+  }
+  .demo .sg-ket { margin: 0; font-size: 14px; color: #334155; }
+  .demo .blok p { font-size: 13.5px; color: #334155; }
+  .demo .swatch-mini {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 6px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    color: #334155;
+  }
+  .demo .dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    border: 1px solid #E2E8F0;
+  }
+  .demo .dot-primary { background: #4F46E5; }
+  .demo .dot-primary-dark { background: #4338CA; }
+  .demo .dot-accent { background: #F59E0B; }
+  .demo .dot-success { background: #16A34A; }
+  .demo .dot-danger { background: #DC2626; }
+  .demo .sampel-1 {
+    margin: 0 0 4px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #1E293B;
+  }
+  .demo .sampel-2 {
+    margin: 0 0 4px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1E293B;
+  }
+  .demo .sampel-3 { margin: 0 0 4px; font-size: 15px; font-weight: 600; color: #1E293B; }
+  .demo .sampel-4 { margin: 0; font-size: 14px; color: #334155; }
+  .demo .bar-skala {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 6px;
+    font-size: 12px;
+    color: #334155;
+  }
+  .demo .bar {
+    box-sizing: border-box;
+    height: 10px;
+    background: #4F46E5;
+    border-radius: 4px;
+  }
+  .demo .bar-8 { width: 8px; }
+  .demo .bar-16 { width: 16px; }
+  .demo .bar-24 { width: 24px; }
+  .demo .bar-48 { width: 48px; }
+  .demo .bar-64 { width: 64px; }
+  .demo .baris-tombol { display: flex; flex-wrap: wrap; gap: 8px; }
+  .demo .btn-utama,
+  .demo .btn-outline,
+  .demo .btn-netral {
+    box-sizing: border-box;
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-size: 13px;
+  }
+  .demo .btn-utama { background: #4F46E5; border: 1px solid #4F46E5; color: #FFFFFF; }
+  .demo .btn-outline { background: #FFFFFF; border: 1px solid #4F46E5; color: #4F46E5; }
+  .demo .btn-netral { background: #FFFFFF; border: 1px solid #E2E8F0; color: #334155; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .sg-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+  }
+
+  .sg-span-12 {
+    grid-column: span 12;
+  }
+
+  .sg-span-8 {
+    grid-column: span 8;
+  }
+
+  .sg-span-6 {
+    grid-column: span 6;
+  }
+
+  .sg-span-4 {
+    grid-column: span 4;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 12 · UI/UX dan Design System</strong> · 16 Styleguide</p>
+    <h1>Styleguide: Satu Halaman, Semua Token</h1>
+    <p>Satu halaman berisi semua token dan semua komponen. Pembukanya swatch warna bernama beserta nilai heksa, lalu sampel tipografi dari H1 sampai teks kecil, skala jarak dalam bentuk visual, catatan do and don't, dan deretan varian tombol.</p>
+
+    <h2>Grid yang juga dipakai halaman dokumentasinya sendiri</h2>
+    <p>Halaman <code>styleguide.html</code> dibaca sebagai grid 12 kolom: <code>h1</code> selebar 12 kolom, swatch warna span 4 dengan sampel tipografi span 8, skala jarak span 6 dengan catatan do and don't span 6, dan varian tombol span 12.</p>
+<pre><code class="language-css">.sg-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+}
+
+.sg-span-12 {
+  grid-column: span 12;
+}
+
+.sg-span-8 {
+  grid-column: span 8;
+}
+
+.sg-span-6 {
+  grid-column: span 6;
+}
+
+.sg-span-4 {
+  grid-column: span 4;
+}</code></pre>
+    <div class="demo">
+      <div class="sg-grid">
+        <div class="sg-span-12 blok">
+          <p class="sg-judul">Styleguide Tokosaya</p>
+          <p class="sg-ket">Satu halaman, semua token, semua komponen.</p>
+        </div>
+        <div class="sg-span-4 blok">
+          <p class="label-baris">Swatch warna (span 4)</p>
+          <p class="swatch-mini"><span class="dot dot-primary"></span>--clr-primary #4F46E5</p>
+          <p class="swatch-mini"><span class="dot dot-primary-dark"></span>--clr-primary-dark #4338CA</p>
+          <p class="swatch-mini"><span class="dot dot-accent"></span>--clr-accent #F59E0B</p>
+          <p class="swatch-mini"><span class="dot dot-success"></span>--clr-success #16A34A</p>
+          <p class="swatch-mini"><span class="dot dot-danger"></span>--clr-danger #DC2626</p>
+        </div>
+        <div class="sg-span-8 blok">
+          <p class="label-baris">Sampel tipografi (span 8)</p>
+          <p class="sampel-1">H1 Peralatan Kerja Digital</p>
+          <p class="sampel-2">H2 Katalog Produk</p>
+          <p class="sampel-3">H3 Monitor IPS 24" MR-241</p>
+          <p class="sampel-4">Teks kecil: garansi resmi 12 bulan, dikirim dari gudang Jakarta.</p>
+        </div>
+        <div class="sg-span-6 blok">
+          <p class="label-baris">Skala jarak (span 6)</p>
+          <p class="bar-skala"><span class="bar bar-8"></span>8 px</p>
+          <p class="bar-skala"><span class="bar bar-16"></span>16 px</p>
+          <p class="bar-skala"><span class="bar bar-24"></span>24 px</p>
+          <p class="bar-skala"><span class="bar bar-48"></span>48 px</p>
+          <p class="bar-skala"><span class="bar bar-64"></span>64 px</p>
+        </div>
+        <div class="sg-span-6 blok">
+          <p class="label-baris">Do and don't warna (span 6)</p>
+          <p>Do: satu warna utama buat semua aksi penting; hijau sukses, merah bahaya, kuning sorotan; catat pasangan warna dan teks di sini.</p>
+          <p>Don't: bikin merah kedua yang mirip; pakai warna sebagai satu-satunya penyampai makna; tulis nilai mentah di luar <code>:root</code>.</p>
+        </div>
+        <div class="sg-span-12 blok">
+          <p class="label-baris">Varian tombol (span 12)</p>
+          <div class="baris-tombol">
+            <span class="btn-utama">Lihat Katalog</span>
+            <span class="btn-outline">Detail</span>
+            <span class="btn-netral">Batal</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="4 + 8 = 12">Swatch dan tipografi berbagi <strong>12 kolom</strong>: 4 di kiri, 8 di kanan.</p>
+    <p class="hitung" data-hitung="6 + 6 = 12">Skala jarak dan catatan do and don't berbagi <strong>12 kolom</strong> dengan pembagian yang sama besar.</p>
+
+    <h2>Tiga pembaca styleguide</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Pembaca</th><th>Yang dicarinya</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Desainer</td><td>nilai token dan batas varian yang boleh dipakai</td></tr>
+        <tr><td>Penulis kode</td><td>nama kelas dan aturan pemakaiannya</td></tr>
+        <tr><td>Penjaga merek</td><td>warna, huruf, dan jarak yang sudah disepakati</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Aturan kejujuran sistem</h2>
+    <p>Varian baru lahir bersama dokumentasinya di hari yang sama. Dokumentasi yang nggak bisa dilihat biasanya juga nggak dipatuhi, karena orang mau menyalin dari contoh nyata, bukan dari daftar nama. Halaman dokumentasi pun tunduk pada grid yang sama, sebab ia adalah contoh pertama yang akan disalin orang lain.</p>
+    <p><strong>Inti pembelajaran:</strong> styleguide bukan pekerjaan tambahan di akhir; ia bagian dari definisi komponen. Tanpa halaman ini, token tetap ada di berkas CSS tetapi tidak ada yang tahu cara memakainya.</p>
+    <nav class="nav">
+      <a href="15-komponen-dan-varian.html">← 15 komponen-dan-varian</a>
+      <span>16 / 16</span>
+      <span>—</span>
+    </nav>
+  </div>
+</body>
+</html>

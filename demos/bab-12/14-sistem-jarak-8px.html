@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 12 · 14 sistem-jarak-8px — UI/UX dan Design System</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: tiap kotak contoh diberi garis agar pita padding-nya terlihat */
+  .demo .baris-jarak {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+  .demo .label-jarak {
+    flex: 0 0 64px;
+    margin: 0;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13px;
+    color: #334155;
+  }
+  .demo .contoh {
+    box-sizing: border-box;
+    display: inline-block;
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+    border-radius: 8px;
+  }
+  .demo .isi {
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 2px 6px;
+    background: #4F46E5;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #ffffff;
+  }
+  .demo .label-baris {
+    margin: 0 0 8px;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+  .demo .kartu-katalog {
+    background: #ffffff;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    font-size: 13px;
+    color: #334155;
+  }
+  .demo .kartu-katalog h3 { margin: 0; font-size: 14px; }
+  .demo .kartu-katalog .harga { margin: 0; font-weight: 600; color: #1E293B; }
+  .demo .kartu-katalog .aksi {
+    display: inline-block;
+    padding: 4px 8px;
+    background: #4F46E5;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #ffffff;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .p-8 {
+    padding: 8px;
+  }
+
+  .p-16 {
+    padding: 16px;
+  }
+
+  .p-24 {
+    padding: 24px;
+  }
+
+  .p-48 {
+    padding: 48px;
+  }
+
+  .p-64 {
+    padding: 64px;
+  }
+
+  .baris-kartu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .kartu-katalog {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+  }
+
+  .section {
+    margin-top: 48px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 12 · UI/UX dan Design System</strong> · 14 Sistem jarak 8 px</p>
+    <h1>Sistem Jarak 8 Piksel: Sedikit Nilai, Banyak Ketenangan</h1>
+    <p>Skala jarak Tokosaya dibatasi ke kelipatan 8 piksel. Keputusan jarak jadi pilihan di antara sedikit nilai, bukan tebakan di antara ratusan kemungkinan. Skala 8 piksel itu aturan desain; utilitas hanyalah alat untuk mencapainya.</p>
+
+    <h2>Skala yang dipakai sehari-hari</h2>
+    <p>Lima nilai sudah cukup untuk seluruh halaman. Kotak bergaris putus-putus di bawah adalah elemennya; pita putih di sekeliling chip indigo adalah padding yang sedang diukur.</p>
+<pre><code class="language-css">.p-8 {
+  padding: 8px;
+}
+
+.p-16 {
+  padding: 16px;
+}
+
+.p-24 {
+  padding: 24px;
+}
+
+.p-48 {
+  padding: 48px;
+}
+
+.p-64 {
+  padding: 64px;
+}</code></pre>
+    <div class="demo">
+      <div class="baris-jarak">
+        <p class="label-jarak">8 px</p>
+        <div class="contoh p-8"><span class="isi">isi</span></div>
+      </div>
+      <div class="baris-jarak">
+        <p class="label-jarak">16 px</p>
+        <div class="contoh p-16"><span class="isi">isi</span></div>
+      </div>
+      <div class="baris-jarak">
+        <p class="label-jarak">24 px</p>
+        <div class="contoh p-24"><span class="isi">isi</span></div>
+      </div>
+      <div class="baris-jarak">
+        <p class="label-jarak">48 px</p>
+        <div class="contoh p-48"><span class="isi">isi</span></div>
+      </div>
+      <div class="baris-jarak">
+        <p class="label-jarak">64 px</p>
+        <div class="contoh p-64"><span class="isi">isi</span></div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="8px * 2 = 16">Dua satuan: <strong>16 px</strong>.</p>
+    <p class="hitung" data-hitung="8px * 3 = 24">Tiga satuan: <strong>24 px</strong>.</p>
+    <p class="hitung" data-hitung="8px * 6 = 48">Enam satuan: <strong>48 px</strong>.</p>
+    <p class="hitung" data-hitung="8px * 8 = 64">Delapan satuan: <strong>64 px</strong>, jarak header dan footer.</p>
+
+    <h2>Pemakaian lazimnya</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Jarak</th><th>Pemakaian lazim</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>8 piksel</td><td>jarak ikon dan teks</td></tr>
+        <tr><td>16 piksel</td><td>antar baris elemen berpasangan</td></tr>
+        <tr><td>24 piksel</td><td>antar kartu dalam satu grid</td></tr>
+        <tr><td>48 piksel</td><td>antar section dalam halaman</td></tr>
+        <tr><td>64 piksel</td><td>jarak header dan footer</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Terpakai di katalog Tokosaya</h2>
+    <p>Gutter antarkartu 24 piksel, jarak di dalam kartu 8 piksel, padding kartu 16 piksel, dan jarak antarsection 48 piksel. Semua angka itu kelipatan 8, jadi tidak ada nilai yang perlu dinegosiasikan tiap kali kartu baru ditambahkan.</p>
+<pre><code class="language-css">.baris-kartu {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.kartu-katalog {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+}
+
+.section {
+  margin-top: 48px;
+}</code></pre>
+    <div class="demo">
+      <p class="label-baris">Section pertama</p>
+      <div class="baris-kartu">
+        <div class="kartu-katalog">
+          <h3>Monitor IPS 24" MR-241</h3>
+          <p class="harga">Rp1.899.000</p>
+          <span class="aksi">Tambah</span>
+        </div>
+        <div class="kartu-katalog">
+          <h3>Keyboard Mekanik K-87</h3>
+          <p class="harga">Rp899.000</p>
+          <span class="aksi">Tambah</span>
+        </div>
+        <div class="kartu-katalog">
+          <h3>Mouse Nirkabel M-2</h3>
+          <p class="harga">Rp349.000</p>
+          <span class="aksi">Tambah</span>
+        </div>
+      </div>
+      <div class="section">
+        <p class="label-baris">Section kedua: berjarak 48 px dari section sebelumnya</p>
+        <div class="kartu-katalog">
+          <h3>Monitor IPS 24" MR-241</h3>
+          <p class="harga">Rp1.899.000</p>
+          <span class="aksi">Tambah</span>
+        </div>
+      </div>
+    </div>
+
+    <h2>Yang perlu diingat</h2>
+    <ul>
+      <li>Label dan input berjarak 8 piksel; antar kelompok 24 piksel.</li>
+      <li>Keputusan jarak dibatasi ke sedikit nilai supaya tim tinggal memilih.</li>
+      <li>Nilai 32 piksel bisa didapat dengan menumpuk dua kelipatan atau satu kelas kustom.</li>
+      <li>Skala 8 piksel itu aturan desain, utilitas cuma alatnya.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> yang membuat halaman terasa tenang bukan jarak yang indah satu per satu, melainkan jarak yang semuanya berasal dari skala yang sama.</p>
+    <nav class="nav">
+      <a href="13-sistem-tipografi.html">← 13 sistem-tipografi</a>
+      <span>14 / 16</span>
+      <a href="15-komponen-dan-varian.html">15 komponen-dan-varian →</a>
+    </nav>
+  </div>
+</body>
+</html>

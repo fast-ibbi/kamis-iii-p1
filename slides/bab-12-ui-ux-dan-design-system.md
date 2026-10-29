@@ -117,6 +117,7 @@ wajah visual yang dilihat dan disentuh pengguna — layout, warna, huruf, tombol
 ikon navigasi. UX adalah seluruh rasa dan hasil selama memakai halaman, mulai dari
 membuka halaman sampai selesai berbelanja. Analogi restoran: UI suasananya, UX pengalaman
 makannya. Keduanya menentukan apakah sistem benar-benar dipakai.
+Demo: demos/bab-12/01-ui-dan-ux.html — dua lajur berdampingan memisahkan wajah halaman (UI) dari perjalanan pemakaian (UX).
 -->
 
 ---
@@ -148,6 +149,7 @@ Bandingkan dua versi hero di layar, bukan cuma dibacakan. Tanyakan ke mana matam
 bergerak duluan di versi buruk; jawabannya biasanya ke tombol promo kecil
 yang justru bukan aksi utama. Tekankan bahwa hierarki mengarahkan pemindaian, dan
 bahwa satu pegas kayak ukuran saja biasanya belum cukup.
+Demo: demos/bab-12/02-hierarki-visual.html — hero tanpa hierarki dibandingkan dengan hero yang punya satu tumpuan.
 -->
 
 ---
@@ -166,6 +168,7 @@ Pakai contoh dua fakultas yang menamai menu akademik dengan label berbeda; mahas
 baru akan tersesat padahal sistemnya sama. Tanyakan kenapa konsistensi bukan cuma
 soal tampilan. Jawaban yang diharapkan: perilaku yang seragam memberi kesan bahwa
 organisasinya terkelola.
+Demo: demos/bab-12/03-konsistensi-dan-repetition.html — dua baris katalog di garis kolom yang sama, lalu satu kartu yang digeser 8 piksel dan delapan kartu satu kelas.
 -->
 
 ---
@@ -199,6 +202,7 @@ Tanyakan label tombol mana yang lebih baik dan kenapa. Jawaban yang diharapkan:
 "Lihat Katalog" karena tujuan sudah terbaca sebelum diklik. Sebutkan bahwa di proyek
 nyata masalah usability biasanya muncul di halaman penting yang rumit: formulir
 pendaftaran, antrean layanan, atau keranjang checkout.
+Demo: demos/bab-12/04-usability.html — tombol “Klik di sini” dan “Lihat Katalog” dijawab tiga pertanyaan yang sama.
 -->
 
 ---
@@ -232,6 +236,7 @@ Minta mahasiswa menyebut benda di ruang kelas yang affordancenya jelas, lalu pin
 analoginya ke layar. Tanyakan apa yang terjadi kalau tombol utama ditampilkan sebagai
 teks polos. Jawaban yang diharapkan: pengguna ragu mengklik, dan keraguan itu melebar
 jadi rasa nggak percaya pada layanannya.
+Demo: demos/bab-12/05-affordance.html — tombol 166 × 56 piksel dengan pita padding-nya, dibandingkan teks polos tanpa isyarat.
 -->
 
 ---
@@ -281,6 +286,7 @@ dan pengiriman adalah dua kumpulan berbeda. Tanyakan apa yang berubah kalau semu
 jarak disamakan 8 piksel. Jawaban yang diharapkan: kelompoknya jadi samar dan mata
 harus bekerja lebih keras. Ingatkan bahwa dua hukum ini yang akan kamu pakai sebagai
 dasar sistem jarak di bagian berikutnya.
+Demo: demos/bab-12/06-dua-hukum-gestalt.html — formulir berjarak seragam 8 piksel dibandingkan formulir dua kelompok 8 dan 24 piksel.
 -->
 
 ---
@@ -328,6 +334,7 @@ Tangkap reaksi awam dulu: masih ada ruang kosong, berarti harus diisi. Tanyakan 
 kartu mana yang jadi lebih mudah dibaca setelah diberi napas. Jawaban yang diharapkan:
 badge, judul, harga, dan tombol terbaca sebagai empat kelompok terpisah. Sebutkan
 angka 16-24 piksel sebagai contoh konkret, bukan angka keramat.
+Demo: demos/bab-12/07-whitespace.html — kartu produk ber-padding 0 dibandingkan kartu ber-padding 24 piksel.
 -->
 
 ---
@@ -346,6 +353,7 @@ Tekankan bahwa garisnya nggak digambar, tapi mata tetap menangkapnya lewat tepi 
 yang sejajar. Tanyakan kenapa rata tengah berbahaya buat paragraf panjang. Jawaban
 yang diharapkan: tepi kiri yang bergerigi bikin mata sulit menemukan awal baris
 berikutnya. Sebutkan bahwa kelas Bootstrap cuma alat; disiplin yang menentukan.
+Demo: demos/bab-12/08-alignment.html — hero tiga elemen di satu garis kolom, lalu versi yang tiap elemennya digeser.
 -->
 
 ---
@@ -381,6 +389,7 @@ Koreksi dulu anggapan bahwa contrast berarti halaman berwarna-warni. Tanyakan ke
 menyamakan semua warna justru menghapus hierarki. Jawaban yang diharapkan: nggak ada
 lagi yang menonjol, jadi mata nggak tahu harus mulai dari mana. Sebutkan bahwa ambang
 kontras teks akan diuji lebih jauh di Bab 13.
+Demo: demos/bab-12/09-contrast.html — kartu serba netral 6 + 6 kolom dibandingkan kartu berjudul aksen 9 + 3 kolom.
 -->
 
 ---
@@ -497,6 +506,7 @@ akhirnya melihat halamannya.
 Tanyakan apa yang terjadi kalau `--clr-primary` diubah. Jawaban yang diharapkan:
 tombol, badge, dan link di semua halaman ikut berubah tanpa menyentuh halaman satu
 per satu. Sebutkan bahwa dua lapisan sisanya, pola dan dokumentasi, dibahas berikutnya.
+Demo: demos/bab-12/10-empat-lapisan-design-system.html — token, komponen, dan halaman bertumpuk, ditutup satu token yang ditimpa.
 -->
 
 ---
@@ -556,6 +566,7 @@ Bandingkan dua cara menamai di gambar. Primitif menyebut nilai tanpa konteks:
 stabil daripada nilai; merek boleh berganti, makna "bahaya" tetap sama. Token ditulis
 sekali di `:root`, lalu dikonsumsi `var()`, dan nilai mentah `#4F46E5` di halaman bikin
 sistem bocor.
+Demo: demos/bab-12/11-token-primitif-dan-semantik.html — tombol ber-var() ikut berubah saat token diganti, tombol bernilai mentah tertinggal.
 -->
 
 ---
@@ -577,6 +588,7 @@ Buka tabel ini di browser sambil menunjuk tombol Tokosaya yang memakainya. Tanya
 token mana yang cocok buat teks judul dan kenapa. Jawaban yang diharapkan:
 `--clr-dark`, karena perannya menuntut bobot paling tegas. Ingatkan bahwa nama token
 menyebut fungsi, bukan warna, jadi gampang dibaca anggota tim baru.
+Demo: demos/bab-12/12-token-warna.html — sepuluh swatch bernama beserta nilai heksa dan peran semantiknya.
 -->
 
 ---
@@ -641,6 +653,7 @@ hero pakai `h1` Poppins 700; judul halaman `h2` Poppins 600; judul kartu `h3`/`h
 Poppins 600; subjudul `.lead` Inter 400; teks paragraf `body` Inter 400. Poppins
 berbicara, Inter bercerita, dan pergantian huruf sendiri sudah jadi sinyal hierarki.
 Tunjuk satu halaman Tokosaya di browser sambil menyebut peran tiap simpul di gambar.
+Demo: demos/bab-12/13-sistem-tipografi.html — tangga lima peran dari judul hero sampai paragraf, plus batas baris 546 piksel.
 -->
 
 ---
@@ -699,6 +712,7 @@ biar skala ini terasa nyata.
 Tanyakan kenapa keputusan jarak dibatasi ke enam nilai saja. Jawaban yang diharapkan:
 anggota tim tinggal memilih, bukan menebak dari ratusan kemungkinan. Ingatkan bahwa
 nilai 32 piksel bisa didapat dengan menumpuk utilitas atau satu kelas kustom.
+Demo: demos/bab-12/14-sistem-jarak-8px.html — lima kotak contoh yang memperlihatkan padding 8, 16, 24, 48, dan 64 piksel.
 -->
 
 ---
@@ -736,6 +750,7 @@ Tanyakan kenapa matriks varian ditulis, padahal tombolnya cuma satu komponen. Ja
 yang diharapkan: biar varian aneh bisa dikenali sejak awal dan nggak lolos ke produksi
 tanpa alasan. Sebutkan aturan pemakaiannya: utama buat aksi paling bernilai, outline
 urutan kedua, netral buat tindakan pendamping.
+Demo: demos/bab-12/15-komponen-dan-varian.html — matriks tiga varian tombol dengan status normal, hover, dan nonaktif, plus kartu enam bagian dan badge dataset.
 -->
 
 ---
@@ -830,6 +845,7 @@ dokumentasi yang nggak bisa dilihat biasanya juga nggak dipatuhi. Jawaban yang
 diharapkan: orang mau menyalin dari contoh nyata, bukan dari daftar nama. Tutup dengan
 aturan kejujuran sistem: nggak ada varian yang berjalan lebih dulu daripada
 dokumentasinya.
+Demo: demos/bab-12/16-styleguide-tokosaya.html — halaman styleguide satu layar: swatch span 4, tipografi span 8, jarak dan catatan span 6.
 -->
 
 ---
@@ -958,6 +974,7 @@ mentah dan label form. Ingatkan bahwa styleguide ini masih dipakai di Bab 13, 14
 - Design system menyatukan token, komponen, aturan, dan dokumentasi
 - Token semantik menamai peran, jadi perubahan nilai aman
 - Styleguide adalah satu halaman semua token dan komponen
+**Demo:** seluruh konsep bab ini bisa dicoba di [demos/bab-12/index.html](demos/bab-12/index.html).
 
 <!--
 Tutup dengan pesan utama bab: keputusan visual itu boleh berubah, asal tinggal di satu

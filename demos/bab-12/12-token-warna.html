@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 12 · 12 token-warna — UI/UX dan Design System</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: swatch warna bernama seperti di halaman styleguide */
+  .demo .swatch-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+  }
+  .demo .swatch {
+    padding: 8px;
+    background: #ffffff;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+  }
+  .demo .kotak-warna { height: 48px; margin-bottom: 8px; border-radius: 6px; }
+  .demo .sw-primary { background: var(--clr-primary); }
+  .demo .sw-primary-dark { background: var(--clr-primary-dark); }
+  .demo .sw-accent { background: var(--clr-accent); }
+  .demo .sw-dark { background: var(--clr-dark); }
+  .demo .sw-body { background: var(--clr-body); }
+  .demo .sw-bg { background: var(--clr-bg); border: 1px solid var(--clr-border); }
+  .demo .sw-surface { background: var(--clr-surface); border: 1px solid var(--clr-border); }
+  .demo .sw-border { background: var(--clr-border); }
+  .demo .sw-success { background: var(--clr-success); }
+  .demo .sw-danger { background: var(--clr-danger); }
+  .demo .swatch p { margin: 0; font-size: 12px; }
+  .demo .nama-token {
+    margin-bottom: 2px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    color: #1E293B;
+  }
+  .demo .nilai-token {
+    margin-bottom: 4px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    color: #6b7280;
+  }
+  .demo .peran-token { color: #334155; }
+  .demo .tint-sukses {
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  :root {
+    --clr-primary: #4F46E5;
+    --clr-primary-dark: #4338CA;
+    --clr-accent: #F59E0B;
+    --clr-dark: #1E293B;
+    --clr-body: #334155;
+  }
+
+  :root {
+    --clr-bg: #F8FAFC;
+    --clr-surface: #FFFFFF;
+    --clr-border: #E2E8F0;
+    --clr-success: #16A34A;
+    --clr-danger: #DC2626;
+  }
+
+  .tint-sukses {
+    background: rgba(22, 163, 74, 0.1);
+    color: var(--clr-success);
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 12 · UI/UX dan Design System</strong> · 12 Token warna</p>
+    <h1>Token Warna: Sepuluh Swatch Bernama</h1>
+    <p>Setiap baris tabel warna di dek jadi satu kartu warna bernama di styleguide. Yang ditampilkan bukan cuma nilainya, tetapi nama token dan peran semantiknya, supaya anggota tim baru memilih token dengan alasan, bukan dengan selera.</p>
+
+    <h2>Lima warna inti</h2>
+    <p>Nama token menyebut fungsi, bukan warna: <code>--clr-dark</code> untuk judul dan teks yang tegas, <code>--clr-body</code> untuk paragraf utama.</p>
+<pre><code class="language-css">:root {
+  --clr-primary: #4F46E5;
+  --clr-primary-dark: #4338CA;
+  --clr-accent: #F59E0B;
+  --clr-dark: #1E293B;
+  --clr-body: #334155;
+}</code></pre>
+    <div class="demo">
+      <div class="swatch-grid">
+        <div class="swatch">
+          <div class="kotak-warna sw-primary"></div>
+          <p class="nama-token">--clr-primary</p>
+          <p class="nilai-token">#4F46E5</p>
+          <p class="peran-token">tombol utama, link, aksi penting</p>
+        </div>
+        <div class="swatch">
+          <div class="kotak-warna sw-primary-dark"></div>
+          <p class="nama-token">--clr-primary-dark</p>
+          <p class="nilai-token">#4338CA</p>
+          <p class="peran-token">tombol pas disentuh</p>
+        </div>
+        <div class="swatch">
+          <div class="kotak-warna sw-accent"></div>
+          <p class="nama-token">--clr-accent</p>
+          <p class="nilai-token">#F59E0B</p>
+          <p class="peran-token">badge penanda dan sorotan</p>
+        </div>
+        <div class="swatch">
+          <div class="kotak-warna sw-dark"></div>
+          <p class="nama-token">--clr-dark</p>
+          <p class="nilai-token">#1E293B</p>
+          <p class="peran-token">judul dan teks yang tegas</p>
+        </div>
+        <div class="swatch">
+          <div class="kotak-warna sw-body"></div>
+          <p class="nama-token">--clr-body</p>
+          <p class="nilai-token">#334155</p>
+          <p class="peran-token">teks paragraf utama</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Lima warna latar dan status</h2>
+    <p>Perhatikan <code>--clr-surface</code> yang putih: di atas latar putih ia menyatu, jadi di styleguide ia diberi garis tepi dari <code>--clr-border</code> agar terlihat.</p>
+<pre><code class="language-css">:root {
+  --clr-bg: #F8FAFC;
+  --clr-surface: #FFFFFF;
+  --clr-border: #E2E8F0;
+  --clr-success: #16A34A;
+  --clr-danger: #DC2626;
+}</code></pre>
+    <div class="demo">
+      <div class="swatch-grid">
+        <div class="swatch">
+          <div class="kotak-warna sw-bg"></div>
+          <p class="nama-token">--clr-bg</p>
+          <p class="nilai-token">#F8FAFC</p>
+          <p class="peran-token">latar halaman</p>
+        </div>
+        <div class="swatch">
+          <div class="kotak-warna sw-surface"></div>
+          <p class="nama-token">--clr-surface</p>
+          <p class="nilai-token">#FFFFFF</p>
+          <p class="peran-token">latar kartu dan panel</p>
+        </div>
+        <div class="swatch">
+          <div class="kotak-warna sw-border"></div>
+          <p class="nama-token">--clr-border</p>
+          <p class="nilai-token">#E2E8F0</p>
+          <p class="peran-token">garis pembatas kartu dan input</p>
+        </div>
+        <div class="swatch">
+          <div class="kotak-warna sw-success"></div>
+          <p class="nama-token">--clr-success</p>
+          <p class="nilai-token">#16A34A</p>
+          <p class="peran-token">pesan sukses, badge "Tersedia"</p>
+        </div>
+        <div class="swatch">
+          <div class="kotak-warna sw-danger"></div>
+          <p class="nama-token">--clr-danger</p>
+          <p class="nilai-token">#DC2626</p>
+          <p class="peran-token">pesan bahaya, badge "Stok Terbatas"</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Tint: menambah latar tanpa menambah warna</h2>
+    <p>Latar tipis untuk pesan sukses tidak perlu warna baru; <code>rgba(22, 163, 74, 0.1)</code> memancarkan <code>--clr-success</code> dengan opasitas sepersepuluh.</p>
+<pre><code class="language-css">.tint-sukses {
+  background: rgba(22, 163, 74, 0.1);
+  color: var(--clr-success);
+}</code></pre>
+    <div class="demo">
+      <p class="tint-sukses">Pesanan dikirim. Kurir tiba besok pagi.</p>
+      <p class="tint-sukses">Stok aman: 24 unit tersedia.</p>
+    </div>
+
+    <h2>Yang perlu diingat</h2>
+    <ul>
+      <li>Indigo dipilih karena diasosiasikan dengan teknologi.</li>
+      <li>Indigo cukup gelap buat teks putih, beda dari biru bawaan Bootstrap.</li>
+      <li>Hijau sukses, merah bahaya, kuning sorotan: pasangan semantiknya tetap.</li>
+      <li>Warna bukan satu-satunya penyampai makna; sertakan ikon atau teks.</li>
+      <li>Nilai mentah hanya boleh hidup di dalam <code>:root</code>.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> tabel warna yang sama muncul dua kali di proyek ini — sebagai token di <code>css/style.css</code> dan sebagai swatch bernama di <code>styleguide.html</code>. Kalau keduanya berbeda, yang dipercaya orang adalah halaman styleguide-nya.</p>
+    <nav class="nav">
+      <a href="11-token-primitif-dan-semantik.html">← 11 token-primitif-dan-semantik</a>
+      <span>12 / 16</span>
+      <a href="13-sistem-tipografi.html">13 sistem-tipografi →</a>
+    </nav>
+  </div>
+</body>
+</html>

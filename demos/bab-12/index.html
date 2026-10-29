@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo Bab 12 — UI/UX dan Design System</title>
+<style>
+  :root { --ink: #111827; --muted: #6b7280; --accent: #1d4ed8; --border: #e5e7eb; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 48px 20px 64px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: var(--ink);
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 820px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .kepala a { color: var(--accent); text-decoration: none; }
+  h1 { margin: 0 0 10px; font-size: 28px; line-height: 1.25; }
+  .pengantar { margin: 0 0 32px; color: var(--muted); font-size: 16px; }
+  ol { margin: 0; padding: 0; list-style: none; counter-reset: demo; }
+  li {
+    counter-increment: demo;
+    border-top: 1px solid var(--border);
+    padding: 16px 0;
+  }
+  li a {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  li a::before {
+    content: counter(demo, decimal-leading-zero) "  ";
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  li p { margin: 4px 0 0; font-size: 15px; color: var(--muted); }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><a href="../index.html">← Semua bab</a> · Demo Bab 12</p>
+    <h1>Demo Bab 12 — UI/UX dan Design System</h1>
+    <p class="pengantar">16 berkas contoh, satu berkas per konsep slide. Tiap berkas
+    menampilkan kode contoh beserta hasil yang benar-benar dirender, tanpa JavaScript.</p>
+    <ol>
+    <li>
+      <a href="01-ui-dan-ux.html">01 ui-dan-ux</a>
+      <p>UI adalah seluruh wajah visual yang dilihat dan disentuh pengguna: layout, warna, huruf, tombol, sampai ikon navigasi. UX adalah seluruh rasa dan hasil selama memakai halaman, m…</p>
+    </li>
+    <li>
+      <a href="02-hierarki-visual.html">02 hierarki-visual</a>
+      <p>Pengguna memindai layar dalam hitungan detik, bukan membaca kata demi kata. Hierarki visual mengatur urutan pemindaian itu: satu tumpuan besar lebih dulu, penjelasnya menyusul. …</p>
+    </li>
+    <li>
+      <a href="03-konsistensi-dan-repetition.html">03 konsistensi-dan-repetition</a>
+      <p>Elemen yang mirip tampil dan bekerja dengan cara yang mirip, sehingga pengguna belajar sekali lalu bisa mengulanginya. Wujud yang diulang membuat pola terbentuk, dan pola itulah…</p>
+    </li>
+    <li>
+      <a href="04-usability.html">04 usability</a>
+      <p>Usability adalah sejauh mana antarmuka membantu pengguna mencapai tujuan: efektif, efisien, dan memuaskan. Ukurannya satu pertanyaan Steve Krug — apakah pengguna harus berpikir …</p>
+    </li>
+    <li>
+      <a href="05-affordance.html">05 affordance</a>
+      <p>Affordance adalah istilah Don Norman untuk isyarat cara berinteraksi: gagang pintu terasa bisa ditarik, tombol gerbang bisa ditekan. Di layar, isyarat itu dibangun oleh latar, b…</p>
+    </li>
+    <li>
+      <a href="06-dua-hukum-gestalt.html">06 dua-hukum-gestalt</a>
+      <p>Mata mengelompokkan apa yang berdekatan dan apa yang serupa. Kedekatan berkata elemen berdempel dibaca sebagai satu kelompok; kemiripan berkata elemen serupa dibaca sebagai satu…</p>
+    </li>
+    <li>
+      <a href="07-whitespace.html">07 whitespace</a>
+      <p>Ruang kosong punya tiga tugas: memberi napas, memisahkan kelompok, dan mengarahkan fokus. Kartu produk yang sama di bawah dipakai dua kali; yang berbeda hanya jarak di dalamnya.</p>
+    </li>
+    <li>
+      <a href="08-alignment.html">08 alignment</a>
+      <p>Alignment menempatkan elemen pada garis tak terlihat yang sama. Garisnya tidak pernah digambar di CSS; mata menangkapnya lewat tepi yang sejajar. Hero Tokosaya di bawah disusun …</p>
+    </li>
+    <li>
+      <a href="09-contrast.html">09 contrast</a>
+      <p>Contrast adalah perbedaan mencolok antara elemen yang harus dibedakan. Pembedanya bisa warna, ukuran, atau bobot huruf. Yang penting bukan banyaknya warna, melainkan ada tidakny…</p>
+    </li>
+    <li>
+      <a href="10-empat-lapisan-design-system.html">10 empat-lapisan-design-system</a>
+      <p>Setiap lapisan dipakai lapisan di atasnya. Token menyediakan nilai, komponen mengonsumsi nilai itu, halaman mengonsumsi komponen, dan pengguna akhirnya melihat halamannya. Pola …</p>
+    </li>
+    <li>
+      <a href="11-token-primitif-dan-semantik.html">11 token-primitif-dan-semantik</a>
+      <p>Token primitif menyebut nilai tanpa konteks — &quot;indigo 600&quot;. Token semantik menyebut peran — --clr-danger untuk pesan bahaya. Peran lebih stabil daripada nilai: merek boleh berga…</p>
+    </li>
+    <li>
+      <a href="12-token-warna.html">12 token-warna</a>
+      <p>Setiap baris tabel warna di dek jadi satu kartu warna bernama di styleguide. Yang ditampilkan bukan cuma nilainya, tetapi nama token dan peran semantiknya, supaya anggota tim ba…</p>
+    </li>
+    <li>
+      <a href="13-sistem-tipografi.html">13 sistem-tipografi</a>
+      <p>Tokosaya memakai dua keluarga huruf. Poppins memikul judul hero, judul halaman, dan judul kartu; Inter memikul subjudul dan paragraf. Keluarga hurufnya digantungkan dari token, …</p>
+    </li>
+    <li>
+      <a href="14-sistem-jarak-8px.html">14 sistem-jarak-8px</a>
+      <p>Skala jarak Tokosaya dibatasi ke kelipatan 8 piksel. Keputusan jarak jadi pilihan di antara sedikit nilai, bukan tebakan di antara ratusan kemungkinan. Skala 8 piksel itu aturan…</p>
+    </li>
+    <li>
+      <a href="15-komponen-dan-varian.html">15 komponen-dan-varian</a>
+      <p>Komponen adalah unit antarmuka yang diulang; varian adalah wujud bakunya. Matriks varian ditulis supaya varian aneh bisa dikenali sejak awal dan nggak lolos ke produksi tanpa al…</p>
+    </li>
+    <li>
+      <a href="16-styleguide-tokosaya.html">16 styleguide-tokosaya</a>
+      <p>Satu halaman berisi semua token dan semua komponen. Pembukanya swatch warna bernama beserta nilai heksa, lalu sampel tipografi dari H1 sampai teks kecil, skala jarak dalam bentu…</p>
+    </li>
+    </ol>
+  </div>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 12 · 11 token-primitif-dan-semantik — UI/UX dan Design System</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: dua panel, keduanya dibungkus kelas yang sama-sama menimpa --clr-primary */
+  .demo .dua-lajur {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .demo .panel {
+    padding: 16px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+  }
+  .demo .label-baris {
+    margin: 0 0 12px;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+  .demo .panel p { margin: 12px 0 0; font-size: 13.5px; color: #334155; }
+  .demo .badge-bahaya {
+    box-sizing: border-box;
+    display: inline-block;
+    margin-left: 8px;
+    padding: 2px 8px;
+    background: var(--clr-danger);
+    border-radius: 999px;
+    font-size: 12px;
+    color: #FFFFFF;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  :root {
+    --clr-primary: #4F46E5;
+    --clr-danger: #DC2626;
+  }
+
+  .btn-utama {
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 8px 16px;
+    background: var(--clr-primary);
+    color: #FFFFFF;
+    border-radius: 12px;
+    font-size: 14px;
+  }
+
+  .badge-bahaya {
+    background: var(--clr-danger);
+    color: #FFFFFF;
+  }
+
+  .tema-ganti {
+    --clr-primary: #DC2626;
+  }
+
+  .tombol-mentah {
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 8px 16px;
+    background: #4F46E5;
+    color: #FFFFFF;
+    border-radius: 12px;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 12 · UI/UX dan Design System</strong> · 11 Token primitif dan semantik</p>
+    <h1>Token Primitif dan Token Semantik: Nilai atau Peran</h1>
+    <p>Token primitif menyebut nilai tanpa konteks — "indigo 600". Token semantik menyebut peran — <code>--clr-danger</code> untuk pesan bahaya. Peran lebih stabil daripada nilai: merek boleh berganti, makna "bahaya" tetap sama. Token ditulis sekali di <code>:root</code>, lalu dikonsumsi lewat <code>var()</code>.</p>
+
+    <h2>Komponen memanggil peran, bukan nilai</h2>
+    <p>Tombol utama membaca <code>--clr-primary</code>; badge bahaya membaca <code>--clr-danger</code>. Nama token menyebut fungsinya, bukan warnanya, jadi anggota tim baru bisa membacanya tanpa membuka palet.</p>
+<pre><code class="language-css">:root {
+  --clr-primary: #4F46E5;
+  --clr-danger: #DC2626;
+}
+
+.btn-utama {
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 8px 16px;
+  background: var(--clr-primary);
+  color: #FFFFFF;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+.badge-bahaya {
+  background: var(--clr-danger);
+  color: #FFFFFF;
+}</code></pre>
+    <div class="demo">
+      <div class="panel">
+        <p class="label-baris">Dua peran, dua pemakaian</p>
+        <div class="btn-utama">Lihat Katalog</div>
+        <span class="badge-bahaya">Stok Terbatas</span>
+        <p>Latar tombol dan latar badge sama-sama datang dari token, jadi keduanya berubah bersama.</p>
+      </div>
+    </div>
+
+    <h2>Disiplin <code>var()</code>: nilai mentah bikin sistem bocor</h2>
+    <p>Kedua panel di bawah dibungkus kelas yang sama, dan kelas itu menimpa <code>--clr-primary</code> menjadi merah. Panel kiri memakai <code>var()</code> sehingga tombolnya ikut berubah; panel kanan menulis <code>#4F46E5</code> langsung, jadi tombolnya tertinggal di indigo.</p>
+<pre><code class="language-css">.tema-ganti {
+  --clr-primary: #DC2626;
+}
+
+.tombol-mentah {
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 8px 16px;
+  background: #4F46E5;
+  color: #FFFFFF;
+  border-radius: 12px;
+  font-size: 14px;
+}</code></pre>
+    <div class="demo">
+      <div class="dua-lajur">
+        <div class="panel tema-ganti">
+          <p class="label-baris">Lewat var()</p>
+          <div class="btn-utama">Lihat Katalog</div>
+          <p>Tombol ikut berubah karena hanya membaca <code>--clr-primary</code>.</p>
+        </div>
+        <div class="panel tema-ganti">
+          <p class="label-baris">Nilai mentah</p>
+          <div class="tombol-mentah">Lihat Katalog</div>
+          <p>Tombol tetap indigo karena nilai <code>#4F46E5</code> ditulis langsung di aturannya.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Kenapa peran lebih tahan lama</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Pertanyaan</th><th>Token primitif</th><th>Token semantik</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Menyebut apa</td><td>nilai tanpa konteks</td><td>peran dalam antarmuka</td></tr>
+        <tr><td>Contoh</td><td>indigo 600</td><td><code>--clr-danger</code></td></tr>
+        <tr><td>Saat nilai diganti</td><td>namanya ikut menyesatkan</td><td>nama tetap, maknanya tetap</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Inti pembelajaran:</strong> satu nilai mentah di satu halaman sudah cukup membuat perubahan warna utama cuma kena sebagian tombol. Itu bocor yang paling sering terjadi di proyek mahasiswa.</p>
+    <nav class="nav">
+      <a href="10-empat-lapisan-design-system.html">← 10 empat-lapisan-design-system</a>
+      <span>11 / 16</span>
+      <a href="12-token-warna.html">12 token-warna →</a>
+    </nav>
+  </div>
+</body>
+</html>

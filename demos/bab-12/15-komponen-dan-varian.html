@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 12 · 15 komponen-dan-varian — UI/UX dan Design System</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: matriks tombol, kartu produk, dan badge Tokosaya */
+  .demo button { font: inherit; cursor: pointer; }
+  .demo .matriks {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .demo .sel {
+    padding: 12px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+  }
+  .demo .label-baris {
+    margin: 0 0 8px;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+  .demo .sel p { margin: 8px 0 0; font-size: 13px; color: #334155; }
+  .demo .p-kartu h3 { margin: 0; font-size: 15px; line-height: 1.3; }
+  .demo .p-kartu p { margin: 0; font-size: 13.5px; color: #334155; }
+  .demo .p-kartu .gambar {
+    height: 64px;
+    background: #E2E8F0;
+    border-radius: 8px;
+    font-size: 13px;
+    text-align: center;
+    line-height: 64px;
+    color: #6b7280;
+  }
+  .demo .p-kartu .ikon {
+    box-sizing: border-box;
+    display: inline-block;
+    align-self: flex-start;
+    padding: 2px 6px;
+    border: 1px solid var(--clr-border);
+    border-radius: 6px;
+    font-size: 11px;
+    color: #6b7280;
+  }
+  .demo .p-kartu .badge-dataset { align-self: flex-start; }
+  .demo .p-kartu .harga { font-weight: 600; color: #1E293B; }
+  .demo .p-kartu .aksi {
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 8px 16px;
+    background: var(--clr-primary);
+    border-radius: 12px;
+    font-size: 13px;
+    color: #FFFFFF;
+    text-align: center;
+  }
+  .demo .daftar-badge {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  :root {
+    --clr-primary: #4F46E5;
+    --clr-primary-dark: #4338CA;
+    --clr-accent: #F59E0B;
+    --clr-success: #16A34A;
+    --clr-danger: #DC2626;
+    --clr-surface: #FFFFFF;
+    --clr-border: #E2E8F0;
+    --radius: 12px;
+    --shadow-card: 0 8px 24px rgba(15, 23, 42, 0.08);
+  }
+
+  .btn-utama {
+    box-sizing: border-box;
+    padding: 16px;
+    border: 1px solid var(--clr-primary);
+    background: var(--clr-primary);
+    color: #FFFFFF;
+    border-radius: 12px;
+  }
+
+  .btn-utama:hover {
+    background: var(--clr-primary-dark);
+  }
+
+  .btn-outline-toko {
+    box-sizing: border-box;
+    padding: 16px;
+    border: 1px solid var(--clr-primary);
+    background: #FFFFFF;
+    color: var(--clr-primary);
+    border-radius: 12px;
+  }
+
+  .btn-outline-toko:hover {
+    background: var(--clr-primary);
+    color: #FFFFFF;
+  }
+
+  .btn-netral {
+    box-sizing: border-box;
+    padding: 16px;
+    border: 1px solid var(--clr-border);
+    background: #FFFFFF;
+    color: #334155;
+    border-radius: 12px;
+  }
+
+  .btn-netral:hover {
+    border-color: var(--clr-primary);
+  }
+
+  .btn-utama:disabled,
+  .btn-outline-toko:disabled,
+  .btn-netral:disabled {
+    opacity: 0.45;
+  }
+
+  .p-kartu {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 356px;
+    padding: 16px;
+    background: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-card);
+  }
+
+  .p-kartu .aksi {
+    margin-top: auto;
+  }
+
+  .badge-dataset {
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 12px;
+    color: #FFFFFF;
+  }
+
+  .badge-bestseller {
+    background: var(--clr-accent);
+  }
+
+  .badge-tersedia {
+    background: var(--clr-success);
+  }
+
+  .badge-terbatas {
+    background: var(--clr-danger);
+  }
+
+  .badge-baru {
+    background: var(--clr-primary);
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 12 · UI/UX dan Design System</strong> · 15 Komponen dan varian</p>
+    <h1>Komponen dan Matriks Varian</h1>
+    <p>Komponen adalah unit antarmuka yang diulang; varian adalah wujud bakunya. Matriks varian ditulis supaya varian aneh bisa dikenali sejak awal dan nggak lolos ke produksi tanpa alasan.</p>
+
+    <h2>Matriks varian tombol</h2>
+    <p>Tiga varian, tiga status. Arahkan kursor ke tombol normal untuk melihat status hover yang sesungguhnya; tombol paling kanan memakai atribut <code>disabled</code> untuk status nonaktif.</p>
+<pre><code class="language-css">.btn-utama {
+  box-sizing: border-box;
+  padding: 16px;
+  border: 1px solid var(--clr-primary);
+  background: var(--clr-primary);
+  color: #FFFFFF;
+  border-radius: 12px;
+}
+
+.btn-utama:hover {
+  background: var(--clr-primary-dark);
+}
+
+.btn-outline-toko {
+  box-sizing: border-box;
+  padding: 16px;
+  border: 1px solid var(--clr-primary);
+  background: #FFFFFF;
+  color: var(--clr-primary);
+  border-radius: 12px;
+}
+
+.btn-outline-toko:hover {
+  background: var(--clr-primary);
+  color: #FFFFFF;
+}
+
+.btn-netral {
+  box-sizing: border-box;
+  padding: 16px;
+  border: 1px solid var(--clr-border);
+  background: #FFFFFF;
+  color: #334155;
+  border-radius: 12px;
+}
+
+.btn-netral:hover {
+  border-color: var(--clr-primary);
+}
+
+.btn-utama:disabled,
+.btn-outline-toko:disabled,
+.btn-netral:disabled {
+  opacity: 0.45;
+}</code></pre>
+    <table class="tabel">
+      <thead>
+        <tr><th>Jenis \ Status</th><th>Normal</th><th>Hover</th><th>Nonaktif</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Utama</strong> <code>.btn-utama</code></td><td>indigo, teks putih</td><td>indigo gelap</td><td>redup</td></tr>
+        <tr><td><strong>Outline</strong> <code>.btn-outline-toko</code></td><td>garis indigo</td><td>latar indigo</td><td>garis tipis</td></tr>
+        <tr><td><strong>Netral</strong> <code>.btn-netral</code></td><td>putih, garis abu</td><td>garis indigo</td><td>garis tipis</td></tr>
+      </tbody>
+    </table>
+    <div class="demo">
+      <div class="matriks">
+        <div class="sel">
+          <p class="label-baris">Utama</p>
+          <button class="btn-utama" type="button">Lihat Katalog</button>
+          <p>Normal dan hover (arahkan kursor).</p>
+        </div>
+        <div class="sel">
+          <p class="label-baris">Outline</p>
+          <button class="btn-outline-toko" type="button">Detail</button>
+          <p>Urutan kedua setelah aksi utama.</p>
+        </div>
+        <div class="sel">
+          <p class="label-baris">Netral</p>
+          <button class="btn-netral" type="button">Batal</button>
+          <p>Tindakan pendamping.</p>
+        </div>
+        <div class="sel">
+          <p class="label-baris">Nonaktif</p>
+          <button class="btn-utama" type="button" disabled>Lihat Katalog</button>
+          <p>Opasitas 0.45, tidak bisa ditekan.</p>
+        </div>
+        <div class="sel">
+          <p class="label-baris">Nonaktif</p>
+          <button class="btn-outline-toko" type="button" disabled>Detail</button>
+          <p>Garis dan teks ikut meredup.</p>
+        </div>
+        <div class="sel">
+          <p class="label-baris">Nonaktif</p>
+          <button class="btn-netral" type="button" disabled>Batal</button>
+          <p>Status yang sama, varian berbeda.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Kartu produk: enam bagian, urutan tetap</h2>
+    <p>Enam bagian tetap: badge status, ikon, judul, keterangan, harga, dan aksi. Varian dibedakan lewat isi, bukan lewat wajah; kartu Best Seller dan Stok Terbatas berbagi kelas <code>p-kartu</code> yang sama.</p>
+<pre><code class="language-css">.p-kartu {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 356px;
+  padding: 16px;
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+}
+
+.p-kartu .aksi {
+  margin-top: auto;
+}</code></pre>
+    <div class="demo">
+      <div class="p-kartu">
+        <span class="badge-dataset badge-bestseller">Best Seller</span>
+        <span class="ikon">ikon</span>
+        <h3>Monitor IPS 24" MR-241</h3>
+        <p>Monitor IPS 24 inci full HD yang jernih</p>
+        <p class="harga">Rp1.899.000</p>
+        <span class="aksi">Tambah ke Keranjang</span>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="71*4 + 24*3 = 356">Satu kartu produk selebar 4 kolom: 4 × 71 + 3 × 24 = <strong>356 piksel</strong>. Angka itu datang dari grid, bukan dari isi kartunya — sebab itu Best Seller dan Stok Terbatas bisa berbagi kelas yang sama tanpa saling bertabrakan.</p>
+
+    <h2>Badge ikut punya aturan</h2>
+    <p>Setiap badge dataset punya satu token tetap. Warna bukan satu-satunya penyampai makna, jadi teks di dalam badge harus tetap menjelaskannya.</p>
+<pre><code class="language-css">.badge-dataset {
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  color: #FFFFFF;
+}
+
+.badge-bestseller {
+  background: var(--clr-accent);
+}
+
+.badge-tersedia {
+  background: var(--clr-success);
+}
+
+.badge-terbatas {
+  background: var(--clr-danger);
+}
+
+.badge-baru {
+  background: var(--clr-primary);
+}</code></pre>
+    <div class="demo">
+      <div class="daftar-badge">
+        <span class="badge-dataset badge-bestseller">Best Seller</span>
+        <span class="badge-dataset badge-tersedia">Tersedia</span>
+        <span class="badge-dataset badge-terbatas">Stok Terbatas</span>
+        <span class="badge-dataset badge-baru">Baru</span>
+      </div>
+      <table class="tabel">
+        <thead>
+          <tr><th>Badge dataset</th><th>Token</th><th>Makna yang disampaikan</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Best Seller</td><td><code>--clr-accent</code></td><td>produk terlaris</td></tr>
+          <tr><td>Tersedia</td><td><code>--clr-success</code></td><td>stok aman</td></tr>
+          <tr><td>Stok Terbatas</td><td><code>--clr-danger</code></td><td>urgensi</td></tr>
+          <tr><td>Baru</td><td><code>--clr-primary</code></td><td>masuk katalog terbaru</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Yang perlu diingat</h2>
+    <ul>
+      <li>Utama buat satu tindakan paling bernilai di layar.</li>
+      <li>Outline urutan kedua; netral buat tindakan pendamping.</li>
+      <li>Varian di luar matriks nggak boleh lolos ke produksi.</li>
+      <li>Badge kecil pun masuk matriks varian dan harus ada di styleguide.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> matriks varian bukan formalitas. Ia yang membuat "tombol ini kok beda?" bisa dijawab dengan menunjuk satu baris tabel, bukan dengan selera.</p>
+    <nav class="nav">
+      <a href="14-sistem-jarak-8px.html">← 14 sistem-jarak-8px</a>
+      <span>15 / 16</span>
+      <a href="16-styleguide-tokosaya.html">16 styleguide-tokosaya →</a>
+    </nav>
+  </div>
+</body>
+</html>
