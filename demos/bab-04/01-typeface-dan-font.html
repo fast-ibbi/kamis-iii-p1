@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 4 · 01 typeface-dan-font — Tipografi dan Visual Design CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: satu keluarga huruf, empat berat — Poppins tidak dimuat di halaman ini,
+     jadi yang tampak berbeda hanyalah beratnya */
+  .demo .keluarga {
+    font-family: 'Poppins', sans-serif;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+  .demo .keluarga p {
+    margin: 0 0 8px;
+    font-size: 1.25rem;
+    line-height: 1.4;
+  }
+  .demo .keluarga p:last-child { margin-bottom: 0; }
+  .demo .peran {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+  .demo .peran p {
+    margin: 0 0 10px;
+    font-size: 1.125rem;
+  }
+  .demo .peran p:last-child { margin-bottom: 0; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .f-w400 {
+    font-weight: 400;
+  }
+
+  .f-w500 {
+    font-weight: 500;
+  }
+
+  .f-w600 {
+    font-weight: 600;
+  }
+
+  .f-w700 {
+    font-weight: 700;
+  }
+
+  .isi {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+  }
+
+  .subjudul {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+  }
+
+  .judul {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 4 · Tipografi dan Visual Design CSS</strong> · 01 typeface-dan-font</p>
+    <h1>Typeface dan Font</h1>
+    <p>Typeface adalah keluarganya; font adalah satu wujud berat dan gaya di dalamnya. Salah menyebut tidak membuat kode error, hanya membuat diskusi tim berputar tanpa hasil.</p>
+
+    <h2>Satu typeface, empat font</h2>
+    <p>Poppins adalah keluarganya. Regular 400, Medium 500, SemiBold 600, dan Bold 700 adalah
+    empat font di dalam keluarga yang sama; masing-masing punya berat sendiri.</p>
+<pre><code class="language-css">.f-w400 {
+  font-weight: 400;
+}
+
+.f-w500 {
+  font-weight: 500;
+}
+
+.f-w600 {
+  font-weight: 600;
+}
+
+.f-w700 {
+  font-weight: 700;
+}</code></pre>
+    <div class="demo">
+      <div class="keluarga">
+        <p class="f-w400">Poppins Regular 400 — satu font di dalam keluarga</p>
+        <p class="f-w500">Poppins Medium 500 — satu font di dalam keluarga</p>
+        <p class="f-w600">Poppins SemiBold 600 — satu font di dalam keluarga</p>
+        <p class="f-w700">Poppins Bold 700 — satu font di dalam keluarga</p>
+      </div>
+    </div>
+    <p>Halaman ini tidak memuat web font, jadi keempat baris dirender oleh font sistem yang sama.
+    Yang tetap terbaca sebagai pembeda adalah beratnya: itulah font. Nama keluarganya tetap satu,
+    yaitu Poppins.</p>
+
+    <h2>Berat yang dipakai Tokosaya</h2>
+    <p>Isi memakai 400, subjudul 600, judul 700. Judul memakai Poppins 600 sampai 700, isinya
+    memakai Inter 400.</p>
+<pre><code class="language-css">.isi {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+.subjudul {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+.judul {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}</code></pre>
+    <div class="demo">
+      <div class="peran">
+        <p class="judul">Judul hero Tokosaya</p>
+        <p class="subjudul">Subjudul bagian</p>
+        <p class="isi">Isi paragraf memakai Inter 400. Karena keluarga hurufnya tidak diunduh,
+        bentuknya jatuh ke font sistem; yang tetap bekerja adalah berat 400 yang lebih ringan
+        daripada dua baris di atasnya.</p>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="400 + 300 = 700">Dari 400 ke 700 ada jarak <strong>300</strong> satuan berat: dari isi yang tenang sampai judul yang tegas.</p>
+    <nav class="nav">
+      <span>—</span>
+      <span>01 / 16</span>
+      <a href="02-menyusun-typeface.html">02 menyusun-typeface →</a>
+    </nav>
+  </div>
+</body>
+</html>

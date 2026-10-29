@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 4 · 12 gradient-dan-solid — Tipografi dan Visual Design CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: kartu solid dan hero bergradient berdampingan */
+  .demo .solid {
+    background: #ffffff;
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+  }
+  .demo .solid h3 {
+    margin: 0 0 6px;
+    font-size: 1rem;
+  }
+  .demo .solid p { margin: 0 0 6px; font-size: 14px; color: #334155; }
+  .demo .solid p:last-child { margin-bottom: 0; }
+  .demo .hero {
+    border-radius: 6px;
+    padding: 22px 20px;
+    margin-bottom: 12px;
+  }
+  .demo .hero p {
+    margin: 0;
+    color: #FFFFFF;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  .demo .pembanding {
+    background-image: linear-gradient(to bottom right, #4F46E5, #4338CA);
+    border-radius: 6px;
+    padding: 14px 16px;
+    color: #FFFFFF;
+    font-size: 14px;
+  }
+  .demo .catatan {
+    font-size: 13px;
+    color: #6b7280;
+    margin: 0 0 6px;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  :root {
+    --clr-surface: #FFFFFF;
+  }
+
+  .produk-card {
+    background-color: var(--clr-surface);
+  }
+
+  .hero {
+    background-image: linear-gradient(to bottom right, #4F46E5, #4338CA);
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 4 · Tipografi dan Visual Design CSS</strong> · 12 gradient-dan-solid</p>
+    <h1>Solid dan Gradient</h1>
+    <p>Permukaan yang dibaca lama lebih nyaman jika datar. Gradient dipakai seperti bumbu: satu atau dua titik per halaman, bukan di setiap kartu.</p>
+
+    <h2>Permukaan membaca dan permukaan menyambut</h2>
+<pre><code class="language-css">:root {
+  --clr-surface: #FFFFFF;
+}
+
+.produk-card {
+  background-color: var(--clr-surface);
+}
+
+.hero {
+  background-image: linear-gradient(to bottom right, #4F46E5, #4338CA);
+}</code></pre>
+    <div class="demo">
+      <p class="catatan">.produk-card &mdash; satu warna solid</p>
+      <div class="produk-card solid">
+        <h3>Kopi Bubuk 250 g</h3>
+        <p>Arabika gayo, giling halus.</p>
+        <p>Permukaan yang dibaca lama lebih nyaman jika datar.</p>
+      </div>
+      <p class="catatan">.hero &mdash; gradient indigo dari primary menuju primary-dark</p>
+      <div class="hero">
+        <p>Belanja tepat, kirim cepat</p>
+      </div>
+      <p class="catatan">pembanding: kartu produk yang diberi gradient terasa ramai</p>
+      <div class="pembanding">Kartu produk bergradient &mdash; sengaja tidak dipakai</div>
+    </div>
+
+    <h2>Aturan pemakaiannya</h2>
+    <ul>
+      <li><code>to bottom right</code> berjalan dari kiri atas ke kanan bawah.</li>
+      <li>Gradient dipakai seperti bumbu: satu atau dua titik per halaman.</li>
+      <li>Periksa contrast ratio teks di atasnya, jangan hanya melihat gradient-nya.</li>
+      <li>Di halaman Tokosaya, gradient hanya muncul di hero, CTA, dan footer.</li>
+    </ul>
+    <nav class="nav">
+      <a href="11-kontras-aa.html">← 11 kontras-aa</a>
+      <span>12 / 16</span>
+      <a href="13-border-radius.html">13 border-radius →</a>
+    </nav>
+  </div>
+</body>
+</html>

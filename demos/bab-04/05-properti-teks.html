@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 4 · 05 properti-teks — Tipografi dan Visual Design CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: dua judul hero dengan jarak huruf berbeda, dan dua blok perataan */
+  .demo .peraga-judul {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+  }
+  .demo .peraga-judul:last-child { margin-bottom: 0; }
+  .demo .peraga-judul .nama {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    color: #6b7280;
+    margin: 0 0 4px;
+  }
+  .demo .perataan {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+  }
+  .demo .perataan:last-child { margin-bottom: 0; }
+  .demo .perataan p {
+    margin: 0 0 4px;
+    font-size: 1rem;
+  }
+  .demo .perataan .nama {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    color: #6b7280;
+  }
+  .demo .kutipan {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+  .demo .kutipan p { margin: 0 0 8px; }
+  .demo .kutipan p:last-child { margin-bottom: 0; }
+  .demo .kutipan span { font-weight: 600; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .judul-hero {
+    font-size: 2.25rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  /* peraga arah: jarak huruf dilebarkan sebagai pembanding, bukan nilai Tokosaya */
+  .judul-lebar {
+    font-size: 2.25rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  .hero-teks {
+    text-align: center;
+  }
+
+  .isi-produk {
+    text-align: left;
+  }
+
+  .kutipan {
+    font-family: 'Inter', sans-serif;
+    color: #334155;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 4 · Tipografi dan Visual Design CSS</strong> · 05 properti-teks</p>
+    <h1>Properti Teks Setiap Hari</h1>
+    <p>Lima properti yang paling sering dipakai untuk menata teks, beserta praktiknya di Tokosaya. Semuanya bekerja pada satu elemen yang sama.</p>
+
+    <h2>Lima properti dan praktiknya</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Properti</th><th>Fungsi</th><th>Praktik di Tokosaya</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>font-size</code></td><td>ukuran teks</td><td>ditulis memakai <code>rem</code></td></tr>
+        <tr><td><code>font-weight</code></td><td>ketebalan teks</td><td>400 isi, 600 subjudul, 700 judul</td></tr>
+        <tr><td><code>line-height</code></td><td>tinggi baris</td><td>1,6 paragraf, 1,2 judul</td></tr>
+        <tr><td><code>letter-spacing</code></td><td>jarak antarhuruf</td><td>sedikit negatif untuk judul besar</td></tr>
+        <tr><td><code>text-align</code></td><td>perataan teks</td><td>rata kiri; <code>center</code> hanya di hero</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Ukuran, ketebalan, dan jarak huruf</h2>
+    <p>Deck hanya menyebut &ldquo;sedikit negatif untuk judul besar&rdquo;. Nilai negatif di bawah
+    adalah peraga arah, bukan token Tokosaya; pasangan lebarnya dipakai supaya arahnya terlihat.</p>
+<pre><code class="language-css">.judul-hero {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* peraga arah: jarak huruf dilebarkan sebagai pembanding, bukan nilai Tokosaya */
+.judul-lebar {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}</code></pre>
+    <div class="demo">
+      <div class="peraga-judul">
+        <p class="nama">letter-spacing: -0.02em &mdash; judul besar dirapatkan</p>
+        <p class="judul-hero">Belanja tepat, kirim cepat</p>
+      </div>
+      <div class="peraga-judul">
+        <p class="nama">letter-spacing: 0.08em &mdash; peraga pembanding</p>
+        <p class="judul-lebar">Belanja tepat, kirim cepat</p>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="2.25 * 16 = 36">Judul 2.25rem sama dengan <strong>36 px</strong> pada basis 16 px.</p>
+
+    <h2>Perataan teks</h2>
+    <p>Isi rata kiri; <code>center</code> hanya dipakai di hero.</p>
+<pre><code class="language-css">.hero-teks {
+  text-align: center;
+}
+
+.isi-produk {
+  text-align: left;
+}</code></pre>
+    <div class="demo">
+      <div class="perataan">
+        <p class="nama">text-align: center &mdash; hanya di hero</p>
+        <p class="hero-teks">Belanja tepat, kirim cepat</p>
+      </div>
+      <div class="perataan">
+        <p class="nama">text-align: left &mdash; untuk isi</p>
+        <p class="isi-produk">Paragraf isi dibaca lama, jadi perataan kiri menjaga tepi kiri baris
+        tetap lurus dan mata tidak perlu mencari awal kalimat.</p>
+      </div>
+    </div>
+
+    <h2>Cukup ditulis sekali</h2>
+    <p><code>font-family</code>, <code>color</code>, dan <code>line-height</code> diwariskan ke
+    elemen anak, jadi <code>html</code> atau <code>body</code> cukup ditulis sekali.</p>
+<pre><code class="language-css">.kutipan {
+  font-family: 'Inter', sans-serif;
+  color: #334155;
+  line-height: 1.6;
+}</code></pre>
+    <div class="demo">
+      <div class="kutipan">
+        <p>Paragraf pertama mewarisi keluarga huruf, warna, dan tinggi baris dari kotak ini.</p>
+        <p>Anak di dalamnya juga: <span>teks tebal ini</span> hanya menambah ketebalan, tanpa
+        menulis ulang keluarga huruf dan warnanya.</p>
+      </div>
+    </div>
+    <nav class="nav">
+      <a href="04-fallback-stack.html">← 04 fallback-stack</a>
+      <span>05 / 16</span>
+      <a href="06-line-height.html">06 line-height →</a>
+    </nav>
+  </div>
+</body>
+</html>

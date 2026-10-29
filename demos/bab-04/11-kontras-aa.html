@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 4 · 11 kontras-aa — Tipografi dan Visual Design CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: lima pasangan teks dan latar diukur terhadap ambang 4,5:1 */
+  .demo .pasangan {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 10px;
+    padding: 10px 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    font-size: 1rem;
+  }
+  .demo .pasangan:last-child { margin-bottom: 0; }
+  .demo .pasangan .nilai {
+    margin-left: auto;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    color: #6b7280;
+    white-space: nowrap;
+  }
+  .demo .banding-besar {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+  .demo .banding-besar p { margin: 0 0 8px; }
+  .demo .banding-besar p:last-child { margin-bottom: 0; }
+  .demo .banding-besar .nama {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    color: #6b7280;
+  }
+  .demo .tint {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .demo .tint > div {
+    box-sizing: border-box;
+    flex: 1 1 200px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+  .demo .tint .nama {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    color: #6b7280;
+    margin: 0 0 8px;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  :root {
+    --clr-primary: #4F46E5;
+    --clr-primary-dark: #4338CA;
+    --clr-dark: #1E293B;
+    --clr-body: #334155;
+    --clr-success: #16A34A;
+  }
+
+  .teks-utama {
+    color: var(--clr-dark);
+    background-color: #FFFFFF;
+  }
+
+  .teks-isi {
+    color: var(--clr-body);
+    background-color: #FFFFFF;
+  }
+
+  .tautan {
+    color: var(--clr-primary);
+    background-color: #FFFFFF;
+  }
+
+  .tautan-hover {
+    color: var(--clr-primary-dark);
+    background-color: #FFFFFF;
+  }
+
+  .label-sukses {
+    color: var(--clr-success);
+    background-color: #FFFFFF;
+  }
+
+  .label-besar {
+    font-size: 24px;
+  }
+
+  .badge-tint-sukses {
+    background-color: rgba(22, 163, 74, 0.12);
+    color: var(--clr-dark);
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 4 · Tipografi dan Visual Design CSS</strong> · 11 kontras-aa</p>
+    <h1>Contrast Ratio dan Ambang AA</h1>
+    <p>Contrast ratio mengukur seberapa kontras warna teks dibanding latarnya, dari 1:1 yang tidak terlihat sampai 21:1 untuk hitam di atas putih. WCAG 2.2 menetapkan ambang AA untuk teks.</p>
+
+    <h2>Ambang AA</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Jenis teks</th><th>Ambang AA</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>teks ukuran normal</td><td>minimal 4,5:1</td></tr>
+        <tr><td>teks besar sekitar 24px</td><td>cukup 3:1</td></tr>
+        <tr><td>batas bawah rentang</td><td>1:1 &mdash; teks tidak terlihat</td></tr>
+        <tr><td>batas atas rentang</td><td>21:1 &mdash; hitam di atas putih</td></tr>
+      </tbody>
+    </table>
+    <p>Ambang AA memotong rentang itu: teks normal di bawah 4,5:1 gagal, teks normal minimal
+    4,5:1 lolos; teks besar 24 px cukup 3:1.</p>
+
+    <h2>Lima pasangan palet Tokosaya</h2>
+    <p>Empat pasangan lolos ambang 4,5:1. Hijau #16A34A di atas putih hanya 3,3:1, cukup untuk
+    teks besar 24 px dan gagal untuk label 12 px.</p>
+<pre><code class="language-css">:root {
+  --clr-primary: #4F46E5;
+  --clr-primary-dark: #4338CA;
+  --clr-dark: #1E293B;
+  --clr-body: #334155;
+  --clr-success: #16A34A;
+}
+
+.teks-utama {
+  color: var(--clr-dark);
+  background-color: #FFFFFF;
+}
+
+.teks-isi {
+  color: var(--clr-body);
+  background-color: #FFFFFF;
+}
+
+.tautan {
+  color: var(--clr-primary);
+  background-color: #FFFFFF;
+}
+
+.tautan-hover {
+  color: var(--clr-primary-dark);
+  background-color: #FFFFFF;
+}
+
+.label-sukses {
+  color: var(--clr-success);
+  background-color: #FFFFFF;
+}</code></pre>
+    <div class="demo">
+      <div class="pasangan teks-utama">Teks utama #1E293B di atas #FFFFFF <span class="nilai">lolos ambang 4,5:1</span></div>
+      <div class="pasangan teks-isi">Teks isi #334155 di atas #FFFFFF <span class="nilai">lolos ambang 4,5:1</span></div>
+      <div class="pasangan tautan">Tautan #4F46E5 di atas #FFFFFF <span class="nilai">lolos ambang 4,5:1</span></div>
+      <div class="pasangan tautan-hover">Tautan hover #4338CA di atas #FFFFFF <span class="nilai">lolos ambang 4,5:1</span></div>
+      <div class="pasangan label-sukses">Label hijau #16A34A di atas #FFFFFF <span class="nilai">3,3:1 &mdash; gagal untuk label kecil</span></div>
+    </div>
+    <p class="hitung" data-hitung="4.5 - 3.3 = 1.2">Hijau murni kurang <strong>1,2</strong> dari ambang 4,5:1, jadi ia tidak boleh dipakai untuk label 12 px.</p>
+
+    <h2>Teks besar sekitar 24 px</h2>
+    <p>Pada ukuran besar, ambangnya turun ke 3:1, sehingga hijau 3,3:1 lolos di sana.</p>
+<pre><code class="language-css">.label-besar {
+  font-size: 24px;
+}
+
+.label-sukses {
+  color: var(--clr-success);
+  background-color: #FFFFFF;
+}</code></pre>
+    <div class="demo">
+      <div class="banding-besar">
+        <p class="nama">24 px &mdash; cukup 3:1</p>
+        <p class="label-besar label-sukses">Tersedia</p>
+        <p class="nama">12 px &mdash; butuh 4,5:1</p>
+        <p class="label-sukses">Tersedia</p>
+      </div>
+    </div>
+
+    <h2>Tint sebagai jalan keluar</h2>
+    <p>Warna semantik dipindah ke latar tint, teksnya memakai warna gelap. Deck hanya menyebut
+    &ldquo;tint&rdquo;; alfa 0,12 di bawah adalah nilai peraga supaya tintnya terlihat.</p>
+<pre><code class="language-css">.badge-tint-sukses {
+  background-color: rgba(22, 163, 74, 0.12);
+  color: var(--clr-dark);
+}</code></pre>
+    <div class="demo">
+      <div class="tint">
+        <div>
+          <p class="nama">hijau murni sebagai latar, teks putih &mdash; 3,3:1</p>
+          <p class="label-sukses">Tersedia</p>
+        </div>
+        <div>
+          <p class="nama">tint sebagai latar, teks gelap</p>
+          <span class="badge-tint-sukses">Tersedia</span>
+        </div>
+      </div>
+    </div>
+    <p>Jangan percaya mata di layar yang terlalu terang; audit formalnya diulang di Bab 13.</p>
+    <nav class="nav">
+      <a href="10-warna-semantik.html">← 10 warna-semantik</a>
+      <span>11 / 16</span>
+      <a href="12-gradient-dan-solid.html">12 gradient-dan-solid →</a>
+    </nav>
+  </div>
+</body>
+</html>

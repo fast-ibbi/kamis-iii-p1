@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 4 · 03 font-sistem-dan-web-font — Tipografi dan Visual Design CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: tiga permintaan keluarga huruf pada wadah yang sama */
+  .demo .permintaan {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+  .demo .permintaan p {
+    margin: 0 0 8px;
+    font-size: 1.125rem;
+  }
+  .demo .permintaan p:last-child { margin-bottom: 0; }
+  .demo .permintaan .nama {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    color: #6b7280;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .tanpa-poppins {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .tanpa-inter {
+    font-family: 'Inter', sans-serif;
+  }
+
+  .tanpa-lokal {
+    font-family: 'Helvetica Neue', sans-serif;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 4 · Tipografi dan Visual Design CSS</strong> · 03 font-sistem-dan-web-font</p>
+    <h1>Font Sistem dan Web Font</h1>
+    <p>Browser memakai font sistem bawaan, bukan pilihan kita; karena itu Windows, macOS, dan Android menampilkan keluarga font yang berbeda. Web font adalah keluarga huruf yang diunduh saat halaman dibuka, jadi bentuk huruf tidak lagi ditentukan perangkat.</p>
+
+    <h2>Tiga permintaan, satu hasil di mesin ini</h2>
+    <p>Ketiga baris di bawah meminta keluarga huruf yang berbeda. Tidak satu pun berkas font itu
+    diunduh oleh halaman ini, sehingga browser turun ke kategori generik di ujung setiap stack.</p>
+<pre><code class="language-css">.tanpa-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+.tanpa-inter {
+  font-family: 'Inter', sans-serif;
+}
+
+.tanpa-lokal {
+  font-family: 'Helvetica Neue', sans-serif;
+}</code></pre>
+    <div class="demo">
+      <div class="permintaan">
+        <p class="tanpa-poppins">Poppins untuk judul: Belanja tepat, kirim cepat</p>
+        <p class="tanpa-inter">Inter untuk isi: Halaman yang sama, dua perangkat, bisa terlihat
+        seperti dua situs yang berbeda.</p>
+        <p class="tanpa-lokal">Helvetica Neue di perangkat lain: Belanja tepat, kirim cepat</p>
+      </div>
+    </div>
+    <p>Ketiganya tampak sama karena di mesin ini ketiganya berakhir di font sistem yang sama.
+    Itulah yang dilihat pengunjung ketika web font gagal diunduh: teksnya tetap terbaca, tetapi
+    identitas brand hilang. Karena itu halaman tetap harus terbuka saat font gagal diunduh.</p>
+
+    <h2>Memuat Google Fonts</h2>
+    <p>Tiga tag berikut ditulis di dalam <code>&lt;head&gt;</code>. Halaman demo ini sengaja tidak
+    memuat aset luar apa pun, jadi blok di bawah ditampilkan sebagai kode dan seluruh teks di
+    halaman ini dirender oleh font stack sistem.</p>
+<pre><code class="language-html">&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+&lt;link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap"&gt;</code></pre>
+    <ul>
+      <li>Dua <code>preconnect</code> menyiapkan koneksi ke server font sejak awal.</li>
+      <li><code>family=</code> meminta keluarga huruf sekaligus daftar ketebalannya.</li>
+      <li><code>display=swap</code> menampilkan font cadangan untuk sementara.</li>
+      <li>URL ini disalin persis dan tidak boleh diketik ulang; satu karakter berbeda membuat font
+      tidak termuat.</li>
+    </ul>
+
+    <h2>Kerangka index.html</h2>
+    <p>File HTML-nya hanya bertambah beberapa baris dari Bab 3, dan semuanya berada di dalam
+    <code>&lt;head&gt;</code>.</p>
+<pre><code class="language-html">&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Tokosaya — Belanja Tepat, Kirim Cepat&lt;/title&gt;
+  &lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+  &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+  &lt;link rel="stylesheet" href="css/style.css"&gt;
+&lt;/head&gt;</code></pre>
+    <p><code>css/style.css</code> dimuat setelah tag font supaya gaya kita sendiri dievaluasi
+    belakangan, sehingga keputusan kita yang menang. Di halaman hasilnya nanti, <code>h1</code>
+    hanya satu dan heading turun level tanpa melompat.</p>
+    <nav class="nav">
+      <a href="02-menyusun-typeface.html">← 02 menyusun-typeface</a>
+      <span>03 / 16</span>
+      <a href="04-fallback-stack.html">04 fallback-stack →</a>
+    </nav>
+  </div>
+</body>
+</html>

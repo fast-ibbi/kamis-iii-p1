@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 4 · 15 design-token — Tipografi dan Visual Design CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: deretan contoh pemakaian token */
+  .demo .token-warna {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .demo .token-warna > div {
+    flex: 1 1 130px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .demo .token-warna .contoh {
+    box-sizing: border-box;
+    height: 40px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .demo .token-warna .nama {
+    display: block;
+    padding: 6px 8px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 11.5px;
+    color: #6b7280;
+  }
+  .demo .c-primary { background-color: var(--clr-primary); }
+  .demo .c-primary-dark { background-color: var(--clr-primary-dark); }
+  .demo .c-accent { background-color: var(--clr-accent); }
+  .demo .c-dark { background-color: var(--clr-dark); }
+  .demo .c-body { background-color: var(--clr-body); }
+  .demo .c-bg { background-color: var(--clr-bg); }
+  .demo .c-surface { background-color: var(--clr-surface); }
+  .demo .c-border { background-color: var(--clr-border); }
+  .demo .c-success { background-color: var(--clr-success); }
+  .demo .c-danger { background-color: var(--clr-danger); }
+  .demo .pemakaian {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+  }
+  .demo .kartu-token {
+    flex: 1 1 200px;
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+  .demo .kartu-token p { margin: 0; }
+  .demo .tombol {
+    padding: 10px 16px;
+    border: 0;
+    border-radius: var(--radius);
+    font-size: 14px;
+  }
+  .demo .d-token {
+    background-color: var(--clr-bg);
+    padding: 14px 16px;
+    border-radius: var(--radius);
+  }
+  .demo .d-token h3 {
+    margin: 0 0 6px;
+    font-size: 1.125rem;
+  }
+  .demo .d-token p {
+    margin: 0 0 8px;
+    font-size: 1rem;
+  }
+  .demo .d-token p:last-child { margin-bottom: 0; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  :root {
+    --clr-primary: #4F46E5;
+    --clr-primary-dark: #4338CA;
+    --clr-accent: #F59E0B;
+    --clr-dark: #1E293B;
+    --clr-body: #334155;
+    --clr-bg: #F8FAFC;
+    --clr-surface: #FFFFFF;
+    --clr-border: #E2E8F0;
+    --clr-success: #16A34A;
+    --clr-danger: #DC2626;
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --radius: 12px;
+    --shadow-card: 0 8px 24px rgba(15, 23, 42, 0.08);
+    --space-unit: 8px;
+  }
+
+  .tombol {
+    background-color: var(--clr-primary);
+    color: var(--clr-surface);
+  }
+
+  .kartu-token {
+    background-color: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius);
+  }
+
+  /* aturan html di deck dipindahkan ke pembungkus .d-token agar tipografi
+     halaman demo tidak ikut berubah */
+  .d-token {
+    font-family: var(--font-body);
+    color: var(--clr-body);
+    background-color: var(--clr-bg);
+    line-height: 1.6;
+  }
+
+  .d-token h3 {
+    font-family: var(--font-heading);
+    color: var(--clr-dark);
+    line-height: 1.2;
+  }
+
+  .d-token a {
+    color: var(--clr-primary);
+    text-decoration: none;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 4 · Tipografi dan Visual Design CSS</strong> · 15 design-token</p>
+    <h1>Blok Design Token Tokosaya</h1>
+    <p>Design token mengumpulkan semua keputusan warna, tipografi, sudut, dan bayangan menjadi CSS custom property di :root. Blok ini dipakai apa adanya di seluruh proyek.</p>
+
+    <h2>Blok lengkapnya</h2>
+    <p>Buka file aslinya di editor: blok ini duduk di awal <code>style.css</code> dan dipakai apa
+    adanya di seluruh proyek.</p>
+<pre><code class="language-css">:root {
+  --clr-primary: #4F46E5;
+  --clr-primary-dark: #4338CA;
+  --clr-accent: #F59E0B;
+  --clr-dark: #1E293B;
+  --clr-body: #334155;
+  --clr-bg: #F8FAFC;
+  --clr-surface: #FFFFFF;
+  --clr-border: #E2E8F0;
+  --clr-success: #16A34A;
+  --clr-danger: #DC2626;
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --radius: 12px;
+  --shadow-card: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --space-unit: 8px;
+}</code></pre>
+    <div class="demo">
+      <div class="token-warna">
+        <div><div class="contoh c-primary"></div><span class="nama">--clr-primary</span></div>
+        <div><div class="contoh c-primary-dark"></div><span class="nama">--clr-primary-dark</span></div>
+        <div><div class="contoh c-accent"></div><span class="nama">--clr-accent</span></div>
+        <div><div class="contoh c-dark"></div><span class="nama">--clr-dark</span></div>
+        <div><div class="contoh c-body"></div><span class="nama">--clr-body</span></div>
+        <div><div class="contoh c-bg"></div><span class="nama">--clr-bg</span></div>
+        <div><div class="contoh c-surface"></div><span class="nama">--clr-surface</span></div>
+        <div><div class="contoh c-border"></div><span class="nama">--clr-border</span></div>
+        <div><div class="contoh c-success"></div><span class="nama">--clr-success</span></div>
+        <div><div class="contoh c-danger"></div><span class="nama">--clr-danger</span></div>
+      </div>
+    </div>
+    <p>Nama mengungkap peran: <code>--clr-primary</code>, bukan <code>--indigo</code>. Mengganti
+    warna brand tidak membuat namanya bohong.</p>
+
+    <h2>Dipakai lewat var()</h2>
+<pre><code class="language-css">.tombol {
+  background-color: var(--clr-primary);
+  color: var(--clr-surface);
+}
+
+.kartu-token {
+  background-color: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+}</code></pre>
+    <div class="demo">
+      <div class="pemakaian">
+        <button class="tombol" type="button">Lihat Katalog</button>
+        <div class="kartu-token">
+          <p>Kartu dengan latar <code>var(--clr-surface)</code> dan garis
+          <code>var(--clr-border)</code>.</p>
+        </div>
+      </div>
+    </div>
+    <p>Salah ketik satu karakter pada nama token membuat seluruh warnanya kembali abu-abu.</p>
+
+    <h2>Tipografi dari token</h2>
+    <p>Di deck, aturan pertama dipasang pada <code>html</code>; di halaman ini ia dipasang pada
+    pembungkus <code>.d-token</code> agar tipografi demo tidak ikut berubah.</p>
+<pre><code class="language-css">/* aturan html di deck dipindahkan ke pembungkus .d-token agar tipografi
+   halaman demo tidak ikut berubah */
+.d-token {
+  font-family: var(--font-body);
+  color: var(--clr-body);
+  background-color: var(--clr-bg);
+  line-height: 1.6;
+}
+
+.d-token h3 {
+  font-family: var(--font-heading);
+  color: var(--clr-dark);
+  line-height: 1.2;
+}
+
+.d-token a {
+  color: var(--clr-primary);
+  text-decoration: none;
+}</code></pre>
+    <div class="demo">
+      <div class="d-token">
+        <h3>Belanja tepat, kirim cepat</h3>
+        <p>Di blok ini tidak ada satu pun kode heksadesimal warna; semuanya lewat
+        <code>var()</code>. Lihat <a href="09-palet-tokosaya.html">halaman palet</a> untuk peran
+        tiap warna.</p>
+      </div>
+    </div>
+    <p>Di luar <code>:root</code>, hanya <code>#FFFFFF</code> yang ditulis langsung; nilai lain
+    selalu lewat token.</p>
+    <nav class="nav">
+      <a href="14-opacity-rgba.html">← 14 opacity-rgba</a>
+      <span>15 / 16</span>
+      <a href="16-token-jarak-calc.html">16 token-jarak-calc →</a>
+    </nav>
+  </div>
+</body>
+</html>

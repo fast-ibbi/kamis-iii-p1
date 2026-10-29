@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 4 · 16 token-jarak-calc — Tipografi dan Visual Design CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: kotak section memperlihatkan padding hasil calc() */
+  .demo .section-peraga {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+  }
+  .demo .section-isi {
+    background: #eef2ff;
+    border: 1px dashed #9ca3af;
+    border-radius: 4px;
+    padding: 10px 12px;
+    font-size: 14px;
+    color: #334155;
+  }
+  .demo .tangga {
+    margin-top: 14px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+  .demo .tangga p {
+    margin: 0 0 6px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    color: #6b7280;
+  }
+  .demo .tangga i {
+    box-sizing: border-box;
+    display: block;
+    height: 8px;
+    margin-bottom: 8px;
+    background: #c7d2fe;
+    border-radius: 2px;
+  }
+  .demo .tangga i:last-child { margin-bottom: 0; }
+  .demo .tangga .k2 { width: 16px; }
+  .demo .tangga .k3 { width: 24px; }
+  .demo .tangga .k4 { width: 32px; }
+  .demo .tangga .k5 { width: 40px; }
+  .demo .tangga .k6 { width: 48px; }
+  .demo .tangga .k7 { width: 56px; }
+  .demo .tangga .k8 { width: 64px; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  :root {
+    --space-unit: 8px;
+  }
+
+  .section {
+    padding: calc(var(--space-unit) * 7) calc(var(--space-unit) * 4);
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 4 · Tipografi dan Visual Design CSS</strong> · 16 token-jarak-calc</p>
+    <h1>Token Jarak dan calc()</h1>
+    <p>Satu token jarak menjadi basis seluruh ritme halaman. calc() mengalikannya dengan bilangan bulat, sehingga jarak apa pun tetap kelipatan 8 px.</p>
+
+    <h2>Satu basis, semua jarak</h2>
+    <p><code>--space-unit: 8px</code> menjadi basis semua jarak di halaman. Padding section
+    dikalikan tujuh untuk atas-bawah dan empat untuk kiri-kanan.</p>
+<pre><code class="language-css">:root {
+  --space-unit: 8px;
+}
+
+.section {
+  padding: calc(var(--space-unit) * 7) calc(var(--space-unit) * 4);
+}</code></pre>
+    <div class="demo">
+      <div class="section section-peraga">
+        <div class="section-isi">
+          Isi section. Ruang di sekeliling kotak ini adalah padding hasil calc(): 56 px atas dan
+          bawah, 32 px kiri dan kanan.
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="8 * 7 = 56">Atas dan bawah: 8 &times; 7 = <strong>56 px</strong>.</p>
+    <p class="hitung" data-hitung="8 * 4 = 32">Kiri dan kanan: 8 &times; 4 = <strong>32 px</strong>.</p>
+
+    <h2>Kelipatan 8 px</h2>
+    <p>Skala jarak Tokosaya mengikuti kelipatan 8 piksel dari 8 sampai 64 piksel.</p>
+    <table class="tabel">
+      <thead>
+        <tr><th>Kelipatan</th><th>Nilai</th><th>Contoh pemakaian</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1 &times;</td><td>8 px</td><td>jarak antarbadge</td></tr>
+        <tr><td>2 &times;</td><td>16 px</td><td>jarak di dalam kartu</td></tr>
+        <tr><td>3 &times;</td><td>24 px</td><td>padding kartu</td></tr>
+        <tr><td>4 &times;</td><td>32 px</td><td>sisi section</td></tr>
+        <tr><td>7 &times;</td><td>56 px</td><td>atas dan bawah section</td></tr>
+        <tr><td>8 &times;</td><td>64 px</td><td>jarak antarsection</td></tr>
+      </tbody>
+    </table>
+    <div class="demo">
+      <div class="tangga">
+        <p>lebar batang sebanding nilainya</p>
+        <i class="k2"></i>
+        <i class="k3"></i>
+        <i class="k4"></i>
+        <i class="k5"></i>
+        <i class="k6"></i>
+        <i class="k7"></i>
+        <i class="k8"></i>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="8 * 8 = 64">Batang terpanjang adalah kelipatan delapan: <strong>64 px</strong>.</p>
+
+    <h2>Penamaan dan pemakaian</h2>
+    <ul>
+      <li>Penamaan kebab-case: <code>--clr-</code> untuk warna, <code>--font-</code> untuk tipografi.</li>
+      <li>Token hanya untuk nilai yang berulang; token berlebihan sama buruknya dengan warna yang berantakan.</li>
+      <li>Seluruh ritme jarak halaman mengikuti kelipatan 8 px, jadi tidak ada angka liar di komponen.</li>
+    </ul>
+    <p>Token <code>--space-unit</code> mulai bekerja penuh di Bab 5, dan skala serta token di bab
+    ini dipakai hingga bab akhir.</p>
+    <nav class="nav">
+      <a href="15-design-token.html">← 15 design-token</a>
+      <span>16 / 16</span>
+      <span>—</span>
+    </nav>
+  </div>
+</body>
+</html>

@@ -98,6 +98,7 @@ Tekankan analogi pakaian teks; ini pegangan untuk seluruh bab. Tanyakan mana yan
 lebih cepat membuat orang ragu: kalimat yang salah atau typeface yang sulit dibaca.
 Jawaban yang diharapkan: typeface-nya, karena pembaca berhenti sebelum sampai ke
 isinya. Ingatkan bahwa tipografi bukan hiasan, melainkan alat komunikasi layanan.
+Demo: demos/bab-04/02-menyusun-typeface.html — bandingkan judul 1rem/400 dengan judul 3rem/700 pada isi yang sama.
 -->
 
 ---
@@ -136,6 +137,7 @@ Tunjuk satu cabang diagram: Poppins adalah keluarganya, Bold 700 adalah salah sa
 font-nya. Tanyakan: Poppins Bold 700 itu typeface atau font. Jawaban yang
 diharapkan: font, karena punya berat dan gaya. Tegaskan bahwa salah menyebut tidak
 membuat kode error, tetapi membuat diskusi tim berputar tanpa hasil.
+Demo: demos/bab-04/01-typeface-dan-font.html — bandingkan empat font dalam keluarga Poppins lewat berat 400, 500, 600, dan 700.
 -->
 
 ---
@@ -215,6 +217,7 @@ brand tidak konsisten: halaman yang sama, dua perangkat, bisa terlihat seperti d
 situs yang berbeda. Solusinya web font, keluarga huruf yang diunduh saat halaman
 dibuka dari layanan online, jadi bentuk huruf tidak lagi ditentukan perangkat.
 Sebutkan juga bahwa Google Fonts menyimpan ribuan typeface berlisensi terbuka.
+Demo: demos/bab-04/03-font-sistem-dan-web-font.html — lihat tiga permintaan font-family yang jatuh ke font sistem yang sama, lalu blok tag Google Fonts.
 -->
 
 ---
@@ -273,6 +276,7 @@ Jelaskan bahwa stack adalah daftar cadangan, bukan daftar pilihan. Minta mahasis
 mematikan akses internet lalu memuat ulang halaman; teksnya tetap terbaca dengan
 font sistem. Ingatkan bahwa stack tanpa kategori generik adalah kesalahan yang
 sering lolos dari pemeriksaan sendiri, dan baru ketahuan di komputer orang lain.
+Demo: demos/bab-04/04-fallback-stack.html — bandingkan stack yang lengkap dengan font-family: Poppins; yang tanpa tanda kutip dan tanpa fallback.
 -->
 
 ---
@@ -310,6 +314,7 @@ Jangan menghafalkan seluruh propertinya sekaligus; cukup tandai lima yang paling
 sering dipakai. Tekankan dua baris terakhir soal inheritance, karena itu yang
 menjelaskan mengapa `body` atau `html` cukup ditulis sekali. Tanyakan properti mana
 yang ikut turun ke elemen anak dan mana yang tidak.
+Demo: demos/bab-04/05-properti-teks.html — coba letter-spacing dan text-align pada judul 2.25rem.
 -->
 
 ---
@@ -330,6 +335,7 @@ dengan `1.2` lalu `1.6` di layar proyektor agar perbedaannya terasa. Tanyakan
 mengapa angka tanpa satuan lebih aman. Jawaban yang diharapkan: nilainya ikut
 membesar saat pengguna memperbesar font di pengaturan browser. Ingatkan bahwa
 `24px` mengunci jaraknya.
+Demo: demos/bab-04/06-line-height.html — bandingkan line-height 1.2, 1.6, dan 2, lalu lihat 24px mengunci jarak saat font diperbesar.
 -->
 
 ---
@@ -352,6 +358,7 @@ tempat lain — sehingga pembaca tidak menemukan pintu masuk halamannya. Kolom k
 dengan skala: keputusan ukuran pindah dari rasa ke sistem; yang tadinya "terasa
 terlalu kecil" diganti "ini level 3, jadi 1.25rem". Tutup dengan kalimat di bawah
 diagram: skala mengubah tebakan menjadi keputusan yang dapat diulang.
+Demo: demos/bab-04/07-skala-tipografi.html — bandingkan judul 19, 21, dan 23 px tanpa skala dengan Display, Heading 1, Isi, dan Label dari skala rem.
 -->
 
 ---
@@ -409,6 +416,7 @@ tunjukkan titik pada diagram yang sedang bergerak. Tanyakan apa fungsi angka
 tengah `5vw`. Jawaban yang diharapkan: ukuran ideal yang mengikuti lebar layar,
 tetapi tetap dibatasi batas atas dan bawah. Sebutkan bahwa media query dibahas
 penuh di Bab 7, jadi kasus ini belum membutuhkannya.
+Demo: demos/bab-04/08-clamp.html — persempit jendela browser dan lihat judul berhenti di 36 px lalu 48 px.
 -->
 
 ---
@@ -463,6 +471,7 @@ menyebutkan di mana tiap warna dipakai sebelum Anda menunjukkan labelnya. Ingatk
 bahwa palet ini terkunci, jadi warna di luar kartu tidak dipakai tanpa alasan.
 Sebutkan bahwa kartu netral sengaja berupa gradient karena dipakai berjenjang,
 bukan satu warna tunggal.
+Demo: demos/bab-04/09-palet-tokosaya.html — lihat lima kartu peran palet dan hover tombol dari #4F46E5 ke #4338CA.
 -->
 
 ---
@@ -482,6 +491,7 @@ Tanyakan mengapa pembaca layanan publik lebih cepat memahami badge berwarna
 daripada membaca statusnya. Jawaban yang diharapkan: maknanya langsung terbaca
 tanpa harus membaca teks. Sebutkan bahayanya: warna semantik yang dipakai untuk
 hiasan membuat maknanya pudar.
+Demo: demos/bab-04/10-warna-semantik.html — tebak makna empat badge sebelum membaca teksnya.
 -->
 
 ---
@@ -518,6 +528,7 @@ bukan `#16A34A`, seperti di blok token.
 Jangan masuk ke rumus luminansinya; cukup tunjukkan ambangnya dan cara memakainya.
 Buka penghitung contrast ratio sekali di depan kelas sebagai contoh. Tekankan
 kalimat penutupnya, lalu sebutkan bahwa audit formalnya diulang di Bab 13.
+Demo: demos/bab-04/11-kontras-aa.html — lihat lima pasangan palet terhadap ambang 4,5:1 dan badge tint sebagai jalan keluar.
 -->
 
 ---
@@ -583,6 +594,7 @@ Bandingkan kartu putih solid dengan hero bergradient di layar proyektor. Tanyaka
 mengapa kartu produk sengaja tidak diberi gradient. Jawaban yang diharapkan:
 permukaan yang dibaca lama lebih nyaman jika datar. Sebutkan bahwa gradient di
 halaman ini hanya muncul di hero, CTA, dan footer.
+Demo: demos/bab-04/12-gradient-dan-solid.html — bandingkan kartu produk solid dengan hero bergradient indigo.
 -->
 
 ---
@@ -617,6 +629,7 @@ selalu pill. Tanyakan mengapa box-shadow tidak dipakai di semua kartu. Jawaban
 yang diharapkan: box-shadow dipakai hemat, hanya untuk yang memang terangkat dari
 halaman. Sebutkan bahwa border-radius dan box-shadow sama-sama lewat token, jadi
 tidak ada angka liar di komponen.
+Demo: demos/bab-04/13-border-radius.html — bandingkan border-radius 4, 12, dan 999 px serta dua tingkat box-shadow.
 -->
 
 ---
@@ -635,6 +648,7 @@ Ini konsep yang paling sering salah, jadi jangan dilewati. Tanyakan perbedaan
 `opacity` dengan `rgba()`. Jawaban yang diharapkan: `opacity` memengaruhi seluruh
 elemen beserta isinya, `rgba()` hanya warnanya. Minta mahasiswa menunjuk panel
 mana yang teksnya ikut memudar.
+Demo: demos/bab-04/14-opacity-rgba.html — tunjukkan kartu yang teksnya ikut memudar karena opacity.
 -->
 
 ---
@@ -670,6 +684,7 @@ Buka file aslinya di editor agar mahasiswa melihat blok ini di awal `style.css`.
 Tanyakan mengapa namanya `--clr-primary` bukan `--indigo`. Jawaban yang diharapkan:
 nama mengungkap peran, jadi mengganti warna brand tidak membuat namanya bohong.
 Ingatkan bahwa salah ketik satu karakter membuat seluruh warna kembali abu-abu.
+Demo: demos/bab-04/15-design-token.html — lihat sepuluh swatch token warna, lalu tombol dan kartu yang hanya memakai var().
 -->
 
 ---
@@ -689,6 +704,7 @@ Hitung bersama-sama `calc(var(--space-unit) * 7)` sebelum Anda menunjukkan
 jawabannya. Tekankan bahwa seluruh ritme jarak halaman mengikuti kelipatan 8px.
 Sebutkan bahwa token yang berlebihan sama buruknya dengan warna yang berantakan,
 jadi simpan hanya nilai yang memang berulang.
+Demo: demos/bab-04/16-token-jarak-calc.html — hitung padding section dari --space-unit: 8px lewat calc().
 -->
 
 ---
@@ -840,6 +856,7 @@ yang diharapkan: font-size yang masih ditulis memakai `px` liar, bukan dari skal
 - Type scale 3rem sampai 0.75rem menjadi tulang punggung hierarkinya
 - Warna Tokosaya bermakna: indigo, amber, slate, hijau, dan merah
 - Design token di `:root` menyatukan semua keputusan: ubah sekali, semuanya ikut
+**Demo:** seluruh konsep bab ini bisa dicoba di [demos/bab-04/index.html](demos/bab-04/index.html).
 
 <!--
 Tutup dengan dua gagasan: typeface dan warna adalah keputusan desain, bukan selera.

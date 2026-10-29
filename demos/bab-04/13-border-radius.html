@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 4 · 13 border-radius — Tipografi dan Visual Design CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: tiga sudut dan dua tingkat kedalaman */
+  .demo .sudut {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .demo .sudut > div {
+    box-sizing: border-box;
+    flex: 1 1 140px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    padding: 14px 12px;
+    font-size: 14px;
+  }
+  .demo .sudut .nama {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    color: #6b7280;
+    margin: 0 0 6px;
+  }
+  .demo .sudut p { margin: 0; }
+  /* baris tiga sudut hanya memperagakan radius, jadi bayangan dimatikan di sini */
+  .demo .sudut .kartu { box-shadow: none; }
+  .demo .kedalaman {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .demo .kedalaman > div {
+    box-sizing: border-box;
+    flex: 1 1 180px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 14px 12px;
+    font-size: 14px;
+  }
+  .demo .kedalaman .nama {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    color: #6b7280;
+    margin: 0 0 6px;
+  }
+  .demo .kedalaman p { margin: 0; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  :root {
+    --radius: 12px;
+    --shadow-card: 0 8px 24px rgba(15, 23, 42, 0.08);
+  }
+
+  .kartu {
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-card);
+  }
+
+  .badge {
+    border-radius: 999px;
+  }
+
+  .pojok-tajam {
+    border-radius: 4px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 4 · Tipografi dan Visual Design CSS</strong> · 13 border-radius</p>
+    <h1>Membulat dan Melembutkan</h1>
+    <p>border-radius menentukan sudut, box-shadow menentukan kedalaman. Keduanya lewat token, jadi tidak ada angka liar di dalam komponen.</p>
+
+    <h2>Tiga sudut</h2>
+    <p><code>--radius: 12px</code> dipakai kartu, <code>border-radius: 999px</code> membuat badge
+    selalu berbentuk pill, dan 4 px memberi pojok yang hampir tajam.</p>
+<pre><code class="language-css">:root {
+  --radius: 12px;
+  --shadow-card: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+.kartu {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+}
+
+.badge {
+  border-radius: 999px;
+}
+
+.pojok-tajam {
+  border-radius: 4px;
+}</code></pre>
+    <div class="demo">
+      <div class="sudut">
+        <div class="pojok-tajam">
+          <p class="nama">border-radius: 4px</p>
+          <p>pojok hampir tajam</p>
+        </div>
+        <div class="kartu">
+          <p class="nama">border-radius: var(--radius)</p>
+          <p>pojok membulat</p>
+        </div>
+        <div class="badge">
+          <p class="nama">border-radius: 999px</p>
+          <p>pill</p>
+        </div>
+      </div>
+      <div class="kedalaman">
+        <div>
+          <p class="nama">tanpa box-shadow &mdash; datar</p>
+          <p>Kartu yang menempel di halaman.</p>
+        </div>
+        <div class="kartu">
+          <p class="nama">box-shadow: var(--shadow-card)</p>
+          <p>Kartu yang terangkat 8 px dengan blur 24 px.</p>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="8 * 3 = 24">Bayangan kartu menggeser 8 px ke bawah dengan blur <strong>24 px</strong>, tiga kali jarak gesernya.</p>
+    <p>Diagram deck menggambar tiga tingkat kedalaman: datar, kartu, dan terangkat. Yang dipakai
+    di halaman ini baru dua tingkat pertama, karena nilai tingkat ketiga tidak disebut di deck.
+    <code>999px</code> tetap berbentuk pill baik pada elemen sempit maupun lebar.</p>
+    <p>Gunakan <code>box-shadow</code> dengan hemat, hanya untuk yang memang terangkat dari
+    halaman. Karena radius dan bayangan sama-sama lewat token, tidak ada angka liar di komponen.</p>
+    <nav class="nav">
+      <a href="12-gradient-dan-solid.html">← 12 gradient-dan-solid</a>
+      <span>13 / 16</span>
+      <a href="14-opacity-rgba.html">14 opacity-rgba →</a>
+    </nav>
+  </div>
+</body>
+</html>

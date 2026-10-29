@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 4 · 02 menyusun-typeface — Tipografi dan Visual Design CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: dua versi ditumpuk agar bisa dibandingkan pada lebar yang sama */
+  .demo .versi {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+  .demo .versi p {
+    margin: 0 0 8px;
+  }
+  .demo .versi p:last-child { margin-bottom: 0; }
+  .demo .versi .tanda {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    color: #6b7280;
+  }
+  /* garis basis menampilkan ukuran isi 16 px sebagai pembanding judul 48 px */
+  .demo .garis-basis {
+    margin-top: 12px;
+    padding-top: 4px;
+    border-top: 1px dotted #9ca3af;
+    font-size: 16px;
+    color: #6b7280;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .hero-title-datar,
+  .hero-teks-datar {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+  }
+
+  .hero-teks {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 4 · Tipografi dan Visual Design CSS</strong> · 02 menyusun-typeface</p>
+    <h1>Menyusun Typeface, Bukan Sekadar Memilih</h1>
+    <p>Judul hero Tokosaya memakai font-family Poppins dan isinya memakai Inter di kedua versi. Typeface-nya tidak berubah; yang berbeda hanya susunan propertinya.</p>
+
+    <h2>Versi yang sekadar memilih</h2>
+    <p>Judul 1rem dan isi 1rem, semuanya font-weight 400, jadi tidak ada yang menonjol. Typeface-nya
+    sudah dipilih, tetapi belum disusun.</p>
+<pre><code class="language-css">.hero-title-datar,
+.hero-teks-datar {
+  font-size: 1rem;
+  font-weight: 400;
+}</code></pre>
+    <div class="demo">
+      <div class="versi">
+        <p class="hero-title-datar">Belanja tepat, kirim cepat</p>
+        <p class="hero-teks-datar">Judul dan isi berukuran sama serta sama tebalnya, sehingga pembaca
+        tidak tahu mana yang harus dibaca lebih dahulu.</p>
+      </div>
+    </div>
+
+    <h2>Versi yang menyusun</h2>
+    <p>Judul 3rem atau 48 px dengan font-weight 700, isi tetap 400 dan 1rem pada basis 16 px,
+    jadi judul terbaca sebagai judul.</p>
+<pre><code class="language-css">.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.hero-teks {
+  font-size: 1rem;
+  font-weight: 400;
+}</code></pre>
+    <div class="demo">
+      <div class="versi">
+        <p class="hero-title">Belanja tepat, kirim cepat</p>
+        <p class="hero-teks">Isi paragraf tidak disentuh: tetap 1rem dan 400. Yang bekerja bukan
+        pilihan typeface-nya, melainkan susunan propertinya.</p>
+        <div class="garis-basis">garis basis — 1rem atau 16 px pada basis 16 px</div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="16 * 3 = 48">Judul 3rem pada basis 16 px menjadi <strong>48 px</strong>, sedangkan isinya tetap 16 px.</p>
+    <p class="hitung" data-hitung="48 - 16 = 32">Selisihnya <strong>32 px</strong>; jarak sebesar itulah yang membuat judul terbaca sebagai judul.</p>
+    <nav class="nav">
+      <a href="01-typeface-dan-font.html">← 01 typeface-dan-font</a>
+      <span>02 / 16</span>
+      <a href="03-font-sistem-dan-web-font.html">03 font-sistem-dan-web-font →</a>
+    </nav>
+  </div>
+</body>
+</html>

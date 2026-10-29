@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 4 · 09 palet-tokosaya — Tipografi dan Visual Design CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: lima kartu peran, plus tombol untuk memperagakan hover */
+  .demo .palet {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .demo .kartu-peran {
+    box-sizing: border-box;
+    flex: 1 1 160px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow: hidden;
+    font-size: 13px;
+  }
+  .demo .kartu-peran .warna {
+    box-sizing: border-box;
+    height: 56px;
+  }
+  .demo .kartu-peran .isi-peran {
+    padding: 8px 10px;
+  }
+  .demo .kartu-peran .isi-peran p { margin: 0 0 2px; font-size: 13px; }
+  .demo .kartu-peran .isi-peran p:last-child { margin-bottom: 0; }
+  .demo .kartu-peran .nama {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    color: #6b7280;
+  }
+  .demo .contoh-primary { background-color: var(--clr-primary); }
+  .demo .contoh-primary-dark { background-color: var(--clr-primary-dark); }
+  .demo .contoh-accent { background-color: var(--clr-accent); }
+  .demo .contoh-netral {
+    background-image: linear-gradient(to right, #1E293B, #E2E8F0);
+  }
+  .demo .contoh-semantik {
+    background-image: linear-gradient(to right, #16A34A 50%, #DC2626 50%);
+  }
+  .demo .contoh-hover {
+    padding: 12px 14px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+  }
+  .demo .contoh-hover p {
+    margin: 0 0 8px;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .demo .contoh-hover p:last-child { margin-bottom: 0; }
+  .demo .tombol {
+    padding: 10px 16px;
+    border: 0;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  :root {
+    --clr-primary: #4F46E5;
+    --clr-primary-dark: #4338CA;
+    --clr-accent: #F59E0B;
+    --clr-dark: #1E293B;
+    --clr-border: #E2E8F0;
+    --clr-success: #16A34A;
+    --clr-danger: #DC2626;
+  }
+
+  .tombol {
+    background-color: var(--clr-primary);
+    color: #FFFFFF;
+  }
+
+  .tombol:hover {
+    background-color: var(--clr-primary-dark);
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 4 · Tipografi dan Visual Design CSS</strong> · 09 palet-tokosaya</p>
+    <h1>Palet Tokosaya</h1>
+    <p>Tiap warna punya satu peran; di luar lima kartu ini warna tidak dipakai tanpa alasan. Indigo memimpin, amber menyorot, slate menopang, hijau dan merah berbicara.</p>
+
+    <h2>Lima peran, satu palet</h2>
+<pre><code class="language-css">:root {
+  --clr-primary: #4F46E5;
+  --clr-primary-dark: #4338CA;
+  --clr-accent: #F59E0B;
+  --clr-dark: #1E293B;
+  --clr-border: #E2E8F0;
+  --clr-success: #16A34A;
+  --clr-danger: #DC2626;
+}</code></pre>
+    <div class="demo">
+      <div class="palet">
+        <div class="kartu-peran">
+          <div class="warna contoh-primary"></div>
+          <div class="isi-peran">
+            <p>primary</p>
+            <p class="nama">#4F46E5</p>
+            <p>tombol dan link</p>
+          </div>
+        </div>
+        <div class="kartu-peran">
+          <div class="warna contoh-primary-dark"></div>
+          <div class="isi-peran">
+            <p>primary dark</p>
+            <p class="nama">#4338CA</p>
+            <p>hover dan gradient</p>
+          </div>
+        </div>
+        <div class="kartu-peran">
+          <div class="warna contoh-accent"></div>
+          <div class="isi-peran">
+            <p>accent</p>
+            <p class="nama">#F59E0B</p>
+            <p>badge</p>
+          </div>
+        </div>
+        <div class="kartu-peran">
+          <div class="warna contoh-netral"></div>
+          <div class="isi-peran">
+            <p>netral slate</p>
+            <p class="nama">#1E293B &ndash; #E2E8F0</p>
+            <p>teks dan garis</p>
+          </div>
+        </div>
+        <div class="kartu-peran">
+          <div class="warna contoh-semantik"></div>
+          <div class="isi-peran">
+            <p>semantik</p>
+            <p class="nama">#16A34A &middot; #DC2626</p>
+            <p>tersedia dan habis</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p>Kartu netral sengaja digambar sebagai gradient karena dipakai berjenjang, bukan satu warna
+    tunggal. Tempel palet ini di folder proyek; paletnya terkunci, jadi warna di luar kartu tidak
+    dipakai tanpa alasan.</p>
+
+    <h2>Warna utama gelap dipakai saat tombol di-hover</h2>
+<pre><code class="language-css">.tombol {
+  background-color: var(--clr-primary);
+  color: #FFFFFF;
+}
+
+.tombol:hover {
+  background-color: var(--clr-primary-dark);
+}</code></pre>
+    <div class="demo">
+      <div class="contoh-hover">
+        <p>arahkan penunjuk ke tombol: latarnya berpindah dari #4F46E5 ke #4338CA</p>
+        <button class="tombol" type="button">Lihat Katalog</button>
+      </div>
+    </div>
+    <nav class="nav">
+      <a href="08-clamp.html">← 08 clamp</a>
+      <span>09 / 16</span>
+      <a href="10-warna-semantik.html">10 warna-semantik →</a>
+    </nav>
+  </div>
+</body>
+</html>

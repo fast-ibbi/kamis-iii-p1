@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 4 · 06 line-height — Tipografi dan Visual Design CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: tiga kolom selebar sama agar kerapatan baris bisa dibandingkan */
+  .demo .tiga {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .demo .kolom {
+    box-sizing: border-box;
+    flex: 1 1 220px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+  .demo .kolom p {
+    margin: 0 0 8px;
+    font-size: 1rem;
+  }
+  .demo .kolom p:last-child { margin-bottom: 0; }
+  .demo .kolom .nama {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    color: #6b7280;
+  }
+  .demo .banding {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+  .demo .banding .baris {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    padding: 8px 0;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .demo .banding .baris:last-child { border-bottom: 0; }
+  .demo .banding .sisi { flex: 1 1 200px; }
+  .demo .banding .nama {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    color: #6b7280;
+    margin: 0 0 2px;
+  }
+  .demo .banding .kecil { font-size: 1rem; }
+  .demo .banding .besar { font-size: 2.25rem; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .rapat {
+    line-height: 1.2;
+  }
+
+  .nyaman {
+    line-height: 1.6;
+  }
+
+  .longgar {
+    line-height: 2;
+  }
+
+  .kunci {
+    line-height: 24px;
+  }
+
+  .ikut {
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 4 · Tipografi dan Visual Design CSS</strong> · 06 line-height</p>
+    <h1>Line-height: Nilai Tanpa Satuan</h1>
+    <p>line-height menentukan tinggi satu baris teks. Angka tanpa satuan berarti kelipatan ukuran font elemen itu sendiri, jadi nilainya ikut membesar saat font diperbesar.</p>
+
+    <h2>Tiga kerapatan</h2>
+    <p>Teks yang sama dibaca pada tiga nilai. Teks panjang nyaman di 1,5&ndash;1,7; judul besar
+    tegas di 1,1&ndash;1,25. Nilai 1,2 dipakai judul di Tokosaya, 1,6 dipakai paragraf.</p>
+<pre><code class="language-css">.rapat {
+  line-height: 1.2;
+}
+
+.nyaman {
+  line-height: 1.6;
+}
+
+.longgar {
+  line-height: 2;
+}</code></pre>
+    <div class="demo">
+      <div class="tiga">
+        <div class="kolom">
+          <p class="nama">line-height: 1.2</p>
+          <p class="rapat">Teks yang ditata rapat membuat mata berpindah baris terlalu cepat
+          sehingga pembaca kehilangan tempatnya di tengah kalimat yang panjang.</p>
+        </div>
+        <div class="kolom">
+          <p class="nama">line-height: 1.6</p>
+          <p class="nyaman">Teks yang ditata rapat membuat mata berpindah baris terlalu cepat
+          sehingga pembaca kehilangan tempatnya di tengah kalimat yang panjang.</p>
+        </div>
+        <div class="kolom">
+          <p class="nama">line-height: 2</p>
+          <p class="longgar">Teks yang ditata rapat membuat mata berpindah baris terlalu cepat
+          sehingga pembaca kehilangan tempatnya di tengah kalimat yang panjang.</p>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="16 * 1.6 = 25.6">Satu baris teks 1rem dengan <code>line-height: 1.6</code> tingginya <strong>25,6 px</strong>.</p>
+
+    <h2>Angka tanpa satuan ikut membesar, 24px mengunci</h2>
+    <p>1,6 berarti 1,6 kali ukuran font elemen itu sendiri. Angka tanpa satuan ikut membesar saat
+    pengguna memperbesar font di pengaturan browser; <code>24px</code> mengunci jaraknya.</p>
+<pre><code class="language-css">.kunci {
+  line-height: 24px;
+}
+
+.ikut {
+  line-height: 1.5;
+}</code></pre>
+    <div class="demo">
+      <div class="banding">
+        <div class="baris">
+          <div class="sisi">
+            <p class="nama">font-size 1rem &mdash; line-height: 24px</p>
+            <p class="kunci kecil">Isi paragraf satu baris</p>
+          </div>
+          <div class="sisi">
+            <p class="nama">font-size 1rem &mdash; line-height: 1.5</p>
+            <p class="ikut kecil">Isi paragraf satu baris</p>
+          </div>
+        </div>
+        <div class="baris">
+          <div class="sisi">
+            <p class="nama">font-size 2.25rem &mdash; line-height: 24px</p>
+            <p class="kunci besar">Judul</p>
+          </div>
+          <div class="sisi">
+            <p class="nama">font-size 2.25rem &mdash; line-height: 1.5</p>
+            <p class="ikut besar">Judul</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="16 * 1.5 = 24">Pada 1rem, <code>line-height: 1.5</code> kebetulan sama dengan <strong>24 px</strong>, sehingga kedua kolom atas tampak sebangun.</p>
+    <p class="hitung" data-hitung="36 * 1.5 = 54">Pada 2.25rem atau 36 px, angka 1,5 menjadi <strong>54 px</strong>, sedangkan 24 px tetap 24 px &mdash; itulah bedanya.</p>
+    <nav class="nav">
+      <a href="05-properti-teks.html">← 05 properti-teks</a>
+      <span>06 / 16</span>
+      <a href="07-skala-tipografi.html">07 skala-tipografi →</a>
+    </nav>
+  </div>
+</body>
+</html>

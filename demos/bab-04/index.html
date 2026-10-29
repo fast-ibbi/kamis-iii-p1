@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo Bab 4 — Tipografi dan Visual Design CSS</title>
+<style>
+  :root { --ink: #111827; --muted: #6b7280; --accent: #1d4ed8; --border: #e5e7eb; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 48px 20px 64px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: var(--ink);
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 820px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .kepala a { color: var(--accent); text-decoration: none; }
+  h1 { margin: 0 0 10px; font-size: 28px; line-height: 1.25; }
+  .pengantar { margin: 0 0 32px; color: var(--muted); font-size: 16px; }
+  ol { margin: 0; padding: 0; list-style: none; counter-reset: demo; }
+  li {
+    counter-increment: demo;
+    border-top: 1px solid var(--border);
+    padding: 16px 0;
+  }
+  li a {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  li a::before {
+    content: counter(demo, decimal-leading-zero) "  ";
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  li p { margin: 4px 0 0; font-size: 15px; color: var(--muted); }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><a href="../index.html">← Semua bab</a> · Demo Bab 4</p>
+    <h1>Demo Bab 4 — Tipografi dan Visual Design CSS</h1>
+    <p class="pengantar">16 berkas contoh, satu berkas per konsep slide. Tiap berkas
+    menampilkan kode contoh beserta hasil yang benar-benar dirender, tanpa JavaScript.</p>
+    <ol>
+    <li>
+      <a href="01-typeface-dan-font.html">01 typeface-dan-font</a>
+      <p>Typeface adalah keluarganya; font adalah satu wujud berat dan gaya di dalamnya. Salah menyebut tidak membuat kode error, hanya membuat diskusi tim berputar tanpa hasil.</p>
+    </li>
+    <li>
+      <a href="02-menyusun-typeface.html">02 menyusun-typeface</a>
+      <p>Judul hero Tokosaya memakai font-family Poppins dan isinya memakai Inter di kedua versi. Typeface-nya tidak berubah; yang berbeda hanya susunan propertinya.</p>
+    </li>
+    <li>
+      <a href="03-font-sistem-dan-web-font.html">03 font-sistem-dan-web-font</a>
+      <p>Browser memakai font sistem bawaan, bukan pilihan kita; karena itu Windows, macOS, dan Android menampilkan keluarga font yang berbeda. Web font adalah keluarga huruf yang diundu…</p>
+    </li>
+    <li>
+      <a href="04-fallback-stack.html">04 fallback-stack</a>
+      <p>Stack adalah daftar cadangan, bukan daftar pilihan. Browser membacanya dari kiri ke kanan; jika Inter gagal dimuat, ia pindah ke sans-serif perangkat.</p>
+    </li>
+    <li>
+      <a href="05-properti-teks.html">05 properti-teks</a>
+      <p>Lima properti yang paling sering dipakai untuk menata teks, beserta praktiknya di Tokosaya. Semuanya bekerja pada satu elemen yang sama.</p>
+    </li>
+    <li>
+      <a href="06-line-height.html">06 line-height</a>
+      <p>line-height menentukan tinggi satu baris teks. Angka tanpa satuan berarti kelipatan ukuran font elemen itu sendiri, jadi nilainya ikut membesar saat font diperbesar.</p>
+    </li>
+    <li>
+      <a href="07-skala-tipografi.html">07 skala-tipografi</a>
+      <p>Skala tipografi mengubah tebakan ukuran menjadi keputusan yang dapat diulang. Satuan rem mengikuti ukuran font akar html; basisnya 16 px.</p>
+    </li>
+    <li>
+      <a href="08-clamp.html">08 clamp</a>
+      <p>clamp() menerima tiga angka: batas bawah, ukuran ideal yang mengikuti lebar layar, dan batas atas. Judulnya tetap terbaca di ponsel tanpa menjadi raksasa di monitor lebar.</p>
+    </li>
+    <li>
+      <a href="09-palet-tokosaya.html">09 palet-tokosaya</a>
+      <p>Tiap warna punya satu peran; di luar lima kartu ini warna tidak dipakai tanpa alasan. Indigo memimpin, amber menyorot, slate menopang, hijau dan merah berbicara.</p>
+    </li>
+    <li>
+      <a href="10-warna-semantik.html">10 warna-semantik</a>
+      <p>Warna semantik membuat orang langsung memahami maknanya tanpa membaca teks. Hijau untuk status berhasil atau tersedia, merah untuk error atau stok habis, amber untuk hal yang pe…</p>
+    </li>
+    <li>
+      <a href="11-kontras-aa.html">11 kontras-aa</a>
+      <p>Contrast ratio mengukur seberapa kontras warna teks dibanding latarnya, dari 1:1 yang tidak terlihat sampai 21:1 untuk hitam di atas putih. WCAG 2.2 menetapkan ambang AA untuk t…</p>
+    </li>
+    <li>
+      <a href="12-gradient-dan-solid.html">12 gradient-dan-solid</a>
+      <p>Permukaan yang dibaca lama lebih nyaman jika datar. Gradient dipakai seperti bumbu: satu atau dua titik per halaman, bukan di setiap kartu.</p>
+    </li>
+    <li>
+      <a href="13-border-radius.html">13 border-radius</a>
+      <p>border-radius menentukan sudut, box-shadow menentukan kedalaman. Keduanya lewat token, jadi tidak ada angka liar di dalam komponen.</p>
+    </li>
+    <li>
+      <a href="14-opacity-rgba.html">14 opacity-rgba</a>
+      <p>opacity mengenai seluruh elemen beserta isinya, sedangkan rgba() hanya berpengaruh pada satu warna: latar atau teks.</p>
+    </li>
+    <li>
+      <a href="15-design-token.html">15 design-token</a>
+      <p>Design token mengumpulkan semua keputusan warna, tipografi, sudut, dan bayangan menjadi CSS custom property di :root. Blok ini dipakai apa adanya di seluruh proyek.</p>
+    </li>
+    <li>
+      <a href="16-token-jarak-calc.html">16 token-jarak-calc</a>
+      <p>Satu token jarak menjadi basis seluruh ritme halaman. calc() mengalikannya dengan bilangan bulat, sehingga jarak apa pun tetap kelipatan 8 px.</p>
+    </li>
+    </ol>
+  </div>
+</body>
+</html>
