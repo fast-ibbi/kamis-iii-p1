@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 7 · 09 grid-template-areas — CSS Grid dan Responsive Web Design</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: dua bingkai lebar tetap; outline dipakai agar lebarnya tidak bergeser */
+  .demo * { box-sizing: border-box; }
+  .demo .layar-375 {
+    width: 375px;
+    max-width: 100%;
+    background: #ffffff;
+    outline: 1px solid #d1d5db;
+  }
+  .demo .layar-768 {
+    width: 768px;
+    max-width: 100%;
+    background: #ffffff;
+    outline: 1px solid #d1d5db;
+  }
+  .demo .area {
+    padding: 10px;
+    border: 1px dashed #9ca3af;
+    font-size: 12.5px;
+    text-align: center;
+  }
+  .demo .area-kepala { background: #eef2ff; }
+  .demo .area-nav { background: #fde68a; }
+  .demo .area-main { background: #ffffff; min-height: 104px; }
+  .demo .area-kaki { background: #f1f5f9; }
+  .demo .petunjuk { margin: 0 0 6px; font-size: 13px; color: #6b7280; }
+  /* bingkai 375 px harus tetap satu kolom walau jendela pembaca sudah lebar */
+  .demo .layar-375 .hlm {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "nav"
+      "main"
+      "footer";
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .hlm {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "nav"
+      "main"
+      "footer";
+  }
+
+  @media (min-width: 768px) {
+    .hlm {
+      grid-template-columns: 240px 1fr;
+      grid-template-areas:
+        "header header"
+        "nav main"
+        "footer footer";
+    }
+  }
+
+  .hlm-header {
+    grid-area: header;
+  }
+
+  .hlm-nav {
+    grid-area: nav;
+  }
+
+  .hlm-main {
+    grid-area: main;
+  }
+
+  .hlm-footer {
+    grid-area: footer;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 7 · CSS Grid dan Responsive Web Design</strong> · 09 grid-template-areas</p>
+    <h1>grid-template-areas: Denah dengan Kata</h1>
+    <p><code>grid-template-areas</code> menggambar denah memakai nama area, bukan angka garis. Denahnya bisa dibaca langsung di dalam CSS, seperti membaca sketsa.</p>
+
+    <h2>Denah satu kolom sebagai titik awal</h2>
+    <p>Tiap baris kata diapit tanda petik, dan jumlah kolom di setiap baris harus sama. Denah di bawah menggambar empat area yang bertumpuk.</p>
+<pre><code class="language-css">.hlm {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "header"
+    "nav"
+    "main"
+    "footer";
+}</code></pre>
+    <p>Kalau salah satu aturan dilanggar — tanda petiknya hilang atau jumlah kolomnya tidak konsisten — browser gagal membentuk denah dan halaman diam-diam kembali ke tumpukan satu kolom.</p>
+
+    <h2>Butir mengambil posisinya lewat grid-area</h2>
+    <p>Nama di denah baru berarti setelah butirnya menyebut nama itu. Markup tidak berubah: yang berpindah hanya nama area yang dipanggil tiap bagian halaman.</p>
+<pre><code class="language-css">.hlm-header {
+  grid-area: header;
+}
+
+.hlm-nav {
+  grid-area: nav;
+}
+
+.hlm-main {
+  grid-area: main;
+}
+
+.hlm-footer {
+  grid-area: footer;
+}</code></pre>
+    <div class="demo">
+      <p class="petunjuk">Simulasi lebar 375 px — keempat area bertumpuk satu kolom.</p>
+      <div class="layar-375">
+        <div class="hlm">
+          <div class="hlm-header area area-kepala">header</div>
+          <div class="hlm-nav area area-nav">nav</div>
+          <div class="hlm-main area area-main">main — isi halaman tinggal di area ini</div>
+          <div class="hlm-footer area area-kaki">footer</div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Denah yang berubah cukup digambar ulang</h2>
+    <p>Tidak ada satu pun kelas posisi yang perlu ditambahkan ke markup. Denah dua kolom di bawah hanya menulis ulang string areanya di dalam media query.</p>
+<pre><code class="language-css">@media (min-width: 768px) {
+  .hlm {
+    grid-template-columns: 240px 1fr;
+    grid-template-areas:
+      "header header"
+      "nav main"
+      "footer footer";
+  }
+}</code></pre>
+    <div class="demo">
+      <p class="petunjuk">Simulasi lebar 768 px — header dan footer membentang penuh, nav bergeser ke kolom kiri.</p>
+      <div class="layar-768">
+        <div class="hlm">
+          <div class="hlm-header area area-kepala">header — membentang dua kolom</div>
+          <div class="hlm-nav area area-nav">nav</div>
+          <div class="hlm-main area area-main">main — sisa lebar setelah kolom navigasi</div>
+          <div class="hlm-footer area area-kaki">footer — membentang dua kolom</div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="768px - 240px = 528">Di lebar 768 px, kolom navigasi memakai 240 px dan area <code>main</code> menyisakan <strong>528 px</strong>.</p>
+    <p class="hitung" data-hitung="1 + 1 = 2">Baris pertama denah memuat dua nama: <code>header</code> dua kali untuk dua kolom. Jumlah nama di tiap baris itulah yang harus konsisten.</p>
+
+    <h2>Bentuk persegi saja</h2>
+    <p><code>grid-template-areas</code> hanya bisa menggambar bentuk persegi. Bentuk tangga — misalnya kolom yang menggeser satu track di baris kedua — harus disusun dengan garis, memakai <code>grid-column</code> dan <code>grid-row</code> seperti pada berkas sebelumnya.</p>
+    <table class="tabel">
+      <thead>
+        <tr><th>Bagian</th><th>Ditulis di mana</th><th>Isinya</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Wadah <code>.hlm</code></td><td>CSS</td><td>jumlah kolom dan gambar denahnya</td></tr>
+        <tr><td>Butir, mis. <code>.hlm-nav</code></td><td>CSS</td><td>satu baris <code>grid-area</code> berisi nama area</td></tr>
+        <tr><td>Markup</td><td>HTML</td><td>hanya nama bagian; tanpa kelas posisi</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Inti pembelajaran:</strong> denah berbasis kata lebih gampang dirawat daripada hitungan nomor garis, karena bentuk akhirnya terlihat langsung di kode. Yang perlu dijaga hanya dua: tanda petik, dan jumlah kolom yang sama di setiap baris.</p>
+    <nav class="nav">
+      <a href="08-garis-dan-span.html">← 08 garis dan span</a>
+      <span>09 / 17</span>
+      <a href="10-mobile-first.html">10 mobile first →</a>
+    </nav>
+  </div>
+</body>
+</html>

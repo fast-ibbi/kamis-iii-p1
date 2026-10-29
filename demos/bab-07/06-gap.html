@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 7 · 06 gap — CSS Grid dan Responsive Web Design</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: wadah 888 px tanpa padding, supaya lebar track bisa dihitung */
+  .demo * { box-sizing: border-box; }
+  .demo .panggung { width: 888px; max-width: 100%; }
+  .demo .kartu-angka {
+    padding: 12px 14px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 13.5px;
+    color: #475569;
+  }
+  .demo .kartu-angka b {
+    display: block;
+    font-size: 20px;
+    color: #111827;
+  }
+  .demo .butir {
+    padding: 10px;
+    background: #e0f2fe;
+    border: 1px dashed #0369a1;
+    font-size: 13px;
+    text-align: center;
+  }
+  .demo .petunjuk { margin: 0 0 8px; font-size: 13px; color: #6b7280; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .stat-kartu {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .jarak-terpisah {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 24px;
+    row-gap: 8px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 7 · CSS Grid dan Responsive Web Design</strong> · 06 gap</p>
+    <h1>gap: Jarak Milik Kerangka</h1>
+    <p>Pada grid, jarak antarbutir bukan lagi urusan tiap butir. <code>gap</code> dipasang di wadah, jadi semua sel mendapat jarak yang sama tanpa perlu perlakuan khusus untuk kartu pertama atau terakhir.</p>
+
+    <h2>Empat kartu statistik sebaris</h2>
+    <p>Baris kartu statistik dashboard Tokosaya memakai empat kolom selebar sama dan gap 24 px.</p>
+<pre><code class="language-css">.stat-kartu {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}</code></pre>
+    <div class="demo">
+      <p class="petunjuk">Wadah 888 px, empat kartu, tiga gap.</p>
+      <div class="panggung">
+        <div class="stat-kartu">
+          <div class="kartu-angka">Pesanan<b>128</b></div>
+          <div class="kartu-angka">Pendapatan<b>Rp 12,4 jt</b></div>
+          <div class="kartu-angka">Stok menipis<b>9</b></div>
+          <div class="kartu-angka">Pelanggan baru<b>34</b></div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="24px * 3 = 72">Empat kartu berarti tiga gap: <strong>72 px</strong> lebar yang dipakai jarak.</p>
+    <p class="hitung" data-hitung="888px - 24px*3 = 816">Sisa untuk keempat kartu: <strong>816 px</strong>.</p>
+    <p class="hitung" data-hitung="816 / 4 = 204">Tiap kartu mendapat <strong>204 px</strong>, sama rata, karena keempatnya memakai porsi <code>1fr</code>.</p>
+
+    <h2>column-gap dan row-gap</h2>
+    <p><code>gap</code> adalah gabungan dua properti: <code>column-gap</code> untuk jarak antarkolom dan <code>row-gap</code> untuk jarak antarbaris. Keduanya boleh diatur terpisah kalau denah membutuhkannya.</p>
+<pre><code class="language-css">.jarak-terpisah {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 24px;
+  row-gap: 8px;
+}</code></pre>
+    <div class="demo">
+      <p class="petunjuk">Jarak antarkolom 24 px, antarbaris 8 px.</p>
+      <div class="panggung">
+        <div class="jarak-terpisah">
+          <div class="butir">1</div>
+          <div class="butir">2</div>
+          <div class="butir">3</div>
+          <div class="butir">4</div>
+          <div class="butir">5</div>
+          <div class="butir">6</div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="888px - 24px*2 = 840">Dua gap antarkolom memakai 48 px, jadi tiga kolom berbagi <strong>840 px</strong>.</p>
+    <p class="hitung" data-hitung="840 / 3 = 280">Tiap kolom selebar <strong>280 px</strong>; jarak antarbaris tetap 8 px.</p>
+
+    <h2>Kenapa bukan margin</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th></th><th><code>gap</code> di wadah</th><th><code>margin</code> di butir</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Tempat menulisnya</td><td>satu aturan di wadah</td><td>satu aturan di tiap butir</td></tr>
+        <tr><td>Butir terakhir</td><td>tidak perlu perlakuan khusus</td><td>butuh trik <code>:last-child</code> untuk membuang sisa margin</td></tr>
+        <tr><td>Akibatnya</td><td>semua sel punya hak yang sama</td><td>jarak bisa tampak timpang di tepi</td></tr>
+      </tbody>
+    </table>
+    <p>Margin menempel pada butir, jadi kartu pertama dan terakhir selalu butuh pengecualian. Dengan <code>gap</code>, setiap sel setara: tidak ada angka yang terkesan lebih penting hanya karena jaraknya lebih lega.</p>
+    <p><strong>Inti pembelajaran:</strong> jarak pada grid adalah milik kerangka. Tulis sekali di wadah, dan seluruh denah mengikuti tanpa trik per butir.</p>
+    <nav class="nav">
+      <a href="05-repeat.html">← 05 repeat</a>
+      <span>06 / 17</span>
+      <a href="07-auto-fit-minmax.html">07 auto-fit minmax →</a>
+    </nav>
+  </div>
+</body>
+</html>

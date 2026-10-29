@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 7 · 13 clamp — CSS Grid dan Responsive Web Design</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: pembanding dua batas dan satu judul yang bergerak */
+  .demo * { box-sizing: border-box; }
+  .demo .judul-demo {
+    margin: 0 0 12px;
+    line-height: 1.2;
+    color: #111827;
+  }
+  .demo .batas-min { font-size: 1.5rem; }
+  .demo .batas-maks { font-size: 2rem; }
+  .demo .keterangan { margin: 0 0 10px; font-size: 12.5px; color: #6b7280; }
+  .demo .petunjuk { margin: 0 0 6px; font-size: 13px; color: #6b7280; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .katalog-judul {
+    font-size: clamp(1.5rem, 1.1rem + 1.5vw, 2rem);
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 7 · CSS Grid dan Responsive Web Design</strong> · 13 clamp</p>
+    <h1>clamp(): Huruf yang Bernafas</h1>
+    <p><code>clamp()</code> menerima tiga argumen: nilai minimum, nilai yang dipilih, dan nilai maksimum. Nilai tengahnya bergerak mengikuti lebar layar, sedangkan dua argumen lain menjaga hasilnya tetap di dalam batas.</p>
+
+    <h2>Tiga argumen, satu baris</h2>
+<pre><code class="language-css">.katalog-judul {
+  font-size: clamp(1.5rem, 1.1rem + 1.5vw, 2rem);
+}</code></pre>
+    <div class="demo">
+      <p class="petunjuk">Judul di bawah memakai aturan di atas apa adanya. Ubah lebar jendela browser: ukurannya bergerak, tetapi berhenti di dua batas.</p>
+      <p class="judul-demo katalog-judul">Katalog Tokosaya</p>
+      <p class="keterangan">Sebagai pembanding, dua batasnya ditulis terpisah:</p>
+      <p class="judul-demo batas-min">batas minimum 1.5rem</p>
+      <p class="judul-demo batas-maks">batas maksimum 2rem</p>
+    </div>
+
+    <h2>Menghitung nilai tengahnya</h2>
+    <p>Argumen tengah berisi campuran <code>rem</code> dan <code>vw</code>. Satu <code>rem</code> di sini sama dengan 16 px, dan <code>1.5vw</code> berarti 1,5 persen dari lebar layar.</p>
+    <p class="hitung" data-hitung="1.1 * 16 = 17.6"><code>1.1rem</code> sama dengan <strong>17,6 px</strong>.</p>
+    <p class="hitung" data-hitung="375 * 1.5 / 100 = 5.625">Pada layar 375 px, <code>1.5vw</code> bernilai <strong>5,625 px</strong>.</p>
+    <p class="hitung" data-hitung="17.6 + 5.625 = 23.225">Nilai tengahnya jatuh di <strong>23,225 px</strong> — di bawah batas minimum.</p>
+    <p class="hitung" data-hitung="1.5 * 16 = 24">Karena di bawah batas, browser memakai batas minimum: <code>1.5rem</code> = <strong>24 px</strong>.</p>
+    <p class="hitung" data-hitung="1440 * 1.5 / 100 = 21.6">Pada layar 1440 px, <code>1.5vw</code> bernilai <strong>21,6 px</strong>.</p>
+    <p class="hitung" data-hitung="17.6 + 21.6 = 39.2">Nilai tengahnya menjadi <strong>39,2 px</strong> — kali ini di atas batas maksimum.</p>
+    <p class="hitung" data-hitung="2 * 16 = 32">Maka yang terpakai adalah batas maksimum: <code>2rem</code> = <strong>32 px</strong>.</p>
+
+    <table class="tabel">
+      <thead>
+        <tr><th>Lebar layar</th><th>Nilai tengah</th><th>Yang terpakai</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>375 px</td><td>sekitar 23,2 px</td><td>minimum 24 px</td></tr>
+        <tr><td>1440 px</td><td>sekitar 39,2 px</td><td>maksimum 32 px</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Ibarat termostat</h2>
+    <ul>
+      <li>Nilai tengah bergerak mengikuti lebar layar.</li>
+      <li>Ukurannya tetap tertahan di dua batas: tidak pernah lebih kecil dari minimum, tidak pernah lebih besar dari maksimum.</li>
+      <li>Kalau nilai tengah jatuh di luar dua batas itu, batas yang menang.</li>
+      <li>Satu baris <code>clamp()</code> menggantikan tiga breakpoint untuk tipografi.</li>
+    </ul>
+    <p>Yang perlu dijaga hanya keterbacaan: batas minimum harus tetap nyaman di layar sempit, dan batas maksimum harus tetap wajar di monitor lebar. Di luar itu, ukuran huruf boleh bergerak sendiri.</p>
+    <p><strong>Inti pembelajaran:</strong> <code>clamp()</code> menyelesaikan tipografi responsif tanpa media query, karena dua batasnya sudah menjaga hasil akhir di rentang yang aman.</p>
+    <nav class="nav">
+      <a href="12-media-query-naik.html">← 12 media query naik</a>
+      <span>13 / 17</span>
+      <a href="14-gambar-responsif.html">14 gambar responsif →</a>
+    </nav>
+  </div>
+</body>
+</html>

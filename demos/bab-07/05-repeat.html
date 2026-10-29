@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 7 · 05 repeat — CSS Grid dan Responsive Web Design</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: wadah 720 px tanpa padding, supaya lebar track bisa dihitung */
+  .demo * { box-sizing: border-box; }
+  .demo .panggung { width: 720px; max-width: 100%; }
+  .demo .butir {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 56px;
+    padding: 8px;
+    background: #e0f2fe;
+    border: 1px dashed #0369a1;
+    font-size: 13px;
+    text-align: center;
+  }
+  .demo .butir-tetap {
+    background: #fde68a;
+    border: 1px solid #b45309;
+  }
+  .demo .petunjuk { margin: 0 0 8px; font-size: 13px; color: #6b7280; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .kotak-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .kotak-tulis-panjang {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+  }
+
+  .kotak-bertingkat {
+    display: grid;
+    grid-template-columns: repeat(2, 200px 1fr);
+    gap: 16px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 7 · CSS Grid dan Responsive Web Design</strong> · 05 repeat</p>
+    <h1>repeat() Menyingkat Penulisan Track</h1>
+    <p><code>repeat()</code> bukan fitur wajib. Ia hanya alat supaya daftar ukuran track tidak perlu ditulis berulang, dan supaya jumlah kolom cuma diubah di satu tempat.</p>
+
+    <h2>Bentuk ringkas</h2>
+    <p>Argumen pertama adalah jumlah perulangan, argumen kedua ukuran yang diulang.</p>
+<pre><code class="language-css">.kotak-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}</code></pre>
+    <div class="demo">
+      <div class="panggung">
+        <div class="kotak-grid">
+          <div class="butir">1</div>
+          <div class="butir">2</div>
+          <div class="butir">3</div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Bentuk panjangnya</h2>
+    <p>Daftar yang sama boleh ditulis satu per satu. Hasilnya identik; yang berbeda hanya panjang tulisannya.</p>
+<pre><code class="language-css">.kotak-tulis-panjang {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}</code></pre>
+    <div class="demo">
+      <div class="panggung">
+        <div class="kotak-tulis-panjang">
+          <div class="butir">1</div>
+          <div class="butir">2</div>
+          <div class="butir">3</div>
+        </div>
+      </div>
+    </div>
+    <p>Kalau jumlah kolom harus berubah, bentuk panjang menuntut penyuntingan di banyak titik dan gampang ketinggalan satu. Bentuk ringkas cukup mengubah angka pertama.</p>
+
+    <h2>Perulangan bertingkat</h2>
+    <p><code>repeat()</code> boleh memuat lebih dari satu ukuran per putaran. <code>repeat(2, 200px 1fr)</code> menghasilkan empat kolom: <code>200px 1fr 200px 1fr</code>.</p>
+<pre><code class="language-css">.kotak-bertingkat {
+  display: grid;
+  grid-template-columns: repeat(2, 200px 1fr);
+  gap: 16px;
+}</code></pre>
+    <div class="demo">
+      <p class="petunjuk">Dua putaran, masing-masing berisi kolom tetap 200 px dan kolom sisa.</p>
+      <div class="panggung">
+        <div class="kotak-bertingkat">
+          <div class="butir butir-tetap">200px</div>
+          <div class="butir">1fr</div>
+          <div class="butir butir-tetap">200px</div>
+          <div class="butir">1fr</div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="2 * 2 = 4">Dua putaran berisi dua ukuran menghasilkan <strong>4 kolom</strong>, bukan 2.</p>
+    <p class="hitung" data-hitung="200px * 2 = 400">Dua kolom tetap memakai <strong>400 px</strong> dari lebar wadah.</p>
+    <p class="hitung" data-hitung="720px - 200px*2 - 16px*3 = 272">Sisa untuk dua kolom <code>1fr</code> setelah gap 16 px dipotong: <strong>272 px</strong>.</p>
+    <p class="hitung" data-hitung="272 / 2 = 136">Jadi tiap kolom <code>1fr</code> selebar <strong>136 px</strong>.</p>
+
+    <h2>Yang perlu diingat</h2>
+    <ul>
+      <li><code>repeat(3, 1fr)</code> adalah bentuk ringkas dari <code>1fr 1fr 1fr</code>.</li>
+      <li><code>repeat(2, 200px 1fr)</code> menghasilkan <code>200px 1fr 200px 1fr</code>.</li>
+      <li>Penulisan ringkas lebih gampang dirawat karena jumlah kolom hanya ditulis sekali.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> pakai <code>repeat()</code> supaya denah grid punya satu sumber angka. Jumlah kolom yang berubah di kemudian hari cukup disunting di satu tempat.</p>
+    <nav class="nav">
+      <a href="04-satuan-fr.html">← 04 satuan fr</a>
+      <span>05 / 17</span>
+      <a href="06-gap.html">06 gap →</a>
+    </nav>
+  </div>
+</body>
+</html>

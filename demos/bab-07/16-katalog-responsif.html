@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 7 · 16 katalog responsif — CSS Grid dan Responsive Web Design</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: token Bab 4, dua bingkai lebar tetap, dua denah mini tanpa skala */
+  .demo * { box-sizing: border-box; }
+  .demo { --space-unit: 8px; }
+  .demo .layar-375 {
+    width: 375px;
+    max-width: 100%;
+    background: #ffffff;
+    outline: 1px solid #d1d5db;
+  }
+  .demo .layar-576 {
+    width: 576px;
+    max-width: 100%;
+    background: #ffffff;
+    outline: 1px solid #d1d5db;
+  }
+  .demo .produk-card {
+    padding: 8px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 11.5px;
+    color: #475569;
+  }
+  .demo .produk-gambar {
+    height: 34px;
+    margin-bottom: 6px;
+    background: #fde68a;
+    border-radius: 3px;
+  }
+  .demo .deret {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .demo .mini {
+    width: 240px;
+    padding: 6px;
+    background: #ffffff;
+    outline: 1px solid #d1d5db;
+  }
+  .demo .mini .judul-mini {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 11px;
+    color: #6b7280;
+  }
+  .demo .denah-mini {
+    display: grid;
+    gap: 3px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .demo .mini-empat .denah-mini {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .demo .denah-mini i {
+    display: block;
+    height: 26px;
+    background: #e0f2fe;
+    border: 1px solid #7dd3fc;
+    border-radius: 2px;
+  }
+  .demo .petunjuk { margin: 0 0 6px; font-size: 13px; color: #6b7280; }
+  .demo .petunjuk + .petunjuk { margin-top: 18px; }
+
+  /* bingkai disimpan pada keadaan breakpoint yang digambarkan, bukan keadaan jendela */
+  .demo .layar-375 .katalog-grid {
+    grid-template-columns: 1fr;
+  }
+  .demo .layar-576 .katalog-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .katalog-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: calc(var(--space-unit) * 3);
+  }
+
+  @media (min-width: 576px) {
+    .katalog-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 992px) {
+    .katalog-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media (min-width: 1200px) {
+    .katalog-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 7 · CSS Grid dan Responsive Web Design</strong> · 16 katalog responsif</p>
+    <h1>Katalog Responsif</h1>
+    <p>Katalog Tokosaya hanya perlu satu wadah diberi kelas grid. Jumlah kolomnya naik di tiga titik, sedangkan kartunya tetap kartu produk yang sudah dipakai sejak Bab 5 dan 6.</p>
+
+    <h2>Satu kolom dasar, lalu naik</h2>
+    <p>Denah milik wadah, jadi perubahannya cukup di satu tempat: <code>.katalog-grid</code>. Markup kartu tidak ikut berubah sedikit pun.</p>
+<pre><code class="language-css">.katalog-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: calc(var(--space-unit) * 3);
+}
+
+@media (min-width: 576px) {
+  .katalog-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 992px) {
+  .katalog-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 1200px) {
+  .katalog-grid { grid-template-columns: repeat(4, 1fr); }
+}</code></pre>
+    <div class="demo">
+      <p class="petunjuk">Simulasi lebar 375 px — satu kolom.</p>
+      <div class="layar-375">
+        <div class="katalog-grid">
+          <article class="produk-card"><div class="produk-gambar"></div>Kopi Bubuk 250 g</article>
+          <article class="produk-card"><div class="produk-gambar"></div>Teh Hijau</article>
+          <article class="produk-card"><div class="produk-gambar"></div>Gula Aren Cair</article>
+          <article class="produk-card"><div class="produk-gambar"></div>Madu Hutan</article>
+        </div>
+      </div>
+      <p class="petunjuk">Simulasi lebar 576 px — dua kolom.</p>
+      <div class="layar-576">
+        <div class="katalog-grid">
+          <article class="produk-card"><div class="produk-gambar"></div>Kopi Bubuk 250 g</article>
+          <article class="produk-card"><div class="produk-gambar"></div>Teh Hijau</article>
+          <article class="produk-card"><div class="produk-gambar"></div>Gula Aren Cair</article>
+          <article class="produk-card"><div class="produk-gambar"></div>Madu Hutan</article>
+        </div>
+      </div>
+    </div>
+    <p>Kedua bingkai ditumpuk supaya sama-sama muat di kolom baca; yang digambarkan adalah dua lebar wadah, bukan jendela yang diubah.</p>
+    <p class="hitung" data-hitung="576px - 24 = 552">Di bingkai 576 px, satu gap 24 px menyisakan <strong>552 px</strong> untuk dua kartu.</p>
+    <p class="hitung" data-hitung="552 / 2 = 276">Tiap kartu selebar <strong>276 px</strong>. Di bingkai 375 px, satu kartu memakai seluruh lebar.</p>
+
+    <h2>Tiga kolom dan empat kolom</h2>
+    <p>Dua titik berikutnya tidak digambar dalam ukuran sesungguhnya karena tidak muat di kolom baca. Yang ditunjukkan hanya susunannya: tiga kolom mulai 992 px, empat kolom mulai 1200 px.</p>
+    <div class="demo">
+      <div class="deret">
+        <div class="mini mini-tiga">
+          <span class="judul-mini">992 px · tiga kolom</span>
+          <div class="denah-mini"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="mini mini-empat">
+          <span class="judul-mini">1200 px · empat kolom</span>
+          <div class="denah-mini"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="1200 - 24*3 = 1128">Di 1200 px, tiga gap memakai 72 px, jadi empat kartu berbagi <strong>1128 px</strong>.</p>
+    <p class="hitung" data-hitung="1128 / 4 = 282">Tiap kartu selebar <strong>282 px</strong>. Di <code>katalog.html</code>, delapan produk dengan lebar itu tampil sebagai empat kolom dua baris.</p>
+    <ul>
+      <li>Satu kolom dasar, lalu dua, tiga, dan empat kolom.</li>
+      <li>Kartu tetap memakai kelas <code>produk-card</code> dari Bab 5 dan 6.</li>
+      <li>Di 1200 px grid jadi empat kolom dua baris.</li>
+    </ul>
+
+    <h2>Kenapa kartunya tidak perlu kelas kolom</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Ditulis di</th><th>Isinya</th><th>Kalau berubah</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Wadah <code>.katalog-grid</code></td><td>jumlah kolom dan jarak antarkartu</td><td>cukup satu baris disunting</td></tr>
+        <tr><td>Kartu <code>.produk-card</code></td><td>isi kartu: gambar, judul, harga</td><td>tidak pernah tersentuh</td></tr>
+      </tbody>
+    </table>
+    <p>Kalau tiap kartu diberi kelas kolom sendiri, jumlah kolom harus diubah di sebanyak jumlah kartu. Karena denah milik wadah, jumlah kolom cukup diatur sekali, dan blok media query-nya diletakkan di akhir <code>style.css</code> supaya kaskadenya jelas.</p>
+    <p><strong>Inti pembelajaran:</strong> responsif pada katalog bukan pekerjaan kartu, melainkan pekerjaan wadah. Satu kelas di wadah, tiga blok media query menaik, selesai.</p>
+    <nav class="nav">
+      <a href="15-dashboard-admin.html">← 15 dashboard admin</a>
+      <span>16 / 17</span>
+      <a href="17-tabel-menggulir.html">17 tabel menggulir →</a>
+    </nav>
+  </div>
+</body>
+</html>

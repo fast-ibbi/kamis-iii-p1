@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 7 · 04 satuan fr — CSS Grid dan Responsive Web Design</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: wadah 880 px tanpa padding, supaya pembagian fr bisa dihitung */
+  .demo * { box-sizing: border-box; }
+  .demo .panggung { width: 880px; max-width: 100%; }
+  .demo .butir {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    min-height: 72px;
+    padding: 8px;
+    background: #e0f2fe;
+    border: 1px dashed #0369a1;
+    font-size: 13px;
+    text-align: center;
+  }
+  .demo .butir b { font-size: 14px; }
+  .demo .butir span { color: #475569; font-size: 12px; }
+  .demo .butir-tetap {
+    background: #fde68a;
+    border: 1px solid #b45309;
+  }
+  .demo .petunjuk { margin: 0 0 8px; font-size: 13px; color: #6b7280; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .denah-fr {
+    display: grid;
+    grid-template-columns: 240px 1fr 2fr;
+    gap: 20px;
+  }
+
+  .denah-fr-sederhana {
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    gap: 20px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 7 · CSS Grid dan Responsive Web Design</strong> · 04 satuan fr</p>
+    <h1>Satuan fr Membagi Ruang Sisa</h1>
+    <p>Satuan <code>fr</code> bukan piksel dan bukan persen: ia adalah porsi dari ruang yang tersisa setelah ukuran tetap dan gap dipotong. Karena itu <code>240px 1fr 2fr</code> berarti satu kolom tetap, lalu sisanya dibagi tiga porsi.</p>
+
+    <h2>Ukuran tetap dipotong lebih dulu</h2>
+    <p>Wadah di bawah selebar 880 px. Kolom pertama dipatok 240 px, dua gap masing-masing 20 px, dan sisanya dibagi ke kolom <code>1fr</code> serta <code>2fr</code>.</p>
+<pre><code class="language-css">.denah-fr {
+  display: grid;
+  grid-template-columns: 240px 1fr 2fr;
+  gap: 20px;
+}</code></pre>
+    <div class="demo">
+      <p class="petunjuk">Wadah 880 px — kolom navigasi tetap, dua kolom kanan berbagi sisa ruang.</p>
+      <div class="panggung">
+        <div class="denah-fr">
+          <div class="butir butir-tetap"><b>240 px</b><span>tetap</span></div>
+          <div class="butir"><b>1fr</b><span>1 porsi</span></div>
+          <div class="butir"><b>2fr</b><span>2 porsi</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="880px - 240px - 20px*2 = 600">Ruang sisa setelah kolom tetap dan dua gap dipotong: <strong>600 px</strong>.</p>
+    <p class="hitung" data-hitung="600 / 3 = 200">Sisa itu dibagi tiga porsi, jadi satu porsi <code>1fr</code> = <strong>200 px</strong>.</p>
+    <p class="hitung" data-hitung="200 * 2 = 400">Kolom <code>2fr</code> mendapat dua porsi: <strong>400 px</strong>. Proporsi mengikuti jumlah porsi, bukan jumlah piksel.</p>
+
+    <table class="tabel">
+      <thead>
+        <tr><th>Bagian</th><th>Porsi</th><th>Yang didapat</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Kolom 1</td><td>240 px tetap</td><td>lebar kolom navigasi</td></tr>
+        <tr><td>Kolom 2</td><td>1 porsi</td><td>sepertiga dari ruang sisa</td></tr>
+        <tr><td>Kolom 3</td><td>2 porsi</td><td>dua kali lipat kolom 2</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Tanpa ukuran tetap</h2>
+    <p>Kalau tidak ada kolom yang dipatok, seluruh lebar wadah setelah gap langsung dibagi menurut porsi. <code>1fr 1fr 2fr</code> berarti empat porsi.</p>
+<pre><code class="language-css">.denah-fr-sederhana {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  gap: 20px;
+}</code></pre>
+    <div class="demo">
+      <div class="panggung">
+        <div class="denah-fr-sederhana">
+          <div class="butir"><b>1fr</b><span>1 porsi</span></div>
+          <div class="butir"><b>1fr</b><span>1 porsi</span></div>
+          <div class="butir"><b>2fr</b><span>2 porsi</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="1 + 1 + 2 = 4">Jumlah porsinya <strong>4</strong>; kolom terakhir selalu dua kali kolom di sebelah kirinya.</p>
+    <p class="hitung" data-hitung="880px - 20px*2 = 840">Dari 880 px, dua gap memakai 40 px, jadi ruang yang dibagi <strong>840 px</strong>.</p>
+    <p class="hitung" data-hitung="840 / 4 = 210">Satu porsi = <strong>210 px</strong>, sehingga kolom <code>2fr</code> selebar 420 px.</p>
+
+    <h2>Yang perlu diingat</h2>
+    <ul>
+      <li><code>fr</code> membagi ruang sisa setelah ukuran tetap dan gap dipotong.</li>
+      <li>Proporsi mengikuti jumlah porsi, bukan jumlah piksel.</li>
+      <li><code>fr</code> tidak peduli ukuran font, jadi hasilnya sama walau ukuran huruf halaman berubah.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> tulis ukuran yang benar-benar tetap dalam piksel, lalu serahkan sisanya ke <code>fr</code>. Dengan begitu denah ikut menyesuaikan lebar layar tanpa satu pun media query.</p>
+    <nav class="nav">
+      <a href="03-grid-template-columns.html">← 03 grid-template-columns</a>
+      <span>04 / 17</span>
+      <a href="05-repeat.html">05 repeat →</a>
+    </nav>
+  </div>
+</body>
+</html>

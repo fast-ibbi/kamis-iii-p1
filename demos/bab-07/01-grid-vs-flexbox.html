@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 7 · 01 grid-vs-flexbox — CSS Grid dan Responsive Web Design</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: satu wadah 720 px tanpa padding, supaya lebar track bisa dihitung */
+  .demo * { box-sizing: border-box; }
+  .demo .panggung { width: 720px; max-width: 100%; }
+  .demo .butir {
+    padding: 10px 12px;
+    background: #fde68a;
+    border: 1px solid #b45309;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  .demo .denah-12 .butir {
+    padding: 8px 6px;
+    background: #e0f2fe;
+    border: 1px solid #0369a1;
+    border-radius: 4px;
+    font-size: 12.5px;
+    text-align: center;
+  }
+  .demo .petunjuk { margin: 0 0 8px; font-size: 13px; color: #6b7280; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .baris-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .denah-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .denah-12 {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 16px;
+  }
+
+  .baris-penuh {
+    grid-column: span 12;
+  }
+
+  .baris-duapertiga {
+    grid-column: span 8;
+  }
+
+  .baris-sepertiga {
+    grid-column: span 4;
+  }
+
+  .baris-separuh {
+    grid-column: span 6;
+  }
+
+  .baris-seperempat {
+    grid-column: span 3;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 7 · CSS Grid dan Responsive Web Design</strong> · 01 grid vs flexbox</p>
+    <h1>CSS Grid dan Flexbox: Satu Arah atau Dua Arah</h1>
+    <p>CSS Grid adalah modul layout yang membagi wadah menjadi baris dan kolom sekaligus. Flexbox, yang dipakai sejak Bab 6, tetap bekerja; grid hanya menambah kemampuan yang tidak dimiliki flexbox. Halaman ini menaruh isi yang sama pada kedua modul supaya bedanya terlihat.</p>
+
+    <h2>Flexbox: satu arah, tiap baris mengatur dirinya sendiri</h2>
+    <p>Pada flexbox, butir mengalir sepanjang satu sumbu. Ketika barisnya penuh dan butir menekuk, baris berikutnya mulai lagi dari kiri dengan pembagian ruangnya sendiri.</p>
+<pre><code class="language-css">.baris-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}</code></pre>
+    <div class="demo">
+      <p class="petunjuk">Enam butir dengan panjang isi berbeda di dalam wadah 720 px.</p>
+      <div class="panggung">
+        <div class="baris-flex">
+          <div class="butir">Kopi Bubuk 250 g</div>
+          <div class="butir">Teh Hijau</div>
+          <div class="butir">Gula Aren Cair 350 ml</div>
+          <div class="butir">Madu Hutan</div>
+          <div class="butir">Beras Merah 5 kg</div>
+          <div class="butir">Keripik Singkong</div>
+        </div>
+      </div>
+    </div>
+    <p>Lebar butir mengikuti isinya, jadi tepi kanan tiap baris berbeda. Di sinilah flexbox kuat: ia bergerak dari konten menuju layout.</p>
+
+    <h2>Grid: dua arah, denah ditetapkan lebih dulu</h2>
+    <p>Dengan grid, kita menentukan denahnya dulu, baru menaruh isinya. Tiga kolom selebar sama membuat tepi kolom tetap satu garis dari atas ke bawah, walaupun panjang teks tiap butir berbeda.</p>
+<pre><code class="language-css">.denah-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}</code></pre>
+    <div class="demo">
+      <p class="petunjuk">Enam butir yang sama, kini di dalam denah tiga kolom.</p>
+      <div class="panggung">
+        <div class="denah-grid">
+          <div class="butir">Kopi Bubuk 250 g</div>
+          <div class="butir">Teh Hijau</div>
+          <div class="butir">Gula Aren Cair 350 ml</div>
+          <div class="butir">Madu Hutan</div>
+          <div class="butir">Beras Merah 5 kg</div>
+          <div class="butir">Keripik Singkong</div>
+        </div>
+      </div>
+    </div>
+    <p>Isi yang lebih panjang tidak lagi menggeser tepi kolom; ia hanya membuat barisnya lebih tinggi.</p>
+
+    <h2>Satu denah, tiga baris</h2>
+    <p>Denah dua belas kolom memperlihatkan bahwa yang menjaga baris tetap lurus bukan lebar butir, melainkan denah yang sudah ditetapkan lebih dulu. Tiap baris di bawah jumlah kolomnya dua belas.</p>
+<pre><code class="language-css">.denah-12 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+}
+
+.baris-penuh {
+  grid-column: span 12;
+}
+
+.baris-duapertiga {
+  grid-column: span 8;
+}
+
+.baris-sepertiga {
+  grid-column: span 4;
+}
+
+.baris-separuh {
+  grid-column: span 6;
+}
+
+.baris-seperempat {
+  grid-column: span 3;
+}</code></pre>
+    <div class="demo">
+      <p class="petunjuk">Baris pertama span 12; baris kedua span 4 lalu span 8; baris ketiga span 3, span 3, dan span 6.</p>
+      <div class="panggung">
+        <div class="denah-12">
+          <div class="butir baris-penuh">span 12</div>
+          <div class="butir baris-sepertiga">span 4</div>
+          <div class="butir baris-duapertiga">span 8</div>
+          <div class="butir baris-seperempat">span 3</div>
+          <div class="butir baris-seperempat">span 3</div>
+          <div class="butir baris-separuh">span 6</div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="4 + 8 = 12">Baris kedua: <strong>4 + 8 = 12 kolom</strong>, penuh satu baris.</p>
+    <p class="hitung" data-hitung="3 + 3 + 6 = 12">Baris ketiga: <strong>3 + 3 + 6 = 12 kolom</strong>. Jumlah butirnya berbeda, garis kolomnya sama.</p>
+
+    <h2>Kapan pakai yang mana</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Pertanyaan</th><th>Flexbox</th><th>Grid</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Arah berpikir</td>
+          <td>dari konten menuju layout</td>
+          <td>dari denah menuju konten</td>
+        </tr>
+        <tr>
+          <td>Contoh di Tokosaya</td>
+          <td>navigasi horizontal, footer multi kolom, barisan kartu dengan panjang isi berbeda</td>
+          <td>kerangka halaman berisi header, nav, main, dan footer; kartu statistik yang harus sebaris sempurna</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Di proyek nyata keduanya dipakai bersama: grid menyusun kerangka halaman, flexbox menata isi tiap sel. Satu kasus sengaja tidak masuk daftar itu — satu elemen yang digeser sedikit dari alurnya — karena itu urusan <code>position</code> di Bab 5, bukan grid atau flexbox.</p>
+    <p><strong>Inti pembelajaran:</strong> grid menyusun dua dimensi sekaligus, jadi pertanyaannya bukan mana yang lebih baik, melainkan apakah masalahnya satu arah atau dua arah.</p>
+    <nav class="nav">
+      <span>—</span>
+      <span>01 / 17</span>
+      <a href="02-tiga-istilah-grid.html">02 tiga istilah grid →</a>
+    </nav>
+  </div>
+</body>
+</html>

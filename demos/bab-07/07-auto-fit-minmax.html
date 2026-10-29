@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 7 · 07 auto-fit minmax — CSS Grid dan Responsive Web Design</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: token Tokosaya dari Bab 4, lalu tiga wadah tanpa padding */
+  .demo * { box-sizing: border-box; }
+  .demo { --space-unit: 8px; }
+  .demo .lebar-888 { width: 888px; max-width: 100%; }
+  .demo .lebar-560 { width: 560px; max-width: 100%; }
+  .demo .lebar-380 { width: 380px; max-width: 100%; }
+  .demo .kartu-angka {
+    padding: 12px 14px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 13.5px;
+    color: #475569;
+  }
+  .demo .kartu-angka b {
+    display: block;
+    font-size: 18px;
+    color: #111827;
+  }
+  .demo .petunjuk { margin: 0 0 8px; font-size: 13px; color: #6b7280; }
+  .demo .petunjuk + .petunjuk { margin-top: 18px; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .stat-kartu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: calc(var(--space-unit) * 3);
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 7 · CSS Grid dan Responsive Web Design</strong> · 07 auto-fit minmax</p>
+    <h1>auto-fit dan minmax: Kolom Otomatis</h1>
+    <p>Satu baris <code>grid-template-columns</code> sudah cukup membuat jumlah kolom mengikuti lebar wadah. Tidak ada media query di halaman ini: yang bekerja adalah <code>auto-fit</code> bersama <code>minmax()</code>.</p>
+
+    <h2>Kolom selebar mungkin, minimal 200 px</h2>
+    <p><code>minmax(200px, 1fr)</code> berarti tiap kolom paling sempit 200 px dan paling lebar satu porsi penuh. <code>auto-fit</code> menambah kolom baru begitu ruangnya mencukupi.</p>
+<pre><code class="language-css">.stat-kartu {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: calc(var(--space-unit) * 3);
+}</code></pre>
+    <div class="demo">
+      <p class="petunjuk">Wadah 888 px — empat kartu sebaris.</p>
+      <div class="lebar-888">
+        <div class="stat-kartu">
+          <div class="kartu-angka">Pesanan<b>128</b></div>
+          <div class="kartu-angka">Pendapatan<b>Rp 12,4 jt</b></div>
+          <div class="kartu-angka">Stok menipis<b>9</b></div>
+          <div class="kartu-angka">Pelanggan baru<b>34</b></div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="200px * 4 + 24*3 = 872">Empat kolom minimum butuh <strong>872 px</strong> termasuk tiga gap 24 px.</p>
+    <p class="hitung" data-hitung="888px - 24*3 = 816">Di wadah 888 px tersisa <strong>816 px</strong> untuk keempat kartu.</p>
+    <p class="hitung" data-hitung="816 / 4 = 204">Karena itu tiap kartu melebar jadi <strong>204 px</strong>, di atas batas minimumnya.</p>
+
+    <h2>Wadah menyempit, kolom berkurang sendiri</h2>
+    <div class="demo">
+      <p class="petunjuk">Wadah 560 px — dua kolom.</p>
+      <div class="lebar-560">
+        <div class="stat-kartu">
+          <div class="kartu-angka">Pesanan<b>128</b></div>
+          <div class="kartu-angka">Pendapatan<b>Rp 12,4 jt</b></div>
+          <div class="kartu-angka">Stok menipis<b>9</b></div>
+          <div class="kartu-angka">Pelanggan baru<b>34</b></div>
+        </div>
+      </div>
+      <p class="petunjuk">Wadah 380 px — satu kolom, kartu menumpuk.</p>
+      <div class="lebar-380">
+        <div class="stat-kartu">
+          <div class="kartu-angka">Pesanan<b>128</b></div>
+          <div class="kartu-angka">Pendapatan<b>Rp 12,4 jt</b></div>
+          <div class="kartu-angka">Stok menipis<b>9</b></div>
+          <div class="kartu-angka">Pelanggan baru<b>34</b></div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="200px * 2 + 24*1 = 424">Dua kolom baru muat mulai <strong>424 px</strong>; wadah 560 px memenuhi syarat itu.</p>
+    <p class="hitung" data-hitung="560px - 24*1 = 536">Sisa untuk kedua kartu <strong>536 px</strong>.</p>
+    <p class="hitung" data-hitung="536 / 2 = 268">Jadi tiap kartu selebar <strong>268 px</strong>. Di 380 px, satu kolom pun tidak cukup untuk dua kartu, sehingga kartu menumpuk.</p>
+
+    <h2>auto-fit berbeda dari auto-fill</h2>
+    <p><code>auto-fit</code> membuang kolom kosong lalu membagikan ruang sisanya kepada kartu yang ada. <code>auto-fill</code> membiarkan kolom kosong itu tetap memakan tempat, sehingga kartu tidak ikut melebar.</p>
+    <table class="tabel">
+      <thead>
+        <tr><th>Lebar wadah</th><th>Jumlah kolom</th><th>Lebar tiap kartu</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>380 px</td><td>satu</td><td>380 px penuh</td></tr>
+        <tr><td>560 px</td><td>dua</td><td>268 px</td></tr>
+        <tr><td>888 px</td><td>empat</td><td>204 px</td></tr>
+      </tbody>
+    </table>
+    <p>Contoh lain dari latihan: kartu produk memakai <code>minmax(220px, 1fr)</code>, jadi di HP satu kolom, di 560 px dua kolom, dan di monitor makin banyak. Pada praktikum dashboard nanti kita justru memilih jumlah kolom eksplisit di dalam media query, supaya cara berpikir breakpoint ikut terlatih.</p>
+    <p><strong>Inti pembelajaran:</strong> <code>auto-fit</code> dan <code>minmax()</code> menyelesaikan jumlah kolom yang berubah-ubah tanpa satu pun media query. Keterbatasannya: desainer tidak bisa memastikan jumlah kolom pada lebar tertentu.</p>
+    <nav class="nav">
+      <a href="06-gap.html">← 06 gap</a>
+      <span>07 / 17</span>
+      <a href="08-garis-dan-span.html">08 garis dan span →</a>
+    </nav>
+  </div>
+</body>
+</html>

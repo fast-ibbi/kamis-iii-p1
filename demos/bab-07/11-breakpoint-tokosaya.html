@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 7 · 11 breakpoint tokosaya — CSS Grid dan Responsive Web Design</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: lima denah mini berjajar — gambar susunan, bukan skala piksel */
+  .demo * { box-sizing: border-box; }
+  .demo .deret {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .demo .mini {
+    width: 166px;
+    padding: 6px;
+    background: #ffffff;
+    outline: 1px solid #d1d5db;
+    font-size: 10px;
+    color: #475569;
+  }
+  .demo .mini .judul-mini {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 11px;
+    color: #6b7280;
+  }
+  .demo .denah-mini {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "h"
+      "n"
+      "m"
+      "f";
+    gap: 3px;
+  }
+  .demo .mini-md .denah-mini,
+  .demo .mini-lg .denah-mini,
+  .demo .mini-xl .denah-mini {
+    grid-template-columns: 1fr 2.5fr;
+    grid-template-areas:
+      "h h"
+      "n m"
+      "f f";
+  }
+  /* makin lebar layarnya, porsi kolom navigasi makin kecil walau lebarnya bertambah */
+  .demo .mini-lg .denah-mini {
+    grid-template-columns: 1fr 3.1fr;
+  }
+  .demo .mini-xl .denah-mini {
+    grid-template-columns: 1fr 4fr;
+  }
+  .demo .kotak-mini {
+    padding: 4px 3px;
+    background: #eef2ff;
+    border-radius: 2px;
+    text-align: center;
+  }
+  .demo .kotak-mini.kepala-mini { grid-area: h; }
+  .demo .kotak-mini.nav-mini { grid-area: n; background: #fde68a; }
+  .demo .kotak-mini.main-mini { grid-area: m; background: #e0f2fe; min-height: 40px; }
+  .demo .kotak-mini.kaki-mini { grid-area: f; }
+  .demo .kartu-mini {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2px;
+    margin-top: 3px;
+  }
+  .demo .kartu-mini i {
+    display: block;
+    height: 8px;
+    background: #ffffff;
+    border: 1px solid #7dd3fc;
+    border-radius: 1px;
+  }
+  .demo .mini-sm .kartu-mini,
+  .demo .mini-md .kartu-mini,
+  .demo .mini-lg .kartu-mini {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .demo .mini-xl .kartu-mini {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .demo .petunjuk { margin: 0 0 10px; font-size: 13px; color: #6b7280; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  @media (min-width: 576px) {
+    .stat-kartu {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .dasbor {
+      grid-template-columns: 220px 1fr;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .dasbor {
+      grid-template-columns: 240px 1fr;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .stat-kartu {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 7 · CSS Grid dan Responsive Web Design</strong> · 11 breakpoint tokosaya</p>
+    <h1>Breakpoint Konvensi Tokosaya</h1>
+    <p>Breakpoint adalah lebar layar tempat gaya berubah. Ia bukan daftar merek HP, karena katalog merek berganti tiap tahun sedangkan tugas pengguna tidak. Angka di bawah dipakai terus sampai Bab 9.</p>
+
+    <h2>Empat titik naik</h2>
+    <p>Urutan <code>min-width</code> harus menaik, dan tiap titik hanya menambah apa yang berubah di titik itu.</p>
+<pre><code class="language-css">@media (min-width: 576px) {
+  .stat-kartu {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .dasbor {
+    grid-template-columns: 220px 1fr;
+  }
+}
+
+@media (min-width: 992px) {
+  .dasbor {
+    grid-template-columns: 240px 1fr;
+  }
+}
+
+@media (min-width: 1200px) {
+  .stat-kartu {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}</code></pre>
+
+    <h2>Lima mode denah</h2>
+    <p>Gambar di bawah menunjukkan susunan areanya, bukan skala piksel. Setiap kotak mewakili satu mode: dari bawaan tanpa media query sampai mode terlebar.</p>
+    <div class="demo">
+      <p class="petunjuk">Bawaan, sm 576, md 768, lg 992, xl 1200 — dibaca dari kiri ke kanan; kolom navigasi diberi angka lebarnya.</p>
+      <div class="deret">
+        <div class="mini mini-dasar">
+          <span class="judul-mini">bawaan</span>
+          <div class="denah-mini">
+            <div class="kotak-mini kepala-mini">header</div>
+            <div class="kotak-mini nav-mini">nav</div>
+            <div class="kotak-mini main-mini">main<div class="kartu-mini"><i></i></div></div>
+            <div class="kotak-mini kaki-mini">footer</div>
+          </div>
+        </div>
+        <div class="mini mini-sm">
+          <span class="judul-mini">sm · 576</span>
+          <div class="denah-mini">
+            <div class="kotak-mini kepala-mini">header</div>
+            <div class="kotak-mini nav-mini">nav</div>
+            <div class="kotak-mini main-mini">main<div class="kartu-mini"><i></i><i></i></div></div>
+            <div class="kotak-mini kaki-mini">footer</div>
+          </div>
+        </div>
+        <div class="mini mini-md">
+          <span class="judul-mini">md · 768</span>
+          <div class="denah-mini">
+            <div class="kotak-mini kepala-mini">header</div>
+            <div class="kotak-mini nav-mini">nav 220</div>
+            <div class="kotak-mini main-mini">main<div class="kartu-mini"><i></i><i></i></div></div>
+            <div class="kotak-mini kaki-mini">footer</div>
+          </div>
+        </div>
+        <div class="mini mini-lg">
+          <span class="judul-mini">lg · 992</span>
+          <div class="denah-mini">
+            <div class="kotak-mini kepala-mini">header</div>
+            <div class="kotak-mini nav-mini">nav 240</div>
+            <div class="kotak-mini main-mini">main<div class="kartu-mini"><i></i><i></i></div></div>
+            <div class="kotak-mini kaki-mini">footer</div>
+          </div>
+        </div>
+        <div class="mini mini-xl">
+          <span class="judul-mini">xl · 1200</span>
+          <div class="denah-mini">
+            <div class="kotak-mini kepala-mini">header</div>
+            <div class="kotak-mini nav-mini">nav 240</div>
+            <div class="kotak-mini main-mini">main<div class="kartu-mini"><i></i><i></i><i></i><i></i></div></div>
+            <div class="kotak-mini kaki-mini">footer</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Isi tiap mode</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Titik</th><th>Lebar mulai</th><th>Yang berubah</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>bawaan</td><td>tanpa media query</td><td>satu kolom, font dasar</td></tr>
+        <tr><td><code>sm</code></td><td>576 px</td><td>kartu statistik dua kolom</td></tr>
+        <tr><td><code>md</code></td><td>768 px</td><td>panel navigasi geser ke kiri, sidebar 220 px</td></tr>
+        <tr><td><code>lg</code></td><td>992 px</td><td>sidebar melebar jadi 240 px</td></tr>
+        <tr><td><code>xl</code></td><td>1200 px</td><td>empat kartu sebaris</td></tr>
+      </tbody>
+    </table>
+    <p class="hitung" data-hitung="240 - 220 = 20">Antara <code>md</code> dan <code>lg</code> sidebar melebar <strong>20 px</strong>; hanya satu angka yang berubah, jadi tidak perlu menulis ulang denahnya.</p>
+    <p class="hitung" data-hitung="992 - 768 = 224">Rentang antara <code>md</code> dan <code>lg</code> <strong>224 px</strong>; di dalam rentang itu tidak ada perubahan gaya sama sekali.</p>
+
+    <h2>Kenapa angkanya begitu</h2>
+    <ul>
+      <li>Breakpoint lahir dari konten dan tugas pengguna, bukan dari katalog merek HP.</li>
+      <li>Konvensi Bootstrap menutup daftar ini dengan <code>xxl</code> di 1400 px, yang jarang dibutuhkan di proyek sekecil Tokosaya.</li>
+      <li>Pada lebar 820 px, misalnya, yang sedang berlaku adalah <code>md</code>: sudah melewati 768, belum mencapai 992.</li>
+    </ul>
+    <p>Strategi mobile-first sendiri bukan gagasan baru di industri; Wroblewski menjelaskannya pada 2012, dan sampai sekarang polanya masih sama: gaya dasar untuk layar kecil, lalu naik.</p>
+    <p><strong>Inti pembelajaran:</strong> pilih sedikit titik, urutkan menaik, dan pastikan setiap titik punya alasan yang bisa dijelaskan lewat isi halaman — bukan lewat merek perangkat.</p>
+    <nav class="nav">
+      <a href="10-mobile-first.html">← 10 mobile first</a>
+      <span>11 / 17</span>
+      <a href="12-media-query-naik.html">12 media query naik →</a>
+    </nav>
+  </div>
+</body>
+</html>

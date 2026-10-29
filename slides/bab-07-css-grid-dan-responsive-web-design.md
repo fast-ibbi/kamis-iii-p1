@@ -105,6 +105,7 @@ CSS Grid adalah modul layout yang membagi wadah jadi baris dan kolom sekaligus.
 Pakai analogi denah parkir buat menjelaskan urutan berpikirnya: denah dulu, isi
 kemudian. Ini kebalikan dari cara berpikir Flexbox yang dipakai di Bab 6. Tanyakan
 siapa yang sebelumnya menyusun HTML dulu baru bingung mengatur posisinya.
+Demo: demos/bab-07/01-grid-vs-flexbox.html — bandingkan isi yang sama di flexbox satu arah dan di grid dua arah.
 -->
 
 ---
@@ -142,6 +143,7 @@ Tunjuk gambarnya sambil menyebut nomor garis satu per satu: garis 1 sampai garis
 mengapit tiga track kolom. Tanyakan berapa track yang dilewati butir yang berjalan
 dari garis 1 sampai garis 3. Jawaban yang diharapkan: dua track, karena jumlah garis
 selalu satu lebih banyak dari jumlah track.
+Demo: demos/bab-07/02-tiga-istilah-grid.html — tunjuk track, garis, sel, dan area pada denah tiga kolom.
 -->
 
 ---
@@ -207,6 +209,7 @@ apa bedanya `grid-template-columns` dan `grid-template-rows` buat mahasiswa yang
 masih bingung. Jawaban yang diharapkan: satu menentukan jalur tegak, satu jalur
 datar, dan keduanya dipisah spasi. Ingatkan bahwa `repeat(2, 120px)` cuma dipakai
 di latihan supaya tingginya gampang diamati.
+Demo: demos/bab-07/03-grid-template-columns.html — ubah ukuran kolom ke px, %, lalu fr dan lihat akibatnya.
 -->
 
 ---
@@ -229,6 +232,7 @@ Analoginya kayak bagi kue: setelah satu potongan dikhususkan 240 piksel, sisanya
 dibagi menurut porsi. Minta mahasiswa menebak lebar tiap kolom kalau wadahnya 1000
 piksel dan gap 20 piksel. Jawaban yang diharapkan: 240 tetap, sisa 740 dibagi tiga,
 jadi sekitar 247 dan 494 piksel. Tekankan bahwa `fr` nggak peduli ukuran font.
+Demo: demos/bab-07/04-satuan-fr.html — hitung sendiri pembagian 240px 1fr 2fr di wadah 880 px.
 -->
 
 ---
@@ -252,6 +256,7 @@ kenapa penulisan ulang `1fr 1fr 1fr 1fr` di banyak tempat bikin file susah diraw
 Jawaban yang diharapkan: jumlah kolom harus diubah di banyak titik dan gampang
 ketinggalan satu. Perkenalkan juga bahwa `repeat()` bisa memuat lebih dari satu
 ukuran per putaran.
+Demo: demos/bab-07/05-repeat.html — bandingkan repeat(3, 1fr) dengan penulisan 1fr 1fr 1fr.
 -->
 
 ---
@@ -280,6 +285,7 @@ diharapkan: margin menempel pada butir, jadi kartu pertama dan terakhir butuh
 perlakuan khusus. Lanjutkan dengan menunjukkan bahwa dengan `gap` setiap sel punya
 hak yang sama. Sebutkan contohnya di kartu statistik: jarak seragam bikin nggak ada
 angka yang terkesan lebih penting cuma karena jaraknya lebih lega.
+Demo: demos/bab-07/06-gap.html — bandingkan gap 24 px dengan column-gap dan row-gap terpisah.
 -->
 
 ---
@@ -308,6 +314,7 @@ Sebutkan contoh latihan kartu produk yang memakai `minmax(220px, 1fr)`, jadi HP 
 kolom, 560 piksel dua kolom, dan monitor makin banyak. Ingatkan bahwa pada praktikum
 kita justru memilih jumlah kolom eksplisit di dalam media query biar cara berpikir
 breakpoint ikut terlatih.
+Demo: demos/bab-07/07-auto-fit-minmax.html — sempitkan wadah dan lihat kolom berkurang tanpa media query.
 -->
 
 ---
@@ -337,6 +344,7 @@ Minta mahasiswa menuliskan sendiri penempatan buat kartu yang harus membentang
 dari garis kolom 1 sampai garis kolom 3. Jawaban yang diharapkan: `grid-column: 1 / 3`
 atau `grid-column: 1 / span 2`. Tekankan bahwa `span` lebih aman kalau jumlah kolom
 berubah antar perangkat, karena kita nggak perlu menghitung ulang garis akhirnya.
+Demo: demos/bab-07/08-garis-dan-span.html — coba grid-column: 2 / -1 pada denah empat kolom.
 -->
 
 ---
@@ -368,6 +376,7 @@ ke tumpukan satu kolom. Tanyakan kenapa denah berbasis kata lebih gampang dirawa
 daripada menghitung nomor garis. Jawaban yang diharapkan: kita bisa melihat denahnya
 langsung di kode, kayak membaca sketsa. Ingatkan bahwa `grid-template-areas` cuma
 bisa menggambar bentuk persegi; bentuk tangga pakai garis.
+Demo: demos/bab-07/09-grid-template-areas.html — gambar ulang denah yang sama untuk 375 px dan 768 px.
 -->
 
 ---
@@ -407,6 +416,7 @@ berburu bug.
 
 Jangan lupa fakta yang tidak ikut digambar: strategi mobile-first dipakai industri
 dan dijelaskan Wroblewski pada 2012.
+Demo: demos/bab-07/10-mobile-first.html — bandingkan kaskade mobile-first dengan pola max-width.
 -->
 
 ---
@@ -429,6 +439,7 @@ font dasar; `sm` 576 px — kartu statistik dua kolom; `md` 768 px — panel nav
 geser ke kiri; `lg` 992 px — sidebar 240 px; `xl` 1200 px — empat kartu
 sebaris. Tiap panah di gambar adalah peristiwa yang sama: lebar layar
 melewati batas min-width milik breakpoint berikutnya.
+Demo: demos/bab-07/11-breakpoint-tokosaya.html — baca lima mode denah dari bawaan sampai xl 1200 px.
 -->
 
 ---
@@ -460,6 +471,7 @@ karena kaskade memakai urutan penulisan saat spesifisitasnya sama, jadi blok yan
 ditulis terakhir bisa menimpa. Sebutkan bahwa gaya yang nggak disebut ulang di dalam
 media query otomatis diwarisi dari gaya dasar, jadi bloknya pendek. Ingatkan untuk
 menguji setiap breakpoint tepat setelah menulisnya, bukan setelah semuanya selesai.
+Demo: demos/bab-07/12-media-query-naik.html — bandingkan kartu statistik pada 375 px dan 768 px.
 -->
 
 ---
@@ -489,6 +501,7 @@ Kerjakan hitungannya bareng-bareng di papan: 1,1rem itu 17,6 piksel, lalu tambah
 akhirnya 24 piksel, bukan 23,2 piksel. Jawaban yang diharapkan: nilai tengahnya
 jatuh di bawah batas minimum, jadi browser memakai batas minimum. Tekankan bahwa
 `clamp()` menggantikan tiga breakpoint untuk tipografi dalam satu baris saja.
+Demo: demos/bab-07/13-clamp.html — kerjakan hitungan 375 px dan 1440 px bareng-bareng.
 -->
 
 ---
@@ -516,6 +529,7 @@ diharapkan: gambar secara bawaan berperilaku inline, jadi menyisakan ruang kayak
 huruf. Sebutkan bahwa gambar yang melebihi wadahnya adalah penyebab paling sering
 pengguliran horizontal di HP. Ingatkan bahwa `srcset` dan elemen `picture` ditunda
 ke Bab 13; di bab ini syarat wajibnya cuma gambar nggak pernah melar.
+Demo: demos/bab-07/14-gambar-responsif.html — lihat celah di bawah gambar sebelum display: block.
 -->
 
 ---
@@ -656,6 +670,7 @@ Tanyakan kenapa markup di sini nggak punya satu pun kelas posisi kayak kiri atau
 kanan. Jawaban yang diharapkan: kalau posisi ditulis di markup, halaman nggak bisa
 digambar ulang antar breakpoint tanpa mengubah HTML. Sebutkan juga bahwa link aktif
 diberi `aria-current="page"` sesuai kebiasaan Bab 2.
+Demo: demos/bab-07/15-dashboard-admin.html — bandingkan denah dasbor pada 375 px dan 768 px.
 -->
 
 ---
@@ -762,6 +777,7 @@ produk diberi kelas grid. Tanyakan kenapa kartunya nggak perlu diberi kelas kolo
 Jawaban yang diharapkan: denah milik wadah, jadi jumlah kolom cukup diatur sekali.
 Sebutkan bahwa blok ini sengaja diletakkan di akhir `style.css` biar kaskadenya
 jelas.
+Demo: demos/bab-07/16-katalog-responsif.html — lihat jumlah kolom kartu naik dari satu sampai empat.
 -->
 
 ---
@@ -792,6 +808,7 @@ halaman; yang kedua itu cacat, bukan solusi. Tanyakan apa yang terjadi kalau tab
 dibiarkan selebar 640 piksel tanpa wadah penggulir. Jawaban yang diharapkan: tabel
 mendorong seluruh halaman melebar dan sisi kanan terpotong. Ingatkan juga supaya
 `overflow-y: hidden` nggak ikut tertulis karena bisa menyekat isinya.
+Demo: demos/bab-07/17-tabel-menggulir.html — gulir tabel di dalam wadahnya, bukan seluruh halaman.
 -->
 
 ---
@@ -888,6 +905,7 @@ ditunda sampai malam sebelum ujian.
 - Mobile-first naik dengan `min-width` menaik; breakpoint lahir dari konten
 - `clamp()` mengendalikan tipografi, aturan persen menjaga gambar
 - Dashboard admin Tokosaya tetap statis dan tanpa JavaScript
+**Demo:** seluruh konsep bab ini bisa dicoba di [demos/bab-07/index.html](demos/bab-07/index.html).
 
 <!--
 Tutup dengan pesan utama: denah milik wadah, bukan milik tiap butir, dan strategi

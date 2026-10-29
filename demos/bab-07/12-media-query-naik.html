@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 7 · 12 media query naik — CSS Grid dan Responsive Web Design</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: token Bab 4 dan dua bingkai lebar tetap */
+  .demo * { box-sizing: border-box; }
+  .demo { --space-unit: 8px; }
+  .demo .layar-375 {
+    width: 375px;
+    max-width: 100%;
+    background: #ffffff;
+    outline: 1px solid #d1d5db;
+  }
+  .demo .layar-768 {
+    width: 768px;
+    max-width: 100%;
+    background: #ffffff;
+    outline: 1px solid #d1d5db;
+  }
+  .demo .kartu-angka {
+    padding: 10px 12px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #475569;
+  }
+  .demo .kartu-angka b {
+    display: block;
+    font-size: 17px;
+    color: #111827;
+  }
+  .demo .petunjuk { margin: 0 0 6px; font-size: 13px; color: #6b7280; }
+  .demo .petunjuk + .petunjuk { margin-top: 18px; }
+
+  /* bingkai disimpan pada keadaan breakpoint yang digambarkan, bukan keadaan jendela */
+  .demo .layar-375 .stat-kartu {
+    grid-template-columns: 1fr;
+  }
+  .demo .layar-768 .stat-kartu {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .stat-kartu {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: calc(var(--space-unit) * 3);
+  }
+
+  /* breakpoint pertama: mulai 576 piksel, kartu dua kolom */
+  @media (min-width: 576px) {
+    .stat-kartu { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 1200px) {
+    .stat-kartu { grid-template-columns: repeat(4, 1fr); }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 7 · CSS Grid dan Responsive Web Design</strong> · 12 media query naik</p>
+    <h1>Menulis Media Query Menaik</h1>
+    <p>Media query menempelkan gaya tambahan pada satu rentang lebar layar. Kalau ditulis menaik — dari titik terkecil ke terbesar — tiap blok hanya menambah, dan tidak ada aturan yang perlu dibatalkan.</p>
+
+    <h2>Satu aturan dasar, satu blok media query</h2>
+    <p>Gaya dasar memberi kartu satu kolom. Blok media query hanya menyebut yang berubah, yaitu jumlah kolomnya; <code>display: grid</code> dan <code>gap</code> diwarisi dari gaya dasar.</p>
+<pre><code class="language-css">.stat-kartu {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: calc(var(--space-unit) * 3);
+}
+
+/* breakpoint pertama: mulai 576 piksel, kartu dua kolom */
+@media (min-width: 576px) {
+  .stat-kartu { grid-template-columns: repeat(2, 1fr); }
+}</code></pre>
+    <div class="demo">
+      <p class="petunjuk">Simulasi lebar 375 px — di bawah 576 px, satu kolom.</p>
+      <div class="layar-375">
+        <div class="stat-kartu">
+          <div class="kartu-angka">Pesanan<b>128</b></div>
+          <div class="kartu-angka">Pendapatan<b>Rp 12,4 jt</b></div>
+          <div class="kartu-angka">Stok menipis<b>9</b></div>
+          <div class="kartu-angka">Pelanggan baru<b>34</b></div>
+        </div>
+      </div>
+      <p class="petunjuk">Simulasi lebar 768 px — sudah melewati 576 px, kartu dua kolom.</p>
+      <div class="layar-768">
+        <div class="stat-kartu">
+          <div class="kartu-angka">Pesanan<b>128</b></div>
+          <div class="kartu-angka">Pendapatan<b>Rp 12,4 jt</b></div>
+          <div class="kartu-angka">Stok menipis<b>9</b></div>
+          <div class="kartu-angka">Pelanggan baru<b>34</b></div>
+        </div>
+      </div>
+    </div>
+    <p>Kedua bingkai ditumpuk supaya muat di kolom baca. Yang digambarkan bukan jendela yang diubah, melainkan dua lebar wadah: 375 px dan 768 px. Pada jendela sungguhan, hasilnya sama asal lebarnya melewati 576 px.</p>
+    <p class="hitung" data-hitung="768px - 24 = 744">Di bingkai 768 px, satu gap 24 px menyisakan <strong>744 px</strong> untuk dua kartu.</p>
+    <p class="hitung" data-hitung="744 / 2 = 372">Tiap kartu selebar <strong>372 px</strong>; di 375 px, kartu yang sama memakai seluruh lebar bingkai.</p>
+
+    <h2>Titik berikutnya ditulis setelahnya</h2>
+    <p>Blok kedua ditulis sesudah blok pertama, dengan angka yang lebih besar. Kaskade memakai urutan penulisan saat spesifisitasnya sama, jadi blok terakhir yang menang.</p>
+<pre><code class="language-css">@media (min-width: 1200px) {
+  .stat-kartu { grid-template-columns: repeat(4, 1fr); }
+}</code></pre>
+    <ul>
+      <li>Urutan <code>min-width</code> harus menaik: 576, 768, 992, 1200.</li>
+      <li>Kalau urutannya terbalik, blok yang lebih lebar bisa tertimpa blok yang lebih sempit.</li>
+      <li>Proyek sebesar Tokosaya cukup dua sampai tiga breakpoint.</li>
+    </ul>
+    <p class="hitung" data-hitung="1200 - 576 = 624">Antara titik pertama dan terakhir ada rentang <strong>624 px</strong>; di dalamnya kartu tetap dua kolom karena tidak ada blok yang menyebutnya lagi.</p>
+
+    <h2>Uji tiap titik setelah menulisnya</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Kebiasaan</th><th>Alasannya</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Tulis satu aturan, lalu uji langsung di browser</td><td>kesalahan urutan lebih cepat terlihat daripada menunggu semua blok selesai</td></tr>
+        <tr><td>Uji tepat di sekitar titik, misalnya 575 dan 576</td><td>perubahan gaya terjadi di batas, bukan di tengah rentang</td></tr>
+        <tr><td>Periksa pengguliran horizontal</td><td>cacat responsif paling tampak berasal dari satu elemen yang melar</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Inti pembelajaran:</strong> media query cukup memuat bedanya, dan bloknya harus naik. Kalau sebuah aturan harus ditulis ulang di dalam blok, biasanya gaya dasarnya belum pas.</p>
+    <nav class="nav">
+      <a href="11-breakpoint-tokosaya.html">← 11 breakpoint tokosaya</a>
+      <span>12 / 17</span>
+      <a href="13-clamp.html">13 clamp →</a>
+    </nav>
+  </div>
+</body>
+</html>

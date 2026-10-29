@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 7 · 14 gambar responsif — CSS Grid dan Responsive Web Design</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: wadah 720 px, kartu tanpa padding agar lebar gambar bisa dihitung */
+  .demo * { box-sizing: border-box; }
+  .demo .panggung { width: 720px; max-width: 100%; }
+  .demo .kartu-katalog {
+    margin: 0;
+    background: #ffffff;
+    outline: 1px solid #d1d5db;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .demo .kartu-katalog figcaption {
+    padding: 8px 10px;
+    font-size: 13px;
+    color: #475569;
+  }
+  .demo .banding {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .demo .kotak-banding {
+    width: 240px;
+    padding: 8px;
+    background: #ffffff;
+    outline: 1px solid #d1d5db;
+    font-size: 12.5px;
+    color: #6b7280;
+  }
+  /* pembanding: gambar tanpa display block, jadi menyisakan celah di bawahnya */
+  .demo .tanpa-blok img {
+    width: 100%;
+    height: auto;
+  }
+  /* pasangan pembandingnya: aturan yang sama, ditambah display block */
+  .demo .gambar-dasar img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  /* pembanding: tinggi dipaksa tanpa object-fit, jadi gambarnya gepeng */
+  .demo .tanpa-potong img {
+    width: 100%;
+    height: 120px;
+    display: block;
+  }
+  .demo .petunjuk { margin: 0 0 8px; font-size: 13px; color: #6b7280; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .katalog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .katalog-grid img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .gambar-potong img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    display: block;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 7 · CSS Grid dan Responsive Web Design</strong> · 14 gambar responsif</p>
+    <h1>Gambar Responsif</h1>
+    <p>Gambar yang lebih lebar daripada wadahnya adalah penyebab paling sering pengguliran horizontal di HP. Tiga deklarasi di bawah cukup untuk memastikan gambar tidak pernah melar. Gambar pada demo ini berupa SVG sebaris di dalam dokumen, jadi tidak ada berkas gambar dari luar.</p>
+
+    <h2>Tiga deklarasi yang mengikat gambar ke wadahnya</h2>
+<pre><code class="language-css">.katalog-grid img {
+  width: 100%;
+  height: auto;
+  display: block;
+}</code></pre>
+    <div class="demo">
+      <p class="petunjuk">Katalog tiga kolom di wadah 720 px. Tiap gambar mengisi lebar kartunya.</p>
+      <div class="panggung">
+        <div class="katalog-grid">
+          <figure class="kartu-katalog">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='200'%3E%3Crect width='320' height='200' fill='%23fde68a'/%3E%3Ccircle cx='160' cy='100' r='48' fill='%23b45309'/%3E%3C/svg%3E" alt="Contoh gambar produk pertama">
+            <figcaption>Kopi Bubuk 250 g</figcaption>
+          </figure>
+          <figure class="kartu-katalog">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='200'%3E%3Crect width='320' height='200' fill='%23fde68a'/%3E%3Ccircle cx='160' cy='100' r='48' fill='%23b45309'/%3E%3C/svg%3E" alt="Contoh gambar produk kedua">
+            <figcaption>Teh Hijau</figcaption>
+          </figure>
+          <figure class="kartu-katalog">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='200'%3E%3Crect width='320' height='200' fill='%23fde68a'/%3E%3Ccircle cx='160' cy='100' r='48' fill='%23b45309'/%3E%3C/svg%3E" alt="Contoh gambar produk ketiga">
+            <figcaption>Gula Aren Cair</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="720px - 24px*2 = 672">Dua gap 24 px menyisakan <strong>672 px</strong> untuk tiga kolom.</p>
+    <p class="hitung" data-hitung="672 / 3 = 224">Tiap kartu selebar <strong>224 px</strong>, dan <code>width: 100%</code> membuat gambar mengikuti lebar itu.</p>
+    <p class="hitung" data-hitung="224 * 200 / 320 = 140">Karena gambar aslinya 320 × 200, <code>height: auto</code> menjaga proporsinya: tingginya menjadi <strong>140 px</strong>.</p>
+
+    <h2>Kenapa perlu display: block</h2>
+    <p>Gambar secara bawaan berperilaku seperti huruf: ia duduk di garis dasar teks, jadi menyisakan ruang kecil di bawahnya. Dua kotak di bawah memakai aturan yang sama, hanya berbeda pada <code>display</code>.</p>
+    <div class="demo">
+      <div class="banding">
+        <div class="kotak-banding">
+          <p class="petunjuk">tanpa display: block</p>
+          <div class="tanpa-blok">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='200'%3E%3Crect width='320' height='200' fill='%23fde68a'/%3E%3Ccircle cx='160' cy='100' r='48' fill='%23b45309'/%3E%3C/svg%3E" alt="Contoh gambar tanpa display block">
+            <span>teks sesudah gambar</span>
+          </div>
+        </div>
+        <div class="kotak-banding">
+          <p class="petunjuk">dengan display: block</p>
+          <figure class="kartu-katalog gambar-dasar">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='200'%3E%3Crect width='320' height='200' fill='%23fde68a'/%3E%3Ccircle cx='160' cy='100' r='48' fill='%23b45309'/%3E%3C/svg%3E" alt="Contoh gambar dengan display block">
+            <figcaption>teks sesudah gambar</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <h2>object-fit: cover untuk rasio yang berbeda</h2>
+    <p>Kalau tinggi gambar dipatok — misalnya supaya semua kartu sama tinggi — rasio aslinya akan gepeng. <code>object-fit: cover</code> memotong gambar sesuai wadah tanpa mengubah proporsinya.</p>
+<pre><code class="language-css">.gambar-potong img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  display: block;
+}</code></pre>
+    <div class="demo">
+      <div class="banding">
+        <div class="kotak-banding">
+          <p class="petunjuk">tinggi 120 px tanpa object-fit — gepeng</p>
+          <div class="tanpa-potong">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='200'%3E%3Crect width='320' height='200' fill='%23fde68a'/%3E%3Ccircle cx='160' cy='100' r='48' fill='%23b45309'/%3E%3C/svg%3E" alt="Contoh gambar gepeng">
+          </div>
+        </div>
+        <div class="kotak-banding">
+          <p class="petunjuk">tinggi 120 px dengan object-fit: cover</p>
+          <figure class="gambar-potong kartu-katalog">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='200'%3E%3Crect width='320' height='200' fill='%23fde68a'/%3E%3Ccircle cx='160' cy='100' r='48' fill='%23b45309'/%3E%3C/svg%3E" alt="Contoh gambar dipotong rapi">
+            <figcaption>potongan rapi</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+    <table class="tabel">
+      <thead>
+        <tr><th>Deklarasi</th><th>Yang dijaga</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>width: 100%</code></td><td>lebar gambar terikat pada wadah, tidak pernah melebihinya</td></tr>
+        <tr><td><code>height: auto</code></td><td>proporsi gambar tetap, tidak gepeng</td></tr>
+        <tr><td><code>display: block</code></td><td>celah kecil di bawah gambar hilang</td></tr>
+        <tr><td><code>object-fit: cover</code></td><td>potongan tetap rapi saat tinggi dipatok</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Batas bab ini</h2>
+    <p>Gambar yang berbeda ukuran berkasnya untuk tiap perangkat — lewat <code>srcset</code> dan elemen <code>picture</code> — ditunda ke Bab 13. Syarat wajib di bab ini hanya satu: gambar tidak pernah membuat halaman tergeser ke samping.</p>
+    <p><strong>Inti pembelajaran:</strong> ikat lebar gambar ke wadahnya, biarkan tingginya mengikuti proporsi, dan buat ia berperilaku sebagai blok. Tiga baris itu cukup untuk menghapus satu kelas cacat responsif.</p>
+    <nav class="nav">
+      <a href="13-clamp.html">← 13 clamp</a>
+      <span>14 / 17</span>
+      <a href="15-dashboard-admin.html">15 dashboard admin →</a>
+    </nav>
+  </div>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 7 · 17 tabel menggulir — CSS Grid dan Responsive Web Design</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: dua bingkai 375 px dan gaya tabel pesanan Tokosaya */
+  .demo * { box-sizing: border-box; }
+  .demo .layar-375 {
+    width: 375px;
+    max-width: 100%;
+    background: #ffffff;
+    outline: 1px solid #d1d5db;
+  }
+  /* pembanding: bingkai ini yang bergulir, seperti halaman yang ikut tergeser */
+  .demo .layar-bebas {
+    width: 375px;
+    max-width: 100%;
+    background: #ffffff;
+    outline: 1px solid #d1d5db;
+    overflow-x: auto;
+  }
+  .demo .kepala-layar {
+    margin: 0;
+    padding: 8px 10px;
+    background: #eef2ff;
+    font-size: 12px;
+    color: #475569;
+  }
+  .demo .tabel-pesanan {
+    font-size: 12px;
+    text-align: left;
+  }
+  .demo .tabel-pesanan th,
+  .demo .tabel-pesanan td {
+    padding: 6px 8px;
+    border-bottom: 1px solid #e5e7eb;
+    white-space: nowrap;
+  }
+  .demo .tabel-pesanan th {
+    background: #f8fafc;
+    font-weight: 600;
+    color: #475569;
+  }
+  /* pembanding: tabel selebar 640 px tanpa wadah penggulir */
+  .demo .tabel-tanpa-wadah table {
+    width: 100%;
+    min-width: 640px;
+    border-collapse: collapse;
+  }
+  .demo .petunjuk { margin: 0 0 6px; font-size: 13px; color: #6b7280; }
+  .demo .petunjuk + .petunjuk { margin-top: 18px; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .tabel-scroll {
+    overflow-x: auto;
+  }
+
+  .tabel-scroll table {
+    width: 100%;
+    min-width: 640px;
+    border-collapse: collapse;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 7 · CSS Grid dan Responsive Web Design</strong> · 17 tabel menggulir</p>
+    <h1>Tabel yang Menggulir di Dalam Wadah</h1>
+    <p>Tabel data butuh lebar minimum supaya kolomnya tetap terbaca. Di layar sempit, yang boleh bergulir adalah wadah tabelnya sendiri — bukan seluruh halaman. Pengguliran seluruh halaman adalah cacat responsif yang paling tampak.</p>
+
+    <h2>Wadah penggulir</h2>
+    <p>Dua deklarasi sudah cukup: wadah diberi <code>overflow-x: auto</code>, dan tabelnya diberi lebar minimum 640 px.</p>
+<pre><code class="language-css">.tabel-scroll {
+  overflow-x: auto;
+}
+
+.tabel-scroll table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+}</code></pre>
+    <div class="demo">
+      <p class="petunjuk">Dengan wadah penggulir: tepi kiri dan atas bingkai tetap di tempat, hanya isi tabelnya yang bergulir.</p>
+      <div class="layar-375">
+        <p class="kepala-layar">Pesanan terbaru · dashboard admin</p>
+        <div class="tabel-scroll">
+          <table class="tabel-pesanan">
+            <thead>
+              <tr><th>No</th><th>Produk</th><th>Jumlah</th><th>Total</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>Kopi Bubuk 250 g</td><td>2</td><td>Rp 170.000</td><td>dikirim</td></tr>
+              <tr><td>2</td><td>Teh Hijau</td><td>1</td><td>Rp 32.000</td><td>dikemas</td></tr>
+              <tr><td>3</td><td>Gula Aren Cair</td><td>3</td><td>Rp 144.000</td><td>dibayar</td></tr>
+              <tr><td>4</td><td>Madu Hutan</td><td>1</td><td>Rp 120.000</td><td>dikirim</td></tr>
+              <tr><td>5</td><td>Beras Merah 5 kg</td><td>2</td><td>Rp 184.000</td><td>dibayar</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="petunjuk">Tanpa wadah: bingkai ini yang bergulir, jadi judul di atas tabel ikut bergeser — begitulah yang terjadi kalau seluruh halaman yang tergeser.</p>
+      <div class="layar-bebas">
+        <p class="kepala-layar">Pesanan terbaru · dashboard admin</p>
+        <div class="tabel-tanpa-wadah">
+          <table class="tabel-pesanan">
+            <thead>
+              <tr><th>No</th><th>Produk</th><th>Jumlah</th><th>Total</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>Kopi Bubuk 250 g</td><td>2</td><td>Rp 170.000</td><td>dikirim</td></tr>
+              <tr><td>2</td><td>Teh Hijau</td><td>1</td><td>Rp 32.000</td><td>dikemas</td></tr>
+              <tr><td>3</td><td>Gula Aren Cair</td><td>3</td><td>Rp 144.000</td><td>dibayar</td></tr>
+              <tr><td>4</td><td>Madu Hutan</td><td>1</td><td>Rp 120.000</td><td>dikirim</td></tr>
+              <tr><td>5</td><td>Beras Merah 5 kg</td><td>2</td><td>Rp 184.000</td><td>dibayar</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="640px - 375px = 265">Tabel selebar 640 px di layar 375 px menyisakan <strong>265 px</strong> yang harus digulir.</p>
+    <p class="hitung" data-hitung="640 / 5 = 128">Lima kolom berbagi 640 px, jadi tiap kolom rata-rata <strong>128 px</strong> — cukup untuk angka dan status tanpa terpotong.</p>
+
+    <h2>Kenapa bukan halaman yang bergulir</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Yang bergulir</th><th>Akibatnya</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Wadah tabel</td><td>judul dan kerangka halaman tetap di tempat; pembaca hanya menggeser isi tabel</td></tr>
+        <tr><td>Seluruh halaman</td><td>sisi kanan terpotong, judul ikut bergeser, dan navigasi keluar dari pandangan</td></tr>
+      </tbody>
+    </table>
+    <p>Kalau tabel dibiarkan selebar 640 px tanpa wadah penggulir, ia mendorong seluruh halaman melebar. Itu bukan solusi, melainkan cacat: pembaca kehilangan konteks karena semua yang lain ikut bergerak.</p>
+
+    <h2>Yang perlu dijaga</h2>
+    <ul>
+      <li>Lebar minimum 640 px menjaga keterbacaan kolom tabel.</li>
+      <li>Penggulir dipasang di wadah, bukan di <code>body</code>.</li>
+      <li>Jangan menambahkan <code>overflow-y: hidden</code>; ia bisa menyekat isi tabel yang sebenarnya masih perlu terlihat.</li>
+      <li>Uji di 375 px dan pastikan hanya wadah tabel yang punya penggulir.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> beri tabel ruang minimumnya, lalu sediakan wadah yang boleh bergulir. Halaman di luarnya harus tetap diam, karena pengguliran seluruh halaman bukan tanda tabel lebar, melainkan tanda ada elemen yang lolos dari wadahnya.</p>
+    <nav class="nav">
+      <a href="16-katalog-responsif.html">← 16 katalog responsif</a>
+      <span>17 / 17</span>
+      <span>—</span>
+    </nav>
+  </div>
+</body>
+</html>

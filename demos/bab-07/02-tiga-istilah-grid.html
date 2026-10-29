@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 7 · 02 tiga istilah grid — CSS Grid dan Responsive Web Design</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: wadah 600 px tanpa gap, supaya posisi garis bisa ditunjuk tepat */
+  .demo * { box-sizing: border-box; }
+  .demo .panggung { width: 600px; max-width: 100%; }
+  .demo .butir {
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    background: #e0f2fe;
+    border: 1px dashed #0369a1;
+    font-size: 13px;
+    text-align: center;
+  }
+  .demo .penggaris {
+    position: relative;
+    height: 18px;
+    margin-bottom: 4px;
+    font-size: 12px;
+    color: #6b7280;
+  }
+  .demo .penggaris span { position: absolute; top: 0; }
+  .demo .penggaris span:nth-child(1) { left: 0; }
+  .demo .penggaris span:nth-child(2) { left: 33.333%; transform: translateX(-50%); }
+  .demo .penggaris span:nth-child(3) { left: 66.667%; transform: translateX(-50%); }
+  .demo .penggaris span:nth-child(4) { left: 100%; transform: translateX(-100%); }
+  .demo .butir-sorot {
+    background: #1d4ed8;
+    border: 1px solid #1e3a8a;
+    color: #ffffff;
+  }
+  .demo .petunjuk { margin: 0 0 6px; font-size: 13px; color: #6b7280; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .jalur-kolom {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .butir-dua-track {
+    grid-column: 1 / 3;
+  }
+
+  .denah-sel {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 56px);
+  }
+
+  .sel-tengah {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+  }
+
+  .area-dua-kali-dua {
+    grid-column: 1 / 3;
+    grid-row: 1 / 3;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 7 · CSS Grid dan Responsive Web Design</strong> · 02 tiga istilah grid</p>
+    <h1>Tiga Istilah di Dalam Grid</h1>
+    <p>Sebelum menyentuh properti apa pun, ada tiga istilah yang perlu disepakati lebih dulu: <strong>grid track</strong>, <strong>sel</strong>, dan <strong>grid area</strong>. Ketiganya diukur dengan satu alat yang sama, yaitu <strong>grid line</strong> atau garis grid.</p>
+
+    <h2>Grid track: satu jalur kolom</h2>
+    <p>Grid track adalah satu jalur kolom atau baris. Denah di bawah punya tiga track kolom. Angka 1 sampai 4 di atas denah menandai garisnya, bukan tracknya.</p>
+<pre><code class="language-css">.jalur-kolom {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}</code></pre>
+    <div class="demo">
+      <div class="panggung">
+        <div class="penggaris"><span>1</span><span>2</span><span>3</span><span>4</span></div>
+        <div class="jalur-kolom">
+          <div class="butir">track 1</div>
+          <div class="butir">track 2</div>
+          <div class="butir">track 3</div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Grid line: garis yang mengapit track</h2>
+    <p>Tiga track kolom dijepit empat garis. Butir di bawah berjalan dari garis 1 sampai garis 3, jadi ia membentang dua track, bukan tiga.</p>
+<pre><code class="language-css">.butir-dua-track {
+  grid-column: 1 / 3;
+}</code></pre>
+    <div class="demo">
+      <div class="panggung">
+        <div class="penggaris"><span>1</span><span>2</span><span>3</span><span>4</span></div>
+        <div class="jalur-kolom">
+          <div class="butir butir-sorot butir-dua-track">garis 1 sampai garis 3</div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="3 + 1 = 4">Jumlah garis selalu satu lebih banyak dari jumlah track: <strong>3 + 1 = 4 garis</strong>.</p>
+    <p class="hitung" data-hitung="3 - 1 = 2">Butir dari garis 1 sampai garis 3 melewati <strong>3 − 1 = 2 track</strong>, karena garis 1 dan garis 3 adalah dua pengapit, bukan dua track.</p>
+
+    <h2>Sel: perpotongan satu kolom dengan satu baris</h2>
+    <p>Sel adalah perpotongan satu kolom dengan satu baris. Satu sel selalu kecil: ia tidak pernah lebih dari satu track lebar dan satu track tinggi.</p>
+<pre><code class="language-css">.denah-sel {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 56px);
+}
+
+.sel-tengah {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}</code></pre>
+    <div class="demo">
+      <p class="petunjuk">Denah tiga kolom dua baris; satu sel disorot.</p>
+      <div class="panggung">
+        <div class="denah-sel">
+          <div class="butir butir-sorot sel-tengah">sel</div>
+          <div class="butir"></div>
+          <div class="butir"></div>
+          <div class="butir"></div>
+          <div class="butir"></div>
+          <div class="butir"></div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Grid area: gabungan sel berbentuk persegi</h2>
+    <p>Grid area adalah gabungan beberapa sel yang membentuk persegi. Butir di bawah menempati dua kolom dan dua baris sekaligus.</p>
+<pre><code class="language-css">.area-dua-kali-dua {
+  grid-column: 1 / 3;
+  grid-row: 1 / 3;
+}</code></pre>
+    <div class="demo">
+      <p class="petunjuk">Area dua kali dua di kiri; dua sel di kanan terisi sisa denah.</p>
+      <div class="panggung">
+        <div class="denah-sel">
+          <div class="butir butir-sorot area-dua-kali-dua">area 2 × 2</div>
+          <div class="butir">sel</div>
+          <div class="butir">sel</div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="2 * 2 = 4">Area di atas memuat <strong>2 × 2 = 4 sel</strong>, dan bentuknya tetap persegi.</p>
+
+    <h2>Ringkasan istilah</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Istilah</th><th>Artinya</th><th>Ditunjukkan oleh</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>grid track</td><td>satu jalur kolom atau baris</td><td>tiga jalur tegak pada denah di atas</td></tr>
+        <tr><td>grid line</td><td>garis yang mengapit track</td><td>garis 1 sampai garis 4</td></tr>
+        <tr><td>sel</td><td>perpotongan satu kolom dengan satu baris</td><td><code>grid-column: 2 / 3</code> dan <code>grid-row: 1 / 2</code></td></tr>
+        <tr><td>grid area</td><td>gabungan beberapa sel, harus berbentuk persegi</td><td><code>grid-column: 1 / 3</code> dan <code>grid-row: 1 / 3</code></td></tr>
+      </tbody>
+    </table>
+    <p><strong>Inti pembelajaran:</strong> sebut garis saat menghitung posisi, dan sebut track saat menghitung ruang. Dua istilah itu yang membuat penempatan butir bisa dihitung tanpa mencoba-coba.</p>
+    <nav class="nav">
+      <a href="01-grid-vs-flexbox.html">← 01 grid vs flexbox</a>
+      <span>02 / 17</span>
+      <a href="03-grid-template-columns.html">03 grid-template-columns →</a>
+    </nav>
+  </div>
+</body>
+</html>
