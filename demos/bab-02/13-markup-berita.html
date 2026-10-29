@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 2 · 13 Markup berita kampus — HTML5 dan Struktur Semantik</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: versi sebelum dan sesudah berdampingan */
+  .demo .banding {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .demo .lembar {
+    flex: 1 1 320px;
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+  .demo .label-lembar {
+    display: block;
+    margin-bottom: 8px;
+    color: #6b7280;
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  /* sebelum: semua bagian tampil sebagai kotak netral yang sama */
+  .demo .netral {
+    margin: 0 0 8px;
+    padding: 8px 10px;
+    background: #f3f4f6;
+    border: 1px solid #9ca3af;
+    border-radius: 4px;
+    color: #4b5563;
+    font-size: 14px;
+  }
+  .demo .netral:last-child { margin-bottom: 0; }
+  /* sesudah: tiap wilayah membawa nama elemennya */
+  .demo .landmark {
+    margin: 0 0 8px;
+    padding: 8px 10px 10px;
+    border: 1px dashed #9ca3af;
+    border-radius: 4px;
+  }
+  .demo .landmark:last-child { margin-bottom: 0; }
+  .demo .landmark::before {
+    content: attr(data-nama);
+    display: block;
+    margin-bottom: 4px;
+    color: #6b7280;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+  }
+  .demo .landmark h2 { margin: 0; font-size: 15px; }
+  .demo .landmark p { margin: 0; color: #4b5563; font-size: 14px; }
+  .demo .landmark ul { margin: 0; padding-left: 20px; font-size: 14px; }
+  .demo .landmark a { color: #1d4ed8; }
+  .demo .catatan { margin: 8px 0 0; color: #6b7280; font-size: 13px; }
+
+  /* ============================================================
+     kode slide — bab ini tidak punya blok kode CSS
+     Semua contoh di badan halaman adalah markup HTML, jadi tidak
+     ada deklarasi CSS pelajaran yang perlu dicerminkan di sini.
+     ============================================================ */
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 2 · HTML5 dan Struktur Semantik</strong> · 13 Markup berita kampus</p>
+    <h1>Studi Kasus: Portal Berita Kampus</h1>
+    <p>Satu halaman yang sama, dua cara membungkusnya. Bedanya bukan pada tampilan, melainkan pada peran tiap bagian yang bisa dituju pengguna.</p>
+
+    <h2>Sebelum: pembungkus netral untuk semua bagian</h2>
+<pre><code class="language-html">&lt;div&gt;&lt;div&gt;Portal Mahasiswa&lt;/div&gt;
+  &lt;div&gt;Beranda · Riset · Kontak&lt;/div&gt;
+  &lt;div&gt;Berita utama · Berita lain&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <p>Semua bagian memakai pembungkus netral, jadi tidak ada nama yang bisa dipakai untuk berpindah bagian.</p>
+    <div class="demo">
+      <div class="lembar">
+        <span class="label-lembar">sebelum</span>
+        <div class="netral">Portal Mahasiswa</div>
+        <div class="netral">Beranda · Riset · Kontak</div>
+        <div class="netral">Berita utama · Berita lain</div>
+      </div>
+    </div>
+
+    <h2>Sesudah: tiap bagian punya peran yang jelas</h2>
+<pre><code class="language-html">&lt;header&gt;&lt;nav&gt;...&lt;/nav&gt;&lt;/header&gt;
+&lt;main&gt;&lt;article&gt;&lt;h2&gt;Berita kampus&lt;/h2&gt;&lt;/article&gt;&lt;/main&gt;
+&lt;aside&gt;Berita terpopuler&lt;/aside&gt;
+&lt;footer&gt;Kontak redaksi&lt;/footer&gt;</code></pre>
+    <div class="demo">
+      <div class="lembar">
+        <span class="label-lembar">sesudah</span>
+        <header class="landmark" data-nama="header">
+          <p>Portal Mahasiswa</p>
+          <nav class="landmark" data-nama="nav" aria-label="Navigasi portal">
+            <ul>
+              <li><a href="13-markup-berita.html">Beranda</a></li>
+              <li><a href="12-markup-tokosaya.html">Riset</a></li>
+              <li><a href="09-form-dasar.html">Kontak</a></li>
+            </ul>
+          </nav>
+        </header>
+        <main class="landmark" data-nama="main">
+          <article class="landmark" data-nama="article">
+            <h2>Berita kampus</h2>
+            <p>Berita ini tetap bermakna walau dipindahkan ke halaman lain.</p>
+          </article>
+        </main>
+        <aside class="landmark" data-nama="aside">
+          <p>Berita terpopuler</p>
+        </aside>
+        <footer class="landmark" data-nama="footer">
+          <p>Kontak redaksi</p>
+        </footer>
+      </div>
+    </div>
+
+    <h2>Alasan tiap pilihan</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Bagian</th><th>Elemen</th><th>Alasannya</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Identitas dan menu portal</td><td><code>header</code> + <code>nav</code></td><td>kumpulan link navigasi perlu punya nama</td></tr>
+        <tr><td>Berita kampus</td><td><code>article</code></td><td>berita bisa berdiri sendiri</td></tr>
+        <tr><td>Berita terpopuler</td><td><code>aside</code></td><td>bisa dilepas tanpa mengganggu isi utama</td></tr>
+        <tr><td>Kontak redaksi</td><td><code>footer</code></td><td>berisi kontak dan kredit</td></tr>
+      </tbody>
+    </table>
+    <p>Berita memakai <code>article</code> karena bisa berdiri sendiri. Panel &ldquo;terpopuler&rdquo; memakai <code>aside</code> karena bisa dilepas tanpa mengganggu isi utama. Bagian yang bisa dituju langsung oleh pengguna <em>screen reader</em> adalah <code>header</code>, <code>nav</code>, <code>main</code>, <code>aside</code>, dan <code>footer</code>.</p>
+    <nav class="nav">
+      <a href="12-markup-tokosaya.html">← 12 Markup Tokosaya</a>
+      <span>13 / 14</span>
+      <a href="14-cek-markup.html">14 Cek markup →</a>
+    </nav>
+  </div>
+</body>
+</html>

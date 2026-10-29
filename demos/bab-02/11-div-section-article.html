@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 2 · 11 div, section, article — HTML5 dan Struktur Semantik</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: tiga pilihan elemen berdampingan, masing-masing diberi batas */
+  .demo .banding {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .demo .lembar {
+    flex: 1 1 240px;
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+  .demo .label-lembar {
+    display: block;
+    margin-bottom: 6px;
+    color: #6b7280;
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .demo .lembar h2 { margin: 0 0 4px; font-size: 16px; }
+  .demo .lembar p { margin: 0; color: #4b5563; font-size: 14px; }
+  .demo .lembar section,
+  .demo .lembar article {
+    display: block;
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+  }
+  .demo .lembar section { background: #ecfdf5; border-color: #047857; }
+  .demo .lembar article { background: #eef2ff; border-color: #1d4ed8; }
+  .demo .netral {
+    padding: 10px;
+    background: #f3f4f6;
+    border: 1px solid #9ca3af;
+    border-radius: 4px;
+    color: #4b5563;
+    font-size: 14px;
+  }
+  .demo .catatan { margin: 8px 0 0; color: #6b7280; font-size: 13px; }
+
+  /* ============================================================
+     kode slide — bab ini tidak punya blok kode CSS
+     Semua contoh di badan halaman adalah markup HTML, jadi tidak
+     ada deklarasi CSS pelajaran yang perlu dicerminkan di sini.
+     ============================================================ */
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 2 · HTML5 dan Struktur Semantik</strong> · 11 div, section, article</p>
+    <h1>Memilih <code>div</code>, <code>section</code>, atau <code>article</code></h1>
+    <p>Tiga elemen ini bisa sama-sama membungkus isi, tetapi hanya dua yang memberi nama pada bagian halaman. Pilihannya ditentukan pertanyaan tentang isinya, bukan tentang tampilannya.</p>
+
+    <h2>Saat semua hanya <code>div</code></h2>
+    <p>Halaman panjang yang semua bagiannya tidak punya nama jelas menyulitkan beberapa pihak:</p>
+    <table class="tabel">
+      <thead>
+        <tr><th>Pengguna atau tim</th><th>Dampaknya</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Developer</td><td>Sulit menemukan batas bagian</td></tr>
+        <tr><td>Pengguna <em>screen reader</em></td><td>Sulit melompat ke isi utama</td></tr>
+        <tr><td>Mesin pencari</td><td>Struktur konten kurang jelas</td></tr>
+      </tbody>
+    </table>
+    <blockquote>
+      <p>Markup bukan cuma pembungkus. Markup membantu kita memberi nama pada struktur informasi.</p>
+    </blockquote>
+
+    <h2>Pertanyaan penentu</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Elemen</th><th>Pakai kapan</th><th>Pertanyaan bantu</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>section</code></td><td>Konten membentuk kelompok bertema</td><td>Apakah bagian ini punya judul yang sesuai?</td></tr>
+        <tr><td><code>article</code></td><td>Konten bisa berdiri sendiri dan dipindahkan</td><td>Apakah masih bermakna tanpa konteks halaman?</td></tr>
+        <tr><td><code>div</code></td><td>Hanya perlu pembungkus netral</td><td>Apakah tidak ada elemen semantik yang cocok?</td></tr>
+      </tbody>
+    </table>
+
+    <h2><code>section</code> — kelompok bertema</h2>
+<pre><code class="language-html">&lt;section&gt;
+  &lt;h2&gt;Visi dan Misi&lt;/h2&gt;
+  &lt;p&gt;Menjadi toko pilihan untuk kebutuhan kerja digital.&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+
+    <h2><code>article</code> — bisa berdiri sendiri</h2>
+<pre><code class="language-html">&lt;article&gt;
+  &lt;h2&gt;Keyboard KX-210&lt;/h2&gt;
+  &lt;p&gt;Rp650.000&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+
+    <h2><code>div</code> — pembungkus netral</h2>
+<pre><code class="language-html">&lt;div&gt;
+  isi yang hanya perlu dibungkus untuk pengaturan tampilan
+&lt;/div&gt;</code></pre>
+
+    <h2>Ketiganya berdampingan</h2>
+    <p>Perhatikan bahwa ketiga kotak bisa dibuat terlihat sama persis dengan CSS. Yang berbeda adalah makna yang dibawa elemennya, dan makna itulah yang dibacakan alat bantu.</p>
+    <div class="demo">
+      <div class="banding">
+        <div class="lembar">
+          <span class="label-lembar">section</span>
+          <section>
+            <h2>Visi dan Misi</h2>
+            <p>Kelompok bertema, punya judul.</p>
+          </section>
+          <p class="catatan">Judulnya menjelaskan tema bagian ini.</p>
+        </div>
+        <div class="lembar">
+          <span class="label-lembar">article</span>
+          <article>
+            <h2>Keyboard KX-210</h2>
+            <p>Rp650.000 — masih bermakna di halaman mana pun.</p>
+          </article>
+          <p class="catatan">Bisa dipindahkan tanpa kehilangan arti.</p>
+        </div>
+        <div class="lembar">
+          <span class="label-lembar">div</span>
+          <div class="netral">Isi tanpa nama elemen, hanya dibungkus.</div>
+          <p class="catatan">Tidak ada pertanyaan tema atau kemandirian yang perlu dijawab.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Penerapan di Tokosaya</h2>
+    <ul>
+      <li>Kartu produk yang bisa berdiri sendiri atau berita biasanya cocok pakai <code>article</code>.</li>
+      <li>Kelompok &ldquo;Visi dan Misi&rdquo; cocok pakai <code>section</code>.</li>
+      <li>Pembungkus grid yang cuma membantu pengaturan tampilan bisa tetap pakai <code>div</code>.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> pilih elemen berdasarkan maknanya, bukan tampilannya.</p>
+    <nav class="nav">
+      <a href="10-elemen-semantik.html">← 10 Elemen semantik</a>
+      <span>11 / 14</span>
+      <a href="12-markup-tokosaya.html">12 Markup Tokosaya →</a>
+    </nav>
+  </div>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 2 · 06 Tabel data — HTML5 dan Struktur Semantik</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: tabel contoh dengan batas tiap bagiannya ditandai */
+  .demo .bingkai {
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+  .demo table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 14px;
+  }
+  .demo caption {
+    padding-bottom: 8px;
+    color: #4b5563;
+    font-size: 13.5px;
+    text-align: left;
+  }
+  .demo th, .demo td {
+    border: 1px solid #d1d5db;
+    padding: 6px 10px;
+    text-align: left;
+  }
+  .demo thead th {
+    background: #eef2ff;
+    font-weight: 600;
+  }
+  .demo tbody th {
+    background: #f8fafc;
+    font-weight: 600;
+  }
+  .demo .catatan-bagian {
+    margin: 10px 0 0;
+    color: #6b7280;
+    font-size: 13px;
+  }
+
+  /* ============================================================
+     kode slide — bab ini tidak punya blok kode CSS
+     Semua contoh di badan halaman adalah markup HTML, jadi tidak
+     ada deklarasi CSS pelajaran yang perlu dicerminkan di sini.
+     ============================================================ */
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 2 · HTML5 dan Struktur Semantik</strong> · 06 Tabel data</p>
+    <h1>Tabel untuk Data Baris dan Kolom</h1>
+    <p>Tabel dipakai saat data memang dibaca dalam baris dan kolom. <code>caption</code>, <code>thead</code>, dan <code>th scope</code> memberi tahu bagian mana yang menjadi judul.</p>
+
+    <h2>Markup tabel produk</h2>
+<pre><code class="language-html">&lt;table&gt;
+  &lt;caption&gt;Produk unggulan Tokosaya&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;&lt;th scope="col"&gt;Produk&lt;/th&gt;&lt;th scope="col"&gt;Harga&lt;/th&gt;&lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;&lt;th scope="row"&gt;Keyboard KX-210&lt;/th&gt;&lt;td&gt;Rp650.000&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+    <ul>
+      <li><code>caption</code> menjelaskan isi tabel.</li>
+      <li><code>thead</code> mengelompokkan baris judul kolom.</li>
+      <li><code>th scope</code> menjelaskan apakah judul berlaku buat kolom atau baris.</li>
+      <li>Pakai tabel buat data, bukan buat mengatur layout.</li>
+    </ul>
+
+    <h2>Hasil yang dirender</h2>
+    <p>Latar biru menandai judul kolom, latar kelabu menandai judul baris. Keduanya hasil dari <code>th</code> dengan <code>scope</code> yang berbeda.</p>
+    <div class="demo">
+      <div class="bingkai">
+        <table>
+          <caption>Produk unggulan Tokosaya</caption>
+          <thead>
+            <tr><th scope="col">Produk</th><th scope="col">Harga</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Keyboard KX-210</th><td>Rp650.000</td></tr>
+          </tbody>
+        </table>
+        <p class="catatan-bagian">Satu baris data sudah cukup untuk melihat peran judul kolom dan judul baris.</p>
+      </div>
+    </div>
+
+    <h2>Konteks yang diterima alat bantu</h2>
+    <p>Dengan <code>caption</code> dan header yang benar, tiap sel tetap punya konteks saat dibacakan. Tanpa keduanya, pengguna <em>screen reader</em> lebih susah memahami tiap sel.</p>
+    <div class="demo">
+      <ul>
+        <li>Tabel: <strong>Produk unggulan Tokosaya</strong></li>
+        <li>Judul kolom: <strong>Produk</strong>, <strong>Harga</strong></li>
+        <li>Judul baris: <strong>Keyboard KX-210</strong></li>
+        <li>Sel: <strong>Rp650.000</strong> — terbaca sebagai harga dari Keyboard KX-210</li>
+      </ul>
+    </div>
+
+    <h2>Bukan untuk mengatur layout</h2>
+    <p>Tabel untuk menyusun tampilan memberi makna yang keliru: alat bantu mengumumkan baris dan kolom pada isi yang sebenarnya bukan data. Urusan layout dikerjakan CSS; di bab ini tabel cukup dipakai untuk data.</p>
+    <nav class="nav">
+      <a href="05-jenis-daftar.html">← 05 Jenis daftar</a>
+      <span>06 / 14</span>
+      <a href="07-link-jelas.html">07 Link jelas →</a>
+    </nav>
+  </div>
+</body>
+</html>

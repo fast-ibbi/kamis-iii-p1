@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 2 · 07 Link jelas — HTML5 dan Struktur Semantik</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: dua jenis tautan berdampingan */
+  .demo a { color: #1d4ed8; }
+  .demo .banding {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .demo .lembar {
+    flex: 1 1 280px;
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+  .demo .label-lembar {
+    display: block;
+    margin-bottom: 6px;
+    color: #6b7280;
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .demo .lembar p { margin: 0 0 6px; font-size: 14px; }
+  .demo .lembar p:last-child { margin-bottom: 0; }
+  .demo .alamat {
+    display: block;
+    margin: 0 0 8px;
+    padding: 6px 8px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    color: #4b5563;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12.5px;
+    overflow-x: auto;
+  }
+  .demo .catatan { color: #6b7280; font-size: 13px; }
+  .demo ul { margin: 0; padding-left: 20px; font-size: 14px; }
+
+  /* ============================================================
+     kode slide — bab ini tidak punya blok kode CSS
+     Semua contoh di badan halaman adalah markup HTML, jadi tidak
+     ada deklarasi CSS pelajaran yang perlu dicerminkan di sini.
+     ============================================================ */
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 2 · HTML5 dan Struktur Semantik</strong> · 07 Link jelas</p>
+    <h1>Link yang Jelas</h1>
+    <p>Tautan punya dua urusan: alamat yang benar dan teks yang tetap jelas saat dibaca sendiri, tanpa kalimat di sekitarnya.</p>
+
+    <h2>Dua kebiasaan menulis tautan</h2>
+<pre><code class="language-html">&lt;a href="tentang.html"&gt;Kenali Tokosaya&lt;/a&gt;
+&lt;a href="https://www.example.org"
+   target="_blank" rel="noopener"&gt;Baca panduan eksternal&lt;/a&gt;</code></pre>
+    <p>Link relatif dipakai untuk semua tautan antarahalaman Tokosaya: <code>href</code>-nya cukup nama file, dan tautannya tetap berfungsi saat folder proyek dipindahkan. Link absolut menyertakan alamat lengkap, jadi hanya dipakai untuk situs di luar proyek.</p>
+
+    <h2>Hasil yang dirender</h2>
+    <p>Di berkas demo ini tautan relatif diarahkan ke berkas demo lain di folder yang sama supaya tetap bisa diklik; di proyek Tokosaya tujuannya <code>tentang.html</code>.</p>
+    <div class="demo">
+      <div class="banding">
+        <div class="lembar">
+          <span class="label-lembar">link relatif</span>
+          <span class="alamat">href="06-tabel-data.html"</span>
+          <p><a href="06-tabel-data.html">Kenali Tokosaya</a></p>
+          <p class="catatan">Cukup nama berkas. Tetap berfungsi walau folder proyek dipindahkan.</p>
+        </div>
+        <div class="lembar">
+          <span class="label-lembar">link absolut</span>
+          <span class="alamat">href="https://www.example.org"</span>
+          <p><a href="https://www.example.org" target="_blank" rel="noopener">Baca panduan eksternal</a></p>
+          <p class="catatan">Alamat lengkap, dipakai untuk situs di luar proyek. <code>target="_blank"</code> membuka tab baru, <code>rel="noopener"</code> menyertainya.</p>
+        </div>
+      </div>
+    </div>
+    <p>Buka tab baru cuma kalau memang perlu, yaitu untuk tautan eksternal seperti contoh kedua.</p>
+
+    <h2>Teks tautan yang tetap jelas</h2>
+    <p><em>Screen reader</em> bisa menampilkan daftar link tanpa kalimat di sekitarnya. Teks seperti &ldquo;klik di sini&rdquo; tidak memberi tahu ke mana tautan itu menuju.</p>
+    <div class="demo">
+      <div class="banding">
+        <div class="lembar">
+          <span class="label-lembar">kurang jelas</span>
+          <ul>
+            <li><a href="06-tabel-data.html">klik di sini</a></li>
+            <li><a href="06-tabel-data.html">baca selengkapnya</a></li>
+          </ul>
+        </div>
+        <div class="lembar">
+          <span class="label-lembar">jelas</span>
+          <ul>
+            <li><a href="06-tabel-data.html">Tabel produk unggulan Tokosaya</a></li>
+            <li><a href="05-jenis-daftar.html">Cara memesan dalam lima langkah</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <p>Kedua daftar berisi tautan yang sah. Bedanya baru terasa saat daftar itu dibacakan sendiri, tanpa kalimat yang menjelaskan konteksnya.</p>
+    <nav class="nav">
+      <a href="06-tabel-data.html">← 06 Tabel data</a>
+      <span>07 / 14</span>
+      <a href="08-gambar-alt.html">08 Gambar dan alt →</a>
+    </nav>
+  </div>
+</body>
+</html>

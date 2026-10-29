@@ -99,6 +99,7 @@ berarti markup itu udah benar.
 Tunjukkan bahwa `head` dan `body` itu dua elemen utama di dalam `html`.
 Atribut `lang="id"` membantu *screen reader* melafalkan teks, sekaligus membantu
 kamus ejaan dan alat penerjemah.
+Demo: demos/bab-02/01-fondasi-dokumen.html — pohon `html`, `head`, dan `body` ditampilkan sebagai kotak bertingkat supaya batas tiap tingkat terlihat.
 -->
 
 ---
@@ -121,6 +122,7 @@ kamus ejaan dan alat penerjemah.
 Meta charset ditaruh lebih awal biar browser segera tahu pengodean karakter.
 Setiap halaman Tokosaya punya title unik; description merangkum halaman, bukan
 jadi paragraf yang tampil di body.
+Demo: demos/bab-02/02-isi-head.html — jejak empat baris `head` diperlihatkan sebagai judul tab dan ringkasan pada hasil pencarian.
 -->
 
 ---
@@ -144,6 +146,7 @@ h1  Tentang Tokosaya
 *Screen reader* bisa menampilkan daftar heading buat membantu pengguna berpindah
 bagian. Jangan pilih `h4` cuma karena ukuran bawaannya terlihat pas; tampilan
 heading bisa diatur dengan CSS.
+Demo: demos/bab-02/03-heading-outline.html — dua lembar halaman berdampingan, satu berurutan `h2`–`h3` dan satu melompat ke `h4`, bisa dibandingkan tampilannya.
 -->
 
 ---
@@ -166,6 +169,7 @@ heading bisa diatur dengan CSS.
 <!--
 Elemen-elemen ini menyampaikan makna, bukan cuma bikin teks tebal, miring, atau
 berwarna. Jarak dan tampilan diatur nanti dengan CSS.
+Demo: demos/bab-02/04-teks-bermakna.html — paragraf yang sama dirender dengan `strong`, `em`, dan `mark` diberi garis luar supaya batas maknanya terlihat.
 -->
 
 ---
@@ -188,6 +192,7 @@ berwarna. Jarak dan tampilan diatur nanti dengan CSS.
 <!--
 Ajukan tiga contoh: langkah memesan, kumpulan merek, dan pasangan nilai layanan.
 Ajak mahasiswa memilih jenis daftar sebelum kamu tunjukkan contoh kodenya.
+Demo: demos/bab-02/05-jenis-daftar.html — `ul`, `ol`, dan `dl` ditampilkan berdampingan untuk membandingkan kapan angka perlu muncul.
 -->
 
 ---
@@ -215,6 +220,7 @@ Ajak mahasiswa memilih jenis daftar sebelum kamu tunjukkan contoh kodenya.
 Tanpa `caption` dan header, pengguna *screen reader* lebih susah memahami konteks
 tiap sel. Ingatkan juga: tabel buat layout memberi makna yang keliru; urusan
 layout itu pekerjaan CSS.
+Demo: demos/bab-02/06-tabel-data.html — tabel produk dengan `caption`, `thead`, dan `th scope` dirender, lalu konteks yang diterima alat bantu ditulis di bawahnya.
 -->
 
 ---
@@ -238,6 +244,7 @@ href-nya alamat lengkap — jadi hanya dipakai untuk situs di luar proyek.
 Buka tab baru cuma kalau memang perlu buat link eksternal. Pilih teks link yang tetap
 jelas pas dibaca sendiri; hindari teks kayak "klik di sini" karena *screen reader*
 bisa menampilkan daftar link tanpa kalimat di sekitarnya.
+Demo: demos/bab-02/07-link-jelas.html — link relatif dan absolut berdampingan, ditambah perbandingan teks link yang jelas dan yang tidak.
 -->
 
 ---
@@ -261,6 +268,7 @@ bisa menampilkan daftar link tanpa kalimat di sekitarnya.
 <!--
 `alt` bukan nama file atau deskripsi panjang yang nggak perlu. Buat gambar dekoratif,
 pakai `alt=""` biar nggak mengganggu pengguna *screen reader*.
+Demo: demos/bab-02/08-gambar-alt.html — kotak pengganti gambar memakai ukuran `width` dan `height` dari markup, dengan isi `alt` tertulis di dalamnya.
 -->
 
 ---
@@ -286,6 +294,7 @@ pakai `alt=""` biar nggak mengganggu pengguna *screen reader*.
 <!--
 Hubungan label dan input bikin label bisa diklik dan memberi nama pada kontrol
 buat *screen reader*. Jenis input, validasi visual, dan layout dibahas di Bab 11.
+Demo: demos/bab-02/09-form-dasar.html — form yang bisa dicoba: klik teks labelnya dan kursor pindah ke kolom yang sesuai.
 -->
 
 ---
@@ -323,6 +332,7 @@ footer  kontak, kredit, atau kebijakan
 <!--
 Nggak semua kumpulan link perlu dibungkus `nav`. Setiap halaman cukup punya satu
 `main`, dan `main` nggak ditaruh di dalam `header` atau `footer`.
+Demo: demos/bab-02/10-elemen-semantik.html — satu halaman contoh dengan `header`, `nav`, `main`, `section`, `article`, `aside`, dan `footer` yang tiap kotaknya diberi label nama elemen.
 -->
 
 ---
@@ -341,6 +351,7 @@ Nggak semua kumpulan link perlu dibungkus `nav`. Setiap halaman cukup punya satu
 Kartu produk yang bisa berdiri sendiri atau berita biasanya cocok pakai `article`.
 Kelompok "Visi dan Misi" cocok pakai `section`. Pembungkus grid yang cuma membantu
 pengaturan tampilan bisa tetap pakai `div`.
+Demo: demos/bab-02/11-div-section-article.html — `section`, `article`, dan `div` berdampingan untuk melihat mana yang membawa nama bagian.
 -->
 
 ---
@@ -389,6 +400,7 @@ kecepatan, dan kecocokan di berbagai perangkat. Hindari janji peringkat tertentu
 Berita pakai `article` karena bisa berdiri sendiri. Panel "terpopuler" pakai
 `aside` karena bisa dilepas tanpa mengganggu isi utama. Ajak mahasiswa menunjukkan
 bagian yang bisa dituju langsung pengguna *screen reader*.
+Demo: demos/bab-02/13-markup-berita.html — versi sebelum dan sesudah portal berita kampus ditampilkan berdampingan supaya peran tiap bagian terlihat.
 -->
 
 ---
@@ -415,6 +427,7 @@ Satu topik utama berarti satu `h1`; bagian berikutnya memakai heading secara ber
 <!--
 Peta ini menggabungkan elemen konten dan landmark. Pastikan menu navigasi
 konsisten di semua halaman.
+Demo: demos/bab-02/12-markup-tokosaya.html — header dan navigasi bersama, isi `main` beranda, dan isi `main` tentang ditampilkan berurutan.
 -->
 
 ---
@@ -650,6 +663,7 @@ Dua hal dari daftar enam yang sengaja nggak masuk gambar karena buktinya belum
 ada di Beranda: label form (`index.html` di praktikum ini belum punya satu pun
 `<form>`, jadi belum ada label yang bisa diperiksa; kalau nanti halamanmu punya
 form, butir label form tetap berlaku) dan `h3` (heading Beranda berhenti di `h2`).
+Demo: demos/bab-02/14-cek-markup.html — lima kelompok pemeriksaan disusun sebagai kartu yang memeriksa berkas demo itu sendiri.
 -->
 
 ---
@@ -662,6 +676,7 @@ form, butir label form tetap berlaku) dan `h3` (heading Beranda berhenti di `h2`
 - `div` tetap berguna buat pembungkus tanpa makna
 - Struktur semantik memudahkan aksesibilitas dan pemeliharaan
 - Dua halaman Tokosaya berbagi pola navigasi yang konsisten
+**Demo:** seluruh konsep bab ini bisa dicoba di [demos/bab-02/index.html](demos/bab-02/index.html).
 
 <!--
 Tutup dengan gagasan utama: tampilan bisa berubah, struktur yang jelas tetap

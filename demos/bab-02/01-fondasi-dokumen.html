@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 2 · 01 Fondasi dokumen — HTML5 dan Struktur Semantik</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: pohon dokumen, tiap tingkat menjorok 24 px */
+  .demo .pohon {
+    padding: 12px;
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+    font-size: 14px;
+  }
+  .demo .simpul {
+    padding: 6px 10px;
+    background: #fde68a;
+    border: 1px solid #b45309;
+    border-radius: 4px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+  }
+  .demo .catatan-simpul {
+    display: block;
+    margin-top: 2px;
+    color: #4b5563;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    font-size: 13px;
+  }
+  .demo .cabang {
+    margin-top: 8px;
+    margin-left: 24px;
+  }
+
+  /* ============================================================
+     kode slide — bab ini tidak punya blok kode CSS
+     Semua contoh di badan halaman adalah markup HTML, jadi tidak
+     ada deklarasi CSS pelajaran yang perlu dicerminkan di sini.
+     ============================================================ */
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 2 · HTML5 dan Struktur Semantik</strong> · 01 Fondasi dokumen</p>
+    <h1>Fondasi Dokumen HTML5</h1>
+    <p>Kerangka dokumen disiapkan sebelum halaman diisi: satu deklarasi <code>DOCTYPE</code>, satu elemen <code>html</code>, lalu <code>head</code> dan <code>body</code>.</p>
+
+    <h2><code>DOCTYPE</code> di awal dokumen</h2>
+    <p><code>DOCTYPE</code> selalu berada di awal dokumen. Baris ini menyatakan bahwa dokumen ditulis dengan HTML5.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;</code></pre>
+    <p>Kalau baris ini lupa ditulis, browser masuk mode quirks. Bedanya baru kelihatan setelah CSS masuk, jadi lebih baik diperiksa sekarang selagi markup-nya masih telanjang.</p>
+
+    <h2>Kerangka <code>html</code>, <code>head</code>, dan <code>body</code></h2>
+    <p><code>head</code> memberi informasi ke browser dan alat bantu. <code>body</code> memuat isi yang ditampilkan di halaman.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="id"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Tokosaya | Belanja Tepat, Kirim Cepat&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;Belanja tepat, kirim cepat.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <h2>Atribut <code>lang="id"</code></h2>
+    <p><code>html lang="id"</code> menyatakan bahasa seluruh dokumen. Atribut ini membantu <em>screen reader</em> melafalkan teks, sekaligus membantu kamus ejaan dan alat penerjemah.</p>
+<pre><code class="language-html">&lt;html lang="id"&gt;</code></pre>
+
+    <h2>Pohon dokumen yang dihasilkan</h2>
+    <p>Panggung di bawah ini menggambarkan pohon elemennya. <code>head</code> dan <code>body</code> adalah dua elemen utama di dalam <code>html</code>.</p>
+    <div class="demo">
+      <div class="pohon">
+        <div class="simpul">html lang="id"<span class="catatan-simpul">bahasa seluruh dokumen</span></div>
+        <div class="cabang">
+          <div class="simpul">head<span class="catatan-simpul">informasi tentang dokumen</span></div>
+          <div class="cabang">
+            <div class="simpul">meta<span class="catatan-simpul">pengodean karakter</span></div>
+            <div class="simpul">title<span class="catatan-simpul">judul di tab</span></div>
+          </div>
+          <div class="cabang">
+            <div class="simpul">body<span class="catatan-simpul">konten halaman yang terlihat</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="24px*2 = 48">Tiap tingkat menjorok 24 px, jadi elemen terdalam bergeser <strong>48 px</strong> dari tepi kiri kerangka.</p>
+
+    <h2>Yang perlu diingat</h2>
+    <ul>
+      <li><code>DOCTYPE</code> selalu berada di awal dokumen.</li>
+      <li><code>head</code> memberi informasi ke browser dan alat bantu.</li>
+      <li><code>body</code> memuat isi yang ditampilkan di halaman.</li>
+      <li>Browser tetap bisa menampilkan HTML yang kurang lengkap, tetapi hasilnya bukan berarti markup itu sudah benar.</li>
+    </ul>
+    <nav class="nav">
+      <span>—</span>
+      <span>01 / 14</span>
+      <a href="02-isi-head.html">02 Isi head →</a>
+    </nav>
+  </div>
+</body>
+</html>

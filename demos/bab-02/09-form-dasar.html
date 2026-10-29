@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 2 · 09 Struktur form — HTML5 dan Struktur Semantik</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: satu form utuh dan satu panel berisi nama data yang akan dikirim */
+  .demo .banding {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .demo form {
+    flex: 1 1 320px;
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+    border-radius: 6px;
+    padding: 14px;
+  }
+  .demo label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .demo input,
+  .demo textarea {
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 6px 8px;
+    background: #f9fafb;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    color: #111827;
+    font: inherit;
+    font-size: 14px;
+  }
+  .demo textarea { min-height: 72px; }
+  .demo button {
+    padding: 6px 12px;
+    background: #eef2ff;
+    border: 1px solid #1d4ed8;
+    border-radius: 4px;
+    color: #1d4ed8;
+    font: inherit;
+    font-size: 14px;
+  }
+  .demo .data {
+    flex: 1 1 240px;
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+    border-radius: 6px;
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+  .demo .data p { margin: 0 0 6px; font-size: 14px; }
+  .demo .data p:last-child { margin-bottom: 0; }
+  .demo .data code { color: #1d4ed8; }
+
+  /* ============================================================
+     kode slide — bab ini tidak punya blok kode CSS
+     Semua contoh di badan halaman adalah markup HTML, jadi tidak
+     ada deklarasi CSS pelajaran yang perlu dicerminkan di sini.
+     ============================================================ */
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 2 · HTML5 dan Struktur Semantik</strong> · 09 Struktur form</p>
+    <h1>Struktur Form Dasar</h1>
+    <p>Form disusun dari <code>label</code> yang terhubung ke kontrolnya lewat <code>for</code> dan <code>id</code>, ditambah <code>name</code> sebagai nama data yang dikirim.</p>
+
+    <h2>Markup form</h2>
+<pre><code class="language-html">&lt;form action="/kirim" method="post"&gt;
+  &lt;label for="email"&gt;Alamat email&lt;/label&gt;
+  &lt;input type="email" id="email" name="email"&gt;
+
+  &lt;label for="pesan"&gt;Pesan&lt;/label&gt;
+  &lt;textarea id="pesan" name="pesan"&gt;&lt;/textarea&gt;
+  &lt;button type="submit"&gt;Kirim Pesan&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+    <ul>
+      <li><code>label for</code> harus cocok dengan <code>id</code> kontrol.</li>
+      <li><code>name</code> menjadi nama data yang dikirim.</li>
+      <li><code>type="email"</code> menyatakan jenis isian.</li>
+      <li>Bab ini cuma bahas strukturnya; desain form dibahas lebih lengkap di Bab 11.</li>
+    </ul>
+
+    <h2>Hasil yang dirender</h2>
+    <p>Klik teks labelnya: kursor langsung pindah ke kolom yang sesuai, karena <code>for="email"</code> menunjuk <code>id="email"</code>. Alamat <code>/kirim</code> belum ada di folder demo ini, jadi yang ditampilkan hanya strukturnya.</p>
+    <div class="demo">
+      <div class="banding">
+        <form action="/kirim" method="post">
+          <label for="email">Alamat email</label>
+          <input type="email" id="email" name="email">
+
+          <label for="pesan">Pesan</label>
+          <textarea id="pesan" name="pesan"></textarea>
+          <button type="submit">Kirim Pesan</button>
+        </form>
+        <div class="data">
+          <p>Yang dikirim saat tombol ditekan:</p>
+          <p><code>email</code> — isi kolom email</p>
+          <p><code>pesan</code> — isi kotak pesan</p>
+          <p>Nama data diambil dari atribut <code>name</code>, bukan dari <code>id</code>.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Peran tiap bagian</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Bagian</th><th>Perannya</th><th>Yang harus cocok</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>label for</code></td><td>memberi nama kontrol buat <em>screen reader</em> dan membuat label bisa diklik</td><td>sama dengan <code>id</code> kontrol</td></tr>
+        <tr><td><code>input name</code></td><td>nama data yang dikirim</td><td>tidak perlu sama dengan <code>id</code></td></tr>
+        <tr><td><code>input type</code></td><td>menyatakan jenis isian</td><td><code>email</code> untuk alamat email</td></tr>
+        <tr><td><code>button type</code></td><td>menentukan tombol mengirim form</td><td><code>submit</code></td></tr>
+      </tbody>
+    </table>
+    <p>Hubungan label dan input membuat label bisa diklik dan memberi nama pada kontrol buat <em>screen reader</em>. Jenis input, validasi visual, dan layout dibahas di Bab 11.</p>
+    <nav class="nav">
+      <a href="08-gambar-alt.html">← 08 Gambar dan alt</a>
+      <span>09 / 14</span>
+      <a href="10-elemen-semantik.html">10 Elemen semantik →</a>
+    </nav>
+  </div>
+</body>
+</html>

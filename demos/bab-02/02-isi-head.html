@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 2 · 02 Isi head — HTML5 dan Struktur Semantik</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: tiruan jendela peramban dan satu hasil pencarian */
+  .demo .peramban {
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .demo .tab {
+    display: inline-block;
+    background: #eef2ff;
+    border-bottom: 2px solid #1d4ed8;
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+  .demo .isi-tab {
+    padding: 12px 14px;
+    color: #4b5563;
+    font-size: 14px;
+  }
+  .demo .hasil {
+    margin-top: 12px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+  .demo .hasil .judul {
+    color: #1d4ed8;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .demo .hasil .alamat {
+    color: #166534;
+    font-size: 13px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  }
+  .demo .hasil p {
+    margin: 4px 0 0;
+    color: #4b5563;
+    font-size: 14px;
+  }
+
+  /* ============================================================
+     kode slide — bab ini tidak punya blok kode CSS
+     Semua contoh di badan halaman adalah markup HTML, jadi tidak
+     ada deklarasi CSS pelajaran yang perlu dicerminkan di sini.
+     ============================================================ */
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 2 · HTML5 dan Struktur Semantik</strong> · 02 Isi head</p>
+    <h1>Isi <code>head</code> yang Penting</h1>
+    <p>Empat baris di dalam <code>head</code> menentukan pengodean karakter, lebar tampilan di perangkat, ringkasan halaman, dan judul yang muncul di tab.</p>
+
+    <h2>Empat baris yang selalu ada</h2>
+<pre><code class="language-html">&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;meta name="description" content="Profil dan layanan Tokosaya."&gt;
+&lt;title&gt;Tokosaya | Belanja Tepat, Kirim Cepat&lt;/title&gt;</code></pre>
+    <ul>
+      <li><code>charset</code> memastikan karakter tampil dengan benar.</li>
+      <li><code>viewport</code> menyesuaikan lebar halaman dengan perangkat.</li>
+      <li><code>description</code> merangkum tujuan halaman buat hasil pencarian.</li>
+      <li><code>title</code> yang unik tampil di tab dan membantu pengguna mengenali halaman.</li>
+    </ul>
+
+    <h2>Akibatnya di layar</h2>
+    <p><code>head</code> tidak tampil sebagai isi halaman. Yang terlihat hanya jejaknya: judul di tab peramban, dan ringkasan <code>description</code> pada hasil pencarian.</p>
+    <div class="demo">
+      <div class="peramban">
+        <div class="tab">Tokosaya | Belanja Tepat, Kirim Cepat</div>
+        <div class="isi-tab">Isi halaman Tokosaya tampil di sini. Tidak satu pun baris <code>head</code> ikut terlihat.</div>
+      </div>
+      <div class="hasil">
+        <div class="judul">Tokosaya | Belanja Tepat, Kirim Cepat</div>
+        <div class="alamat">tokosaya.example</div>
+        <p>Profil dan layanan Tokosaya.</p>
+      </div>
+    </div>
+
+    <h2>Kebiasaan penulisan</h2>
+    <p><code>meta charset</code> ditaruh lebih awal supaya browser segera tahu pengodean karakter. Setiap halaman Tokosaya punya <code>title</code> unik; <code>description</code> merangkum halaman, bukan menjadi paragraf yang tampil di <code>body</code>.</p>
+    <table class="tabel">
+      <thead>
+        <tr><th>Baris</th><th>Terlihat di mana</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>meta charset</code></td><td>tidak terlihat; menjaga karakter tetap benar</td></tr>
+        <tr><td><code>meta viewport</code></td><td>tidak terlihat; mengatur lebar halaman di perangkat</td></tr>
+        <tr><td><code>meta description</code></td><td>ringkasan pada hasil pencarian</td></tr>
+        <tr><td><code>title</code></td><td>tab peramban dan judul hasil pencarian</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Halaman tentang memakai judul sendiri</h2>
+    <p>Judul dan ringkasan dibuat khusus untuk tiap halaman, sementara <code>charset</code> dan <code>viewport</code> tetap sama.</p>
+<pre><code class="language-html">&lt;meta name="description" content="Profil dan layanan Tokosaya."&gt;
+&lt;title&gt;Tentang Tokosaya | Belanja Tepat, Kirim Cepat&lt;/title&gt;</code></pre>
+    <div class="demo">
+      <div class="peramban">
+        <div class="tab">Tentang Tokosaya | Belanja Tepat, Kirim Cepat</div>
+        <div class="isi-tab">Judul di tab berubah sesuai halaman yang sedang dibuka.</div>
+      </div>
+    </div>
+    <nav class="nav">
+      <a href="01-fondasi-dokumen.html">← 01 Fondasi dokumen</a>
+      <span>02 / 14</span>
+      <a href="03-heading-outline.html">03 Heading dan outline →</a>
+    </nav>
+  </div>
+</body>
+</html>

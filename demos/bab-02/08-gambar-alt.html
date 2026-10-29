@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 2 · 08 Gambar dan alt — HTML5 dan Struktur Semantik</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: kotak pengganti gambar berukuran sesuai width dan height pada markup */
+  .demo figure {
+    margin: 0;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 12px;
+  }
+  .demo .gambar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 800px;
+    max-width: 100%;
+    height: 320px;
+    padding: 0 16px;
+    background: #fef3c7;
+    border: 1px dashed #b45309;
+    color: #92400e;
+    font-size: 14px;
+    text-align: center;
+  }
+  .demo figcaption {
+    margin-top: 8px;
+    color: #4b5563;
+    font-size: 14px;
+  }
+  .demo .banding {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .demo .lembar {
+    flex: 1 1 280px;
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+  .demo .label-lembar {
+    display: block;
+    margin-bottom: 6px;
+    color: #6b7280;
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .demo .lembar .gambar {
+    width: 200px;
+    height: 80px;
+    font-size: 12.5px;
+  }
+  .demo .lembar .gambar.kosong { background: #f3f4f6; border-color: #9ca3af; color: #6b7280; }
+  .demo .catatan { margin: 8px 0 0; color: #6b7280; font-size: 13px; }
+
+  /* ============================================================
+     kode slide — bab ini tidak punya blok kode CSS
+     Semua contoh di badan halaman adalah markup HTML, jadi tidak
+     ada deklarasi CSS pelajaran yang perlu dicerminkan di sini.
+     ============================================================ */
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 2 · HTML5 dan Struktur Semantik</strong> · 08 Gambar dan alt</p>
+    <h1>Membuat Gambar Lebih Mudah Dipahami</h1>
+    <p>Gambar diberi <code>alt</code> yang menjelaskan fungsinya dalam konteks, ditemani <code>figcaption</code> lewat pasangan <code>figure</code>.</p>
+
+    <h2>Markup gambar dan keterangannya</h2>
+<pre><code class="language-html">&lt;figure&gt;
+  &lt;img src="img/hero-tokosaya.svg"
+       alt="Ilustrasi peralatan kerja digital"
+       width="800" height="320"&gt;
+  &lt;figcaption&gt;Peralatan kerja digital untuk kebutuhan harian.&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+    <ul>
+      <li>Tulis <code>alt</code> yang menjelaskan fungsi gambar dalam konteks.</li>
+      <li>Pakai <code>alt=""</code> cuma buat gambar dekoratif.</li>
+      <li><code>width</code> dan <code>height</code> membantu browser menyiapkan ruang buat gambar.</li>
+      <li>Pasangkan gambar dan keterangan dengan <code>figure</code>–<code>figcaption</code>.</li>
+    </ul>
+
+    <h2>Hasil yang dirender</h2>
+    <p>Berkas demo ini tidak memuat berkas gambar, jadi kotak bergaris menggantikan gambarnya. Ukurannya mengikuti <code>width="800"</code> dan <code>height="320"</code>; teks di dalam kotak adalah isi <code>alt</code>.</p>
+    <div class="demo">
+      <figure>
+        <div class="gambar">Ilustrasi peralatan kerja digital</div>
+        <figcaption>Peralatan kerja digital untuk kebutuhan harian.</figcaption>
+      </figure>
+    </div>
+    <p class="hitung" data-hitung="800px / 320px = 2.5">Perbandingan sisi gambar <strong>2,5 : 1</strong>. Karena ukurannya sudah tertulis di markup, browser bisa menyiapkan ruang sebelum gambarnya selesai dimuat.</p>
+
+    <h2>Bermakna atau dekoratif</h2>
+    <p><code>alt</code> bukan nama file dan bukan deskripsi panjang yang tidak perlu. Untuk gambar dekoratif, <code>alt=""</code> dipakai supaya tidak mengganggu pengguna <em>screen reader</em>.</p>
+    <div class="demo">
+      <div class="banding">
+        <div class="lembar">
+          <span class="label-lembar">bermakna — alt berisi</span>
+          <div class="gambar">Ilustrasi peralatan kerja digital</div>
+          <p class="catatan">Alat bantu mengumumkan isi <code>alt</code> karena gambar membawa informasi.</p>
+        </div>
+        <div class="lembar">
+          <span class="label-lembar">dekoratif — alt=""</span>
+          <div class="gambar kosong">tanpa pengumuman</div>
+          <p class="catatan">Garis pemisah atau hiasan tidak perlu dibacakan.</p>
+        </div>
+      </div>
+    </div>
+    <nav class="nav">
+      <a href="07-link-jelas.html">← 07 Link jelas</a>
+      <span>08 / 14</span>
+      <a href="09-form-dasar.html">09 Struktur form →</a>
+    </nav>
+  </div>
+</body>
+</html>

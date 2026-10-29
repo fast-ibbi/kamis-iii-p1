@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 2 · 10 Elemen semantik — HTML5 dan Struktur Semantik</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: satu halaman contoh; tiap wilayah diberi label nama elemennya */
+  .demo .halaman {
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    padding: 12px;
+  }
+  .demo .landmark {
+    margin: 0 0 10px;
+    padding: 8px 10px 10px;
+    border: 1px dashed #9ca3af;
+    border-radius: 4px;
+  }
+  .demo .landmark:last-child { margin-bottom: 0; }
+  .demo .landmark::before {
+    content: attr(data-nama);
+    display: block;
+    margin-bottom: 6px;
+    color: #6b7280;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+  }
+  .demo .landmark header,
+  .demo .landmark nav,
+  .demo .landmark main,
+  .demo .landmark section,
+  .demo .landmark article,
+  .demo .landmark aside,
+  .demo .landmark footer { margin: 0; }
+  .demo .halaman h2 { margin: 0 0 6px; font-size: 17px; }
+  .demo .halaman h3 { margin: 10px 0 4px; font-size: 15px; }
+  .demo .halaman p { margin: 0; font-size: 14px; color: #4b5563; }
+  .demo .halaman ul { margin: 4px 0 0; padding-left: 20px; font-size: 14px; }
+  .demo .halaman a { color: #1d4ed8; }
+  .demo .isi {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .demo .isi main { flex: 1 1 340px; }
+  .demo .isi aside { flex: 1 1 180px; }
+  .demo .halaman address { font-style: normal; font-size: 14px; color: #4b5563; }
+
+  /* ============================================================
+     kode slide — bab ini tidak punya blok kode CSS
+     Semua contoh di badan halaman adalah markup HTML, jadi tidak
+     ada deklarasi CSS pelajaran yang perlu dicerminkan di sini.
+     ============================================================ */
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 2 · HTML5 dan Struktur Semantik</strong> · 10 Elemen semantik</p>
+    <h1>Anatomi Elemen Semantik</h1>
+    <p>Elemen semantik memberi nama pada wilayah halaman: <code>header</code>, <code>nav</code>, <code>main</code>, <code>section</code>, <code>article</code>, <code>aside</code>, dan <code>footer</code>.</p>
+
+    <h2>Wilayah halaman dan perannya</h2>
+<pre><code class="language-text">header  identitas halaman atau bagian
+nav     kumpulan link navigasi
+main    isi utama; satu di setiap halaman
+├── section  kelompok konten bertema, biasanya punya judul
+├── article  konten yang bisa berdiri sendiri
+└── aside    konten tambahan yang bisa dilepas
+footer  kontak, kredit, atau kebijakan</code></pre>
+    <ul>
+      <li><code>address</code> menandai kontak organisasi atau penulis.</li>
+      <li><code>time datetime</code> memberi tanggal yang dipahami mesin.</li>
+      <li>Landmark membantu pengguna berpindah antarbagian.</li>
+    </ul>
+
+    <h2>Kontak dan tanggal di footer</h2>
+<pre><code class="language-html">&lt;footer&gt;
+  &lt;address&gt;Tokosaya — halo@tokosaya.example&lt;/address&gt;
+  &lt;time datetime="2025-09-01"&gt;1 September 2025&lt;/time&gt;
+&lt;/footer&gt;</code></pre>
+
+    <h2>Hasil yang dirender</h2>
+    <p>Panggung di bawah berperan sebagai satu halaman contoh, jadi landmark di dalamnya berdiri sendiri. Label kecil di tiap kotak menyebut nama elemennya.</p>
+    <div class="demo">
+      <div class="halaman">
+        <header class="landmark" data-nama="header">
+          <h2>Peralatan Kerja Digital untuk Semua</h2>
+          <p>Belanja tepat, kirim cepat.</p>
+        </header>
+        <nav class="landmark" data-nama="nav" aria-label="Navigasi contoh">
+          <ul>
+            <li><a href="06-tabel-data.html">Tabel produk unggulan</a></li>
+            <li><a href="09-form-dasar.html">Struktur form pesan</a></li>
+          </ul>
+        </nav>
+        <div class="isi">
+          <main class="landmark" data-nama="main">
+            <section class="landmark" data-nama="section">
+              <h3>Produk unggulan</h3>
+              <article class="landmark" data-nama="article">
+                <p><strong>Keyboard KX-210</strong> — Rp650.000. Kartu ini tetap bermakna walau dipindahkan ke halaman lain.</p>
+              </article>
+            </section>
+          </main>
+          <aside class="landmark" data-nama="aside">
+            <h3>Jam layanan</h3>
+            <p>Senin–Sabtu, 09.00–17.00 WIB. Bisa dilepas tanpa mengganggu isi utama.</p>
+          </aside>
+        </div>
+        <footer class="landmark" data-nama="footer">
+          <address>Tokosaya — halo@tokosaya.example</address>
+          <p><time datetime="2025-09-01">1 September 2025</time></p>
+        </footer>
+      </div>
+    </div>
+    <p>Tidak semua kumpulan link perlu dibungkus <code>nav</code>. Setiap halaman cukup punya satu <code>main</code>, dan <code>main</code> tidak ditaruh di dalam <code>header</code> atau <code>footer</code>.</p>
+
+    <h2>Mengapa semantik penting</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Manfaat</th><th>Yang terbantu</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Aksesibilitas</td><td><em>Screen reader</em> bisa membantu pengguna menavigasi landmark dan heading</td></tr>
+        <tr><td>SEO dasar</td><td>Struktur dan bagian konten lebih mudah dikenali</td></tr>
+        <tr><td>Pemeliharaan</td><td>Susunan dan peran tiap bagian lebih mudah dipahami</td></tr>
+      </tbody>
+    </table>
+    <p>Semantik adalah fondasi SEO, tapi bukan satu-satunya faktor. Struktur yang jelas juga membantu browser dan alat pengembang.</p>
+    <nav class="nav">
+      <a href="09-form-dasar.html">← 09 Struktur form</a>
+      <span>10 / 14</span>
+      <a href="11-div-section-article.html">11 div, section, article →</a>
+    </nav>
+  </div>
+</body>
+</html>
