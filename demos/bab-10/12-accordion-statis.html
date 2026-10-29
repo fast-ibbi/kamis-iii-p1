@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 10 · 12 accordion-statis — Komponen Bootstrap</title>
+<link rel="stylesheet" href="../_vendor/bootstrap.min.css">
+<link rel="stylesheet" href="../_vendor/bootstrap-icons.min.css">
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: kotak catatan di bawah contoh */
+  .demo .catatan {
+    box-sizing: border-box;
+    margin: 12px 0 0;
+    padding: 8px 10px;
+    background: #ffffff;
+    border-left: 3px solid #1d4ed8;
+    font-size: 14px;
+    color: #4b5563;
+  }
+  /* panggung: Bootstrap memberi margin bawah pada .accordion-header; dinolkan
+     supaya jarak di dalam komponen tetap rapat seperti aslinya */
+  .demo .accordion-header { margin: 0; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 10 · Komponen Bootstrap</strong> · 12 accordion-statis</p>
+    <h1>Accordion: Struktur dan Status Statis</h1>
+    <p>Accordion menumpuk beberapa panel yang bisa dibuka satu per satu. Perilaku buka-tutupnya butuh paket JavaScript, jadi di buku ini accordion diajarkan sebagai struktur dan status: kita membaca keadaannya, bukan mengkliknya.</p>
+
+    <h2>Markup accordion</h2>
+<pre><code class="language-html">&lt;div class="accordion" id="faqDemo"&gt;
+  &lt;div class="accordion-item"&gt;
+    &lt;h2 class="accordion-header"&gt;
+      &lt;button type="button" class="accordion-button"&gt;Apa itu Tokosaya?&lt;/button&gt;
+    &lt;/h2&gt;
+    &lt;div class="accordion-collapse collapse show"&gt;
+      &lt;div class="accordion-body"&gt;Toko online UMKM aksesori dan elektronik komputer sejak 2019.&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="accordion-item"&gt;
+    &lt;h2 class="accordion-header"&gt;
+      &lt;button type="button" class="accordion-button collapsed"&gt;Berapa lama pengiriman?&lt;/button&gt;
+    &lt;/h2&gt;
+    &lt;div class="accordion-collapse collapse"&gt;
+      &lt;div class="accordion-body"&gt;Satu sampai tiga hari kerja untuk wilayah kota.&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <p>Strukturnya berlapis: <code>accordion</code> → <code>accordion-item</code> → <code>accordion-header</code> → <code>accordion-body</code>. Tombol yang tertutup memakai <code>collapsed</code>, panel yang terbuka memakai <code>show</code>. Keduanya berhenti di status itu, seperti gambar di papan cerita.</p>
+
+    <h2>Hasil: satu panel terbuka, satu panel tertutup</h2>
+    <div class="demo">
+      <div class="accordion" id="faqDemo">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button type="button" class="accordion-button">Apa itu Tokosaya?</button>
+          </h2>
+          <div class="accordion-collapse collapse show">
+            <div class="accordion-body">Toko online UMKM aksesori dan elektronik komputer sejak 2019.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button type="button" class="accordion-button collapsed">Berapa lama pengiriman?</button>
+          </h2>
+          <div class="accordion-collapse collapse">
+            <div class="accordion-body">Satu sampai tiga hari kerja untuk wilayah kota.</div>
+          </div>
+        </div>
+      </div>
+      <p class="catatan">Panel kedua tidak terlihat karena <code>collapse</code> tanpa <code>show</code> disembunyikan CSS Bootstrap. Tanpa paket JavaScript tidak ada yang bisa membukanya, jadi demo ini berhenti pada keadaan itu — jangan berpura-pura tombolnya bekerja.</p>
+    </div>
+    <p>Menyalin pola ini di sistem lain cukup dengan mengganti isi teksnya. Yang perlu dijaga hanya dua hal: tombol pertama tanpa <code>collapsed</code> karena panelnya terbuka, dan tombol kedua memakai <code>collapsed</code> karena panelnya tertutup.</p>
+
+    <nav class="nav">
+      <a href="11-list-group.html">← 11 list-group</a>
+      <span>12 / 16</span>
+      <a href="13-modal-statis.html">13 modal-statis →</a>
+    </nav>
+  </div>
+</body>
+</html>

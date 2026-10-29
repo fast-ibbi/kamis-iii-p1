@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 10 · 10 pagination — Komponen Bootstrap</title>
+<link rel="stylesheet" href="../_vendor/bootstrap.min.css">
+<link rel="stylesheet" href="../_vendor/bootstrap-icons.min.css">
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: kotak catatan di bawah contoh */
+  .demo .catatan {
+    box-sizing: border-box;
+    margin: 12px 0 0;
+    padding: 8px 10px;
+    background: #ffffff;
+    border-left: 3px solid #1d4ed8;
+    font-size: 14px;
+    color: #4b5563;
+  }
+  /* panggung: latar putih supaya deret pagination terbaca jelas */
+  .demo .jalur {
+    box-sizing: border-box;
+    padding: 10px 12px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+  }
+  .demo .jalur + .jalur { margin-top: 10px; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 10 · Komponen Bootstrap</strong> · 10 pagination</p>
+    <h1>Pagination Visual</h1>
+    <p>Pagination membagi satu daftar panjang menjadi beberapa halaman. Dua kelas status yang perlu dikenali: <code>active</code> untuk halaman yang sedang dibuka, dan <code>disabled</code> untuk panah yang tidak punya tujuan.</p>
+
+    <h2>Markup pagination</h2>
+<pre><code class="language-html">&lt;nav aria-label="Halaman katalog"&gt;
+  &lt;ul class="pagination justify-content-center mb-0"&gt;
+    &lt;li class="page-item disabled"&gt;&lt;span class="page-link"&gt;...&lt;/span&gt;&lt;/li&gt;
+    &lt;li class="page-item active" aria-current="page"&gt;&lt;span class="page-link"&gt;1&lt;/span&gt;&lt;/li&gt;
+    &lt;li class="page-item"&gt;&lt;a class="page-link" href="katalog.html"&gt;2&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="page-item"&gt;&lt;a class="page-link" href="katalog.html"&gt;3&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+    <p>Bootstrap menyarankan <code>span</code> alih-alih <code>a</code> untuk item berstatus: halaman yang sedang dibuka dan panah yang dimatikan tidak perlu bisa diklik. Deretnya dikunci tengah dengan <code>justify-content-center</code>.</p>
+    <p>Tanda <code>...</code> di slide mewakili ikon panah <code>bi bi-chevron-left</code> yang dibahas di demo 15. Paginasi ini visual: saat diklik, pengguna tetap berada di halaman yang sama, karena perpindahan halaman butuh JavaScript atau server.</p>
+
+    <h2>Hasil</h2>
+    <div class="demo">
+      <div class="jalur">
+        <nav aria-label="Halaman katalog">
+          <ul class="pagination justify-content-center mb-0">
+            <li class="page-item disabled"><span class="page-link"><i class="bi bi-chevron-left" aria-hidden="true"></i></span></li>
+            <li class="page-item active" aria-current="page"><span class="page-link">1</span></li>
+            <li class="page-item"><a class="page-link" href="16-katalog-tokosaya.html">2</a></li>
+            <li class="page-item"><a class="page-link" href="16-katalog-tokosaya.html">3</a></li>
+            <li class="page-item"><a class="page-link" href="16-katalog-tokosaya.html"><i class="bi bi-chevron-right" aria-hidden="true"></i></a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="catatan">Panah kiri pudar karena <code>disabled</code>: kita sedang di halaman 1. Panah kanan tetap gelap karena masih ada halaman berikutnya.</p>
+    </div>
+
+    <h2>Latihan: halaman 3 aktif, panah kanan dimatikan</h2>
+    <div class="demo">
+      <div class="jalur">
+        <nav aria-label="Halaman katalog, halaman terakhir">
+          <ul class="pagination justify-content-center mb-0">
+            <li class="page-item"><a class="page-link" href="16-katalog-tokosaya.html"><i class="bi bi-chevron-left" aria-hidden="true"></i></a></li>
+            <li class="page-item"><a class="page-link" href="16-katalog-tokosaya.html">1</a></li>
+            <li class="page-item"><a class="page-link" href="16-katalog-tokosaya.html">2</a></li>
+            <li class="page-item active" aria-current="page"><span class="page-link">3</span></li>
+            <li class="page-item disabled"><span class="page-link"><i class="bi bi-chevron-right" aria-hidden="true"></i></span></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="catatan">Perhatikan bahwa halaman aktif memakai <code>span</code>, bukan tautan. Itu pola yang disarankan dokumentasi Bootstrap.</p>
+    </div>
+
+    <nav class="nav">
+      <a href="09-breadcrumb.html">← 09 breadcrumb</a>
+      <span>10 / 16</span>
+      <a href="11-list-group.html">11 list-group →</a>
+    </nav>
+  </div>
+</body>
+</html>

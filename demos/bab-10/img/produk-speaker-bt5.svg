@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="160" viewBox="0 0 320 160" role="img" aria-label="Ilustrasi Speaker bluetooth BT-5">
+  <rect width="320" height="160" fill="#fce7f3"/>
+  <rect x="16" y="16" width="288" height="128" fill="none" stroke="#be185d" stroke-opacity="0.35" stroke-width="1"/>
+  <text x="160" y="82" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="30" font-weight="600" fill="#be185d">BT-5</text>
+  <text x="160" y="108" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#be185d" fill-opacity="0.85">Speaker bluetooth</text>
+</svg>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 10 · 15 bootstrap-icons — Komponen Bootstrap</title>
+<link rel="stylesheet" href="../_vendor/bootstrap.min.css">
+<link rel="stylesheet" href="../_vendor/bootstrap-icons.min.css">
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: kotak catatan di bawah contoh */
+  .demo .catatan {
+    box-sizing: border-box;
+    margin: 12px 0 0;
+    padding: 8px 10px;
+    background: #ffffff;
+    border-left: 3px solid #1d4ed8;
+    font-size: 14px;
+    color: #4b5563;
+  }
+  /* panggung: baris ikon; ukuran dan warna ikon mengikuti wadahnya */
+  .demo .baris-ikon {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 18px;
+    margin: 0 0 10px;
+    font-size: 15px;
+  }
+  .demo .teks-besar { font-size: 26px; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 10 · Komponen Bootstrap</strong> · 15 bootstrap-icons</p>
+    <h1>Bootstrap Icons dan Tiga Aturan Praktis</h1>
+    <p>Bootstrap Icons adalah berkas CSS berisi ratusan ikon garis. Ikon dipasang dengan sepasang kelas <code>bi bi-nama-ikon</code>, ukurannya mengikuti ukuran teks, dan warnanya mewarisi kelas <code>text-*</code> pada wadahnya.</p>
+
+    <h2>Dua alamat yang biasa ditulis di head</h2>
+<pre><code class="language-text">https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css
+https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css</code></pre>
+    <p>Demo di halaman ini memakai salinan lokal dari folder <code>_vendor/</code> supaya tetap jalan tanpa internet. Yang berubah hanya alamatnya; urutan pemuatannya tetap: Icons sebelum <code>css/style.css</code>.</p>
+
+    <h2>Markup ikon dekoratif dan ikon mandiri</h2>
+<pre><code class="language-html">&lt;!-- ikon dekoratif: ada kata pendamping, jadi disembunyikan dari pembaca layar --&gt;
+&lt;a class="btn btn-outline-primary btn-sm" href="16-katalog-tokosaya.html"&gt;
+  &lt;i class="bi bi-cart3" aria-hidden="true"&gt;&lt;/i&gt; Keranjang
+&lt;/a&gt;
+
+&lt;!-- ikon mandiri: tidak ada kata pendamping, jadi butuh aria-label --&gt;
+&lt;button type="button" class="btn btn-outline-secondary btn-sm" aria-label="Saring produk"&gt;
+  &lt;i class="bi bi-funnel"&gt;&lt;/i&gt;
+&lt;/button&gt;</code></pre>
+    <ul>
+      <li>Ikon dekoratif di sebelah kata yang menjelaskan diberi <code>aria-hidden="true"</code>, supaya pembaca layar melewatinya dan tidak menyebut nama ikon.</li>
+      <li>Ikon yang berdiri sendiri tanpa kata pendamping butuh <code>aria-label</code> pada tombolnya.</li>
+      <li>Ikon memang berulang: <code>bi bi-cart3</code>, <code>bi bi-funnel</code>, <code>bi bi-chevron-left</code>.</li>
+    </ul>
+
+    <h2>Hasil</h2>
+    <div class="demo">
+      <p class="baris-ikon">
+        <span><i class="bi bi-cart3" aria-hidden="true"></i> Keranjang</span>
+        <span><i class="bi bi-funnel" aria-hidden="true"></i> Saring</span>
+        <span><i class="bi bi-chevron-left" aria-hidden="true"></i> Sebelumnya</span>
+      </p>
+      <p class="baris-ikon teks-besar">
+        <i class="bi bi-cart3" aria-hidden="true"></i>
+        <span class="teks-kecil">ikon mengikuti ukuran teks wadahnya</span>
+      </p>
+      <p class="baris-ikon">
+        <span class="text-success"><i class="bi bi-check-circle" aria-hidden="true"></i> Stok tersedia</span>
+        <span class="text-danger"><i class="bi bi-x-circle" aria-hidden="true"></i> Stok habis</span>
+        <span class="text-primary"><i class="bi bi-star" aria-hidden="true"></i> Best Seller</span>
+      </p>
+      <p class="baris-ikon">
+        <a class="btn btn-outline-primary btn-sm" href="16-katalog-tokosaya.html">
+          <i class="bi bi-cart3" aria-hidden="true"></i> Keranjang
+        </a>
+        <button type="button" class="btn btn-outline-secondary btn-sm" aria-label="Saring produk">
+          <i class="bi bi-funnel"></i>
+        </button>
+      </p>
+      <p class="catatan">Ikon di baris kedua membesar karena wadahnya diberi ukuran teks 26 px. Ikon di baris ketiga berwarna karena kelas <code>text-success</code>, <code>text-danger</code>, dan <code>text-primary</code> pada <code>span</code> wadahnya. Kalau berkas ikon gagal dimuat, yang muncul adalah kotak kosong — tanda link CSS-nya belum terhubung.</p>
+    </div>
+
+    <nav class="nav">
+      <a href="14-carousel-item-aktif.html">← 14 carousel-item-aktif</a>
+      <span>15 / 16</span>
+      <a href="16-katalog-tokosaya.html">16 katalog-tokosaya →</a>
+    </nav>
+  </div>
+</body>
+</html>

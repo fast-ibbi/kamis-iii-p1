@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 10 · 08 card-dalam-grid — Komponen Bootstrap</title>
+<link rel="stylesheet" href="../_vendor/bootstrap.min.css">
+<link rel="stylesheet" href="../_vendor/bootstrap-icons.min.css">
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: kotak catatan di bawah contoh */
+  .demo .catatan {
+    box-sizing: border-box;
+    margin: 12px 0 0;
+    padding: 8px 10px;
+    background: #ffffff;
+    border-left: 3px solid #1d4ed8;
+    font-size: 14px;
+    color: #4b5563;
+  }
+  /* panggung: gaya kustom kartu produk Tokosaya */
+  .demo .produk-card {
+    box-sizing: border-box;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .demo .produk-card .card-img-top {
+    height: 160px;
+    object-fit: cover;
+  }
+  .demo .produk-card .card-body { font-size: 14px; }
+  .demo .row + .catatan { margin-top: 16px; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 10 · Komponen Bootstrap</strong> · 08 card-dalam-grid</p>
+    <h1>Kartu Hidup di Dalam Grid</h1>
+    <p>Kartu tidak berdiri sendiri: ia duduk di dalam sel grid. <code>row g-4</code> mengendalikan jarak antarkartu, dan <code>col-12 col-sm-6 col-lg-3</code> membagi baris menjadi satu, dua, lalu empat kolom saat layar melebar.</p>
+
+    <h2>Markup wadah layout</h2>
+<pre><code class="language-html">&lt;div class="row g-4"&gt;
+  &lt;article class="col-12 col-sm-6 col-lg-3"&gt;
+    &lt;div class="card h-100 produk-card"&gt;...&lt;/div&gt;
+  &lt;/article&gt;
+&lt;/div&gt;</code></pre>
+    <p>Wadah konten dan wadah layout dipisah: <code>card h-100 produk-card</code> mengurus bingkai kartu, sedangkan <code>row</code> dan <code>col-*</code> mengurus susunan. Karena pemisahan itu, susunannya bisa diubah kapan pun tanpa menyentuh isi kartunya.</p>
+    <p><code>card-group</code> menempelkan beberapa kartu menjadi satu bingkai — cocok untuk galeri, tetapi bukan pilihan Tokosaya karena jarak antarkartu jadi hilang.</p>
+
+    <h2>Hasil: delapan produk</h2>
+    <div class="demo">
+      <div class="row g-4">
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="card h-100 produk-card">
+            <img src="img/produk-keyboard-kx210.svg" class="card-img-top" alt="Keyboard Mekanis KX-210">
+            <div class="card-body d-flex flex-column">
+              <p class="mb-2"><span class="badge text-bg-warning">Best Seller</span></p>
+              <h3 class="card-title h6 mb-1">Keyboard Mekanis KX-210</h3>
+              <p class="card-text small text-body-secondary mb-2">Aksesori Input</p>
+              <p class="card-text small mb-3">Keyboard mekanis 87 tombol dengan switch biru.</p>
+              <p class="fw-semibold text-primary mb-3 mt-auto">Rp650.000</p>
+              <a href="16-katalog-tokosaya.html" class="btn btn-primary btn-sm">Lihat Detail</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="card h-100 produk-card">
+            <img src="img/produk-mouse-mw88.svg" class="card-img-top" alt="Mouse Wireless MW-88">
+            <div class="card-body d-flex flex-column">
+              <p class="mb-2"><span class="badge text-bg-success">Tersedia</span></p>
+              <h3 class="card-title h6 mb-1">Mouse Wireless MW-88</h3>
+              <p class="card-text small text-body-secondary mb-2">Aksesori Input</p>
+              <p class="card-text small mb-3">Mouse nirkabel, baterai tahan enam bulan.</p>
+              <p class="fw-semibold text-primary mb-3 mt-auto">Rp185.000</p>
+              <a href="16-katalog-tokosaya.html" class="btn btn-primary btn-sm">Lihat Detail</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="card h-100 produk-card">
+            <img src="img/produk-headphone-hs15.svg" class="card-img-top" alt="Headphone Studio HS-15">
+            <div class="card-body d-flex flex-column">
+              <p class="mb-2"><span class="badge text-bg-success">Tersedia</span></p>
+              <h3 class="card-title h6 mb-1">Headphone Studio HS-15</h3>
+              <p class="card-text small text-body-secondary mb-2">Audio</p>
+              <p class="card-text small mb-3">Headphone over-ear dengan bantalan kulit.</p>
+              <p class="fw-semibold text-primary mb-3 mt-auto">Rp1.250.000</p>
+              <a href="16-katalog-tokosaya.html" class="btn btn-primary btn-sm">Lihat Detail</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="card h-100 produk-card">
+            <img src="img/produk-monitor-mr241.svg" class="card-img-top" alt="Monitor IPS 24" MR-241">
+            <div class="card-body d-flex flex-column">
+              <p class="mb-2"><span class="badge text-bg-warning">Best Seller</span></p>
+              <h3 class="card-title h6 mb-1">Monitor IPS 24" MR-241</h3>
+              <p class="card-text small text-body-secondary mb-2">Layar</p>
+              <p class="card-text small mb-3">Layar 24 inci, panel IPS, kaki dapat disetel.</p>
+              <p class="fw-semibold text-primary mb-3 mt-auto">Rp1.850.000</p>
+              <a href="16-katalog-tokosaya.html" class="btn btn-primary btn-sm">Lihat Detail</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="card h-100 produk-card">
+            <img src="img/produk-flashdrive-fd64.svg" class="card-img-top" alt="Flash Drive 64GB FD-64">
+            <div class="card-body d-flex flex-column">
+              <p class="mb-2"><span class="badge text-bg-success">Tersedia</span></p>
+              <h3 class="card-title h6 mb-1">Flash Drive 64GB FD-64</h3>
+              <p class="card-text small text-body-secondary mb-2">Penyimpanan</p>
+              <p class="card-text small mb-3">USB 3.0, kunci gantungan logam.</p>
+              <p class="fw-semibold text-primary mb-3 mt-auto">Rp95.000</p>
+              <a href="16-katalog-tokosaya.html" class="btn btn-primary btn-sm">Lihat Detail</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="card h-100 produk-card">
+            <img src="img/produk-charger-cp30.svg" class="card-img-top" alt="Charger Cepat 30W CP-30">
+            <div class="card-body d-flex flex-column">
+              <p class="mb-2"><span class="badge text-bg-success">Tersedia</span></p>
+              <h3 class="card-title h6 mb-1">Charger Cepat 30W CP-30</h3>
+              <p class="card-text small text-body-secondary mb-2">Daya</p>
+              <p class="card-text small mb-3">Pengisi daya cepat dengan dua port.</p>
+              <p class="fw-semibold text-primary mb-3 mt-auto">Rp210.000</p>
+              <a href="16-katalog-tokosaya.html" class="btn btn-primary btn-sm">Lihat Detail</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="card h-100 produk-card">
+            <img src="img/produk-speaker-bt5.svg" class="card-img-top" alt="Speaker Bluetooth BT-5">
+            <div class="card-body d-flex flex-column">
+              <p class="mb-2"><span class="badge text-bg-danger">Stok Terbatas</span></p>
+              <h3 class="card-title h6 mb-1">Speaker Bluetooth BT-5</h3>
+              <p class="card-text small text-body-secondary mb-2">Audio</p>
+              <p class="card-text small mb-3">Speaker portabel tahan cipratan air.</p>
+              <p class="fw-semibold text-primary mb-3 mt-auto">Rp420.000</p>
+              <a href="16-katalog-tokosaya.html" class="btn btn-primary btn-sm">Lihat Detail</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="card h-100 produk-card">
+            <img src="img/produk-webcam-wc720.svg" class="card-img-top" alt="Webcam HD WC-720">
+            <div class="card-body d-flex flex-column">
+              <p class="mb-2"><span class="badge text-bg-primary">Baru</span></p>
+              <h3 class="card-title h6 mb-1">Webcam HD WC-720</h3>
+              <p class="card-text small text-body-secondary mb-2">Kamera</p>
+              <p class="card-text small mb-3">Kamera 720p dengan mikrofon bawaan.</p>
+              <p class="fw-semibold text-primary mb-3 mt-auto">Rp330.000</p>
+              <a href="16-katalog-tokosaya.html" class="btn btn-primary btn-sm">Lihat Detail</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="catatan">Ubah lebar jendela: empat kartu per baris di desktop, dua di tablet, satu di HP. Tidak ada media query yang ditulis tangan — semuanya dari kelas <code>col-*</code>.</p>
+    </div>
+    <p class="hitung" data-hitung="3/12*100 = 25">Satu sel <code>col-lg-3</code> memakai 3 dari 12 kolom, yaitu <strong>25%</strong> lebar baris; karena itu empat kartu duduk sebaris.</p>
+    <p class="hitung" data-hitung="8/4 = 2">Delapan produk dengan empat kolom berarti <strong>dua baris</strong> kartu di layar desktop.
+
+    <nav class="nav">
+      <a href="07-harga-sejajar-dasar.html">← 07 harga-sejajar-dasar</a>
+      <span>08 / 16</span>
+      <a href="09-breadcrumb.html">09 breadcrumb →</a>
+    </nav>
+  </div>
+</body>
+</html>

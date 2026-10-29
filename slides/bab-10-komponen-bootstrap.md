@@ -247,6 +247,8 @@ Tunjukkan bahwa `navbar` sendiri sudah memakai Flexbox, jadi isinya sejajar otom
 Tanyakan kelas mana yang mengubah susunan menu pas lebar layar berubah. Jawaban yang
 diharapkan: `navbar-expand-lg`. Sebutkan bahwa dua baris terakhir tabel adalah pola
 resmi yang di buku ini sengaja nggak dipakai pada navbar Tokosaya.
+
+Demo: demos/bab-10/01-navbar-anatomi.html — bandingkan navbar hasil render dengan tabel peran kelas, lalu ikuti kotak `.container` yang ditandai garis putus-putus.
 -->
 
 ---
@@ -280,6 +282,8 @@ Baca kodenya dari atas ke bawah sambil ditunjuk di layar. Tekankan bahwa daftar
 `navbar-nav` berdiri langsung di dalam `navbar`, tanpa panel `collapse`. Tanyakan
 kenapa `active` ditemani atribut `aria-current="page"`. Jawaban yang diharapkan:
 biar pembaca layar juga tahu halaman mana yang sedang dibuka.
+
+Demo: demos/bab-10/02-navbar-tokosaya.html — ciutkan jendela sampai di bawah 992 piksel dan lihat menu berpindah dari mendatar jadi menumpuk, tanpa tombol apa pun.
 -->
 
 ---
@@ -338,6 +342,8 @@ Tekankan pola kelas dasar ditambah variant: begitu paham `btn`, komponen lain da
 gratis. Tanyakan bedanya dua tombol di kelompok itu. Jawaban yang diharapkan: yang
 pertama menandai pilihan terpilih, yang kedua tampil lebih tenang sebagai alternatif.
 Sebutkan bahwa `role="group"` dan `aria-label` menjelaskan tujuan kelompoknya.
+
+Demo: demos/bab-10/03-tombol-variant.html — bandingkan delapan variant warna dan tiga ukuran tombol berdampingan di satu halaman.
 -->
 
 ---
@@ -367,6 +373,8 @@ Bahas tabel makna semantik baris demi baris, jangan cuma warnanya. Tanyakan kena
 warna mengikuti makna, bukan selera. Jawaban yang diharapkan: pengguna cukup belajar
 bahasa warna sekali lalu memakainya di semua halaman. Ingatkan bahwa empat variant
 inilah yang dipakai konsisten sepanjang buku.
+
+Demo: demos/bab-10/04-badge-semantik.html — cocokkan warna empat badge pada daftar produk dengan tabel makna semantik di atasnya.
 -->
 
 ---
@@ -391,6 +399,8 @@ Katakan bahwa alert di buku ini selalu ditulis tanpa tombol tutup, sesuai kesepa
 bab, karena perilaku menutupnya butuh paket JavaScript. Tanyakan kenapa warnanya
 kuning, bukan merah. Jawaban yang diharapkan: isinya soal stok terbatas, jadi memakai
 variant peringatan. Ingatkan bahwa pemilihan warna selalu ikut tabel makna.
+
+Demo: demos/bab-10/05-alert-statis.html — baca tiga alert statis dan pastikan tidak satu pun punya tombol tutup.
 -->
 
 ---
@@ -427,6 +437,8 @@ lingkar kartu — dan `card-body` — ruang isi kartu. Di dalam `card-body` ada
 `card-title` — judul kartu — dan `card-text` — paragraf isi kartu. Dua pelengkap yang
 nggak masuk gambar: `card-subtitle` buat keterangan kecil di bawah judul, dan
 `card h-100` bikin kartu mengisi penuh tinggi kolom grid.
+
+Demo: demos/bab-10/06-card-anatomi.html — telusuri bagian-bagian kartu KX-210, lalu periksa lebar isi kartu pada layar 360 piksel.
 -->
 
 ---
@@ -508,6 +520,8 @@ harga didorong ke dasar kartu, sama dengan harga sejajar walau deskripsi beda pa
 dan tombol menempel dasar kartu. Itulah pakem harga menempel dasar kartu di Tokosaya.
 Satu catatan kecil yang nggak masuk gambar: judul `h3` memakai kelas ukuran `h6` biar
 outline tetap benar.
+
+Demo: demos/bab-10/07-harga-sejajar-dasar.html — bandingkan baris kartu tanpa pakem dan dengan pakem: harga yang tadinya berhenti di ketinggian berbeda akhirnya sejajar.
 -->
 
 ---
@@ -537,6 +551,8 @@ harga, tombol. Sisi kanan wadah layout: `row g-4` mengendalikan jarak antarkartu
 `col-12 col-sm-6 col-lg-3` membagi 1-2-4 kolom pas layar melebar, jadi delapan kartu
 berputar jadi 1-2-4 kolom. `card-group` menempelkan kartu jadi satu bingkai, cocok
 buat galeri, tapi bukan pilihan Tokosaya.
+
+Demo: demos/bab-10/08-card-dalam-grid.html — ubah lebar jendela dan hitung sendiri perubahan 1, 2, dan 4 kolom tanpa satu pun media query.
 -->
 
 ---
@@ -564,6 +580,8 @@ Tanyakan di halaman mana breadcrumb paling dibutuhkan. Jawaban yang diharapkan:
 halaman rinci, kayak Beranda → Katalog → Klasifikasi 000 → Data Komputer. Ingatkan
 bahwa item terakhir nggak perlu jadi link karena itu posisi pengguna sekarang.
 Sebutkan bahwa label `aria-label` memberi nama wilayah itu buat pembaca layar.
+
+Demo: demos/bab-10/09-breadcrumb.html — ikuti jalur dua tingkat di katalog dan jalur empat tingkat di halaman rinci.
 -->
 
 ---
@@ -593,6 +611,8 @@ Jujur saja ke kelas: paginasi ini visual dan isinya belum berganti pas diklik.
 Tanyakan kenapa pola ini tetap berguna. Jawaban yang diharapkan: prototip desain
 butuh bentuk lengkap sebelum data nyata disambungkan. Sebutkan bahwa tanda `...`
 di slide ini mewakili ikon panah `bi bi-chevron-left` yang dibahas nanti.
+
+Demo: demos/bab-10/10-pagination.html — periksa beda halaman aktif, panah pudar, dan panah yang masih bisa ditekan.
 -->
 
 ---
@@ -621,6 +641,8 @@ Minta mahasiswa menyebutkan daftar di sistem informasi yang cocok memakai kompon
 ini. Jawaban yang diharapkan: daftar buku, daftar log kejadian, daftar mata kuliah.
 Tunjukkan pola isi di kiri dan status di kanan, karena pola itu yang dipakai lagi di
 studi kasus perpustakaan.
+
+Demo: demos/bab-10/11-list-group.html — lihat daftar berbingkai dengan satu baris aktif, lalu pola isi di kiri dan status di kanan.
 -->
 
 ---
@@ -667,6 +689,8 @@ Ajari kelas membaca status, bukan mengkliknya. Tanyakan kenapa tombol pertama ta
 kelas `collapsed` dan panelnya memakai `show`. Jawaban yang diharapkan: keduanya
 menandai keadaan terbuka. Sebutkan bahwa menyalin pola ini di sistem lain cukup
 dengan mengganti isi teksnya.
+
+Demo: demos/bab-10/12-accordion-statis.html — baca status accordion: satu panel terbuka karena `show`, satu tertutup karena `collapsed`.
 -->
 
 ---
@@ -702,6 +726,8 @@ Tunjukkan bahwa gaya inline pada wadah itu ditandai komentar khusus demonstrasi.
 Tanyakan kenapa tombol silang nggak menutup apa pun. Jawaban yang diharapkan:
 perilaku menutup dikendalikan paket JavaScript resmi. Sebutkan bahwa markup modal
 tetap berguna buat membaca prototip statis di alat desain.
+
+Demo: demos/bab-10/13-modal-statis.html — amati modal statis yang duduk di dalam alur halaman, bukan menutupi layar.
 -->
 
 ---
@@ -732,6 +758,8 @@ Tanyakan kenapa cuma gambar pertama yang tampak. Jawaban yang diharapkan: kelas
 `active` menandai item yang sedang tampil. Sebutkan bahwa tanpa paket JavaScript
 carousel berhenti di gambar itu dan nggak bergeser sendiri. Tutup dengan wawasan:
 ketiga komponen interaktif ini alasan utama tim memuat paket JavaScript resmi.
+
+Demo: demos/bab-10/14-carousel-item-aktif.html — pastikan hanya item berkelas `active` yang tampak, sedangkan dua gambar lain tetap tersimpan di markup.
 -->
 
 ---
@@ -760,6 +788,8 @@ menyebut nama ikon. Ikon berdiri sendiri tanpa kata pendamping butuh
 dipasang dengan pasangan kelas `bi bi-nama-ikon`, ukuran mengikuti teks, warna
 mewarisi kelas `text-*` wadahnya. Ikon memang berulang: `bi bi-cart3`,
 `bi bi-funnel`, `bi bi-chevron-left`.
+
+Demo: demos/bab-10/15-bootstrap-icons.html — bandingkan ikon dekoratif dan ikon mandiri, termasuk ukuran dan warna yang mewarisi kelas wadahnya.
 -->
 
 ---
@@ -780,6 +810,8 @@ Jalankan langkah ini sambil didemokan, jangan cuma dibacakan. Berhenti di langka
 karena urutan empat link paling sering salah di praktikum. Ingatkan membuka pratinjau
 lewat Live Server atau langsung di Chrome. Sebutkan bahwa dua slide berikutnya
 melanjutkan langkah grid sampai pengujian.
+
+Demo: demos/bab-10/16-katalog-tokosaya.html — jalankan halaman katalog lengkap: navbar, breadcrumb, delapan kartu, empat variant badge, dan pagination.
 -->
 
 ---
@@ -934,6 +966,7 @@ yang rapi.
 - Card jadi inti katalog: `h-100` + `d-flex flex-column` + `mt-auto`
 - Accordion, modal, dan carousel diajarkan sebagai struktur dan status
 - Bootstrap Icons dipasang lewat CSS CDN dan kelas `bi bi-...`
+**Demo:** seluruh konsep bab ini bisa dicoba di [demos/bab-10/index.html](demos/bab-10/index.html).
 
 <!--
 Tutup dengan pesan utama: komponen itu kerangka yang diisikan konteks, jadi pola yang

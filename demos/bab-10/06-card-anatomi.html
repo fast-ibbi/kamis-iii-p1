@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 10 · 06 card-anatomi — Komponen Bootstrap</title>
+<link rel="stylesheet" href="../_vendor/bootstrap.min.css">
+<link rel="stylesheet" href="../_vendor/bootstrap-icons.min.css">
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: kotak catatan di bawah contoh */
+  .demo .catatan {
+    box-sizing: border-box;
+    margin: 12px 0 0;
+    padding: 8px 10px;
+    background: #ffffff;
+    border-left: 3px solid #1d4ed8;
+    font-size: 14px;
+    color: #4b5563;
+  }
+  /* panggung: satu kolom kartu produk dan satu kartu selebar layar HP */
+  .demo .panggung-kartu {
+    box-sizing: border-box;
+    max-width: 300px;
+  }
+  .demo .bingkai-hp {
+    box-sizing: border-box;
+    width: 360px;
+    border: 1px solid #d1d5db;
+  }
+  .demo .card-img-top {
+    height: 160px;
+    object-fit: cover;
+  }
+  /* panggung: dua kelas kustom Tokosaya, asalnya dari css/style.css */
+  .demo .produk-card {
+    box-sizing: border-box;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .demo .font-heading { letter-spacing: 0.01em; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 10 · Komponen Bootstrap</strong> · 06 card-anatomi</p>
+    <h1>Anatomi Kelas Card</h1>
+    <p>Satu kelas <code>card</code> melahirkan kartu produk, kartu buku, sampai kartu ruang ujian. Bingkainya <code>card</code>, gambarnya <code>card-img-top</code> yang menempel di tepi atas, dan ruang isinya <code>card-body</code>.</p>
+
+    <h2>Markup kartu produk KX-210</h2>
+<pre><code class="language-html">&lt;div class="card h-100 produk-card"&gt;
+  &lt;img src="img/produk-keyboard-kx210.svg" class="card-img-top" alt="Keyboard Mekanis KX-210"&gt;
+  &lt;div class="card-body d-flex flex-column"&gt;
+    &lt;p class="mb-2"&gt;&lt;span class="badge text-bg-warning"&gt;Best Seller&lt;/span&gt;&lt;/p&gt;
+    &lt;h3 class="card-title h6 font-heading"&gt;Keyboard Mekanis KX-210&lt;/h3&gt;
+    &lt;p class="card-text small text-body-secondary mb-2"&gt;Aksesori Input&lt;/p&gt;
+    &lt;p class="card-text small mb-3"&gt;Keyboard mekanis 87 tombol dengan switch biru untuk kerja lama yang nyaman.&lt;/p&gt;
+    &lt;p class="fw-semibold text-primary mb-3 mt-auto"&gt;Rp650.000&lt;/p&gt;
+    &lt;a href="#" class="btn btn-primary btn-sm"&gt;Lihat Detail&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <p><code>File: tokosaya-bootstrap/katalog.html</code></p>
+    <p>Judul kartu memakai elemen <code>h3</code> tetapi kelas ukuran <code>h6</code>: outline halaman tetap benar, sementara ukuran visualnya kecil. Kelas <code>produk-card</code> dan <code>font-heading</code> menunjuk gaya kustom yang ditulis terpisah di <code>css/style.css</code>.</p>
+
+    <h2>Bagian-bagian kartu</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Kelas</th><th>Peran</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>card</code></td><td>Bingkai kartu: latar, border, dan sudut membulat</td></tr>
+        <tr><td><code>card-img-top</code></td><td>Gambar yang menempel di tepi atas dan menikung ikut lingkar kartu</td></tr>
+        <tr><td><code>card-body</code></td><td>Ruang isi kartu, tempat semua teks diletakkan</td></tr>
+        <tr><td><code>card-title</code></td><td>Judul kartu</td></tr>
+        <tr><td><code>card-subtitle</code></td><td>Keterangan kecil di bawah judul</td></tr>
+        <tr><td><code>card-text</code></td><td>Paragraf isi kartu</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Hasil</h2>
+    <div class="demo">
+      <div class="panggung-kartu">
+        <div class="card h-100 produk-card">
+          <img src="img/produk-keyboard-kx210.svg" class="card-img-top" alt="Keyboard Mekanis KX-210">
+          <div class="card-body d-flex flex-column">
+            <p class="mb-2"><span class="badge text-bg-warning">Best Seller</span></p>
+            <h3 class="card-title h6 font-heading">Keyboard Mekanis KX-210</h3>
+            <p class="card-text small text-body-secondary mb-2">Aksesori Input</p>
+            <p class="card-text small mb-3">Keyboard mekanis 87 tombol dengan switch biru untuk kerja lama yang nyaman.</p>
+            <p class="fw-semibold text-primary mb-3 mt-auto">Rp650.000</p>
+            <a href="16-katalog-tokosaya.html" class="btn btn-primary btn-sm">Lihat Detail</a>
+          </div>
+        </div>
+      </div>
+      <p class="catatan">Di slide tautannya <code>#</code>; di demo ini diarahkan ke berkas katalog supaya tidak ada tautan mati. Tanpa <code>card-img-top</code> gambar tetap tampil, tetapi tidak menyatu dengan bingkai kartunya.</p>
+    </div>
+
+    <h2>Lebar isi di layar 360 piksel</h2>
+    <p>Di layar HP 360 piksel, kolom kartu memenuhi lebar layar. <code>box-sizing: border-box</code> membuat border 1 piksel di keempat sisi diambil dari dalam kotak, jadi content gambarnya menyusut, sedangkan lebar totalnya tetap.</p>
+    <div class="demo">
+      <div class="bingkai-hp card">
+        <img src="img/produk-monitor-mr241.svg" class="card-img-top" alt="Monitor IPS 24 inci MR-241">
+        <div class="card-body">
+          <h3 class="card-title h6">Monitor IPS 24" MR-241</h3>
+          <p class="card-text small text-body-secondary mb-0">Layar 24 inci, panel IPS, kaki dapat disetel.</p>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="360px - 1px - 1px = 358">Lebar total 360 px dikurangi border 1 px di kiri dan 1 px di kanan menyisakan content gambar <strong>358 px</strong>. Tingginya 160 px mengikuti aturan kustom <code>.card-img-top</code>.</p>
+    <p>Kalau tiap anggota tim menulis bingkai kartunya sendiri dengan tebal border berbeda, content gambarnya yang bergeser, sedangkan lebar totalnya tetap 360 px. Selisih sekecil itu yang membuat kartu di sebelahnya terlihat melenceng.</p>
+
+    <nav class="nav">
+      <a href="05-alert-statis.html">← 05 alert-statis</a>
+      <span>06 / 16</span>
+      <a href="07-harga-sejajar-dasar.html">07 harga-sejajar-dasar →</a>
+    </nav>
+  </div>
+</body>
+</html>

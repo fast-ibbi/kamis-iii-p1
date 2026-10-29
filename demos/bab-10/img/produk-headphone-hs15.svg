@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="160" viewBox="0 0 320 160" role="img" aria-label="Ilustrasi Headphone studio HS-15">
+  <rect width="320" height="160" fill="#fef3c7"/>
+  <rect x="16" y="16" width="288" height="128" fill="none" stroke="#b45309" stroke-opacity="0.35" stroke-width="1"/>
+  <text x="160" y="82" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="30" font-weight="600" fill="#b45309">HS-15</text>
+  <text x="160" y="108" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#b45309" fill-opacity="0.85">Headphone studio</text>
+</svg>

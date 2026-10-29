@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 10 · 13 modal-statis — Komponen Bootstrap</title>
+<link rel="stylesheet" href="../_vendor/bootstrap.min.css">
+<link rel="stylesheet" href="../_vendor/bootstrap-icons.min.css">
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: kotak catatan di bawah contoh */
+  .demo .catatan {
+    box-sizing: border-box;
+    margin: 12px 0 0;
+    padding: 8px 10px;
+    background: #ffffff;
+    border-left: 3px solid #1d4ed8;
+    font-size: 14px;
+    color: #4b5563;
+  }
+  /* panggung: modal statis tetap mengalir di dalam halaman, bukan menutupi layar;
+     Bootstrap menyetel tinggi .modal 100%, di sini dikembalikan ke isinya */
+  .demo .modal {
+    height: auto;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+  }
+  .demo .modal-dialog { margin: 12px; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 10 · Komponen Bootstrap</strong> · 13 modal-statis</p>
+    <h1>Modal: Kotak Dialog Statis</h1>
+    <p>Modal adalah kotak dialog yang biasanya menutupi layar. Tanpa paket JavaScript ia tidak bisa dibuka atau ditutup, jadi di sini modal diperagakan dalam keadaan terbuka, duduk di dalam alur halaman seperti blok biasa.</p>
+
+    <h2>Markup kotak dialog</h2>
+<pre><code class="language-html">&lt;!-- khusus demonstrasi: status statis tanpa JavaScript --&gt;
+&lt;div class="modal show" tabindex="-1" style="display: block; position: static;"&gt;
+  &lt;div class="modal-dialog"&gt;
+    &lt;div class="modal-content"&gt;
+      &lt;div class="modal-header"&gt;
+        &lt;h3 class="modal-title"&gt;Konfirmasi Pesanan&lt;/h3&gt;
+        &lt;button type="button" class="btn-close" aria-label="Tutup"&gt;&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-body"&gt;
+        &lt;p&gt;Hapus produk Flash Drive 64GB FD-64 dari keranjang?&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-footer"&gt;...&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <p>Strukturnya <code>modal</code> → <code>modal-dialog</code> → <code>modal-content</code>, lalu <code>modal-content</code> membelah menjadi tiga bagian: <code>modal-header</code>, <code>modal-body</code>, dan <code>modal-footer</code>. Gaya inline pada wadah itu ditandai komentar khusus demonstrasi dan bukan pola halaman sungguhan.</p>
+
+    <h2>Hasil</h2>
+    <div class="demo">
+      <div class="modal show" tabindex="-1" style="display: block; position: static;">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title">Konfirmasi Pesanan</h3>
+              <button type="button" class="btn-close" aria-label="Tutup"></button>
+            </div>
+            <div class="modal-body">
+              <p>Hapus produk Flash Drive 64GB FD-64 dari keranjang?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary btn-sm">Batal</button>
+              <button type="button" class="btn btn-danger btn-sm">Hapus</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="catatan">Tombol silang di kanan atas tidak menutup apa pun: perilaku menutup dikendalikan paket JavaScript resmi. <code>aria-label="Tutup"</code> tetap perlu ditulis karena isi tombolnya cuma ikon.</p>
+    </div>
+    <p>Markup modal tetap berguna untuk membaca prototip statis di alat desain, dan untuk mengenali kode orang lain di dunia kerja. Yang tidak dilakukan di buku ini adalah mengarang perilakunya sendiri dengan JavaScript.</p>
+
+    <nav class="nav">
+      <a href="12-accordion-statis.html">← 12 accordion-statis</a>
+      <span>13 / 16</span>
+      <a href="14-carousel-item-aktif.html">14 carousel-item-aktif →</a>
+    </nav>
+  </div>
+</body>
+</html>
