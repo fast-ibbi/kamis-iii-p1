@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo Bab 5 — CSS Box Model dan Layout</title>
+<style>
+  :root { --ink: #111827; --muted: #6b7280; --accent: #1d4ed8; --border: #e5e7eb; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 48px 20px 64px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: var(--ink);
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 820px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .kepala a { color: var(--accent); text-decoration: none; }
+  h1 { margin: 0 0 10px; font-size: 28px; line-height: 1.25; }
+  .pengantar { margin: 0 0 32px; color: var(--muted); font-size: 16px; }
+  ol { margin: 0; padding: 0; list-style: none; counter-reset: demo; }
+  li {
+    counter-increment: demo;
+    border-top: 1px solid var(--border);
+    padding: 16px 0;
+  }
+  li a {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  li a::before {
+    content: counter(demo, decimal-leading-zero) "  ";
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  li p { margin: 4px 0 0; font-size: 15px; color: var(--muted); }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><a href="../index.html">← Semua bab</a> · Demo Bab 5</p>
+    <h1>Demo Bab 5 — CSS Box Model dan Layout</h1>
+    <p class="pengantar">17 berkas contoh, satu berkas per konsep slide. Tiap berkas
+    menampilkan kode contoh beserta hasil yang benar-benar dirender, tanpa JavaScript.</p>
+    <ol>
+    <li>
+      <a href="01-content.html">01 Content</a>
+      <p>1. Content</p>
+    </li>
+    <li>
+      <a href="02-padding.html">02 Padding</a>
+      <p>2. Padding</p>
+    </li>
+    <li>
+      <a href="03-border.html">03 Border</a>
+      <p>3. Border</p>
+    </li>
+    <li>
+      <a href="04-margin.html">04 Margin</a>
+      <p>4. Margin</p>
+    </li>
+    <li>
+      <a href="05-padding-vs-margin.html">05 Padding vs margin</a>
+      <p>Keduanya sama-sama mengatur jarak, tetapi memiliki fungsi berbeda.</p>
+    </li>
+    <li>
+      <a href="06-content-box.html">06 content-box</a>
+      <p>Secara default, browser menggunakan:</p>
+    </li>
+    <li>
+      <a href="07-border-box.html">07 border-box</a>
+      <p>Dengan box-sizing: border-box, nilai width sudah mencakup content, padding, dan border.</p>
+    </li>
+    <li>
+      <a href="08-box-sizing-global.html">08 border-box global</a>
+      <p>Dalam proyek web, developer sering menerapkan border-box kepada semua elemen agar pengaturan ukuran lebih konsisten.</p>
+    </li>
+    <li>
+      <a href="09-min-max-width.html">09 min-width &amp; max-width</a>
+      <p>Properti ini menentukan batas minimum dan maksimum lebar elemen.</p>
+    </li>
+    <li>
+      <a href="10-min-height.html">10 min-height</a>
+      <p>min-height menetapkan tinggi minimum sebuah elemen tanpa membatasi pertumbuhannya pada ukuran tersebut.</p>
+    </li>
+    <li>
+      <a href="11-display.html">11 display</a>
+      <p>Properti display menentukan bagaimana elemen berpartisipasi dalam layout.</p>
+    </li>
+    <li>
+      <a href="12-overflow.html">12 overflow</a>
+      <p>overflow mengatur apa yang terjadi ketika konten melampaui area kotak, khususnya pada elemen yang memiliki batas ukuran.</p>
+    </li>
+    <li>
+      <a href="13-teks-panjang.html">13 Teks panjang</a>
+      <p>Teks panjang, seperti URL atau rangkaian karakter tanpa spasi, dapat melampaui batas container.</p>
+    </li>
+    <li>
+      <a href="14-position.html">14 position</a>
+      <p>position mengatur metode penempatan elemen.</p>
+    </li>
+    <li>
+      <a href="15-z-index.html">15 z-index</a>
+      <p>z-index mengatur urutan tumpukan elemen ketika elemen saling bertumpuk dalam konteks penumpukan yang relevan.</p>
+    </li>
+    <li>
+      <a href="16-skala-jarak-8px.html">16 Skala 8 px</a>
+      <p>Skala jarak 8 px adalah pendekatan desain yang menggunakan kelipatan 8 px untuk menjaga konsistensi jarak dan ukuran.</p>
+    </li>
+    <li>
+      <a href="17-kartu-produk.html">17 Kartu produk</a>
+      <p>Gabungkan Box Model, batas ukuran, display, dan skala jarak untuk membangun komponen kartu.</p>
+    </li>
+    </ol>
+  </div>
+</body>
+</html>

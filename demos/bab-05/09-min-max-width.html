@@ -97,9 +97,9 @@
     border: 1px dashed #9ca3af;
     padding: 4px;
   }
-  /* panggung 1240 px: lebih lebar daripada max-width 1200 px pada slide */
+  /* panggung 900 px: lebih lebar daripada max-width 880 px */
   .demo .panggung {
-    width: 1240px;
+    width: 900px;
     border: 1px dashed #9ca3af;
     padding: 4px;
   }
@@ -118,7 +118,7 @@
 
   .container {
     width: 100%;
-    max-width: 1200px;
+    max-width: 880px;
     margin-inline: auto;
   }
 </style>
@@ -146,20 +146,20 @@
     <p>Menentukan lebar maksimum elemen.</p>
 <pre><code class="language-css">.container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 880px;
   margin-inline: auto;
 }</code></pre>
     <div class="demo">
       <div class="panggung">
-        <div class="container">width 100% dibatasi max-width 1200 px, dipusatkan margin-inline: auto</div>
+        <div class="container">width 100% dibatasi max-width 880 px, dipusatkan margin-inline: auto</div>
       </div>
     </div>
-    <p class="hitung">Panggung 1240 px, container berhenti di <strong>1200 px</strong>, sisa 20 px menjadi margin kiri dan kanan.</p>
+    <p class="hitung">Panggung 900 px, container berhenti di <strong>880 px</strong>, sisa 20 px menjadi margin kiri dan kanan. Di slide angkanya 1240 px dan 1200 px; di sini keduanya diperkecil agar muat di kolom halaman, dan perilakunya sama.</p>
 
     <h2>Manfaat</h2>
     <ul>
       <li>Container dapat mengikuti lebar layar.</li>
-      <li>Lebarnya tidak akan melebihi 1200 px.</li>
+      <li>Lebarnya tidak akan melebihi 880 px.</li>
       <li>Margin otomatis membantu memusatkan container ketika tersedia ruang.</li>
     </ul>
     <p><strong>Penerapan umum:</strong> layout responsif, kartu produk, formulir, dan area konten utama.</p>

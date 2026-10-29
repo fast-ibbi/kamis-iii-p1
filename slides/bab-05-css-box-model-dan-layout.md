@@ -174,6 +174,7 @@ border, sehingga angka yang ditulis masih sama dengan lebar kotak yang terlihat.
 Tanyakan apa yang berubah ketika padding ditambahkan pada slide berikutnya; jawaban yang
 diharapkan adalah kotak menjadi lebih tinggi dan lebih lebar. Ukuran content di sini adalah
 titik awal semua hitungan.
+Demo: demos/bab-05/01-content.html — satu kotak hanya berisi lapisan content, jadi lebar 300 px sama dengan lebar yang terlihat..
 -->
 ---
 <!-- _class: compact -->
@@ -274,6 +275,7 @@ Tanyakan mengapa `border` ikut masuk tabel padahal bukan pengatur jarak; jawaban
 diharapkan adalah karena border menjadi batas yang memisahkan padding dari margin. Tanpa
 border, batas antara padding dan margin tidak terlihat di layar dan perhitungan jadi sukar
 diperiksa.
+Demo: demos/bab-05/05-padding-vs-margin.html — dua kotak berdampingan yang membedakan padding (di dalam border) dan margin (di luar border)..
 -->
 
 ---
@@ -321,6 +323,7 @@ pengembang. Inilah alasan hitungan sering meleset pada proyek pertama.
 
 Tanyakan berapa bagian dari kotak yang diatur oleh `width`; jawaban yang diharapkan hanya area
 content. Lanjutkan ke rumus pada slide berikutnya.
+Demo: demos/bab-05/06-content-box.html — kotak 300 px yang membengkak jadi 334 px setelah padding dan border dijumlahkan..
 -->
 ---
 <!-- _class: compact -->
@@ -433,6 +436,7 @@ ditambahkan. Inilah satu-satunya perbedaan aritmetika antara kedua mode.
 Tanyakan berapa lebar content jika padding dinaikkan menjadi 30 px; jawaban yang diharapkan
 adalah 240 px, karena `width` tetap 300 px. Jika ada yang menjawab 260 px, mereka masih
 memakai cara berpikir `content-box`.
+Demo: demos/bab-05/07-border-box.html — kotak yang sama dengan border-box: lebar tetap 300 px, isinya yang menyusut..
 -->
 
 ---
@@ -495,6 +499,7 @@ jelas.
 Tanyakan mengapa `::before` dan `::after` perlu disebut terpisah; jawaban yang diharapkan
 adalah karena pseudo-element tidak termasuk pemilih `*`. Tanpa keduanya, elemen hias yang
 dibuat lewat pseudo-element tetap memakai `content-box`.
+Demo: demos/bab-05/08-box-sizing-global.html — aturan global yang membuat seluruh kotak berperilaku border-box, dibandingkan dengan tanpa aturan itu..
 -->
 
 ---
@@ -549,6 +554,7 @@ lebar dari 240 px; yang dilarang hanya menyusut di bawahnya.
 Tanyakan apa yang terjadi jika container lebih sempit dari 240 px; jawaban yang diharapkan
 adalah elemen tetap 240 px dan muncul overflow. Sebutkan bahwa akibat ini dibahas pada
 Bagian 2, sehingga mahasiswa mengenali nama gejalanya lebih dahulu.
+Demo: demos/bab-05/09-min-max-width.html — kotak yang berhenti menyusut di min-width dan berhenti melebar di max-width saat wadahnya diubah..
 -->
 
 ---
@@ -618,6 +624,7 @@ terpotong.
 Tanyakan properti mana yang dipakai untuk panel informasi yang panjangnya berubah-ubah;
 jawaban yang diharapkan adalah `min-height`, agar panel tumbuh bersama isinya. Ingatkan bahwa
 konten yang tidak muat tetap menjadi urusan `overflow` pada Bagian 2.
+Demo: demos/bab-05/10-min-height.html — kartu dengan isi pendek yang tetap setinggi min-height, lalu isi panjang yang melewatinya..
 -->
 
 ---
@@ -683,6 +690,7 @@ berikutnya.
 
 Tegaskan bahwa `display` berbicara tentang perilaku layout, bukan tentang jenis tag. Sebutkan
 bahwa ketiga nilai ini dibahas satu per satu, dan setiap nilai mendapat slide sendiri.
+Demo: demos/bab-05/11-display.html — block, inline, dan inline-block dirender berdampingan, plus tabel pembandingnya..
 -->
 ---
 <!-- _class: compact -->
@@ -870,6 +878,7 @@ properti yang ditulis.
 
 Tanyakan mengapa konten yang meluber dapat menutupi elemen lain; jawaban yang diharapkan
 adalah karena kotaknya tidak berubah ukuran, hanya isinya yang keluar.
+Demo: demos/bab-05/12-overflow.html — visible, hidden, scroll, dan auto pada kotak berukuran tetap yang isinya berlebih..
 -->
 ---
 <!-- _class: compact -->
@@ -984,6 +993,7 @@ muat dalam satu baris. Tanpa aturan pemenggalan, kata itulah yang mendorong leba
 Tanyakan apa yang terjadi pada URL panjang tanpa aturan ini; jawaban yang diharapkan adalah
 URL tetap satu baris dan container melebar atau muncul gulir horizontal. Lanjutkan ke nilai
 berikutnya untuk membandingkan cara pemenggalannya.
+Demo: demos/bab-05/13-teks-panjang.html — URL panjang tanpa jeda, lalu hasil overflow-wrap dan word-break pada kotak yang sama..
 -->
 ---
 <!-- _class: compact -->
@@ -1078,6 +1088,7 @@ di alur dokumen. Nilai ini tidak dapat digeser dengan `top`, `left`, `right`, at
 Tanyakan apa yang terjadi jika `top: 8px` ditambahkan pada elemen `static`; jawaban yang
 diharapkan adalah tidak ada yang berubah. Gejala ini sering dilaporkan sebagai bug, padahal
 penyebabnya hanya nilai `position` yang belum diubah.
+Demo: demos/bab-05/14-position.html — static, relative, absolute, fixed, dan sticky pada satu halaman, lengkap dengan bayangan posisi normalnya..
 -->
 ---
 <!-- _class: compact -->
@@ -1231,6 +1242,7 @@ tetap berada di bawah elemen lain jika keduanya berada pada konteks penumpukan y
 Tanyakan mengapa `z-index: 9999` kadang tidak menolong; jawaban yang diharapkan adalah karena
 ancestornya membentuk konteks penumpukan baru. Sebutkan contoh pembentuk konteks: `transform`,
 `filter`, dan `opacity`.
+Demo: demos/bab-05/15-z-index.html — dua kotak bertumpuk yang urutan tumpuknya berubah lewat z-index, dibandingkan dengan tanpa z-index..
 -->
 ---
 <!-- _class: compact -->
@@ -1279,6 +1291,7 @@ karena kelipatan delapan, bukan urutan nomor, sehingga nama menandai ukurannya.
 
 Tanyakan berapa nilai `space-7`; jawaban yang diharapkan adalah 56 px. Latihan kecil ini
 memastikan mahasiswa membaca tabel sebagai sistem, bukan sebagai daftar hafalan.
+Demo: demos/bab-05/16-skala-jarak-8px.html — satu komponen dengan jarak kelipatan 8 px, dibandingkan dengan jarak acak..
 -->
 ---
 <!-- _class: compact -->
@@ -1383,6 +1396,7 @@ terhadap pembungkusnya.
 Tanyakan peran `.product-card` pada blok CSS ini; jawaban yang diharapkan adalah empat peran
 sekaligus: `border-box` untuk hitungan, `relative` sebagai landasan badge, `max-width` menahan
 lebar, dan `min-height` memberi tinggi minimum.
+Demo: demos/bab-05/17-kartu-produk.html — kartu produk utuh dari struktur HTML sampai badge absolute, plus hitungan lebar dan tingginya..
 -->
 ---
 <!-- _class: compact -->
@@ -1732,6 +1746,8 @@ Poin penting yang perlu diingat:
 6. `overflow` dan aturan pemenggalan teks membantu mengendalikan konten yang melampaui kotak.
 7. `position` dan `z-index` mengatur penempatan serta tumpukan elemen.
 8. Skala jarak 8 px membantu menghasilkan desain yang konsisten dan mudah dipelihara.
+
+**Demo:** seluruh konsep bab ini bisa dicoba di [demos/bab-05/index.html](demos/bab-05/index.html).
 
 <!--
 Tutup dengan pesan bahwa layout yang dapat dihitung lebih mudah dirawat daripada layout yang
