@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 9 · 12 overlay-kustom — Pengenalan Bootstrap 5</title>
+<link rel="stylesheet" href="../_vendor/bootstrap.min.css">
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: dua panel sejajar, dan setiap panel boleh memuat token sendiri */
+  .demo .dua-panel {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .demo .panel {
+    box-sizing: border-box;
+    flex: 1 1 320px;
+    padding: 12px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+  .demo .panel > h3 {
+    margin: 0 0 8px;
+    font-size: 14px;
+    color: #4b5563;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di atas.
+     Token di bawah sengaja dibatasi pada satu panel demo, jadi
+     halaman ini sendiri tidak ikut berubah warna.
+     ============================================================ */
+  .demo .panel-tokosaya {
+    --clr-primary: #4F46E5;
+    --clr-primary-dark: #4338CA;
+    --bs-primary-rgb: 79, 70, 229;
+  }
+
+  .btn-tokosaya {
+    background-color: var(--clr-primary);
+    border-color: var(--clr-primary);
+    color: #FFFFFF;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 9 · Pengenalan Bootstrap 5</strong> · 12 Overlay kustom</p>
+    <h1>Overlay CSS Kustom: Dua Token di Atas Bootstrap</h1>
+    <p>Overlay adalah lapisan CSS kecil milik sendiri yang dimuat setelah Bootstrap. Isinya bukan menimpa semua kelas, melainkan menggeser beberapa variabel yang sudah dibaca Bootstrap. Cuplikan dari deck dipakai apa adanya di bawah ini.</p>
+
+    <h2>Cuplikan overlay</h2>
+<pre><code class="language-css">/* kustom — overlay dua token utama Tokosaya di atas Bootstrap */
+:root {
+  --clr-primary: #4F46E5;
+  --clr-primary-dark: #4338CA;
+  /* menyelaraskan warna primary Bootstrap (kelas text-*, bg-*) */
+  --bs-primary-rgb: 79, 70, 229;
+}
+
+/* tombol utama Tokosaya dibentuk dari kelas btn + kelas kustom */
+.btn-tokosaya {
+  background-color: var(--clr-primary);
+  border-color: var(--clr-primary);
+  color: #FFFFFF;
+}</code></pre>
+    <p>Bacanya baris demi baris. <code>--clr-primary</code> menyimpan indigo Tokosaya dan <code>--clr-primary-dark</code> varian gelapnya. <code>--bs-primary-rgb</code> menuliskan warna yang sama dalam bentuk RGB — <code>4F</code> jadi 79, <code>46</code> jadi 70, <code>E5</code> jadi 229 — karena kelas <code>text-*</code> dan <code>bg-*</code> Bootstrap memakai bentuk itulah untuk menghitung transparansi.</p>
+
+    <h2>Hasilnya di dua panel</h2>
+    <div class="demo">
+      <div class="dua-panel">
+        <div class="panel">
+          <h3>Tanpa overlay</h3>
+          <p class="text-primary">teks primary — biru bawaan</p>
+          <p><button type="button" class="btn btn-primary">Tambah ke keranjang</button></p>
+          <p class="mb-0">Tombol ini memakai kelas bawaan <code>btn-primary</code>.</p>
+        </div>
+        <div class="panel panel-tokosaya">
+          <h3>Dengan overlay Tokosaya</h3>
+          <p class="text-primary">teks primary — indigo Tokosaya</p>
+          <p><button type="button" class="btn btn-tokosaya">Tambah ke keranjang</button></p>
+          <p class="mb-0">Tombol ini memakai <code>btn</code> ditambah kelas kustom <code>btn-tokosaya</code>.</p>
+        </div>
+      </div>
+    </div>
+<pre><code class="language-html">&lt;button class="btn btn-tokosaya"&gt;Tambah ke keranjang&lt;/button&gt;</code></pre>
+    <p>Perhatikan satu hal yang sering terlewat: <code>btn-primary</code> di panel kanan tetap biru. Warna tombol bawaan Bootstrap disimpan di variabel lain, jadi menggeser <code>--bs-primary-rgb</code> tidak menyentuhnya. Karena itulah tombol khas Tokosaya sengaja dibentuk sebagai kelas kustom yang eksplisit — bukan menunggu variabel tema yang bisa bergeser antar rilis.</p>
+
+    <h2>Kenapa <code>css/style.css</code> dimuat paling belakang</h2>
+    <p>Pada specificity yang setara, aturan yang termuat belakangan menang. Halaman ini memakai aturan yang sama: berkas Bootstrap dimuat lebih dulu, lalu blok gaya halaman menyusul. Kalau urutannya dibalik, deklarasi di atas kalah oleh pustaka dan tombolnya kembali biru.</p>
+    <table class="tabel">
+      <thead>
+        <tr><th>Token</th><th>Nilai</th><th>Yang ikut bergeser</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>--clr-primary</code></td><td>#4F46E5</td><td>kelas kustom seperti <code>btn-tokosaya</code></td></tr>
+        <tr><td><code>--clr-primary-dark</code></td><td>#4338CA</td><td>keadaan gelap atau sorotan tombol</td></tr>
+        <tr><td><code>--bs-primary-rgb</code></td><td>79, 70, 229</td><td><code>text-*</code>, <code>bg-*</code>, <code>text-bg-*</code></td></tr>
+      </tbody>
+    </table>
+    <p><strong>Inti pembelajaran:</strong> identitas Tokosaya tidak perlu menimpa seluruh palet Bootstrap. Dua token dan satu kelas kustom sudah cukup, asalkan lapisan kustom itu dimuat setelah pustaka.</p>
+
+    <nav class="nav">
+      <a href="11-palet-bootstrap.html">← 11 palet-bootstrap</a>
+      <span>12 / 13</span>
+      <a href="13-landing-page-tokosaya.html">13 landing-page-tokosaya →</a>
+    </nav>
+  </div>
+</body>
+</html>

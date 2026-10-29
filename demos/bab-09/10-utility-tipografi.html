@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 9 · 10 utility-tipografi — Pengenalan Bootstrap 5</title>
+<link rel="stylesheet" href="../_vendor/bootstrap.min.css">
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: akar 16 px dipatok supaya hitungan rem punya angka tetap,
+     dan tiap contoh diberi latar supaya batas barisnya kelihatan */
+  .demo .akar-16 {
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+  .demo .contoh-teks {
+    box-sizing: border-box;
+    margin-bottom: 6px;
+    padding: 6px 10px;
+    background: #eef2ff;
+    border: 1px solid #c7d2fe;
+    color: #1e3a8a;
+  }
+  .demo .hero {
+    box-sizing: border-box;
+    padding: 12px 14px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+  }
+  .demo .kartu-kecil {
+    box-sizing: border-box;
+    width: 260px;
+    padding: 10px 12px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+  }
+  .demo .baris-rapat p { margin: 0 0 4px; }
+
+  /* ============================================================
+     kode slide — pelajaran berkas ini seluruhnya kelas Bootstrap,
+     jadi contohnya berupa blok HTML, bukan aturan CSS baru.
+     ============================================================ */
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 9 · Pengenalan Bootstrap 5</strong> · 10 Utility tipografi</p>
+    <h1>Utility Tipografi: Ukuran Menempel, Struktur Tetap</h1>
+    <p>Kelas ukuran huruf di Bootstrap cuma menempel di elemen. Yang menentukan struktur dokumen tetap elemen judulnya: <code>h1</code> sampai <code>h6</code>. Aturan aksesibilitas itu tidak berubah karena kita memakai framework.</p>
+
+    <h2>Tiga lapis ukuran di hero Tokosaya</h2>
+<pre><code class="language-html">&lt;h2 class="display-5"&gt;Belanja tepat, kirim cepat&lt;/h2&gt;
+&lt;p class="lead"&gt;Produk lokal pilihan, dikirim dari gudang terdekat.&lt;/p&gt;
+&lt;h3 class="fs-5"&gt;Kopi Bubuk 250 g&lt;/h3&gt;</code></pre>
+    <div class="demo">
+      <div class="hero akar-16">
+        <h2 class="display-5">Belanja tepat, kirim cepat</h2>
+        <p class="lead">Produk lokal pilihan, dikirim dari gudang terdekat.</p>
+        <div class="kartu-kecil">
+          <h3 class="fs-5">Kopi Bubuk 250 g</h3>
+          <p class="mb-0">Arabika gayo, giling halus.</p>
+        </div>
+      </div>
+    </div>
+    <p>Urutannya dari yang paling menonjol: <code>display-5</code> untuk judul hero, <code>lead</code> untuk paragraf pengantar, lalu <code>fs-5</code> untuk judul kartu produk. Perhatikan bahwa elemennya tetap <code>h2</code> dan <code>h3</code> — kelasnya hanya mengubah ukuran, bukan peran semantiknya.</p>
+    <p class="hitung" data-hitung="16px * 1.25 = 20">Pada akar <strong>16 px</strong>, <code>fs-5</code> yang bernilai 1,25 rem tampil <strong>20 px</strong>.</p>
+    <p>Satu catatan teknis: <code>display-5</code> dihitung dari lebar viewport, jadi ukurannya ikut membesar di layar lebar. Itu sebabnya ia dipakai untuk judul hero, bukan untuk teks isi.</p>
+
+    <h2>Tangga ukuran <code>fs-1</code> sampai <code>fs-6</code></h2>
+<pre><code class="language-html">&lt;p class="fs-1"&gt;fs-1 sebanding h1&lt;/p&gt;
+&lt;p class="fs-6"&gt;fs-6 sebanding h6&lt;/p&gt;</code></pre>
+    <div class="demo akar-16">
+      <p class="fs-1 contoh-teks">fs-1 sebanding h1</p>
+      <p class="fs-2 contoh-teks">fs-2 sebanding h2</p>
+      <p class="fs-3 contoh-teks">fs-3 sebanding h3</p>
+      <p class="fs-4 contoh-teks">fs-4 sebanding h4</p>
+      <p class="fs-5 contoh-teks">fs-5 sebanding h5</p>
+      <p class="fs-6 contoh-teks">fs-6 sebanding h6</p>
+    </div>
+    <p>Keenam kelas ini sebanding dengan hierarki <code>h1</code> sampai <code>h6</code>, sedangkan <code>display-1</code> sampai <code>display-6</code> disediakan untuk judul berukuran menonjol. <code>lead</code> mengurus paragraf pengantar yang lebih besar.</p>
+
+    <h2>Bobot huruf dan perataan</h2>
+<pre><code class="language-html">&lt;p class="fw-normal"&gt;bobot normal&lt;/p&gt;
+&lt;p class="fw-semibold"&gt;bobot semibold&lt;/p&gt;
+&lt;p class="fw-bold"&gt;bobot bold&lt;/p&gt;
+&lt;p class="text-start"&gt;rata kiri&lt;/p&gt;
+&lt;p class="text-center"&gt;rata tengah&lt;/p&gt;
+&lt;p class="text-end"&gt;rata kanan&lt;/p&gt;</code></pre>
+    <div class="demo akar-16 baris-rapat">
+      <p class="fw-normal">bobot normal</p>
+      <p class="fw-semibold">bobot semibold</p>
+      <p class="fw-bold">bobot bold</p>
+      <p class="text-start contoh-teks">rata kiri</p>
+      <p class="text-center contoh-teks">rata tengah</p>
+      <p class="text-end contoh-teks">rata kanan</p>
+    </div>
+    <p><code>fw-bold</code> itu bobot huruf, bukan ukuran — karena itu ia tidak pernah masuk tangga ukuran. Nama produk di kartu produk memakai <code>fw-bold</code> tanpa menaikkan ukuran hurufnya.</p>
+    <table class="tabel">
+      <thead>
+        <tr><th>Kelas</th><th>Yang diubah</th><th>Catatan</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>fs-1</code> … <code>fs-6</code></td><td>ukuran huruf</td><td>sebanding hierarki h1 sampai h6</td></tr>
+        <tr><td><code>display-1</code> … <code>display-6</code></td><td>ukuran judul menonjol</td><td>sebagian memakai satuan vw</td></tr>
+        <tr><td><code>lead</code></td><td>paragraf pengantar</td><td>lebih besar, bobot lebih ringan</td></tr>
+        <tr><td><code>fw-normal</code>, <code>fw-semibold</code>, <code>fw-bold</code></td><td>tebal huruf</td><td>bukan ukuran</td></tr>
+        <tr><td><code>text-start</code>, <code>text-center</code>, <code>text-end</code></td><td>perataan teks</td><td>mengikuti arah tulisan</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Inti pembelajaran:</strong> <code>h3 class="fs-5"</code> mengubah ukuran tanpa merusak struktur. <code>div</code> besar berkelas <code>display-5</code> memang tampak seperti judul, tetapi pembaca layar tidak akan membacanya sebagai kepala bagian.</p>
+
+    <nav class="nav">
+      <a href="09-utility-display.html">← 09 utility-display</a>
+      <span>10 / 13</span>
+      <a href="11-palet-bootstrap.html">11 palet-bootstrap →</a>
+    </nav>
+  </div>
+</body>
+</html>

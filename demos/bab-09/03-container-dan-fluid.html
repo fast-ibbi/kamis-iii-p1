@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 9 · 03 container-dan-fluid — Pengenalan Bootstrap 5</title>
+<link rel="stylesheet" href="../_vendor/bootstrap.min.css">
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: penggaris skala. Angka asli lebar layar disimpan sebagai variabel,
+     lalu lebarnya digambar proporsional supaya tetap muat di kolom halaman ini.
+     Batas container sendiri ditentukan media query pada lebar jendela, jadi tidak
+     bisa dirender 1:1 di dalam halaman yang lebarnya tetap. */
+  .demo .skala-1600 {
+    box-sizing: border-box;
+    --total: 1600px;
+    --isi: 1320px;
+    --sisi: 140px;
+  }
+  .demo .skala-830 {
+    box-sizing: border-box;
+    --total: 830px;
+    --isi: 720px;
+    --sisi: 55px;
+  }
+  .demo .penggaris {
+    box-sizing: border-box;
+    display: flex;
+    align-items: stretch;
+    margin-bottom: 6px;
+    font-size: 13px;
+  }
+  .demo .bar-sisi {
+    box-sizing: border-box;
+    width: calc(var(--sisi) / var(--total) * 100%);
+    background: #fde68a;
+    border: 1px solid #b45309;
+  }
+  .demo .bar-isi {
+    box-sizing: border-box;
+    width: calc(var(--isi) / var(--total) * 100%);
+    padding: 6px 8px;
+    background: #eef2ff;
+    border: 1px solid #1d4ed8;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .demo .bar-penuh {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 6px 8px;
+    background: #eef2ff;
+    border: 1px solid #1d4ed8;
+    font-size: 13px;
+  }
+  .demo .catatan-skala {
+    margin: 0;
+    font-size: 12.5px;
+    color: #6b7280;
+  }
+
+  /* ============================================================
+     kode slide — pelajaran berkas ini seluruhnya kelas Bootstrap,
+     jadi contohnya berupa blok HTML, bukan aturan CSS baru.
+     ============================================================ */
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 9 · Pengenalan Bootstrap 5</strong> · 03 Container dan container-fluid</p>
+    <h1>Container dan Container Fluid: Satu Batas, Dua Perilaku</h1>
+    <p>Container adalah wadah horizontal pembungkus isi halaman. Batas lebarnya ditentukan media query yang membaca lebar jendela browser, jadi angka di halaman ini digambar proporsional — bukan dirender 1:1, karena halaman ini tidak bisa mengubah lebar jendelanya sendiri.</p>
+    <p>Ada cara melihatnya langsung: buka halaman ini di jendela yang lebih lebar atau lebih sempit, lalu perhatikan container mana pun di halaman: isinya selalu mengisi penuh kolom selama batas breakpoint yang aktif lebih lebar daripada kolom.</p>
+
+    <h2><code>.container</code> — lebar maksimum, lalu ditengahkan</h2>
+<pre><code class="language-html">&lt;div class="container"&gt;
+  isi halaman
+&lt;/div&gt;</code></pre>
+    <div class="demo">
+      <div class="skala-1600">
+        <div class="penggaris">
+          <div class="bar-sisi"></div>
+          <div class="bar-isi">isi halaman 1320 px</div>
+          <div class="bar-sisi"></div>
+        </div>
+        <p class="catatan-skala">skala proporsional dari layar 1600 px</p>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="1600px - 1320px = 280">Di layar 1600 px, isi halaman berhenti di 1320 px dan menyisakan <strong>280 px</strong>.</p>
+    <p class="hitung" data-hitung="280 / 2 = 140">Dibagi dua sisi, jadi <strong>140 px</strong> di kiri dan 140 px di kanan — bagian amber pada gambar di atas.</p>
+    <p>Kalau jendela Anda lebih sempit daripada 1400 px, batas yang aktif lebih kecil dan bagian amber melebar. Daftar lengkap batasnya ada di halaman 04.</p>
+
+    <h2><code>.container-fluid</code> — lebar penuh di semua ukuran</h2>
+<pre><code class="language-html">&lt;div class="container-fluid"&gt;
+  bilah pengumuman
+&lt;/div&gt;</code></pre>
+    <div class="demo">
+      <div class="bar-penuh">bilah pengumuman — 1600 px penuh</div>
+    </div>
+    <p class="hitung" data-hitung="1600px - 1600px = 0">Tidak ada sisa: isi memakai <strong>0 px</strong> ruang amber, berapa pun lebar jendelanya.</p>
+    <p>Bilah pengumuman dan footer gelap justru lebih cocok memakai <code>.container-fluid</code>: keduanya memang dirancang menempel tepi layar. Paragraf panjang sebaliknya, karena baris yang terlalu lebar melemahkan keterbacaan.</p>
+
+    <h2><code>.container-md</code> — penengah: penuh sampai ambang tertentu</h2>
+<pre><code class="language-html">&lt;div class="container-md"&gt;
+  isi halaman
+&lt;/div&gt;</code></pre>
+    <div class="demo">
+      <div class="skala-830">
+        <div class="penggaris">
+          <div class="bar-sisi"></div>
+          <div class="bar-isi">isi halaman 720 px</div>
+          <div class="bar-sisi"></div>
+        </div>
+        <p class="catatan-skala">skala proporsional dari layar 830 px</p>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="830px - 720px = 110">Di layar 830 px yang masih di bawah ambang lg, <code>.container-md</code> sudah melewati ambang md sehingga berhenti di 720 px: sisa <strong>110 px</strong>.</p>
+    <p class="hitung" data-hitung="110 / 2 = 55">Masing-masing sisi menyisakan <strong>55 px</strong>.</p>
+    <p>Di bawah 768 px, <code>.container-md</code> kembali penuh selebar layar. Kelas berakhiran breakpoint selalu dibaca dari layar kecil ke atas, bukan sebaliknya.</p>
+    <p><strong>Inti pembelajaran:</strong> <code>.container</code> membatasi lalu menengahkan, <code>.container-fluid</code> selalu penuh, dan <code>.container-md</code> memilih penuh di layar kecil lalu berhenti di ambang md.</p>
+
+    <nav class="nav">
+      <a href="02-tanpa-bundle-javascript.html">← 02 tanpa-bundle-javascript</a>
+      <span>03 / 13</span>
+      <a href="04-lebar-maksimum-container.html">04 lebar-maksimum-container →</a>
+    </nav>
+  </div>
+</body>
+</html>

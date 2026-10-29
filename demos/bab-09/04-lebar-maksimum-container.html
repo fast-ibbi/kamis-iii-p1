@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 9 · 04 lebar-maksimum-container — Pengenalan Bootstrap 5</title>
+<link rel="stylesheet" href="../_vendor/bootstrap.min.css">
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: penggaris skala. Angka lebar layar dan batas container disimpan
+     sebagai variabel, lebarnya digambar proporsional supaya muat di kolom ini. */
+  .demo .skala-sm {
+    box-sizing: border-box;
+    --total: 576px;
+    --isi: 540px;
+    --sisi: 18px;
+  }
+  .demo .skala-md {
+    box-sizing: border-box;
+    --total: 768px;
+    --isi: 720px;
+    --sisi: 24px;
+  }
+  .demo .skala-lg {
+    box-sizing: border-box;
+    --total: 992px;
+    --isi: 960px;
+    --sisi: 16px;
+  }
+  .demo .skala-xl {
+    box-sizing: border-box;
+    --total: 1200px;
+    --isi: 1140px;
+    --sisi: 30px;
+  }
+  .demo .skala-xxl {
+    box-sizing: border-box;
+    --total: 1400px;
+    --isi: 1320px;
+    --sisi: 40px;
+  }
+  .demo .baris-skala {
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+  .demo .label-skala {
+    margin: 0 0 3px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12.5px;
+    color: #4b5563;
+  }
+  .demo .penggaris {
+    box-sizing: border-box;
+    display: flex;
+    align-items: stretch;
+    font-size: 12.5px;
+  }
+  .demo .bar-sisi {
+    box-sizing: border-box;
+    width: calc(var(--sisi) / var(--total) * 100%);
+    min-height: 22px;
+    background: #fde68a;
+    border: 1px solid #b45309;
+  }
+  .demo .bar-isi {
+    box-sizing: border-box;
+    width: calc(var(--isi) / var(--total) * 100%);
+    padding: 3px 8px;
+    background: #eef2ff;
+    border: 1px solid #1d4ed8;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  /* ============================================================
+     kode slide — pelajaran berkas ini seluruhnya kelas Bootstrap,
+     jadi contohnya berupa blok HTML dan teks, bukan aturan CSS baru.
+     ============================================================ */
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 9 · Pengenalan Bootstrap 5</strong> · 04 Lebar maksimum container</p>
+    <h1>Lebar Maksimum Container di Tiap Ambang Viewport</h1>
+    <p>Angka-angka ini tidak perlu dihafal. Yang perlu diingat polanya: makin lebar layar, makin lebar batasnya, dan batas itu berlaku mulai ambangnya lalu naik ke atas.</p>
+
+    <h2>Tabel dari deck</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Ambang viewport</th><th>Lebar maksimum <code>.container</code></th></tr>
+      </thead>
+      <tbody>
+        <tr><td>≥ 576 px (sm)</td><td>540 px</td></tr>
+        <tr><td>≥ 768 px (md)</td><td>720 px</td></tr>
+        <tr><td>≥ 992 px (lg)</td><td>960 px</td></tr>
+        <tr><td>≥ 1200 px (xl)</td><td>1140 px</td></tr>
+        <tr><td>≥ 1400 px (xxl)</td><td>1320 px</td></tr>
+      </tbody>
+    </table>
+    <ul>
+      <li>Di bawah 576 px, container tampil lebar penuh.</li>
+      <li>Enam nama breakpoint: xs, sm, md, lg, xl, xxl.</li>
+      <li>Kelas responsif bekerja mobile-first dan berlaku ke atas.</li>
+    </ul>
+
+    <h2>Kelima batas itu digambar berdampingan</h2>
+    <div class="demo">
+      <div class="skala-sm">
+        <div class="baris-skala">
+          <p class="label-skala">layar 576 px — batas sm 540 px, sisa 18 px tiap sisi</p>
+          <div class="penggaris">
+            <div class="bar-sisi"></div>
+            <div class="bar-isi">540 px</div>
+            <div class="bar-sisi"></div>
+          </div>
+        </div>
+      </div>
+      <div class="skala-md">
+        <div class="baris-skala">
+          <p class="label-skala">layar 768 px — batas md 720 px, sisa 24 px tiap sisi</p>
+          <div class="penggaris">
+            <div class="bar-sisi"></div>
+            <div class="bar-isi">720 px</div>
+            <div class="bar-sisi"></div>
+          </div>
+        </div>
+      </div>
+      <div class="skala-lg">
+        <div class="baris-skala">
+          <p class="label-skala">layar 992 px — batas lg 960 px, sisa 16 px tiap sisi</p>
+          <div class="penggaris">
+            <div class="bar-sisi"></div>
+            <div class="bar-isi">960 px</div>
+            <div class="bar-sisi"></div>
+          </div>
+        </div>
+      </div>
+      <div class="skala-xl">
+        <div class="baris-skala">
+          <p class="label-skala">layar 1200 px — batas xl 1140 px, sisa 30 px tiap sisi</p>
+          <div class="penggaris">
+            <div class="bar-sisi"></div>
+            <div class="bar-isi">1140 px</div>
+            <div class="bar-sisi"></div>
+          </div>
+        </div>
+      </div>
+      <div class="skala-xxl">
+        <div class="baris-skala">
+          <p class="label-skala">layar 1400 px — batas xxl 1320 px, sisa 40 px tiap sisi</p>
+          <div class="penggaris">
+            <div class="bar-sisi"></div>
+            <div class="bar-isi">1320 px</div>
+            <div class="bar-sisi"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p>Kelima penggaris di atas digambar proporsional terhadap ambangnya masing-masing, jadi panjangnya tidak bisa dibandingkan satu sama lain — yang bisa dibandingkan adalah perbandingan bagian amber terhadap bagian biru di baris yang sama.</p>
+
+    <h2>Membuktikan angka di dua baris</h2>
+    <p class="hitung" data-hitung="992px - 960px = 32">Di layar 992 px, batas lg 960 px menyisakan <strong>32 px</strong>.</p>
+    <p class="hitung" data-hitung="32 / 2 = 16">Masing-masing sisi <strong>16 px</strong>.</p>
+    <p class="hitung" data-hitung="1200px - 1140px = 60">Di layar 1200 px, batas xl 1140 px menyisakan <strong>60 px</strong>.</p>
+    <p class="hitung" data-hitung="60 / 2 = 30">Masing-masing sisi <strong>30 px</strong> — inilah contoh yang dipakai deck.</p>
+    <p class="hitung" data-hitung="1400px - 1320px = 80">Di layar 1400 px, batas xxl 1320 px menyisakan <strong>80 px</strong>.</p>
+    <p class="hitung" data-hitung="80 / 2 = 40">Masing-masing sisi <strong>40 px</strong>.</p>
+    <p>Di layar 1000 px, batas yang aktif adalah lg, jadi lebar maksimum container 960 px — bukan 1140 px, karena ambang xl belum tercapai.</p>
+
+    <h2>Kelas yang menyertainya</h2>
+<pre><code class="language-text">.container        batas mengikuti ambang yang sedang aktif
+.container-sm     penuh di bawah 576 px, lalu berhenti di batas sm
+.container-md     penuh di bawah 768 px, lalu berhenti di batas md
+.container-lg     penuh di bawah 992 px, lalu berhenti di batas lg
+.container-fluid  selalu 100%, tanpa batas sama sekali</code></pre>
+    <p>Kelima baris itu memakai mekanisme yang sama; yang berbeda hanya ambang tempat batasnya mulai berlaku. Karena setiap batas dibaca dari lebar jendela, hasil render bergantung pada lebar jendela saat halaman dibuka — sedangkan angkanya sendiri tetap seperti tabel di atas.</p>
+    <p><strong>Inti pembelajaran:</strong> lebar container adalah <em>min</em> dari lebar layar dan batas breakpoint yang sedang aktif, lalu sisanya dibagi rata ke kiri dan kanan. Pengecualiannya hanya <code>.container-fluid</code>, yang selalu penuh.</p>
+
+    <nav class="nav">
+      <a href="03-container-dan-fluid.html">← 03 container-dan-fluid</a>
+      <span>04 / 13</span>
+      <a href="05-grid-12-kolom.html">05 grid-12-kolom →</a>
+    </nav>
+  </div>
+</body>
+</html>

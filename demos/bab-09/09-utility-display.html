@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 9 · 09 utility-display — Pengenalan Bootstrap 5</title>
+<link rel="stylesheet" href="../_vendor/bootstrap.min.css">
+<link rel="stylesheet" href="../_vendor/bootstrap-icons.min.css">
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: kotak selebar 375 px meniru layar ponsel dari deck, border-box
+     seperti Bootstrap supaya ukuran logo dan ikon dihitung apa adanya */
+  .demo .layar-375 {
+    box-sizing: border-box;
+    width: 375px;
+    background: #fef3c7;
+    outline: 1px dashed #b45309;
+  }
+  .demo .merek {
+    box-sizing: border-box;
+    width: 200px;
+    padding: 4px 8px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .demo .keranjang {
+    box-sizing: border-box;
+    width: 56px;
+    padding: 4px 8px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    font-size: 15px;
+    text-align: center;
+  }
+  .demo .baris-pita {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    font-size: 13px;
+    color: #4b5563;
+  }
+  .demo .pita-24 {
+    box-sizing: border-box;
+    width: 24px;
+    height: 10px;
+    background: #fde68a;
+    border: 1px solid #b45309;
+  }
+  .demo .pita-280 {
+    box-sizing: border-box;
+    width: 280px;
+    height: 10px;
+    background: #eef2ff;
+    border: 1px solid #1d4ed8;
+  }
+  .demo .pita-95 {
+    box-sizing: border-box;
+    width: 95px;
+    height: 10px;
+    background: #fde68a;
+    border: 1px dashed #b45309;
+  }
+  .demo .kotak-uji {
+    box-sizing: border-box;
+    padding: 8px 10px;
+    background: #eef2ff;
+    border: 1px solid #1d4ed8;
+    font-size: 13px;
+  }
+
+  /* ============================================================
+     kode slide — pelajaran berkas ini seluruhnya kelas Bootstrap,
+     jadi contohnya berupa blok HTML, bukan aturan CSS baru.
+     ============================================================ */
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 9 · Pengenalan Bootstrap 5</strong> · 09 Utility display</p>
+    <h1>Menyembunyikan Elemen dengan <code>d-none d-md-block</code></h1>
+    <p>Dua kelas yang saling melengkapi ini sering membingungkan kalau dibaca terpisah. <code>d-none</code> menyembunyikan elemen pada semua ukuran, lalu <code>d-md-block</code> memunculkannya kembali mulai 768 px — hasilnya berperilaku seperti min-width, tanpa satu baris media query pun.</p>
+
+    <h2>Urutannya penting</h2>
+<pre><code class="language-html">&lt;span class="d-none d-md-block"&gt;kotak pencarian&lt;/span&gt;</code></pre>
+    <div class="demo">
+      <div class="kotak-uji">
+        <span class="d-none d-md-block">kotak pencarian — terlihat karena jendela Anda 768 px atau lebih</span>
+        <span class="d-md-block">logo dan ikon keranjang selalu tampil</span>
+      </div>
+    </div>
+    <p>Yang menyembunyikan dipasang dulu, yang memunculkan menyusul. Coba kecilkan jendela browser sampai di bawah 768 px: kotak pencarian hilang, sedangkan baris kedua tetap ada karena hanya memakai <code>d-md-block</code>.</p>
+
+    <h2>Contoh dari deck: baris navbar di layar 375 px</h2>
+<pre><code class="language-html">&lt;div class="d-flex align-items-center gap-4"&gt;
+  &lt;span class="merek"&gt;Tokosaya&lt;/span&gt;
+  &lt;span class="keranjang"&gt;&lt;i class="bi bi-cart"&gt;&lt;/i&gt;&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+    <div class="demo">
+      <div class="layar-375">
+        <div class="d-flex align-items-center gap-4">
+          <span class="merek">Tokosaya</span>
+          <span class="keranjang"><i class="bi bi-cart"></i></span>
+        </div>
+      </div>
+      <div class="baris-pita">
+        <div class="pita-280"></div>
+        <span>logo 200 px + gap 24 px + ikon 56 px = total 280 px</span>
+      </div>
+      <div class="baris-pita">
+        <div class="pita-24"></div>
+        <span>gap-4 = 1,5 rem = 24 px</span>
+      </div>
+      <div class="baris-pita">
+        <div class="pita-95"></div>
+        <span>sisa ruang 95 px — menganggur, bukan butir ketiga</span>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="200px + 24px + 56px = 280">Logo <strong>200 px</strong> ditambah gap <strong>24 px</strong> ditambah ikon keranjang <strong>56 px</strong>.</p>
+    <p class="hitung" data-hitung="375px - 280px = 95">Sisa <strong>95 px</strong> di ujung kanan.</p>
+    <p>Kotak di atas memakai kelas yang aktif di layar 375 px, jadi kotak pencarian memang tidak digambar. Di layar 375 px, kotak pencarian disembunyikan <code>d-none</code> — bukan dikecilkan — karena butuh 400 px dan tidak kebagian tempat. Begitu layar mencapai 768 px, <code>d-md-block</code> memunculkannya lagi.</p>
+    <p>Karena barisnya memakai <code>d-flex</code> tanpa perataan khusus, sisa 95 px itu menganggur di kanan dan butirnya tetap dua: logo dan ikon keranjang. Pita amber garis putus-putus di atas menandai ruang kosong itu.</p>
+
+    <h2>Utility display lain</h2>
+<pre><code class="language-html">&lt;p class="d-block"&gt;blok penuh&lt;/p&gt;
+&lt;span class="d-inline"&gt;sebaris teks&lt;/span&gt;
+&lt;div class="d-flex"&gt;wadah flex&lt;/div&gt;</code></pre>
+    <div class="demo">
+      <p class="d-block kotak-uji">d-block — memakai lebar penuh barisnya</p>
+      <p><span class="d-inline kotak-uji">d-inline — selebar isinya</span> lalu teks menyambung di sebelahnya.</p>
+      <div class="d-flex kotak-uji">d-flex — anak-anaknya jadi item flex</div>
+    </div>
+    <table class="tabel">
+      <thead>
+        <tr><th>Kelas</th><th>Arti</th><th>Keterangan</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>d-none</code></td><td>disembunyikan</td><td>berlaku di semua ukuran</td></tr>
+        <tr><td><code>d-block</code></td><td>display block</td><td>elemen memakai lebar penuh</td></tr>
+        <tr><td><code>d-inline</code></td><td>display inline</td><td>selebar isinya, menyambung teks</td></tr>
+        <tr><td><code>d-flex</code></td><td>display flex</td><td>anak elemen jadi item flex</td></tr>
+        <tr><td><code>d-md-block</code></td><td>block mulai md</td><td>aktif dari 768 px ke atas</td></tr>
+        <tr><td><code>d-lg-none</code></td><td>hidden mulai lg</td><td>aktif dari 992 px ke atas</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Inti pembelajaran:</strong> kelas display berawalan breakpoint selalu dibaca dari layar kecil ke atas, jadi menyembunyikan di layar kecil dan memunculkan di layar besar cukup ditulis sebagai satu pasang kelas.</p>
+
+    <nav class="nav">
+      <a href="08-utility-spacing.html">← 08 utility-spacing</a>
+      <span>09 / 13</span>
+      <a href="10-utility-tipografi.html">10 utility-tipografi →</a>
+    </nav>
+  </div>
+</body>
+</html>

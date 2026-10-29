@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 9 · 05 grid-12-kolom — Pengenalan Bootstrap 5</title>
+<link rel="stylesheet" href="../_vendor/bootstrap.min.css">
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: kolom grid tidak lagi dipatok 1140 px karena kotak sebesar itu
+     tidak muat di kolom halaman ini. Yang dipakai panggung selebar kolom dengan
+     padding 12 px — sama seperti padding container Bootstrap — ditambah pita
+     penanda selebar nilai asli dari deck. Semua kotak memakai border-box. */
+  .demo .panggung-grid {
+    box-sizing: border-box;
+    padding-inline: 12px;
+    background: #f8fafc;
+    border: 1px dashed #9ca3af;
+  }
+  .demo .pita-95 {
+    box-sizing: border-box;
+    width: 95px;
+    height: 10px;
+    background: #eef2ff;
+    border: 1px solid #1d4ed8;
+  }
+  .demo .pita-285 {
+    box-sizing: border-box;
+    width: 285px;
+    height: 10px;
+    background: #eef2ff;
+    border: 1px solid #1d4ed8;
+  }
+  .demo .baris-pita {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #4b5563;
+  }
+  /* garis penggaris dan isi kolom, hanya panggung */
+  .demo .butir {
+    box-sizing: border-box;
+    padding: 6px 8px;
+    background: #fde68a;
+    border: 1px solid #b45309;
+    font-size: 13px;
+    text-align: center;
+  }
+  .demo .butir-kolom {
+    box-sizing: border-box;
+    padding: 6px 8px;
+    background: #eef2ff;
+    border: 1px solid #1d4ed8;
+    font-size: 13px;
+  }
+  .demo .tiga-lapis {
+    box-sizing: border-box;
+    /* 12 px mengikuti margin negatif bawaan .row supaya baris tidak menembus bingkai */
+    padding: 10px 12px 12px;
+    background: #ffffff;
+    border: 1px solid #9ca3af;
+    font-size: 13px;
+    color: #4b5563;
+  }
+
+  /* ============================================================
+     kode slide — pelajaran berkas ini seluruhnya kelas Bootstrap,
+     jadi contohnya berupa blok HTML, bukan aturan CSS baru.
+     ============================================================ */
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 9 · Pengenalan Bootstrap 5</strong> · 05 Grid 12 kolom</p>
+    <h1>Grid 12 Kolom: Container, Row, lalu Col</h1>
+    <p>Grid Bootstrap disusun tiga lapis, dari luar ke dalam: <code>container</code> membungkus seluruh baris dan kolom, <code>row</code> menyusun kolom supaya sejajar, dan <code>col</code> berisi konten. Angka 12 dipilih karena kaya faktor — setengah, sepertiga, seperempat, dan seperenam semuanya pas.</p>
+
+    <h2>Tiga lapis grid</h2>
+<pre><code class="language-html">&lt;div class="container"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col-4"&gt;kolom&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <div class="demo">
+      <div class="tiga-lapis">
+        container
+        <div class="row">
+          <div class="col-4"><div class="butir-kolom">col-4</div></div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Dua belas garis penggaris</h2>
+    <p>Satu baris berisi dua belas <code>col-1</code>. Bayangkan inilah penggaris yang dipakai membaca semua kelas kolom lain: <code>col-md-6</code> berarti enam garis dari dua belas. Penggaris di halaman ini selebar kolom halaman, jadi tiap garisnya bukan 95 px — angka 95 px berlaku di container 1140 px, seperti ditunjukkan pita penanda di bawah.</p>
+<pre><code class="language-html">&lt;div class="row"&gt;
+  &lt;div class="col-1"&gt;1&lt;/div&gt;
+  &lt;div class="col-1"&gt;2&lt;/div&gt;
+  &lt;div class="col-1"&gt;3&lt;/div&gt;
+  &lt;div class="col-1"&gt;4&lt;/div&gt;
+  &lt;div class="col-1"&gt;5&lt;/div&gt;
+  &lt;div class="col-1"&gt;6&lt;/div&gt;
+  &lt;div class="col-1"&gt;7&lt;/div&gt;
+  &lt;div class="col-1"&gt;8&lt;/div&gt;
+  &lt;div class="col-1"&gt;9&lt;/div&gt;
+  &lt;div class="col-1"&gt;10&lt;/div&gt;
+  &lt;div class="col-1"&gt;11&lt;/div&gt;
+  &lt;div class="col-1"&gt;12&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <div class="demo">
+      <div class="panggung-grid">
+        <div class="row">
+          <div class="col-1"><div class="butir">1</div></div>
+          <div class="col-1"><div class="butir">2</div></div>
+          <div class="col-1"><div class="butir">3</div></div>
+          <div class="col-1"><div class="butir">4</div></div>
+          <div class="col-1"><div class="butir">5</div></div>
+          <div class="col-1"><div class="butir">6</div></div>
+          <div class="col-1"><div class="butir">7</div></div>
+          <div class="col-1"><div class="butir">8</div></div>
+          <div class="col-1"><div class="butir">9</div></div>
+          <div class="col-1"><div class="butir">10</div></div>
+          <div class="col-1"><div class="butir">11</div></div>
+          <div class="col-1"><div class="butir">12</div></div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="95px * 12 = 1140">Satu garis penggaris di container 1140 px selebar <strong>95 px</strong>; dua belas garis penuh berarti <strong>1140 px</strong>.</p>
+    <div class="demo">
+      <div class="baris-pita">
+        <div class="pita-95"></div>
+        <span>satu col-1 pada container 1140 px — 95 px</span>
+      </div>
+    </div>
+
+    <h2>Pembagian yang pas</h2>
+    <p>Enam kombinasi lazim. Semuanya berjumlah dua belas garis.</p>
+<pre><code class="language-html">&lt;div class="row"&gt;
+  &lt;div class="col-6"&gt;col-6&lt;/div&gt;
+  &lt;div class="col-6"&gt;col-6&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<pre><code class="language-html">&lt;div class="row"&gt;
+  &lt;div class="col-4"&gt;col-4&lt;/div&gt;
+  &lt;div class="col-4"&gt;col-4&lt;/div&gt;
+  &lt;div class="col-4"&gt;col-4&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<pre><code class="language-html">&lt;div class="row"&gt;
+  &lt;div class="col-3"&gt;col-3&lt;/div&gt;
+  &lt;div class="col-3"&gt;col-3&lt;/div&gt;
+  &lt;div class="col-3"&gt;col-3&lt;/div&gt;
+  &lt;div class="col-3"&gt;col-3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <div class="demo">
+      <div class="panggung-grid">
+        <div class="row">
+          <div class="col-6"><div class="butir-kolom">col-6</div></div>
+          <div class="col-6"><div class="butir-kolom">col-6</div></div>
+        </div>
+        <div class="row">
+          <div class="col-4"><div class="butir-kolom">col-4</div></div>
+          <div class="col-4"><div class="butir-kolom">col-4</div></div>
+          <div class="col-4"><div class="butir-kolom">col-4</div></div>
+        </div>
+        <div class="row">
+          <div class="col-3"><div class="butir-kolom">col-3</div></div>
+          <div class="col-3"><div class="butir-kolom">col-3</div></div>
+          <div class="col-3"><div class="butir-kolom">col-3</div></div>
+          <div class="col-3"><div class="butir-kolom">col-3</div></div>
+        </div>
+        <div class="row">
+          <div class="col-2"><div class="butir-kolom">2</div></div>
+          <div class="col-2"><div class="butir-kolom">2</div></div>
+          <div class="col-2"><div class="butir-kolom">2</div></div>
+          <div class="col-2"><div class="butir-kolom">2</div></div>
+          <div class="col-2"><div class="butir-kolom">2</div></div>
+          <div class="col-2"><div class="butir-kolom">2</div></div>
+        </div>
+        <div class="row">
+          <div class="col-12"><div class="butir-kolom">col-12</div></div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="285px * 4 = 1140">Satu <code>col-lg-3</code> di container 1140 px memakai <strong>285 px</strong> — seperempat dari seluruh lebar baris, dan empat kolom habis tepat 1140 px.</p>
+    <div class="demo">
+      <div class="baris-pita">
+        <div class="pita-285"></div>
+        <span>satu col-lg-3 pada container 1140 px — 285 px</span>
+      </div>
+    </div>
+    <table class="tabel">
+      <thead>
+        <tr><th>Kombinasi</th><th>Jumlah garis</th><th>Bentuk</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>2 × <code>col-6</code></td><td>6 + 6</td><td>dua bagian sama</td></tr>
+        <tr><td>3 × <code>col-4</code></td><td>4 + 4 + 4</td><td>tiga bagian sama</td></tr>
+        <tr><td>4 × <code>col-3</code></td><td>3 + 3 + 3 + 3</td><td>empat bagian sama</td></tr>
+        <tr><td>6 × <code>col-2</code></td><td>2 × 6</td><td>enam bagian sama</td></tr>
+        <tr><td>1 × <code>col-12</code></td><td>12</td><td>satu bagian penuh</td></tr>
+        <tr><td><code>col</code></td><td>dibagi rata</td><td>jumlah kolom menentukan</td></tr>
+      </tbody>
+    </table>
+
+    <h2><code>.col</code> tanpa angka</h2>
+<pre><code class="language-html">&lt;div class="row"&gt;
+  &lt;div class="col"&gt;col&lt;/div&gt;
+  &lt;div class="col"&gt;col&lt;/div&gt;
+  &lt;div class="col"&gt;col&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <div class="demo">
+      <div class="panggung-grid">
+        <div class="row">
+          <div class="col"><div class="butir-kolom">col</div></div>
+          <div class="col"><div class="butir-kolom">col</div></div>
+          <div class="col"><div class="butir-kolom">col</div></div>
+        </div>
+      </div>
+    </div>
+    <p><strong>Inti pembelajaran:</strong> kelas kolom dibaca sebagai jumlah garis penggaris, dan satu baris hanya menampung dua belas garis. Lebih dari itu, kolom terakhir turun ke baris baru.</p>
+
+    <nav class="nav">
+      <a href="04-lebar-maksimum-container.html">← 04 lebar-maksimum-container</a>
+      <span>05 / 13</span>
+      <a href="06-kelas-kolom-penting.html">06 kelas-kolom-penting →</a>
+    </nav>
+  </div>
+</body>
+</html>

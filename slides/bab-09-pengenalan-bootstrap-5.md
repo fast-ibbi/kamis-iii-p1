@@ -339,6 +339,7 @@ Jalankan template ini di layar dan tunjukkan tombol uji `.btn-primary` yang tamp
 biru bawaan; itu tanda stylesheet termuat. Tekankan dua hal: komentar penanda tanpa
 bundle, dan `css/style.css` yang wajib paling belakang. Tanyakan apa yang terjadi
 kalau urutan link-nya tertukar.
+Demo: demos/bab-09/01-starter-template.html — ganti tautan Bootstrap lokal di kepala halaman dengan URL CDN, lalu perhatikan kedua tombol uji tetap tampil sama.
 -->
 
 ---
@@ -359,6 +360,7 @@ adanya: bundle JavaScript memang menghidupkan menu lipat dan modal di dunia nyat
 tapi mata kuliah ini berpijak pada HTML dan CSS murni. Tanyakan kenapa komentar
 penandanya disimpan di setiap head; jawaban yang diharapkan: biar pembaca kode tahu
 itu keputusan sadar, bukan lupa.
+Demo: demos/bab-09/02-tanpa-bundle-javascript.html — kecilkan jendela sampai di bawah 992 px lalu klik tombol lipat navbar: menunya hilang dan tombolnya tidak melakukan apa pun.
 -->
 
 ---
@@ -405,6 +407,7 @@ Tanyakan mana yang lebih nyaman buat paragraf panjang: lebar penuh atau lebar
 terbatas. Jawaban yang diharapkan: lebar terbatas, karena baris yang terlalu panjang
 melemahkan keterbacaan. Sebutkan bahwa footer gelap dan bilah pengumuman justru
 cocok pakai container-fluid.
+Demo: demos/bab-09/03-container-dan-fluid.html — bandingkan penggaris container, container-fluid, dan container-md, lalu lebarkan jendela untuk melihat batas mana yang sedang aktif.
 -->
 
 ---
@@ -440,6 +443,7 @@ Jangan minta mahasiswa menghafal angka-angkanya; cukup tunjukkan polanya, makin
 lebar layar makin lebar batasnya. Tanyakan berapa lebar maksimum container di layar
 1000 px. Jawaban yang diharapkan: 960 px, karena breakpoint lg aktif mulai 992 px.
 Ingatkan pengecualiannya: `.container-fluid` selalu penuh.
+Demo: demos/bab-09/04-lebar-maksimum-container.html — cocokkan lima penggaris pada tabel dengan aritmetika sisa ruang di layar 992, 1200, dan 1400 px.
 -->
 
 ---
@@ -463,6 +467,7 @@ gutter dari row.
 Dua hal yang tidak masuk gambar: setiap row dibayangkan sebagai penggaris 12 garis, dan
 kombinasi lazimnya 6+6, 4+4+4, 3×4, 2×6, 8+4. Sebutkan pola 8+4 buat sidebar laporan
 sebagai contoh konkretnya.
+Demo: demos/bab-09/05-grid-12-kolom.html — hitung garis penggaris pada baris col-6, col-4, col-3, dan col-2, lalu periksa bahwa semuanya berjumlah dua belas.
 -->
 
 ---
@@ -481,6 +486,7 @@ Fokuskan ke tiga kelas yang wajib diasah, dan pastikan mahasiswa bisa membacanya
 sebagai jumlah garis penggaris. Tanyakan arti `col-lg-3`. Jawaban yang diharapkan:
 seperempat lebar mulai 992 px ke atas, yaitu 3 garis dari 12. Sebutkan `col-auto`
 dan `row-cols-*` sebagai varian yang jarang tapi berguna.
+Demo: demos/bab-09/06-kelas-kolom-penting.html — bandingkan kotak 380 px dengan kotak 780 px untuk melihat satu pola kelas col-12 col-md-6 col-lg-3 berganti perilaku.
 -->
 
 ---
@@ -543,6 +549,7 @@ terbentuk dan kolom sejajar.
 
 Ingatkan sekali lagi bahwa kesalahan ini begitu lumrah pada pemula, bukan tanda
 kodenya rusak.
+Demo: demos/bab-09/07-kolom-anak-row.html — bandingkan dua contoh lalu hapus row pada contoh kedua: kolom col-6 langsung menumpuk dan gutter-nya hilang.
 -->
 
 ---
@@ -577,6 +584,7 @@ Tekankan janji satu kelas satu maksud. Tanyakan kenapa utility masih lebih rapi
 daripada menempel atribut `style` di elemen. Jawaban yang diharapkan: utility tetap
 mengikuti skala dan nama yang seragam, sedangkan gaya inline tersebar dan susah
 diaudit.
+Demo: demos/bab-09/08-utility-spacing.html — tempel p-4 dan border pada kartu produk, lalu cocokkan lebar totalnya dengan penggaris 330 px di bawahnya.
 -->
 
 ---
@@ -660,6 +668,7 @@ dibaca terpisah. Tanyakan kenapa urutan `d-none` lalu `d-md-block` penting. Jawa
 yang diharapkan: yang menyembunyikan dipasang dulu, lalu yang memunculkan kembali
 mulai 768 px, jadi perilakunya seperti min-width. Tunjukkan dengan mengubah lebar
 jendela di layar.
+Demo: demos/bab-09/09-utility-display.html — kecilkan jendela di bawah 768 px untuk melihat kotak pencarian hilang sementara logo dan ikon keranjang bertahan.
 -->
 
 ---
@@ -694,6 +703,7 @@ Tekankan aturan aksesibilitas yang tetap berlaku: judul tetap pakai elemen h1 sa
 h6 semantik, kelas ukuran cuma menempel. Tanyakan kenapa `div` besar dengan `fs-1`
 bukan judul yang benar. Jawaban yang diharapkan: pembaca layar nggak membacanya
 sebagai kepala bagian.
+Demo: demos/bab-09/10-utility-tipografi.html — bandingkan display-5, lead, dan fs-5 pada hero, lalu periksa bahwa elemen judulnya tetap h2 dan h3.
 -->
 
 ---
@@ -749,6 +759,7 @@ Tanyakan warna primary bawaan Bootstrap itu apa; jawaban yang diharapkan: biru,
 bukan indigo Tokosaya. Tekankan bahwa nama kelas warna itu peran, bukan warna
 mentah, sehingga `text-danger` dibaca sebagai pesan bahaya. Dari sini alasan overlay
 jadi jelas.
+Demo: demos/bab-09/11-palet-bootstrap.html — bandingkan dua panel badge dan teks primary untuk melihat peran warna yang sama digeser menjadi indigo.
 -->
 
 ---
@@ -797,6 +808,7 @@ digeser. Tanyakan kenapa `css/style.css` harus termuat setelah Bootstrap. Jawaba
 yang diharapkan: pas specificity setara, aturan yang termuat belakangan menang.
 Ingatkan bahwa variabel tema bisa bergeser antar rilis, jadi tombol khas sengaja
 dibentuk kelas kustom yang eksplisit.
+Demo: demos/bab-09/12-overlay-kustom.html — perhatikan text-primary di panel kanan berubah indigo sementara btn-primary di panel yang sama tetap biru.
 -->
 
 ---
@@ -840,6 +852,7 @@ Jangan cuma membacakan; buka folder proyeknya dan tunjukkan strukturnya. Ingatka
 untuk menulis tiga poin layout di kertas sebelum menyentuh kode. Tanyakan kenapa
 aset gambar dari proyek `tokosaya-css/` bisa dipakai ulang; jawabannya karena nama
 filenya udah baku.
+Demo: demos/bab-09/13-landing-page-tokosaya.html — jalankan hasil praktikum di 375, 768, dan 1200 px lalu periksa kedelapan kartu produk serta footer tiga kolom.
 -->
 
 ---
@@ -924,6 +937,7 @@ periksa kedua link CDN dan urutan pemuatannya.
 - Container mengatur lebar; breakpoint bekerja mobile-first
 - Grid 12 kolom: `col-12 col-md-6 col-lg-3` buat 1/2/4 kartu
 - Utility satu properti; identitas tetap di overlay token
+**Demo:** seluruh konsep bab ini bisa dicoba di [demos/bab-09/index.html](demos/bab-09/index.html).
 
 <!--
 Tutup dengan pesan utama: kerangka buat pola yang berulang, sedangkan kelas kustom

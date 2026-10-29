@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 9 · 13 landing-page-tokosaya — Pengenalan Bootstrap 5</title>
+<link rel="stylesheet" href="../_vendor/bootstrap.min.css">
+<link rel="stylesheet" href="../_vendor/bootstrap-icons.min.css">
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: bingkai halaman supaya batas landing page kelihatan, dan
+     keterangan kecil di bawah tiap bagian */
+  .demo .halaman {
+    box-sizing: border-box;
+    background: #ffffff;
+    border: 1px solid #9ca3af;
+    border-radius: 6px;
+    overflow: hidden;
+    font-size: 14px;
+  }
+  .demo .keterangan {
+    margin: 0;
+    padding: 4px 8px;
+    background: #fef3c7;
+    border-bottom: 1px dashed #b45309;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    color: #7c2d12;
+  }
+
+  /* ============================================================
+     kode slide — satu kelas kustom dari praktikum: tombol hero
+     Tokosaya. Token dan kelas lain seluruhnya milik Bootstrap.
+     ============================================================ */
+  .hero-cta {
+    background-color: #4F46E5;
+    color: #FFFFFF;
+    border: 0;
+    border-radius: 6px;
+    padding: 10px 18px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 9 · Pengenalan Bootstrap 5</strong> · 13 Landing page Tokosaya</p>
+    <h1>Praktikum: Landing Page Tokosaya Versi 2</h1>
+    <p>Semua yang dilatih di bab ini bertemu di satu halaman: navbar statis, hero bertingkat, seksi keunggulan, grid delapan kartu produk, dan footer tiga kolom. Hasilnya satu <code>index.html</code> responsif tanpa JavaScript — dan tanpa satu baris CSS pun untuk grid, jarak, atau tipografinya.</p>
+
+    <h2>Langkah pertama: navigasi statis</h2>
+<pre><code class="language-html">&lt;nav class="navbar bg-body-tertiary"&gt;
+  &lt;div class="container"&gt;
+    &lt;span class="navbar-brand"&gt;Tokosaya&lt;/span&gt;
+    &lt;div class="d-flex align-items-center gap-4"&gt;
+      &lt;span class="nav-link"&gt;Beranda&lt;/span&gt;
+      &lt;span class="nav-link"&gt;Katalog&lt;/span&gt;
+      &lt;i class="bi bi-cart"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+    <p>Tanpa <code>navbar-expand-lg</code> dan tanpa <code>navbar-toggler</code>, navigasinya adalah baris biasa yang selalu tampil. Itu pilihan sadar: buku ini tidak memuat satu baris JavaScript pun, jadi menu lipat tidak akan hidup.</p>
+
+    <h2>Langkah kedua: hero dan seksi keunggulan</h2>
+<pre><code class="language-html">&lt;section class="py-5"&gt;
+  &lt;div class="container"&gt;
+    &lt;h2 class="display-5"&gt;Belanja tepat, kirim cepat&lt;/h2&gt;
+    &lt;p class="lead"&gt;Produk lokal pilihan, dikirim dari gudang terdekat.&lt;/p&gt;
+    &lt;button class="btn hero-cta"&gt;Mulai belanja&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+<pre><code class="language-html">&lt;div class="row text-center"&gt;
+  &lt;div class="col-md-4"&gt;&lt;i class="bi bi-truck text-primary"&gt;&lt;/i&gt; Kirim cepat&lt;/div&gt;
+  &lt;div class="col-md-4"&gt;Bayar aman&lt;/div&gt;
+  &lt;div class="col-md-4"&gt;Produk lokal&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+    <h2>Langkah lanjutan: grid delapan kartu produk</h2>
+<pre><code class="language-html">&lt;div class="row g-4"&gt;
+  &lt;div class="col-12 col-md-6 col-lg-3"&gt;
+    &lt;div class="card h-100"&gt;
+      &lt;div class="card-body"&gt;
+        &lt;h3 class="fs-5"&gt;Kopi Bubuk 250 g&lt;/h3&gt;
+        &lt;p class="mb-2"&gt;Arabika gayo, giling halus.&lt;/p&gt;
+        &lt;span class="badge text-bg-primary"&gt;Baru&lt;/span&gt;
+        &lt;p class="fw-bold mb-0"&gt;Rp 85.000&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <p>Satu pola kelas untuk dua belas kartu sekalipun: <code>col-12 col-md-6 col-lg-3</code> sudah melayani ponsel, tablet, dan desktop sekaligus. <code>h-100</code> menyamakan tinggi kartu dalam satu baris, dan <code>g-4</code> memberi gutter 24 px antarkartu.</p>
+
+    <h2>Penutup: footer tiga kolom</h2>
+<pre><code class="language-html">&lt;footer class="py-4 bg-body-tertiary"&gt;
+  &lt;div class="container"&gt;
+    &lt;div class="row"&gt;
+      &lt;div class="col-md-4"&gt;Tokosaya&lt;/div&gt;
+      &lt;div class="col-md-4"&gt;Bantuan&lt;/div&gt;
+      &lt;div class="col-md-4"&gt;Ikuti kami&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;</code></pre>
+
+    <h2>Hasil: satu halaman utuh</h2>
+    <div class="demo">
+      <div class="halaman">
+        <p class="keterangan">navbar statis</p>
+        <nav class="navbar bg-body-tertiary">
+          <div class="container">
+            <span class="navbar-brand">Tokosaya</span>
+            <div class="d-flex align-items-center gap-4">
+              <span class="nav-link">Beranda</span>
+              <span class="nav-link">Katalog</span>
+              <i class="bi bi-cart"></i>
+            </div>
+          </div>
+        </nav>
+
+        <p class="keterangan">hero</p>
+        <section class="py-5">
+          <div class="container">
+            <h2 class="display-5">Belanja tepat, kirim cepat</h2>
+            <p class="lead">Produk lokal pilihan, dikirim dari gudang terdekat.</p>
+            <button class="btn hero-cta">Mulai belanja</button>
+          </div>
+        </section>
+
+        <p class="keterangan">seksi keunggulan</p>
+        <div class="container">
+          <div class="row text-center">
+            <div class="col-md-4 py-2"><i class="bi bi-truck text-primary"></i> Kirim cepat</div>
+            <div class="col-md-4 py-2">Bayar aman</div>
+            <div class="col-md-4 py-2">Produk lokal</div>
+          </div>
+        </div>
+
+        <p class="keterangan">grid produk — 8 kartu</p>
+        <div class="container py-4">
+          <div class="row g-4">
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h3 class="fs-5">Kopi Bubuk 250 g</h3>
+                  <p class="mb-2">Arabika gayo, giling halus.</p>
+                  <span class="badge text-bg-primary">Baru</span>
+                  <p class="fw-bold mb-0">Rp 85.000</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h3 class="fs-5">Teh Hijau</h3>
+                  <p class="mb-2">Kemasan 20 kantong celup.</p>
+                  <span class="badge text-bg-primary">Baru</span>
+                  <p class="fw-bold mb-0">Rp 32.000</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h3 class="fs-5">Gula Aren Cair</h3>
+                  <p class="mb-2">Botol 350 ml, tanpa pengawet.</p>
+                  <p class="fw-bold mb-0">Rp 48.000</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h3 class="fs-5">Madu Hutan</h3>
+                  <p class="mb-2">Botol 500 ml.</p>
+                  <p class="fw-bold mb-0">Rp 120.000</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h3 class="fs-5">Beras Merah</h3>
+                  <p class="mb-2">Karung 5 kg.</p>
+                  <p class="fw-bold mb-0">Rp 92.000</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h3 class="fs-5">Keripik Singkong</h3>
+                  <p class="mb-2">Rasa pedas manis, 150 g.</p>
+                  <p class="fw-bold mb-0">Rp 18.000</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h3 class="fs-5">Sabun Sereh</h3>
+                  <p class="mb-2">Isi dua batang.</p>
+                  <p class="fw-bold mb-0">Rp 25.000</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h3 class="fs-5">Air Mineral</h3>
+                  <p class="mb-2">Dus isi 24 botol 600 ml.</p>
+                  <p class="fw-bold mb-0">Rp 56.000</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="keterangan">footer tiga kolom</p>
+        <footer class="py-4 bg-body-tertiary">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4">Tokosaya</div>
+              <div class="col-md-4">Bantuan</div>
+              <div class="col-md-4">Ikuti kami</div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="8 / 4 = 2">Delapan kartu dengan empat kartu per baris mulai 992 px menjadi <strong>2 baris</strong>.</p>
+    <p class="hitung" data-hitung="4 * 3 = 12">Empat <code>col-lg-3</code> menindih 3 garis masing-masing: <strong>12 garis</strong>, pas satu baris penuh.</p>
+    <p>Uji hasilnya di tiga lebar: 375 px, 768 px, dan 1200 px. Yang diperiksa bukan hanya jumlah kartu per baris, tetapi juga apakah navbar tetap terbaca, hero tidak meluber, dan footer tetap tiga kolom sejak 768 px.</p>
+
+    <h2>Cek daftar praktikum</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Yang diperiksa</th><th>Tanda berhasil</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Kedua link CSS termuat</td><td>tab Network tidak menampilkan berkas gagal</td></tr>
+        <tr><td>Navigasi</td><td>lima item dengan ikon keranjang</td></tr>
+        <tr><td>Hero</td><td>judul, subjudul, dan tombol amber Tokosaya</td></tr>
+        <tr><td>Grid produk</td><td>delapan kartu tampil 1, 2, lalu 4 per baris</td></tr>
+        <tr><td>Ikon dan badge</td><td>ikon keunggulan dan badge Baru tampil indigo</td></tr>
+        <tr><td>Berkas proyek</td><td>tidak ada satu pun berkas <code>.js</code></td></tr>
+      </tbody>
+    </table>
+    <p><strong>Inti pembelajaran:</strong> pola yang berulang diserahkan ke kerangka, sedangkan identitas tetap dipegang kelas kustom dan design token. Batasnya pun tetap sama: tampilannya rapi, tetapi statis — tanpa satu baris JavaScript.</p>
+
+    <nav class="nav">
+      <a href="12-overlay-kustom.html">← 12 overlay-kustom</a>
+      <span>13 / 13</span>
+      <span>—</span>
+    </nav>
+  </div>
+</body>
+</html>

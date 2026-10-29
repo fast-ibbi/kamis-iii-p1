@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 9 · 08 utility-spacing — Pengenalan Bootstrap 5</title>
+<link rel="stylesheet" href="../_vendor/bootstrap.min.css">
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: kotak ukur dari deck — content 280 x 96 px, border-box seperti
+     Bootstrap supaya padding dan border yang ditambahkan kelas utility tidak
+     mengubah ukuran isi. */
+  .demo .isi-kartu {
+    box-sizing: border-box;
+    width: 280px;
+    height: 96px;
+    padding: 8px;
+    background: #eef2ff;
+    border: 1px dashed #1d4ed8;
+    font-size: 13px;
+    color: #1e3a8a;
+  }
+  .demo .kartu-putih {
+    box-sizing: border-box;
+    background: #ffffff;
+    font-size: 13px;
+    color: #374151;
+  }
+  /* penggaris lebar: pita tanpa border supaya jumlahnya tetap pas */
+  .demo .penggaris {
+    box-sizing: border-box;
+    display: flex;
+    align-items: stretch;
+    margin-bottom: 8px;
+    font-size: 13px;
+  }
+  .demo .pita-1 {
+    box-sizing: border-box;
+    width: 1px;
+    background: #b45309;
+  }
+  .demo .pita-24 {
+    box-sizing: border-box;
+    width: 24px;
+    background: #fde68a;
+  }
+  .demo .pita-280 {
+    box-sizing: border-box;
+    width: 280px;
+    padding: 4px 8px;
+    background: #eef2ff;
+    border: 1px solid #1d4ed8;
+    font-size: 13px;
+  }
+  /* skala jarak: bar dengan lebar persis nilai utility-nya */
+  .demo .skala-baris {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+    font-size: 13px;
+    color: #4b5563;
+  }
+  .demo .ukur-4 {
+    box-sizing: border-box;
+    width: 4px;
+    height: 10px;
+    background: #1d4ed8;
+  }
+  .demo .ukur-8 {
+    box-sizing: border-box;
+    width: 8px;
+    height: 10px;
+    background: #1d4ed8;
+  }
+  .demo .ukur-16 {
+    box-sizing: border-box;
+    width: 16px;
+    height: 10px;
+    background: #1d4ed8;
+  }
+  .demo .ukur-24 {
+    box-sizing: border-box;
+    width: 24px;
+    height: 10px;
+    background: #1d4ed8;
+  }
+  .demo .ukur-48 {
+    box-sizing: border-box;
+    width: 48px;
+    height: 10px;
+    background: #1d4ed8;
+  }
+  .demo .kotak-160 {
+    box-sizing: border-box;
+    width: 160px;
+    padding: 8px;
+    background: #fde68a;
+    border: 1px solid #b45309;
+    font-size: 13px;
+    text-align: center;
+  }
+  /* baris dengan g-5 memikul margin negatif 24 px, jadi panggungnya perlu
+     padding selebar itu supaya tidak melebar keluar kotak demo */
+  .demo .panggung-g {
+    box-sizing: border-box;
+    padding-inline: 24px;
+  }
+  .demo .butir-g {
+    box-sizing: border-box;
+    padding: 6px 8px;
+    background: #eef2ff;
+    border: 1px solid #1d4ed8;
+    font-size: 13px;
+  }
+
+  /* ============================================================
+     kode slide — pelajaran berkas ini seluruhnya kelas Bootstrap,
+     jadi contohnya berupa blok HTML, bukan aturan CSS baru.
+     ============================================================ */
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 9 · Pengenalan Bootstrap 5</strong> · 08 Utility spacing</p>
+    <h1>Utility Spacing: Jarak dari Kelas, Bukan dari Angka Baru</h1>
+    <p>Utility adalah kelas CSS kecil yang mengubah satu properti visual: satu kelas, satu maksud. Yang diajarkan di halaman ini bukan menulis aturan baru, melainkan membaca nama kelasnya sebagai potongan: properti, sisi, breakpoint, lalu nilai.</p>
+
+    <h2><code>mb-3</code> — margin bawah skala 3</h2>
+<pre><code class="language-html">&lt;p class="mb-3"&gt;paragraf pertama&lt;/p&gt;
+&lt;p class="mb-0"&gt;paragraf kedua&lt;/p&gt;</code></pre>
+    <div class="demo">
+      <p class="mb-3">paragraf pertama</p>
+      <p class="mb-0">paragraf kedua</p>
+    </div>
+    <p><code>mb-3</code> berarti margin bawah skala 3, yaitu 1 rem. <code>mb-0</code> mematikan margin bawah paragraf kedua, jadi jarak yang terlihat di atas murni milik paragraf pertama.</p>
+
+    <h2><code>p-4</code> dan <code>border</code>: kartu yang lebih lapang</h2>
+<pre><code class="language-html">&lt;div class="p-4 border d-inline-block"&gt;
+  &lt;div class="isi-kartu"&gt;Kartu produk&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <div class="demo">
+      <div class="p-4 border d-inline-block kartu-putih">
+        <div class="isi-kartu">Kartu produk — content 280 × 96 px</div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="280px + 24px + 24px + 1px + 1px = 330">Padding 24 px di keempat sisi dan border 1 px: lebar total <strong>330 px</strong>.</p>
+    <div class="demo">
+      <div class="penggaris">
+        <div class="pita-1"></div>
+        <div class="pita-24"></div>
+        <div class="pita-280">isi 280 px</div>
+        <div class="pita-24"></div>
+        <div class="pita-1"></div>
+      </div>
+    </div>
+    <p>Penggaris di atas menyusun ulang angkanya dari kiri ke kanan: border 1 px, padding 24 px, isi 280 px, padding 24 px, border 1 px. Tidak ada satu baris CSS baru di <code>style.css</code> — cuma dua kelas ditempel.</p>
+
+    <h2><code>px-4 py-2</code>: jarak asimetris</h2>
+<pre><code class="language-html">&lt;div class="px-4 py-2 d-inline-block"&gt;
+  &lt;div class="isi-kartu"&gt;Kartu produk&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <div class="demo">
+      <div class="px-4 py-2 d-inline-block kartu-putih">
+        <div class="isi-kartu">Kartu produk — isi yang sama</div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="280px + 24px + 24px = 328">Lebar total <strong>328 px</strong>: padding kiri-kanan skala 4 alias 24 px, tanpa border.</p>
+    <p class="hitung" data-hitung="96px + 8px + 8px = 112">Tinggi total <strong>112 px</strong>: padding atas-bawah skala 2 alias 8 px.</p>
+    <p>Bacanya sebagai potongan: <code>p</code> dulu, lalu sisi <code>x</code>, lalu skala <code>4</code>. Angka 4 lebih besar dari 2, jadi padding kiri-kanan lebih tebal daripada atas-bawah — itulah jarak asimetris.</p>
+
+    <h2><code>mx-auto</code> — menengahkan elemen</h2>
+<pre><code class="language-html">&lt;div class="mx-auto kotak-160"&gt;tengah&lt;/div&gt;</code></pre>
+    <div class="demo">
+      <div class="mx-auto kotak-160">tengah</div>
+    </div>
+    <p><code>mx-auto</code> memberi margin kiri dan kanan otomatis, jadi elemen berlebar tetap tampil di tengah wadahnya. Kelas ini hanya bekerja kalau elemennya punya lebar yang lebih sempit daripada wadahnya.</p>
+
+    <h2>Skala 0 sampai 5</h2>
+    <div class="demo">
+      <div class="skala-baris"><span>skala 1</span><div class="ukur-4"></div><span>0,25 rem = 4 px</span></div>
+      <div class="skala-baris"><span>skala 2</span><div class="ukur-8"></div><span>0,5 rem = 8 px</span></div>
+      <div class="skala-baris"><span>skala 3</span><div class="ukur-16"></div><span>1 rem = 16 px</span></div>
+      <div class="skala-baris"><span>skala 4</span><div class="ukur-24"></div><span>1,5 rem = 24 px</span></div>
+      <div class="skala-baris"><span>skala 5</span><div class="ukur-48"></div><span>3 rem = 48 px</span></div>
+    </div>
+    <p class="hitung" data-hitung="16px * 1.5 = 24">Skala 4 setara <strong>24 px</strong> di akar 16 px.</p>
+    <p class="hitung" data-hitung="16px * 3 = 48">Skala 5 setara <strong>48 px</strong>.</p>
+    <p>Skala ini masih bertalian dengan skala jarak 8 px dari bab sebelumnya: 8, 16, 24, dan 48 px semuanya kelipatan 8.</p>
+
+    <h2><code>g-3</code> sampai <code>g-5</code> pada row</h2>
+<pre><code class="language-html">&lt;div class="row g-4"&gt;
+  &lt;div class="col-4"&gt;kolom&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <div class="demo">
+      <div class="panggung-g">
+        <div class="row g-3">
+          <div class="col-4"><div class="butir-g">g-3 — gutter 16 px</div></div>
+          <div class="col-4"><div class="butir-g">g-3 — gutter 16 px</div></div>
+          <div class="col-4"><div class="butir-g">g-3 — gutter 16 px</div></div>
+        </div>
+        <div class="row g-4">
+          <div class="col-4"><div class="butir-g">g-4 — gutter 24 px</div></div>
+          <div class="col-4"><div class="butir-g">g-4 — gutter 24 px</div></div>
+          <div class="col-4"><div class="butir-g">g-4 — gutter 24 px</div></div>
+        </div>
+        <div class="row g-5">
+          <div class="col-4"><div class="butir-g">g-5 — gutter 48 px</div></div>
+          <div class="col-4"><div class="butir-g">g-5 — gutter 48 px</div></div>
+          <div class="col-4"><div class="butir-g">g-5 — gutter 48 px</div></div>
+        </div>
+      </div>
+    </div>
+    <table class="tabel">
+      <thead>
+        <tr><th>Kelas</th><th>Arti</th><th>Perilaku</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>mb-3</code></td><td>margin-bottom skala 3</td><td>jarak bawah 1 rem</td></tr>
+        <tr><td><code>p-4</code></td><td>padding keempat sisi skala 4</td><td>jarak dalam 1,5 rem</td></tr>
+        <tr><td><code>px-4 py-2</code></td><td>padding kiri-kanan 4, atas-bawah 2</td><td>jarak asimetris</td></tr>
+        <tr><td><code>mx-auto</code></td><td>margin kiri-kanan otomatis</td><td>elemen tampil di tengah</td></tr>
+        <tr><td><code>g-3</code> … <code>g-5</code></td><td>jarak antarkolom pada row</td><td>gutter lebih lega</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Inti pembelajaran:</strong> utility tetap mengikuti skala dan nama yang seragam, sedangkan gaya inline tersebar dan susah diaudit. Karena itu utility lebih rapi walaupun sama-sama menempel di elemen.</p>
+
+    <nav class="nav">
+      <a href="07-kolom-anak-row.html">← 07 kolom-anak-row</a>
+      <span>08 / 13</span>
+      <a href="09-utility-display.html">09 utility-display →</a>
+    </nav>
+  </div>
+</body>
+</html>

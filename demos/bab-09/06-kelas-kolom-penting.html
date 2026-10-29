@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 9 · 06 kelas-kolom-penting — Pengenalan Bootstrap 5</title>
+<link rel="stylesheet" href="../_vendor/bootstrap.min.css">
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: tiga kotak selebar layar simulasi. Semua kotak memakai border-box
+     seperti Bootstrap, jadi lebar kolom sudah termasuk padding gutter-nya. */
+  .demo .layar-380 {
+    box-sizing: border-box;
+    width: 380px;
+    max-width: 100%;
+    padding-inline: 12px;
+    background: #fef3c7;
+    outline: 1px dashed #b45309;
+  }
+  .demo .layar-780 {
+    box-sizing: border-box;
+    width: 780px;
+    max-width: 100%;
+    padding-inline: 12px;
+    background: #fef3c7;
+    outline: 1px dashed #b45309;
+  }
+  .demo .panggung-penuh {
+    box-sizing: border-box;
+    padding-inline: 12px;
+    background: #fef3c7;
+    outline: 1px dashed #b45309;
+  }
+  /* kulit kartu hanya panggung; yang diajarkan adalah kelas kolomnya */
+  .demo .kartu {
+    box-sizing: border-box;
+    height: 100%;
+    padding: 8px 10px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+  .demo .kartu strong { display: block; font-size: 13px; }
+
+  /* ============================================================
+     kode slide — pelajaran berkas ini seluruhnya kelas Bootstrap,
+     jadi contohnya berupa blok HTML, bukan aturan CSS baru.
+     ============================================================ */
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 9 · Pengenalan Bootstrap 5</strong> · 06 Kelas kolom penting</p>
+    <h1>Kelas Kolom yang Wajib Diasah: <code>col-12 col-md-6 col-lg-3</code></h1>
+    <p>Delapan kartu produk Tokosaya cukup ditulis dengan tiga kelas kolom sekaligus. Perilakunya berbeda di tiap breakpoint, dan tiap kelas dibaca sebagai jumlah garis penggaris dari dua belas.</p>
+
+    <h2>Satu kelas untuk tiga layar</h2>
+<pre><code class="language-html">&lt;div class="row"&gt;
+  &lt;div class="col-12 col-md-6 col-lg-3"&gt;kartu produk&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <div class="demo">
+      <div class="row">
+        <div class="col-12 col-md-6 col-lg-3"><div class="kartu"><strong>Kopi Bubuk</strong>Rp 85.000</div></div>
+        <div class="col-12 col-md-6 col-lg-3"><div class="kartu"><strong>Teh Hijau</strong>Rp 32.000</div></div>
+        <div class="col-12 col-md-6 col-lg-3"><div class="kartu"><strong>Gula Aren</strong>Rp 48.000</div></div>
+        <div class="col-12 col-md-6 col-lg-3"><div class="kartu"><strong>Madu Hutan</strong>Rp 120.000</div></div>
+      </div>
+    </div>
+    <p>Hasil di atas mengikuti lebar jendela Anda sekarang: satu kartu per baris di bawah 768 px, dua kartu mulai 768 px, empat kartu mulai 992 px. Coba ubah lebar jendela dan perhatikan jumlah kartu per baris.</p>
+
+    <h2>Kenapa peragaan di bawah memakai tiga kotak</h2>
+    <p>Halaman ini tidak bisa mengubah lebar jendelanya sendiri, sedangkan kelas <code>md</code> dan <code>lg</code> dihitung dari lebar <em>jendela</em>, bukan lebar kotak pembungkusnya. Karena itu tiap peragaan di bawah memakai kelas yang aktif pada lebar yang diwakilinya. Dua kotak pertama lebarnya disamakan dengan lebar layar yang disimulasikan (380 px dan 780 px); peragaan desktop mengikuti lebar kolom halaman ini, jadi bukan 1140 px — yang tetap adalah pembagiannya, 4 × 3 = 12 garis. Kelas <code>col-lg-3</code> sendiri baru aktif kalau jendela Anda 992 px ke atas.</p>
+
+    <h2>Ponsel: layar 380 px, satu kartu per baris</h2>
+<pre><code class="language-html">&lt;div class="row"&gt;
+  &lt;div class="col-12"&gt;kartu produk&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <div class="demo">
+      <div class="layar-380">
+        <div class="row">
+          <div class="col-12"><div class="kartu"><strong>Kopi Bubuk</strong>Rp 85.000</div></div>
+          <div class="col-12"><div class="kartu"><strong>Teh Hijau</strong>Rp 32.000</div></div>
+          <div class="col-12"><div class="kartu"><strong>Gula Aren</strong>Rp 48.000</div></div>
+          <div class="col-12"><div class="kartu"><strong>Madu Hutan</strong>Rp 120.000</div></div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Tablet: layar 780 px, dua kartu per baris</h2>
+<pre><code class="language-html">&lt;div class="row"&gt;
+  &lt;div class="col-md-6"&gt;kartu produk&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <div class="demo">
+      <div class="layar-780">
+        <div class="row">
+          <div class="col-md-6"><div class="kartu"><strong>Kopi Bubuk</strong>Rp 85.000</div></div>
+          <div class="col-md-6"><div class="kartu"><strong>Teh Hijau</strong>Rp 32.000</div></div>
+          <div class="col-md-6"><div class="kartu"><strong>Gula Aren</strong>Rp 48.000</div></div>
+          <div class="col-md-6"><div class="kartu"><strong>Madu Hutan</strong>Rp 120.000</div></div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="780px / 2 = 390">Dua kolom setengah di layar 780 px: <strong>390 px</strong> per kartu.</p>
+
+    <h2>Desktop: empat kartu per baris mulai 992 px</h2>
+<pre><code class="language-html">&lt;div class="row"&gt;
+  &lt;div class="col-lg-3"&gt;kartu produk&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <div class="demo">
+      <div class="panggung-penuh">
+        <div class="row">
+          <div class="col-lg-3"><div class="kartu"><strong>Kopi Bubuk</strong>Rp 85.000</div></div>
+          <div class="col-lg-3"><div class="kartu"><strong>Teh Hijau</strong>Rp 32.000</div></div>
+          <div class="col-lg-3"><div class="kartu"><strong>Gula Aren</strong>Rp 48.000</div></div>
+          <div class="col-lg-3"><div class="kartu"><strong>Madu Hutan</strong>Rp 120.000</div></div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="4 * 3 = 12">Empat <code>col-lg-3</code> menindih 3 garis masing-masing: <strong>12 garis</strong> pas habis. Di container 1140 px, satu kolom itu selebar 285 px.</p>
+
+    <h2>Dua varian yang jarang tapi berguna</h2>
+<pre><code class="language-html">&lt;div class="row"&gt;
+  &lt;div class="col-auto"&gt;merek&lt;/div&gt;
+  &lt;div class="col"&gt;isi yang mengisi sisa&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <div class="demo">
+      <div class="row">
+        <div class="col-auto"><div class="kartu">merek</div></div>
+        <div class="col"><div class="kartu">isi yang mengisi sisa</div></div>
+      </div>
+    </div>
+    <p><code>col-auto</code> mengikuti lebar isinya, sedangkan <code>col</code> tanpa angka memakai sisa lebar baris.</p>
+<pre><code class="language-html">&lt;div class="row row-cols-2"&gt;
+  &lt;div class="col"&gt;kotak&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <div class="demo">
+      <div class="row row-cols-2">
+        <div class="col"><div class="kartu">kotak 1</div></div>
+        <div class="col"><div class="kartu">kotak 2</div></div>
+        <div class="col"><div class="kartu">kotak 3</div></div>
+        <div class="col"><div class="kartu">kotak 4</div></div>
+      </div>
+    </div>
+    <p><code>row-cols-2</code> membagi baris sama lebar tanpa menulis kelas di tiap kolom. Varian berbreakpoint seperti <code>row-cols-md-4</code> bekerja dengan pola yang sama seperti <code>col-md-*</code>.</p>
+    <p><strong>Inti pembelajaran:</strong> kelas tanpa awalan menjadi dasar untuk layar kecil, lalu tiap breakpoint yang lebih besar menimpanya kalau kelasnya ditulis.</p>
+
+    <nav class="nav">
+      <a href="05-grid-12-kolom.html">← 05 grid-12-kolom</a>
+      <span>06 / 13</span>
+      <a href="07-kolom-anak-row.html">07 kolom-anak-row →</a>
+    </nav>
+  </div>
+</body>
+</html>

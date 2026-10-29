@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo Bab 9 — Pengenalan Bootstrap 5</title>
+<style>
+  :root { --ink: #111827; --muted: #6b7280; --accent: #1d4ed8; --border: #e5e7eb; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 48px 20px 64px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: var(--ink);
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 820px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .kepala a { color: var(--accent); text-decoration: none; }
+  h1 { margin: 0 0 10px; font-size: 28px; line-height: 1.25; }
+  .pengantar { margin: 0 0 32px; color: var(--muted); font-size: 16px; }
+  ol { margin: 0; padding: 0; list-style: none; counter-reset: demo; }
+  li {
+    counter-increment: demo;
+    border-top: 1px solid var(--border);
+    padding: 16px 0;
+  }
+  li a {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  li a::before {
+    content: counter(demo, decimal-leading-zero) "  ";
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  li p { margin: 4px 0 0; font-size: 15px; color: var(--muted); }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><a href="../index.html">← Semua bab</a> · Demo Bab 9</p>
+    <h1>Demo Bab 9 — Pengenalan Bootstrap 5</h1>
+    <p class="pengantar">13 berkas contoh, satu berkas per konsep slide. Tiap berkas
+    menampilkan kode contoh beserta hasil yang benar-benar dirender, tanpa JavaScript.</p>
+    <ol>
+    <li>
+      <a href="01-starter-template.html">01 starter-template</a>
+      <p>Bootstrap dimuat lewat satu baris &lt;link&gt; di kepala halaman, sebelum CSS kustom. Di kelas, berkasnya diambil dari folder _vendor/ supaya demo tetap jalan tanpa internet; alamat C…</p>
+    </li>
+    <li>
+      <a href="02-tanpa-bundle-javascript.html">02 tanpa-bundle-javascript</a>
+      <p>Berkas bootstrap.bundle tidak dimuat di buku ini. Yang tersisa tetap markup dan gaya yang utuh, tetapi status interaktif seperti menu lipat tidak lagi hidup. Navbar di bawah ada…</p>
+    </li>
+    <li>
+      <a href="03-container-dan-fluid.html">03 container-dan-fluid</a>
+      <p>Container adalah wadah horizontal pembungkus isi halaman. Batas lebarnya ditentukan media query yang membaca lebar jendela browser, jadi angka di halaman ini digambar proporsion…</p>
+    </li>
+    <li>
+      <a href="04-lebar-maksimum-container.html">04 lebar-maksimum-container</a>
+      <p>Angka-angka ini tidak perlu dihafal. Yang perlu diingat polanya: makin lebar layar, makin lebar batasnya, dan batas itu berlaku mulai ambangnya lalu naik ke atas.</p>
+    </li>
+    <li>
+      <a href="05-grid-12-kolom.html">05 grid-12-kolom</a>
+      <p>Grid Bootstrap disusun tiga lapis, dari luar ke dalam: container membungkus seluruh baris dan kolom, row menyusun kolom supaya sejajar, dan col berisi konten. Angka 12 dipilih k…</p>
+    </li>
+    <li>
+      <a href="06-kelas-kolom-penting.html">06 kelas-kolom-penting</a>
+      <p>Delapan kartu produk Tokosaya cukup ditulis dengan tiga kelas kolom sekaligus. Perilakunya berbeda di tiap breakpoint, dan tiap kelas dibaca sebagai jumlah garis penggaris dari …</p>
+    </li>
+    <li>
+      <a href="07-kolom-anak-row.html">07 kolom-anak-row</a>
+      <p>Ini kesalahan paling sering pada pemula, jadi layak disisihkan waktunya. Kolom yang ditaruh langsung di dalam container tidak rusak, tetapi gutter dan penyelarasan kolom ikut le…</p>
+    </li>
+    <li>
+      <a href="08-utility-spacing.html">08 utility-spacing</a>
+      <p>Utility adalah kelas CSS kecil yang mengubah satu properti visual: satu kelas, satu maksud. Yang diajarkan di halaman ini bukan menulis aturan baru, melainkan membaca nama kelas…</p>
+    </li>
+    <li>
+      <a href="09-utility-display.html">09 utility-display</a>
+      <p>Dua kelas yang saling melengkapi ini sering membingungkan kalau dibaca terpisah. d-none menyembunyikan elemen pada semua ukuran, lalu d-md-block memunculkannya kembali mulai 768…</p>
+    </li>
+    <li>
+      <a href="10-utility-tipografi.html">10 utility-tipografi</a>
+      <p>Kelas ukuran huruf di Bootstrap cuma menempel di elemen. Yang menentukan struktur dokumen tetap elemen judulnya: h1 sampai h6. Aturan aksesibilitas itu tidak berubah karena kita…</p>
+    </li>
+    <li>
+      <a href="11-palet-bootstrap.html">11 palet-bootstrap</a>
+      <p>Nama kelas warna Bootstrap menyebut peran, bukan warna mentah. text-primary berarti warna utama, text-danger berarti pesan bahaya — dan warna yang dipakai untuk peran itu ditent…</p>
+    </li>
+    <li>
+      <a href="12-overlay-kustom.html">12 overlay-kustom</a>
+      <p>Overlay adalah lapisan CSS kecil milik sendiri yang dimuat setelah Bootstrap. Isinya bukan menimpa semua kelas, melainkan menggeser beberapa variabel yang sudah dibaca Bootstrap…</p>
+    </li>
+    <li>
+      <a href="13-landing-page-tokosaya.html">13 landing-page-tokosaya</a>
+      <p>Semua yang dilatih di bab ini bertemu di satu halaman: navbar statis, hero bertingkat, seksi keunggulan, grid delapan kartu produk, dan footer tiga kolom. Hasilnya satu index.ht…</p>
+    </li>
+    </ol>
+  </div>
+</body>
+</html>
