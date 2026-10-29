@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo Frontend Development &amp; Web Design</title>
+<style>
+  :root { --ink: #111827; --muted: #6b7280; --accent: #1d4ed8; --border: #e5e7eb; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 48px 20px 64px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: var(--ink);
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 820px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .kepala a { color: var(--accent); text-decoration: none; }
+  h1 { margin: 0 0 10px; font-size: 28px; line-height: 1.25; }
+  .pengantar { margin: 0 0 32px; color: var(--muted); font-size: 16px; }
+  ol { margin: 0; padding: 0; list-style: none; counter-reset: demo; }
+  li {
+    counter-increment: demo;
+    border-top: 1px solid var(--border);
+    padding: 16px 0;
+  }
+  li a {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  li a::before {
+    content: counter(demo, decimal-leading-zero) "  ";
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  li p { margin: 4px 0 0; font-size: 15px; color: var(--muted); }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala">Demo · Frontend Development &amp; Web Design</p>
+    <h1>Demo Penjelasan per Bab</h1>
+    <p class="pengantar">Tiap berkas demo memperlihatkan satu konsep dari deck: kode contoh di
+    atas, hasil yang benar-benar dirender di bawahnya. Semua halaman ini HTML dan CSS murni —
+    tidak ada JavaScript.</p>
+    <ol>
+    <li>
+      <a href="bab-01/index.html">Bab 1 — Pengantar Frontend Development dan Web Design</a>
+      <p>14 berkas demo</p>
+    </li>
+    <li>
+      <a href="bab-02/index.html">Bab 2 — HTML5 dan Struktur Semantik</a>
+      <p>14 berkas demo</p>
+    </li>
+    <li>
+      <a href="bab-03/index.html">Bab 3 — Dasar-Dasar CSS</a>
+      <p>16 berkas demo</p>
+    </li>
+    <li>
+      <a href="bab-04/index.html">Bab 4 — Tipografi dan Visual Design CSS</a>
+      <p>16 berkas demo</p>
+    </li>
+    <li>
+      <a href="bab-05/index.html">Bab 5 — CSS Box Model dan Layout</a>
+      <p>17 berkas demo</p>
+    </li>
+    <li>
+      <a href="bab-06/index.html">Bab 6 — Flexbox untuk Web Layout</a>
+      <p>15 berkas demo</p>
+    </li>
+    <li>
+      <a href="bab-07/index.html">Bab 7 — CSS Grid dan Responsive Web Design</a>
+      <p>17 berkas demo</p>
+    </li>
+    <li>
+      <a href="bab-09/index.html">Bab 9 — Pengenalan Bootstrap 5</a>
+      <p>13 berkas demo</p>
+    </li>
+    <li>
+      <a href="bab-10/index.html">Bab 10 — Komponen Bootstrap</a>
+      <p>16 berkas demo</p>
+    </li>
+    <li>
+      <a href="bab-11/index.html">Bab 11 — Form dan User Interface Design</a>
+      <p>16 berkas demo</p>
+    </li>
+    <li>
+      <a href="bab-12/index.html">Bab 12 — UI/UX dan Design System</a>
+      <p>16 berkas demo</p>
+    </li>
+    <li>
+      <a href="bab-13/index.html">Bab 13 — Website Responsif dan Accessibility</a>
+      <p>16 berkas demo</p>
+    </li>
+    <li>
+      <a href="bab-14/index.html">Bab 14 — Implementasi Desain Figma ke HTML/CSS</a>
+      <p>15 berkas demo</p>
+    </li>
+    <li>
+      <a href="bab-15/index.html">Bab 15 — Final Project dan Quality Assurance</a>
+      <p>16 berkas demo</p>
+    </li>
+    </ol>
+  </div>
+</body>
+</html>
