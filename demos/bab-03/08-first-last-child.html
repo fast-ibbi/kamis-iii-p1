@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 3 · 08 first-last-child — Dasar-Dasar CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: daftar menu dan tabel statistik yang siap diberi warna selang-seling */
+  .demo .menu-list {
+    margin: 0;
+    padding: 6px 0;
+    list-style: none;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 15px;
+  }
+  .demo .menu-list li { padding: 6px 14px; }
+  .demo .statistik-table { background: #ffffff; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .menu-list li:first-child {
+    font-weight: 600;
+    color: #1E293B;
+  }
+
+  .menu-list li:last-child {
+    color: #DC2626;
+  }
+
+  .statistik-table tbody tr:nth-child(odd) {
+    background-color: #F8FAFC;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 3 · Dasar-Dasar CSS</strong> · 08 first-last-child</p>
+    <h1>Butir Pertama, Terakhir, dan Baris Tabel</h1>
+    <p>Pseudo-class posisi menghilangkan kebutuhan class tambahan pada butir pertama, butir terakhir, atau setiap baris tabel. Satu baris CSS menggantikan class yang harus dipasang berulang.</p>
+
+    <h2>Anak pertama dan anak terakhir</h2>
+    <p>Dua aturan berikut menyasar butir pinggir daftar tanpa satu pun class tambahan di HTML.</p>
+<pre><code class="language-css">.menu-list li:first-child {
+  font-weight: 600;
+  color: #1E293B;
+}
+
+.menu-list li:last-child {
+  color: #DC2626;
+}</code></pre>
+    <div class="demo">
+      <ul class="menu-list">
+        <li>Elektronik</li>
+        <li>Fashion</li>
+        <li>Rumah Tangga</li>
+        <li>Olahraga</li>
+        <li>Promo</li>
+      </ul>
+    </div>
+    <p>Butir pertama menebal dan memakai tinta judul; butir terakhir memakai warna perhatian. Kalau daftarnya bertambah atau berkurang, keduanya menyesuaikan sendiri.</p>
+
+    <h2>Baris ganjil pada isi tabel</h2>
+    <p>Selector <code>:nth-child(odd)</code> diarahkan ke baris isi tabel, bukan ke header. Latar lembut membuat mata mudah menyusuri baris yang panjang.</p>
+<pre><code class="language-css">.statistik-table tbody tr:nth-child(odd) {
+  background-color: #F8FAFC;
+}</code></pre>
+    <div class="demo">
+      <table class="tabel statistik-table">
+        <thead>
+          <tr><th>Produk</th><th>Terjual</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Webcam HD WC-720</td><td>128</td></tr>
+          <tr><td>Keyboard Mekanik K-87</td><td>96</td></tr>
+          <tr><td>Monitor 24 inci</td><td>74</td></tr>
+          <tr><td>Headset HS-200</td><td>63</td></tr>
+          <tr><td>Mouse Nirkabel</td><td>58</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Kalau ada baris baru disisipkan di tengah tabel, pewarnaannya ikut menyesuaikan sendiri — tidak seperti class manual yang harus dipasang ulang di setiap baris.</p>
+    <p><strong>Inti pembelajaran:</strong> satu baris CSS menggantikan class di setiap baris tabel.</p>
+    <nav class="nav">
+      <a href="07-keadaan-link.html">← 07 keadaan-link</a>
+      <span>08 / 16</span>
+      <a href="09-empat-properti-inti.html">09 empat-properti-inti →</a>
+    </nav>
+  </div>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 3 · 05 grouping-descendant — Dasar-Dasar CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: satu panel laporan berisi paragraf bersarang, dan satu paragraf di luarnya */
+  .demo .laporan-section {
+    padding: 10px 14px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 15px;
+  }
+  .demo .laporan-section p { margin: 0 0 8px; }
+  .demo .laporan-dalam {
+    margin: 6px 0;
+    padding: 8px 12px;
+    border-left: 3px solid #c7d2fe;
+    background: #f8fafc;
+    font-size: 15px;
+  }
+  .demo .di-luar {
+    margin: 10px 0 0;
+    padding: 8px 12px;
+    border: 1px dashed #9ca3af;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  h1, h2 {
+    color: #1E293B;
+  }
+
+  .laporan-section p {
+    line-height: 1.7;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 3 · Dasar-Dasar CSS</strong> · 05 grouping-descendant</p>
+    <h1>Grouping dengan Koma, Descendant dengan Spasi</h1>
+    <p>Koma menggabungkan beberapa selector ke satu blok aturan, sedangkan spasi menyempitkan jangkauan ke elemen di dalam elemen lain. Beda satu karakter itu menentukan berapa elemen yang kena.</p>
+
+    <h2>Grouping: satu blok aturan untuk dua selector</h2>
+    <p>Koma menggabungkan selector yang berbagi aturan. Semua judul di halaman ini, dari <code>h1</code> sampai <code>h2</code>, memakai satu blok yang sama — deklarasi warnanya tidak ditulis dua kali.</p>
+<pre><code class="language-css">h1, h2 {
+  color: #1E293B;
+}</code></pre>
+    <div class="demo">
+      <div class="laporan-section">
+        <h2 style="font-size: 18px; margin: 0 0 6px;">Judul bagian laporan</h2>
+        <p>Paragraf di bawah judul itu, sama-sama mengambil warna tinta dari blok grouping di atas.</p>
+      </div>
+    </div>
+
+    <h2>Descendant: spasi menyempitkan jangkauan</h2>
+    <p>Spasi berarti “di dalam”. <code>.laporan-section p</code> menyasar setiap paragraf di dalam elemen ber-class itu, tidak peduli seberapa dalam posisinya.</p>
+<pre><code class="language-css">.laporan-section p {
+  line-height: 1.7;
+}</code></pre>
+    <div class="demo">
+      <div class="laporan-section">
+        <p>Paragraf pertama di dalam <code>.laporan-section</code>: jarak barisnya 1.7.</p>
+        <div class="laporan-dalam">
+          <p>Paragraf yang lebih dalam: tetap kena, karena descendant tidak peduli kedalaman.</p>
+        </div>
+        <p>Paragraf terakhir di dalam <code>.laporan-section</code>.</p>
+      </div>
+      <p class="di-luar">Paragraf di luar <code>.laporan-section</code>: tidak kena <code>line-height: 1.7</code>, jadi barisnya lebih rapat.</p>
+    </div>
+    <p class="hitung" data-hitung="16px * 1.7 = 27.2">Teks 16 px dengan <code>line-height: 1.7</code> menghasilkan jarak antarbaris <strong>27,2 px</strong>; tanpa aturan itu jaraknya tetap 24 px dari <code>1.5</code> bawaan panggung.</p>
+
+    <h2>Koma menggabungkan, spasi menyempitkan</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Penulisan</th><th>Arti</th><th>Efek</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>h1, h2</code></td><td>h1 atau h2</td><td>dua selector berbagi satu blok aturan</td></tr>
+        <tr><td><code>.laporan-section p</code></td><td>paragraf di dalam elemen ber-class itu</td><td>jangkauan menyempit ke keturunan</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Inti pembelajaran:</strong> koma menambah sasaran, spasi membatasi sasaran.</p>
+    <nav class="nav">
+      <a href="04-kebab-case.html">← 04 kebab-case</a>
+      <span>05 / 16</span>
+      <a href="06-pseudo-class-dasar.html">06 pseudo-class-dasar →</a>
+    </nav>
+  </div>
+</body>
+</html>

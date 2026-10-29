@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 3 · 09 empat-properti-inti — Dasar-Dasar CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: panel putih tempat badge diletakkan supaya tepi dan latarnya terlihat */
+  .demo .panel {
+    padding: 16px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+  }
+  .demo .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .demo .baris { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .badge-tersedia {
+    color: #FFFFFF;
+    background-color: #16A34A;
+    border: 1px solid #E2E8F0;
+  }
+
+  .badge-samar {
+    color: #FFFFFF;
+    background-color: #16A34A;
+    border: 1px solid #E2E8F0;
+    opacity: 0.95;
+  }
+
+  .badge-hilang {
+    color: #FFFFFF;
+    background-color: #16A34A;
+    border: 1px solid #E2E8F0;
+    opacity: 0;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 3 · Dasar-Dasar CSS</strong> · 09 empat-properti-inti</p>
+    <h1>Empat Properti Inti Visual</h1>
+    <p>color mengatur tinta teks, background-color mengatur latar kotak, border menggabungkan tebal, gaya, dan warna tepi, sedangkan opacity mengatur transparansi. Keempatnya fondasi; jarak dan layout menyusul di bab berikutnya.</p>
+
+    <h2>Empat properti dan fungsinya</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Properti</th><th>Fungsi</th><th>Nilai contoh</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>color</code></td><td>warna tinta teks dan dekorasi garis</td><td><code>#4F46E5</code>, <code>red</code>, <code>rgb(79, 70, 229)</code></td></tr>
+        <tr><td><code>background-color</code></td><td>warna latar kotak elemen</td><td><code>#F8FAFC</code></td></tr>
+        <tr><td><code>border</code></td><td>tebal, gaya, dan warna tepi sekaligus</td><td><code>1px solid #E2E8F0</code></td></tr>
+        <tr><td><code>opacity</code></td><td>transparansi, nilai 0 sampai 1</td><td><code>0.95</code></td></tr>
+      </tbody>
+    </table>
+
+    <h2>Satu aturan, tiga properti</h2>
+    <p>Badge “Tersedia” memakai teks putih di atas hijau sukses, dengan tepi tipis yang memisahkannya dari panel putih di belakangnya.</p>
+<pre><code class="language-css">.badge-tersedia {
+  color: #FFFFFF;
+  background-color: #16A34A;
+  border: 1px solid #E2E8F0;
+}</code></pre>
+    <div class="demo">
+      <div class="panel">
+        <div class="baris">
+          <span class="badge badge-tersedia">Tersedia</span>
+          <span>teks <code>#FFFFFF</code> di atas <code>#16A34A</code>, tepi <code>1px solid #E2E8F0</code></span>
+        </div>
+      </div>
+    </div>
+
+    <h2><code>opacity</code>: 0.95 dan 0</h2>
+    <p>Nilai <code>0.95</code> membuat badge sedikit menembus latar. Nilai <code>0</code> membuatnya benar-benar tak terlihat, walaupun ruangnya tetap dipesan di halaman.</p>
+<pre><code class="language-css">.badge-samar {
+  color: #FFFFFF;
+  background-color: #16A34A;
+  border: 1px solid #E2E8F0;
+  opacity: 0.95;
+}
+
+.badge-hilang {
+  color: #FFFFFF;
+  background-color: #16A34A;
+  border: 1px solid #E2E8F0;
+  opacity: 0;
+}</code></pre>
+    <div class="demo">
+      <div class="panel">
+        <div class="baris">
+          <span class="badge badge-samar">opacity 0.95</span>
+          <span class="badge badge-hilang">opacity 0</span>
+          <span>badge kedua tidak terlihat, tetapi tempatnya masih memakan ruang.</span>
+        </div>
+      </div>
+    </div>
+
+    <h2>Catatan</h2>
+    <p>Proyek ini konsisten memakai heksadesimal enam digit, karena Bab 4 nanti mengubah nilai-nilai itu menjadi design token. Perlu diingat juga bahwa <code>background-color</code> tidak diwariskan ke elemen anak, berbeda dari <code>color</code>.</p>
+    <p><strong>Inti pembelajaran:</strong> empat properti ini cuma fondasi; jarak dan layout menyusul di Bab 5 dan Bab 7.</p>
+    <nav class="nav">
+      <a href="08-first-last-child.html">← 08 first-last-child</a>
+      <span>09 / 16</span>
+      <a href="10-warna-bukan-selera.html">10 warna-bukan-selera →</a>
+    </nav>
+  </div>
+</body>
+</html>

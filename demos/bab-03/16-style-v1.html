@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 3 · 16 style-v1 — Dasar-Dasar CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: latar demo dibuat putih karena aturan body pelajaran mengubah latar halaman */
+  .demo {
+    background: #ffffff;
+    border-color: #E2E8F0;
+  }
+  .demo .site-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 14px;
+    background: #ffffff;
+    border: 1px solid #E2E8F0;
+    border-radius: 6px;
+  }
+  .demo .brand {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .demo .site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    font-size: 15px;
+  }
+  .demo .site-nav a { padding: 4px 8px; text-decoration: none; }
+  .demo .nav-cart {
+    border: 1px solid #E2E8F0;
+    border-radius: 999px;
+    background-color: #F8FAFC;
+  }
+  .demo .hero {
+    margin-top: 12px;
+    padding: 18px 16px;
+    background: #ffffff;
+    border: 1px solid #E2E8F0;
+    border-radius: 6px;
+  }
+  .demo .hero-title {
+    margin: 0 0 10px;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: #1E293B;
+  }
+  .demo .btn-cta {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 6px;
+    background-color: #4F46E5;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    color: #334155;
+    background-color: #F8FAFC;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3 {
+    color: #1E293B;
+    line-height: 1.25;
+    margin: 0 0 16px;
+  }
+
+  h1 {
+    font-size: 2.25rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  a {
+    color: #4F46E5;
+  }
+
+  a:hover {
+    color: #4338CA;
+  }
+
+  a:focus {
+    outline: 2px solid #4F46E5;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 3 · Dasar-Dasar CSS</strong> · 16 style-v1</p>
+    <h1>style.css v1 Tokosaya: Satu File Gaya untuk Dua Halaman</h1>
+    <p>Praktik bab ini menghasilkan satu berkas css/style.css yang dipakai index.html dan tentang.html. Tujuannya bukan membuat halaman terlihat cantik, melainkan membuat gaya tinggal di satu tempat.</p>
+
+    <h2>Langkah praktikum</h2>
+    <ol>
+      <li>Buka folder proyek <code>tokosaya-css/</code> dari Bab 2.</li>
+      <li>Buat folder <code>css</code>, lalu berkas <code>style.css</code> di dalamnya.</li>
+      <li>Tambahkan kail class pada elemen utama <code>index.html</code>.</li>
+      <li>Tautkan <code>link</code> yang sama di <code>index.html</code> dan <code>tentang.html</code>.</li>
+      <li>Tulis aturan untuk body, heading, link, header, hero, bagian konten, dan footer.</li>
+      <li>Muat ulang di browser, lalu periksa panel Styles di DevTools.</li>
+    </ol>
+
+    <h2>Kail class di index.html</h2>
+    <p>HTML membawa identitas peran, CSS membawa keputusan visual. Halaman Katalog dan Kontak masih memakai tautan kosong karena belum dibuat; di demo ini semua tautan menunjuk ke berkas ini sendiri.</p>
+<pre><code class="language-html">&lt;header class="site-header"&gt;
+  &lt;p class="brand"&gt;Tokosaya&lt;/p&gt;
+  &lt;nav class="site-nav" aria-label="Navigasi utama"&gt;
+    &lt;a href="index.html"&gt;Beranda&lt;/a&gt;
+    &lt;a href="katalog.html"&gt;Katalog&lt;/a&gt;
+    &lt;a href="tentang.html"&gt;Tentang&lt;/a&gt;
+    &lt;a href="kontak.html"&gt;Kontak&lt;/a&gt;
+    &lt;a href="#" class="nav-cart"&gt;Keranjang&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+&lt;main&gt;
+  &lt;section class="hero"&gt;
+    &lt;h1 class="hero-title"&gt;Peralatan Kerja Digital untuk Semua&lt;/h1&gt;
+    &lt;a href="#" class="btn-cta"&gt;Lihat Katalog&lt;/a&gt;
+  &lt;/section&gt;
+&lt;/main&gt;</code></pre>
+    <div class="demo">
+      <header class="site-header">
+        <p class="brand">Tokosaya</p>
+        <nav class="site-nav" aria-label="Navigasi utama">
+          <a href="16-style-v1.html">Beranda</a>
+          <a href="16-style-v1.html">Katalog</a>
+          <a href="16-style-v1.html">Tentang</a>
+          <a href="16-style-v1.html">Kontak</a>
+          <a href="16-style-v1.html" class="nav-cart">Keranjang</a>
+        </nav>
+      </header>
+      <section class="hero">
+        <p class="hero-title">Peralatan Kerja Digital untuk Semua</p>
+        <a href="16-style-v1.html" class="btn-cta">Lihat Katalog</a>
+      </section>
+    </div>
+    <p>Judul hero di kotak demo ditulis sebagai paragraf ber-class <code>hero-title</code> supaya halaman demo ini tetap punya satu <code>h1</code>; di <code>index.html</code> aslinya elemen itu <code>h1</code>.</p>
+
+    <h2>Isi style.css v1</h2>
+    <p>Komentar kepala berkas dan komentar bagian menandai isi file. Urutannya mengikuti anatomi halaman: dasar, header, isi, footer.</p>
+<pre><code class="language-css">/* ---------- Tokosaya style.css — v1 (Bab 3) ---------- */
+
+/* ---------- Dasar halaman ---------- */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+  color: #334155;
+  background-color: #F8FAFC;
+  line-height: 1.6;
+}
+
+/* ---------- Heading ---------- */
+h1, h2, h3 {
+  color: #1E293B;
+  line-height: 1.25;
+  margin: 0 0 16px;
+}</code></pre>
+    <p><code>body</code> ditulis paling awal, bukan paling akhir: urutan penulisan ikut menentukan pemenang saat specificity setara, jadi gaya global ditaruh di depan supaya hasilnya bisa diprediksi.</p>
+
+    <h2>Ukuran heading bertingkat</h2>
+    <p>Heading memakai <code>rem</code> dengan ukuran bertingkat 36 px, 28 px, dan 20 px selama font akar 16 px.</p>
+<pre><code class="language-css">h1 {
+  font-size: 2.25rem;
+}
+
+h2 {
+  font-size: 1.75rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}</code></pre>
+    <p class="hitung" data-hitung="16px * 2.25 = 36">Judul: <strong>36 px</strong> — aturan ini yang membuat <code>h1</code> halaman ini tampil sebesar itu.</p>
+    <p class="hitung" data-hitung="16px * 1.75 = 28">Subjudul: <strong>28 px</strong>, dan heading tingkat tiga <strong>20 px</strong>.</p>
+
+    <h2>Keadaan link</h2>
+    <p>Link berwarna indigo, menggelap saat kursor di atasnya, dan memberi kotak fokus saat ditabrak tombol Tab.</p>
+<pre><code class="language-css">a {
+  color: #4F46E5;
+}
+
+a:hover {
+  color: #4338CA;
+}
+
+a:focus {
+  outline: 2px solid #4F46E5;
+}</code></pre>
+    <div class="demo">
+      <p><a href="16-style-v1.html">Tautan contoh</a> — arahkan kursor untuk melihat warna menggelap, lalu tekan Tab untuk kotak fokusnya.</p>
+    </div>
+
+    <h2>Hasil yang diharapkan</h2>
+    <ul>
+      <li>Teks tampil sans-serif dengan jarak baris 1.6.</li>
+      <li>Heading tegas <code>#1E293B</code> dengan ukuran bertingkat: 36 px, 28 px, 20 px.</li>
+      <li>Latar halaman <code>#F8FAFC</code> dengan panel putih dan garis <code>#E2E8F0</code>.</li>
+      <li>Link indigo <code>#4F46E5</code>, menggelap ke <code>#4338CA</code> saat di-hover.</li>
+      <li>Kotak fokus indigo muncul saat ditabrak tombol Tab.</li>
+      <li>Satu berkas <code>style.css</code> yang sama menata kedua halaman.</li>
+    </ul>
+    <p>Kalau ada yang hasilnya belum berubah, curigai jalur <code>link</code> salah dulu sebelum menuduh kodenya salah. Lakukan muat ulang paksa kalau browser masih memakai berkas gaya dari cache.</p>
+    <p><strong>Inti pembelajaran:</strong> tampilan boleh berubah, tapi keputusannya harus tinggal di satu tempat yang jelas.</p>
+    <nav class="nav">
+      <a href="15-kebiasaan-buruk.html">← 15 kebiasaan-buruk</a>
+      <span>16 / 16</span>
+      <span>—</span>
+    </nav>
+  </div>
+</body>
+</html>

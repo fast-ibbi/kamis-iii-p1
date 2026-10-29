@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 3 · 02 tiga-cara-pemasangan — Dasar-Dasar CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: contoh daftar ber-atribut style dan dua paragraf pembanding */
+  .demo .daftar-jam {
+    margin: 0;
+    padding: 10px 14px;
+    list-style: none;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 15px;
+  }
+  .demo .daftar-jam li { margin: 2px 0; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .catatan-inline {
+    color: #4F46E5;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 3 · Dasar-Dasar CSS</strong> · 02 tiga-cara-pemasangan</p>
+    <h1>Tiga Cara Memasang CSS dan Alasan External Jadi Default</h1>
+    <p>Ada tiga tempat menulis gaya: atribut style di elemen, elemen style di dalam head, dan berkas .css terpisah. Ketiganya sah secara teknis, tetapi hanya satu yang dipakai sebagai pola proyek.</p>
+
+    <h2>Inline: atribut <code>style</code> pada elemen</h2>
+    <p>Gaya ditulis langsung di elemen HTML. Cepat untuk memperlihatkan konsep, tetapi tidak bisa dipakai ulang dan tidak pernah muncul di <code>style.css</code>.</p>
+<pre><code class="language-html">&lt;ul style="line-height: 1.7; color: #334155;"&gt;
+  &lt;li&gt;Senin sampai Kamis: 08.00 sampai 16.00&lt;/li&gt;
+  &lt;li style="color: #DC2626;"&gt;Jumat: 08.00 sampai 11.30&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+    <div class="demo">
+      <ul class="daftar-jam" style="line-height: 1.7; color: #334155;">
+        <li>Senin sampai Kamis: 08.00 sampai 16.00</li>
+        <li style="color: #DC2626;">Jumat: 08.00 sampai 11.30</li>
+      </ul>
+    </div>
+    <p>Gaya inline menang atas hampir semua gaya lain, susah diaudit, dan tidak bisa dipakai ulang. Aturan berikut memperlihatkan kemenangannya atas sebuah class: paragraf pertama memakai class, paragraf kedua memakai class yang sama ditambah atribut <code>style</code>.</p>
+<pre><code class="language-css">.catatan-inline {
+  color: #4F46E5;
+}</code></pre>
+    <div class="demo">
+      <p class="catatan-inline">Paragraf dengan class <code>.catatan-inline</code>: indigo.</p>
+      <p class="catatan-inline" style="color: #DC2626;">Paragraf yang sama ditambah atribut <code>style</code>: merah, apa pun isi class-nya.</p>
+    </div>
+
+    <h2>Internal: elemen <code>style</code> di dalam <code>head</code></h2>
+    <p>Aturan ditulis di satu tempat dalam halaman, jadi tidak tersebar di setiap elemen. Jangkauannya tetap satu halaman, dan tidak bisa dipakai halaman lain.</p>
+<pre><code class="language-html">&lt;head&gt;
+  &lt;title&gt;Tiga Cara Memasang CSS&lt;/title&gt;
+  &lt;!-- Cara 2: internal CSS di dalam head --&gt;
+  &lt;style&gt;
+    p {
+      color: #334155;
+    }
+  &lt;/style&gt;
+  &lt;!-- Cara 3: external CSS melalui elemen link --&gt;
+  &lt;link rel="stylesheet" href="css/style.css"&gt;
+&lt;/head&gt;</code></pre>
+    <p>Perhatikan urutan di <code>head</code>: <code>style</code> ditulis dulu, <code>link</code> setelahnya. Kalau keduanya menetapkan properti yang sama dengan kekuatan setara, aturan yang ditulis paling belakangan yang menang — jadi meletakkan <code>link</code> di atas <code>style</code> membalik pemenangnya.</p>
+
+    <h2>External: berkas <code>.css</code> terpisah</h2>
+    <p>Satu berkas gaya dipakai semua halaman lewat <code>&lt;link rel="stylesheet" href="css/style.css"&gt;</code>. Elemen <code>link</code> itu menjadi bagian tetap di <code>head</code> setiap halaman proyek, sehingga tidak ada halaman yang tertinggal.</p>
+
+    <h2>Perbandingan tiga cara</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Aspek</th><th>Inline</th><th>Internal</th><th>External</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Letak kode</td><td>atribut <code>style</code> pada elemen</td><td>elemen <code>&lt;style&gt;</code> di <code>head</code></td><td>berkas <code>.css</code> terpisah</td></tr>
+        <tr><td>Jangkauan</td><td>satu elemen</td><td>satu halaman</td><td>seluruh halaman proyek</td></tr>
+        <tr><td>Dipakai ulang</td><td>tidak bisa</td><td>antarelemen satu halaman</td><td>antar semua halaman</td></tr>
+        <tr><td>Pemeliharaan</td><td>buruk, tersebar</td><td>sedang</td><td>baik, satu pusat</td></tr>
+        <tr><td>Posisi dalam proyek</td><td>demonstrasi konsep</td><td>eksperimen cepat</td><td>default proyek</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Kenapa external jadi default</h2>
+    <p>Warna identitas Tokosaya diganti dari <code>#4F46E5</code> jadi <code>#4338CA</code>. Dengan satu <code>style.css</code>, perubahan itu cukup satu baris, lalu <code>index.html</code>, <code>katalog.html</code>, <code>tentang.html</code>, dan <code>kontak.html</code> ikut berubah karena semuanya menarik berkas yang sama lewat <code>link</code>.</p>
+    <p class="hitung" data-hitung="4 * 10 = 40">Cara lama: empat halaman dikali sepuluh baris gaya sama dengan <strong>40 baris</strong> yang harus disunting manual, dan satu halaman yang terlewat langsung tampil beda.</p>
+    <p><strong>Inti pembelajaran:</strong> memisahkan struktur dan tampilan itu soal biaya pemeliharaan, bukan selera.</p>
+    <nav class="nav">
+      <a href="01-anatomi-aturan.html">← 01 anatomi-aturan</a>
+      <span>02 / 16</span>
+      <a href="03-tiga-selector.html">03 tiga-selector →</a>
+    </nav>
+  </div>
+</body>
+</html>

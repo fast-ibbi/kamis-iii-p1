@@ -49,7 +49,7 @@ pas aturan bertabrakan.
 
 # Struktur Rapi, Tampilan Belum
 
-![w:1120 Empat keluhan pemilik Tokosaya saat membuka pratinjau, dan penyebab sebenarnya di tiap baris: font serif bawaan, gaya bawaan browser, belum ada aturan gaya, dan pesaing yang sudah punya lapisan penataan.](assets/diagrams/bab-03-dasar-dasar-css-03.svg)
+![w:1060 Empat keluhan pemilik Tokosaya saat membuka pratinjau, dan penyebab sebenarnya di tiap baris: font serif bawaan, gaya bawaan browser, belum ada aturan gaya, dan pesaing yang sudah punya lapisan penataan.](assets/diagrams/bab-03-dasar-dasar-css-03.svg)
 
 Pemilik Tokosaya membuka link pratinjau, melihat sebentar, lalu bertanya.
 
@@ -134,6 +134,7 @@ Sebutkan istilah selector, declaration, dan blok aturan pelan-pelan; kosakata in
 dipakai terus sampai Bab 8. Minta mahasiswa menunjuk mana selector dan mana
 declaration di slide. Ingatkan titik koma di akhir tiap declaration karena ini
 kesalahan paling sering di praktikum pertama.
+Demo: demos/bab-03/01-anatomi-aturan.html — tunjuk selector dan deklarasi pada kotak contoh, lalu lihat satu aturan `p` mewarnai dua paragraf sekaligus.
 -->
 
 ---
@@ -181,6 +182,7 @@ Penting buat mahasiswa SI: hitung bareng-bareng, empat halaman kali sepuluh bari
 gaya sama dengan berapa baris yang harus disunting manual. Tanyakan apa risikonya
 kalau salah satu halaman lupa ikut diubah. Jawaban yang diharapkan: halaman itu
 tertinggal dan tampil beda sendiri.
+Demo: demos/bab-03/02-tiga-cara-pemasangan.html — bandingkan inline, internal, dan external, lalu lihat atribut `style` menang atas class dan hitungan 40 baris gaya yang harus disunting manual.
 -->
 
 ---
@@ -288,6 +290,7 @@ dipakai ulang di banyak elemen; id — satu titik jangkar khusus per halaman.
 Penulisannya: `p`, `h1`, `a` untuk elemen, `.hero-title` untuk class, dan
 `#pengantar` untuk id. Tanyakan mana yang cocok buat gaya tombol yang muncul di
 tiga halaman; jawabannya class.
+Demo: demos/bab-03/03-tiga-selector.html — tiga contoh berdampingan memperlihatkan jangkauan selector elemen, class `hero-title`, dan id `pengantar`.
 -->
 
 ---
@@ -307,6 +310,7 @@ Ini kebiasaan yang paling sering diabaikan mahasiswa. Tulis `site-nav` di papan,
 lalu tanya: apa peran elemen ini kalau enam bulan lagi kamu buka file ini? Lanjutkan
 dengan nama berbasis tampilan kayak `.merah-kecil`; tanyakan apa yang terjadi pas
 desain berubah. Jawaban yang diharapkan: namanya jadi menyesatkan.
+Demo: demos/bab-03/04-kebab-case.html — dua kolom berisi elemen yang sama, satu bercamelCase dan satu ber-kebab-case, plus class `merah-kecil` yang sudah tidak merah lagi.
 -->
 
 ---
@@ -355,6 +359,7 @@ h1, h2 {
 Tekankan bedanya koma dan spasi: satu menggabungkan, satu menyempitkan jangkauan.
 Tanyakan apa arti `.laporan-section p`. Jawaban yang diharapkan: setiap paragraf
 di dalam elemen ber-class itu, nggak peduli seberapa dalam posisinya.
+Demo: demos/bab-03/05-grouping-descendant.html — satu panel laporan berisi paragraf bersarang dan satu paragraf di luarnya, supaya beda koma dan spasi terlihat pada jarak baris 1.7.
 -->
 
 ---
@@ -373,6 +378,7 @@ di dalam elemen ber-class itu, nggak peduli seberapa dalam posisinya.
 Katakan dengan jelas bahwa ini tanpa JavaScript, sesuai cakupan mata kuliah. Tunjukkan
 `:focus` sambil menabrak tombol Tab di laptop yang diproyeksikan biar kelas melihat
 fokus itu nyata. Sebutkan bahwa penulisannya menempel tanpa spasi, misal `a:hover`.
+Demo: demos/bab-03/06-pseudo-class-dasar.html — arahkan kursor dan tekan Tab pada navigasi contoh, lalu lihat butir pertama, terakhir, dan ganjil pada daftar menu menyala sendiri.
 -->
 
 ---
@@ -421,6 +427,7 @@ Tanyakan kenapa `outline` fokus jangan dihapus biar tampilan terlihat bersih.
 Jawaban yang diharapkan: pengguna keyboard nggak punya kursor, jadi fokus adalah
 satu-satunya isyarat posisi mereka. Ingatkan juga bahaya menulis `a :hover` dengan
 spasi, karena artinya jadi beda.
+Demo: demos/bab-03/07-keadaan-link.html — bandingkan navigasi dengan kotak fokus dan yang `outline`-nya dihapus, lalu coba `a :hover` yang hanya memerahkan keturunan tautan.
 -->
 
 ---
@@ -456,6 +463,7 @@ spasi, karena artinya jadi beda.
 Tunjukkan efek `:nth-child(odd)` pada tabel: latarnya jadi selang-seling. Tanyakan
 apa yang terjadi kalau ada baris baru disisipkan di tengah tabel. Jawaban yang
 diharapkan: pewarnaannya ikut menyesuaikan sendiri, nggak kayak class manual.
+Demo: demos/bab-03/08-first-last-child.html — daftar menu dan tabel statistik yang diwarnai selang-seling tanpa satu pun class tambahan di tiap baris.
 -->
 
 ---
@@ -492,6 +500,7 @@ Ingatkan bahwa keempat properti ini cuma fondasi; jarak dan layout menyusul di
 Bab 5 dan 7. Tekankan bahwa heksadesimal dipakai konsisten karena Bab 4 bakal
 mengubahnya jadi design token. Tanyakan apa bedanya `opacity: 0.95` dengan
 `opacity: 0`.
+Demo: demos/bab-03/09-empat-properti-inti.html — satu badge dengan `color`, `background-color`, dan `border`, ditambah dua badge bervariasi `opacity` 0.95 dan 0.
 -->
 
 ---
@@ -526,6 +535,7 @@ mengubahnya jadi design token. Tanyakan apa bedanya `opacity: 0.95` dengan
 Minta kelas menebak kenapa badge amber pakai teks gelap, bukan putih. Jawaban yang
 diharapkan: kontrasnya lebih nyaman dibaca. Sebutkan bahwa aturan kontras resmi
 menyusul di Bab 4 dan dikaitkan ke standar WCAG di Bab 13.
+Demo: demos/bab-03/10-warna-bukan-selera.html — dua pasangan badge Tokosaya ditampilkan berdampingan, termasuk teks putih dan teks gelap di atas amber yang sama.
 -->
 
 ---
@@ -544,6 +554,7 @@ Jangan hafalkan kelimanya sekaligus; cukup tekankan pasangan rem buat font dan
 persen buat lebar. Tanyakan apa yang terjadi pada `2rem` kalau pengguna memperbesar
 font dasar browser. Jawaban yang diharapkan: ukurannya ikut membesar, dan itulah
 sisi aksesibilitasnya. Peringatkan juga bahwa `em` bersarang bisa menumpuk.
+Demo: demos/bab-03/11-satuan-css.html — kotak 320 px dan 20rem yang tampil sama besar, `em` bersarang tiga tingkat yang menumpuk, lalu lebar 50% dan tinggi 30vh.
 -->
 
 ---
@@ -602,6 +613,7 @@ Pakai analogi pemilihan seragam kalau kelas terlihat bingung: ada kebijakan
 pemerintah, ada aturan sekolah. Tanyakan siapa yang menang antara link biru bawaan
 browser dan aturan `a` yang kita tulis. Jawaban yang diharapkan: aturan kita.
 Ingatkan bahwa `!important` sah, tapi bikin aturan berikutnya makin susah diatur.
+Demo: demos/bab-03/12-kaskade.html — tautan bawaan browser di samping tautan kita, dua paragraf yang membuktikan urutan penulisan menang, dan satu deklarasi `!important` yang tak bisa dikalahkan.
 -->
 
 ---
@@ -665,6 +677,7 @@ jawabannya: (1, 1, 1). Ingatkan bahwa satu angka id selalu mengalahkan berapa pu
 jumlah class. Bentuk penulisan tiap tingkat: `p` buat elemen, `.note` atau `:hover`
 buat class dan pseudo-class, `p.note` buat elemen + class, `#pengumuman` buat ID, dan
 `style="color: #DC2626"` buat gaya inline.
+Demo: demos/bab-03/13-specificity.html — empat paragraf Laboratorium Kaskade, satu per tingkat specificity, dengan gaya inline di puncaknya.
 -->
 
 ---
@@ -685,6 +698,7 @@ Kelompok properti teks diwariskan: `color`, `font-family`, `line-height`. Kelomp
 properti kotak tidak diwariskan: `border`, `padding`, `margin`, `background-color`.
 Tekankan akibatnya: `color` pada `body` cukup buat jadi warna default hampir semua
 teks, sedangkan kalau `border` ikut diwarisi, tiap anak menyalin tepi induknya.
+Demo: demos/bab-03/14-inheritance.html — panel induk yang hanya menurunkan warna dan jarak baris ke anak-anaknya, lengkap dengan tabel properti yang diwarisi dan yang tidak.
 -->
 
 ---
@@ -739,6 +753,7 @@ Bahas dua kesalahan yang paling sering muncul di tugas: `!important` dan selecto
 kepanjangan. Minta mahasiswa memeriksa file masing-masing dan menghitung berapa
 banyak `!important` yang mereka tulis. Tanyakan kenapa specificity yang terlalu
 tinggi bikin aturan susah diganti nanti.
+Demo: demos/bab-03/15-kebiasaan-buruk.html — dua navigasi yang tampil sama tetapi beda specificity (1, 1, 3) lawan (0, 1, 0), plus contoh gaya inline yang tidak terlihat di `style.css`.
 -->
 
 ---
@@ -792,6 +807,7 @@ Jalankan langkah ini sambil didemokan di layar, jangan cuma dibacakan. Sering-se
 berhenti di langkah tiga karena kesalahan penamaan class paling banyak terjadi di
 situ. Ingatkan menyimpan file sebelum memuat ulang, dan periksa Console kalau gaya
 nggak muncul sama sekali.
+Demo: demos/bab-03/16-style-v1.html — header dan hero Tokosaya hasil `style.css` v1, lengkap dengan ukuran heading 36, 28, dan 20 px serta keadaan `:hover` dan `:focus` pada tautan.
 -->
 
 ---
@@ -986,6 +1002,7 @@ utama yang jelas.
 - Pseudo-class menata keadaan elemen tanpa JavaScript
 - `rem` buat font, `%` buat lebar, `px` buat garis, `vh` buat tinggi layar
 - Kaskade memilih pemenang: asal, specificity, lalu urutan penulisan
+**Demo:** seluruh konsep bab ini bisa dicoba di [demos/bab-03/index.html](demos/bab-03/index.html).
 
 <!--
 Tutup dengan pesan utama: tampilan boleh berubah, tapi keputusannya harus tinggal di

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 3 · 04 kebab-case — Dasar-Dasar CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: dua kolom pembanding, camelCase di kiri dan kebab-case di kanan */
+  .demo .dua-kolom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .demo .kolom {
+    flex: 1 1 260px;
+    padding: 12px 14px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+  .demo .judul-kolom {
+    margin: 0 0 8px;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+  /* nama lama: camelCase, diberi gaya sama supaya bedanya cuma penulisan */
+  .demo .siteNav { color: #334155; }
+  .demo .heroTitle { color: #1E293B; font-weight: 600; }
+  .demo .produkCard { border: 1px solid #E2E8F0; background: #f8fafc; padding: 8px 10px; border-radius: 4px; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .site-nav {
+    color: #334155;
+  }
+
+  .hero-title {
+    color: #1E293B;
+    font-weight: 600;
+  }
+
+  .produk-card {
+    padding: 8px 10px;
+    border: 1px solid #E2E8F0;
+    border-radius: 4px;
+    background-color: #F8FAFC;
+  }
+
+  .merah-kecil {
+    color: #4F46E5;
+    font-size: 12px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 3 · Dasar-Dasar CSS</strong> · 04 kebab-case</p>
+    <h1>Kebab-Case: Nama Class Berbasis Peran, Bukan Tampilan</h1>
+    <p>Proyek ini memakai huruf kecil bertanda hubung untuk nama class, dengan pola blok-elemen seperti site-nav, hero-title, dan produk-card. Nama yang baik menunjuk peran elemen, bukan warna atau ukurannya.</p>
+
+    <h2>camelCase dan kebab-case pada elemen yang sama</h2>
+    <p>Dua kolom berikut memuat elemen yang sama dengan penulisan berbeda. Tampilannya identik; yang membedakan hanya nama class-nya.</p>
+<pre><code class="language-css">.site-nav {
+  color: #334155;
+}
+
+.hero-title {
+  color: #1E293B;
+  font-weight: 600;
+}
+
+.produk-card {
+  padding: 8px 10px;
+  border: 1px solid #E2E8F0;
+  border-radius: 4px;
+  background-color: #F8FAFC;
+}</code></pre>
+    <div class="demo">
+      <div class="dua-kolom">
+        <div class="kolom">
+          <p class="judul-kolom">camelCase — tidak dipakai proyek ini</p>
+          <p class="siteNav">.siteNav</p>
+          <p class="heroTitle">.heroTitle</p>
+          <p class="produkCard">.produkCard</p>
+        </div>
+        <div class="kolom">
+          <p class="judul-kolom">kebab-case — dipakai proyek ini</p>
+          <p class="site-nav">.site-nav</p>
+          <p class="hero-title">.hero-title</p>
+          <p class="produk-card">.produk-card</p>
+        </div>
+      </div>
+    </div>
+    <p>Polanya: huruf kecil, kata disambung tanda hubung. Nama berbasis peran menuliskan maksudnya, jadi HTML dan CSS saling menunjuk tanpa dokumentasi tambahan.</p>
+
+    <h2>Nama berbasis tampilan menyesatkan</h2>
+    <p>Badge “Best Seller” Tokosaya bertulis <code>#1E293B</code> di atas <code>#F59E0B</code>. Kalau class-nya dinamai menurut warnanya, nama itu tidak lagi benar begitu desain berubah.</p>
+<pre><code class="language-css">.merah-kecil {
+  color: #4F46E5;
+  font-size: 12px;
+}</code></pre>
+    <div class="demo">
+      <div class="kolom">
+        <p class="merah-kecil">Teks ber-class <code>.merah-kecil</code> — sekarang indigo, bukan merah.</p>
+      </div>
+    </div>
+    <p>Enam bulan lagi, dari nama <code>.merah-kecil</code> kamu hanya tahu warnanya dulu merah. Perannya tidak terbaca sama sekali.</p>
+
+    <h2>Nama yang dipakai bab ini</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Nama</th><th>Peran yang terbaca</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>.site-nav</code></td><td>navigasi situs di header</td></tr>
+        <tr><td><code>.hero-title</code></td><td>judul bagian hero</td></tr>
+        <tr><td><code>.produk-card</code></td><td>kartu satu produk di katalog</td></tr>
+        <tr><td><code>.nav-cart</code></td><td>tautan keranjang di navigasi</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Inti pembelajaran:</strong> nama class yang baik membuat HTML dan CSS saling menunjuk tanpa dokumentasi tambahan.</p>
+    <nav class="nav">
+      <a href="03-tiga-selector.html">← 03 tiga-selector</a>
+      <span>04 / 16</span>
+      <a href="05-grouping-descendant.html">05 grouping-descendant →</a>
+    </nav>
+  </div>
+</body>
+</html>

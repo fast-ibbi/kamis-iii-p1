@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 3 · 07 keadaan-link — Dasar-Dasar CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: dua navigasi contoh untuk membandingkan umpan balik fokus */
+  .demo .site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 8px 10px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 15px;
+  }
+  .demo .site-nav a { padding: 4px 8px; text-decoration: none; }
+  .demo .dua-kolom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .demo .kolom {
+    flex: 1 1 260px;
+    padding: 12px 14px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+  }
+  .demo .judul-kolom {
+    margin: 0 0 8px;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+  .demo .petunjuk { margin: 10px 0 0; font-size: 13px; color: #6b7280; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .site-nav a {
+    color: #4F46E5;
+  }
+
+  .site-nav a:hover {
+    color: #4338CA;
+  }
+
+  .site-nav a:focus {
+    outline: 2px solid #4F46E5;
+  }
+
+  .tanpa-fokus a:focus {
+    outline: none;
+  }
+
+  .site-nav a :hover {
+    color: #DC2626;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 3 · Dasar-Dasar CSS</strong> · 07 keadaan-link</p>
+    <h1>Menata Keadaan Link: Umpan Balik Tanpa JavaScript</h1>
+    <p>Tanpa umpan balik, orang ragu tautannya bisa diklik. Gaya fokus jangan dihapus: bagi pengguna keyboard, kotak fokus itulah pengganti kursor.</p>
+
+    <h2>Umpan balik saat kursor dan fokus</h2>
+    <p>Tautan diberi warna identitas, lalu digelapkan saat kursor berada di atasnya. Fokus keyboard diberi kotak garis supaya posisi pengguna selalu terlihat.</p>
+<pre><code class="language-css">.site-nav a {
+  color: #4F46E5;
+}
+
+.site-nav a:hover {
+  color: #4338CA;
+}
+
+.site-nav a:focus {
+  outline: 2px solid #4F46E5;
+}</code></pre>
+    <div class="demo">
+      <nav class="site-nav">
+        <a href="07-keadaan-link.html">Beranda</a>
+        <a href="07-keadaan-link.html">Katalog</a>
+        <a href="07-keadaan-link.html">Tentang</a>
+        <a href="07-keadaan-link.html">Kontak</a>
+      </nav>
+      <p class="petunjuk">Arahkan kursor untuk melihat warna menggelap, lalu tekan Tab untuk melihat kotak fokus.</p>
+    </div>
+
+    <h2>Gaya fokus jangan dihapus</h2>
+    <p>Menghapus <code>outline</code> membuat tampilan terlihat lebih bersih, tetapi pengguna keyboard kehilangan satu-satunya isyarat posisi mereka. Dua navigasi berikut bisa dibandingkan dengan menekan Tab berulang-ulang.</p>
+<pre><code class="language-css">.tanpa-fokus a:focus {
+  outline: none;
+}</code></pre>
+    <div class="demo">
+      <div class="dua-kolom">
+        <div class="kolom">
+          <p class="judul-kolom">dengan kotak fokus</p>
+          <nav class="site-nav">
+            <a href="07-keadaan-link.html">Beranda</a>
+            <a href="07-keadaan-link.html">Katalog</a>
+          </nav>
+        </div>
+        <div class="kolom">
+          <p class="judul-kolom">gaya fokus dihapus</p>
+          <nav class="site-nav tanpa-fokus">
+            <a href="07-keadaan-link.html">Beranda</a>
+            <a href="07-keadaan-link.html">Katalog</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <h2>Spasi mengubah arti: <code>a :hover</code></h2>
+    <p>Menulis <code>a :hover</code> dengan spasi bukan salah ketik yang tidak berakibat. Spasi berarti “di dalam”, jadi aturan itu menyasar keturunan tautan, bukan tautannya sendiri.</p>
+<pre><code class="language-css">.site-nav a :hover {
+  color: #DC2626;
+}</code></pre>
+    <div class="demo">
+      <nav class="site-nav">
+        <a href="07-keadaan-link.html">Beranda</a>
+        <a href="07-keadaan-link.html">Katalog <span>baru</span></a>
+      </nav>
+      <p class="petunjuk">Arahkan kursor ke kata “baru”: hanya kata itu yang memerah. Arahkan ke “Katalog”: tidak ada yang berubah, karena aturan tadi tidak menyasar tautannya.</p>
+    </div>
+    <p><strong>Inti pembelajaran:</strong> dua pseudo-class ini yang membuat tautan terasa bisa diklik dan bisa dijangkau tanpa mouse.</p>
+    <nav class="nav">
+      <a href="06-pseudo-class-dasar.html">← 06 pseudo-class-dasar</a>
+      <span>07 / 16</span>
+      <a href="08-first-last-child.html">08 first-last-child →</a>
+    </nav>
+  </div>
+</body>
+</html>

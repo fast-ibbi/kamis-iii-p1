@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 3 · 03 tiga-selector — Dasar-Dasar CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: wadah contoh dan pembanding dua paragraf */
+  .demo .kotak {
+    padding: 12px 14px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+  }
+  .demo .kotak p { margin: 0 0 8px; font-size: 16px; }
+  .demo .kotak p:last-child { margin-bottom: 0; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  p {
+    color: #334155;
+  }
+
+  .hero-title {
+    color: #4F46E5;
+  }
+
+  #pengantar {
+    background-color: #F8FAFC;
+    border: 1px solid #E2E8F0;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 3 · Dasar-Dasar CSS</strong> · 03 tiga-selector</p>
+    <h1>Tiga Selector Dasar: Elemen, Class, dan ID</h1>
+    <p>Selector elemen menyasar semua elemen bertipe itu, class menyasar gaya yang dipakai ulang, dan ID menyasar satu titik jangkar per halaman. Kalau gaya itu bakal muncul lagi di tempat lain, yang dibutuhkan adalah class.</p>
+
+    <h2>Selector elemen — semua elemen bertipe itu</h2>
+    <p>Satu aturan untuk seluruh paragraf di halaman. Selector elemen tidak melihat konteks, jadi paragraf di footer pun ikut berubah.</p>
+<pre><code class="language-css">p {
+  color: #334155;
+}</code></pre>
+    <div class="demo">
+      <div class="kotak">
+        <p>Paragraf pertama di kotak demo, sewarna dengan paragraf mana pun di halaman ini.</p>
+        <p>Paragraf kedua, kena aturan yang sama.</p>
+      </div>
+    </div>
+
+    <h2>Selector class — gaya yang dipakai ulang</h2>
+    <p>Class ditulis dengan titik di depan namanya dan dipasang lewat atribut <code>class</code>. Elemen yang berbeda tipe bisa berbagi satu class selama perannya sama.</p>
+<pre><code class="language-css">.hero-title {
+  color: #4F46E5;
+}</code></pre>
+    <div class="demo">
+      <div class="kotak">
+        <h2 class="hero-title">Judul hero di Beranda</h2>
+        <p class="hero-title">Kalimat pembuka hero, memakai class yang sama.</p>
+      </div>
+    </div>
+
+    <h2>Selector ID — satu titik jangkar per halaman</h2>
+    <p>ID ditulis dengan tanda pagar dan dipasang lewat atribut <code>id</code>. Satu nilai id hanya boleh muncul sekali dalam satu halaman, jadi ia dipakai untuk jangkar, bukan untuk gaya yang berulang.</p>
+<pre><code class="language-css">#pengantar {
+  background-color: #F8FAFC;
+  border: 1px solid #E2E8F0;
+}</code></pre>
+    <div class="demo">
+      <div class="kotak">
+        <p id="pengantar">Paragraf ber-id <code>pengantar</code>: latarnya panel dan tepinya bergaris.</p>
+        <p>Paragraf tetangga tanpa id: tampil biasa.</p>
+      </div>
+    </div>
+
+    <h2>Memilih di antara ketiganya</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Selector</th><th>Penulisan</th><th>Jangkauan</th><th>Contoh Tokosaya</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>elemen</td><td><code>p</code>, <code>h1</code>, <code>a</code></td><td>semua elemen bertipe itu</td><td>warna dasar paragraf</td></tr>
+        <tr><td>class</td><td><code>.hero-title</code></td><td>elemen mana pun yang memakai class itu</td><td>tombol yang muncul di tiga halaman</td></tr>
+        <tr><td>ID</td><td><code>#pengantar</code></td><td>satu elemen per halaman</td><td>jangkar bagian pengantar</td></tr>
+      </tbody>
+    </table>
+    <p><em>“Kalau gaya itu bakal muncul lagi di tempat lain, yang kamu butuh adalah class.”</em></p>
+    <p><strong>Inti pembelajaran:</strong> class untuk gaya yang berulang, ID untuk yang benar-benar cuma satu.</p>
+    <nav class="nav">
+      <a href="02-tiga-cara-pemasangan.html">← 02 tiga-cara-pemasangan</a>
+      <span>03 / 16</span>
+      <a href="04-kebab-case.html">04 kebab-case →</a>
+    </nav>
+  </div>
+</body>
+</html>

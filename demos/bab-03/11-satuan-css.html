@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 3 · 11 satuan-css — Dasar-Dasar CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: baris pembanding, wadah 400 px untuk contoh persen, dan kerangka contoh em.
+     box-sizing dipasang di sini supaya lebar yang ditulis sama dengan lebar yang benar-benar
+     dirender — angka pada baris hitungan di bawah dihitung dari ukuran terender itu. */
+  .demo .baris {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .demo .kotak-contoh {
+    box-sizing: border-box;
+    padding: 10px 12px;
+    background: #fde68a;
+    border: 1px solid #b45309;
+    border-radius: 4px;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  .demo .bingkai-persen {
+    padding: 10px 12px;
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+  .demo .induk-persen {
+    box-sizing: border-box;
+    max-width: 100%;
+    margin-top: 6px;
+    background: #f1f5f9;
+  }
+  .demo .induk-persen .kotak-contoh { margin-top: 8px; }
+  .demo .teks-em {
+    margin: 0;
+    padding: 6px 10px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .kotak-px {
+    width: 320px;
+  }
+
+  .judul-px {
+    font-size: 32px;
+  }
+
+  .kotak-rem {
+    width: 20rem;
+  }
+
+  .judul-rem {
+    font-size: 2rem;
+  }
+
+  .teks-em {
+    font-size: 1.5em;
+  }
+
+  .induk-persen {
+    width: 400px;
+  }
+
+  .kotak-persen {
+    width: 50%;
+  }
+
+  .banner-vw {
+    width: 30vw;
+  }
+
+  .banner-vh {
+    height: 30vh;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 3 · Dasar-Dasar CSS</strong> · 11 satuan-css</p>
+    <h1>Lima Satuan CSS dan Acuannya</h1>
+    <p>px mengacu pada nilai tetap, % pada kotak induk, em pada font elemen itu sendiri, rem pada font elemen akar, dan vw atau vh pada viewport. Kelimanya alternatif, bukan bertingkat.</p>
+
+    <h2><code>px</code> dan <code>rem</code> — nilai tetap lawan ikut font akar</h2>
+    <p><code>px</code> tidak mengacu ke apa pun; nilainya tetap. <code>rem</code> mengacu pada <code>font-size</code> elemen akar, lazimnya 16px, jadi <code>1rem = 16px</code> dan <code>2rem = 32px</code>.</p>
+<pre><code class="language-css">.kotak-px {
+  width: 320px;
+}
+
+.judul-px {
+  font-size: 32px;
+}
+
+.kotak-rem {
+  width: 20rem;
+}
+
+.judul-rem {
+  font-size: 2rem;
+}</code></pre>
+    <div class="demo">
+      <div class="baris">
+        <div class="kotak-contoh kotak-px">width: 320px</div>
+        <div class="kotak-contoh kotak-rem">width: 20rem</div>
+      </div>
+      <p class="judul-px">32 px dari <code>.judul-px</code></p>
+      <p class="judul-rem">2 rem dari <code>.judul-rem</code></p>
+    </div>
+    <p class="hitung" data-hitung="16px * 20 = 320">Selama font akar 16 px, <code>20rem</code> sama dengan <strong>320 px</strong> — dua kotak di atas berukuran persis sama.</p>
+    <p class="hitung" data-hitung="16px * 2 = 32">Begitu pula <code>2rem</code> sama dengan <strong>32 px</strong>. Kalau pengguna memperbesar font dasar browser, dua nilai <code>rem</code> itu ikut membesar, sedangkan dua nilai <code>px</code> tidak.</p>
+
+    <h2><code>em</code> — ikut font elemen itu sendiri</h2>
+    <p><code>em</code> mengacu pada ukuran font elemen yang memakainya. Karena itu <code>em</code> yang bersarang bisa menumpuk: tiap tingkat mengalikan ukuran tingkat di atasnya.</p>
+<pre><code class="language-css">.teks-em {
+  font-size: 1.5em;
+}</code></pre>
+    <div class="demo">
+      <p class="teks-em">Tingkat 1: 1.5em
+        <span class="teks-em">Tingkat 2: 1.5em <span class="teks-em">Tingkat 3: 1.5em</span></span>
+      </p>
+    </div>
+    <p class="hitung" data-hitung="16 * 1.5 = 24">Dari dasar 16 px, tingkat pertama jadi <strong>24 px</strong>.</p>
+    <p class="hitung" data-hitung="24 * 1.5 = 36">Tingkat kedua jadi <strong>36 px</strong>, dan tingkat ketiga 54 px. Itu sebabnya <code>rem</code> lebih aman untuk ukuran font.</p>
+
+    <h2><code>%</code> — ikut kotak induk</h2>
+    <p>Persentase dihitung dari lebar atau tinggi kotak induk, bukan dari viewport.</p>
+<pre><code class="language-css">.induk-persen {
+  width: 400px;
+}
+
+.kotak-persen {
+  width: 50%;
+}</code></pre>
+    <div class="demo">
+      <div class="bingkai-persen">
+        induk: <code>width: 400px</code>
+        <div class="induk-persen">
+          <div class="kotak-contoh kotak-persen">anak: <code>width: 50%</code></div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="400px / 2 = 200">Anak mengisi separuh induknya: <strong>200 px</strong>, diukur dari kotak induk yang lebarnya 400 px. Kalau induknya menyempit, anaknya ikut menyempit.</p>
+
+    <h2><code>vw</code> dan <code>vh</code> — ikut viewport</h2>
+    <p><code>1vw</code> adalah 1/100 lebar viewport, <code>1vh</code> adalah 1/100 tingginya. Karena bergantung penuh pada layar, keduanya tidak dipakai untuk ukuran font.</p>
+<pre><code class="language-css">.banner-vw {
+  width: 30vw;
+}
+
+.banner-vh {
+  height: 30vh;
+}</code></pre>
+    <div class="demo">
+      <div class="baris">
+        <div class="kotak-contoh banner-vw">width: 30vw</div>
+        <div class="kotak-contoh banner-vh">height: 30vh</div>
+      </div>
+    </div>
+
+    <h2>Memilih satuan sesuai keperluan</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Keperluan</th><th>Satuan disarankan</th><th>Alasan singkat</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ukuran font teks</td><td><code>rem</code></td><td>mengikuti pengaturan pengguna, ramah aksesibilitas</td></tr>
+        <tr><td>Jarak internal kecil</td><td><code>px</code> atau <code>em</code></td><td>tetap, mudah difiksasi terhadap desain</td></tr>
+        <tr><td>Lebar blok konten</td><td><code>%</code></td><td>mengikuti lebar layar</td></tr>
+        <tr><td>Tinggi banner atau hero</td><td><code>vh</code></td><td>mengikuti tinggi layar</td></tr>
+        <tr><td>Ketebalan garis</td><td><code>px</code></td><td>nilai kecil stabil lintas satuan</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Inti pembelajaran:</strong> kelimanya alternatif, bukan bertingkat; pilihan ditentukan kebutuhan.</p>
+    <nav class="nav">
+      <a href="10-warna-bukan-selera.html">← 10 warna-bukan-selera</a>
+      <span>11 / 16</span>
+      <a href="12-kaskade.html">12 kaskade →</a>
+    </nav>
+  </div>
+</body>
+</html>

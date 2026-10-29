@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 3 · 01 anatomi-aturan — Dasar-Dasar CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: kotak contoh aturan dengan bagian-bagian yang diberi warna */
+  .demo .sorot {
+    padding: 12px 14px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .demo .sorot-selector { color: #1d4ed8; font-weight: 600; }
+  .demo .sorot-properti { color: #b45309; }
+  .demo .sorot-nilai { color: #15803d; }
+  .demo .legenda { margin: 10px 0 0; }
+  .demo .chip {
+    display: inline-block;
+    margin-right: 8px;
+    padding: 2px 9px;
+    border-radius: 999px;
+    font-size: 12px;
+  }
+  .demo .chip-selector { background: #dbeafe; color: #1d4ed8; }
+  .demo .chip-properti { background: #fef3c7; color: #b45309; }
+  .demo .chip-nilai { background: #dcfce7; color: #15803d; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  p {
+    color: #334155;
+  }
+
+  h1 {
+    color: #1E293B;
+    font-size: 32px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 3 · Dasar-Dasar CSS</strong> · 01 anatomi-aturan</p>
+    <h1>Anatomi Blok Aturan: Selector dan Blok Deklarasi</h1>
+    <p>CSS bekerja dengan mencocokkan selector ke elemen HTML. Satu blok aturan selalu berbentuk sama — selector, lalu blok deklarasi berisi pasangan properti dan nilai — dan istilah di halaman ini dipakai terus sampai bab-bab berikutnya.</p>
+
+    <h2>Blok aturan dan bagian-bagiannya</h2>
+    <p>Contoh dari deck ditulis untuk elemen <code>h1</code>. Judul halaman ini memakai aturan yang sama, jadi tampil 32 px dan berwarna <code>#1E293B</code>.</p>
+<pre><code class="language-css">/* Satu blok aturan: selector h1 dan blok deklarasinya */
+h1 {
+  color: #1E293B;
+  font-size: 32px;
+}</code></pre>
+    <div class="demo">
+      <div class="sorot"><span class="sorot-selector">h1</span> {<br>&nbsp;&nbsp;<span class="sorot-properti">color</span>: <span class="sorot-nilai">#1E293B</span>;<br>&nbsp;&nbsp;<span class="sorot-properti">font-size</span>: <span class="sorot-nilai">32px</span>;<br>}</div>
+      <p class="legenda"><span class="chip chip-selector">selector</span><span class="chip chip-properti">properti</span><span class="chip chip-nilai">nilai</span></p>
+    </div>
+    <p>Tiap deklarasi ditutup titik koma, termasuk yang paling akhir. Tanpa titik koma, deklarasi yang ditambahkan sesudahnya menyambung ke nilai sebelumnya dan aturan itu berhenti bekerja sebagaimana mestinya.</p>
+
+    <h2>Satu selector, banyak elemen</h2>
+    <p>Selector <code>p</code> cocok dengan semua paragraf, bukan satu saja. Aturan berikut menyentuh dua paragraf di kotak demo sekaligus — dan semua paragraf lain di halaman ini, termasuk paragraf yang sedang kamu baca.</p>
+<pre><code class="language-css">p {
+  color: #334155;
+}</code></pre>
+    <div class="demo">
+      <p>Paragraf pertama di dalam kotak demo.</p>
+      <p>Paragraf kedua di dalam kotak demo.</p>
+    </div>
+    <p>Browser tidak menjalankan CSS dari atas ke bawah seperti program. Ia mengumpulkan aturan, mencocokkan tiap selector ke pohon elemen HTML, lalu memakai hasilnya. Satu aturan bisa melayani berapa pun elemen yang cocok.</p>
+
+    <h2>Titik koma dan heksadesimal enam digit</h2>
+    <p>Proyek Tokosaya konsisten memakai kode heksadesimal enam digit, bukan nama warna. Nilai berikut muncul berulang di seluruh bab.</p>
+    <table class="tabel">
+      <thead>
+        <tr><th>Nilai</th><th>Dipakai untuk</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>#1E293B</code></td><td>tinta judul dan teks tebal</td></tr>
+        <tr><td><code>#334155</code></td><td>teks isi halaman</td></tr>
+        <tr><td><code>#4F46E5</code></td><td>indigo identitas Tokosaya</td></tr>
+        <tr><td><code>#F8FAFC</code></td><td>latar halaman dan panel</td></tr>
+        <tr><td><code>#E2E8F0</code></td><td>garis tepi panel</td></tr>
+      </tbody>
+    </table>
+    <ul>
+      <li><strong>Selector</strong> — bagian sebelum <code>{</code>, penentu elemen mana yang kena.</li>
+      <li><strong>Blok deklarasi</strong> — isi di antara <code>{</code> dan <code>}</code>.</li>
+      <li><strong>Deklarasi</strong> — satu pasangan <code>properti: nilai;</code>.</li>
+      <li><strong>Nilai</strong> — <code>#1E293B</code>, <code>32px</code>, atau nama warna seperti <code>red</code>.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> satu aturan menangani banyak elemen karena browser mencocokkan selector, bukan menjalankan baris kode.</p>
+    <nav class="nav">
+      <span>—</span>
+      <span>01 / 16</span>
+      <a href="02-tiga-cara-pemasangan.html">02 tiga-cara-pemasangan →</a>
+    </nav>
+  </div>
+</body>
+</html>

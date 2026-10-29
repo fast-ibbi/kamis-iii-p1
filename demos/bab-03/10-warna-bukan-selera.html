@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 3 · 10 warna-bukan-selera — Dasar-Dasar CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: panel putih dan bentuk badge, supaya pasangan warnanya yang bicara */
+  .demo .panel {
+    padding: 16px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+  }
+  .demo .badge {
+    display: inline-block;
+    margin: 0 8px 8px 0;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .badge-tersedia {
+    color: #FFFFFF;
+    background-color: #16A34A;
+    border: 1px solid #E2E8F0;
+  }
+
+  .badge-laris {
+    color: #1E293B;
+    background-color: #F59E0B;
+    border: 1px solid #E2E8F0;
+    opacity: 0.95;
+  }
+
+  .badge-laris-putih {
+    color: #FFFFFF;
+    background-color: #F59E0B;
+    border: 1px solid #E2E8F0;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 3 · Dasar-Dasar CSS</strong> · 10 warna-bukan-selera</p>
+    <h1>Warna Bukan Cuma Soal Selera</h1>
+    <p>Dua badge Tokosaya memakai pasangan warna berbeda: teks putih di atas hijau sukses, dan teks gelap di atas amber. Pilihan itu diambil supaya nyaman dibaca, bukan karena selera.</p>
+
+    <h2>Dua badge, dua pasangan warna</h2>
+    <p>Badge “Tersedia” memakai teks putih di atas hijau sukses. Badge “Best Seller” memakai teks gelap di atas amber, dengan transparansi tipis.</p>
+<pre><code class="language-css">.badge-tersedia {
+  color: #FFFFFF;
+  background-color: #16A34A;
+  border: 1px solid #E2E8F0;
+}
+
+.badge-laris {
+  color: #1E293B;
+  background-color: #F59E0B;
+  border: 1px solid #E2E8F0;
+  opacity: 0.95;
+}</code></pre>
+    <div class="demo">
+      <div class="panel">
+        <span class="badge badge-tersedia">Tersedia</span>
+        <span class="badge badge-laris">Best Seller</span>
+      </div>
+    </div>
+
+    <h2>Kenapa teks gelap di atas amber?</h2>
+    <p>Teks putih di atas amber memang terlihat tegas, tetapi batas hurufnya tipis. Teks gelap <code>#1E293B</code> membuat huruf lebih tegas dibaca pada latar yang sama.</p>
+<pre><code class="language-css">.badge-laris-putih {
+  color: #FFFFFF;
+  background-color: #F59E0B;
+  border: 1px solid #E2E8F0;
+}</code></pre>
+    <div class="demo">
+      <div class="panel">
+        <span class="badge badge-laris-putih">Best Seller — teks putih</span>
+        <span class="badge badge-laris">Best Seller — teks gelap</span>
+      </div>
+    </div>
+
+    <h2>Pasangan yang dipakai Tokosaya</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Badge</th><th>Warna teks</th><th>Warna latar</th><th>Catatan</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Tersedia</td><td><code>#FFFFFF</code></td><td><code>#16A34A</code></td><td>hijau sukses, teks putih</td></tr>
+        <tr><td>Best Seller</td><td><code>#1E293B</code></td><td><code>#F59E0B</code></td><td>amber, teks gelap, <code>opacity: 0.95</code></td></tr>
+      </tbody>
+    </table>
+    <p><em>“Jangan memasangkan warna hanya karena menurutmu bedanya udah cukup.”</em></p>
+    <p>Aturan kontras resmi menyusul di Bab 4 dan dikaitkan ke standar WCAG di Bab 13. Untuk sekarang, cukup pegang bahwa keterbacaan lebih dulu, kesan visual kemudian.</p>
+    <p><strong>Inti pembelajaran:</strong> warna dipilih dengan alasan yang bisa dijelaskan, bukan dengan selera.</p>
+    <nav class="nav">
+      <a href="09-empat-properti-inti.html">← 09 empat-properti-inti</a>
+      <span>10 / 16</span>
+      <a href="11-satuan-css.html">11 satuan-css →</a>
+    </nav>
+  </div>
+</body>
+</html>
