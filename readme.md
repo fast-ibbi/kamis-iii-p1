@@ -17,6 +17,20 @@ satu proyek berjalan (studi kasus **Tokosaya**), HTML dan CSS murni tanpa JavaSc
 
 **Website slide:** <https://fast-ibbi.github.io/kamis-iii-p1/>
 
+**Demo penjelasan:** <https://fast-ibbi.github.io/kamis-iii-p1/demos/> — halaman per konsep untuk tiap bab.
+
+**Demo penjelasan:** <https://fast-ibbi.github.io/kamis-iii-p1/demos/> — halaman per konsep untuk tiap bab.
+
+**Demo penjelasan:** <https://fast-ibbi.github.io/kamis-iii-p1/demos/> — halaman per konsep untuk tiap bab.
+
+**Demo penjelasan:** <https://fast-ibbi.github.io/kamis-iii-p1/demos/> — halaman per konsep untuk tiap bab.
+
+**Demo penjelasan:** <https://fast-ibbi.github.io/kamis-iii-p1/demos/> — halaman per konsep untuk tiap bab.
+
+**Demo penjelasan:** <https://fast-ibbi.github.io/kamis-iii-p1/demos/> — halaman per konsep untuk tiap bab.
+
+**Demo penjelasan:** <https://fast-ibbi.github.io/kamis-iii-p1/demos/> — halaman per konsep untuk tiap bab.
+
 ---
 
 ## Indeks Slides
@@ -40,6 +54,34 @@ satu proyek berjalan (studi kasus **Tokosaya**), HTML dan CSS murni tanpa JavaSc
 
 Buka versi **HTML** untuk mengajar (tekan `p` untuk presenter view yang memuat catatan penyaji dan
 timer), atau **PDF** untuk handout, printing, dan unggahan ke LMS.
+
+---
+
+## Demo Penjelasan
+
+Tiap konsep di deck punya satu halaman demo mandiri di `demos/`: kode contoh di atas,
+hasil yang benar-benar dirender di bawahnya, dan hitungan angka yang bisa diperiksa
+sendiri. Semuanya HTML + CSS murni, tanpa JavaScript — sama seperti aturan mata kuliah.
+
+```
+demos/
+  index.html            daftar seluruh bab
+  _vendor/              Bootstrap 5.3.3 + Bootstrap Icons (CSS saja, untuk demo Bab 9–13)
+  bab-01/ … bab-15/     satu folder per bab
+    index.html          daftar demo bab itu
+    01-….html           satu berkas per konsep, bernomor sesuai urutan deck
+```
+
+Demo dibuka langsung tanpa server. Tautan balik ke index ada di kaki setiap halaman,
+dan tautan ke demo juga tersedia di catatan penyaji slide terkait.
+
+**Menjaga demo tetap setia pada deck:**
+
+| Perintah | Yang diperiksa |
+| --- | --- |
+| `npm run check:demos` | kode di halaman sama dengan aturan `<style>`-nya, hitungan `data-hitung` benar, tanpa `<script>`, tautan dan nomor urut hidup |
+| `npm run demos:audit` | halaman benar-benar dirender di Chrome: tidak ada luber atau gulir mendatar di 1280 px |
+| `npm run demos:index` | menulis ulang `index.html` tiap bab dan nomor urut navigasi |
 
 ---
 
@@ -75,6 +117,8 @@ Pembelajaran_, praktikum dari slide praktikum, dan tugas dari slide _Tugas dan R
 
 **Link Slides:** [Bab 1](https://fast-ibbi.github.io/kamis-iii-p1/bab-01-pengantar-frontend-development-dan-web-design) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-01-pengantar-frontend-development-dan-web-design.pdf)
 
+**Demo:** [14 berkas demo Bab 1](https://fast-ibbi.github.io/kamis-iii-p1/demos/bab-01/) — satu berkas per konsep, HTML dan CSS murni tanpa JavaScript.
+
 **Tujuan Pembelajaran:**
 
 1. Menjelaskan definisi dan lingkup kerja _frontend development_.
@@ -99,6 +143,8 @@ Tugas 2 (kelompok) tabel perbandingan dua website layanan.
 
 **Link Slides:** [Bab 2](https://fast-ibbi.github.io/kamis-iii-p1/bab-02-html5-dan-struktur-semantik) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-02-html5-dan-struktur-semantik.pdf)
 
+**Demo:** [14 berkas demo Bab 2](https://fast-ibbi.github.io/kamis-iii-p1/demos/bab-02/) — satu berkas per konsep, HTML dan CSS murni tanpa JavaScript.
+
 **Tujuan Pembelajaran:**
 
 1. Menjelaskan struktur dasar dokumen HTML5 dan metadata penting.
@@ -119,6 +165,8 @@ atau `dl`, lalu menjelaskan pilihan elemen tersebut dalam satu paragraf.
 ### Pertemuan 3 — Dasar-Dasar CSS
 
 **Link Slides:** [Bab 3](https://fast-ibbi.github.io/kamis-iii-p1/bab-03-dasar-dasar-css) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-03-dasar-dasar-css.pdf)
+
+**Demo:** [16 berkas demo Bab 3](https://fast-ibbi.github.io/kamis-iii-p1/demos/bab-03/) — satu berkas per konsep, HTML dan CSS murni tanpa JavaScript.
 
 **Tujuan Pembelajaran:**
 
@@ -142,6 +190,8 @@ berisi tiga keputusan warna beserta alasannya.
 
 **Link Slides:** [Bab 4](https://fast-ibbi.github.io/kamis-iii-p1/bab-04-typography-dan-visual-design-css) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-04-typography-dan-visual-design-css.pdf)
 
+**Demo:** [16 berkas demo Bab 4](https://fast-ibbi.github.io/kamis-iii-p1/demos/bab-04/) — satu berkas per konsep, HTML dan CSS murni tanpa JavaScript.
+
 **Tujuan Pembelajaran:**
 
 1. Peran tipografi untuk keterbacaan, identitas, dan pengalaman pengguna.
@@ -164,6 +214,8 @@ lengkap beserta reset ringkas.
 ### Pertemuan 5 — CSS Box Model dan Layout
 
 **Link Slides:** [Bab 5](https://fast-ibbi.github.io/kamis-iii-p1/bab-05-css-box-model-dan-layout) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-05-css-box-model-dan-layout.pdf)
+
+**Demo:** [17 berkas demo Bab 5](https://fast-ibbi.github.io/kamis-iii-p1/demos/bab-05/) — satu berkas per konsep, HTML dan CSS murni tanpa JavaScript.
 
 **Tujuan Pembelajaran:**
 
@@ -194,6 +246,8 @@ kotak statistik berderet `inline-block`, seluruh jarak dari skala 8 px, dan satu
 
 **Link Slides:** [Bab 6](https://fast-ibbi.github.io/kamis-iii-p1/bab-06-flexbox-untuk-web-layout) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-06-flexbox-untuk-web-layout.pdf)
 
+**Demo:** [15 berkas demo Bab 6](https://fast-ibbi.github.io/kamis-iii-p1/demos/bab-06/) — satu berkas per konsep, HTML dan CSS murni tanpa JavaScript.
+
 **Tujuan Pembelajaran:**
 
 1. Menjelaskan sifat satu dimensi flexbox dan dua sumbunya.
@@ -216,6 +270,8 @@ multi kolom dan media object kontak, plus tangkapan layar pada tiga ukuran jende
 ### Pertemuan 7 — CSS Grid dan Responsive Web Design
 
 **Link Slides:** [Bab 7](https://fast-ibbi.github.io/kamis-iii-p1/bab-07-css-grid-dan-responsive-web-design) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-07-css-grid-dan-responsive-web-design.pdf)
+
+**Demo:** [17 berkas demo Bab 7](https://fast-ibbi.github.io/kamis-iii-p1/demos/bab-07/) — satu berkas per konsep, HTML dan CSS murni tanpa JavaScript.
 
 **Tujuan Pembelajaran:**
 
@@ -249,6 +305,8 @@ tangkapan layar (375, 768, dan 1200 piksel).
 
 **Link Slides:** [Bab 9](https://fast-ibbi.github.io/kamis-iii-p1/bab-09-pengenalan-bootstrap-5) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-09-pengenalan-bootstrap-5.pdf)
 
+**Demo:** [13 berkas demo Bab 9](https://fast-ibbi.github.io/kamis-iii-p1/demos/bab-09/) — satu berkas per konsep, HTML dan CSS murni tanpa JavaScript.
+
 **Tujuan Pembelajaran:**
 
 1. Fungsi, manfaat, dan batasan CSS framework.
@@ -272,6 +330,8 @@ atau berulang, lalu memutuskan utility atau kelas kustom dengan satu kalimat ala
 
 **Link Slides:** [Bab 10](https://fast-ibbi.github.io/kamis-iii-p1/bab-10-komponen-bootstrap) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-10-komponen-bootstrap.pdf)
 
+**Demo:** [16 berkas demo Bab 10](https://fast-ibbi.github.io/kamis-iii-p1/demos/bab-10/) — satu berkas per konsep, HTML dan CSS murni tanpa JavaScript.
+
 **Tujuan Pembelajaran:**
 
 1. Peran komponen siap pakai dalam menekan biaya desain.
@@ -293,6 +353,8 @@ Terlambat memakai `card`, badge semantik, dan ikon Bootstrap Icons.
 ### Pertemuan 11 — Form dan User Interface Design
 
 **Link Slides:** [Bab 11](https://fast-ibbi.github.io/kamis-iii-p1/bab-11-form-dan-user-interface-design) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-11-form-dan-user-interface-design.pdf)
+
+**Demo:** [16 berkas demo Bab 11](https://fast-ibbi.github.io/kamis-iii-p1/demos/bab-11/) — satu berkas per konsep, HTML dan CSS murni tanpa JavaScript.
 
 **Tujuan Pembelajaran:**
 
@@ -318,6 +380,8 @@ bab ini.
 
 **Link Slides:** [Bab 12](https://fast-ibbi.github.io/kamis-iii-p1/bab-12-ui-ux-dan-design-system) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-12-ui-ux-dan-design-system.pdf)
 
+**Demo:** [16 berkas demo Bab 12](https://fast-ibbi.github.io/kamis-iii-p1/demos/bab-12/) — satu berkas per konsep, HTML dan CSS murni tanpa JavaScript.
+
 **Tujuan Pembelajaran:**
 
 1. Prinsip dasar UI: hierarki, konsistensi, usability, affordance.
@@ -337,6 +401,8 @@ berisi sembilan section sebagai satu sumber kebenaran visual proyek.
 ### Pertemuan 13 — Website Responsif dan Accessibility
 
 **Link Slides:** [Bab 13](https://fast-ibbi.github.io/kamis-iii-p1/bab-13-website-responsif-dan-accessibility) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-13-website-responsif-dan-accessibility.pdf)
+
+**Demo:** [16 berkas demo Bab 13](https://fast-ibbi.github.io/kamis-iii-p1/demos/bab-13/) — satu berkas per konsep, HTML dan CSS murni tanpa JavaScript.
 
 **Tujuan Pembelajaran:**
 
@@ -360,6 +426,8 @@ memperbaiki tiga temuan tertinggi.
 
 **Link Slides:** [Bab 14](https://fast-ibbi.github.io/kamis-iii-p1/bab-14-implementasi-desain-figma-ke-html-css) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-14-implementasi-desain-figma-ke-html-css.pdf)
 
+**Demo:** [15 berkas demo Bab 14](https://fast-ibbi.github.io/kamis-iii-p1/demos/bab-14/) — satu berkas per konsep, HTML dan CSS murni tanpa JavaScript.
+
 **Tujuan Pembelajaran:**
 
 1. Alur designer–developer handoff dari prototip desain sampai kode.
@@ -381,6 +449,8 @@ lalu mengimplementasikan keduanya di `produk-wc720.html` memakai token yang sama
 ### Pertemuan 15 — Final Project dan Quality Assurance
 
 **Link Slides:** [Bab 15](https://fast-ibbi.github.io/kamis-iii-p1/bab-15-final-project-dan-quality-assurance) · [PDF](https://fast-ibbi.github.io/kamis-iii-p1/bab-15-final-project-dan-quality-assurance.pdf)
+
+**Demo:** [16 berkas demo Bab 15](https://fast-ibbi.github.io/kamis-iii-p1/demos/bab-15/) — satu berkas per konsep, HTML dan CSS murni tanpa JavaScript.
 
 **Tujuan Pembelajaran:**
 
