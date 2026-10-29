@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 5 · 10 min-height — CSS Box Model dan Layout</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+  .demo .hero {
+    background: #fde68a;
+    outline: 1px dashed #b45309;
+    outline-offset: -1px;
+    font-size: 14px;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .hero {
+    min-height: 300px;
+    padding: 24px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 5 · CSS Box Model dan Layout</strong> · 10 min-height</p>
+    <h1>Mengendalikan Tinggi dengan min-height</h1>
+    <p><code>min-height</code> menetapkan tinggi minimum sebuah elemen tanpa membatasi pertumbuhannya pada ukuran tersebut.</p>
+
+    <h2>Kode</h2>
+<pre><code class="language-css">.hero {
+  min-height: 300px;
+  padding: 24px;
+}</code></pre>
+
+    <h2>Hasil</h2>
+    <div class="demo">
+      <div class="hero">Hero dengan sedikit konten — tinggi tetap 300 px.</div>
+    </div>
+    <div class="demo">
+      <div class="hero">
+        Hero dengan banyak konten. Elemen ini tumbuh melewati 300 px karena isinya tidak
+        dipaksa masuk ke kotak bertinggi tetap. Tambahkan atau hapus satu paragraf lagi dan
+        tingginya ikut berubah tanpa satu pun deklarasi baru.
+      </div>
+    </div>
+    <p class="hitung" data-hitung="300px + 24px*2 = 348">min-height 300 px mengatur tinggi content; padding 24 px × 2 sisi membuat kotak terlihat setinggi <strong>348 px</strong>, dan kotak tetap tumbuh bila isinya bertambah</p>
+
+    <h2>Artinya</h2>
+    <ul>
+      <li>Elemen memiliki tinggi minimum 300 px.</li>
+      <li>Jika konten bertambah, elemen dapat menjadi lebih tinggi.</li>
+      <li>Konten tidak harus dipaksa masuk ke kotak dengan tinggi tetap.</li>
+    </ul>
+
+    <h2>Perbandingan</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Properti</th><th>Fungsi</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>min-height</code></td><td>Menetapkan tinggi minimum</td></tr>
+        <tr><td><code>height</code></td><td>Menetapkan tinggi yang ditentukan</td></tr>
+        <tr><td><code>max-width</code></td><td>Membatasi lebar maksimum</td></tr>
+        <tr><td><code>min-width</code></td><td>Membatasi lebar minimum</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Contoh penggunaan:</strong> hero section, kartu artikel, panel informasi, dan area konten yang panjangnya bervariasi.</p>
+    <nav class="nav">
+      <a href="09-min-max-width.html">← 09 min-width & max-width</a>
+      <span>10 / 17</span>
+      <a href="11-display.html">11 display →</a>
+    </nav>
+  </div>
+</body>
+</html>

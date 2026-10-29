@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 5 · 05 Padding vs margin — CSS Box Model dan Layout</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+  .demo .bingkai {
+    display: flow-root;
+    border: 1px dashed #9ca3af;
+    padding: 4px;
+  }
+  .demo .card {
+    width: 240px;
+    background: #fde68a;
+    font-size: 14px;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .card {
+    padding: 20px;
+    margin: 16px;
+    border: 2px solid steelblue;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 5 · CSS Box Model dan Layout</strong> · 05 Padding vs margin</p>
+    <h1>Perbedaan Padding dan Margin</h1>
+    <p>Keduanya sama-sama mengatur jarak, tetapi memiliki fungsi berbeda.</p>
+
+    <table class="tabel">
+      <thead>
+        <tr><th>Properti</th><th>Fungsi</th><th>Lokasi</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>padding</code></td><td>Memberikan ruang di dalam elemen</td><td>Di antara content dan border</td></tr>
+        <tr><td><code>margin</code></td><td>Memberikan jarak dari elemen lain</td><td>Di luar border</td></tr>
+        <tr><td><code>border</code></td><td>Membentuk garis pembatas</td><td>Mengelilingi content dan padding</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Kode</h2>
+<pre><code class="language-css">.card {
+  padding: 20px;
+  margin: 16px;
+  border: 2px solid steelblue;
+}</code></pre>
+
+    <h2>Hasil</h2>
+    <div class="demo">
+      <div class="bingkai">
+        <div class="card">Konten</div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="20px*2 = 40">padding 20 px × 2 sisi = <strong>40 px</strong> tambahan ukuran kotak; margin 16 px tidak menambah ukuran kotak</p>
+
+    <h2>Penjelasan</h2>
+    <ul>
+      <li>Konten memiliki ruang tambahan 20 px di setiap sisi.</li>
+      <li>Border memiliki ketebalan 2 px.</li>
+      <li>Elemen memiliki jarak luar 16 px di setiap sisi.</li>
+    </ul>
+
+    <h2>Kapan digunakan?</h2>
+    <ul>
+      <li>Gunakan <code>padding</code> agar isi elemen tidak menempel pada tepinya.</li>
+      <li>Gunakan <code>margin</code> untuk mengatur jarak antarkomponen.</li>
+    </ul>
+    <nav class="nav">
+      <a href="04-margin.html">← 04 Margin</a>
+      <span>05 / 17</span>
+      <a href="06-content-box.html">06 content-box →</a>
+    </nav>
+  </div>
+</body>
+</html>

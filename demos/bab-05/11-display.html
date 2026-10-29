@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 5 · 11 display — CSS Box Model dan Layout</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+  .demo .block {
+    background: #fde68a;
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+  .demo .inline {
+    background: #bbf7d0;
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+  .demo .inline-block {
+    background: #dbeafe;
+    padding: 8px;
+    font-size: 14px;
+  }
+  .demo .badge {
+    background: #dbeafe;
+    font-size: 14px;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  div {
+    display: block;
+  }
+
+  span {
+    display: inline;
+  }
+
+  .badge {
+    display: inline-block;
+    width: 100px;
+    padding: 8px;
+  }
+
+  .block {
+    display: block;
+  }
+
+  .inline {
+    display: inline;
+  }
+
+  .inline-block {
+    display: inline-block;
+    width: 120px;
+    padding: 8px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 5 · CSS Box Model dan Layout</strong> · 11 display</p>
+    <h1>Memahami Properti display</h1>
+    <p>Properti <code>display</code> menentukan bagaimana elemen berpartisipasi dalam layout.</p>
+    <p>Tiga nilai dasar yang perlu dipahami:</p>
+    <ol>
+      <li><code>block</code></li>
+      <li><code>inline</code></li>
+      <li><code>inline-block</code></li>
+    </ol>
+
+    <h2><code>display: block</code></h2>
+    <ul>
+      <li>Biasanya dimulai pada baris baru.</li>
+      <li>Secara default, mengambil lebar yang tersedia pada containing block.</li>
+      <li>Mendukung pengaturan <code>width</code> dan <code>height</code>.</li>
+    </ul>
+<pre><code class="language-css">div {
+  display: block;
+}</code></pre>
+    <p>Elemen yang umumnya bersifat block secara default adalah <code>div</code>, <code>section</code>, dan <code>p</code>.</p>
+
+    <h2><code>display: inline</code></h2>
+    <ul>
+      <li>Mengalir bersama teks pada baris yang sama.</li>
+      <li>Tidak membuat baris baru dengan sendirinya.</li>
+      <li><code>width</code> dan <code>height</code> tidak mengatur ukuran kotak inline non-replaced seperti yang dilakukan pada block.</li>
+      <li>Padding dan border horizontal tetap terlihat, sedangkan padding dan border vertikal tidak mengubah tinggi baris seperti elemen block.</li>
+    </ul>
+<pre><code class="language-css">span {
+  display: inline;
+}</code></pre>
+
+    <h2><code>display: inline-block</code></h2>
+    <ul>
+      <li>Dapat berada dalam aliran baris yang sama.</li>
+      <li>Mendukung pengaturan <code>width</code> dan <code>height</code>.</li>
+      <li>Tetap memiliki karakter kotak seperti block.</li>
+    </ul>
+<pre><code class="language-css">.badge {
+  display: inline-block;
+  width: 100px;
+  padding: 8px;
+}</code></pre>
+
+    <h2>Perbandingan</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Karakteristik</th><th><code>block</code></th><th><code>inline</code></th><th><code>inline-block</code></th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Memulai baris baru</td><td>Ya, umumnya</td><td>Tidak</td><td>Tidak, umumnya</td></tr>
+        <tr><td><code>width</code> dan <code>height</code></td><td>Ya</td><td>Tidak untuk inline non-replaced</td><td>Ya</td></tr>
+        <tr><td>Mengikuti aliran teks</td><td>Tidak seperti inline</td><td>Ya</td><td>Ya</td></tr>
+        <tr><td>Cocok untuk</td><td>Container dan bagian halaman</td><td>Teks dan tautan</td><td>Badge dan tombol sebaris</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Contoh HTML</h2>
+<pre><code class="language-html">&lt;div class="block"&gt;Block&lt;/div&gt;
+&lt;span class="inline"&gt;Inline&lt;/span&gt;
+&lt;span class="inline-block"&gt;Inline-block&lt;/span&gt;</code></pre>
+<pre><code class="language-css">.block {
+  display: block;
+}
+
+.inline {
+  display: inline;
+}
+
+.inline-block {
+  display: inline-block;
+  width: 120px;
+  padding: 8px;
+}</code></pre>
+
+    <h2>Hasil</h2>
+    <div class="demo">
+      <p>Teks sebelum <span class="inline">Inline</span> dan teks sesudahnya tetap sebaris.</p>
+      <div class="block">Block</div>
+      <span class="inline-block">Inline-block</span>
+      <span class="badge">Badge</span>
+    </div>
+    <p class="hitung" data-hitung="120px + 8px*2 = 136">inline-block: width 120 px + padding 8 px × 2 = <strong>136 px</strong> lebar total (content-box)</p>
+    <p class="hitung" data-hitung="100px + 8px*2 = 116">badge: width 100 px + padding 8 px × 2 = <strong>116 px</strong> lebar total</p>
+    <p>Keduanya hanya mungkin karena <code>inline-block</code> menghitung <code>width</code> dan padding seperti elemen block.</p>
+
+    <p><strong>Inti pembelajaran:</strong> pilih <code>display</code> berdasarkan perilaku layout yang dibutuhkan, bukan sekadar jenis tag HTML.</p>
+    <nav class="nav">
+      <a href="10-min-height.html">← 10 min-height</a>
+      <span>11 / 17</span>
+      <a href="12-overflow.html">12 overflow →</a>
+    </nav>
+  </div>
+</body>
+</html>

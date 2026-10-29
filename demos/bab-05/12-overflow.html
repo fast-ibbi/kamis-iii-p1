@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 5 · 12 overflow — CSS Box Model dan Layout</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+  .demo .box {
+    width: 240px;
+    background: #fde68a;
+    font-size: 14px;
+  }
+  /* tinggi tetap hanya untuk dua nilai pertama, agar overflow-nya terlihat */
+  .demo.d-visible .box,
+  .demo.d-hidden .box {
+    height: 90px;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  /* pembungkus .d-visible dipakai agar empat nilai bisa tampil berdampingan di satu berkas */
+  .d-visible .box {
+    overflow: visible;
+  }
+
+  .d-hidden .box {
+    overflow: hidden;
+  }
+
+  .d-auto .box {
+    max-height: 200px;
+    overflow: auto;
+  }
+
+  .d-scroll .box {
+    max-height: 200px;
+    overflow: scroll;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 5 · CSS Box Model dan Layout</strong> · 12 overflow</p>
+    <h1>Memahami overflow</h1>
+    <p><code>overflow</code> mengatur apa yang terjadi ketika konten melampaui area kotak, khususnya pada elemen yang memiliki batas ukuran.</p>
+    <p><strong>Nilai yang umum digunakan:</strong></p>
+    <p>Empat nilai di bawah ditampilkan berurutan. Agar semuanya bisa hidup di satu berkas,
+    tiap contoh diberi pembungkus <code>.d-visible</code>, <code>.d-hidden</code>, <code>.d-auto</code>,
+    dan <code>.d-scroll</code>; deklarasi <code>overflow</code>-nya sama dengan slide.</p>
+
+    <h2><code>visible</code></h2>
+    <p>Konten yang melampaui kotak tetap terlihat.</p>
+<pre><code class="language-css">.box {
+  overflow: visible;
+}</code></pre>
+    <div class="demo d-visible">
+      <div class="box">
+        Kotak ini tingginya 90 px. Isi yang lebih panjang tidak dipotong sama sekali —
+        ia menumpang keluar kotak, menutupi elemen di bawahnya.
+      </div>
+    </div>
+
+    <h2><code>hidden</code></h2>
+    <p>Konten yang melampaui area kotak dipotong dan tidak dapat digulir melalui mekanisme overflow tersebut.</p>
+<pre><code class="language-css">.box {
+  overflow: hidden;
+}</code></pre>
+    <div class="demo d-hidden">
+      <div class="box">
+        Kotak ini juga tingginya 90 px. Isi yang lebih panjang dipotong pada batas kotak —
+        tidak ada bilah gulir dan tidak ada cara membaca sisanya.
+      </div>
+    </div>
+
+    <h2><code>auto</code></h2>
+    <p>Browser menyediakan mekanisme scroll ketika diperlukan.</p>
+<pre><code class="language-css">.box {
+  max-height: 200px;
+  overflow: auto;
+}</code></pre>
+    <div class="demo d-auto">
+      <div class="box">
+        Kotak ini dibatasi max-height 200 px, dan isinya sengaja dibuat lebih panjang
+        daripada kotak. Bilah gulir hanya muncul bila isi melebihi kotak — di sini isinya
+        memang melebihi, jadi bilah gulir tersedia.
+        Baris ketiga. Baris keempat. Baris kelima. Baris keenam. Baris ketujuh.
+        Baris kedelapan. Baris kesembilan. Baris kesepuluh. Baris kesebelas.
+        Baris kedua belas. Baris ketiga belas. Baris keempat belas.
+      </div>
+    </div>
+
+    <h2><code>scroll</code></h2>
+    <p>Menjadikan elemen sebagai area scroll; scrollbar dapat ditampilkan meskipun kontennya tidak melampaui kotak, bergantung pada browser dan sistem operasi.</p>
+<pre><code class="language-css">.box {
+  max-height: 200px;
+  overflow: scroll;
+}</code></pre>
+    <div class="demo d-scroll">
+      <div class="box">
+        Kotak ini juga dibatasi max-height 200 px, tetapi ruang bilah gulir selalu
+        disediakan, terlepas dari panjang isinya. Bandingkan dengan auto di atas.
+        Baris ketiga. Baris keempat. Baris kelima. Baris keenam. Baris ketujuh.
+        Baris kedelapan. Baris kesembilan. Baris kesepuluh. Baris kesebelas.
+        Baris kedua belas. Baris ketiga belas. Baris keempat belas.
+      </div>
+    </div>
+    <p><strong>Contoh penggunaan:</strong> panel percakapan, tabel yang panjang, daftar aktivitas, dan kotak dengan tinggi terbatas.</p>
+    <nav class="nav">
+      <a href="11-display.html">← 11 display</a>
+      <span>12 / 17</span>
+      <a href="13-teks-panjang.html">13 Teks panjang →</a>
+    </nav>
+  </div>
+</body>
+</html>

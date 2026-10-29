@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 5 · 07 border-box — CSS Box Model dan Layout</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+  .demo .box {
+    height: 150px;
+    background: #fde68a;
+    font-size: 14px;
+  }
+  /* pembanding: kotak yang sama tanpa border-box, hanya untuk memperlihatkan selisihnya */
+  .demo .box-pembanding {
+    width: 300px;
+    height: 150px;
+    padding: 20px;
+    border: 5px solid #9ca3af;
+    background: #fde68a;
+    font-size: 14px;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .box {
+    box-sizing: border-box;
+    width: 300px;
+    padding: 20px;
+    border: 5px solid black;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 5 · CSS Box Model dan Layout</strong> · 07 border-box</p>
+    <h1>Perhitungan Lebar Total dengan border-box</h1>
+    <p>Dengan <code>box-sizing: border-box</code>, nilai <code>width</code> sudah mencakup content, padding, dan border.</p>
+
+    <h2>Contoh</h2>
+<pre><code class="language-css">.box {
+  box-sizing: border-box;
+  width: 300px;
+  padding: 20px;
+  border: 5px solid black;
+}</code></pre>
+    <div class="demo">
+      <div class="box">border-box: lebar content 250 px</div>
+    </div>
+
+    <h2>Perhitungan</h2>
+<pre><code class="language-text">Lebar total        = 300 px
+Padding horizontal = 40 px
+Border horizontal  = 10 px
+
+Lebar content      = 300 - 40 - 10
+                   = 250 px</code></pre>
+    <p class="hitung" data-hitung="300px - 20px*2 - 5px*2 = 250">300 − (20 × 2) − (5 × 2) = <strong>250 px</strong> lebar content</p>
+
+    <h2>Perbandingan</h2>
+    <div class="demo">
+      <div class="box">border-box: total 300 px</div>
+      <div class="box-pembanding">content-box: total 350 px</div>
+    </div>
+    <p class="hitung" data-hitung="300px + 20px*2 + 5px*2 = 350">content-box: 300 + (20 × 2) + (5 × 2) = <strong>350 px</strong></p>
+
+    <table class="tabel">
+      <thead>
+        <tr><th>Komponen</th><th><code>content-box</code></th><th><code>border-box</code></th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Nilai <code>width</code></td><td>300 px</td><td>300 px</td></tr>
+        <tr><td>Padding horizontal</td><td>40 px</td><td>40 px</td></tr>
+        <tr><td>Border horizontal</td><td>10 px</td><td>10 px</td></tr>
+        <tr><td>Lebar kotak total</td><td>350 px</td><td>300 px</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Kesimpulan:</strong> <code>border-box</code> membuat ukuran luar elemen lebih mudah diprediksi.</p>
+    <nav class="nav">
+      <a href="06-content-box.html">← 06 content-box</a>
+      <span>07 / 17</span>
+      <a href="08-box-sizing-global.html">08 border-box global →</a>
+    </nav>
+  </div>
+</body>
+</html>

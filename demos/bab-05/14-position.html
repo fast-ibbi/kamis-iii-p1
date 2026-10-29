@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 5 · 14 position — CSS Box Model dan Layout</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  /* tabel panjang tidak boleh melebarkan halaman: ia bergulir di dalam kotaknya sendiri */
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+  .demo .box {
+    width: 200px;
+    height: 70px;
+    background: #fde68a;
+    font-size: 14px;
+  }
+  /* bayangan posisi normal, ditumpuk tepat di bawah kotak agar pergeseran terlihat */
+  .demo .bayang {
+    box-sizing: border-box;
+    width: 200px;
+    height: 70px;
+    margin-bottom: -70px;
+    border: 1px dashed #9ca3af;
+    font-size: 14px;
+  }
+  /* top dan left di bawah ini sengaja ditambahkan pada static untuk membuktikan keduanya diabaikan */
+  .demo .d-static .box {
+    top: 8px;
+    left: 8px;
+  }
+  .demo .card {
+    width: 220px;
+    height: 120px;
+    background: #f8fafc;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+  }
+  .demo .badge {
+    background: #1d4ed8;
+    color: #ffffff;
+    padding: 4px 8px;
+    font-size: 13px;
+  }
+  .demo .button-top {
+    background: #1d4ed8;
+    color: #ffffff;
+    padding: 10px 14px;
+    border: 0;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+  /* panel bergulir agar sticky punya ruang untuk menempel */
+  .demo .gulir {
+    height: 200px;
+    overflow-y: auto;
+    padding: 0;
+    border: 1px solid #e5e7eb;
+    background: #ffffff;
+  }
+  .demo .header {
+    background: #eef2ff;
+    border-bottom: 1px solid #c7d2fe;
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+  .demo .gulir p { padding: 0 16px; font-size: 14px; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .box {
+    position: static;
+  }
+
+  /* pembungkus .d-static dan .d-relative dipakai agar kedua nilai bisa tampil berdampingan */
+  .d-static .box {
+    position: static;
+  }
+
+  .d-relative .box {
+    position: relative;
+    top: 8px;
+    left: 8px;
+  }
+
+  .card {
+    position: relative;
+  }
+
+  .badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+  }
+
+  .button-top {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+  }
+
+  .header {
+    position: sticky;
+    top: 0;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 5 · CSS Box Model dan Layout</strong> · 14 position</p>
+    <h1>Memahami Properti position</h1>
+    <p><code>position</code> mengatur metode penempatan elemen.</p>
+
+    <h2><code>static</code></h2>
+    <p>Posisi normal dalam aliran dokumen. Ini merupakan nilai default.</p>
+<pre><code class="language-css">.box {
+  position: static;
+}</code></pre>
+    <p>Kedua contoh pertama diberi pembungkus <code>.d-static</code> dan <code>.d-relative</code>
+    agar bisa tampil bersama. Kotak bergaris putus-putus adalah bayangan posisi normalnya.</p>
+    <div class="demo d-static">
+      <div class="bayang">posisi normal</div>
+      <div class="box">position: static</div>
+    </div>
+    <p class="hitung"><code>top: 8px</code> dan <code>left: 8px</code> ditambahkan pada contoh ini, tetapi kotak <strong>tidak bergeser</strong> — nilai bawaan <code>static</code> mengabaikan keduanya.</p>
+
+    <h2><code>relative</code></h2>
+    <p>Elemen tetap menempati tempatnya dalam aliran dokumen, tetapi dapat digeser dari posisi normalnya.</p>
+<pre><code class="language-css">.box {
+  position: relative;
+  top: 8px;
+  left: 8px;
+}</code></pre>
+    <div class="demo d-relative">
+      <div class="bayang">posisi normal</div>
+      <div class="box">bergeser 8 px</div>
+    </div>
+    <p class="hitung">Kotak bergeser <strong>8 px ke bawah dan 8 px ke kanan</strong>; ruang aslinya tetap dipesan, jadi tetangga tidak ikut bergerak.</p>
+
+    <h2><code>absolute</code></h2>
+    <p>Elemen dikeluarkan dari aliran normal dan diposisikan berdasarkan containing block yang sesuai, sering kali dibentuk oleh ancestor dengan <code>position</code> selain <code>static</code>.</p>
+<pre><code class="language-css">.card {
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}</code></pre>
+    <div class="demo">
+      <div class="card">
+        Kartu produk
+        <span class="badge">Baru</span>
+      </div>
+    </div>
+
+    <h2><code>fixed</code></h2>
+    <p>Elemen umumnya diposisikan terhadap viewport dan tetap berada di tempat yang sama ketika halaman digulir.</p>
+<pre><code class="language-css">.button-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+}</code></pre>
+    <p>Tombol di bawah ini memakai <code>position: fixed</code>. Gulirkan halaman: ia tidak ikut bergerak.</p>
+    <button class="button-top" type="button">Ke atas</button>
+
+    <h2><code>sticky</code></h2>
+    <p>Elemen berperilaku seperti elemen dalam aliran normal sampai mencapai ambang posisi tertentu saat scrolling, lalu dapat menempel dalam batas scroll container yang relevan.</p>
+<pre><code class="language-css">.header {
+  position: sticky;
+  top: 0;
+}</code></pre>
+    <div class="demo">
+      <div class="gulir">
+        <div class="header">Header sticky — top: 0</div>
+        <p>Gulirkan panel ini. Header mengalir seperti biasa sampai menyentuh tepi atas panel, lalu menempel di sana.</p>
+        <p>Baris isi pertama.</p>
+        <p>Baris isi kedua.</p>
+        <p>Baris isi ketiga.</p>
+        <p>Baris isi keempat.</p>
+        <p>Baris isi kelima.</p>
+        <p>Baris isi keenam.</p>
+        <p>Baris isi ketujuh.</p>
+      </div>
+    </div>
+    <nav class="nav">
+      <a href="13-teks-panjang.html">← 13 Teks panjang</a>
+      <span>14 / 17</span>
+      <a href="15-z-index.html">15 z-index →</a>
+    </nav>
+  </div>
+</body>
+</html>
