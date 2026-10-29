@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 11 · 16 Fokus dan urutan tab — Form dan User Interface Design</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung */
+  /* panggung: label dan medan diberi lebar tetap supaya bentuknya terbaca */
+  .demo .banding {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .demo .panel {
+    box-sizing: border-box;
+    width: 336px;
+    font-size: 15px;
+  }
+  .demo .panel label {
+    display: block;
+    margin: 10px 0 4px;
+  }
+  .demo .panel input,
+  .demo .panel select,
+  .demo .panel textarea {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid #9ca3af;
+    font: inherit;
+  }
+  .demo .form-tab {
+    box-sizing: border-box;
+    width: 336px;
+    font-size: 15px;
+  }
+  .demo .form-tab label {
+    display: block;
+    margin: 10px 0 4px;
+  }
+  .demo .form-tab input,
+  .demo .form-tab select,
+  .demo .form-tab textarea {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid #9ca3af;
+    font: inherit;
+  }
+  .demo .form-tab button {
+    margin-top: 12px;
+    padding: 8px 14px;
+    border: 1px solid #1d4ed8;
+    background: #1d4ed8;
+    color: #ffffff;
+    font: inherit;
+  }
+  .demo .catatan { margin: 8px 0 0; font-size: 13px; color: #4b5563; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .medan-fokus:focus-visible {
+    outline: 2px solid #1d4ed8;
+    outline-offset: 2px;
+  }
+
+  .medan-tanpa-fokus:focus {
+    outline: none;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 11 · Form dan User Interface Design</strong> · 16 Fokus dan urutan tab</p>
+    <h1>Fokus Harus Terlihat dan Urutan Tab</h1>
+    <p>Fokus menandai elemen yang aktif sekarang. Pengguna keyboard tidak punya kursor, jadi fokus adalah satu-satunya penunjuk tempat mereka berada.</p>
+
+    <h2>Fokus yang terlihat</h2>
+    <p><code>:focus-visible</code> memunculkan cincin fokus saat medan dicapai lewat navigasi keyboard. Tekan Tab dari medan pertama di bawah ini dan perhatikan cincin birunya.</p>
+<pre><code class="language-css">.medan-fokus:focus-visible {
+  outline: 2px solid #1d4ed8;
+  outline-offset: 2px;
+}</code></pre>
+    <div class="demo">
+      <div class="banding">
+        <div class="panel">
+          <label for="fokus-nama">Nama</label>
+          <input class="medan-fokus" type="text" id="fokus-nama" name="nama">
+          <p class="catatan">Cincin fokus tetap terlihat, jadi pengguna keyboard tahu sedang di medan mana.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Fokus yang dihapus</h2>
+    <p>Kalau cincin fokus dihapus demi tampilan yang tampak bersih, pengguna keyboard kehilangan jejak sama sekali.</p>
+<pre><code class="language-css">.medan-tanpa-fokus:focus {
+  outline: none;
+}</code></pre>
+    <div class="demo">
+      <div class="banding">
+        <div class="panel">
+          <label for="fokus-tel">Telepon</label>
+          <input class="medan-tanpa-fokus" type="tel" id="fokus-tel" name="telepon">
+          <p class="catatan">Tekan Tab ke medan ini: tidak ada tanda apa pun bahwa ia sedang aktif.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Urutan tab mengikuti urutan dokumen</h2>
+    <p>Urutan tab tidak perlu diatur: ia mengikuti susunan elemen di dokumen. Di form kontak Tokosaya, tiap tekan Tab cuma maju satu medan.</p>
+    <div class="demo">
+      <div class="form-tab">
+        <label for="tab-nama">Nama</label>
+        <input type="text" id="tab-nama" name="nama">
+        <label for="tab-telepon">Nomor Telepon</label>
+        <input type="tel" id="tab-telepon" name="telepon">
+        <label for="tab-email">Email</label>
+        <input type="email" id="tab-email" name="email">
+        <label for="tab-kategori">Kategori</label>
+        <select id="tab-kategori" name="kategori">
+          <option>Pertanyaan umum</option>
+          <option>Status pesanan</option>
+        </select>
+        <label for="tab-pesan">Pesan</label>
+        <textarea id="tab-pesan" name="pesan" rows="3"></textarea>
+        <button type="submit">Kirim Pesan</button>
+      </div>
+    </div>
+    <p>Urutan perhentiannya: Nama, Nomor Telepon, Email, Kategori karena <code>select</code> ikut kena Tab, Pesan, lalu tombol Kirim Pesan. Semuanya berurutan sama dengan urutan dokumen, jadi tidak ada satu pun lompatan.</p>
+
+    <h2>Yang perlu diingat</h2>
+    <ul>
+      <li>Jangan menghapus cincin fokus biar tampilan tampak bersih.</li>
+      <li>Hindari <code>tabindex</code> positif; pilihan terbaik justru tanpa <code>tabindex</code>.</li>
+      <li><code>autofocus</code> dipakai hemat, cuma kalau itu memang tugas utama halaman.</li>
+      <li>Urutan visual yang sama dengan urutan dokumen itu keputusan desain.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> fokus yang terlihat dan urutan tab yang wajar adalah dua hal yang sama-sama gratis, dan keduanya hilang begitu ada satu deklarasi <code>outline: none</code> atau satu <code>tabindex</code> positif.</p>
+
+    <nav class="nav">
+      <a href="15-disabled-readonly.html">← 15-disabled-readonly</a>
+      <span>16 / 16</span>
+      <span>—</span>
+    </nav>
+  </div>
+</body>
+</html>

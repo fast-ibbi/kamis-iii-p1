@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 11 · 11 form-text dan pesan status — Form dan User Interface Design</title>
+<link rel="stylesheet" href="../_vendor/bootstrap.min.css">
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung */
+  /* panggung: dua medan disandingkan supaya bedanya terbaca */
+  .demo .banding {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .demo .panel {
+    box-sizing: border-box;
+    width: 420px;
+    font-size: 15px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 11 · Form dan User Interface Design</strong> · 11 form-text dan pesan status</p>
+    <h1>form-text dan Pesan Status: Bantuan atau Peringatan</h1>
+    <p><code>form-text</code> selalu tampil sebagai bantuan permanen. Pesan status muncul cuma kalau isiannya valid atau tidak valid. Keduanya bisa muncul berdampingan di bawah satu medan.</p>
+
+    <h2>Bantuan permanen</h2>
+    <p>Kalimat "Gunakan nomor yang aktif menerima pesan" berlaku terus, bukan cuma saat ada kesalahan. Karena itu tempatnya di <code>form-text</code>, dan ia dihubungkan ke medannya lewat <code>aria-describedby</code>.</p>
+<pre><code class="language-html">&lt;div class="mb-3"&gt;
+  &lt;label for="email" class="form-label"&gt;Alamat Email&lt;/label&gt;
+  &lt;input type="email" class="form-control" id="email" name="email"
+         placeholder="nama@contoh.id" autocomplete="email"
+         aria-describedby="bantuan-email"&gt;
+  &lt;div class="form-text" id="bantuan-email"&gt;
+    Kami membalas ke email ini maksimal satu hari kerja.
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <div class="demo">
+      <div class="banding">
+        <div class="panel">
+          <div class="mb-3">
+            <label for="email" class="form-label">Alamat Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="nama@contoh.id" autocomplete="email" aria-describedby="bantuan-email">
+            <div class="form-text" id="bantuan-email">
+              Kami membalas ke email ini maksimal satu hari kerja.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Pesan status: hanya saat bermasalah</h2>
+    <p><code>is-invalid</code> memberi bingkai merah pada medan bermasalah, dan <code>invalid-feedback</code> baru muncul kalau medannya memakai kelas itu. Perhatikan bahwa medan di bawah tetap punya <code>form-text</code> sendiri.</p>
+<pre><code class="language-html">&lt;div class="mb-3"&gt;
+  &lt;label for="kode-kupon" class="form-label"&gt;Kode Kupon&lt;/label&gt;
+  &lt;input type="text" class="form-control is-invalid" id="kode-kupon"
+         name="kode-kupon" value="TKSA-00"
+         aria-describedby="bantuan-kupon"&gt;
+  &lt;div class="invalid-feedback"&gt;
+    Kode kupon tidak ditemukan. Periksa kembali email promo Anda.
+  &lt;/div&gt;
+  &lt;div class="form-text" id="bantuan-kupon"&gt;Format contoh: TKSA-10.&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <div class="demo">
+      <div class="banding">
+        <div class="panel">
+          <div class="mb-3">
+            <label for="kode-kupon" class="form-label">Kode Kupon</label>
+            <input type="text" class="form-control is-invalid" id="kode-kupon" name="kode-kupon" value="TKSA-00" aria-describedby="bantuan-kupon">
+            <div class="invalid-feedback">
+              Kode kupon tidak ditemukan. Periksa kembali email promo Anda.
+            </div>
+            <div class="form-text" id="bantuan-kupon">Format contoh: TKSA-10.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Status yang sama untuk isian yang benar</h2>
+<pre><code class="language-html">&lt;div class="mb-3"&gt;
+  &lt;label for="nama" class="form-label"&gt;Nama Lengkap&lt;/label&gt;
+  &lt;input type="text" class="form-control is-valid" id="nama"
+         name="nama"&gt;
+  &lt;div class="valid-feedback"&gt;Nama terisi dengan benar.&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <div class="demo">
+      <div class="banding">
+        <div class="panel">
+          <div class="mb-3">
+            <label for="nama" class="form-label">Nama Lengkap</label>
+            <input type="text" class="form-control is-valid" id="nama" name="nama">
+            <div class="valid-feedback">Nama terisi dengan benar.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Yang perlu diingat</h2>
+    <ul>
+      <li><code>is-valid</code> memberi bingkai hijau dan ikon centang.</li>
+      <li><code>is-invalid</code> memberi bingkai merah pada medan bermasalah.</li>
+      <li>Status ini cuma styling statis, bukan verifikasi isian.</li>
+      <li>Verifikasi sungguhan pakai JavaScript Bootstrap, di luar cakupan mata kuliah ini.</li>
+      <li>Teks bantuan yang tidak dihubungkan <code>aria-describedby</code> terdengar seperti paragraf biasa.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> bantuan menjawab "isinya seperti apa", pesan status menjawab "apa yang salah". Pesan kesalahan juga harus ditulis, bukan cuma diwakili warna bingkai.</p>
+
+    <nav class="nav">
+      <a href="10-bootstrap-form-dasar.html">← 10-bootstrap-form-dasar</a>
+      <span>11 / 16</span>
+      <a href="12-input-group.html">12-input-group →</a>
+    </nav>
+  </div>
+</body>
+</html>

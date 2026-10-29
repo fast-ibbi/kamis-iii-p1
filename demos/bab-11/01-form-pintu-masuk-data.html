@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 11 · 01 Form pintu masuk data — Form dan User Interface Design</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung */
+  /* panggung: form contoh diberi lebar tetap supaya bentuknya terbaca */
+  .demo .form-kontak {
+    box-sizing: border-box;
+    width: 336px;
+    font-size: 15px;
+  }
+  .demo .form-kontak label {
+    display: block;
+    margin: 10px 0 4px;
+  }
+  .demo .form-kontak input,
+  .demo .form-kontak select,
+  .demo .form-kontak textarea {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid #9ca3af;
+    font: inherit;
+  }
+  .demo .form-kontak button {
+    margin-top: 12px;
+    padding: 8px 14px;
+    border: 1px solid #1d4ed8;
+    background: #1d4ed8;
+    color: #ffffff;
+    font: inherit;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 11 · Form dan User Interface Design</strong> · 01 Form pintu masuk data</p>
+    <h1>Form Itu Pintu Masuk Data</h1>
+    <p>Form adalah kumpulan kontrol buat mengumpulkan data pengguna, dan isinya terkirim ke sistem sebagai satu kesatuan data. Di situlah layanan digital paling gampang gagal: pengguna datang dengan tujuan yang jelas, tetapi kesabarannya terbatas.</p>
+
+    <h2>Satu form, lima kontrol</h2>
+    <p>Form kontak Tokosaya memuat lima kontrol: input nama, input email, select kategori, textarea pesan, dan tombol Kirim Pesan. Kelimanya menggantung pada satu form, jadi satu alamat keliru di input email sudah cukup bikin balasan Tokosaya nyasar.</p>
+<pre><code class="language-html">&lt;form action="#" method="get"&gt;
+  &lt;label for="nama"&gt;Nama&lt;/label&gt;
+  &lt;input type="text" id="nama" name="nama"&gt;
+
+  &lt;label for="email"&gt;Email&lt;/label&gt;
+  &lt;input type="email" id="email" name="email"&gt;
+
+  &lt;label for="kategori"&gt;Kategori&lt;/label&gt;
+  &lt;select id="kategori" name="kategori"&gt;
+    &lt;option&gt;Pertanyaan umum&lt;/option&gt;
+    &lt;option&gt;Status pesanan&lt;/option&gt;
+  &lt;/select&gt;
+
+  &lt;label for="pesan"&gt;Pesan&lt;/label&gt;
+  &lt;textarea id="pesan" name="pesan" rows="4"&gt;&lt;/textarea&gt;
+
+  &lt;button type="submit"&gt;Kirim Pesan&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+    <div class="demo">
+      <div class="form-kontak">
+        <form action="#" method="get">
+          <label for="nama">Nama</label>
+          <input type="text" id="nama" name="nama">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email">
+          <label for="kategori">Kategori</label>
+          <select id="kategori" name="kategori">
+            <option>Pertanyaan umum</option>
+            <option>Status pesanan</option>
+          </select>
+          <label for="pesan">Pesan</label>
+          <textarea id="pesan" name="pesan" rows="4"></textarea>
+          <button type="submit">Kirim Pesan</button>
+        </form>
+      </div>
+    </div>
+    <p>Perhatikan bahwa label tidak digambar sebagai kontrol: label cuma nama medan. Yang terkirim adalah nilai kelima kontrol tadi, dan validasi browser cuma menyaring format, bukan menjamin isinya benar.</p>
+
+    <h2>Satu kontrol yang tertinggal di luar form</h2>
+    <p>Sekarang input email dipindahkan keluar dari <code>&lt;form&gt;</code>. Di layar ia tetap terlihat seperti medan lain, tetapi ia tidak lagi bagian dari form itu.</p>
+<pre><code class="language-html">&lt;form action="#" method="get"&gt;
+  &lt;label for="nama-b"&gt;Nama&lt;/label&gt;
+  &lt;input type="text" id="nama-b" name="nama"&gt;
+
+  &lt;label for="kategori-b"&gt;Kategori&lt;/label&gt;
+  &lt;select id="kategori-b" name="kategori"&gt;
+    &lt;option&gt;Pertanyaan umum&lt;/option&gt;
+  &lt;/select&gt;
+
+  &lt;label for="pesan-b"&gt;Pesan&lt;/label&gt;
+  &lt;textarea id="pesan-b" name="pesan" rows="4"&gt;&lt;/textarea&gt;
+
+  &lt;button type="submit"&gt;Kirim Pesan&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;!-- di luar form: tidak ikut terkirim --&gt;
+&lt;label for="email-b"&gt;Email&lt;/label&gt;
+&lt;input type="email" id="email-b" name="email"&gt;</code></pre>
+    <div class="demo">
+      <div class="form-kontak">
+        <form action="#" method="get">
+          <label for="nama-b">Nama</label>
+          <input type="text" id="nama-b" name="nama">
+          <label for="kategori-b">Kategori</label>
+          <select id="kategori-b" name="kategori">
+            <option>Pertanyaan umum</option>
+          </select>
+          <label for="pesan-b">Pesan</label>
+          <textarea id="pesan-b" name="pesan" rows="4"></textarea>
+          <button type="submit">Kirim Pesan</button>
+        </form>
+        <label for="email-b">Email</label>
+        <input type="email" id="email-b" name="email">
+      </div>
+    </div>
+    <p>Akibatnya data di basis data jadi tidak lengkap: tim CS harus menebak alamat yang benar. Inilah alasan form disebut pintu masuk data — satu kontrol saja yang tertinggal membuat seluruh isian kehilangan gunanya.</p>
+
+    <h2>Yang perlu diingat</h2>
+    <ul>
+      <li>Form adalah kumpulan kontrol yang terkirim sebagai satu kesatuan data.</li>
+      <li>Label bukan kontrol; ia cuma nama medan, jadi ia tidak ikut terkirim.</li>
+      <li>Kontrol di luar <code>&lt;form&gt;</code> tidak ikut terkirim, walau terlihat sama.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> tugas form adalah mengumpulkan data yang bisa dipakai. Satu kontrol yang salah tempat sudah cukup merusak kesatuan itu, dan itu bukan masalah teknologi, melainkan masalah susunan markup.</p>
+
+    <nav class="nav">
+      <span>—</span>
+      <span>01 / 16</span>
+      <a href="02-satu-kolom.html">02-satu-kolom →</a>
+    </nav>
+  </div>
+</body>
+</html>

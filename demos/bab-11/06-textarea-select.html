@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 11 · 06 Textarea dan select — Form dan User Interface Design</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung */
+  /* panggung: ukuran textarea dipatok supaya hitungan baris di bawah terbaca */
+  .demo .banding {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .demo .kolom {
+    box-sizing: border-box;
+    width: 386px;
+    font-size: 15px;
+  }
+  .demo .kolom label {
+    display: block;
+    margin: 0 0 4px;
+  }
+  .demo .pesan {
+    box-sizing: border-box;
+    width: 346px;
+    padding: 6px 12px;
+    border: 1px solid #9ca3af;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .demo .kategori {
+    box-sizing: border-box;
+    width: 346px;
+    padding: 6px 12px;
+    border: 1px solid #9ca3af;
+    font-size: 16px;
+    line-height: 24px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 11 · Form dan User Interface Design</strong> · 06 Textarea dan select</p>
+    <h1>textarea dan select: Dua Cara Menampung Isian</h1>
+    <p>Dua elemen ini sama-sama menampung isian; yang berbeda bentuk pilihannya. <code>textarea</code> buat isian panjang seperti pesan, <code>select</code> buat pilihan yang sudah jelas dan terbatas.</p>
+
+    <h2><code>textarea</code> — isian panjang</h2>
+    <p>Isi <code>textarea</code> ditulis di antara tag pembuka dan penutup, dan atribut <code>rows</code> mengatur tinggi awalnya. Di sini <code>rows="5"</code> dengan tinggi satu baris 24 px.</p>
+<pre><code class="language-html">&lt;label for="pesan"&gt;Pesan&lt;/label&gt;
+&lt;textarea id="pesan" name="pesan" rows="5"
+          placeholder="Tulis pesan Anda di sini…"&gt;&lt;/textarea&gt;</code></pre>
+    <div class="demo">
+      <div class="banding">
+        <div class="kolom">
+          <label for="pesan">Pesan</label>
+          <textarea class="pesan" id="pesan" name="pesan" rows="5" placeholder="Tulis pesan Anda di sini…"></textarea>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="24px * 5 + 6px + 6px + 1px + 1px = 134">Lima baris × <strong>24 px</strong> = 120 px area tulis, ditambah padding 6 px atas bawah dan bingkai 1 px di tiap sisi: tinggi total <strong>134 px</strong>.</p>
+    <p class="hitung" data-hitung="346px - 12px - 12px - 1px - 1px = 320">Lebar total <strong>346 px</strong> menyisakan area tulis <strong>320 px</strong> setelah padding kiri kanan 12 px dan bingkai 1 px di tiap sisi.</p>
+    <p>Tinggi awal <code>textarea</code> itu cuma <code>rows</code> dikali tinggi satu baris, bukan angka ajaib. Karena <code>rows</code> ikut ukuran font pengguna, form tetap terbaca saat teks diperbesar.</p>
+
+    <h2><code>select</code> — pilihan yang sudah jelas dan terbatas</h2>
+    <p>Kategori produk lebih baik memakai <code>select</code> daripada medan teks: pilihannya jadi seragam, salah ketik berkurang, dan datanya gampang diolah.</p>
+<pre><code class="language-html">&lt;label for="kategori"&gt;Kategori&lt;/label&gt;
+&lt;select id="kategori" name="kategori"&gt;
+  &lt;option value="umum"&gt;Pertanyaan umum&lt;/option&gt;
+  &lt;option value="pesanan"&gt;Status pesanan&lt;/option&gt;
+  &lt;option value="kirim"&gt;Pengiriman&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+    <div class="demo">
+      <div class="banding">
+        <div class="kolom">
+          <label for="kategori">Kategori</label>
+          <select class="kategori" id="kategori" name="kategori">
+            <option value="umum">Pertanyaan umum</option>
+            <option value="pesanan">Status pesanan</option>
+            <option value="kirim">Pengiriman</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <h2>Beda cara menyimpan isi</h2>
+    <ul>
+      <li><code>textarea</code> menyimpan isinya di antara tag pembuka dan penutup.</li>
+      <li><code>input</code> menyimpan isinya di atribut <code>value</code>.</li>
+      <li><code>select</code> menyimpan isinya pada <code>option</code> yang dipilih.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> pilih bentuk isian menurut bentuk datanya. Isian panjang bebas pakai <code>textarea</code>, pilihan terbatas pakai <code>select</code>.</p>
+
+    <nav class="nav">
+      <a href="05-tipe-input.html">← 05-tipe-input</a>
+      <span>06 / 16</span>
+      <a href="07-checkbox-radio.html">07-checkbox-radio →</a>
+    </nav>
+  </div>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 11 · 07 Checkbox dan radio — Form dan User Interface Design</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung */
+  /* panggung: label dan medan diberi lebar tetap supaya bentuknya terbaca */
+  .demo .banding {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .demo .panel {
+    box-sizing: border-box;
+    width: 336px;
+    font-size: 15px;
+  }
+  .demo .panel label {
+    display: block;
+    margin: 10px 0 4px;
+  }
+  .demo .panel input,
+  .demo .panel select,
+  .demo .panel textarea {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid #9ca3af;
+    font: inherit;
+  }
+  .demo .pilihan {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin: 0 0 6px;
+    font-size: 15px;
+  }
+  .demo .pilihan label { margin: 0; }
+  .demo .judul-kelompok {
+    margin: 0 0 8px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 11 · Form dan User Interface Design</strong> · 07 Checkbox dan radio</p>
+    <h1>checkbox dan radio: Beda Aturan, Bukan Beda Mutu</h1>
+    <p>Kedua kontrol ini memakai warna dan bentuk yang sama karena keduanya sama-sama benar. Yang membedakan adalah aturannya, bukan mutunya.</p>
+
+    <h2><code>checkbox</code> — lebih dari satu pilihan sekaligus</h2>
+    <p>Tiap kotak berdiri sendiri, jadi pengguna boleh mencentang satu, dua, atau semuanya. Cocok buat persetujuan dan langganan.</p>
+<pre><code class="language-html">&lt;input type="checkbox" id="info-produk" name="info-produk"&gt;
+&lt;label for="info-produk"&gt;Berlangganan info produk&lt;/label&gt;
+
+&lt;input type="checkbox" id="promo" name="promo"&gt;
+&lt;label for="promo"&gt;Kirim promo bulanan&lt;/label&gt;</code></pre>
+    <div class="demo">
+      <div class="banding">
+        <div class="panel">
+          <p class="judul-kelompok">Langganan</p>
+          <p class="pilihan">
+            <input type="checkbox" id="info-produk" name="info-produk">
+            <label for="info-produk">Berlangganan info produk</label>
+          </p>
+          <p class="pilihan">
+            <input type="checkbox" id="promo" name="promo">
+            <label for="promo">Kirim promo bulanan</label>
+          </p>
+        </div>
+      </div>
+    </div>
+    <p>Coba centang keduanya: tidak ada yang saling membatalkan.</p>
+
+    <h2><code>radio</code> — satu pilihan per kelompok</h2>
+    <p>Radio cuma membolehkan satu pilihan, dan satu kelompok radio wajib memakai <code>name</code> yang sama. Dari <code>name</code> itulah browser tahu pilihannya saling meniadakan.</p>
+<pre><code class="language-html">&lt;input type="radio" id="sesi-pagi" name="sesi" value="pagi"&gt;
+&lt;label for="sesi-pagi"&gt;Sesi pagi&lt;/label&gt;
+
+&lt;input type="radio" id="sesi-siang" name="sesi" value="siang"&gt;
+&lt;label for="sesi-siang"&gt;Sesi siang&lt;/label&gt;
+
+&lt;input type="radio" id="sesi-sore" name="sesi" value="sore"&gt;
+&lt;label for="sesi-sore"&gt;Sesi sore&lt;/label&gt;</code></pre>
+    <div class="demo">
+      <div class="banding">
+        <div class="panel">
+          <p class="judul-kelompok">Sesi ujian</p>
+          <p class="pilihan">
+            <input type="radio" id="sesi-pagi" name="sesi" value="pagi">
+            <label for="sesi-pagi">Sesi pagi</label>
+          </p>
+          <p class="pilihan">
+            <input type="radio" id="sesi-siang" name="sesi" value="siang">
+            <label for="sesi-siang">Sesi siang</label>
+          </p>
+          <p class="pilihan">
+            <input type="radio" id="sesi-sore" name="sesi" value="sore">
+            <label for="sesi-sore">Sesi sore</label>
+          </p>
+        </div>
+      </div>
+    </div>
+    <p>Coba pilih sesi siang setelah sesi pagi: pilihan pertama otomatis lepas. Kalau dua radio sesi ujian salah ditulis jadi checkbox, pengguna bisa memilih pagi dan sore sekaligus, lalu datanya jadi tidak masuk akal.</p>
+
+    <h2>Ringkasan aturan</h2>
+    <ul>
+      <li>Checkbox: boleh lebih dari satu, tiap kotak berdiri sendiri.</li>
+      <li>Radio: satu pilihan per kelompok, dan satu kelompok wajib <code>name</code> yang sama.</li>
+      <li>Bungkus keduanya dengan <code>fieldset</code> kalau masih satu pertanyaan.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> pilihan kontrol mengikuti bentuk jawabannya — jawaban yang boleh lebih dari satu pakai <code>checkbox</code>, jawaban yang meniadakan pakai <code>radio</code>.</p>
+
+    <nav class="nav">
+      <a href="06-textarea-select.html">← 06-textarea-select</a>
+      <span>07 / 16</span>
+      <a href="08-fieldset-legend.html">08-fieldset-legend →</a>
+    </nav>
+  </div>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 11 · 12 Input group — Form dan User Interface Design</title>
+<link rel="stylesheet" href="../_vendor/bootstrap.min.css">
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung */
+  /* panggung: lebar baris dipatok supaya hitungan di bawah terbaca */
+  .demo .banding {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .demo .panel {
+    box-sizing: border-box;
+    width: 460px;
+    font-size: 15px;
+  }
+  .demo .baris-kupon {
+    box-sizing: border-box;
+    width: 416px;
+  }
+  .demo .kupon-medan {
+    flex: 0 0 360px;
+  }
+  .demo .tombol-pakai {
+    box-sizing: border-box;
+    flex: 0 0 56px;
+    padding-inline: 8px;
+    font-size: 13px;
+  }
+  .demo .terpisah {
+    box-sizing: border-box;
+    display: flex;
+    gap: 8px;
+    width: 416px;
+  }
+  .demo .terpisah .form-control {
+    flex: 1 1 auto;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 11 · Form dan User Interface Design</strong> · 12 Input group</p>
+    <h1>input-group: Medan dengan Lampiran</h1>
+    <p><code>input-group</code> menyandingkan medan dengan lampirannya, sehingga konteks isian langsung terbaca dan pengguna tidak perlu menebak.</p>
+
+    <h2>Tanpa input-group: dua elemen yang berdiri sendiri</h2>
+    <p>Medan kupon dan tombol "Pakai" diatur terpisah, jadi batas baris isiannya kabur dan pengguna harus menebak mana yang bagian dari medan.</p>
+<pre><code class="language-html">&lt;label for="kupon-lepas" class="form-label"&gt;Kode Kupon&lt;/label&gt;
+&lt;input type="text" class="form-control" id="kupon-lepas"
+       name="kupon-lepas"&gt;
+&lt;button class="btn btn-primary" type="button"&gt;Pakai&lt;/button&gt;</code></pre>
+    <div class="demo">
+      <div class="banding">
+        <div class="panel">
+          <label for="kupon-lepas" class="form-label">Kode Kupon</label>
+          <div class="terpisah">
+            <input type="text" class="form-control" id="kupon-lepas" name="kupon-lepas">
+            <button class="btn btn-primary" type="button">Pakai</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Dengan input-group: satu baris isian</h2>
+<pre><code class="language-html">&lt;label for="kupon" class="form-label"&gt;Kode Kupon&lt;/label&gt;
+&lt;div class="input-group"&gt;
+  &lt;input type="text" class="form-control" id="kupon" name="kupon"
+         placeholder="TKSA-10"&gt;
+  &lt;button class="btn btn-primary" type="button"&gt;Pakai&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+    <div class="demo">
+      <div class="banding">
+        <div class="panel">
+          <label for="kupon" class="form-label">Kode Kupon</label>
+          <div class="input-group baris-kupon">
+            <input type="text" class="form-control kupon-medan" id="kupon" name="kupon" placeholder="TKSA-10">
+            <button class="btn btn-primary tombol-pakai" type="button">Pakai</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="360px + 56px = 416">Medan kupon <strong>360 px</strong> menempel tombol Pakai <strong>56 px</strong>: lebar baris <strong>416 px</strong>.</p>
+    <p class="hitung" data-hitung="416px - 360px - 56px = 0">Celah antara keduanya <strong>0 px</strong>, jadi tidak ada sisa ruang yang perlu dijelaskan ke pengguna.</p>
+
+    <h2>Lampiran teks statis</h2>
+    <p>Lampiran tidak harus tombol. Teks statis seperti <code>Rp</code> dipasang dengan kelas <code>input-group-text</code>, sehingga pengguna langsung tahu satuannya.</p>
+<pre><code class="language-html">&lt;label for="nominal" class="form-label"&gt;Nominal Top Up&lt;/label&gt;
+&lt;div class="input-group"&gt;
+  &lt;span class="input-group-text"&gt;Rp&lt;/span&gt;
+  &lt;input type="number" class="form-control" id="nominal"
+         name="nominal"&gt;
+&lt;/div&gt;</code></pre>
+    <div class="demo">
+      <div class="banding">
+        <div class="panel">
+          <label for="nominal" class="form-label">Nominal Top Up</label>
+          <div class="input-group">
+            <span class="input-group-text">Rp</span>
+            <input type="number" class="form-control" id="nominal" name="nominal">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Yang perlu diingat</h2>
+    <ul>
+      <li>Lampiran bisa teks statis kayak <code>@</code> atau <code>Rp</code>, bisa juga tombol di ujung medan.</li>
+      <li>Lampiran itu bukan hiasan: ia menerangkan arti kolomnya tanpa instruksi panjang.</li>
+      <li>Tombol di dalam <code>input-group</code> tetap wajib <code>type="button"</code>.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> kalau sebuah isian cuma berarti bersama satuannya, satuan itu tempatnya menempel di medan, bukan di paragraf petunjuk di atasnya.</p>
+
+    <nav class="nav">
+      <a href="11-form-text-dan-status.html">← 11-form-text-dan-status</a>
+      <span>12 / 16</span>
+      <a href="13-layout-row-col.html">13-layout-row-col →</a>
+    </nav>
+  </div>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 11 · 02 Satu kolom — Form dan User Interface Design</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung */
+  /* panggung: label dan medan diberi lebar tetap supaya bentuknya terbaca */
+  .demo .banding {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .demo .panel {
+    box-sizing: border-box;
+    width: 336px;
+    font-size: 15px;
+  }
+  .demo .panel label {
+    display: block;
+    margin: 10px 0 4px;
+  }
+  .demo .panel input,
+  .demo .panel select,
+  .demo .panel textarea {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid #9ca3af;
+    font: inherit;
+  }
+  .demo .medan {
+    box-sizing: border-box;
+    width: 162px;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .pasangan {
+    display: flex;
+    gap: 12px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 11 · Form dan User Interface Design</strong> · 02 Satu kolom</p>
+    <h1>Prinsip Satu Kolom</h1>
+    <p>Mata manusia membaca dengan melompat sedikit melintasi baris, bukan melompat jauh melintasi kolom. Karena itu satu kolom adalah susunan baku form, dan pasangan medan pendek cuma pengecualiannya.</p>
+
+    <h2>Satu kolom</h2>
+    <p>Medan disusun vertikal dari atas ke bawah. Di HP medannya tetap lebar, dan form seperti ini gampang dipindai pembaca layar.</p>
+<pre><code class="language-html">&lt;label for="depan"&gt;Nama Depan&lt;/label&gt;
+&lt;input type="text" id="depan" name="nama-depan"&gt;
+
+&lt;label for="belakang"&gt;Nama Belakang&lt;/label&gt;
+&lt;input type="text" id="belakang" name="nama-belakang"&gt;</code></pre>
+    <div class="demo">
+      <div class="panel">
+        <label for="depan">Nama Depan</label>
+        <input type="text" id="depan" name="nama-depan">
+        <label for="belakang">Nama Belakang</label>
+        <input type="text" id="belakang" name="nama-belakang">
+      </div>
+    </div>
+
+    <h2>Dua kolom untuk pasangan yang sama</h2>
+    <p>Kalau dua medan pendek dipasangkan, keduanya berbagi satu baris. Perhatikan bahwa tiap medan jadi lebih sempit daripada versi satu kolom di atas.</p>
+<pre><code class="language-html">&lt;div class="pasangan"&gt;
+  &lt;div class="medan"&gt;
+    &lt;label for="depan-b"&gt;Nama Depan&lt;/label&gt;
+    &lt;input type="text" id="depan-b" name="nama-depan"&gt;
+  &lt;/div&gt;
+  &lt;div class="medan"&gt;
+    &lt;label for="belakang-b"&gt;Nama Belakang&lt;/label&gt;
+    &lt;input type="text" id="belakang-b" name="nama-belakang"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<pre><code class="language-css">.pasangan {
+  display: flex;
+  gap: 12px;
+}</code></pre>
+    <div class="demo">
+      <div class="panel">
+        <div class="pasangan">
+          <div class="medan">
+            <label for="depan-b">Nama Depan</label>
+            <input type="text" id="depan-b" name="nama-depan">
+          </div>
+          <div class="medan">
+            <label for="belakang-b">Nama Belakang</label>
+            <input type="text" id="belakang-b" name="nama-belakang">
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="162px + 12px + 162px = 336">Dua medan <strong>162 px</strong> dengan celah <strong>12 px</strong> mengisi baris <strong>336 px</strong> — persis selebar panel satu kolom di atas.</p>
+    <p>Lebar barisnya sama, tetapi lebar tiap medan tinggal separuh. Di HP dua kolom bikin medan sempit, sehingga angka dan huruf gampang tertukar.</p>
+
+    <h2>Kapan pasangan dibolehkan</h2>
+    <ul>
+      <li>Hanya untuk pasangan medan pendek, misalnya nama depan dan nama belakang.</li>
+      <li>Medan panjang seperti pesan tetap satu kolom penuh.</li>
+      <li>Di layar kecil, pasangan itu sebaiknya kembali menumpuk.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> satu kolom itu default. Membuat dua kolom adalah pengecualian yang harus punya alasan, dan alasannya tidak pernah sekadar menghemat ruang vertikal.</p>
+
+    <nav class="nav">
+      <a href="01-form-pintu-masuk-data.html">← 01-form-pintu-masuk-data</a>
+      <span>02 / 16</span>
+      <a href="03-label-bukan-placeholder.html">03-label-bukan-placeholder →</a>
+    </nav>
+  </div>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 11 · 13 Layout row dan col — Form dan User Interface Design</title>
+<link rel="stylesheet" href="../_vendor/bootstrap.min.css">
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung */
+  /* panggung: lebar dipatok supaya perilaku kolom pada layar lebar terlihat */
+  .demo .panggung {
+    box-sizing: border-box;
+    width: 720px;
+    max-width: 100%;
+    font-size: 15px;
+  }
+  .demo .keterangan {
+    margin: 8px 0 0;
+    font-size: 13px;
+    color: #4b5563;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 11 · Form dan User Interface Design</strong> · 13 Layout row dan col</p>
+    <h1>Layout: row, col, dan Titik Henti</h1>
+    <p>Dua medan bersebelahan di layar lebar, tetapi menumpuk di HP. Itulah yang diberikan <code>row</code> dan kolom Bootstrap: satu susunan markup, dua perilaku.</p>
+
+    <h2><code>row</code> dan <code>g-3</code></h2>
+    <p><code>row</code> mengelompokkan kolom, dan <code>g-3</code> memberi jarak antar kolom. Di layar selebar medium ke atas, dua kolom <code>col-md-6</code> mengisi separuh baris masing-masing.</p>
+<pre><code class="language-html">&lt;div class="row g-3"&gt;
+  &lt;div class="col-md-6"&gt;
+    &lt;label for="nama-depan" class="form-label"&gt;Nama Depan&lt;/label&gt;
+    &lt;input type="text" class="form-control" id="nama-depan"
+           name="nama-depan" autocomplete="given-name"&gt;
+  &lt;/div&gt;
+  &lt;div class="col-md-6"&gt;
+    &lt;label for="nama-belakang" class="form-label"&gt;Nama Belakang&lt;/label&gt;
+    &lt;input type="text" class="form-control" id="nama-belakang"
+           name="nama-belakang" autocomplete="family-name"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <div class="demo">
+      <div class="panggung">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="nama-depan" class="form-label">Nama Depan</label>
+            <input type="text" class="form-control" id="nama-depan" name="nama-depan" autocomplete="given-name">
+          </div>
+          <div class="col-md-6">
+            <label for="nama-belakang" class="form-label">Nama Belakang</label>
+            <input type="text" class="form-control" id="nama-belakang" name="nama-belakang" autocomplete="family-name">
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="keterangan">Lebarkan dan sempitkan jendela browser: di bawah titik henti md keduanya kembali jadi satu kolom penuh.</p>
+
+    <h2><code>col-6</code>: dua kolom di semua lebar</h2>
+    <p>Bandingkan dengan <code>col-6</code>. Tanpa awalan titik henti, pembagiannya berlaku juga di HP, jadi masing-masing medan cuma dapat separuh layar sempit.</p>
+<pre><code class="language-html">&lt;div class="row g-3"&gt;
+  &lt;div class="col-6"&gt;
+    &lt;label for="depan-kecil" class="form-label"&gt;Nama Depan&lt;/label&gt;
+    &lt;input type="text" class="form-control" id="depan-kecil"
+           name="nama-depan"&gt;
+  &lt;/div&gt;
+  &lt;div class="col-6"&gt;
+    &lt;label for="belakang-kecil" class="form-label"&gt;Nama Belakang&lt;/label&gt;
+    &lt;input type="text" class="form-control" id="belakang-kecil"
+           name="nama-belakang"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <div class="demo">
+      <div class="panggung">
+        <div class="row g-3">
+          <div class="col-6">
+            <label for="depan-kecil" class="form-label">Nama Depan</label>
+            <input type="text" class="form-control" id="depan-kecil" name="nama-depan">
+          </div>
+          <div class="col-6">
+            <label for="belakang-kecil" class="form-label">Nama Belakang</label>
+            <input type="text" class="form-control" id="belakang-kecil" name="nama-belakang">
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="keterangan">Di jendela selebar ini keduanya tampak sama. Persempit jendela sampai di bawah 768 px: versi <code>col-md-6</code> menumpuk jadi satu kolom penuh, sedangkan versi <code>col-6</code> tetap dua kolom sempit.</p>
+
+    <h2>Beda keduanya</h2>
+    <ul>
+      <li><code>col-6</code> tetap membagi layar HP jadi dua bagian sempit.</li>
+      <li><code>col-md-6</code> menumpuk medan sampai lebar medium ke atas.</li>
+      <li>Gutter <code>g-3</code> dan <code>mb-3</code> sebaiknya jangan dicampur di satu area tanpa alasan.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> titik henti itu janji bahwa susunan berubah saat layar berubah. Menulis <code>col-6</code> berarti kamu menjanjikan dua kolom di semua ukuran, termasuk di layar yang tidak muat.</p>
+
+    <nav class="nav">
+      <a href="12-input-group.html">← 12-input-group</a>
+      <span>13 / 16</span>
+      <a href="14-dua-zona-keranjang.html">14-dua-zona-keranjang →</a>
+    </nav>
+  </div>
+</body>
+</html>

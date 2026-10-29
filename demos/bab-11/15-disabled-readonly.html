@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 11 · 15 disabled dan readonly — Form dan User Interface Design</title>
+<link rel="stylesheet" href="../_vendor/bootstrap.min.css">
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung */
+  /* panggung: dua medan disandingkan supaya bedanya terbaca */
+  .demo .banding {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .demo .panel {
+    box-sizing: border-box;
+    width: 300px;
+    font-size: 15px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 11 · Form dan User Interface Design</strong> · 15 disabled dan readonly</p>
+    <h1>disabled dan readonly: Dua Cara Mengunci Isian</h1>
+    <p>Kedua atribut membuat medan tidak bisa diubah, tetapi akibatnya pada pengiriman data berbeda. Yang satu ikut terkirim, yang satu tidak.</p>
+
+    <table class="tabel">
+      <thead>
+        <tr><th>Atribut</th><th>Bisa diubah</th><th>Ikut terkirim</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>disabled</code></td><td>tidak</td><td>tidak</td></tr>
+        <tr><td><code>readonly</code></td><td>tidak</td><td>iya</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Nomor pesanan dan kode promo</h2>
+    <p>Nomor pesanan yang sudah terbit harus ikut terkirim ke server, tetapi tidak boleh diubah — di situlah <code>readonly</code>. Kode promo yang sudah hangus tidak perlu ikut terkirim, jadi ia memakai <code>disabled</code>.</p>
+<pre><code class="language-html">&lt;label for="nomor-pesanan" class="form-label"&gt;Nomor Pesanan&lt;/label&gt;
+&lt;input type="text" class="form-control" id="nomor-pesanan"
+       name="nomor-pesanan" value="TKSA-2026-0187" readonly&gt;
+
+&lt;label for="kode-promo" class="form-label"&gt;Kode Promo&lt;/label&gt;
+&lt;input type="text" class="form-control" id="kode-promo"
+       name="kode-promo" value="HEMAT10" disabled&gt;</code></pre>
+    <div class="demo">
+      <div class="banding">
+        <div class="panel">
+          <label for="nomor-pesanan" class="form-label">Nomor Pesanan</label>
+          <input type="text" class="form-control" id="nomor-pesanan" name="nomor-pesanan" value="TKSA-2026-0187" readonly>
+        </div>
+        <div class="panel">
+          <label for="kode-promo" class="form-label">Kode Promo</label>
+          <input type="text" class="form-control" id="kode-promo" name="kode-promo" value="HEMAT10" disabled>
+        </div>
+      </div>
+    </div>
+    <p>Cobalah mengetik di keduanya: tidak ada yang bisa diubah. Bedanya, medan <code>disabled</code> tampil redup dan nilainya tidak ikut terkirim, sedangkan medan <code>readonly</code> tampil seperti medan biasa dan nilainya tetap terkirim.</p>
+
+    <h2>Aturan praktis</h2>
+    <ul>
+      <li><code>disabled</code> bikin medan tampil redup dan tidak bisa diedit.</li>
+      <li><code>readonly</code> cuma bisa dibaca, isinya tetap terkirim.</li>
+      <li><code>readonly</code> cocok buat nomor pesanan yang sudah terbit.</li>
+      <li><code>select</code> pakai <code>disabled</code>, bukan <code>readonly</code>.</li>
+    </ul>
+    <p>Bootstrap otomatis memberi tampilan berbeda buat kedua atribut ini, jadi tidak perlu kelas tambahan.</p>
+    <p><strong>Inti pembelajaran:</strong> pertanyaan penentunya bukan "boleh diubah atau tidak", melainkan "isinya masih dibutuhkan server atau tidak".</p>
+
+    <nav class="nav">
+      <a href="14-dua-zona-keranjang.html">← 14-dua-zona-keranjang</a>
+      <span>15 / 16</span>
+      <a href="16-fokus-dan-urutan-tab.html">16-fokus-dan-urutan-tab →</a>
+    </nav>
+  </div>
+</body>
+</html>

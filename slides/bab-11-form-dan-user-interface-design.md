@@ -114,6 +114,7 @@ Tekankan kalimat Steve Krug karena itu jadi pegangan seluruh bab. Tanyakan apa
 risikonya buat organisasi kalau pengguna salah mengisi data karena formnya
 membingungkan. Jawaban yang diharapkan: alamat keliru tersimpan di basis data
 dan pesanan gagal diantar.
+Demo: demos/bab-11/01-form-pintu-masuk-data.html — satu form berisi lima kontrol, lalu satu kontrol dipindah ke luar form supaya terlihat ia tidak ikut terkirim.
 -->
 
 ---
@@ -174,6 +175,7 @@ sempit, jadi angka dan huruf gampang tertukar.
 Tanyakan kenapa form dua kolom di HP bikin salah ketik meningkat. Jawaban yang
 diharapkan: medannya jadi sempit, angka dan huruf gampang tertukar. Tutup dengan
 membacakan kalimat di slide.
+Demo: demos/bab-11/02-satu-kolom.html — dua medan yang sama disusun satu kolom lalu dua kolom, dengan lebar tiap medan sebagai bukti.
 -->
 
 ---
@@ -196,6 +198,7 @@ jadi ia cuma buat contoh format.
 
 Tutup dengan menegaskan bahwa label yang terlihat dan placeholder yang berisi
 contoh format itu dua hal berbeda yang saling melengkapi.
+Demo: demos/bab-11/03-label-bukan-placeholder.html — medan yang cuma punya placeholder disandingkan dengan medan yang punya label sekaligus placeholder contoh format.
 -->
 
 ---
@@ -214,6 +217,7 @@ Gunakan halaman keranjang Tokosaya sebagai contoh konkret tiga zona. Tanyakan ap
 yang terjadi kalau ketiga zona itu ditumpuk jadi satu blok tanpa garis dan jarak.
 Jawaban yang diharapkan: pengguna kehilangan tempat berpijak dan nggak tahu
 bagian mana yang harus diperiksa dulu.
+Demo: demos/bab-11/14-dua-zona-keranjang.html — denah 12 kolom dengan Daftar item 8 kolom dan Ringkasan biaya 4 kolom di kanannya.
 -->
 
 ---
@@ -306,6 +310,7 @@ gimana pembaca layar menyebutnya. Jawaban yang diharapkan: cuma "kotak isian"
 tanpa nama. Ingatkan bahwa form bisa tetap terlihat rapi walau aksesibilitasnya
 sudah turun, dan bahwa fokus di medan yang berpindah tadi hasil sambungan
 for–id, bukan kebetulan.
+Demo: demos/bab-11/04-label-for-id.html — klik tulisan labelnya: yang tanpa for tidak memindahkan fokus, yang berpasangan for–id memindahkannya.
 -->
 
 ---
@@ -328,6 +333,7 @@ Tekankan bahwa memilih `type` yang tepat itu keputusan gratis: satu atribut,
 dapat keyboard yang sesuai dan penyaringan isian sekaligus. Tanyakan bedanya
 `type="text"` dan `type="tel"` di HP. Jawaban yang diharapkan: keyboard angka
 muncul sendiri buat `tel`.
+Demo: demos/bab-11/05-tipe-input.html — lima medan dengan markup yang sama, hanya nilai type dan batas min–max yang berbeda.
 -->
 
 ---
@@ -346,6 +352,7 @@ Tunjukkan perbedaan penyimpanan isi: `textarea` di antara tag, `input` di
 atribut `value`. Tanyakan kenapa kategori produk lebih baik pakai `select`
 daripada `text`. Jawaban yang diharapkan: pilihannya jadi seragam sehingga
 datanya gampang diolah. Sebutkan `selected` dan `optgroup` sekilas saja.
+Demo: demos/bab-11/06-textarea-select.html — textarea rows 5 dihitung sampai 346 × 134 px, lalu select kategori dengan pilihan yang seragam.
 -->
 
 ---
@@ -384,6 +391,7 @@ Tanyakan apa akibatnya kalau dua radio sesi ujian salah ditulis jadi checkbox.
 Jawaban yang diharapkan: pengguna bisa memilih pagi dan sore sekaligus, lalu
 datanya jadi nggak masuk akal. Sebutkan juga bahwa checkbox cocok buat
 persetujuan dan langganan.
+Demo: demos/bab-11/07-checkbox-radio.html — tiga checkbox yang boleh dicentang semua disandingkan dengan tiga radio ber-name sama yang saling meniadakan.
 -->
 
 ---
@@ -421,6 +429,7 @@ Jelaskan dengan skenario pembaca layar: pengguna masuk ke radio kedua dan tetap
 mendengar nama kelompoknya. Tanyakan apa judul kelompok yang tepat buat tiga
 radio pilihan pengiriman di keranjang. Jawaban yang diharapkan: "Pilihan
 Pengiriman", persis kayak di kode praktikum.
+Demo: demos/bab-11/08-fieldset-legend.html — tiga radio yang sama, sekali dibiarkan datar dan sekali dibungkus fieldset dengan legend Pilihan Pengiriman.
 -->
 
 ---
@@ -460,6 +469,7 @@ terkirim tanpa sengaja. Tekankan bahwa ini perilaku bawaan HTML, bukan pilihan
 kita, dan satu-satunya penawarnya adalah memberi `type="button"` buat aksi
 visual atau pendamping. Minta mahasiswa memeriksa tombol di file masing-masing
 setelah kelas.
+Demo: demos/bab-11/09-button-type.html — tombol "Pakai" tanpa type mengirim seluruh form, sedangkan versi type="button" berhenti jadi aksi pendamping.
 -->
 
 ---
@@ -526,6 +536,7 @@ Jelaskan bahwa `mb-3` bukan hiasan: pengguna memindai form per unit label plus
 medan, dan jarak antarunit yang membantu. Tanyakan apa yang terjadi kalau semua
 kelompok medan dirapatkan tanpa jarak. Jawaban yang diharapkan: form terasa
 seperti blok abu-abu yang bikin mata cepat lelah.
+Demo: demos/bab-11/10-bootstrap-form-dasar.html — satu kelompok medan HTML polos disandingkan dengan kelompok yang memakai mb-3, form-label, dan form-control.
 -->
 
 ---
@@ -632,6 +643,7 @@ Tanyakan mana yang lebih tepat buat kalimat "Gunakan nomor yang aktif menerima
 pesan": bantuan atau pesan status. Jawaban yang diharapkan: bantuan, karena
 petunjuk itu berlaku terus, bukan cuma pas ada kesalahan. Ingatkan bahwa
 keduanya bisa muncul berdampingan di bawah satu medan.
+Demo: demos/bab-11/11-form-text-dan-status.html — form-text yang selalu tampil, is-invalid dengan invalid-feedback, dan is-valid dengan valid-feedback dalam satu halaman.
 -->
 
 ---
@@ -651,6 +663,7 @@ Gambarkan tiga pemakaian: tanda `@` di depan nama pengguna, satuan `Rp` di depan
 angka, dan tombol "Pakai" buat kode kupon. Tanyakan kenapa lampiran itu bukan
 sekadar hiasan. Jawaban yang diharapkan: pengguna langsung tahu satuan atau
 arti kolomnya tanpa membaca instruksi panjang.
+Demo: demos/bab-11/12-input-group.html — medan kupon 360 px dan tombol Pakai 56 px, sekali terpisah dan sekali menempel jadi baris 416 px.
 -->
 
 ---
@@ -719,6 +732,7 @@ Tanyakan bedanya `col-6` dan `col-md-6` di layar HP. Jawaban yang diharapkan:
 `col-6` tetap membagi layar HP jadi dua bagian sempit, sedangkan `col-md-6`
 menumpuknya sampai lebar medium ke atas. Ingatkan bahwa gutter `g-3` dan
 `mb-3` sebaiknya jangan dicampur di satu area tanpa alasan.
+Demo: demos/bab-11/13-layout-row-col.html — col-md-6 dan col-6 bersebelahan; persempit jendela untuk melihat mana yang menumpuk.
 -->
 
 ---
@@ -771,6 +785,7 @@ Tanyakan mana yang tepat buat nomor pesanan yang harus ikut terkirim ke server.
 Jawaban yang diharapkan: `readonly`, karena isinya dibutuhkan tapi nggak boleh
 diubah. Sebutkan bahwa Bootstrap otomatis memberi tampilan berbeda buat kedua
 atribut itu, jadi nggak perlu kelas tambahan.
+Demo: demos/bab-11/15-disabled-readonly.html — nomor pesanan readonly dan kode promo disabled: dua tampilan, dua akibat pada data yang dikirim.
 -->
 
 ---
@@ -826,6 +841,7 @@ Tanyakan kenapa `tabindex` positif sebaiknya dihindari. Jawaban yang diharapkan:
 nilainya merusak urutan alami dan bikin pengguna keyboard melompat nggak karuan.
 Ingatkan bahwa `autofocus` dipakai hemat, cuma kalau itu memang tugas utama
 halaman.
+Demo: demos/bab-11/16-fokus-dan-urutan-tab.html — cincin fokus yang terlihat disandingkan dengan outline: none, lalu form kontak yang perhentian Tab-nya bisa dihitung.
 -->
 
 ---
@@ -1014,6 +1030,7 @@ cantik, tapi form yang gampang dipakai dan gampang dibaca orang lain.
 - `type` pada `input` menyaring isian tanpa satu pun skrip
 - Pola Bootstrap: `mb-3`, `form-label`, dan `form-control`
 - Status visual statis cuma bentuk; verifikasi aslinya pakai JavaScript
+**Demo:** seluruh konsep bab ini bisa dicoba di [demos/bab-11/index.html](demos/bab-11/index.html).
 
 <!--
 Tutup dengan pesan utama: kualitas data sebuah organisasi bergantung pada

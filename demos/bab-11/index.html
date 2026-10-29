@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo Bab 11 — Form dan User Interface Design</title>
+<style>
+  :root { --ink: #111827; --muted: #6b7280; --accent: #1d4ed8; --border: #e5e7eb; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 48px 20px 64px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: var(--ink);
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 820px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .kepala a { color: var(--accent); text-decoration: none; }
+  h1 { margin: 0 0 10px; font-size: 28px; line-height: 1.25; }
+  .pengantar { margin: 0 0 32px; color: var(--muted); font-size: 16px; }
+  ol { margin: 0; padding: 0; list-style: none; counter-reset: demo; }
+  li {
+    counter-increment: demo;
+    border-top: 1px solid var(--border);
+    padding: 16px 0;
+  }
+  li a {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  li a::before {
+    content: counter(demo, decimal-leading-zero) "  ";
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  li p { margin: 4px 0 0; font-size: 15px; color: var(--muted); }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><a href="../index.html">← Semua bab</a> · Demo Bab 11</p>
+    <h1>Demo Bab 11 — Form dan User Interface Design</h1>
+    <p class="pengantar">16 berkas contoh, satu berkas per konsep slide. Tiap berkas
+    menampilkan kode contoh beserta hasil yang benar-benar dirender, tanpa JavaScript.</p>
+    <ol>
+    <li>
+      <a href="01-form-pintu-masuk-data.html">01 Form pintu masuk data</a>
+      <p>Form adalah kumpulan kontrol buat mengumpulkan data pengguna, dan isinya terkirim ke sistem sebagai satu kesatuan data. Di situlah layanan digital paling gampang gagal: pengguna…</p>
+    </li>
+    <li>
+      <a href="02-satu-kolom.html">02 Satu kolom</a>
+      <p>Mata manusia membaca dengan melompat sedikit melintasi baris, bukan melompat jauh melintasi kolom. Karena itu satu kolom adalah susunan baku form, dan pasangan medan pendek cuma…</p>
+    </li>
+    <li>
+      <a href="03-label-bukan-placeholder.html">03 Label bukan placeholder</a>
+      <p>Label adalah nama medan, dan ia harus terlihat terus. Placeholder cuma contoh isian, jadi ia tidak bisa menggantikan label.</p>
+    </li>
+    <li>
+      <a href="04-label-for-id.html">04 Label, for, dan id</a>
+      <p>Label hanya menjadi nama medan kalau ia terhubung ke medannya. Sambungan itu dibuat oleh pasangan for pada label dan id pada medan, yang nilainya harus sama.</p>
+    </li>
+    <li>
+      <a href="05-tipe-input.html">05 Tipe input</a>
+      <p>Memilih type yang tepat itu keputusan gratis: satu atribut, dan kamu dapat keyboard yang sesuai sekaligus penyaringan isian dari browser.</p>
+    </li>
+    <li>
+      <a href="06-textarea-select.html">06 Textarea dan select</a>
+      <p>Dua elemen ini sama-sama menampung isian; yang berbeda bentuk pilihannya. textarea buat isian panjang seperti pesan, select buat pilihan yang sudah jelas dan terbatas.</p>
+    </li>
+    <li>
+      <a href="07-checkbox-radio.html">07 Checkbox dan radio</a>
+      <p>Kedua kontrol ini memakai warna dan bentuk yang sama karena keduanya sama-sama benar. Yang membedakan adalah aturannya, bukan mutunya.</p>
+    </li>
+    <li>
+      <a href="08-fieldset-legend.html">08 Fieldset dan legend</a>
+      <p>fieldset mengelompokkan medan yang saling berhubungan, dan legend memberi judul buat kelompoknya. Browser serta pembaca layar mengenali keduanya sebagai satu unit.</p>
+    </li>
+    <li>
+      <a href="09-button-type.html">09 Button type</a>
+      <p>Tombol di dalam form punya perilaku bawaan: kalau tidak diberi type, ia dianggap tombol kirim. Ini jebakan yang paling sering kena di praktikum.</p>
+    </li>
+    <li>
+      <a href="10-bootstrap-form-dasar.html">10 Kelas form Bootstrap</a>
+      <p>HTML polos tampil beda antar browser: jaraknya belum konsisten dan hasilnya terasa mentah. Bootstrap merapikannya lewat sekumpulan kelas form, tanpa satu baris gaya baru dari kita.</p>
+    </li>
+    <li>
+      <a href="11-form-text-dan-status.html">11 form-text dan pesan status</a>
+      <p>form-text selalu tampil sebagai bantuan permanen. Pesan status muncul cuma kalau isiannya valid atau tidak valid. Keduanya bisa muncul berdampingan di bawah satu medan.</p>
+    </li>
+    <li>
+      <a href="12-input-group.html">12 Input group</a>
+      <p>input-group menyandingkan medan dengan lampirannya, sehingga konteks isian langsung terbaca dan pengguna tidak perlu menebak.</p>
+    </li>
+    <li>
+      <a href="13-layout-row-col.html">13 Layout row dan col</a>
+      <p>Dua medan bersebelahan di layar lebar, tetapi menumpuk di HP. Itulah yang diberikan row dan kolom Bootstrap: satu susunan markup, dua perilaku.</p>
+    </li>
+    <li>
+      <a href="14-dua-zona-keranjang.html">14 Dua zona keranjang</a>
+      <p>Halaman keranjang Tokosaya dibagi dua belas kolom dan berisi tiga zona. Urutan baca dari atas ke bawah itulah progresnya: pengguna memeriksa item, memilih pengiriman, lalu memba…</p>
+    </li>
+    <li>
+      <a href="15-disabled-readonly.html">15 disabled dan readonly</a>
+      <p>Kedua atribut membuat medan tidak bisa diubah, tetapi akibatnya pada pengiriman data berbeda. Yang satu ikut terkirim, yang satu tidak.</p>
+    </li>
+    <li>
+      <a href="16-fokus-dan-urutan-tab.html">16 Fokus dan urutan tab</a>
+      <p>Fokus menandai elemen yang aktif sekarang. Pengguna keyboard tidak punya kursor, jadi fokus adalah satu-satunya penunjuk tempat mereka berada.</p>
+    </li>
+    </ol>
+  </div>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 11 · 14 Dua zona keranjang — Form dan User Interface Design</title>
+<link rel="stylesheet" href="../_vendor/bootstrap.min.css">
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung */
+  /* panggung: denah 12 kolom diberi lebar tetap supaya pembagiannya terbaca */
+  .demo .denah {
+    box-sizing: border-box;
+    width: 720px;
+    max-width: 100%;
+    font-size: 14px;
+  }
+  .demo .judul-halaman {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .demo .zona {
+    box-sizing: border-box;
+    padding: 12px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+  }
+  .demo .zona-ringkas {
+    background: #f8fafc;
+  }
+  .demo .zona p { margin: 0 0 6px; font-size: 14px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 11 · Form dan User Interface Design</strong> · 14 Dua zona keranjang</p>
+    <h1>Dua Zona Keranjang: 8 + 4 = 12 Kolom</h1>
+    <p>Halaman keranjang Tokosaya dibagi dua belas kolom dan berisi tiga zona. Urutan baca dari atas ke bawah itulah progresnya: pengguna memeriksa item, memilih pengiriman, lalu membaca ringkasan biaya.</p>
+
+    <h2>Denah tiga zona</h2>
+<pre><code class="language-text">div.row.g-4
+  |- div.col-lg-8   : tabel item + fieldset pengiriman
+  `- div.col-lg-4   : kartu ringkasan + kupon + tombol utama</code></pre>
+
+    <h2>Judul dan pengantar halaman</h2>
+    <p>Judul menyebut halaman apa, paragraf pengantar menyebut urutan kerjanya. Dua-duanya memakai kelas Bootstrap yang sudah dikenal: <code>mb-1</code> untuk judul, <code>mb-4</code> untuk jarak ke isi, dan <code>text-body-secondary</code> untuk teks yang lebih tenang.</p>
+<pre><code class="language-html">&lt;h1 class="mb-1"&gt;Keranjang Belanja&lt;/h1&gt;
+&lt;p class="text-body-secondary mb-4"&gt;
+  Tinjau pesanan Anda, pilih pengiriman, lalu lanjutkan ke pembayaran.
+&lt;/p&gt;</code></pre>
+
+    <h2>Dua zona berdampingan</h2>
+<pre><code class="language-html">&lt;div class="row g-4"&gt;
+  &lt;div class="col-lg-8"&gt;
+    &lt;div class="zona"&gt;Daftar item dan pilihan pengiriman&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="col-lg-4"&gt;
+    &lt;div class="zona zona-ringkas"&gt;Ringkasan biaya, kupon, tombol&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <div class="demo">
+      <div class="denah">
+        <div class="mb-1 judul-halaman">Keranjang Belanja</div>
+        <p class="text-body-secondary mb-4">Tinjau pesanan Anda, pilih pengiriman, lalu lanjutkan ke pembayaran.</p>
+        <div class="row g-4">
+          <div class="col-lg-8">
+            <div class="zona">
+              <p>Daftar item</p>
+              <p>Pilihan pengiriman</p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="zona zona-ringkas">
+              <p>Ringkasan biaya</p>
+              <p>Kode kupon</p>
+              <p>Lanjut ke Pembayaran</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="8 + 4 = 12">Daftar item memakai <strong>8</strong> kolom, ringkasan biaya <strong>4</strong> kolom, dan jumlahnya pas dua belas.</p>
+    <p class="hitung" data-hitung="12 - 8 = 4">Delapan kolom Daftar item menyisakan <strong>4</strong> kolom di kanannya, dan di situlah Ringkasan biaya berdiri.</p>
+
+    <h2>Kenapa 8 dan 4</h2>
+    <ul>
+      <li>Daftar item perlu ruang buat nama produk dan harga, jadi ia dapat 8 kolom.</li>
+      <li>Ringkasan biaya cukup buat beberapa angka, jadi 4 kolom sudah lapang.</li>
+      <li>Di HP keduanya menumpuk: item dulu, ringkasan sesudahnya.</li>
+      <li>Tombol "Lanjut ke Pembayaran" jadi satu-satunya tombol utama halaman.</li>
+    </ul>
+    <p>Yang membuat progres terlihat bukan garis hiasan, melainkan urutan baca: Daftar item dulu, Pilihan pengiriman sesudahnya, Ringkasan biaya terakhir. Halamannya cuma tiga zona, jadi jangan menambah zona keempat yang tidak ada di keranjang Tokosaya.</p>
+    <p><strong>Inti pembelajaran:</strong> pengelompokan bekerja karena tiap zona menempati track yang bisa dihitung sendiri, dan urutan membacanya sama dengan urutan berpikir pengguna.</p>
+
+    <nav class="nav">
+      <a href="13-layout-row-col.html">← 13-layout-row-col</a>
+      <span>14 / 16</span>
+      <a href="15-disabled-readonly.html">15-disabled-readonly →</a>
+    </nav>
+  </div>
+</body>
+</html>

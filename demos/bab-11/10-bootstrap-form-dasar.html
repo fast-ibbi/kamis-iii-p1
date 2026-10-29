@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 11 · 10 Kelas form Bootstrap — Form dan User Interface Design</title>
+<link rel="stylesheet" href="../_vendor/bootstrap.min.css">
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung */
+  /* panggung: dua panel disandingkan supaya bedanya terbaca */
+  .demo .banding {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .demo .panel {
+    box-sizing: border-box;
+    width: 360px;
+    font-size: 15px;
+  }
+  .demo .kelompok {
+    box-sizing: border-box;
+    width: 360px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 11 · Form dan User Interface Design</strong> · 10 Kelas form Bootstrap</p>
+    <h1>Kelas Form Bootstrap: Merapikan Tanpa Menulis Gaya dari Nol</h1>
+    <p>HTML polos tampil beda antar browser: jaraknya belum konsisten dan hasilnya terasa mentah. Bootstrap merapikannya lewat sekumpulan kelas form, tanpa satu baris gaya baru dari kita.</p>
+
+    <h2>HTML polos</h2>
+<pre><code class="language-html">&lt;label for="email-polos"&gt;Alamat Email&lt;/label&gt;
+&lt;input type="email" id="email-polos" name="email-polos"&gt;</code></pre>
+    <div class="demo">
+      <div class="banding">
+        <div class="panel">
+          <label for="email-polos">Alamat Email</label>
+          <input type="email" id="email-polos" name="email-polos">
+        </div>
+      </div>
+    </div>
+
+    <h2>Dengan kelas Bootstrap</h2>
+    <p>Tiga kelas menyelesaikan tiga hal sekaligus: <code>mb-3</code> memberi jarak antar kelompok medan, <code>form-label</code> mengatur tipografi label, dan <code>form-control</code> menyeragamkan tampilan medan.</p>
+<pre><code class="language-html">&lt;div class="mb-3"&gt;
+  &lt;label for="email-rapi" class="form-label"&gt;Alamat Email&lt;/label&gt;
+  &lt;input type="email" class="form-control" id="email-rapi"
+         name="email-rapi" autocomplete="email"&gt;
+&lt;/div&gt;</code></pre>
+    <div class="demo">
+      <div class="banding">
+        <div class="kelompok">
+          <div class="mb-3">
+            <label for="email-rapi" class="form-label">Alamat Email</label>
+            <input type="email" class="form-control" id="email-rapi" name="email-rapi" autocomplete="email">
+          </div>
+          <div class="mb-3">
+            <label for="kota-rapi" class="form-label">Kota</label>
+            <input type="text" class="form-control" id="kota-rapi" name="kota-rapi" autocomplete="address-level2">
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="0 + 0 + 16px + 0 = 16"><code>mb-3</code> cuma menambah margin bawah <strong>16 px</strong>, jadi jaraknya 0 0 16 0 px.</p>
+    <p class="hitung" data-hitung="360px + 0 + 0 = 360">Karena margin vertikal tidak menambah lebar kotak, lebar kelompok medan tetap <strong>360 px</strong>.</p>
+    <p class="hitung" data-hitung="360px + 16px + 360px = 736">Dua panel berdampingan dengan celah <strong>16 px</strong> memakai <strong>736 px</strong> lebar halaman.</p>
+
+    <h2>Kelas form yang kamu pakai</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Kelas</th><th>Dipasang pada</th><th>Peran</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>mb-3</code></td><td>pembungkus kelompok</td><td>jarak antar kelompok medan</td></tr>
+        <tr><td><code>form-label</code></td><td><code>label</code></td><td>tipografi dan jarak label</td></tr>
+        <tr><td><code>form-control</code></td><td><code>input</code>, <code>textarea</code></td><td>gaya medan isian</td></tr>
+        <tr><td><code>form-select</code></td><td><code>select</code></td><td>gaya pilihan tarik-turun</td></tr>
+        <tr><td><code>form-text</code></td><td>pembungkus kecil</td><td>teks bantuan di bawah medan</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Kenapa jarak itu bukan hiasan</h2>
+    <p>Pengguna memindai form per unit label plus medan. Kalau semua kelompok dirapatkan tanpa jarak, form terasa seperti satu blok abu-abu panjang dan mata cepat lelah. <code>mb-3</code> yang membuat unit itu terbaca satu per satu.</p>
+    <p><code>select</code> punya kelas sendiri, <code>form-select</code>, karena struktur dalamnya memang berbeda dari medan teks. Checkbox dan radio memakai <code>form-check-input</code> serta <code>form-check-label</code>.</p>
+    <p><strong>Inti pembelajaran:</strong> pola dasarnya cuma tiga kelas — <code>mb-3</code>, <code>form-label</code>, dan <code>form-control</code> — dan pola itu diulang di hampir semua medan Tokosaya.</p>
+
+    <nav class="nav">
+      <a href="09-button-type.html">← 09-button-type</a>
+      <span>10 / 16</span>
+      <a href="11-form-text-dan-status.html">11-form-text-dan-status →</a>
+    </nav>
+  </div>
+</body>
+</html>

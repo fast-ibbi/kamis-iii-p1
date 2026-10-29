@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 11 · 09 Button type — Form dan User Interface Design</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung */
+  /* panggung: label dan medan diberi lebar tetap supaya bentuknya terbaca */
+  .demo .banding {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .demo .panel {
+    box-sizing: border-box;
+    width: 336px;
+    font-size: 15px;
+  }
+  .demo .panel label {
+    display: block;
+    margin: 10px 0 4px;
+  }
+  .demo .panel input,
+  .demo .panel select,
+  .demo .panel textarea {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid #9ca3af;
+    font: inherit;
+  }
+  .demo .aksi {
+    display: flex;
+    gap: 8px;
+    margin: 10px 0 0;
+  }
+  .demo .aksi button {
+    padding: 7px 14px;
+    border: 1px solid #9ca3af;
+    background: #ffffff;
+    font: inherit;
+    font-size: 14px;
+  }
+  .demo .catatan { margin: 8px 0 0; font-size: 13px; color: #4b5563; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 11 · Form dan User Interface Design</strong> · 09 Button type</p>
+    <h1>button dan Perilaku Bawaannya</h1>
+    <p>Tombol di dalam form punya perilaku bawaan: kalau tidak diberi <code>type</code>, ia dianggap tombol kirim. Ini jebakan yang paling sering kena di praktikum.</p>
+
+    <h2>Lupa <code>type</code>: aksi pendamping ikut mengirim form</h2>
+    <p>Bidang kupon di keranjang Tokosaya punya tombol "Pakai" di sebelah medannya. Tanpa <code>type</code>, tombol itu masih di dalam form, jadi menekannya mengirim seluruh form.</p>
+<pre><code class="language-html">&lt;form action="#" method="get"&gt;
+  &lt;label for="kupon-a"&gt;Kode Kupon&lt;/label&gt;
+  &lt;input type="text" id="kupon-a" name="kupon"&gt;
+  &lt;button&gt;Pakai&lt;/button&gt;
+  &lt;button type="submit"&gt;Kirim Pesan&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+    <div class="demo">
+      <div class="panel">
+        <form action="#" method="get">
+          <label for="kupon-a">Kode Kupon</label>
+          <input type="text" id="kupon-a" name="kupon">
+          <div class="aksi">
+            <button>Pakai</button>
+            <button type="submit">Kirim Pesan</button>
+          </div>
+        </form>
+        <p class="catatan">Tekan "Pakai": seluruh form terkirim dan halaman memuat ulang dengan parameter di URL.</p>
+      </div>
+    </div>
+
+    <h2><code>type="button"</code>: aksi pendamping berhenti jadi tombol kirim</h2>
+<pre><code class="language-html">&lt;form action="#" method="get"&gt;
+  &lt;label for="kupon-b"&gt;Kode Kupon&lt;/label&gt;
+  &lt;input type="text" id="kupon-b" name="kupon"&gt;
+  &lt;button type="button"&gt;Pakai&lt;/button&gt;
+  &lt;button type="submit"&gt;Kirim Pesan&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+    <div class="demo">
+      <div class="panel">
+        <form action="#" method="get">
+          <label for="kupon-b">Kode Kupon</label>
+          <input type="text" id="kupon-b" name="kupon">
+          <div class="aksi">
+            <button type="button">Pakai</button>
+            <button type="submit">Kirim Pesan</button>
+          </div>
+        </form>
+        <p class="catatan">Tekan "Pakai": tidak terjadi apa-apa. Hanya "Kirim Pesan" yang mengirim form.</p>
+      </div>
+    </div>
+
+    <h2>Tombol aksi yang jelas</h2>
+    <ul>
+      <li>Satu tombol utama per halaman, jangan dua yang bergaya sama.</li>
+      <li>Label tombol menyatakan akibatnya: "Kirim Pesan", bukan "OK" atau "Submit".</li>
+      <li>Tombol pendamping selalu diberi <code>type="button"</code>.</li>
+      <li>Tombol ganda bergaya sama bikin pengguna berpikir dua kali.</li>
+    </ul>
+    <p>Perilaku ini bawaan HTML, bukan pilihan kita. Satu-satunya penawarnya adalah memberi <code>type="button"</code> buat aksi visual atau pendamping.</p>
+    <p><strong>Inti pembelajaran:</strong> label "OK" memaksa pengguna menebak apa yang bakal terjadi, dan tombol tanpa <code>type</code> membuat seluruh form terkirim tanpa sengaja.</p>
+
+    <nav class="nav">
+      <a href="08-fieldset-legend.html">← 08-fieldset-legend</a>
+      <span>09 / 16</span>
+      <a href="10-bootstrap-form-dasar.html">10-bootstrap-form-dasar →</a>
+    </nav>
+  </div>
+</body>
+</html>
