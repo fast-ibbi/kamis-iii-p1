@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 14 · 04 istilah-figma-dan-padanan — Implementasi Desain Figma ke HTML/CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: dua panel berdampingan dan kosmetik kotak contoh */
+  .demo .papan {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .demo .papan > * {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .demo .label {
+    margin: 0 0 8px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+  .demo .model {
+    box-sizing: border-box;
+    padding: 12px;
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+    border-radius: 6px;
+    font-size: 13px;
+  }
+  .demo .hasil {
+    box-sizing: border-box;
+    padding: 12px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+  }
+  .demo .baris-spek {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 4px 0;
+    border-bottom: 1px dotted #d1d5db;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12.5px;
+    color: #1E293B;
+  }
+  .demo .baris-spek:last-child { border-bottom: 0; }
+  .demo .nilai { color: #4F46E5; font-weight: 600; }
+  .demo .padanan-anak {
+    font-size: 12.5px;
+    color: #334155;
+    text-align: center;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .padanan-baris {
+    display: flex;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .padanan-anak {
+    box-sizing: border-box;
+    flex: 1 1 0;
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  .kotak-fill {
+    background-color: #F8FAFC;
+  }
+
+  .kotak-stroke {
+    border: 1px solid #E2E8F0;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 14 · Implementasi Desain Figma ke HTML/CSS</strong> · 04 istilah-figma-dan-padanan</p>
+    <h1>Istilah Figma dan Padanannya di CSS</h1>
+    <p>Satu tabel terjemahan menyelamatkan banyak praktikum: istilah Figma di kiri, padanan CSS di kanan. Yang ditampilkan di bawah bukan daftar hafalan, tapi pasangan yang bisa langsung diperiksa di panel kanan Figma lalu ditulis sebagai properti.</p>
+
+    <h2>Auto layout, fill, dan stroke yang benar-benar dirender</h2>
+    <p>Panel kiri menyebut keputusan desainnya, panel kanan memasang properti CSS-nya. Kotak tengah diberi fill, kotak kanan diberi stroke — keduanya tidak saling menggantikan.</p>
+<pre><code class="language-css">.padanan-baris {
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.padanan-anak {
+  box-sizing: border-box;
+  flex: 1 1 0;
+  padding: 12px;
+  border-radius: 12px;
+}
+
+.kotak-fill {
+  background-color: #F8FAFC;
+}
+
+.kotak-stroke {
+  border: 1px solid #E2E8F0;
+}</code></pre>
+    <div class="demo">
+      <div class="papan">
+        <div>
+          <p class="label">model spesifikasi</p>
+          <div class="model">
+            <div class="baris-spek"><span>auto layout</span><span class="nilai">flex, gap 16 px</span></div>
+            <div class="baris-spek"><span>fill</span><span class="nilai">background-color</span></div>
+            <div class="baris-spek"><span>stroke</span><span class="nilai">border 1 px</span></div>
+            <div class="baris-spek"><span>gap dan padding</span><span class="nilai">gap 16, padding 12</span></div>
+          </div>
+        </div>
+        <div>
+          <p class="label">hasil HTML + CSS</p>
+          <div class="hasil">
+            <div class="padanan-baris">
+              <div class="padanan-anak">tanpa fill</div>
+              <div class="padanan-anak kotak-fill">fill</div>
+              <div class="padanan-anak kotak-stroke">stroke</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="16px * 2 = 32">Tiga kotak menyisakan dua celah: <strong>32 px</strong> terpakai untuk jarak, sisanya dibagi rata oleh <code>flex: 1 1 0</code>.</p>
+
+    <h2>Tabel padanan lengkap</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Di Figma</th><th>Makna</th><th>Padanan HTML/CSS</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Frame</td><td>kanvas satu layar perangkat</td><td><code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code></td></tr>
+        <tr><td>Layer atau grup</td><td>objek dan pengelompokannya</td><td>elemen seperti <code>&lt;header&gt;</code></td></tr>
+        <tr><td>Auto layout</td><td>penataan anak otomatis</td><td>Flexbox: <code>display: flex</code>, <code>gap</code></td></tr>
+        <tr><td>Fill dan stroke</td><td>warna latar dan garis tepi</td><td><code>background-color</code>, <code>border</code></td></tr>
+        <tr><td>Gap dan padding</td><td>jarak antaranak dan tepi</td><td><code>gap</code>, <code>padding</code></td></tr>
+      </tbody>
+    </table>
+    <p>Perhatikan baris terakhir: <code>gap</code> dan <code>padding</code> dipisah karena keduanya mengatur jarak yang berbeda — satu antaranak, satu ke tepi.</p>
+
+    <h2>Membaca panel kanan Figma</h2>
+    <ul>
+      <li>Pilih satu elemen di tiap area besar, lalu catat lebar dan tingginya.</li>
+      <li>Cek isi fill serta stroke di panel kanan sebelum menulis satu properti pun.</li>
+      <li>Kalau ada dua nilai jarak yang mirip, tanyakan mana padding dan mana gap.</li>
+      <li>Istilah Figma dan istilah CSS tetap beda; jangan mencampurnya di komentar kode.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> tabel ini bukan kamus hafalan, melainkan jembatan. Yang dibaca dari Figma adalah keputusan, yang ditulis di CSS adalah properti — dan pasangannya sudah tetap.</p>
+    <nav class="nav">
+      <a href="03-frame-dan-layer.html">← 03 frame-dan-layer</a>
+      <span>04 / 15</span>
+      <a href="05-auto-layout-itu-flexbox.html">05 auto-layout-itu-flexbox →</a>
+    </nav>
+  </div>
+</body>
+</html>

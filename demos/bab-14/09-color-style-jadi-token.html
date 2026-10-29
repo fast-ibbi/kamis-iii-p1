@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 14 · 09 color-style-jadi-token — Implementasi Desain Figma ke HTML/CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: dua panel berdampingan dan kisi swatch bernama */
+  .demo .papan {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .demo .papan > * {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .demo .label {
+    margin: 0 0 8px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+  .demo .model {
+    box-sizing: border-box;
+    padding: 12px;
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+    border-radius: 6px;
+    font-size: 13px;
+  }
+  .demo .hasil {
+    box-sizing: border-box;
+    padding: 12px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+  }
+  .demo .baris-spek {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 4px 0;
+    border-bottom: 1px dotted #d1d5db;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    color: #1E293B;
+  }
+  .demo .baris-spek:last-child { border-bottom: 0; }
+  .demo .nilai { color: var(--clr-primary); font-weight: 600; }
+  .demo .swatch-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  .demo .swatch {
+    box-sizing: border-box;
+    padding: 6px;
+    background: #ffffff;
+    border: 1px solid var(--clr-border);
+    border-radius: 6px;
+    font-size: 11px;
+    color: #334155;
+  }
+  .demo .kotak-warna {
+    height: 36px;
+    margin-bottom: 6px;
+    border-radius: 4px;
+  }
+  .demo .sw-primary { background-color: var(--clr-primary); }
+  .demo .sw-accent { background-color: var(--clr-accent); }
+  .demo .sw-dark { background-color: var(--clr-dark); }
+  .demo .sw-body { background-color: var(--clr-body); }
+  .demo .sw-bg { background-color: var(--clr-bg); border: 1px solid var(--clr-border); }
+  .demo .sw-surface { background-color: var(--clr-surface); border: 1px solid var(--clr-border); }
+  .demo .sw-border { background-color: var(--clr-border); }
+  .demo .nama-token {
+    margin: 0;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 11px;
+    color: var(--clr-dark);
+  }
+  .demo .badge-token { font-size: 12px; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  :root {
+    --clr-primary: #4F46E5;
+    --clr-accent: #F59E0B;
+    --clr-dark: #1E293B;
+    --clr-body: #334155;
+    --clr-bg: #F8FAFC;
+    --clr-surface: #FFFFFF;
+    --clr-border: #E2E8F0;
+  }
+
+  .badge-token {
+    background-color: var(--clr-accent);
+    color: var(--clr-dark);
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 14 · Implementasi Desain Figma ke HTML/CSS</strong> · 09 color-style-jadi-token</p>
+    <h1>Color Style Jadi Token di Blok <code>:root</code></h1>
+    <p>Panel Local styles di Figma cuma punya dua cabang: text style dan color style. Contoh isinya, text style memuat Title 1 32 px sampai Caption 14 px, sedangkan color style memuat <code>Warna/Primary</code> <code>#4F46E5</code> dan <code>Warna/Body</code> <code>#334155</code>.</p>
+
+    <h2>Nama gaya jadi nama variabel</h2>
+    <p>Nama color style dan nama variabel memang beda, tapi hex-nya sama persis. Hex dipindahkan apa adanya, satu kali saja, di blok <code>:root</code>. Sesudah itu komponen tinggal memanggil <code>var()</code>.</p>
+<pre><code class="language-css">:root {
+  --clr-primary: #4F46E5;
+  --clr-accent: #F59E0B;
+  --clr-dark: #1E293B;
+  --clr-body: #334155;
+  --clr-bg: #F8FAFC;
+  --clr-surface: #FFFFFF;
+  --clr-border: #E2E8F0;
+}
+
+.badge-token {
+  background-color: var(--clr-accent);
+  color: var(--clr-dark);
+}</code></pre>
+    <div class="demo">
+      <div class="papan">
+        <div>
+          <p class="label">model spesifikasi · color style</p>
+          <div class="model">
+            <div class="baris-spek"><span>Warna/Primary</span><span class="nilai">#4F46E5</span></div>
+            <div class="baris-spek"><span>Warna/Accent</span><span class="nilai">#F59E0B</span></div>
+            <div class="baris-spek"><span>Warna/Dark</span><span class="nilai">#1E293B</span></div>
+            <div class="baris-spek"><span>Warna/Body</span><span class="nilai">#334155</span></div>
+            <div class="baris-spek"><span>Warna/BG</span><span class="nilai">#F8FAFC</span></div>
+            <div class="baris-spek"><span>Warna/Surface</span><span class="nilai">#FFFFFF</span></div>
+            <div class="baris-spek"><span>Warna/Border</span><span class="nilai">#E2E8F0</span></div>
+          </div>
+        </div>
+        <div>
+          <p class="label">hasil HTML + CSS</p>
+          <div class="hasil">
+            <div class="swatch-grid">
+              <div class="swatch">
+                <div class="kotak-warna sw-primary"></div>
+                <p class="nama-token">--clr-primary</p>
+              </div>
+              <div class="swatch">
+                <div class="kotak-warna sw-accent"></div>
+                <p class="nama-token">--clr-accent</p>
+              </div>
+              <div class="swatch">
+                <div class="kotak-warna sw-dark"></div>
+                <p class="nama-token">--clr-dark</p>
+              </div>
+              <div class="swatch">
+                <div class="kotak-warna sw-body"></div>
+                <p class="nama-token">--clr-body</p>
+              </div>
+              <div class="swatch">
+                <div class="kotak-warna sw-bg"></div>
+                <p class="nama-token">--clr-bg</p>
+              </div>
+              <div class="swatch">
+                <div class="kotak-warna sw-surface"></div>
+                <p class="nama-token">--clr-surface</p>
+              </div>
+              <div class="swatch">
+                <div class="kotak-warna sw-border"></div>
+                <p class="nama-token">--clr-border</p>
+              </div>
+              <div class="swatch">
+                <span class="badge-token">Best Seller</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Dua cabang panel Local styles</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Cabang</th><th>Isi</th><th>Jadi apa di CSS</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>text style</td><td>Title 1 32 px sampai Caption 14 px</td><td>ukuran, ketebalan, dan line-height di kelas</td></tr>
+        <tr><td>color style</td><td><code>Warna/Primary</code> <code>#4F46E5</code>, <code>Warna/Body</code> <code>#334155</code></td><td>variabel di blok <code>:root</code></td></tr>
+      </tbody>
+    </table>
+
+    <h2>Yang perlu diingat</h2>
+    <ul>
+      <li>Warna dipindahkan satu kali saja; sesudah itu semua komponen memanggil <code>var()</code>.</li>
+      <li>Cabang yang sama di Figma bisa berisi belasan gaya; yang dipilih hanya yang benar-benar dipakai <code>produk.html</code>.</li>
+      <li>Nama variabel mengikuti peran, bukan warnanya: <code>--clr-primary</code> tetap masuk akal kalau indigo kelak diganti hijau.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> perubahan desain cukup disalin di satu blok, dan semua badge ikut berubah. Itu keuntungan yang tidak bisa didapat dari hex yang ditulis langsung di tiap selector.</p>
+    <nav class="nav">
+      <a href="08-text-style-jadi-tipografi.html">← 08 text-style-jadi-tipografi</a>
+      <span>09 / 15</span>
+      <a href="10-lima-langkah-translasi.html">10 lima-langkah-translasi →</a>
+    </nav>
+  </div>
+</body>
+</html>

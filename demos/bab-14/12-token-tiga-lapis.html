@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 14 · 12 token-tiga-lapis — Implementasi Desain Figma ke HTML/CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: tiga lapis ditumpuk sebagai model, lalu hasil render berdampingan */
+  .demo .label {
+    margin: 0 0 8px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+  .demo .lapis {
+    box-sizing: border-box;
+    margin-bottom: 8px;
+    padding: 10px 12px;
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+    border-radius: 6px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    color: #1E293B;
+  }
+  .demo .lapis strong {
+    display: block;
+    margin-bottom: 4px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    font-size: 12.5px;
+    color: #4F46E5;
+  }
+  .demo .dua-kotak {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .demo .dua-kotak > * {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .demo .kotak-tema {
+    box-sizing: border-box;
+    padding: 12px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+  }
+  .demo .badge-lapis {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .demo .catatan-tema {
+    margin: 6px 0 0;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 11.5px;
+    color: #6b7280;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  :root {
+    --clr-primary: #4F46E5;
+  }
+
+  .tema-ganti {
+    --clr-primary: #16A34A;
+  }
+
+  .badge-lapis {
+    background-color: var(--clr-primary);
+    color: #FFFFFF;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 14 · Implementasi Desain Figma ke HTML/CSS</strong> · 12 token-tiga-lapis</p>
+    <h1>Token Tiga Lapis, Nama Mengikuti Peran</h1>
+    <p>Token di proyek ini hidup di tiga lapis. Lapis satu adalah color style dan text style di Figma. Lapis dua adalah blok <code>:root</code> di <code>css/style.css</code>. Lapis tiga adalah pemakaiannya di kelas komponen lewat nilai token.</p>
+
+    <h2>Tiga lapis untuk satu nilai</h2>
+    <p>Model di bawah menyusun ketiga lapis dari atas ke bawah. Yang berpindah antarlapis cuma satu hal: nilai <code>#4F46E5</code>. Namanya berubah dari <code>Warna/Primary</code> jadi <code>--clr-primary</code>, lalu dipanggil <code>var()</code> di kelas komponen.</p>
+    <div class="demo">
+      <p class="label">model spesifikasi · tiga lapis</p>
+      <div class="lapis">
+        <strong>Lapis 1 · Figma</strong>
+        color style Warna/Primary #4F46E5 · text style Heading/Title 1
+      </div>
+      <div class="lapis">
+        <strong>Lapis 2 · css/style.css</strong>
+        :root { --clr-primary: #4F46E5; }
+      </div>
+      <div class="lapis">
+        <strong>Lapis 3 · kelas komponen</strong>
+        .produk-harga { color: var(--clr-primary); }
+      </div>
+    </div>
+
+    <h2>Satu blok diubah, semua komponen ikut</h2>
+    <p>Aturan emasnya: nama variabel mengikuti peran, bukan warnanya. <code>--clr-primary</code> tetap masuk akal kalau indigo kelak diganti hijau. Contoh di bawah mengganti nilainya di satu tempat saja — kelas komponennya tidak disentuh.</p>
+<pre><code class="language-css">:root {
+  --clr-primary: #4F46E5;
+}
+
+.tema-ganti {
+  --clr-primary: #16A34A;
+}
+
+.badge-lapis {
+  background-color: var(--clr-primary);
+  color: #FFFFFF;
+}</code></pre>
+    <div class="demo">
+      <div class="dua-kotak">
+        <div class="kotak-tema">
+          <p class="label">token asli</p>
+          <span class="badge-lapis">Best Seller</span>
+          <p class="catatan-tema">--clr-primary: #4F46E5</p>
+        </div>
+        <div class="kotak-tema tema-ganti">
+          <p class="label">satu blok diganti</p>
+          <span class="badge-lapis">Best Seller</span>
+          <p class="catatan-tema">--clr-primary: #16A34A</p>
+        </div>
+      </div>
+    </div>
+    <p>Markup kedua badge itu sama persis; yang berbeda hanya nilai variabel pada pembungkusnya. Nilai hijau di sini contoh hipotetis — diambil dari <code>--clr-success</code> palet Tokosaya supaya tidak ada warna karangan baru.</p>
+
+    <h2>Yang perlu diingat</h2>
+    <ul>
+      <li>Nilai token dipakai lewat CSS kustom; ia tidak menimpa utilitas Bootstrap diam-diam.</li>
+      <li>Menimpa variabel tema Bootstrap adalah pilihan resmi, tapi periksa nama variabelnya di dokumentasi versi 5.3 — namanya bisa berubah antarversi.</li>
+      <li>Kalau nilai yang sama dipakai lebih dari dua kali, ia layak jadi token.</li>
+      <li>Kalau nama token menyebut warna (<code>--ungu</code>), artinya perannya belum jelas.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> tiga lapis ini yang membuat seluruh halaman bergerak barengan saat desain diperbarui. Cukup blok <code>:root</code> yang disalin ulang; nama kelas dan komponennya tidak perlu berubah.</p>
+    <nav class="nav">
+      <a href="11-component-mapping-tokosaya.html">← 11 component-mapping-tokosaya</a>
+      <span>12 / 15</span>
+      <a href="13-tanpa-hex-di-luar-root.html">13 tanpa-hex-di-luar-root →</a>
+    </nav>
+  </div>
+</body>
+</html>

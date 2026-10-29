@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 14 · 01 handoff-angka-bukan-gambar — Implementasi Desain Figma ke HTML/CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: dua panel berdampingan — kiri model spesifikasi, kanan hasil render */
+  .demo .papan {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .demo .papan > * {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .demo .label {
+    margin: 0 0 8px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+  .demo .model {
+    box-sizing: border-box;
+    padding: 12px;
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+    border-radius: 6px;
+    font-size: 13px;
+  }
+  .demo .hasil {
+    box-sizing: border-box;
+    padding: 12px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+  }
+  .demo .baris-spek {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 4px 0;
+    border-bottom: 1px dotted #d1d5db;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12.5px;
+    color: #1E293B;
+  }
+  .demo .baris-spek:last-child { border-bottom: 0; }
+  .demo .nilai { color: #4F46E5; font-weight: 600; }
+  /* kosmetik kartu: warna dan garis saja, ukuran pelajarannya dari blok kode di bawah */
+  .demo .kartu-panel {
+    background: #ffffff;
+    border: 1px solid #E2E8F0;
+    font-size: 12.5px;
+    color: #334155;
+  }
+  .demo .kartu-panel p { margin: 0 0 6px; font-size: 12.5px; }
+  .demo .kartu-panel p:last-child { margin-bottom: 0; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .papan-handoff {
+    display: flex;
+    gap: 24px;
+  }
+
+  .judul-panel {
+    margin: 0 0 12px;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  .kartu-panel {
+    box-sizing: border-box;
+    padding: 24px;
+    border-radius: 12px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 14 · Implementasi Desain Figma ke HTML/CSS</strong> · 01 handoff-angka-bukan-gambar</p>
+    <h1>Handoff: Angka yang Disebut, Bukan Gambar yang Ditaksir</h1>
+    <p>Desainer Tokosaya mengirim frame <code>P-DETAIL-01</code>. Kalau yang diterima cuma tangkapan layar, semua ukuran ditaksir mata lalu direvisi berkali-kali. Handoff yang benar menyerahkan keputusan: angka ukuran yang bisa disalin apa adanya ke CSS.</p>
+
+    <h2>Model spesifikasi dan hasil kodenya</h2>
+    <p>Panel kiri adalah <em>model spesifikasi</em> — bukan tangkapan layar Figma, hanya angka yang dibaca dari panel desain. Panel kanan adalah hasil HTML dan CSS yang benar-benar dirender dari angka yang sama.</p>
+    <div class="demo">
+      <div class="papan">
+        <div>
+          <p class="label">model spesifikasi</p>
+          <div class="model">
+            <div class="baris-spek"><span>frame</span><span class="nilai">1440 px</span></div>
+            <div class="baris-spek"><span>kontainer</span><span class="nilai">1140 px</span></div>
+            <div class="baris-spek"><span>judul</span><span class="nilai">32 px</span></div>
+            <div class="baris-spek"><span>gutter</span><span class="nilai">24 px</span></div>
+            <div class="baris-spek"><span>radius</span><span class="nilai">12 px</span></div>
+          </div>
+        </div>
+        <div>
+          <p class="label">hasil HTML + CSS</p>
+          <div class="hasil">
+            <p class="judul-panel">Keyboard Mekanis KX-210</p>
+            <div class="papan-handoff">
+              <div class="kartu-panel">
+                <p>judul 32 px</p>
+                <p>isi kartu</p>
+              </div>
+              <div class="kartu-panel">
+                <p>gutter 24 px</p>
+                <p>radius 12 px</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Angka yang disalin ke CSS</h2>
+    <p>Tiga aturan di atas sudah cukup menerjemahkan empat angka spesifikasi: ukuran judul, jarak antarkartu, dan sudut tumpul. Tidak ada satu pun nilai yang ditaksir.</p>
+<pre><code class="language-css">.papan-handoff {
+  display: flex;
+  gap: 24px;
+}
+
+.judul-panel {
+  margin: 0 0 12px;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.kartu-panel {
+  box-sizing: border-box;
+  padding: 24px;
+  border-radius: 12px;
+}</code></pre>
+    <p class="hitung" data-hitung="32px * 1.25 = 40">Judul 32 px dengan <code>line-height: 1.25</code> memesan kotak baris <strong>40 px</strong>. Angka 40 itu juga tertulis di panel desain, jadi bisa dicocokkan dengan panel Computed Chrome.</p>
+
+    <h2>Yang terjadi kalau angkanya tidak ikut terkirim</h2>
+    <ul>
+      <li>Ukuran akhirnya ditaksir pakai mata, bukan dibaca dari panel kanan Figma.</li>
+      <li>Warna tombol sedikit meleset dari desain, karena hex ditulis dari ingatan.</li>
+      <li>Jarak antarbagian cuma ditebak, jadi tidak ada kelipatan 8 px yang bisa diperiksa.</li>
+      <li>Judul diperkecil sesuka hati, padahal text style-nya sudah menyebut 32 px.</li>
+      <li>Revisi pun datang lagi, padahal file desainnya ada di tangan.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> handoff bukan mengirim file, tapi mengirim keputusan. Yang jelas di kepala desainer belum tentu jelas di kepala pengembang — kecuali angkanya tertulis di lembar spesifikasi.</p>
+    <nav class="nav">
+      <span>—</span>
+      <span>01 / 15</span>
+      <a href="02-rantai-lima-tahap.html">02 rantai-lima-tahap →</a>
+    </nav>
+  </div>
+</body>
+</html>

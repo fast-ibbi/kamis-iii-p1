@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 14 · 14 fidelity-checklist — Implementasi Desain Figma ke HTML/CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: dua panel berdampingan dan pita toleransi tiga kolom */
+  .demo .papan {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .demo .papan > * {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .demo .label {
+    margin: 0 0 8px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+  .demo .kotak {
+    box-sizing: border-box;
+    padding: 12px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 12.5px;
+    color: #334155;
+  }
+  .demo .kotak-salah { border-style: dashed; border-color: #9ca3af; }
+  .demo .pita {
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+  }
+  .demo .kolom-ukur { background: #eef2ff; }
+  .demo .kolom-toleran { background: #ffffff; }
+  .demo .kolom-minim { background: #ffffff; }
+  .demo .pita-nama {
+    margin: 4px 0 0;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 11px;
+    color: #6b7280;
+  }
+  .demo .cek {
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+    font-size: 12.5px;
+  }
+  .demo .cek li {
+    display: flex;
+    gap: 8px;
+    padding: 3px 0;
+    border-bottom: 1px dotted #d1d5db;
+    color: #334155;
+  }
+  .demo .cek li:last-child { border-bottom: 0; }
+  .demo .cek-nomor {
+    flex: 0 0 20px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    color: #4F46E5;
+    font-weight: 600;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .kolom-ukur {
+    box-sizing: border-box;
+    width: 73px;
+    height: 32px;
+    border: 1px solid #4F46E5;
+  }
+
+  .kolom-toleran {
+    box-sizing: border-box;
+    width: 75px;
+    height: 32px;
+    border: 1px dashed #9ca3af;
+  }
+
+  .kolom-minim {
+    box-sizing: border-box;
+    width: 71px;
+    height: 32px;
+    border: 1px dashed #9ca3af;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 14 · Implementasi Desain Figma ke HTML/CSS</strong> · 14 fidelity-checklist</p>
+    <h1>Fidelity: Diukur dengan Spesifikasi, Bukan Perasaan</h1>
+    <p>Fidelity adalah ukuran seberapa dekat hasil implementasi dengan desain. Targetnya bukan piksel yang betul-betul sama — web hidup di layar dengan panjang yang tidak terduga. Yang dijaga adalah tipografi, jarak, warna, dan radius, dan penilaiannya dikaitkan ke lembar spesifikasi.</p>
+
+    <h2>Dua cara mengukur yang sama sekali berbeda</h2>
+    <p>Panel kiri adalah cara yang tidak bisa dipertanggungjawabkan: "kira-kira sudah pas". Panel kanan menyebut angka, jadi selisihnya bisa diperbaiki.</p>
+    <div class="demo">
+      <div class="papan">
+        <div>
+          <p class="label">diukur perasaan</p>
+          <div class="kotak kotak-salah">
+            kelihatannya mirip · kira-kira sudah pas · selisih kecil diabaikan
+          </div>
+        </div>
+        <div>
+          <p class="label">diukur spesifikasi</p>
+          <div class="kotak">
+            radius 12 px · gutter 24 px · jarak kelipatan 8 · toleransi ± 2 px
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Pita toleransi ± 2 px pada satu kolom 73 px</h2>
+    <p>Kolom grid Tokosaya selebar 73 px. Selisih satu atau dua piksel akibat pembulatan browser masih dimaafkan; lebih dari itu berarti ada nilai yang disalin meleset.</p>
+<pre><code class="language-css">.kolom-ukur {
+  box-sizing: border-box;
+  width: 73px;
+  height: 32px;
+  border: 1px solid #4F46E5;
+}
+
+.kolom-toleran {
+  box-sizing: border-box;
+  width: 75px;
+  height: 32px;
+  border: 1px dashed #9ca3af;
+}
+
+.kolom-minim {
+  box-sizing: border-box;
+  width: 71px;
+  height: 32px;
+  border: 1px dashed #9ca3af;
+}</code></pre>
+    <div class="demo">
+      <div class="pita">
+        <div>
+          <div class="kolom-minim"></div>
+          <p class="pita-nama">71 px</p>
+        </div>
+        <div>
+          <div class="kolom-ukur"></div>
+          <p class="pita-nama">73 px</p>
+        </div>
+        <div>
+          <div class="kolom-toleran"></div>
+          <p class="pita-nama">75 px</p>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="73px - 2 = 71">Batas bawah pita: <strong>71 px</strong>, masih diterima.</p>
+    <p class="hitung" data-hitung="73px + 2 = 75">Batas atas pita: <strong>75 px</strong>, masih diterima. Di luar dua angka itu, hitungan ulang gridnya.</p>
+
+    <h2>Checklist 1–5</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>No.</th><th>Item pemeriksaan</th><th>Cara memeriksa</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Tipografi tiap level</td><td>panel Computed pada <code>h1</code>, <code>h2</code>, <code>p</code></td></tr>
+        <tr><td>2</td><td>Warna dari token</td><td>panel <code>:root</code> dan cari tanda <code>#</code></td></tr>
+        <tr><td>3</td><td>Jarak kelipatan 8</td><td>Computed pada kontainer dan kartu</td></tr>
+        <tr><td>4</td><td>Radius semua sudut 12 px</td><td><code>border-radius</code> kartu, tombol, badge</td></tr>
+        <tr><td>5</td><td>Gutter 24 px antar kolom</td><td>inspect <code>row</code> dan <code>col</code></td></tr>
+      </tbody>
+    </table>
+
+    <h2>Checklist 6–9</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>No.</th><th>Item pemeriksaan</th><th>Cara memeriksa</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>6</td><td>Kontainer maksimum 1140 px</td><td>lebar <code>.container</code> di desktop</td></tr>
+        <tr><td>7</td><td>Ikon Bootstrap Icons konsisten</td><td>bandingkan set ikon dengan desain</td></tr>
+        <tr><td>8</td><td>Responsif 1440, 768, 375</td><td>Device Toolbar Chrome</td></tr>
+        <tr><td>9</td><td>Aksesibilitas halaman</td><td>kontras, <code>alt</code>, urutan heading</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Checklist sebagai lembar kerja</h2>
+<pre><code class="language-html">&lt;ul class="cek"&gt;
+  &lt;li&gt;&lt;span class="cek-nomor"&gt;1&lt;/span&gt;Tipografi tiap level&lt;/li&gt;
+  &lt;li&gt;&lt;span class="cek-nomor"&gt;2&lt;/span&gt;Warna dari token&lt;/li&gt;
+  &lt;li&gt;&lt;span class="cek-nomor"&gt;3&lt;/span&gt;Jarak kelipatan 8&lt;/li&gt;
+  &lt;li&gt;&lt;span class="cek-nomor"&gt;4&lt;/span&gt;Radius semua sudut 12 px&lt;/li&gt;
+  &lt;li&gt;&lt;span class="cek-nomor"&gt;5&lt;/span&gt;Gutter 24 px antar kolom&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+    <div class="demo">
+      <ul class="cek">
+        <li><span class="cek-nomor">1</span>Tipografi tiap level</li>
+        <li><span class="cek-nomor">2</span>Warna dari token</li>
+        <li><span class="cek-nomor">3</span>Jarak kelipatan 8</li>
+        <li><span class="cek-nomor">4</span>Radius semua sudut 12 px</li>
+        <li><span class="cek-nomor">5</span>Gutter 24 px antar kolom</li>
+      </ul>
+    </div>
+
+    <h2>Yang perlu diingat</h2>
+    <ul>
+      <li>Simpan hasil pemeriksaan di <code>catatan-fidelity.txt</code>; ingatan bukan bukti.</li>
+      <li>Item nomor 9 menyambung ke checklist Bab 13, bukan pekerjaan baru.</li>
+      <li>Pemeriksaan responsif wajib walau prototipnya sudah kelihatan bagus: prototip cuma simulasi layar.</li>
+      <li>Tutup checklist sedikit demi sedikit, jangan menumpuk di akhir.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> "kurang mirip" bukan ukuran yang sah. Radius 12 px, gutter 24 px, dan jarak kelipatan 8 bisa dibuktikan; perasaan tidak.</p>
+    <nav class="nav">
+      <a href="13-tanpa-hex-di-luar-root.html">← 13 tanpa-hex-di-luar-root</a>
+      <span>14 / 15</span>
+      <a href="15-panel-detail-produk.html">15 panel-detail-produk →</a>
+    </nav>
+  </div>
+</body>
+</html>

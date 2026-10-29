@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 14 · 06 column-grid-12-kolom — Implementasi Desain Figma ke HTML/CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: penggaris kolom dan isi baris. Lebar asli kontainer Tokosaya 1140 px,
+     jadi gambar modelnya diperkecil 80 % (zoom) agar muat di kolom baca. Yang
+     diperkecil hanya tampilannya; angka di blok kode, tabel, dan baris hitung
+     tetap ukuran asli 73 px, 24 px, dan 1140 px. */
+  .demo .panggung {
+    zoom: 0.8;
+  }
+  .demo .catatan-skala {
+    margin: 8px 0 0;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 11.5px;
+    color: #6b7280;
+  }
+  .demo .label {
+    margin: 0 0 8px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+  .demo .butir {
+    box-sizing: border-box;
+    padding: 6px 0;
+    background: #fde68a;
+    border: 1px solid #b45309;
+    font-size: 12px;
+    text-align: center;
+  }
+  .demo .isi {
+    box-sizing: border-box;
+    padding: 8px;
+    background: #eef2ff;
+    border: 1px solid #4F46E5;
+    font-size: 12px;
+    color: #1E293B;
+  }
+  .demo .isi-tipis {
+    box-sizing: border-box;
+    padding: 8px;
+    background: #ffffff;
+    border: 1px solid #9ca3af;
+    font-size: 12px;
+    color: #334155;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .grid-duabelas {
+    display: grid;
+    grid-template-columns: repeat(12, 73px);
+    gap: 24px;
+  }
+
+  .span-penuh {
+    grid-column: span 12;
+  }
+
+  .span-enam {
+    grid-column: span 6;
+  }
+
+  .span-empat {
+    grid-column: span 4;
+  }
+
+  .span-delapan {
+    grid-column: span 8;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 14 · Implementasi Desain Figma ke HTML/CSS</strong> · 06 column-grid-12-kolom</p>
+    <h1>Column Grid Dua Belas Kolom: Gutter, Margin, dan Satu Kolom 73 px</h1>
+    <p>Desain yang rapi hampir tidak pernah menaruh elemen secara acak. Grid dua belas kolom jadi konvensi umum karena angkanya gampang dibagi 2, 3, dan 4. Gutter adalah lebar celah antarkolom, margin adalah jarak sisi kiri dan kanan frame.</p>
+
+    <h2>Penggaris dua belas kolom</h2>
+    <p>Kontainer 1140 px dibagi 12 kolom dengan gutter 24 px, jadi satu kolom 73 px. Angka 73 itu bukan pilihan, melainkan hasil hitungan yang bisa diperiksa di bawah.</p>
+<pre><code class="language-css">.grid-duabelas {
+  display: grid;
+  grid-template-columns: repeat(12, 73px);
+  gap: 24px;
+}</code></pre>
+    <div class="demo">
+      <p class="label">model spesifikasi · penggaris 12 kolom</p>
+      <div class="panggung">
+        <div class="grid-duabelas">
+          <div class="butir">1</div>
+          <div class="butir">2</div>
+          <div class="butir">3</div>
+          <div class="butir">4</div>
+          <div class="butir">5</div>
+          <div class="butir">6</div>
+          <div class="butir">7</div>
+          <div class="butir">8</div>
+          <div class="butir">9</div>
+          <div class="butir">10</div>
+          <div class="butir">11</div>
+          <div class="butir">12</div>
+        </div>
+      </div>
+      <p class="catatan-skala">Model digambar 80 % supaya muat di kolom baca: 1 px asli tampil 0,8 px. Angka kolom 73 px, gutter 24 px, dan kontainer 1140 px tetap ukuran asli.</p>
+    </div>
+    <p class="hitung" data-hitung="12 * 73px + 11 * 24px = 1140">Dua belas kolom 73 px ditambah sebelas celah 24 px menghasilkan <strong>1140 px</strong>. Angka 11 yang dipakai, bukan 12, karena dua belas kolom hanya punya sebelas celah di antaranya.</p>
+    <p class="hitung" data-hitung="12 * 73px = 876">Kalau gutter diabaikan, dua belas kolom hanya menutup <strong>876 px</strong> — sisa 264 px itulah yang dibagi ke sebelas celah.</p>
+
+    <h2>Kombinasi yang tetap pas</h2>
+    <p>Semua kombinasi di bawah berjumlah dua belas kolom: span penuh, span 6 + span 6, span 4 tiga kali, lalu span 8 + span 4. Itu sebabnya layout tetap lurus walau jumlah butirnya berbeda.</p>
+<pre><code class="language-css">.span-penuh {
+  grid-column: span 12;
+}
+
+.span-enam {
+  grid-column: span 6;
+}
+
+.span-empat {
+  grid-column: span 4;
+}
+
+.span-delapan {
+  grid-column: span 8;
+}</code></pre>
+    <div class="demo">
+      <div class="panggung">
+        <div class="grid-duabelas">
+          <div class="span-penuh isi">span 12</div>
+          <div class="span-enam isi">span 6</div>
+          <div class="span-enam isi-tipis">span 6</div>
+          <div class="span-empat isi">span 4</div>
+          <div class="span-empat isi-tipis">span 4</div>
+          <div class="span-empat isi">span 4</div>
+          <div class="span-delapan isi">span 8</div>
+          <div class="span-empat isi-tipis">span 4</div>
+        </div>
+      </div>
+      <p class="catatan-skala">Digambar 80 % (1 px asli tampil 0,8 px); pembagian span-nya tetap asli — 12, 6 + 6, 4 + 4 + 4, dan 8 + 4.</p>
+    </div>
+    <p class="hitung" data-hitung="6 * 73px + 5 * 24px = 558">Satu sel span 6 selebar <strong>558 px</strong>: enam kolom 73 px dan lima celah 24 px di dalamnya.</p>
+    <p class="hitung" data-hitung="558 + 558 + 24px = 1140">Dua sel span 6 ditambah satu gutter di antaranya kembali ke <strong>1140 px</strong> — jumlahnya utuh, tidak ada piksel yang menganggur.</p>
+
+    <h2>Dari frame ke kontainer</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Angka desain</th><th>Nilai</th><th>Perannya</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>frame desktop</td><td>1440 px</td><td>lebar kanvas satu layar</td></tr>
+        <tr><td>margin kiri dan kanan</td><td>150 px</td><td>sisi kosong di luar kontainer</td></tr>
+        <tr><td>kontainer maksimum</td><td>1140 px</td><td>1440 − 150 − 150</td></tr>
+        <tr><td>gutter</td><td>24 px</td><td>celah antarkolom</td></tr>
+        <tr><td>satu kolom</td><td>73 px</td><td>(1140 − 11 × 24) ÷ 12</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Yang perlu diingat</h2>
+    <ul>
+      <li>Angka grid disalin sekali saja, lalu dipakai ulang di semua komponen.</li>
+      <li>Kombinasi 6 + 6, 4 + 4 + 4, dan 8 + 4 sama-sama berjumlah dua belas.</li>
+      <li>Kalau tiap kartu punya celah sendiri-sendiri, halaman terlihat dibangun dari tangkapan layar, bukan dari desain.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> gutter dan margin bukan hiasan. Keduanya yang membuat dua belas kolom selalu berjumlah tepat 1140 px, berapa pun kombinasi span yang dipakai.</p>
+    <nav class="nav">
+      <a href="05-auto-layout-itu-flexbox.html">← 05 auto-layout-itu-flexbox</a>
+      <span>06 / 15</span>
+      <a href="07-hitung-grid-ke-kelas-bootstrap.html">07 hitung-grid-ke-kelas-bootstrap →</a>
+    </nav>
+  </div>
+</body>
+</html>

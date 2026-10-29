@@ -65,6 +65,7 @@ jarak kartu, dan font judul. Tanyakan kenapa hal kayak ini bisa terjadi padahal 
 desainnya ada. Jawaban yang diharapkan: yang dikirim cuma gambar, bukan keputusan
 ukurannya. Sebutkan pola serupa di unit web kampus yang menerima desain portal dari
 unit publikasi.
+Demo: demos/bab-14/01-handoff-angka-bukan-gambar.html — panel model spesifikasi berhadapan dengan hasil HTML dan CSS yang dirender dari angka yang sama.
 -->
 
 ---
@@ -144,6 +145,7 @@ di Figma dengan warna dan ukuran. Handoff: desain dibaca lalu diterjemahkan jadi
 
 Tanyakan tahap mana yang paling sering dilewati tim kecil. Jawaban yang diharapkan:
 wireframe, karena orang mau cepat masuk ke tampilan berwarna.
+Demo: demos/bab-14/02-rantai-lima-tahap.html — lima kotak tahap berjajar, lalu pasangan prototip dan implementasi yang menegaskan bedanya.
 -->
 
 ---
@@ -198,6 +200,7 @@ Tunjukkan panel kiri Figma kalau ada proyektor yang memadai. Tanyakan apa bedany
 dan layer buat orang yang baru belajar. Jawaban yang diharapkan: frame punya ukuran
 perangkat yang tetap, layer cuma objek di dalamnya. Ingatkan bahwa pengelompokan yang rapi
 bikin hirarki HTML mulai kelihatan sendiri.
+Demo: demos/bab-14/03-frame-dan-layer.html — pohon layer frame 1440 px yang juga dibaca sebagai struktur HTML.
 -->
 
 ---
@@ -234,6 +237,7 @@ Ini tabel terjemahan yang paling sering dibuka ulang pas praktikum. Minta mahasi
 mana fill dan mana stroke pada satu kartu sebelum kamu lanjut. Tanyakan kenapa gap dan
 padding dipisah barisnya. Jawaban yang diharapkan: keduanya mengatur jarak yang berbeda,
 satu antaranak, satu ke tepi.
+Demo: demos/bab-14/04-istilah-figma-dan-padanan.html — fill, stroke, dan jarak yang dirender dari istilah Figma yang sama.
 -->
 
 ---
@@ -253,6 +257,7 @@ CSS-nya Flexbox yang kamu pelajari di Bab 6, dan baca auto layout jauh lebih gam
 kalau udah paham Flexbox. Di gambar, dua baris dipasangkan: arahnya bisa searah baris,
 kolom, atau keduanya dipetakan ke `flex-direction` menentukan arah, dan ada jarak antaranak
 dan padding di tepinya dipetakan ke `gap` mengatur jarak.
+Demo: demos/bab-14/05-auto-layout-itu-flexbox.html — auto layout arah baris dan kolom yang dirender sebagai baris Flexbox beserta angkanya.
 -->
 
 ---
@@ -271,6 +276,7 @@ Tekankan bahwa grid inilah yang bikin layout terasa rapi padahal elemennya
 banyak. Tanyakan apa akibatnya kalau tiap kartu punya celah sendiri-sendiri. Jawaban yang
 diharapkan: halaman terlihat dibangun dari tangkapan layar, bukan dari desain. Sebutkan
 bahwa angka grid disalin sekali saja, lalu dipakai ulang di semua komponen.
+Demo: demos/bab-14/06-column-grid-12-kolom.html — penggaris dua belas kolom 73 px dengan kombinasi span yang selalu berjumlah 1140 px.
 -->
 
 ---
@@ -303,6 +309,7 @@ Kerjakan hitungannya di papan bareng-bareng, jangan cuma ditampilkan. Tanyakan k
 angka 11 yang dipakai, bukan 12. Jawaban yang diharapkan: dua belas kolom cuma punya
 sebelas celah di antaranya. Ingatkan tanda versi: nilai gutter ikut root font browser,
 jadi periksa dokumentasi resmi Bootstrap 5.3 kalau root diubah.
+Demo: demos/bab-14/07-hitung-grid-ke-kelas-bootstrap.html — hitungan 7 – 5 dan 4 – 4 – 4 yang berujung pada col-lg-7, col-lg-5, dan col-md-4.
 -->
 
 ---
@@ -370,6 +377,7 @@ Tekankan kolom tengah: itu angka desain, bukan selera penulis kode. Tanyakan ken
 diharapkan: karena hampir semua paragraf memakainya, jadi cukup sekali ditulis di dasar
 halaman. Sebutkan bahwa `line-height` di tabel ini juga angka desain, bukan angka bulat
 hasil perkiraan.
+Demo: demos/bab-14/08-text-style-jadi-tipografi.html — lima text style beserta kotak baris yang bisa dihitung dari ukuran dan line-height-nya.
 -->
 
 ---
@@ -389,6 +397,7 @@ Tekankan bahwa nilai hex dipindahkan apa adanya, satu kali saja, di blok `:root`
 apa untungnya kalau warna cuma tinggal di satu tempat. Jawaban yang diharapkan: perubahan
 desain cukup disalin di satu blok, dan semua badge ikut berubah. Ingatkan pola penamaan
 Tokosaya yang udah dipakai sejak Bab 4.
+Demo: demos/bab-14/09-color-style-jadi-token.html — tujuh color style berpasangan dengan tokennya, plus badge yang memanggil var().
 -->
 
 ---
@@ -465,6 +474,7 @@ Bacakan kelima langkahnya utuh: tulis tujuan komponennya dulu, misalnya "panel d
 produk". Pilih elemen semantik, bukan sekadar kotak pembungkus. Tentukan kelas Bootstrap
 buat susunan dan grid. Tulis CSS kustom bertoken dengan komentar `/* kustom */`.
 Bandingkan hasilnya dengan frame asli biar nggak bergeser.
+Demo: demos/bab-14/10-lima-langkah-translasi.html — lima langkah berurutan untuk panel detail produk, lalu komponen hasilnya.
 -->
 
 ---
@@ -544,6 +554,7 @@ Tunjukkan panel produk di layar dan sebutkan peran token tiap barisnya. Tanyakan
 badge pakai tiga token berbeda. Jawaban yang diharapkan: karena maknanya beda, satu
 sorotan, satu sukses, satu bahaya. Ingatkan bahwa tabel kayak ini makin jarang bikin
 interpretasi bebas kalau makin lengkap.
+Demo: demos/bab-14/11-component-mapping-tokosaya.html — tabel pemetaan komponen berpasangan dengan badge, harga, dan tombol yang dirender dari token itu.
 -->
 
 ---
@@ -563,6 +574,7 @@ blok `:root` di `css/style.css`, lapis tiga pemakaiannya di kelas komponen. Nama
 mengikuti peran, bukan warnanya, jadi `--clr-primary` tetap masuk akal kalau indigo diganti
 hijau. Ingatkan juga bahwa nilai token dipakai lewat CSS kustom, nggak menimpa utilitas
 diam-diam.
+Demo: demos/bab-14/12-token-tiga-lapis.html — tiga lapis token bertumpuk dan satu variabel yang diganti tanpa menyentuh kelas komponen.
 -->
 
 ---
@@ -598,6 +610,7 @@ ditulis langsung di CSS, bukan memanggil `var(--clr-accent)`. Tanyakan kenapa at
 "tanpa hex di luar `:root`" gampang diaudit. Jawaban yang diharapkan: cukup cari tanda `#`
 di file kustom dan lihat sisanya. Ingatkan juga supaya urutan badge dan nama produk
 mengikuti spesifikasi, bukan selera.
+Demo: demos/bab-14/13-tanpa-hex-di-luar-root.html — badge tanpa token di sebelah badge bertoken, lalu cara mengaudit tanda # di file kustom.
 -->
 
 ---
@@ -632,6 +645,7 @@ Tekankan bahwa "kurang mirip" bukan ukuran yang sah; spesifikasi yang jadi rujuk
 Tanyakan kenapa panjang teks yang memanjang itu wajar di web. Jawaban yang diharapkan:
 panjang konten bagian alami web, jadi desainnya harus tahan terhadap itu. Ingatkan
 toleransi ± 2 piksel buat selisih kecil akibat pembulatan browser.
+Demo: demos/bab-14/14-fidelity-checklist.html — pita toleransi ± 2 px pada kolom 73 px dan checklist sembilan item sebagai lembar kerja.
 -->
 
 ---
@@ -871,6 +885,7 @@ Minta mahasiswa menyebutkan urutan isi panel sebelum kamu menampilkan kodenya. T
 kenapa badge diletakkan paling atas, bukan di bawah harga. Jawaban yang diharapkan: karena
 spesifikasi menempatkannya sebelum nama produk. Sebutkan bahwa kesalahan urutan kayak ini
 justru jadi salah satu bahan analisis di evaluasi bab.
+Demo: demos/bab-14/15-panel-detail-produk.html — panel detail produk yang dirakit sesuai urutan spesifikasi, plus model frame 375 px.
 -->
 
 ---
@@ -941,6 +956,7 @@ diharapkan: hex liar dan `row` tanpa `g-4`. Ingatkan bahwa hasil pemeriksaan dit
 - Text style dan color style jadi token di blok `:root`
 - Translasi komponen memakai pola lima langkah yang berulang
 - Fidelity dijaga checklist sembilan item, toleransi ± 2 px
+**Demo:** seluruh konsep bab ini bisa dicoba di [demos/bab-14/index.html](demos/bab-14/index.html).
 
 <!--
 Tutup dengan pesan utama: janji desain baru muncul di layar kalau angkanya disalin dengan

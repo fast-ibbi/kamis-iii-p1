@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 14 · 08 text-style-jadi-tipografi — Implementasi Desain Figma ke HTML/CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: dua panel berdampingan, kiri daftar gaya, kanan hasil render */
+  .demo .papan {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .demo .papan > * {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .demo .label {
+    margin: 0 0 8px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+  .demo .model {
+    box-sizing: border-box;
+    padding: 12px;
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+    border-radius: 6px;
+    font-size: 13px;
+  }
+  .demo .hasil {
+    box-sizing: border-box;
+    padding: 12px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+  }
+  .demo .baris-spek {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 4px 0;
+    border-bottom: 1px dotted #d1d5db;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12.5px;
+    color: #1E293B;
+  }
+  .demo .baris-spek:last-child { border-bottom: 0; }
+  .demo .nilai { color: #4F46E5; font-weight: 600; }
+  .demo .sampel {
+    padding: 8px 0;
+    border-bottom: 1px dotted #d1d5db;
+  }
+  .demo .sampel:last-child { border-bottom: 0; }
+  .demo .sampel-nama {
+    margin: 0 0 2px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 11px;
+    color: #6b7280;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .page-title {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  .produk-nama {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  .produk-card-nama {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .page-breadcrumb {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .teks-paragraf {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 14 · Implementasi Desain Figma ke HTML/CSS</strong> · 08 text-style-jadi-tipografi</p>
+    <h1>Text Style Jadi Aturan Tipografi</h1>
+    <p>Desainer yang rapi tidak mewarnai dan mengukur teks satu per satu. Ia menyimpan text style: keluarga font, ketebalan, ukuran, dan line-height. Panel Local styles mengumpulkan semuanya, dan nama gaya Figma itulah yang nanti jadi nama kelas di CSS.</p>
+
+    <h2>Lima gaya, lima aturan</h2>
+    <p>Panel kiri mencatat angka desainnya, panel kanan merender aturan CSS yang sama. Nilai ukuran dan ketebalan disalin, bukan ditebak dari perasaan.</p>
+<pre><code class="language-css">.page-title {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.produk-nama {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.produk-card-nama {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.page-breadcrumb {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.teks-paragraf {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}</code></pre>
+    <div class="demo">
+      <div class="papan">
+        <div>
+          <p class="label">model spesifikasi · text style</p>
+          <div class="model">
+            <div class="baris-spek"><span>Heading/Title 1</span><span class="nilai">32 / 1,25</span></div>
+            <div class="baris-spek"><span>Heading/Title 2</span><span class="nilai">28 / 1,25</span></div>
+            <div class="baris-spek"><span>Heading/Card Title</span><span class="nilai">18 / 1,4</span></div>
+            <div class="baris-spek"><span>Body/Paragraph</span><span class="nilai">16 / 1,6</span></div>
+            <div class="baris-spek"><span>Body/Caption</span><span class="nilai">14 / 1,5</span></div>
+          </div>
+        </div>
+        <div>
+          <p class="label">hasil HTML + CSS</p>
+          <div class="hasil">
+            <div class="sampel">
+              <p class="sampel-nama">.page-title · 32 / 600 / 1,25</p>
+              <p class="page-title">Katalog Tokosaya</p>
+            </div>
+            <div class="sampel">
+              <p class="sampel-nama">.produk-nama · 28 / 600 / 1,25</p>
+              <p class="produk-nama">Keyboard Mekanis KX-210</p>
+            </div>
+            <div class="sampel">
+              <p class="sampel-nama">.produk-card-nama · 18 / 500 / 1,4</p>
+              <p class="produk-card-nama">Mouse Optik MW-88</p>
+            </div>
+            <div class="sampel">
+              <p class="sampel-nama">.teks-paragraf · 16 / 400 / 1,6</p>
+              <p class="teks-paragraf">Switch biru, bodi aluminium, kabel anyaman.</p>
+            </div>
+            <div class="sampel">
+              <p class="sampel-nama">.page-breadcrumb · 14 / 400 / 1,5</p>
+              <p class="page-breadcrumb">Beranda / Katalog / Aksesori Input</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="32px * 1.25 = 40">Title 1 memesan kotak baris <strong>40 px</strong>.</p>
+    <p class="hitung" data-hitung="28px * 1.25 = 35">Title 2 memesan <strong>35 px</strong>, jadi jarak antarbaris judul produk tetap bisa dihitung.</p>
+    <p class="hitung" data-hitung="18px * 1.4 = 25.2">Card Title <strong>25,2 px</strong>; angka berkoma ini normal karena line-height memang pecahan.</p>
+    <p class="hitung" data-hitung="16px * 1.6 = 25.6">Body/Paragraph <strong>25,6 px</strong> per baris — patokan kenyamanan membaca paragraf.</p>
+    <p class="hitung" data-hitung="14px * 1.5 = 21">Body/Caption <strong>21 px</strong>, paling rapat karena dipakai untuk jejak navigasi.</p>
+
+    <h2>Pemetaan gaya ke selektor</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Gaya Figma</th><th>Nilai ringkas</th><th>Pemetaan CSS</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Heading/Title 1</td><td>Poppins 600, 32 px, 1,25</td><td><code>.page-title</code></td></tr>
+        <tr><td>Heading/Title 2</td><td>Poppins 600, 28 px, 1,25</td><td><code>.produk-nama</code></td></tr>
+        <tr><td>Heading/Card Title</td><td>Poppins 500, 18 px, 1,4</td><td><code>.produk-card-nama</code></td></tr>
+        <tr><td>Body/Paragraph</td><td>Inter 400, 16 px, 1,6</td><td>aturan <code>body</code></td></tr>
+        <tr><td>Body/Caption</td><td>Inter 400, 14 px, 1,5</td><td><code>.page-breadcrumb</code></td></tr>
+      </tbody>
+    </table>
+    <p>Dua catatan kejujuran. Pertama, di <code>css/style.css</code> gaya Body/Paragraph tinggal di selektor <code>body</code> karena hampir semua paragraf memakainya; di demo ini ia dipasang pada kelas <code>.teks-paragraf</code> supaya bisa ditampilkan berdampingan dengan gaya lain. Kedua, demo ini tidak mengunduh Poppins maupun Inter, jadi yang tampil adalah fallback <code>sans-serif</code> — persis perilaku yang diharapkan saat panggilan font gagal.</p>
+    <p><strong>Inti pembelajaran:</strong> text style bukan hiasan, tapi angka. Ukuran, ketebalan, dan line-height di panel desain dipindahkan apa adanya; yang ditambahkan hanya nama kelas yang mengikuti perannya.</p>
+    <nav class="nav">
+      <a href="07-hitung-grid-ke-kelas-bootstrap.html">← 07 hitung-grid-ke-kelas-bootstrap</a>
+      <span>08 / 15</span>
+      <a href="09-color-style-jadi-token.html">09 color-style-jadi-token →</a>
+    </nav>
+  </div>
+</body>
+</html>

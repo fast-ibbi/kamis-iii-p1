@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 14 · 02 rantai-lima-tahap — Implementasi Desain Figma ke HTML/CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: kosmetik kotak tahap dan pasangan prototip–implementasi */
+  .demo .rantai-tahap {
+    background: #eef2ff;
+    border: 1px solid #c7d2fe;
+    font-size: 13px;
+    color: #1E293B;
+  }
+  .demo .rantai-tahap h3 {
+    margin: 0 0 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #4F46E5;
+  }
+  .demo .rantai-tahap p { margin: 0; font-size: 12.5px; color: #334155; }
+  .demo .pasangan-sisi {
+    background: #ffffff;
+    border: 1px solid #E2E8F0;
+    font-size: 13px;
+    color: #334155;
+  }
+  .demo .pasangan-sisi h3 {
+    margin: 0 0 6px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .demo .pasangan-sisi ul { margin: 0; padding-left: 18px; font-size: 12.5px; }
+  .demo .pasangan-sisi li { margin: 2px 0; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .rantai {
+    display: flex;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .rantai-tahap {
+    box-sizing: border-box;
+    flex: 1 1 0;
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  .pasangan {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .pasangan-sisi {
+    box-sizing: border-box;
+    padding: 16px;
+    border-radius: 12px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 14 · Implementasi Desain Figma ke HTML/CSS</strong> · 02 rantai-lima-tahap</p>
+    <h1>Rantai Lima Tahap: Tiap Tahap Menambah Satu Lapis Keputusan</h1>
+    <p>Desain yang rapi bukan hasil satu langkah. Ia lahir dari rantai lima tahap yang tidak boleh dibolak-balik: brief, arsitektur informasi, wireframe, UI design, lalu handoff. Implementasi biasanya jauh lebih cepat kalau keputusan desainnya sudah beres di depan.</p>
+
+    <h2>Lima tahap berurutan</h2>
+    <p>Setiap kotak berisi satu lapis keputusan yang nanti disalin ke kode. Kotaknya dirender dengan Flexbox sederhana, jadi rantainya tetap satu baris walau isinya berbeda panjang.</p>
+<pre><code class="language-css">.rantai {
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.rantai-tahap {
+  box-sizing: border-box;
+  flex: 1 1 0;
+  padding: 12px;
+  border-radius: 12px;
+}</code></pre>
+    <div class="demo">
+      <div class="rantai">
+        <div class="rantai-tahap">
+          <h3>1 · Brief</h3>
+          <p>Tujuan, audiens, dan konten.</p>
+        </div>
+        <div class="rantai-tahap">
+          <h3>2 · Arsitektur informasi</h3>
+          <p>Sitemap halaman.</p>
+        </div>
+        <div class="rantai-tahap">
+          <h3>3 · Wireframe</h3>
+          <p>Layout tanpa hiasan visual.</p>
+        </div>
+        <div class="rantai-tahap">
+          <h3>4 · UI design</h3>
+          <p>Figma: warna dan ukuran.</p>
+        </div>
+        <div class="rantai-tahap">
+          <h3>5 · Handoff</h3>
+          <p>Desain dibaca lalu diterjemahkan jadi kode.</p>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="4 * 16px = 64">Lima tahap membentuk empat celah: <strong>64 px</strong> terpakai untuk jarak, sisanya dibagi rata oleh <code>flex: 1 1 0</code>.</p>
+
+    <h2>Prototip bukan implementasi</h2>
+    <p>Dua istilah ini paling sering tertukar di tugas. Prototip menjawab bentuk, implementasi menjawab perilaku. Yang diuji responsif adalah implementasinya, karena prototip cuma menirukan alur layar.</p>
+<pre><code class="language-css">.pasangan {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.pasangan-sisi {
+  box-sizing: border-box;
+  padding: 16px;
+  border-radius: 12px;
+}</code></pre>
+    <div class="demo">
+      <div class="pasangan">
+        <div class="pasangan-sisi">
+          <h3>Prototip Figma</h3>
+          <ul>
+            <li>simulasi interaktif desain</li>
+            <li>cepat dan murah diubah</li>
+            <li>menjawab bentuk</li>
+            <li>hanya hidup di Figma</li>
+          </ul>
+        </div>
+        <div class="pasangan-sisi">
+          <h3>Implementasi kode</h3>
+          <ul>
+            <li>tampilan di perangkat nyata</li>
+            <li>diubah lewat token yang tertata</li>
+            <li>menjawab perilaku</li>
+            <li>HTML semantik, CSS bertoken, komponen Bootstrap</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h2>Yang perlu diingat</h2>
+    <ul>
+      <li>Tahap yang paling sering dilewati tim kecil adalah wireframe, karena orang mau cepat masuk ke tampilan berwarna.</li>
+      <li>Interaktivitas berbasis JavaScript di luar cakupan mata kuliah ini, jadi keadaan seperti menu dan keranjang diterjemahkan sebagai tampilan statis.</li>
+      <li>Handoff menutup rantai: sesudahnya semua angka harus tertulis, bukan diingat.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> kalau satu tahap dilompati, kekurangannya tidak hilang — ia muncul lagi di kode sebagai tebakan.</p>
+    <nav class="nav">
+      <a href="01-handoff-angka-bukan-gambar.html">← 01 handoff-angka-bukan-gambar</a>
+      <span>02 / 15</span>
+      <a href="03-frame-dan-layer.html">03 frame-dan-layer →</a>
+    </nav>
+  </div>
+</body>
+</html>

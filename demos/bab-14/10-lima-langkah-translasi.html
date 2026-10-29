@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 14 · 10 lima-langkah-translasi — Implementasi Desain Figma ke HTML/CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: dua panel berdampingan, kosmetik nomor langkah dan panel contoh */
+  .demo .papan {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .demo .papan > * {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .demo .label {
+    margin: 0 0 8px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+  .demo .model {
+    box-sizing: border-box;
+    padding: 12px;
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+    border-radius: 6px;
+    font-size: 13px;
+  }
+  .demo .hasil {
+    box-sizing: border-box;
+    padding: 12px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+  }
+  .demo .langkah-baris {
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    font-size: 12.5px;
+    color: #1E293B;
+  }
+  .demo .langkah-isi strong { display: block; font-size: 12.5px; }
+  .demo .langkah-isi span { color: #334155; }
+  .demo .langkah-nomor {
+    background: #4F46E5;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .demo .langkah-jarak { margin-bottom: 12px; }
+  .demo .panel-utama { font-size: 12.5px; color: #334155; }
+  .demo .panel-utama h3 {
+    margin: 0;
+    font-size: 15px;
+    color: #1E293B;
+  }
+  .demo .panel-utama p { margin: 0; font-size: 12.5px; }
+  .demo .badge-contoh {
+    padding: 2px 8px;
+    background: #F59E0B;
+    color: #1E293B;
+    border-radius: 12px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .demo .harga-contoh { color: #4F46E5; font-weight: 600; font-size: 15px; }
+  .demo .tombol-utama {
+    background-color: #4F46E5;
+    color: #ffffff;
+    font-size: 12.5px;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .langkah-baris {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .langkah-nomor {
+    box-sizing: border-box;
+    flex: 0 0 28px;
+    padding: 4px 0;
+    border-radius: 12px;
+    text-align: center;
+  }
+
+  .langkah-isi {
+    box-sizing: border-box;
+    flex: 1 1 0;
+    padding: 8px 0;
+  }
+
+  .panel-utama {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .tombol-utama {
+    box-sizing: border-box;
+    padding: 12px 16px;
+    border-radius: 12px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 14 · Implementasi Desain Figma ke HTML/CSS</strong> · 10 lima-langkah-translasi</p>
+    <h1>Lima Langkah Translasi Komponen</h1>
+    <p>Pola ini dipakai berulang untuk setiap komponen di <code>produk.html</code>: tulis tujuan komponennya, pilih elemen semantik, tentukan kelas Bootstrap, tulis CSS kustom bertoken, lalu bandingkan hasilnya dengan frame asli. Pakai utilitas Bootstrap dulu, lalu tambah CSS kustom secara terkontrol.</p>
+
+    <h2>Lima langkah pada panel detail produk</h2>
+    <p>Setiap baris di bawah adalah satu langkah, lengkap dengan keputusan nyata untuk panel <code>P-DETAIL-01</code>. Langkahnya tidak boleh diacak, karena langkah kelima yang memeriksa empat langkah sebelumnya.</p>
+<pre><code class="language-css">.langkah-baris {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.langkah-nomor {
+  box-sizing: border-box;
+  flex: 0 0 28px;
+  padding: 4px 0;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.langkah-isi {
+  box-sizing: border-box;
+  flex: 1 1 0;
+  padding: 8px 0;
+}</code></pre>
+    <div class="demo">
+      <div class="model">
+        <div class="langkah-baris langkah-jarak">
+          <div class="langkah-nomor">1</div>
+          <div class="langkah-isi"><strong>Tujuan komponen</strong><span>panel detail produk</span></div>
+        </div>
+        <div class="langkah-baris langkah-jarak">
+          <div class="langkah-nomor">2</div>
+          <div class="langkah-isi"><strong>Elemen semantik</strong><span><code>&lt;section&gt;</code> dengan <code>&lt;h2&gt;</code>, daftar tautan pakai <code>&lt;ul&gt;</code></span></div>
+        </div>
+        <div class="langkah-baris langkah-jarak">
+          <div class="langkah-nomor">3</div>
+          <div class="langkah-isi"><strong>Kelas Bootstrap</strong><span><code>row g-4</code> dan <code>col-lg-5</code></span></div>
+        </div>
+        <div class="langkah-baris langkah-jarak">
+          <div class="langkah-nomor">4</div>
+          <div class="langkah-isi"><strong>CSS kustom bertoken</strong><span>badge, harga, tombol — semuanya memanggil <code>var()</code></span></div>
+        </div>
+        <div class="langkah-baris">
+          <div class="langkah-nomor">5</div>
+          <div class="langkah-isi"><strong>Bandingkan dengan frame</strong><span>frame <code>P-DETAIL-01</code>, bukan ingatan</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="4 * 12px = 48">Lima langkah membentuk empat celah: <strong>48 px</strong> terpakai untuk jarak, sebelum isinya dihitung.</p>
+
+    <h2>Hasil langkah dua sampai empat</h2>
+    <p>Panel di bawah sudah memakai elemen semantik, susunan dari utilitas, dan CSS kustom yang hanya mengurus warna serta ukuran presisi. Warnanya datang dari blok <code>:root</code> yang dipetakan di halaman sembilan.</p>
+<pre><code class="language-css">.panel-utama {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.tombol-utama {
+  box-sizing: border-box;
+  padding: 12px 16px;
+  border-radius: 12px;
+}</code></pre>
+    <div class="demo">
+      <div class="hasil">
+        <div class="panel-utama">
+          <span class="badge-contoh">Best Seller</span>
+          <h3>Keyboard Mekanis KX-210</h3>
+          <p>Aksesori Input</p>
+          <p class="harga-contoh">Rp650.000</p>
+          <span class="tombol-utama">Tambah ke Keranjang</span>
+        </div>
+      </div>
+    </div>
+
+    <h2>Kenapa utilitas lebih dulu</h2>
+    <ul>
+      <li>Susunan tidak ditulis ulang, jadi CSS kustom tetap fokus ke warna serta ukuran presisi.</li>
+      <li>Kelas utilitas Bootstrap punya arti yang bisa dibaca di dokumentasi resmi versi 5.3.</li>
+      <li>Elemen semantik dipilih sebelum kelas: panel produk pakai <code>&lt;section&gt;</code> dengan <code>&lt;h2&gt;</code>.</li>
+      <li>Langkah terakhir membandingkan hasil dengan frame, bukan dengan perasaan.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> pola lima langkah ini berulang untuk navbar, kartu, dan panel. Karena urutannya tetap, kesalahan paling sering ketahuan di langkah kelima — dan justru itu gunanya.</p>
+    <nav class="nav">
+      <a href="09-color-style-jadi-token.html">← 09 color-style-jadi-token</a>
+      <span>10 / 15</span>
+      <a href="11-component-mapping-tokosaya.html">11 component-mapping-tokosaya →</a>
+    </nav>
+  </div>
+</body>
+</html>

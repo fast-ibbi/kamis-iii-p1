@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 14 · 03 frame-dan-layer — Implementasi Desain Figma ke HTML/CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: label panel dan kosmetik kotak layer */
+  .demo .label {
+    margin: 0 0 8px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+  .demo .layer {
+    background: #ffffff;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12.5px;
+    color: #1E293B;
+  }
+  .demo .layer-anak { background: #f8fafc; }
+  .demo .garis-bawah { border-left-color: #4F46E5; }
+  .demo .kerangka > .layer { border-left-color: #9ca3af; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .kerangka {
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px dashed #9ca3af;
+  }
+
+  .layer {
+    box-sizing: border-box;
+    margin-bottom: 6px;
+    padding: 6px 10px;
+    border-left: 3px solid #E2E8F0;
+  }
+
+  .layer-anak {
+    margin-left: 24px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 14 · Implementasi Desain Figma ke HTML/CSS</strong> · 03 frame-dan-layer</p>
+    <h1>Frame dan Layer: Baca Kerangka Dulu, Detail Belakangan</h1>
+    <p>Frame adalah kanvas berukuran tetap untuk satu layar perangkat, sedangkan layer adalah kotak, teks, gambar, dan ikon di dalamnya. Panel sisi kiri Figma menampilkan hirarki layer — dan cara membacanya sama dengan membaca struktur HTML: masuk dari frame terluar, lalu bedah anak pertama ke bawah.</p>
+
+    <h2>Frame 1440 px dan tiga layer utamanya</h2>
+    <p>Model di bawah bukan tangkapan layar Figma, melainkan pohon layer yang ditulis sebagai HTML. Perhatikan bahwa <code>section</code> membungkus gambar dan panel harga, persis seperti panel kiri Figma membungkus kedua layer itu.</p>
+<pre><code class="language-css">.kerangka {
+  box-sizing: border-box;
+  padding: 12px;
+  border: 1px dashed #9ca3af;
+}
+
+.layer {
+  box-sizing: border-box;
+  margin-bottom: 6px;
+  padding: 6px 10px;
+  border-left: 3px solid #E2E8F0;
+}
+
+.layer-anak {
+  margin-left: 24px;
+}</code></pre>
+    <div class="demo">
+      <p class="label">model pohon layer · frame 1440 px</p>
+      <div class="kerangka">
+        <header class="layer">header · .site-nav</header>
+        <section class="layer layer-anak">
+          section · .produk-detail
+          <div class="layer layer-anak">gambar utama</div>
+          <div class="layer layer-anak">panel harga</div>
+        </section>
+        <footer class="layer">footer · .site-footer</footer>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="24px * 2 = 48">Dua tingkat anak menjorok <strong>48 px</strong>: satu langkah 24 px dari section, satu langkah lagi dari pembungkusnya.</p>
+
+    <h2>Hirarki yang sama dibaca sebagai struktur HTML</h2>
+    <p>Pohon di atas adalah markup di bawah ini. Kelas <code>.layer-anak</code> hanya menambah indentasi supaya kedalaman pohonnya terlihat; di halaman sungguhan yang bekerja adalah elemen semantiknya.</p>
+<pre><code class="language-html">&lt;div class="kerangka"&gt;
+  &lt;header class="layer"&gt;header · .site-nav&lt;/header&gt;
+  &lt;section class="layer layer-anak"&gt;
+    section · .produk-detail
+    &lt;div class="layer layer-anak"&gt;gambar utama&lt;/div&gt;
+    &lt;div class="layer layer-anak"&gt;panel harga&lt;/div&gt;
+  &lt;/section&gt;
+  &lt;footer class="layer"&gt;footer · .site-footer&lt;/footer&gt;
+&lt;/div&gt;</code></pre>
+
+    <h2>Tiga ukuran frame Tokosaya</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Frame</th><th>Ukuran</th><th>Perangkat</th><th>Yang berubah</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Desktop</td><td>1440 px</td><td>layar lebar</td><td>dua kolom 7 – 5</td></tr>
+        <tr><td>Tablet</td><td>768 px</td><td>tablet</td><td>kolom mulai menyempit</td></tr>
+        <tr><td>HP</td><td>375 px</td><td>ponsel</td><td>semua kolom menumpuk</td></tr>
+      </tbody>
+    </table>
+    <p>Ketiga frame punya susunan layer yang sama; yang berbeda hanya ukuran dan jumlah kolom yang dipakai.</p>
+    <p><strong>Inti pembelajaran:</strong> frame punya ukuran perangkat yang tetap, layer cuma objek di dalamnya. Pengelompokan yang rapi di Figma membuat hirarki HTML mulai kelihatan sendiri.</p>
+    <nav class="nav">
+      <a href="02-rantai-lima-tahap.html">← 02 rantai-lima-tahap</a>
+      <span>03 / 15</span>
+      <a href="04-istilah-figma-dan-padanan.html">04 istilah-figma-dan-padanan →</a>
+    </nav>
+  </div>
+</body>
+</html>

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 14 · 15 panel-detail-produk — Implementasi Desain Figma ke HTML/CSS</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: dua panel berdampingan, bingkai 375 px, dan kosmetik panel produk */
+  .demo .papan {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .demo .papan > * {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .demo .label {
+    margin: 0 0 8px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+  .demo .model {
+    box-sizing: border-box;
+    padding: 12px;
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+    border-radius: 6px;
+    font-size: 13px;
+  }
+  .demo .hasil {
+    box-sizing: border-box;
+    padding: 12px;
+    background: var(--clr-bg);
+    border: 1px solid var(--clr-border);
+    border-radius: 6px;
+  }
+  .demo .baris-spek {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 4px 0;
+    border-bottom: 1px dotted #d1d5db;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    color: #1E293B;
+  }
+  .demo .baris-spek:last-child { border-bottom: 0; }
+  .demo .nilai { color: var(--clr-primary); font-weight: 600; }
+  .demo .badge-populer {
+    padding: 2px 8px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .demo .produk-kategori {
+    margin: 0;
+    font-size: 13px;
+    color: var(--clr-body);
+  }
+  .demo .btn-tokosaya { font-size: 12.5px; }
+  .demo .bingkai-hp {
+    width: 375px;
+    background: #ffffff;
+    outline: 1px dashed #9ca3af;
+    border-radius: 6px;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  :root {
+    --clr-primary: #4F46E5;
+    --clr-accent: #F59E0B;
+    --clr-dark: #1E293B;
+    --clr-body: #334155;
+    --clr-bg: #F8FAFC;
+    --clr-surface: #FFFFFF;
+    --clr-border: #E2E8F0;
+    --radius: 12px;
+    --space-unit: 8px;
+  }
+
+  .produk-panel {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-unit);
+    align-items: flex-start;
+    padding: 24px;
+    background-color: var(--clr-surface);
+    border-radius: var(--radius);
+  }
+
+  .badge-populer {
+    background-color: var(--clr-accent);
+    color: var(--clr-dark);
+    border-radius: var(--radius);
+  }
+
+  .produk-nama {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--clr-dark);
+  }
+
+  .produk-kategori {
+    color: var(--clr-body);
+  }
+
+  .produk-harga {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--clr-primary);
+  }
+
+  .btn-tokosaya {
+    box-sizing: border-box;
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    background-color: var(--clr-primary);
+    color: #FFFFFF;
+  }
+
+  .produk-cta {
+    align-self: stretch;
+    text-align: center;
+  }
+
+  .produk-nama-hp {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--clr-dark);
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 14 · Implementasi Desain Figma ke HTML/CSS</strong> · 15 panel-detail-produk</p>
+    <h1>Praktik: Panel Detail Produk Sesuai Urutan Spesifikasi</h1>
+    <p>Panel detail produk adalah komponen dengan kepadatan tertinggi di <code>P-DETAIL-01</code>: badge, nama, kategori, harga, lalu tombol. Urutan isinya mengikuti spesifikasi bagian F, dan semua warnanya datang dari blok <code>:root</code>.</p>
+
+    <h2>Markup yang menyusun panel</h2>
+    <p>Struktur di bawah adalah susunan yang dipakai <code>produk.html</code>. Bedanya dengan blok di deck: kelas jarak Bootstrap seperti <code>mt-3</code> dan <code>mt-2</code> tidak dipakai di sini, karena demo ini tanpa Bootstrap — jaraknya diurus satu <code>gap</code> dari token <code>--space-unit</code>.</p>
+<pre><code class="language-html">&lt;div class="produk-panel"&gt;
+  &lt;span class="badge-populer"&gt;Best Seller&lt;/span&gt;
+  &lt;h2 class="produk-nama"&gt;Keyboard Mekanis KX-210&lt;/h2&gt;
+  &lt;p class="produk-kategori"&gt;Aksesori Input&lt;/p&gt;
+  &lt;p class="produk-harga"&gt;Rp650.000&lt;/p&gt;
+  &lt;span class="btn-tokosaya produk-cta"&gt;Tambah ke Keranjang&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+
+    <h2>Aturan CSS yang memasang angkanya</h2>
+<pre><code class="language-css">:root {
+  --clr-primary: #4F46E5;
+  --clr-accent: #F59E0B;
+  --clr-dark: #1E293B;
+  --clr-body: #334155;
+  --clr-bg: #F8FAFC;
+  --clr-surface: #FFFFFF;
+  --clr-border: #E2E8F0;
+  --radius: 12px;
+  --space-unit: 8px;
+}
+
+.produk-panel {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-unit);
+  align-items: flex-start;
+  padding: 24px;
+  background-color: var(--clr-surface);
+  border-radius: var(--radius);
+}
+
+.badge-populer {
+  background-color: var(--clr-accent);
+  color: var(--clr-dark);
+  border-radius: var(--radius);
+}
+
+.produk-nama {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--clr-dark);
+}
+
+.produk-kategori {
+  color: var(--clr-body);
+}
+
+.produk-harga {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--clr-primary);
+}
+
+.btn-tokosaya {
+  box-sizing: border-box;
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  background-color: var(--clr-primary);
+  color: #FFFFFF;
+}
+
+.produk-cta {
+  align-self: stretch;
+  text-align: center;
+}</code></pre>
+    <div class="demo">
+      <div class="papan">
+        <div>
+          <p class="label">model spesifikasi · panel detail</p>
+          <div class="model">
+            <div class="baris-spek"><span>urutan isi</span><span class="nilai">badge → nama → kategori → harga → CTA</span></div>
+            <div class="baris-spek"><span>nama produk</span><span class="nilai">28 px</span></div>
+            <div class="baris-spek"><span>harga</span><span class="nilai">24 px, indigo</span></div>
+            <div class="baris-spek"><span>jarak isi</span><span class="nilai">8 px</span></div>
+            <div class="baris-spek"><span>padding</span><span class="nilai">24 px</span></div>
+            <div class="baris-spek"><span>radius</span><span class="nilai">12 px</span></div>
+          </div>
+        </div>
+        <div>
+          <p class="label">hasil HTML + CSS</p>
+          <div class="hasil">
+            <div class="produk-panel">
+              <span class="badge-populer">Best Seller</span>
+              <h2 class="produk-nama">Keyboard Mekanis KX-210</h2>
+              <p class="produk-kategori">Aksesori Input</p>
+              <p class="produk-harga">Rp650.000</p>
+              <span class="btn-tokosaya produk-cta">Tambah ke Keranjang</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="4 * 8px = 32">Lima isi panel membentuk empat celah dari <code>--space-unit</code>: <strong>32 px</strong>, dan tidak satu pun ditulis sebagai <code>mt-2</code> yang tidak bisa diperiksa.</p>
+
+    <h2>Di frame 375 px judul turun ke 24 px</h2>
+    <p>Hasil yang diharapkan pada frame HP: kartu jadi satu kolom dan judul turun ke 24 px. Karena demo ini tanpa media query, versi 375 px ditampilkan sebagai model kedua dengan aturan judul yang lebih kecil.</p>
+<pre><code class="language-css">.produk-nama-hp {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--clr-dark);
+}</code></pre>
+    <div class="demo">
+      <div class="bingkai-hp">
+        <div class="produk-panel">
+          <span class="badge-populer">Best Seller</span>
+          <h2 class="produk-nama-hp">Keyboard Mekanis KX-210</h2>
+          <p class="produk-kategori">Aksesori Input</p>
+          <p class="produk-harga">Rp650.000</p>
+          <span class="btn-tokosaya produk-cta">Tambah ke Keranjang</span>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="375px - 24px * 2 = 327">Di frame 375 px, padding 24 px di kiri dan kanan menyisakan <strong>327 px</strong> untuk isi panel.</p>
+
+    <h2>Hasil yang diharapkan</h2>
+    <ul>
+      <li>Panel kanan: badge amber, harga indigo 24 px, tombol radius 12.</li>
+      <li>Urutan isi panel mengikuti spesifikasi bagian F; badge diletakkan sebelum nama produk.</li>
+      <li>Kelas Bootstrap mengurus susunan, kelas kustom mengurus warna.</li>
+      <li>Semua warna komponen datang dari blok <code>:root</code>; tidak ada hex di selector.</li>
+      <li>Tiga kartu terkait nanti sejajar dengan gutter 24 px di baris yang sama.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> kalau ada yang belum sesuai, curigai dulu jalur file CSS dan kelas yang lupa dipasang — bukan angkanya. Tanda halaman yang nilainya bukan dari token adalah hex yang menempel langsung di selector komponen.</p>
+    <nav class="nav">
+      <a href="14-fidelity-checklist.html">← 14 fidelity-checklist</a>
+      <span>15 / 15</span>
+      <span>—</span>
+    </nav>
+  </div>
+</body>
+</html>
