@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 15 · 13 paket-rilis-kandidat — Final Project dan Quality Assurance</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* ============================================================
+     panggung — bukan bagian pelajaran
+     ============================================================ */
+.demo .petunjuk { margin: 0 0 10px; font-size: 13px; color: #6b7280; }
+  .demo .isi-paket li {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 5px 0;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .demo .isi-paket li:last-child { border-bottom: 0; }
+  .demo .gugus-paket { margin: 0 0 14px; }
+  .demo .nama-gugus {
+    display: block;
+    margin: 0 0 4px;
+    font-size: 12.5px;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .demo .catatan-paket { margin: 12px 0 0; font-size: 13px; color: #4b5563; }
+  .demo .nol-kritis { font-weight: 600; color: #14532d; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+.paket-rilis {
+  padding: 16px;
+  border: 2px dashed #1d4ed8;
+  border-radius: 6px;
+  background: #ffffff;
+}
+
+.label-versi {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #1e3a8a;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.isi-paket {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 15 · Final Project dan Quality Assurance</strong> · 13 paket rilis kandidat</p>
+    <h1>Paket Rilis Kandidat</h1>
+    <p>Rilis kandidat adalah versi siap rilis yang menunggu persetujuan akhir; persetujuannya peer review dan dosen pada Bab 16. Ia bukan barang jadi yang langsung dipakai, dan bukan pula sekadar mengunggah folder.</p>
+
+    <h2>Bedanya dengan deployment</h2>
+    <ul>
+      <li>Rilis kandidat: versi siap rilis menunggu persetujuan akhir</li>
+      <li>Deployment: menaruh website di hosting statis atau paket ZIP</li>
+      <li>Artefak M7: checklist terisi, laporan temuan, paket rilis</li>
+      <li>Dosen menilai milestone ini sebelum Bab 16 menyuntik persetujuan</li>
+    </ul>
+    <p>Keputusan rilis yang terdokumentasi bisa dibantah dan diulang pemeriksaannya; keputusan yang mengikuti suasana hati tidak. Ukuran terukurnya satu: nol temuan Kritis.</p>
+
+    <h2>Isi paket <code>tokosaya-bootstrap-v1.0.0-rc1.zip</code></h2>
+    <p>Aturan pelajaran untuk paket rilis: satu kotak bergaris putus-putus, label versi, dan daftar isi tanpa penanda.</p>
+<pre><code class="language-css">.paket-rilis {
+  padding: 16px;
+  border: 2px dashed #1d4ed8;
+  border-radius: 6px;
+  background: #ffffff;
+}
+
+.label-versi {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #1e3a8a;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.isi-paket {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+}</code></pre>
+    <div class="demo">
+      <div class="paket-rilis">
+        <span class="label-versi">v1.0.0-rc1</span>
+        <div class="gugus-paket">
+          <span class="nama-gugus">produk</span>
+          <ul class="isi-paket">
+            <li><code>index.html</code><span>halaman</span></li>
+            <li><code>katalog.html</code><span>halaman</span></li>
+            <li><code>produk.html</code><span>halaman</span></li>
+            <li><code>kontak.html</code><span>halaman</span></li>
+            <li><code>css/style.css</code><span>gaya</span></li>
+            <li><code>img/</code><span>folder aset</span></li>
+          </ul>
+        </div>
+        <div class="gugus-paket">
+          <span class="nama-gugus">alat QA</span>
+          <ul class="isi-paket">
+            <li><code>qa-checklist.html</code><span>checklist terisi</span></li>
+            <li><code>laporan-temuan.html</code><span>laporan temuan</span></li>
+          </ul>
+        </div>
+        <p class="catatan-paket">Satu label versi, satu catatan perubahan, temuan Kritis tersisa: <span class="nol-kritis">nol</span>.</p>
+      </div>
+    </div>
+    <p>Reviewer membuka paket ini dan isinya harus bisa ditebak tanpa membuka tiap berkas: empat halaman produk, satu berkas gaya, satu folder aset, dan dua alat QA yang memisahkan diri dari produk.</p>
+    <nav class="nav">
+      <a href="12-checklist-rilis.html">← 12 Checklist rilis</a>
+      <span>13 / 16</span>
+      <a href="14-halaman-checklist-qa.html">14 Halaman checklist QA →</a>
+    </nav>
+  </div>
+</body>
+</html>

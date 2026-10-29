@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 15 · 09 uji-lintas-browser-dan-regresi — Final Project dan Quality Assurance</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* ============================================================
+     panggung — bukan bagian pelajaran
+     ============================================================ */
+.demo .petunjuk { margin: 0 0 10px; font-size: 13px; color: #6b7280; }
+  .demo .alur {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .demo .panah { font-size: 18px; color: #6b7280; }
+  .demo .balik {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    border: 1px dashed #9ca3af;
+    border-radius: 6px;
+    background: #ffffff;
+    font-size: 13px;
+    color: #4b5563;
+  }
+  .demo .dua-browser {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .demo .panel-browser {
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background: #ffffff;
+  }
+  .demo .nama-browser {
+    display: block;
+    margin: 0 0 10px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .demo .tumpuk-rapat { display: flex; flex-direction: column; gap: 8px; }
+  .demo .tumpuk-renggang { display: flex; flex-direction: column; gap: 12px; }
+  .demo .medan-kecil {
+    padding: 6px 8px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 12.5px;
+    color: #4b5563;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+.status-lulus {
+  padding: 10px 14px;
+  border-radius: 6px;
+  background: #dcfce7;
+  border: 1px solid #86efac;
+  color: #14532d;
+  font-size: 14px;
+}
+
+.status-temuan {
+  padding: 10px 14px;
+  border-radius: 6px;
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  color: #7f1d1d;
+  font-size: 14px;
+}
+
+.status-diperbaiki {
+  padding: 10px 14px;
+  border-radius: 6px;
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  color: #1e3a8a;
+  font-size: 14px;
+}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 15 · Final Project dan Quality Assurance</strong> · 09 uji lintas browser dan regresi</p>
+    <h1>Browser Testing dan Uji Ulang Regresi</h1>
+    <p>Chrome jadi browser utama, lalu ditambah satu browser lain — Firefox, Edge, atau Safari — buat membandingkan hasil render. Mesin renderingnya beda, jadi jarak bawaan elemen form bisa lain.</p>
+
+    <h2>Satu putaran: sapu, ubah, uji ulang</h2>
+    <ul>
+      <li>Beda font bawaan dan jarak form dicatat sebagai temuan</li>
+      <li><em>Regression</em>: cacat yang kembali setelah satu perubahan</li>
+      <li>Setiap perubahan kaskade wajib disertai penyapuan cepat</li>
+      <li>Sapu seluruh navigasi dan satu halaman katalog</li>
+    </ul>
+    <p>Aturan pelajaran untuk status temuan: tiga keadaan yang dibedakan warna, bukan teks tambahan.</p>
+<pre><code class="language-css">.status-lulus {
+  padding: 10px 14px;
+  border-radius: 6px;
+  background: #dcfce7;
+  border: 1px solid #86efac;
+  color: #14532d;
+  font-size: 14px;
+}
+
+.status-temuan {
+  padding: 10px 14px;
+  border-radius: 6px;
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  color: #7f1d1d;
+  font-size: 14px;
+}
+
+.status-diperbaiki {
+  padding: 10px 14px;
+  border-radius: 6px;
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  color: #1e3a8a;
+  font-size: 14px;
+}</code></pre>
+    <div class="demo">
+      <p class="petunjuk">Katalog lulus di Chrome, disapu di Firefox lalu muncul temuan, diubah CSS-nya, dan diuji ulang.</p>
+      <div class="alur">
+        <span class="status-lulus">lulus di Chrome</span>
+        <span class="panah">→</span>
+        <span class="status-temuan">temuan di Firefox</span>
+        <span class="panah">→</span>
+        <span class="status-diperbaiki">CSS diubah</span>
+        <span class="panah">→</span>
+        <span class="status-lulus">uji ulang · lulus</span>
+      </div>
+      <p class="balik">Cacat kambuh di halaman lain karena aturan kustom yang sama → statusnya <strong>regresi</strong> → kembali ke perbaikan sebelum disapu ulang. Status baru sah setelah halaman diperiksa lagi, bukan setelah kamu merasa selesai.</p>
+    </div>
+
+    <h2>Dua browser, dua hasil render</h2>
+    <p>Panel di bawah memakai markup yang sama; yang berbeda hanya jarak antarmedan yang dibawa masing-masing mesin render. Selisih seperti inilah yang dicatat sebagai temuan, lengkap dengan nama browser dan lebar layarnya.</p>
+    <div class="demo">
+      <div class="dua-browser">
+        <div class="panel-browser">
+          <span class="nama-browser">Chrome · jarak 8 px</span>
+          <div class="tumpuk-rapat">
+            <div class="medan-kecil">Nama lengkap</div>
+            <div class="medan-kecil">Surel</div>
+            <div class="medan-kecil">Kota</div>
+          </div>
+        </div>
+        <div class="panel-browser">
+          <span class="nama-browser">Firefox · jarak 12 px</span>
+          <div class="tumpuk-renggang">
+            <div class="medan-kecil">Nama lengkap</div>
+            <div class="medan-kecil">Surel</div>
+            <div class="medan-kecil">Kota</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="12px - 8px = 4">Selisih <strong>4 px</strong> pada jarak form sudah cukup jadi temuan yang harus dicatat — bukan dibulatkan jadi selera.</p>
+    <p>Kalau aturan kustom untuk satu halaman terlalu lebar selectornya, ia mengenai halaman lain dan cacatnya kembali sebagai regresi. Karena itu penyapuan sesudah tiap perubahan dilakukan pada navigasi plus satu halaman katalog, bukan pada satu halaman yang baru diubah saja.</p>
+    <nav class="nav">
+      <a href="08-pemindai-lima-titik.html">← 08 Pemindai lima titik</a>
+      <span>09 / 16</span>
+      <a href="10-lima-pemeriksaan-aksesibilitas.html">10 Lima pemeriksaan aksesibilitas →</a>
+    </nav>
+  </div>
+</body>
+</html>

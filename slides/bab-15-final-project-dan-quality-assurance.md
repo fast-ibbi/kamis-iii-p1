@@ -104,6 +104,7 @@ Tanyakan bagian mana yang paling sering dilupakan mahasiswa waktu menyiapkan tug
 Jawaban yang diharapkan: design system dan layout responsif, karena dua bagian itu
 nggak kelihatan di satu halaman saja. Ingatkan bahwa setiap bagian punya risiko khas,
 jadi pemeriksaannya juga beda.
+Demo: demos/bab-15/01-sembilan-bagian-wajib.html — sembilan bagian wajib dipetakan ke empat kolom halaman Tokosaya, termasuk pita bagian yang berlaku di semuanya.
 -->
 
 ---
@@ -171,6 +172,7 @@ Gambarkan folder ini sebagai dokumen arsitektur: pengelola baru bisa menebak jal
 tim cuma dari pohonnya. Tanyakan apa risikonya kalau ada file tambahan nyempil di luar
 pola ini. Jawaban yang diharapkan: reviewer kehilangan tempat dan penyisiran jadi
 menyisakan lubang. Ingatkan bahwa folder inilah yang diserahkan sebagai paket rilis.
+Demo: demos/bab-15/02-struktur-folder-proyek.html — pohon `tokosaya-bootstrap` dirender sebagai daftar bersarang, dengan empat hal yang dibaca reviewer di sebelahnya.
 -->
 
 ---
@@ -189,6 +191,7 @@ Tulis `Produk Baru.html` di papan, lalu tanyakan kenapa file itu bisa jalan loka
 di hosting. Jawaban yang diharapkan: sebagian sistem file dan server memperlakukannya beda
 dari `produk-baru.html`. Tekankan bahwa penamaan konsisten mengurangi salah ketik jalur,
 yang jadi sumber link mati paling umum di proyek pemula.
+Demo: demos/bab-15/03-konvensi-penamaan.html — tiga nama berkas yang gagal di hosting dicoret dan dipasangkan dengan versi kebab-case-nya.
 -->
 
 ---
@@ -219,6 +222,7 @@ Ingatkan bahwa kode bersih punya dua pembaca: manusia dan mesin, yaitu browser, 
 dan pembaca layar. Tanyakan kenapa `div` kurang cocok buat pembungkus navigasi. Jawaban
 yang diharapkan: elemen semantik memberi peran, dan peran itu yang dibacakan alat bantu.
 Sebutkan bahwa aturan ini dipakai ulang sebagai item checklist pada praktikum.
+Demo: demos/bab-15/04-html-bersih.html — dua medan surel berdampingan: satu labelnya terhubung lewat `for`–`id` sehingga fokus pindah saat label diklik, satu tidak.
 -->
 
 ---
@@ -249,6 +253,7 @@ Minta mahasiswa menghitung berapa aturan di file mereka yang nggak pernah mengen
 apa pun. Tanyakan kenapa `.merah` dan `.fix2` jadi nama yang menyesatkan pas desain berubah.
 Jawaban yang diharapkan: namanya mendeskripsikan tampilan sesaat, bukan peran. Sebutkan
 bahwa kode mati yang dibiarkan bikin reviewer berani menghapus hal yang salah.
+Demo: demos/bab-15/05-css-bersih.html — empat lapis `style.css` ditampilkan berurutan, lalu satu kartu yang seluruh nilainya menumpang token.
 -->
 
 ---
@@ -293,6 +298,7 @@ Tekankan bahwa keputusan ini murah dan bisa diulang: kalau utilitasnya ada, paka
 utilitasnya. Tanyakan kenapa pola ini menyelamatkan waktu di sprint perbaikan. Jawaban
 yang diharapkan: perubahan jarak atau perataan cukup satu kelas, nggak perlu aturan baru.
 Ingatkan bahwa kustom tetap boleh, cuma tempatnya bukan di sini.
+Demo: demos/bab-15/06-utilitas-dulu-kustom-seperlunya.html — navbar 1120 px dengan lima item yang celahnya dibagi `space-between`, tanpa satu aturan kustom.
 -->
 
 ---
@@ -390,6 +396,7 @@ Tekankan aturan mainnya: kalau satu sel belum terisi, kerja belum selesai. Tanya
 gulir horizontal bukan soal selera. Jawaban yang diharapkan: itu cacat, karena pengguna
 harus menggeser layar buat membaca konten. Ingatkan bahwa tiap temuan sebaiknya disertai
 tangkapan layar biar laporan QA punya bukti.
+Demo: demos/bab-15/07-test-matrix-tiga-breakpoint.html — tiga wadah berlebar tetap 360, 768, dan 992 px yang mensimulasikan perangkat, ditambah matrix dua belas sel.
 -->
 
 ---
@@ -408,6 +415,7 @@ Jalankan pemindaian ini langsung di layar, halaman demi halaman, sambil geser le
 Tanyakan titik mana yang paling sering ditemukan bermasalah di proyek teman sekelas.
 Jawaban yang diharapkan: grid kartu dan form. Sebutkan bahwa urutan lima titik ini
 sengaja tetap, biar penyisiran nggak bergantung pada ingatan.
+Demo: demos/bab-15/08-pemindai-lima-titik.html — satu halaman contoh disisir berurutan dari navigasi sampai footer, dengan nomor titik menempel di tiap bagiannya.
 -->
 
 ---
@@ -439,6 +447,7 @@ diharapkan: mesin renderingnya beda, jadi jarak bawaan elemen form bisa lain. La
 dengan aturan praktis regression: setiap perubahan kaskade disertai penyapuan navigasi
 plus satu halaman katalog, karena aturan kustom untuk satu halaman kadang mengenai
 halaman lain.
+Demo: demos/bab-15/09-uji-lintas-browser-dan-regresi.html — satu putaran lulus, temuan, diperbaiki, uji ulang, ditambah dua panel Chrome dan Firefox yang jarak form-nya berbeda.
 -->
 
 ---
@@ -472,6 +481,7 @@ pasal WCAG 2.2 yang bisa dilaporkan. Minta kelas menjalankan uji tab tanpa menye
 pada satu halaman kontak. Tanyakan kenapa skor Lighthouse tinggi bukan berarti lulus.
 Jawaban yang diharapkan: urutan baca dan makna cuma bisa dinilai manusia, jadi alatnya
 cuma penguat, bukan pengganti.
+Demo: demos/bab-15/10-lima-pemeriksaan-aksesibilitas.html — halaman kontak yang bisa diuji Tab: skip link, kolom surel, lalu tombol kirim, dengan indikator fokus terlihat.
 -->
 
 ---
@@ -526,6 +536,7 @@ pilih elemen terkecil yang gagal. Panah terakhir adalah aturan mainnya, hipotesi
 satu perubahan, lalu verifikasi ulang: lihat lagi di halaman itu. Tekankan bahwa satu
 perubahan per putaran itulah yang bikin kamu masih tahu penyebabnya saat hasilnya berubah,
 dan utamakan panel Computed untuk membaca nilai akhir yang benar-benar menyala.
+Demo: demos/bab-15/11-debugging-css-devtools.html — panel Styles dengan satu aturan tercoret disandingkan dengan panel Computed yang menunjukkan nilai akhirnya.
 -->
 
 ---
@@ -543,6 +554,7 @@ Ini tiga belas item checklist yang dipotong jadi tiga slide biar nggak sesak. Mi
 mengklik seluruh menu navigasi bareng-bareng, karena link mati paling cepat ditemukan
 dengan cara itu. Tanyakan kenapa brand harus identik di semua halaman. Jawaban yang
 diharapkan: pengguna menyimpulkan halaman yang beda tampilan itu halaman yang terlupakan.
+Demo: demos/bab-15/12-checklist-rilis.html — lima item checklist rilis 1/3 dengan tanda lulus dan temuan, lalu katalog delapan produk baku dalam grid 12 kolom.
 -->
 
 ---
@@ -633,6 +645,7 @@ Bedakan deployment dan rilis kandidat dengan jelas, karena dua kata ini sering d
 sama. Tanyakan apa bedanya keputusan rilis yang terdokumentasi dengan keputusan yang
 mengikuti suasana hati. Jawaban yang diharapkan: yang terdokumentasi bisa dibantah dan
 diulang pemeriksaannya. Sebutkan bahwa nol temuan Kritis itu ukuran terukurnya.
+Demo: demos/bab-15/13-paket-rilis-kandidat.html — isi paket rc1 dibuka sebagai satu kotak: empat halaman, satu berkas gaya, folder aset, dan dua alat QA.
 -->
 
 ---
@@ -779,6 +792,7 @@ Tunjukkan bahwa halaman ini adalah bukti langsung pola utilitas-pertama: grid, j
 kartu semuanya dari kelas Bootstrap. Tanyakan kenapa badge prioritas dipakai, bukan tulisan
 biasa. Jawaban yang diharapkan: prioritas item jadi terbaca dari warna, bukan ditebak dari
 posisi. Ingatkan bahwa satu `h1` di header dan `h2` di kartu menjaga hierarki nggak melompat.
+Demo: demos/bab-15/14-halaman-checklist-qa.html — markup `qa-checklist.html` dirender apa adanya, tanpa satu baris CSS kustom.
 -->
 
 ---
@@ -818,6 +832,7 @@ Jelaskan bahwa bentuk tabel dipilih karena laporan profesional selalu difilter: 
 bertanya temuan Kritis yang masih terbuka, bukan membaca seluruh cerita. Tunjukkan kolom
 langkah reproduksi di file aslinya dan tanyakan kenapa kolom itu wajib. Jawaban yang
 diharapkan: temuan yang langkahnya nggak bisa diulang orang lain dianggap nggak valid.
+Demo: demos/bab-15/15-tabel-laporan-temuan.html — tiga temuan dengan badge severitas dan status, ditambah tabel arti Kritis, Mayor, dan Minor.
 -->
 
 ---
@@ -855,6 +870,7 @@ Minta kelas menunjuk tiga penyakitnya satu per satu sebelum kamu tunjukkan jawab
 duplikasi terpencar, `!important`, dan nilai acak di luar token. Tutup dengan prinsip
 refactornya: satu aturan per maksud, biarkan token memikul nilai, dan biarkan kaskade
 bekerja tanpa dipaksa.
+Demo: demos/bab-15/16-refactor-css-hasil-temuan.html — blok sebelum dan sesudah berdampingan, lengkap dengan judul kartu hasil render keduanya.
 -->
 
 ---
@@ -940,6 +956,7 @@ dipertanggungjawabkan.
 - Bootstrap: utilitas dulu, kustom terkomentar, CDN terkunci
 - Test matrix dan lima titik membuat uji responsif terencana
 - Checklist dua belas titik mengunci versi v1.0.0-rc1
+**Demo:** seluruh konsep bab ini bisa dicoba di [demos/bab-15/index.html](demos/bab-15/index.html).
 
 <!--
 Tutup dengan pesan utama: kualitas nggak pernah tinggal, ia harus dirawat dan dibuktikan.

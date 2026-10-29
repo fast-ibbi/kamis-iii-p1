@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo Bab 15 — Final Project dan Quality Assurance</title>
+<style>
+  :root { --ink: #111827; --muted: #6b7280; --accent: #1d4ed8; --border: #e5e7eb; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 48px 20px 64px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: var(--ink);
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 820px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .kepala a { color: var(--accent); text-decoration: none; }
+  h1 { margin: 0 0 10px; font-size: 28px; line-height: 1.25; }
+  .pengantar { margin: 0 0 32px; color: var(--muted); font-size: 16px; }
+  ol { margin: 0; padding: 0; list-style: none; counter-reset: demo; }
+  li {
+    counter-increment: demo;
+    border-top: 1px solid var(--border);
+    padding: 16px 0;
+  }
+  li a {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  li a::before {
+    content: counter(demo, decimal-leading-zero) "  ";
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  li p { margin: 4px 0 0; font-size: 15px; color: var(--muted); }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><a href="../index.html">← Semua bab</a> · Demo Bab 15</p>
+    <h1>Demo Bab 15 — Final Project dan Quality Assurance</h1>
+    <p class="pengantar">16 berkas contoh, satu berkas per konsep slide. Tiap berkas
+    menampilkan kode contoh beserta hasil yang benar-benar dirender, tanpa JavaScript.</p>
+    <ol>
+    <li>
+      <a href="01-sembilan-bagian-wajib.html">01 sembilan-bagian-wajib</a>
+      <p>Sembilan bagian wajib dipasang di empat halaman yang saling tersambung — bukan di sembilan halaman. Peta di bawah menaruh tiap bagian pada halaman bakunya, supaya waktu menyisir…</p>
+    </li>
+    <li>
+      <a href="02-struktur-folder-proyek.html">02 struktur-folder-proyek</a>
+      <p>Folder proyek adalah dokumen arsitektur: orang yang baru bergabung bisa menebak jalan pikiran tim hanya dari pohonnya. Inilah pohon yang diserahkan sebagai paket rilis.</p>
+    </li>
+    <li>
+      <a href="03-konvensi-penamaan.html">03 konvensi-penamaan</a>
+      <p>Konvensi penamaan bukan selera: ia yang menentukan apakah jalur berkas tetap sama setelah proyek diunggah. Empat aturannya pendek, dan semuanya bisa diperiksa dari daftar berkas.</p>
+    </li>
+    <li>
+      <a href="04-html-bersih.html">04 html-bersih</a>
+      <p>Kode bersih punya dua pembaca: manusia dan mesin — browser, validator, dan pembaca layar. Enam aturan di bawah ini dipakai ulang sebagai butir checklist pada praktikum.</p>
+    </li>
+    <li>
+      <a href="05-css-bersih.html">05 css-bersih</a>
+      <p>style.css Tokosaya dibaca berlapis dari atas ke bawah. Urutannya tetap, dan nilai yang menumpang token membuat !important nggak pernah dibutuhkan.</p>
+    </li>
+    <li>
+      <a href="06-utilitas-dulu-kustom-seperlunya.html">06 utilitas-dulu-kustom-seperlunya</a>
+      <p>Prinsip kepalanya satu kalimat: tanya dulu apa Bootstrap sudah punya kelasnya; kalau ada, pakai kelas itu, dan jangan pernah berjuang melawan framework.</p>
+    </li>
+    <li>
+      <a href="07-test-matrix-tiga-breakpoint.html">07 test-matrix-tiga-breakpoint</a>
+      <p>Test matrix mengubah pengujian dari lihat-lihat sana-sini menjadi penyisiran yang bisa dijadwalkan dan dilaporkan. Aturan mainnya satu: kalau satu sel belum terisi, kerja belum …</p>
+    </li>
+    <li>
+      <a href="08-pemindai-lima-titik.html">08 pemindai-lima-titik</a>
+      <p>Pemindai lima titik adalah urutan tetap penyisiran satu halaman. Alatnya device toolbar di Chrome DevTools; yang dipindai selalu lima titik yang sama, halaman demi halaman, samb…</p>
+    </li>
+    <li>
+      <a href="09-uji-lintas-browser-dan-regresi.html">09 uji-lintas-browser-dan-regresi</a>
+      <p>Chrome jadi browser utama, lalu ditambah satu browser lain — Firefox, Edge, atau Safari — buat membandingkan hasil render. Mesin renderingnya beda, jadi jarak bawaan elemen form…</p>
+    </li>
+    <li>
+      <a href="10-lima-pemeriksaan-aksesibilitas.html">10 lima-pemeriksaan-aksesibilitas</a>
+      <p>Lima pemeriksaan ini hasilnya terukur, jadi temuan aksesibilitas punya nomor pasal WCAG 2.2 yang bisa dilaporkan. Semuanya wajib lolos per halaman, bukan per proyek.</p>
+    </li>
+    <li>
+      <a href="11-debugging-css-devtools.html">11 debugging-css-devtools</a>
+      <p>Di sini kita berhenti menebak dan mulai membaca: aturan mana yang menang, kenapa menang, dan di file mana aturan itu berasal. Panel Styles menunjukkan semua aturan dan mencoret …</p>
+    </li>
+    <li>
+      <a href="12-checklist-rilis.html">12 checklist-rilis</a>
+      <p>Tiga belas item checklist dipotong jadi tiga halaman biar nggak sesak. Halaman pertama memeriksa isi, brand, dan meta — semuanya hal yang dilihat pengguna lebih dulu daripada kode.</p>
+    </li>
+    <li>
+      <a href="13-paket-rilis-kandidat.html">13 paket-rilis-kandidat</a>
+      <p>Rilis kandidat adalah versi siap rilis yang menunggu persetujuan akhir; persetujuannya peer review dan dosen pada Bab 16. Ia bukan barang jadi yang langsung dipakai, dan bukan p…</p>
+    </li>
+    <li>
+      <a href="14-halaman-checklist-qa.html">14 halaman-checklist-qa</a>
+      <p>qa-checklist.html adalah bukti langsung pola utilitas-pertama: grid, jarak, dan kartu semuanya dari kelas Bootstrap, jadi nggak ada satu baris CSS kustom di halaman ini.</p>
+    </li>
+    <li>
+      <a href="15-tabel-laporan-temuan.html">15 tabel-laporan-temuan</a>
+      <p>laporan-temuan.html memakai bentuk tabel karena laporan profesional selalu difilter: reviewer bertanya temuan Kritis yang masih terbuka, bukan membaca seluruh cerita dari awal.</p>
+    </li>
+    <li>
+      <a href="16-refactor-css-hasil-temuan.html">16 refactor-css-hasil-temuan</a>
+      <p>Blok SEBELUM cuma bahan diskusi review dan jangan dipertahankan di file riil. Yang dipertahankan hanya blok SESUDAH — satu aturan per maksud, nilai menumpang token, dan kaskade …</p>
+    </li>
+    </ol>
+  </div>
+</body>
+</html>

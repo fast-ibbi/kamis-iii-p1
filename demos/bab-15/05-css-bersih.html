@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 15 · 05 css-bersih — Final Project dan Quality Assurance</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* ============================================================
+     panggung — bukan bagian pelajaran
+     ============================================================ */
+.demo .petunjuk { margin: 0 0 10px; font-size: 13px; color: #6b7280; }
+  .demo .lapis-kotak {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .demo .contoh-baris {
+    margin: 0;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12.5px;
+    color: #6b7280;
+  }
+  .demo .kartu-token {
+    border: 1px solid #d1d5db;
+  }
+  .demo .kartu-token .harga {
+    display: block;
+    margin-top: 6px;
+    font-weight: 600;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+:root {
+  --clr-dark: #111827;
+  --radius: 6px;
+  --jarak: 16px;
+}
+
+.lapis-laci {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lapis-laci li {
+  padding: 8px 12px;
+  border-left: 3px solid #1d4ed8;
+  background: #ffffff;
+  font-size: 14px;
+}
+
+.kartu-token {
+  padding: var(--jarak);
+  border-radius: var(--radius);
+  background: #ffffff;
+  color: var(--clr-dark);
+  font-size: 14px;
+}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 15 · Final Project dan Quality Assurance</strong> · 05 CSS bersih</p>
+    <h1>CSS yang Bersih</h1>
+    <p><code>style.css</code> Tokosaya dibaca berlapis dari atas ke bawah. Urutannya tetap, dan nilai yang menumpang token membuat <code>!important</code> nggak pernah dibutuhkan.</p>
+
+    <h2>Urutan empat lapis</h2>
+    <p>Token <code>:root</code> buat warna, radius, dan jarak; lapis base buat reset dan tipografi dasar; lapis komponen buat kartu dan tombol; lapis halaman buat gaya khusus kontak.</p>
+    <p>Aturan pelajaran untuk empat lapis dan kartu yang menumpang token.</p>
+<pre><code class="language-css">:root {
+  --clr-dark: #111827;
+  --radius: 6px;
+  --jarak: 16px;
+}
+
+.lapis-laci {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lapis-laci li {
+  padding: 8px 12px;
+  border-left: 3px solid #1d4ed8;
+  background: #ffffff;
+  font-size: 14px;
+}
+
+.kartu-token {
+  padding: var(--jarak);
+  border-radius: var(--radius);
+  background: #ffffff;
+  color: var(--clr-dark);
+  font-size: 14px;
+}</code></pre>
+    <div class="demo">
+      <p class="petunjuk">Baca dari atas ke bawah: tiap lapis hanya boleh menambah, bukan menimpa lapis di atasnya dengan paksa.</p>
+      <ul class="lapis-laci">
+        <li>1 · token <code>:root</code> — warna, radius, jarak<p class="contoh-baris">--clr-dark: #111827; --radius: 6px; --jarak: 16px;</p></li>
+        <li>2 · base — reset dan tipografi dasar<p class="contoh-baris">body, h1–h3, p, a</p></li>
+        <li>3 · komponen — kartu dan tombol<p class="contoh-baris">.kartu-produk, .tombol-utama</p></li>
+        <li>4 · halaman — gaya khusus kontak<p class="contoh-baris">.kontak-medan, .kontak-catatan</p></li>
+      </ul>
+      <p class="petunjuk" style="margin:14px 0 8px">Hasilnya: satu kartu yang seluruh nilainya menumpang token.</p>
+      <div class="kartu-token">
+        Judul kartu produk
+        <span class="harga">Rp650.000</span>
+      </div>
+    </div>
+
+    <h2>Penamaan kelas mengikuti peran</h2>
+    <p>Kelas kebab-case dinamai menurut peran, bukan menurut tampilan sesaat: <code>.merah</code> dan <code>.fix2</code> menyesatkan begitu desain berubah, sedangkan <code>.tombol-utama</code> dan <code>.kartu-produk</code> tetap benar.</p>
+
+    <h2>Hapus kode mati dan duplikasi</h2>
+    <p>Aturan yang nggak pernah mengenai elemen apa pun adalah kode mati. Kode mati yang dibiarkan bikin reviewer berani menghapus hal yang salah, karena ia tidak bisa membedakan aturan yang lupa dipakai dari aturan yang memang cadangan.</p>
+
+    <blockquote>
+      <p>Kalau tampilan melawan kamu, hampir selalu masalah kaskade yang bisa dibereskan jujur.</p>
+    </blockquote>
+    <p>Itu sebabnya <code>!important</code> bukan jalan pintas penyelesaian konflik: ia menyembunyikan urutan lapis yang sudah kamu susun sendiri.</p>
+    <nav class="nav">
+      <a href="04-html-bersih.html">← 04 HTML bersih</a>
+      <span>05 / 16</span>
+      <a href="06-utilitas-dulu-kustom-seperlunya.html">06 Utilitas dulu, kustom seperlunya →</a>
+    </nav>
+  </div>
+</body>
+</html>

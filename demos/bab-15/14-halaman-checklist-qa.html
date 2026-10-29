@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 15 · 14 halaman-checklist-qa — Final Project dan Quality Assurance</title>
+<link rel="stylesheet" href="../_vendor/bootstrap.min.css">
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* ============================================================
+     panggung — bukan bagian pelajaran
+     ============================================================ */
+.demo .petunjuk { margin: 0 0 10px; font-size: 13px; color: #6b7280; }
+  .demo .bg-body-tertiary { background: #f8f9fa; padding: 8px; border-radius: 6px; }
+  .demo .container { max-width: 720px; margin-inline: auto; }
+  .demo .py-4 { padding-block: 16px; }
+  .demo .shadow-sm { box-shadow: 0 1px 2px rgba(17, 24, 39, 0.08); }
+  .demo .h5 { margin: 0 0 12px; font-size: 17px; }
+  .demo .badge-prioritas {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: #dc3545;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 15 · Final Project dan Quality Assurance</strong> · 14 halaman checklist QA</p>
+    <h1>Kode: Halaman Checklist QA</h1>
+    <p><code>qa-checklist.html</code> adalah bukti langsung pola utilitas-pertama: grid, jarak, dan kartu semuanya dari kelas Bootstrap, jadi nggak ada satu baris CSS kustom di halaman ini.</p>
+
+    <h2>Markup halaman</h2>
+<pre><code class="language-html">&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;title&gt;Checklist QA — Tokosaya&lt;/title&gt;
+&lt;/head&gt;
+&lt;body class="bg-body-tertiary"&gt;
+  &lt;main class="container py-4"&gt;
+    &lt;article class="card shadow-sm"&gt;
+      &lt;div class="card-body"&gt;
+        &lt;h2 class="h5 card-title"&gt;Struktur dan HTML&lt;/h2&gt;
+        &lt;ul class="list-group list-group-flush"&gt;
+          &lt;li class="list-group-item"&gt;HTML tervalidasi W3C&lt;/li&gt;
+          &lt;li class="list-group-item"&gt;Satu &lt;code&gt;h1&lt;/code&gt; per halaman&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    &lt;/article&gt;
+  &lt;/main&gt;
+&lt;/body&gt;</code></pre>
+    <p><code>File: tokosaya-bootstrap/qa-checklist.html</code></p>
+    <ul>
+      <li>Nggak ada satu baris CSS kustom di halaman ini</li>
+      <li>Semua tampilan menyerahkan diri ke utilitas Bootstrap</li>
+    </ul>
+
+    <h2>Hasil render</h2>
+    <p>Kotak di bawah menggambar sendiri kelas Bootstrap yang dipakai markup di atas, supaya demo ini tetap HTML dan CSS murni tanpa CDN. Yang kamu lihat adalah susunan yang sama: satu kartu, satu judul, dan daftar butir tanpa garis luar.</p>
+    <div class="demo">
+      <div class="bg-body-tertiary">
+        <div class="container py-4">
+          <article class="card shadow-sm">
+            <div class="card-body">
+              <h2 class="h5 card-title">Struktur dan HTML</h2>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">HTML tervalidasi W3C</li>
+                <li class="list-group-item">Satu <code>h1</code> per halaman</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+      <p class="petunjuk" style="margin-top:10px">Prioritas butir dibaca dari warna badge, bukan ditebak dari posisi barisnya. <span class="badge-prioritas">Kritis</span></p>
+    </div>
+    <p>Satu <code>h1</code> di header halaman dan <code>h2</code> di kartu menjaga hierarki heading nggak melompat. Badge prioritas dipakai supaya tingkat bahaya tiap butir terbaca dari warna, sejalan dengan tabel severitas di laporan temuan.</p>
+    <nav class="nav">
+      <a href="13-paket-rilis-kandidat.html">← 13 Paket rilis kandidat</a>
+      <span>14 / 16</span>
+      <a href="15-tabel-laporan-temuan.html">15 Tabel laporan temuan →</a>
+    </nav>
+  </div>
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 15 · 07 test-matrix-tiga-breakpoint — Final Project dan Quality Assurance</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* ============================================================
+     panggung — bukan bagian pelajaran
+     ============================================================ */
+.demo .petunjuk { margin: 0 0 10px; font-size: 13px; color: #6b7280; }
+  .demo .tangga { margin: 0; padding: 0; list-style: none; }
+  .demo .anak-tangga { margin: 0 0 16px; }
+  .demo .anak-tangga:last-child { margin-bottom: 0; }
+  .demo .w-360 { width: 360px; }
+  .demo .w-768 { width: 768px; }
+  .demo .w-992 { width: 992px; }
+  .demo .label-layar { display: block; margin-bottom: 6px; font-size: 12.5px; color: #6b7280; }
+  .demo .label-layar b { color: #1d4ed8; }
+  .demo .nav-uji {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 6px 8px;
+    margin-bottom: 8px;
+    background: #eef2ff;
+    border-radius: 4px;
+    font-size: 12.5px;
+  }
+  .demo .nav-uji .merek-uji { font-weight: 600; }
+  .demo .kartu-uji {
+    padding: 8px;
+    background: #f8fafc;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 12.5px;
+  }
+  .demo .form-uji {
+    margin-top: 8px;
+    padding: 6px 8px;
+    border: 1px dashed #9ca3af;
+    border-radius: 4px;
+    font-size: 12.5px;
+    color: #6b7280;
+  }
+  .demo .kaki-uji { margin-top: 8px; font-size: 12px; color: #6b7280; }
+  /* media query membaca viewport sungguhan, jadi tiap wadah dipatok sendiri */
+  .demo .w-360 .kolom-kartu { grid-template-columns: 1fr; }
+  .demo .w-768 .kolom-kartu { grid-template-columns: repeat(2, 1fr); }
+  .demo .w-992 .kolom-kartu { grid-template-columns: repeat(4, 1fr); }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+.layar-uji {
+  box-sizing: border-box;
+  padding: 8px;
+  background: #ffffff;
+  border: 1px dashed #9ca3af;
+  border-radius: 6px;
+}
+
+.kolom-kartu {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .kolom-kartu {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .kolom-kartu {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.sel-lulus {
+  background: #dcfce7;
+  border: 1px solid #86efac;
+  color: #14532d;
+}
+
+.sel-temuan {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  color: #7f1d1d;
+}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 15 · Final Project dan Quality Assurance</strong> · 07 test matrix tiga breakpoint</p>
+    <h1>Test Matrix dan Tiga Breakpoint</h1>
+    <p><em>Test matrix</em> mengubah pengujian dari lihat-lihat sana-sini menjadi penyisiran yang bisa dijadwalkan dan dilaporkan. Aturan mainnya satu: kalau satu sel belum terisi, kerja belum selesai.</p>
+
+    <h2>Tiga kolom matrix</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Kolom matrix</th><th>Lebar</th><th>Yang diperiksa</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>HP</td><td>360–575 px</td><td>nav, hero, kartu, form, footer</td></tr>
+        <tr><td>Tablet</td><td>768–991 px</td><td>kolom grid berubah wajar</td></tr>
+        <tr><td>Desktop</td><td>992 px ke atas</td><td>jarak dan lebar kontainer</td></tr>
+      </tbody>
+    </table>
+    <p>Sel matrix diisi status lulus atau temuan, dan gulir horizontal pada lebar apa pun otomatis jadi temuan. Breakpoint baku Bootstrap: 576, 768, 992, dan 1200 px.</p>
+
+    <h2>Tiga wadah, tiga lebar</h2>
+    <p>Aturan pelajaran untuk test matrix: satu kolom dasar, lalu dua breakpoint yang menambah kolom.</p>
+<pre><code class="language-css">.layar-uji {
+  box-sizing: border-box;
+  padding: 8px;
+  background: #ffffff;
+  border: 1px dashed #9ca3af;
+  border-radius: 6px;
+}
+
+.kolom-kartu {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .kolom-kartu {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .kolom-kartu {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.sel-lulus {
+  background: #dcfce7;
+  border: 1px solid #86efac;
+  color: #14532d;
+}
+
+.sel-temuan {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  color: #7f1d1d;
+}</code></pre>
+    <div class="demo" data-gulir="boleh">
+      <p class="petunjuk">Tiap wadah di bawah berlebar tetap, jadi lebarnya yang mensimulasikan perangkat — bukan lebar jendela browsermu. Gulir kotak ini ke samping untuk melihat ketiganya.</p>
+      <ul class="tangga">
+        <li class="anak-tangga">
+          <span class="label-layar"><b>HP</b> · 360 px</span>
+          <div class="layar-uji w-360">
+            <div class="nav-uji"><span class="merek-uji">Tokosaya</span><span>katalog</span><span>kontak</span></div>
+            <div class="kolom-kartu">
+              <div class="kartu-uji">KX-210</div>
+              <div class="kartu-uji">WC-720</div>
+              <div class="kartu-uji">kartu 3</div>
+              <div class="kartu-uji">kartu 4</div>
+            </div>
+            <div class="form-uji">form · label, input, tombol</div>
+            <div class="kaki-uji">footer</div>
+          </div>
+        </li>
+        <li class="anak-tangga">
+          <span class="label-layar"><b>Tablet</b> · 768 px</span>
+          <div class="layar-uji w-768">
+            <div class="nav-uji"><span class="merek-uji">Tokosaya</span><span>index</span><span>katalog</span><span>produk</span><span>kontak</span></div>
+            <div class="kolom-kartu">
+              <div class="kartu-uji">KX-210</div>
+              <div class="kartu-uji">WC-720</div>
+              <div class="kartu-uji">kartu 3</div>
+              <div class="kartu-uji">kartu 4</div>
+            </div>
+            <div class="form-uji">form · label, input, tombol</div>
+            <div class="kaki-uji">footer</div>
+          </div>
+        </li>
+        <li class="anak-tangga">
+          <span class="label-layar"><b>Desktop</b> · 992 px</span>
+          <div class="layar-uji w-992">
+            <div class="nav-uji"><span class="merek-uji">Tokosaya</span><span>index</span><span>katalog</span><span>produk</span><span>kontak</span></div>
+            <div class="kolom-kartu">
+              <div class="kartu-uji">KX-210</div>
+              <div class="kartu-uji">WC-720</div>
+              <div class="kartu-uji">kartu 3</div>
+              <div class="kartu-uji">kartu 4</div>
+            </div>
+            <div class="form-uji">form · label, input, tombol</div>
+            <div class="kaki-uji">footer</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <h2>Matrix yang terisi penuh</h2>
+    <p>Empat halaman kali tiga breakpoint menghasilkan dua belas sel. Sel yang masih kosong dihitung sebagai temuan, sama seperti sel yang berisi temuan.</p>
+    <table class="tabel">
+      <thead>
+        <tr><th>Halaman</th><th>HP 360 px</th><th>Tablet 768 px</th><th>Desktop 992 px</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>index.html</td><td><span class="sel-lulus">lulus</span></td><td><span class="sel-lulus">lulus</span></td><td><span class="sel-lulus">lulus</span></td></tr>
+        <tr><td>katalog.html</td><td><span class="sel-temuan">temuan</span></td><td><span class="sel-lulus">lulus</span></td><td><span class="sel-lulus">lulus</span></td></tr>
+        <tr><td>produk.html</td><td><span class="sel-lulus">lulus</span></td><td><span class="sel-lulus">lulus</span></td><td><span class="sel-lulus">lulus</span></td></tr>
+        <tr><td>kontak.html</td><td><span class="sel-lulus">lulus</span></td><td><span class="sel-temuan">temuan</span></td><td><span class="sel-lulus">lulus</span></td></tr>
+      </tbody>
+    </table>
+    <p class="hitung" data-hitung="3 * 4 = 12">Tiga breakpoint kali empat halaman: <strong>12 sel</strong> yang semuanya harus terisi.</p>
+    <nav class="nav">
+      <a href="06-utilitas-dulu-kustom-seperlunya.html">← 06 Utilitas dulu, kustom seperlunya</a>
+      <span>07 / 16</span>
+      <a href="08-pemindai-lima-titik.html">08 Pemindai lima titik →</a>
+    </nav>
+  </div>
+</body>
+</html>

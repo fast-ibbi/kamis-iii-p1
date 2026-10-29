@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 15 · 15 tabel-laporan-temuan — Final Project dan Quality Assurance</title>
+<link rel="stylesheet" href="../_vendor/bootstrap.min.css">
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* ============================================================
+     panggung — bukan bagian pelajaran
+     ============================================================ */
+.demo .petunjuk { margin: 0 0 10px; font-size: 13px; color: #6b7280; }
+  .demo .text-bg-warning { background: #ffc107; color: #111827; }
+  .demo .text-bg-secondary { background: #6c757d; color: #ffffff; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 15 · Final Project dan Quality Assurance</strong> · 15 tabel laporan temuan</p>
+    <h1>Kode: Tabel Laporan Temuan</h1>
+    <p><code>laporan-temuan.html</code> memakai bentuk tabel karena laporan profesional selalu difilter: reviewer bertanya temuan Kritis yang masih terbuka, bukan membaca seluruh cerita dari awal.</p>
+
+    <h2>Markup tabel</h2>
+<pre><code class="language-html">&lt;table class="table table-striped align-middle"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th scope="col"&gt;ID&lt;/th&gt;
+      &lt;th scope="col"&gt;Temuan&lt;/th&gt;
+      &lt;th scope="col"&gt;Severitas&lt;/th&gt;
+      &lt;th scope="col"&gt;Status&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th scope="row"&gt;F-01&lt;/th&gt;
+      &lt;td&gt;Label "Surel" tidak terhubung ke input.&lt;/td&gt;
+      &lt;td&gt;&lt;span class="badge text-bg-danger"&gt;Kritis&lt;/span&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;span class="badge text-bg-success"&gt;Diperbaiki&lt;/span&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+    <p><code>File: tokosaya-bootstrap/laporan-temuan.html</code></p>
+    <ul>
+      <li><code>th scope="row"</code> menautkan tiap baris dengan ID-nya</li>
+      <li>Status berubah cuma setelah verifikasi ulang</li>
+    </ul>
+
+    <h2>Laporan yang terbaca mata</h2>
+    <p>Tiga temuan di bawah mewakili tiga tingkat severitas. Warna badge membaca prioritas lebih cepat daripada kolom teks, dan kolom ID tetap menempel ke barisnya lewat <code>th scope="row"</code>.</p>
+    <div class="demo">
+      <p class="petunjuk">Bentuk tabel di bawah sama dengan markup di atas; kelas Bootstrap-nya dimuat dari pustaka lokal <code>../_vendor/bootstrap.min.css</code> (versi 5.3.3, tanpa JavaScript), bukan dari CDN.</p>
+      <table class="table table-striped align-middle">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Temuan</th>
+            <th scope="col">Severitas</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">F-01</th>
+            <td>Label "Surel" tidak terhubung ke input.</td>
+            <td><span class="badge text-bg-danger">Kritis</span></td>
+            <td><span class="badge text-bg-success">Diperbaiki</span></td>
+          </tr>
+          <tr>
+            <th scope="row">F-02</th>
+            <td>Kontras teks keterangan di bawah 4,5 : 1.</td>
+            <td><span class="badge text-bg-warning">Mayor</span></td>
+            <td><span class="badge text-bg-success">Diperbaiki</span></td>
+          </tr>
+          <tr>
+            <th scope="row">F-03</th>
+            <td>Radius kartu katalog belum mengikuti styleguide.</td>
+            <td><span class="badge text-bg-secondary">Minor</span></td>
+            <td><span class="badge text-bg-warning">Terbuka</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Tiga tingkat severitas</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Severitas</th><th>Arti</th><th>Contoh</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Kritis</td><td>menghalangi penggunaan</td><td>link mati, form tak berlabel</td></tr>
+        <tr><td>Mayor</td><td>memperburuk penggunaan</td><td>kontras kurang, kartu tak sejajar</td></tr>
+        <tr><td>Minor</td><td>kesalahan kecil</td><td>radius dan jarak nggak sesuai styleguide</td></tr>
+      </tbody>
+    </table>
+    <p>Perbaiki urut dari Kritis, satu perubahan per putaran, lalu uji ulang regresi setelah setiap perbaikan. Temuan yang tetap Terbuka harus disertai alasan; temuan yang langkah reproduksinya nggak bisa diulang orang lain dianggap nggak valid.</p>
+    <nav class="nav">
+      <a href="14-halaman-checklist-qa.html">← 14 Halaman checklist QA</a>
+      <span>15 / 16</span>
+      <a href="16-refactor-css-hasil-temuan.html">16 Refactor CSS hasil temuan →</a>
+    </nav>
+  </div>
+</body>
+</html>

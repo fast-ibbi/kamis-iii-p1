@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 15 · 01 sembilan-bagian-wajib — Final Project dan Quality Assurance</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* ============================================================
+     panggung — bukan bagian pelajaran
+     ============================================================ */
+.demo .petunjuk { margin: 0 0 10px; font-size: 13px; color: #6b7280; }
+  .demo .peta-kolom {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background: #ffffff;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+.peta-halaman {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.peta-nama {
+  margin: 0 0 4px;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.peta-bagian {
+  display: block;
+  padding: 4px 8px;
+  border: 1px solid #c7d2fe;
+  border-radius: 4px;
+  background: #eef2ff;
+  font-size: 12.5px;
+}
+
+.peta-lebar {
+  grid-column: 1 / -1;
+  padding: 8px 12px;
+  border: 1px dashed #9ca3af;
+  border-radius: 6px;
+  background: #f8fafc;
+  font-size: 13px;
+}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 15 · Final Project dan Quality Assurance</strong> · 01 sembilan bagian wajib</p>
+    <h1>Sembilan Bagian Wajib di Empat Halaman</h1>
+    <p>Sembilan bagian wajib dipasang di empat halaman yang saling tersambung — bukan di sembilan halaman. Peta di bawah menaruh tiap bagian pada halaman bakunya, supaya waktu menyisir cacat nanti tidak ada bagian yang terlewat.</p>
+
+    <h2>Bagian wajib dan lima lanjutannya</h2>
+    <ul>
+      <li>Bagian wajib: homepage, navigasi, hero, section konten</li>
+      <li>Lanjutannya: kartu, form, footer, layout responsif, design system</li>
+    </ul>
+    <p>Proyek akhir memilih satu dari delapan kasus di Bab 16. Ketentuan minimumnya empat halaman yang saling tersambung, dan halaman baku Tokosaya adalah <code>index.html</code>, <code>katalog.html</code>, <code>produk.html</code>, serta <code>kontak.html</code>. Katalog memuat delapan produk baku, misalnya KX-210 dan WC-720.</p>
+    <p class="hitung" data-hitung="4 + 5 = 9">Empat bagian wajib ditambah lima lanjutan: <strong>sembilan bagian</strong> yang harus bisa ditunjuk di proyek.</p>
+
+    <h2>Peta empat halaman</h2>
+    <p>Satu kolom satu halaman. Perhatikan bahwa bagian yang berlaku di keempat halaman ditulis sebagai pita selebar empat kolom, karena ia tidak tinggal di satu halaman saja.</p>
+    <p>Aturan pelajaran yang dipakai peta di bawah: satu grid empat kolom, dan pita selebar empat kolom untuk bagian yang berlaku di semua halaman.</p>
+<pre><code class="language-css">.peta-halaman {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.peta-nama {
+  margin: 0 0 4px;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.peta-bagian {
+  display: block;
+  padding: 4px 8px;
+  border: 1px solid #c7d2fe;
+  border-radius: 4px;
+  background: #eef2ff;
+  font-size: 12.5px;
+}
+
+.peta-lebar {
+  grid-column: 1 / -1;
+  padding: 8px 12px;
+  border: 1px dashed #9ca3af;
+  border-radius: 6px;
+  background: #f8fafc;
+  font-size: 13px;
+}</code></pre>
+    <div class="demo">
+      <p class="petunjuk">Hitung bagian yang bisa kamu tunjuk di proyekmu sendiri; bagian yang tidak bisa ditunjuk berarti belum ada.</p>
+      <div class="peta-halaman">
+        <div class="peta-kolom">
+          <p class="peta-nama">index.html</p>
+          <span class="peta-bagian">homepage</span>
+          <span class="peta-bagian">hero</span>
+          <span class="peta-bagian">section konten</span>
+        </div>
+        <div class="peta-kolom">
+          <p class="peta-nama">katalog.html</p>
+          <span class="peta-bagian">delapan produk baku</span>
+          <span class="peta-bagian">KX-210</span>
+          <span class="peta-bagian">WC-720</span>
+        </div>
+        <div class="peta-kolom">
+          <p class="peta-nama">produk.html</p>
+          <span class="peta-bagian">detail produk</span>
+          <span class="peta-bagian">section konten</span>
+          <span class="peta-bagian">kartu</span>
+        </div>
+        <div class="peta-kolom">
+          <p class="peta-nama">kontak.html</p>
+          <span class="peta-bagian">form</span>
+          <span class="peta-bagian">section konten</span>
+        </div>
+        <div class="peta-lebar">navigasi · footer · layout responsif · design system — berlaku di keempat halaman</div>
+      </div>
+    </div>
+    <p>Karena navigasi dan footer berulang di semua halaman, keduanya diperiksa sekali lalu dibandingkan antarhalaman; layout responsif dan design system justru baru terbukti saat lebar layar berubah.</p>
+    <nav class="nav">
+      <span>—</span>
+      <span>01 / 16</span>
+      <a href="02-struktur-folder-proyek.html">02 Struktur folder proyek →</a>
+    </nav>
+  </div>
+</body>
+</html>
