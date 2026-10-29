@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 6 · 05 align-items — Flexbox untuk Web Layout</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: wadah 720 x 160 px berisi dua butir 200 px */
+  .demo .lorong {
+    width: 720px;
+    max-width: 100%;
+    height: 160px;
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+  }
+  .demo .butir {
+    box-sizing: border-box;
+    width: 200px;
+    padding: 8px 12px;
+    background: #fde68a;
+    border: 1px solid #b45309;
+    font-size: 14px;
+  }
+  .demo .butir-pendek { height: 48px; }
+  .demo .butir-isi-panjang { background: #fef3c7; }
+  .demo .butir-teks-besar { font-size: 28px; line-height: 1.2; }
+  .demo .butir-teks-kecil { font-size: 12px; line-height: 1.2; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .regang {
+    display: flex;
+    align-items: stretch;
+  }
+
+  .ke-puncak {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .ke-dasar {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .ke-tengah {
+    display: flex;
+    align-items: center;
+  }
+
+  .ke-garis-dasar {
+    display: flex;
+    align-items: baseline;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 6 · Flexbox untuk Web Layout</strong> · 05 align items</p>
+    <h1>align-items: Penyelarasan di Sumbu Silang</h1>
+    <p>Kalau <code>justify-content</code> membagi ruang di main axis, <code>align-items</code> mengurus posisi di cross axis. Semua contoh di halaman ini memakai wadah 720 × 160 px berisi dua butir selebar 200 px dengan tinggi isi yang berbeda, sehingga beda tiap nilai terlihat.</p>
+
+    <h2><code>stretch</code> — anak meregang mengikuti tinggi wadah</h2>
+<pre><code class="language-css">.regang {
+  display: flex;
+  align-items: stretch;
+}</code></pre>
+    <p>Ini nilai bawaan. Kedua butir tidak punya tinggi sendiri, jadi keduanya meregang sampai 160 px. Efek inilah yang membuat kartu dalam satu baris selalu sama tinggi walaupun isinya beda panjang — tanpa satu pun aturan tinggi.</p>
+    <div class="demo">
+      <div class="lorong regang">
+        <div class="butir">Kartu pendek</div>
+        <div class="butir butir-isi-panjang">Kartu yang isinya lebih panjang, tetap meregang setinggi wadah</div>
+      </div>
+    </div>
+
+    <h2><code>flex-start</code> — menempel di puncak</h2>
+<pre><code class="language-css">.ke-puncak {
+  display: flex;
+  align-items: flex-start;
+}</code></pre>
+    <p>Butir berhenti di tinggi alaminya dan menempel di tepi atas wadah. Butir pertama di bawah dipatok 48 px supaya tinggi alaminya terlihat jelas.</p>
+    <div class="demo">
+      <div class="lorong ke-puncak">
+        <div class="butir butir-pendek">48 px</div>
+        <div class="butir butir-isi-panjang">Butir ini lebih tinggi karena isinya dua baris</div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="160px - 48px = 112">Tinggi wadah 160 px dikurangi butir pendek 48 px menyisakan <strong>112 px</strong> ruang di sumbu silang.</p>
+
+    <h2><code>flex-end</code> — menempel di dasar</h2>
+<pre><code class="language-css">.ke-dasar {
+  display: flex;
+  align-items: flex-end;
+}</code></pre>
+    <p>Ruang 112 px yang tadi menganggur di bawah sekarang pindah ke atas: butir menempel di dasar wadah.</p>
+    <div class="demo">
+      <div class="lorong ke-dasar">
+        <div class="butir butir-pendek">48 px</div>
+        <div class="butir butir-isi-panjang">Butir ini lebih tinggi karena isinya dua baris</div>
+      </div>
+    </div>
+
+    <h2><code>center</code> — tengah secara vertikal</h2>
+<pre><code class="language-css">.ke-tengah {
+  display: flex;
+  align-items: center;
+}</code></pre>
+    <p>Sisa ruang dibagi dua sama besar ke atas dan ke bawah. Di menu Tokosaya, nilai inilah yang membuat logo dan tombol keranjang sejajar tingginya.</p>
+    <div class="demo">
+      <div class="lorong ke-tengah">
+        <div class="butir butir-pendek">48 px</div>
+        <div class="butir butir-isi-panjang">Butir ini lebih tinggi karena isinya dua baris</div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="112 / 2 = 56">Sisa 112 px terbagi dua: <strong>56 px</strong> di atas dan 56 px di bawah butir pendek.</p>
+
+    <h2><code>baseline</code> — menyetel garis dasar teks</h2>
+<pre><code class="language-css">.ke-garis-dasar {
+  display: flex;
+  align-items: baseline;
+}</code></pre>
+    <p>Butir diselaraskan bukan lewat tepi kotak, melainkan lewat garis dasar huruf pertama di dalamnya. Dua butir dengan ukuran huruf berbeda akan bergeser sampai kedua garis dasar itu bertemu.</p>
+    <div class="demo">
+      <div class="lorong ke-garis-dasar">
+        <div class="butir butir-teks-besar">Besar</div>
+        <div class="butir butir-teks-kecil">teks kecil pada butir kedua</div>
+      </div>
+    </div>
+
+    <table class="tabel">
+      <thead>
+        <tr><th>Nilai</th><th>Efek di sumbu silang</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>stretch</code></td><td>anak meregang mengikuti tinggi wadah</td></tr>
+        <tr><td><code>flex-start</code></td><td>menempel di puncak</td></tr>
+        <tr><td><code>flex-end</code></td><td>menempel di dasar</td></tr>
+        <tr><td><code>center</code></td><td>tengah secara vertikal</td></tr>
+        <tr><td><code>baseline</code></td><td>menyetel garis dasar teks</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Inti pembelajaran:</strong> <code>align-items</code> ditulis pada wadah, bukan pada anak. Memberi <code>center</code> pada baris kartu produk justru membuat kartunya bergelombang, karena <code>stretch</code> bawaannya yang menyeragamkan tinggi.</p>
+    <nav class="nav">
+      <a href="04-justify-content.html">← 04 justify-content</a>
+      <span>05 / 15</span>
+      <a href="06-gap.html">06 gap →</a>
+    </nav>
+  </div>
+</body>
+</html>

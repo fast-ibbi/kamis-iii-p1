@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 6 · 13 pola-footer-media-object — Flexbox untuk Web Layout</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: footer 720 px, media object 480 px */
+  .demo .panggung {
+    width: 720px;
+    max-width: 100%;
+  }
+  .demo .panggung-media {
+    width: 480px;
+    max-width: 100%;
+  }
+  .demo .site-footer {
+    background: #ffffff;
+    outline: 1px solid #d1d5db;
+    font-size: 14px;
+  }
+  .demo .footer-kolom {
+    box-sizing: border-box;
+    padding: 10px 12px;
+    background: #f8fafc;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+  }
+  .demo .footer-kolom h3 { margin: 0 0 6px; font-size: 14px; }
+  .demo .footer-kolom p { margin: 0 0 4px; font-size: 13px; color: #4b5563; }
+  .demo .media-object {
+    background: #ffffff;
+    outline: 1px solid #d1d5db;
+  }
+  .demo .media-object-ikon {
+    box-sizing: border-box;
+    width: 64px;
+    height: 64px;
+    padding-top: 22px;
+    background: #fde68a;
+    border: 1px solid #b45309;
+    border-radius: 50%;
+    font-size: 12px;
+    text-align: center;
+  }
+  .demo .media-object-teks p { margin: 0; font-size: 13px; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .site-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 48px;
+  }
+
+  .footer-kolom {
+    flex: 1 1 240px;
+  }
+
+  .media-object {
+    display: flex;
+    gap: 12px;
+  }
+
+  .media-object-teks {
+    flex: 1;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 6 · Flexbox untuk Web Layout</strong> · 13 pola footer media object</p>
+    <h1>Pola 2: Footer dan Media Object</h1>
+    <p>Footer Tokosaya berisi tiga kolom: merek, menu, dan kontak. Jumlah kolomnya tidak dipatok media query, melainkan lahir dari basis tiap kolom yang tetap. Di dalam kolom kontak, satu pola kecil yang sama dipakai lagi untuk menaruh ikon di samping teks.</p>
+
+    <h2>Footer tiga kolom dengan <code>flex-wrap</code></h2>
+<pre><code class="language-css">.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 48px;
+}
+
+.footer-kolom {
+  flex: 1 1 240px;
+}</code></pre>
+    <p>Tiap kolom punya basis 240 px, boleh menyusut, dan boleh tumbuh mengisi sisa ruang. Karena wadahnya boleh menekuk, jumlah kolom per baris menyesuaikan sendiri tanpa satu pun media query.</p>
+    <div class="demo">
+      <div class="panggung">
+        <div class="site-footer">
+          <div class="footer-kolom">
+            <h3>Tokosaya</h3>
+            <p>Belanja kebutuhan harian, dikirim dari gudang sendiri.</p>
+          </div>
+          <div class="footer-kolom">
+            <h3>Menu</h3>
+            <p>Beranda</p>
+            <p>Produk</p>
+            <p>Promo</p>
+            <p>Kontak</p>
+          </div>
+          <div class="footer-kolom">
+            <h3>Kontak</h3>
+            <p>halo@tokosaya.example</p>
+            <p>Senin sampai Sabtu, 08.00 – 20.00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="240px*2 + 48px = 528">Dua kolom pertama memakai <strong>528 px</strong> dari footer 720 px.</p>
+    <p class="hitung" data-hitung="720px - 528 = 192">Sisa <strong>192 px</strong> tidak cukup untuk kolom ketiga selebar 240 px ditambah jarak 48 px.</p>
+    <p class="hitung" data-hitung="240px*3 + 48px*2 = 816">Kalau dipaksa sebaris, tiga kolom butuh <strong>816 px</strong>; kelebihan 96 px itu yang membuat kolom ketiga turun.</p>
+    <p>Kolom yang turun tidak dibiarkan sempit. Karena <code>flex-grow</code> bernilai 1 lewat singkatan <code>1 1 240px</code>, kolom itu melebar sendiri memenuhi lebar footer.</p>
+
+    <h2>Media object di dalam kolom kontak</h2>
+<pre><code class="language-css">.media-object {
+  display: flex;
+  gap: 12px;
+}
+
+.media-object-teks {
+  flex: 1;
+}</code></pre>
+    <p>Ikon tetap kecil di kiri karena lebarnya dipatok, sedangkan teks di kanan mengambil seluruh sisa ruang lewat <code>flex: 1</code>. Pola ini bekerja untuk baris pengumuman, daftar kontak, maupun daftar komentar.</p>
+    <div class="demo">
+      <div class="panggung-media">
+        <div class="media-object">
+          <div class="media-object-ikon">Ikon</div>
+          <div class="media-object-teks">
+            <p>Pengumuman perpustakaan: buku yang dipinjam dapat dikembalikan di loker depan sejak pekan ini.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="480px - (64px + 12px) = 404">Ikon 64 px dan jarak 12 px menyisakan <strong>404 px</strong> untuk teks, dan teks itu yang menyesuaikan panjang barisnya.</p>
+
+    <h2>Yang perlu diperhatikan</h2>
+    <ul>
+      <li>Basis kolom menentukan kapan penekukan terjadi; <code>gap</code> 48 px ikut dihitung di ruang yang tersedia.</li>
+      <li>Kolom paling kanan turun dengan lebar penuh, bukan mengecil separuh.</li>
+      <li>Di media object, gambar atau ikon tidak boleh ikut menyusut: patok lebarnya, lalu beri teks <code>flex: 1</code>.</li>
+      <li>Kalau jarak antarbaris terasa terlalu lebar, pisahkan <code>row-gap</code> dan <code>column-gap</code>.</li>
+    </ul>
+
+    <p><strong>Inti pembelajaran:</strong> dua pola di halaman ini memakai bahan yang sama — wadah flex, <code>flex-wrap</code>, <code>gap</code>, dan basis yang tetap. Yang membedakan hanya tugasnya: membagi kolom, atau menyandingkan ikon dengan teks.</p>
+    <nav class="nav">
+      <a href="12-pola-navigasi.html">← 12 pola-navigasi</a>
+      <span>13 / 15</span>
+      <a href="14-pola-hero.html">14 pola-hero →</a>
+    </nav>
+  </div>
+</body>
+</html>

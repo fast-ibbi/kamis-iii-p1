@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo Bab 6 — Flexbox untuk Web Layout</title>
+<style>
+  :root { --ink: #111827; --muted: #6b7280; --accent: #1d4ed8; --border: #e5e7eb; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 48px 20px 64px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: var(--ink);
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 820px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .kepala a { color: var(--accent); text-decoration: none; }
+  h1 { margin: 0 0 10px; font-size: 28px; line-height: 1.25; }
+  .pengantar { margin: 0 0 32px; color: var(--muted); font-size: 16px; }
+  ol { margin: 0; padding: 0; list-style: none; counter-reset: demo; }
+  li {
+    counter-increment: demo;
+    border-top: 1px solid var(--border);
+    padding: 16px 0;
+  }
+  li a {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  li a::before {
+    content: counter(demo, decimal-leading-zero) "  ";
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  li p { margin: 4px 0 0; font-size: 15px; color: var(--muted); }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><a href="../index.html">← Semua bab</a> · Demo Bab 6</p>
+    <h1>Demo Bab 6 — Flexbox untuk Web Layout</h1>
+    <p class="pengantar">15 berkas contoh, satu berkas per konsep slide. Tiap berkas
+    menampilkan kode contoh beserta hasil yang benar-benar dirender, tanpa JavaScript.</p>
+    <ol>
+    <li>
+      <a href="01-display-flex.html">01 display-flex</a>
+      <p>Flexbox ditulis pada elemen induk. Satu deklarasi di wadah mengubah semua anak langsungnya menjadi flex item, lalu wadah itu yang mengatur pembagian ruangnya.</p>
+    </li>
+    <li>
+      <a href="02-dua-sumbu.html">02 dua-sumbu</a>
+      <p>Flexbox bekerja pada satu jalur saja. Arah jalur itu disebut main axis, dan arah tegak lurusnya disebut cross axis. Halaman ini memakai wadah 720 px berisi tiga butir 120 px unt…</p>
+    </li>
+    <li>
+      <a href="03-flex-direction.html">03 flex-direction</a>
+      <p>Empat nilai flex-direction hanya mengubah satu hal: ke mana main axis berjalan. Butir di bawah sengaja diberi nomor 1, 2, dan 3 sesuai urutan dokumen HTML, supaya terlihat mana …</p>
+    </li>
+    <li>
+      <a href="04-justify-content.html">04 justify-content</a>
+      <p>Semua contoh di halaman ini memakai wadah 600 px berisi tiga butir 120 px. Isi memakai 360 px, jadi ada 240 px sisa yang menjadi bahan pembagian. Perhatikan ke mana sisa itu per…</p>
+    </li>
+    <li>
+      <a href="05-align-items.html">05 align-items</a>
+      <p>Kalau justify-content membagi ruang di main axis, align-items mengurus posisi di cross axis. Semua contoh di halaman ini memakai wadah 720 × 160 px berisi dua butir selebar 200 …</p>
+    </li>
+    <li>
+      <a href="06-gap.html">06 gap</a>
+      <p>Sebelum gap ada, jarak antar item dibuat lewat margin pada tiap anak. Cara itu bekerja, tetapi menyisakan satu masalah kecil di tepi terluar wadah. Semua contoh di halaman ini m…</p>
+    </li>
+    <li>
+      <a href="07-flex-wrap.html">07 flex-wrap</a>
+      <p>Wadah flex secara bawaan memaksa semua anak duduk di satu baris. Kalau ruangnya tidak cukup, anak-anak itu menyempit. flex-wrap mengubah janji itu: begitu ruang habis, anak pind…</p>
+    </li>
+    <li>
+      <a href="08-flex-item-ukuran.html">08 flex-item-ukuran</a>
+      <p>Tiga properti pertama di level anak mengurus ukuran: flex-basis, flex-grow, dan flex-shrink. Ketiganya bekerja berurutan — basis dipatok lebih dulu, baru kelebihan atau kekurang…</p>
+    </li>
+    <li>
+      <a href="09-singkatan-flex.html">09 singkatan-flex</a>
+      <p>Menulis tiga properti ukuran satu per satu jarang dilakukan orang. Yang dipakai sehari-hari adalah singkatan flex dengan urutan grow, shrink, basis. Halaman ini membandingkan du…</p>
+    </li>
+    <li>
+      <a href="10-auto-margin.html">10 auto-margin</a>
+      <p>Di dalam flex container, auto bukan sekadar jarak minimal seperti pada aliran blok biasa. Nilai itu benar-benar menyerap sisa ruang yang tersedia. Wadah contoh di bawah selebar …</p>
+    </li>
+    <li>
+      <a href="11-align-self-order.html">11 align-self-order</a>
+      <p>Dua properti terakhir di level anak tidak mengurus ukuran, melainkan penyimpangan kecil dari keputusan wadah. Keduanya ditulis pada anak, dan keduanya sebaiknya dipakai hemat.</p>
+    </li>
+    <li>
+      <a href="12-pola-navigasi.html">12 pola-navigasi</a>
+      <p>Wireframe baru meminta logo tetap di kiri, empat link pindah ke kanan, dan tombol Keranjang paling ujung. Penyelesaiannya bukan satu properti ajaib, melainkan satu keputusan str…</p>
+    </li>
+    <li>
+      <a href="13-pola-footer-media-object.html">13 pola-footer-media-object</a>
+      <p>Footer Tokosaya berisi tiga kolom: merek, menu, dan kontak. Jumlah kolomnya tidak dipatok media query, melainkan lahir dari basis tiap kolom yang tetap. Di dalam kolom kontak, s…</p>
+    </li>
+    <li>
+      <a href="14-pola-hero.html">14 pola-hero</a>
+      <p>Hero adalah blok besar di puncak halaman: satu judul, satu kalimat penjelas, satu tombol ajakan. Semuanya ditumpuk dan ditengahkan. Di sinilah dua properti yang tadinya terasa t…</p>
+    </li>
+    <li>
+      <a href="15-baris-kartu-produk.html">15 baris-kartu-produk</a>
+      <p>Pola yang dipakai katalog Tokosaya: kartu punya ukuran awal tetap, boleh menyempit, dan menekuk ke baris baru tanpa satu pun media query.</p>
+    </li>
+    </ol>
+  </div>
+</body>
+</html>

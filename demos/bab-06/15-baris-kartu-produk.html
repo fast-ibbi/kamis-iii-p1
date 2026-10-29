@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 6 · 15 baris-kartu-produk — Flexbox untuk Web Layout</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: lebar baris dipatok 840 px supaya penekukan terjadi di layar ini */
+  .demo .panggung {
+    width: 840px;
+    max-width: 100%;
+  }
+  .demo .produk-card {
+    box-sizing: border-box;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 14px;
+  }
+  .demo .produk-card h3 {
+    margin: 0 0 6px;
+    font-size: 15px;
+  }
+  .demo .produk-card p { margin: 0; font-size: 13.5px; color: #4b5563; }
+  .demo .produk-gambar {
+    height: 72px;
+    background: #fde68a;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+  .demo .produk-harga { font-weight: 600; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .produk-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .produk-card {
+    flex: 0 1 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .produk-harga {
+    margin-top: auto;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 6 · Flexbox untuk Web Layout</strong> · 15 Baris kartu produk</p>
+    <h1>Pola: Baris Kartu Produk</h1>
+    <p>Pola yang dipakai katalog Tokosaya: kartu punya ukuran awal tetap, boleh menyempit, dan menekuk ke baris baru tanpa satu pun media query.</p>
+
+    <h2>Baris yang boleh menekuk</h2>
+<pre><code class="language-css">.produk-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}</code></pre>
+
+    <h2>Kartu sebagai flexbox kecil</h2>
+<pre><code class="language-css">.produk-card {
+  flex: 0 1 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}</code></pre>
+    <p><code>flex: 0 1 250px</code> berarti <em>tidak tumbuh, boleh menyusut, ukuran awal 250 px</em>. Kartu tidak ikut melar saat ruang longgar, tetapi tetap mengecil saat layar sempit.</p>
+    <p>Kartu itu sendiri adalah wadah flex berarah <code>column</code>, jadi gambar, judul, deskripsi, dan harga tersusun vertikal dengan jarak 8 px.</p>
+
+    <h2>Harga menempel di dasar</h2>
+<pre><code class="language-css">.produk-harga {
+  margin-top: auto;
+}</code></pre>
+    <p>Pada arah kolom, <code>margin-top: auto</code> menyerap seluruh sisa tinggi kartu. Akibatnya harga selalu sejajar di dasar, walaupun panjang deskripsi tiap kartu berbeda.</p>
+
+    <h2>Hasil</h2>
+    <div class="demo">
+      <div class="panggung">
+        <div class="produk-row">
+          <div class="produk-card">
+            <div class="produk-gambar">Gambar</div>
+            <h3>Kopi Bubuk 250 g</h3>
+            <p>Arabika gayo, giling halus.</p>
+            <p class="produk-harga">Rp 85.000</p>
+          </div>
+          <div class="produk-card">
+            <div class="produk-gambar">Gambar</div>
+            <h3>Teh Hijau</h3>
+            <p>Kemasan 20 kantong celup.</p>
+            <p class="produk-harga">Rp 32.000</p>
+          </div>
+          <div class="produk-card">
+            <div class="produk-gambar">Gambar</div>
+            <h3>Gula Aren Cair</h3>
+            <p>Botol 350 ml, tanpa pengawet.</p>
+            <p class="produk-harga">Rp 48.000</p>
+          </div>
+          <div class="produk-card">
+            <div class="produk-gambar">Gambar</div>
+            <h3>Madu Hutan</h3>
+            <p>Botol 500 ml.</p>
+            <p class="produk-harga">Rp 120.000</p>
+          </div>
+          <div class="produk-card">
+            <div class="produk-gambar">Gambar</div>
+            <h3>Beras Merah</h3>
+            <p>Karung 5 kg.</p>
+            <p class="produk-harga">Rp 92.000</p>
+          </div>
+          <div class="produk-card">
+            <div class="produk-gambar">Gambar</div>
+            <h3>Keripik Singkong</h3>
+            <p>Rasa pedas manis, 150 g.</p>
+            <p class="produk-harga">Rp 18.000</p>
+          </div>
+          <div class="produk-card">
+            <div class="produk-gambar">Gambar</div>
+            <h3>Sabun Sereh</h3>
+            <p>Isi dua batang.</p>
+            <p class="produk-harga">Rp 25.000</p>
+          </div>
+          <div class="produk-card">
+            <div class="produk-gambar">Gambar</div>
+            <h3>Air Mineral</h3>
+            <p>Dus isi 24 botol 600 ml.</p>
+            <p class="produk-harga">Rp 56.000</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="250px*3 + 24px*2 = 798">Tiga kartu dalam satu baris butuh 250 × 3 + 24 × 2 = <strong>798 px</strong>, jadi masih muat di baris 840 px.</p>
+    <p class="hitung" data-hitung="840px - 798 = 42">Sisa <strong>42 px</strong> tidak cukup untuk kartu keempat sebesar 250 px.</p>
+    <p class="hitung" data-hitung="250px*4 + 24px*3 = 1072">Kartu keempat baru muat kalau barisnya <strong>1072 px</strong>; karena tidak, kartu itu turun baris. Delapan kartu menjadi 3 – 3 – 2.</p>
+
+    <h2>Hasil yang diharapkan</h2>
+    <ul>
+      <li>Jumlah kartu per baris menyesuaikan lebar layar tanpa media query.</li>
+      <li>Lebar kartu tidak pernah melebihi 250 px dan tidak memaksa menyusut lebih awal.</li>
+      <li>Tinggi kartu dalam satu baris seragam karena <code>align-items: stretch</code> bawaan.</li>
+      <li>Harga sejajar di dasar semua kartu.</li>
+      <li>Tidak ada gulir horizontal: lebar baris selalu mengikuti wadahnya.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> baris kartu yang menekuk bekerja tanpa media query karena tiap baris diatur lokal oleh wadahnya sendiri. Keterbatasan ini yang nanti diserahkan ke CSS Grid pada Bab 7.</p>
+    <nav class="nav">
+      <a href="14-pola-hero.html">← 14 pola-hero</a>
+      <span>15 / 15</span>
+      <span>—</span>
+    </nav>
+  </div>
+</body>
+</html>

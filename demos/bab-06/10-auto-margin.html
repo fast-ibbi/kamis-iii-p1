@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 6 · 10 auto-margin — Flexbox untuk Web Layout</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: baris 720 px berisi tiga butir 120 + 240 + 160 px */
+  .demo .lorong {
+    display: flex;
+    align-items: center;
+    width: 720px;
+    max-width: 100%;
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+  }
+  .demo .merek {
+    box-sizing: border-box;
+    width: 120px;
+    padding: 8px 12px;
+    background: #fde68a;
+    border: 1px solid #b45309;
+    font-size: 14px;
+  }
+  .demo .menu {
+    box-sizing: border-box;
+    width: 240px;
+    padding: 8px 12px;
+    background: #fde68a;
+    border: 1px solid #b45309;
+    font-size: 14px;
+  }
+  .demo .keranjang {
+    box-sizing: border-box;
+    width: 160px;
+    padding: 8px 12px;
+    background: #bbf7d0;
+    border: 1px solid #15803d;
+    font-size: 14px;
+  }
+  .demo .deret {
+    display: flex;
+    gap: 16px;
+  }
+  .demo .kartu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-sizing: border-box;
+    width: 220px;
+    height: 220px;
+    padding: 10px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 13.5px;
+  }
+  .demo .kartu-gambar {
+    height: 72px;
+    background: #fde68a;
+    border-radius: 4px;
+  }
+  .demo .kartu h3 { margin: 0; font-size: 14px; }
+  .demo .kartu p { margin: 0; font-size: 13px; color: #4b5563; }
+  .demo .kartu .harga { font-weight: 600; color: #111827; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .tombol-keranjang {
+    margin-left: auto;
+  }
+
+  .baris-rapat {
+    justify-content: space-between;
+  }
+
+  .produk-harga {
+    margin-top: auto;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 6 · Flexbox untuk Web Layout</strong> · 10 auto margin</p>
+    <h1>Auto Margin yang Menyerap Ruang</h1>
+    <p>Di dalam flex container, <code>auto</code> bukan sekadar jarak minimal seperti pada aliran blok biasa. Nilai itu benar-benar menyerap sisa ruang yang tersedia. Wadah contoh di bawah selebar 720 px dan berisi tiga butir: merek 120 px, menu 240 px, dan keranjang 160 px.</p>
+
+    <h2>Tanpa auto margin</h2>
+    <p>Ketiga butir berjejer dari kiri dan menyisakan ruang kosong di ujung kanan. Tombol keranjang belum berada di tempat yang diminta wireframe.</p>
+    <div class="demo">
+      <div class="lorong">
+        <div class="merek">Merek</div>
+        <div class="menu">Menu</div>
+        <div class="keranjang">Keranjang</div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="720px - (120px + 240px + 160px) = 200">Isi memakai 520 px, jadi <strong>200 px</strong> menganggur di kanan.</p>
+
+    <h2><code>margin-left: auto</code> pada keranjang</h2>
+<pre><code class="language-css">.tombol-keranjang {
+  margin-left: auto;
+}</code></pre>
+    <p>Satu deklarasi pada satu anak: seluruh 200 px sisa diserap sebagai margin kiri, sehingga butir itu terdorong sampai menempel di ujung akhir main axis. Tidak ada properti lain yang perlu diubah.</p>
+    <div class="demo">
+      <div class="lorong">
+        <div class="merek">Merek</div>
+        <div class="menu">Menu</div>
+        <div class="keranjang tombol-keranjang">Keranjang</div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="200 / 1 = 200">Seluruh <strong>200 px</strong> masuk ke satu margin, jadi keranjang menempel di tepi kanan.</p>
+
+    <h2>Bandingkan dengan <code>justify-content: space-between</code></h2>
+<pre><code class="language-css">.baris-rapat {
+  justify-content: space-between;
+}</code></pre>
+    <p>Properti wadah ini membagi sisa ruang ke celah <em>di antara</em> anak-anaknya. Dengan tiga anak langsung, sisa 200 px pecah menjadi dua celah 100 px: merek tetap di kiri, keranjang tetap di kanan, tetapi menu bergeser ke tengah. <code>margin-left: auto</code> berbeda karena menaruh seluruh 200 px di satu tempat, tepat di depan keranjang.</p>
+    <p>Soal sebenarnya muncul saat barisnya menekuk: satu anak yang berdiri sendirian di baris kedua tidak punya pasangan untuk dibagi, jadi ia berhenti di kiri. Itu sebabnya pola navigasi Tokosaya membungkus menu dan keranjang lebih dulu menjadi satu kelompok.</p>
+    <div class="demo">
+      <div class="lorong baris-rapat">
+        <div class="merek">Merek</div>
+        <div class="menu">Menu</div>
+        <div class="keranjang">Keranjang</div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="200 / 2 = 100">Dua celah masing-masing <strong>100 px</strong>: menu berdiri tepat di tengah, keranjang tetap di tepi kanan.</p>
+
+    <h2><code>margin-top: auto</code> pada harga</h2>
+<pre><code class="language-css">.produk-harga {
+  margin-top: auto;
+}</code></pre>
+    <p>Pada kartu yang berarah kolom, main axis berjalan vertikal, jadi <code>auto</code> di sisi atas menyerap seluruh sisa tinggi kartu. Harga selalu berhenti di dasar, walaupun panjang deskripsi tiap kartu berbeda — tanpa <code>position: absolute</code>.</p>
+    <div class="demo">
+      <div class="deret">
+        <div class="kartu">
+          <div class="kartu-gambar">Gambar</div>
+          <h3>Kopi Bubuk</h3>
+          <div class="harga produk-harga">Rp 85.000</div>
+        </div>
+        <div class="kartu">
+          <div class="kartu-gambar">Gambar</div>
+          <h3>Teh Hijau Celup</h3>
+          <p>Kemasan 20 kantong, cukup untuk satu bulan.</p>
+          <div class="harga produk-harga">Rp 32.000</div>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="220px - 72px = 148">Tinggi kartu 220 px dikurangi gambar 72 px menyisakan <strong>148 px</strong>; sisa itulah yang menampung judul, deskripsi, padding, dan ruang serap di atas harga.</p>
+    <p>Kartu yang deskripsinya lebih panjang memakai ruang serap lebih sedikit, sedangkan kartu yang deskripsinya pendek memakai lebih banyak. Hasilnya sama: kedua harga duduk sebaris di dasar.</p>
+
+    <p><strong>Inti pembelajaran:</strong> <code>auto</code> pada margin di dalam flex container menyerap sisa ruang, bukan memberi jarak minimal. Pakai hemat — satu item saja per baris — supaya maksudnya tetap terbaca.</p>
+    <nav class="nav">
+      <a href="09-singkatan-flex.html">← 09 singkatan-flex</a>
+      <span>10 / 15</span>
+      <a href="11-align-self-order.html">11 align-self-order →</a>
+    </nav>
+  </div>
+</body>
+</html>

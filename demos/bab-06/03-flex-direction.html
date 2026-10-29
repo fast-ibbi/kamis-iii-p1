@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 6 · 03 flex-direction — Flexbox untuk Web Layout</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: wadah 720 x 160 px berisi tiga butir 120 px bernomor */
+  .demo .lorong {
+    width: 720px;
+    max-width: 100%;
+    height: 160px;
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+  }
+  .demo .butir {
+    box-sizing: border-box;
+    width: 120px;
+    padding: 8px 12px;
+    background: #fde68a;
+    border: 1px solid #b45309;
+    font-size: 14px;
+  }
+  .demo .nomor {
+    display: block;
+    font-weight: 600;
+    font-size: 12px;
+    color: #92400e;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .arah-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .arah-row-reverse {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+
+  .arah-kolom {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .arah-kolom-reverse {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 6 · Flexbox untuk Web Layout</strong> · 03 flex direction</p>
+    <h1>flex-direction: Arah Main Axis</h1>
+    <p>Empat nilai <code>flex-direction</code> hanya mengubah satu hal: ke mana main axis berjalan. Butir di bawah sengaja diberi nomor 1, 2, dan 3 sesuai urutan dokumen HTML, supaya terlihat mana yang berubah dan mana yang tidak.</p>
+
+    <h2><code>row</code> — kiri ke kanan, nilai default</h2>
+<pre><code class="language-css">.arah-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}</code></pre>
+    <p>Butir pertama menempel di awal baris, butir terakhir di akhir. Inilah nilai yang dipakai untuk menu dan baris kartu produk.</p>
+    <div class="demo">
+      <div class="lorong arah-row">
+        <div class="butir"><span class="nomor">1</span>Merek</div>
+        <div class="butir"><span class="nomor">2</span>Menu</div>
+        <div class="butir"><span class="nomor">3</span>Keranjang</div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="720px - 120px*3 = 360">Tiga butir memakai 360 px dari 720 px, jadi sisa <strong>360 px</strong> dibagi dua celah oleh <code>space-between</code>.</p>
+    <p class="hitung" data-hitung="360 / 2 = 180">Masing-masing celah <strong>180 px</strong>.</p>
+
+    <h2><code>row-reverse</code> — kanan ke kiri</h2>
+<pre><code class="language-css">.arah-row-reverse {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}</code></pre>
+    <p>Arah main axis dibalik, jadi titik awal baris berpindah ke kanan. Butir nomor 1 sekarang menempati ujung kanan, sedangkan urutan di dokumen HTML tetap 1, 2, 3.</p>
+    <div class="demo">
+      <div class="lorong arah-row-reverse">
+        <div class="butir"><span class="nomor">1</span>Merek</div>
+        <div class="butir"><span class="nomor">2</span>Menu</div>
+        <div class="butir"><span class="nomor">3</span>Keranjang</div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="720px - 120px*3 = 360">Jumlah ruang yang dipakai sama, <strong>360 px</strong> sisa; yang berubah hanya dari ujung mana pembagian itu dimulai.</p>
+
+    <h2><code>column</code> — atas ke bawah</h2>
+<pre><code class="language-css">.arah-kolom {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}</code></pre>
+    <p>Main axis berbalik menjadi vertikal. <code>justify-content</code> yang tadinya membagi ruang ke samping sekarang membagi ruang ke bawah, dan cross axis menjadi horizontal. Nilai ini yang dipakai untuk menumpuk isi di dalam kartu.</p>
+    <div class="demo">
+      <div class="lorong arah-kolom">
+        <div class="butir"><span class="nomor">1</span>Merek</div>
+        <div class="butir"><span class="nomor">2</span>Menu</div>
+        <div class="butir"><span class="nomor">3</span>Keranjang</div>
+      </div>
+    </div>
+
+    <h2><code>column-reverse</code> — bawah ke atas</h2>
+<pre><code class="language-css">.arah-kolom-reverse {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+}</code></pre>
+    <p>Titik awal main axis pindah ke dasar wadah, jadi butir nomor 1 berada paling bawah. Dua varian <code>reverse</code> jarang dipakai di proyek nyata; gunanya lebih sering untuk percobaan daripada untuk layout sehari-hari.</p>
+    <div class="demo">
+      <div class="lorong arah-kolom-reverse">
+        <div class="butir"><span class="nomor">1</span>Merek</div>
+        <div class="butir"><span class="nomor">2</span>Menu</div>
+        <div class="butir"><span class="nomor">3</span>Keranjang</div>
+      </div>
+    </div>
+
+    <table class="tabel">
+      <thead>
+        <tr><th>Nilai</th><th>Arah main axis</th><th>Contoh pemakaian</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>row</code></td><td>kiri ke kanan, nilai default</td><td>menu, baris kartu</td></tr>
+        <tr><td><code>row-reverse</code></td><td>kanan ke kiri</td><td>percobaan</td></tr>
+        <tr><td><code>column</code></td><td>atas ke bawah</td><td>tumpukan isi kartu</td></tr>
+        <tr><td><code>column-reverse</code></td><td>bawah ke atas</td><td>percobaan</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Inti pembelajaran:</strong> mengganti <code>flex-direction</code> bukan sekadar membalik arah tampilan. Pekerjaan <code>justify-content</code> dan <code>align-items</code> ikut berpindah sumbu, jadi periksanya selalu berpasangan.</p>
+    <nav class="nav">
+      <a href="02-dua-sumbu.html">← 02 dua-sumbu</a>
+      <span>03 / 15</span>
+      <a href="04-justify-content.html">04 justify-content →</a>
+    </nav>
+  </div>
+</body>
+</html>

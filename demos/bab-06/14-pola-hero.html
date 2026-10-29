@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 6 · 14 pola-hero — Flexbox untuk Web Layout</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: kotak hero 720 x 320 px */
+  .demo .hero {
+    box-sizing: border-box;
+    width: 720px;
+    max-width: 100%;
+    height: 320px;
+    background: #ffffff;
+    outline: 1px dashed #9ca3af;
+  }
+  .demo .hero-judul {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  .demo .hero-subtitle {
+    margin: 0;
+    font-size: 15px;
+    color: #4b5563;
+  }
+  .demo .hero-tombol {
+    padding: 8px 16px;
+    background: #1d4ed8;
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 14px;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 64px 24px;
+    text-align: center;
+  }
+
+  .hero-subtitle {
+    max-width: 640px;
+  }
+
+  .hero-dari-atas {
+    justify-content: flex-start;
+  }
+
+  .hero-di-tengah {
+    justify-content: center;
+  }
+
+  .hero-rata-kiri {
+    align-items: flex-start;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 6 · Flexbox untuk Web Layout</strong> · 14 pola hero</p>
+    <h1>Pola 3: Hero di Tengah</h1>
+    <p>Hero adalah blok besar di puncak halaman: satu judul, satu kalimat penjelas, satu tombol ajakan. Semuanya ditumpuk dan ditengahkan. Di sinilah dua properti yang tadinya terasa terbalik pada <code>column</code> akhirnya masuk akal.</p>
+
+    <h2><code>column</code> membuat sumbu utama vertikal</h2>
+<pre><code class="language-css">.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 64px 24px;
+  text-align: center;
+}</code></pre>
+    <p>Karena main axis berjalan dari atas ke bawah, <code>align-items</code> yang mengurus cross axis kini menengahkan isi ke kiri-kanan. <code>gap: 16px</code> menjaga jarak antarbaris isi, dan <code>text-align: center</code> merapikan teks yang terlipat di dalam lebar kotaknya.</p>
+    <div class="demo">
+      <div class="hero hero-dari-atas">
+        <p class="hero-judul">Belanja Harian, Dikirim dari Gudang Sendiri</p>
+        <p class="hero-subtitle">Pesan pagi, sampai sore. Gratis ongkir untuk belanja di atas seratus ribu rupiah, dan barang dikirim dari gudang sendiri supaya stoknya selalu segar.</p>
+        <span class="hero-tombol">Mulai belanja</span>
+      </div>
+    </div>
+
+    <h2>Menengahkan vertikal: <code>justify-content</code></h2>
+<pre><code class="language-css">.hero-di-tengah {
+  justify-content: center;
+}</code></pre>
+    <p>Kotak hero di halaman ini tingginya 320 px, sedangkan isinya hanya memakai sebagian. Tanpa <code>justify-content</code>, isi menempel di atas. Dengan <code>center</code>, sisa ruang di main axis dibagi rata ke atas dan ke bawah, sehingga gugus isi berdiri tepat di tengah.</p>
+    <div class="demo">
+      <div class="hero hero-di-tengah">
+        <p class="hero-judul">Belanja Harian, Dikirim dari Gudang Sendiri</p>
+        <p class="hero-subtitle">Pesan pagi, sampai sore. Gratis ongkir untuk belanja di atas seratus ribu rupiah, dan barang dikirim dari gudang sendiri supaya stoknya selalu segar.</p>
+        <span class="hero-tombol">Mulai belanja</span>
+      </div>
+    </div>
+    <p>Jadi menengahkan secara vertikal <em>dan</em> horizontal sekaligus dicapai dengan dua properti berbeda: <code>justify-content: center</code> untuk main axis, <code>align-items: center</code> untuk cross axis.</p>
+
+    <h2>Bandingkan dengan <code>align-items: flex-start</code></h2>
+<pre><code class="language-css">.hero-rata-kiri {
+  align-items: flex-start;
+}</code></pre>
+    <p>Nilai ini mematikan penengahan horizontal: judul, paragraf, dan tombol kembali menempel di tepi kiri. Perhatikan bahwa yang bergeser hanya arah mendatar; <code>justify-content: center</code> tetap bekerja ke atas-bawah.</p>
+    <div class="demo">
+      <div class="hero hero-di-tengah hero-rata-kiri">
+        <p class="hero-judul">Belanja Harian, Dikirim dari Gudang Sendiri</p>
+        <p class="hero-subtitle">Pesan pagi, sampai sore. Gratis ongkir untuk belanja di atas seratus ribu rupiah, dan barang dikirim dari gudang sendiri supaya stoknya selalu segar.</p>
+        <span class="hero-tombol">Mulai belanja</span>
+      </div>
+    </div>
+
+    <h2><code>max-width</code> menjaga panjang baris</h2>
+<pre><code class="language-css">.hero-subtitle {
+  max-width: 640px;
+}</code></pre>
+    <p>Kotak hero selebar 720 px dengan padding kiri-kanan 24 px menyisakan 672 px untuk isi. Kalimat penjelas dibatasi 640 px supaya barisnya tidak melebar sampai sulit diikuti mata di monitor besar. Karena isinya ditengahkan, sisa 32 px terbagi rata di kedua sisi.</p>
+    <p class="hitung" data-hitung="720px - 24px*2 = 672">Lebar isi hero: <strong>672 px</strong>.</p>
+    <p class="hitung" data-hitung="672 - 640px = 32">Selisih dengan batas <code>max-width</code>: <strong>32 px</strong>.</p>
+    <p class="hitung" data-hitung="32 / 2 = 16">Terbagi dua: <strong>16 px</strong> di kiri dan 16 px di kanan kalimat penjelas, di dalam lebar isi 672 px itu.</p>
+
+    <h2>Catatan pemakaian</h2>
+    <ul>
+      <li>Cukup satu tombol ajakan utama di tiap hero; tombol kedua membuat perhatian terbelah.</li>
+      <li><code>max-width</code> di sini soal kenyamanan membaca, bukan sekadar kerapian.</li>
+      <li>Kalau hero ingin setinggi layar penuh, tinggi minimumnya diatur terpisah; flexbox hanya membagi ruang yang tersedia.</li>
+      <li>Menambah satu tautan teks di bawah tombol tetap bekerja: <code>gap</code> yang mengatur jaraknya.</li>
+    </ul>
+
+    <p><strong>Inti pembelajaran:</strong> pada <code>column</code>, <code>align-items</code> menengahkan ke kiri-kanan dan <code>justify-content</code> ke atas-bawah. Karena itu hero yang benar-benar di tengah memakai keduanya sekaligus.</p>
+    <nav class="nav">
+      <a href="13-pola-footer-media-object.html">← 13 pola-footer-media-object</a>
+      <span>14 / 15</span>
+      <a href="15-baris-kartu-produk.html">15 baris-kartu-produk →</a>
+    </nav>
+  </div>
+</body>
+</html>

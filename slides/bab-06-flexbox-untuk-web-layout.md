@@ -140,6 +140,8 @@ Kata "satu dimensi" adalah kata kunci di paragraf ini; tulis di papan dan
 lingkari. Tanyakan apa maksudnya satu arah, bukan kisi dua arah. Jawaban yang
 diharapkan: item mengalir di satu jalur saja, ke kanan atau ke bawah, sedangkan
 baris dan kolom sekaligus adalah urusan Grid di Bab 7.
+
+Demo: demos/bab-06/01-display-flex.html — bandingkan tumpukan blok dengan satu deklarasi display: flex di wadahnya.
 -->
 
 ---
@@ -194,6 +196,8 @@ Simpan slide ini agak lama dan pastikan semua orang melihat arah panahnya.
 Tunjuk panah horizontal, sebut main axis, lalu tunjuk panah vertikal dan sebut
 cross axis. Ingatkan bahwa dua sumbu ini tempat `justify-content` dan
 `align-items` bekerja; kesalahan paling sering adalah menukar keduanya.
+
+Demo: demos/bab-06/02-dua-sumbu.html — putar arah row dan column lalu lihat pekerjaan justify-content dan align-items ikut berpindah sumbu.
 -->
 
 ---
@@ -289,6 +293,8 @@ Tanyakan nilai mana yang paling sering dipakai di proyek nyata. Jawaban yang
 diharapkan: `row` dan `column`; dua varian `reverse` jarang dan biasanya cuma
 buat eksperimen. Tekankan bahwa mengubah `flex-direction` berarti memindahkan
 pekerjaan `justify-content` dan `align-items`, bukan sekadar membalik arah.
+
+Demo: demos/bab-06/03-flex-direction.html — bandingkan row, row-reverse, column, dan column-reverse pada butir bernomor yang sama.
 -->
 
 ---
@@ -314,6 +320,8 @@ Bandingkan `space-between` dan `space-around` pakai papan tulis, bukan cuma
 slide. Tanyakan di mana ruang tepi paling lega. Jawaban yang diharapkan:
 `space-evenly`, karena dua tepi ikut dihitung. Ingatkan bahwa properti ini cuma
 punya bahan buat dibagikan kalau wadahnya lebih lebar dari total isinya.
+
+Demo: demos/bab-06/04-justify-content.html — geser sisa ruang ke enam nilai justify-content dan perhatikan ke mana setiap bagian pergi.
 -->
 
 ---
@@ -339,6 +347,8 @@ Tunjukkan efek `stretch` dengan kartu yang isinya beda panjang tapi tingginya
 sama. Tanyakan kenapa tinggi kartu bisa seragam padahal nggak ada aturan tinggi
 apa pun. Jawaban yang diharapkan: itu kerja `stretch` bawaan. Peringatkan bahwa
 memberi `center` pada baris kartu justru bikin kartunya bergelombang.
+
+Demo: demos/bab-06/05-align-items.html — bandingkan lima nilai align-items pada butir dengan tinggi isi yang berbeda.
 -->
 
 ---
@@ -357,6 +367,8 @@ Cara lamanya `margin-right` tiap anak plus `:last-child`; cara barunya `gap`
 memberi jarak antar-flex item, jadi nggak ada margin nyempil di tepi terluar.
 Sebutkan bahwa `row-gap` dan `column-gap` bisa beda nilai, dan bahwa sejak flexbox
 `gap` juga didukung Grid, jadi kebiasaan ini kepakai terus di Bab 7.
+
+Demo: demos/bab-06/06-gap.html — bandingkan margin-right tiap anak dengan gap pada wadah yang isinya ditengahkan.
 -->
 
 ---
@@ -378,6 +390,8 @@ Tanyakan apa yang terjadi pada kartu di `nowrap` pas ruangnya kurang. Jawaban
 yang diharapkan: kartunya menyempit paksa sampai teksnya rusak. Tekankan bahwa
 `wrap` bikin layout responsif tanpa media query, dan media query baru masuk bab
 berikutnya.
+
+Demo: demos/bab-06/07-flex-wrap.html — susutkan baris yang sama dengan nowrap dan wrap, lalu hitung kapan kartu turun baris.
 -->
 
 ---
@@ -468,6 +482,8 @@ Gunakan contoh dua kolom: satu grow 1, satu grow 2. Tanyakan apakah kolom kedua
 jadi dua kali lebih lebar secara keseluruhan. Jawaban yang diharapkan: nggak,
 yang dua kali cuma porsi sisa ruangnya, karena basis dihitung lebih dulu.
 Tekankan urutan berpikirnya: basis dulu, baru kelebihannya dibagi.
+
+Demo: demos/bab-06/08-flex-item-ukuran.html — ubah flex-grow 1 : 2 dan flex-shrink 0 : 1, lalu periksa pembagian sisa ruangnya.
 -->
 
 ---
@@ -503,6 +519,8 @@ Bacakan bentuk singkat ini dengan suara lantang biar urutannya nempel. Tanyakan
 apa arti `flex: 2` kalau ditulis sendirian. Jawaban yang diharapkan: grow 2
 dengan shrink 1 dan basis 0%. Sebutkan bahwa menulis nilai lengkap lebih aman
 buat kode yang bakal dibaca orang lain.
+
+Demo: demos/bab-06/09-singkatan-flex.html — bandingkan flex: 1 dengan flex: 0 1 250px, lalu lihat flex-basis mengalahkan width.
 -->
 
 ---
@@ -579,6 +597,8 @@ Tekankan bedanya dengan blok biasa: di blok, `auto` cuma ngasih jarak minimal.
 Tanyakan gimana caranya bikin harga sejajar di dasar delapan kartu tanpa
 `position: absolute`. Jawaban yang diharapkan: `margin-top: auto` pada harga.
 Sebutkan bahwa trik ini balik lagi di pola kartu produk nanti.
+
+Demo: demos/bab-06/10-auto-margin.html — dorong keranjang dengan margin-left: auto dan tempelkan harga kartu dengan margin-top: auto.
 -->
 
 ---
@@ -600,6 +620,8 @@ Tanyakan kenapa fitur ini berguna kalau wadahnya udah punya `align-items`.
 Jawaban yang diharapkan: biar satu kartu menonjol tanpa mengubah perataan
 kartu lain. Sebutkan juga `auto` yang artinya ikut wadah. Ingatkan bahwa
 `align-self` ditulis di anak, bukan di wadah.
+
+Demo: demos/bab-06/11-align-self-order.html — lepaskan satu kartu dari align-items wadah, lalu ubah order dan bandingkan urutan visual dengan urutan dokumen.
 -->
 
 ---
@@ -656,6 +678,8 @@ anaknya tiga ruang kosongnya menyebar ke tengah dan baris kedua jadi pincang.
 Sebutkan bahwa kelompok kanan didorong pakai `space-between`, atau `margin-left:
 auto` yang lebih ringkas. Ingatkan juga bahwa menu hamburger butuh JavaScript, jadi
 bab ini pakai `wrap` yang murni CSS.
+
+Demo: demos/bab-06/12-pola-navigasi.html — susutkan lebar layar uji sampai kelompok kanan turun utuh, lalu bandingkan dengan tiga anak langsung.
 -->
 
 ---
@@ -731,6 +755,8 @@ Tekankan bahwa jumlah kolom menyesuaikan sendiri karena basisnya tetap. Tanyakan
 apa yang terjadi pada kolom paling kanan pas layar HP. Jawaban yang diharapkan:
 dia turun ke baris baru dan melebar penuh. Lanjutkan dengan menunjukkan media
 object di kolom kontak, ikon di kiri dan teks di kanan.
+
+Demo: demos/bab-06/13-pola-footer-media-object.html — susutkan footer sampai kolom ketiga turun dan melebar penuh, lalu periksa media object di kolom kontak.
 -->
 
 ---
@@ -765,6 +791,8 @@ menengahkan ke kiri-kanan, bukan ke atas-bawah. Tanyakan gimana menengahkan
 vertikal dan horizontal sekaligus. Jawaban yang diharapkan: `justify-content`
 dan `align-items` sama-sama `center`. Jelaskan bahwa `max-width` melindungi mata
 pembaca di monitor lebar, bukan sekadar soal rapi.
+
+Demo: demos/bab-06/14-pola-hero.html — bandingkan justify-content dan align-items pada hero column, termasuk efek max-width.
 -->
 
 ---
@@ -803,6 +831,8 @@ catat angkanya. Tanyakan kenapa kartu terakhir sering merapat ke kiri dan
 meninggalkan ruang kosong di kanan. Jawaban yang diharapkan: tiap baris diatur
 lokal, jadi baris nggak berkomunikasi dengan baris lain. Sebutkan bahwa
 keterbatasan ini yang diserahkan ke Grid di Bab 7.
+
+Demo: demos/bab-06/15-baris-kartu-produk.html — telusuri baris kartu 840 px dan catat momen penekukan serta harga yang tetap sejajar di dasar.
 -->
 
 ---
@@ -895,6 +925,7 @@ lebar manual pada kartu, karena `stretch` dan basis sudah mengurusnya.
 - `gap` menghapus margin ganda, `flex-wrap` mengizinkan penekukan
 - Item punya `flex`, `align-self`, dan `order` yang dipakai hemat
 - Bab 7 lanjut ke Grid buat layout dua dimensi
+**Demo:** seluruh konsep bab ini bisa dicoba di [demos/bab-06/index.html](demos/bab-06/index.html).
 
 <!--
 Tutup dengan pesan utama: kalau layout terasa nggak nurut, cek dulu propertinya

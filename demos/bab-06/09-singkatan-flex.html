@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 6 · 09 singkatan-flex — Flexbox untuk Web Layout</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung */
+  .demo .lorong {
+    display: flex;
+    gap: 24px;
+    width: 720px;
+    max-width: 100%;
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+  }
+  .demo .lorong-kartu {
+    display: flex;
+    gap: 24px;
+    width: 840px;
+    max-width: 100%;
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+  }
+  .demo .lorong-lebar {
+    display: flex;
+    width: 900px;
+    max-width: 100%;
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+  }
+  .demo .kolom {
+    box-sizing: border-box;
+    min-height: 56px;
+    padding: 10px 12px;
+    background: #fde68a;
+    border: 1px solid #b45309;
+    font-size: 13px;
+  }
+  .demo .kotak {
+    box-sizing: border-box;
+    min-height: 56px;
+    padding: 10px;
+    background: #fde68a;
+    border: 1px solid #b45309;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+  .demo .kartu {
+    box-sizing: border-box;
+    min-height: 56px;
+    padding: 10px;
+    background: #fde68a;
+    border: 1px solid #b45309;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .kolom-konten {
+    flex: 1;
+  }
+
+  .produk-card {
+    flex: 0 1 250px;
+  }
+
+  .produk-penuh {
+    flex: 1;
+  }
+
+  .kartu {
+    flex: 1 1 200px;
+    width: 300px;
+  }
+
+  .kartu-lebar {
+    flex: 0 1 auto;
+    width: 300px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 6 · Flexbox untuk Web Layout</strong> · 09 singkatan flex</p>
+    <h1>Singkatan flex: Tiga Nilai dalam Satu Baris</h1>
+    <p>Menulis tiga properti ukuran satu per satu jarang dilakukan orang. Yang dipakai sehari-hari adalah singkatan <code>flex</code> dengan urutan <em>grow</em>, <em>shrink</em>, <em>basis</em>. Halaman ini membandingkan dua bentuk yang layak dihafal, lalu menunjukkan satu jebakan yang sering membingungkan.</p>
+
+    <h2><code>flex: 1</code> — membagi ruang wadah secara merata</h2>
+<pre><code class="language-css">.kolom-konten {
+  flex: 1;
+}</code></pre>
+    <p>Nilai tunggal seperti ini setara dengan <code>flex: 1 1 0%</code>: boleh tumbuh, boleh menyusut, dan ukuran awalnya nol. Karena basisnya nol, seluruh ruang wadah dibagi rata tanpa peduli isi tiap kolom.</p>
+    <div class="demo">
+      <div class="lorong">
+        <div class="kolom kolom-konten">Kolom kiri</div>
+        <div class="kolom kolom-konten">Kolom kanan</div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="720px - 24px = 696">Baris 720 px dikurangi satu jarak 24 px menyisakan <strong>696 px</strong> untuk dibagi.</p>
+    <p class="hitung" data-hitung="696 / 2 = 348">Tiap kolom mendapat <strong>348 px</strong>, sama besar berapa pun panjang isinya.</p>
+
+    <h2><code>flex: 0 1 250px</code> — ukuran awal 250 px yang boleh menyempit</h2>
+<pre><code class="language-css">.produk-card {
+  flex: 0 1 250px;
+}</code></pre>
+    <p>Tiga angka itu berarti: <em>tidak tumbuh</em>, <em>boleh menyusut</em>, <em>ukuran awal 250 px</em>. Kartu punya ukuran awal yang wajar, tidak ikut melar saat ruang longgar, tetapi tetap mengecil saat layar sempit. Bentuk inilah yang dipakai baris delapan produk Tokosaya.</p>
+    <div class="demo">
+      <div class="lorong-kartu">
+        <div class="kotak produk-card">Kartu 1</div>
+        <div class="kotak produk-card">Kartu 2</div>
+        <div class="kotak produk-card">Kartu 3</div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="250px*3 + 24px*2 = 798">Tiga kartu memakai <strong>798 px</strong> dari baris 840 px.</p>
+    <p class="hitung" data-hitung="840px - 798 = 42">Sisa <strong>42 px</strong> menganggur di kanan, karena grow nol: kartu tidak ikut melar.</p>
+
+    <h2>Bandingkan dengan <code>flex: 1</code> pada baris yang sama</h2>
+<pre><code class="language-css">.produk-penuh {
+  flex: 1;
+}</code></pre>
+    <p>Dengan <code>flex: 1</code>, ukuran awal tiap kartu menjadi nol dan seluruh 792 px dibagi rata. Kartunya melebar melewati 250 px — persis yang tidak diinginkan pada kartu produk.</p>
+    <div class="demo">
+      <div class="lorong-kartu">
+        <div class="kotak produk-penuh">Kartu 1</div>
+        <div class="kotak produk-penuh">Kartu 2</div>
+        <div class="kotak produk-penuh">Kartu 3</div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="840px - 24px*2 = 792">Ruang yang dibagi <strong>792 px</strong>.</p>
+    <p class="hitung" data-hitung="792 / 3 = 264">Tiap kartu menjadi <strong>264 px</strong>, lebih lebar dari 250 px yang diminta.</p>
+
+    <h2>Jebakan: <code>flex-basis</code> mengalahkan <code>width</code></h2>
+<pre><code class="language-css">.kartu {
+  flex: 1 1 200px;
+  width: 300px;
+}</code></pre>
+    <p>Aturan di atas terlihat seperti meminta lebar 300 px, padahal di main axis yang dipakai adalah <code>flex-basis</code> 200 px. <code>width</code> baru relevan di sumbu silang. Dua kartu di baris 900 px dengan grow 1: basis 400 px dibagi, sisa 500 px diambil rata, jadi masing-masing 450 px — bukan 300 px.</p>
+    <div class="demo">
+      <div class="lorong-lebar">
+        <div class="kartu">Kotak A · flex-basis 200px</div>
+        <div class="kartu">Kotak B · flex-basis 200px</div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="200px*2 = 400">Dua basis memakai <strong>400 px</strong>.</p>
+    <p class="hitung" data-hitung="900px - 400 = 500">Sisa <strong>500 px</strong> diambil grow.</p>
+    <p class="hitung" data-hitung="500 / 2 = 250">Tambahan untuk tiap kotak <strong>250 px</strong>.</p>
+    <p class="hitung" data-hitung="200px + 250 = 450">Lebar akhir <strong>450 px</strong>, walaupun <code>width: 300px</code> tertulis di aturan yang sama.</p>
+<pre><code class="language-css">.kartu-lebar {
+  flex: 0 1 auto;
+  width: 300px;
+}</code></pre>
+    <p>Supaya <code>width</code> benar-benar berlaku, basisnya harus dikembalikan ke <code>auto</code>. Dengan begitu ukuran awal diambil dari <code>width</code>, dan karena grow nol, kotak berhenti di 300 px.</p>
+    <div class="demo">
+      <div class="lorong-lebar">
+        <div class="kartu kartu-lebar">Kotak A · width 300px</div>
+        <div class="kartu kartu-lebar">Kotak B · width 300px</div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="300px*2 = 600">Dua kotak memakai <strong>600 px</strong>.</p>
+    <p class="hitung" data-hitung="900px - 600 = 300">Sisa <strong>300 px</strong> menganggur karena grow nol.</p>
+
+    <table class="tabel">
+      <thead>
+        <tr><th>Singkatan</th><th>Arti</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>flex: 1</code></td><td><code>1 1 0%</code> — ruang dibagi merata</td></tr>
+        <tr><td><code>flex: 0 1 250px</code></td><td>tidak tumbuh, boleh menyusut, ukuran awal 250 px</td></tr>
+        <tr><td><code>flex: 1 1 200px</code></td><td>tumbuh, menyusut, ukuran awal 200 px</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Inti pembelajaran:</strong> urutan singkatannya grow, shrink, basis. Menulis nilai lengkap lebih aman untuk kode yang akan dibaca orang lain, dan ingat bahwa di main axis <code>flex-basis</code> yang dipakai, bukan <code>width</code>.</p>
+    <nav class="nav">
+      <a href="08-flex-item-ukuran.html">← 08 flex-item-ukuran</a>
+      <span>09 / 15</span>
+      <a href="10-auto-margin.html">10 auto-margin →</a>
+    </nav>
+  </div>
+</body>
+</html>

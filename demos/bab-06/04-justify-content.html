@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 6 · 04 justify-content — Flexbox untuk Web Layout</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: wadah 600 px berisi tiga butir 120 px — sisa 240 px yang dibagi */
+  .demo .lorong {
+    display: flex;
+    width: 600px;
+    max-width: 100%;
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+  }
+  .demo .butir {
+    box-sizing: border-box;
+    width: 120px;
+    padding: 8px 12px;
+    background: #fde68a;
+    border: 1px solid #b45309;
+    font-size: 14px;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .ke-awal {
+    justify-content: flex-start;
+  }
+
+  .ke-akhir {
+    justify-content: flex-end;
+  }
+
+  .ke-tengah {
+    justify-content: center;
+  }
+
+  .antara {
+    justify-content: space-between;
+  }
+
+  .disekitar {
+    justify-content: space-around;
+  }
+
+  .merata {
+    justify-content: space-evenly;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 6 · Flexbox untuk Web Layout</strong> · 04 justify-content</p>
+    <h1>justify-content: Membagi Sisa Ruang di Sumbu Utama</h1>
+    <p>Semua contoh di halaman ini memakai wadah 600 px berisi tiga butir 120 px. Isi memakai 360 px, jadi ada <strong>240 px sisa</strong> yang menjadi bahan pembagian. Perhatikan ke mana sisa itu pergi pada tiap nilai.</p>
+
+    <h2><code>flex-start</code> — menempel di awal</h2>
+<pre><code class="language-css">.ke-awal {
+  justify-content: flex-start;
+}</code></pre>
+    <div class="demo">
+      <div class="lorong ke-awal">
+        <div class="butir">Satu</div>
+        <div class="butir">Dua</div>
+        <div class="butir">Tiga</div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="600px - 120px*3 = 240">Sisa <strong>240 px</strong> menganggur di kanan; tidak ada yang dibagikan.</p>
+
+    <h2><code>flex-end</code> — menempel di akhir</h2>
+<pre><code class="language-css">.ke-akhir {
+  justify-content: flex-end;
+}</code></pre>
+    <div class="demo">
+      <div class="lorong ke-akhir">
+        <div class="butir">Satu</div>
+        <div class="butir">Dua</div>
+        <div class="butir">Tiga</div>
+      </div>
+    </div>
+
+    <h2><code>center</code> — gugus di tengah</h2>
+<pre><code class="language-css">.ke-tengah {
+  justify-content: center;
+}</code></pre>
+    <div class="demo">
+      <div class="lorong ke-tengah">
+        <div class="butir">Satu</div>
+        <div class="butir">Dua</div>
+        <div class="butir">Tiga</div>
+      </div>
+    </div>
+
+    <h2><code>space-between</code> — tepi menempel, sisa di antara</h2>
+<pre><code class="language-css">.antara {
+  justify-content: space-between;
+}</code></pre>
+    <div class="demo">
+      <div class="lorong antara">
+        <div class="butir">Merek</div>
+        <div class="butir">Menu</div>
+        <div class="butir">Keranjang</div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="240 / 2 = 120">Dua celah di antara tiga butir, masing-masing <strong>120 px</strong>. Inilah pola navigasi Tokosaya: merek di kiri, keranjang di kanan.</p>
+    <p>Perhatikan bahwa butir pertama dan terakhir menempel tepat di tepi wadah: tidak ada sisa ruang di luar.</p>
+
+    <h2><code>space-around</code> — tiap butir berpeluk ruang</h2>
+<pre><code class="language-css">.disekitar {
+  justify-content: space-around;
+}</code></pre>
+    <div class="demo">
+      <div class="lorong disekitar">
+        <div class="butir">Satu</div>
+        <div class="butir">Dua</div>
+        <div class="butir">Tiga</div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="240 / 3 = 80">Tiap butir dikelilingi ruang <strong>80 px</strong>, sehingga celah antar butir 80 px.</p>
+    <p class="hitung" data-hitung="80 / 2 = 40">Di tepi terluar hanya separuhnya: <strong>40 px</strong>. Itu sebabnya tampilan <code>space-around</code> terasa tidak simetris.</p>
+
+    <h2><code>space-evenly</code> — semua celah sama besar</h2>
+<pre><code class="language-css">.merata {
+  justify-content: space-evenly;
+}</code></pre>
+    <div class="demo">
+      <div class="lorong merata">
+        <div class="butir">Satu</div>
+        <div class="butir">Dua</div>
+        <div class="butir">Tiga</div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="240 / 4 = 60">Tiga butir menghasilkan empat celah yang sama besar: <strong>60 px</strong>, termasuk dua celah di tepi.</p>
+
+    <h2>Ringkasan</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Nilai</th><th>Celah antar butir</th><th>Celah di tepi</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>flex-start</code></td><td>0</td><td>sisa 240 px di akhir</td></tr>
+        <tr><td><code>flex-end</code></td><td>0</td><td>sisa 240 px di awal</td></tr>
+        <tr><td><code>center</code></td><td>0</td><td>120 px di awal dan 120 px di akhir</td></tr>
+        <tr><td><code>space-between</code></td><td>120 px</td><td>0</td></tr>
+        <tr><td><code>space-around</code></td><td>80 px</td><td>40 px</td></tr>
+        <tr><td><code>space-evenly</code></td><td>60 px</td><td>60 px</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Inti pembelajaran:</strong> <code>justify-content</code> hanya punya bahan untuk dibagikan kalau wadah lebih lebar daripada total isinya. Pada wadah yang sudah penuh, keenam nilai tampak sama.</p>
+    <nav class="nav">
+      <a href="03-flex-direction.html">← 03 flex-direction</a>
+      <span>04 / 15</span>
+      <a href="05-align-items.html">05 align-items →</a>
+    </nav>
+  </div>
+</body>
+</html>

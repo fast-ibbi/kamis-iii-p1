@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 6 · 06 gap — Flexbox untuk Web Layout</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: wadah 720 px berisi tiga butir 120 px, isinya ditengahkan
+     supaya ketidaksimetrisan jarak di tepi langsung kelihatan */
+  .demo .lorong {
+    display: flex;
+    justify-content: center;
+    width: 720px;
+    max-width: 100%;
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+  }
+  .demo .butir {
+    box-sizing: border-box;
+    width: 120px;
+    padding: 8px 12px;
+    background: #fde68a;
+    border: 1px solid #b45309;
+    font-size: 14px;
+  }
+  .demo .tanda-tepi {
+    display: block;
+    margin: 6px 0 0;
+    font-size: 13px;
+    color: #6b7280;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .lorong-margin .butir {
+    margin-right: 16px;
+  }
+
+  .lorong-rapi .butir:last-child {
+    margin-right: 0;
+  }
+
+  .lorong-gap {
+    gap: 16px;
+  }
+
+  .lorong-kolom-gap {
+    column-gap: 24px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 6 · Flexbox untuk Web Layout</strong> · 06 gap</p>
+    <h1>gap: Jarak Tanpa Margin Ganda</h1>
+    <p>Sebelum <code>gap</code> ada, jarak antar item dibuat lewat margin pada tiap anak. Cara itu bekerja, tetapi menyisakan satu masalah kecil di tepi terluar wadah. Semua contoh di halaman ini memakai wadah 720 px berisi tiga butir 120 px, dan isinya sengaja ditengahkan supaya ketidaksimetrisan jarak langsung terlihat.</p>
+
+    <h2>Tanpa jarak sama sekali</h2>
+    <p>Sebagai titik awal, tiga butir menempel tanpa jarak dan gugusnya berdiri tepat di tengah wadah.</p>
+    <div class="demo">
+      <div class="lorong">
+        <div class="butir">Satu</div>
+        <div class="butir">Dua</div>
+        <div class="butir">Tiga</div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="120px*3 = 360">Isi memakai <strong>360 px</strong> dari 720 px, jadi ada 360 px sisa.</p>
+    <p class="hitung" data-hitung="360 / 2 = 180">Sisa itu terbagi dua: <strong>180 px</strong> di kiri dan 180 px di kanan.</p>
+
+    <h2>Cara lama: <code>margin-right</code> pada tiap anak</h2>
+<pre><code class="language-css">.lorong-margin .butir {
+  margin-right: 16px;
+}</code></pre>
+    <p>Jarak 16 px memang lahir di antara butir, tetapi margin yang sama juga menempel di tepi kanan butir terakhir. Karena margin ikut dihitung sebagai bagian dari isi baris, gugusnya bergeser ke kiri dan tepi wadah jadi terasa tidak simetris.</p>
+    <div class="demo">
+      <div class="lorong lorong-margin">
+        <div class="butir">Satu</div>
+        <div class="butir">Dua</div>
+        <div class="butir">Tiga</div>
+      </div>
+      <span class="tanda-tepi">jarak kiri 156 px, jarak kanan 172 px</span>
+    </div>
+    <p class="hitung" data-hitung="120px*3 + 16px*3 = 408">Tiga butir ditambah tiga margin memakai <strong>408 px</strong>, bukan 392 px, karena margin terakhir tidak berguna.</p>
+    <p class="hitung" data-hitung="720px - 408 = 312">Sisa ruang tinggal <strong>312 px</strong>, lalu dibagi dua oleh penengahan.</p>
+    <p class="hitung" data-hitung="312 / 2 = 156">Tepi kiri gugus berjarak <strong>156 px</strong> dari tepi wadah.</p>
+    <p class="hitung" data-hitung="16 / 2 = 8">Margin 16 px di ujung isi membuat gugusnya bergeser <strong>8 px</strong> dari titik tengah yang sebenarnya.</p>
+
+    <h2>Cara lama, dibersihkan satu per satu</h2>
+<pre><code class="language-css">.lorong-rapi .butir:last-child {
+  margin-right: 0;
+}</code></pre>
+    <p>Untuk mengembalikan simetri, margin anak terakhir harus dinolkan dengan aturan tambahan. Dua aturan untuk satu maksud: memberi jarak.</p>
+    <div class="demo">
+      <div class="lorong lorong-margin lorong-rapi">
+        <div class="butir">Satu</div>
+        <div class="butir">Dua</div>
+        <div class="butir">Tiga</div>
+      </div>
+      <span class="tanda-tepi">jarak kiri dan kanan kembali sama</span>
+    </div>
+    <p class="hitung" data-hitung="120px*3 + 16px*2 = 392">Sekarang yang terpakai <strong>392 px</strong>: tiga butir dan dua jarak saja.</p>
+    <p class="hitung" data-hitung="720px - 392 = 328">Sisa <strong>328 px</strong> kembali dibagi rata.</p>
+    <p class="hitung" data-hitung="328 / 2 = 164">Masing-masing tepi <strong>164 px</strong>, jadi gugusnya benar-benar di tengah.</p>
+
+    <h2>Cara baru: <code>gap</code> pada wadah</h2>
+<pre><code class="language-css">.lorong-gap {
+  gap: 16px;
+}</code></pre>
+    <p>Satu deklarasi di wadah, tanpa menyentuh anak, tanpa aturan <code>:last-child</code>. Jarak hanya lahir di antara item, sehingga tepi wadah tetap bersih di kedua sisi. Hasil akhirnya sama dengan cara yang sudah dibersihkan tadi.</p>
+    <div class="demo">
+      <div class="lorong lorong-gap">
+        <div class="butir">Satu</div>
+        <div class="butir">Dua</div>
+        <div class="butir">Tiga</div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="120px*3 + 16px*2 = 392">Isi baris tetap <strong>392 px</strong>, sama seperti versi yang memakai dua aturan margin.</p>
+    <p class="hitung" data-hitung="328 / 2 = 164">Tepi kiri dan kanan sama-sama <strong>164 px</strong>: simetris tanpa aturan tambahan.</p>
+
+    <h2>Jarak mendatar dan jarak tegak bisa berbeda</h2>
+<pre><code class="language-css">.lorong-kolom-gap {
+  column-gap: 24px;
+}</code></pre>
+    <p><code>gap</code> bisa dipecah menjadi <code>row-gap</code> dan <code>column-gap</code>. Di sini <code>column-gap</code> saja yang diisi, jadi jarak mendatar menjadi 24 px sementara jarak tegak dibiarkan nol.</p>
+    <div class="demo">
+      <div class="lorong lorong-kolom-gap">
+        <div class="butir">Satu</div>
+        <div class="butir">Dua</div>
+        <div class="butir">Tiga</div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="120px*3 + 24px*2 = 408">Dengan <code>column-gap: 24px</code>, dua celah memakai <strong>408 px</strong>; tepi wadah tetap bersih.</p>
+    <p><code>row-gap</code> baru terasa ketika wadah punya lebih dari satu baris — itu bahan halaman berikutnya.</p>
+
+    <p><strong>Inti pembelajaran:</strong> margin mengurus jarak satu kotak terhadap sekitarnya, sedangkan <code>gap</code> mengurus jarak antariketan di dalam wadah. Untuk jarak antar-flex item, <code>gap</code> lebih ringkas dan tidak meninggalkan sisa di tepi.</p>
+    <nav class="nav">
+      <a href="05-align-items.html">← 05 align-items</a>
+      <span>06 / 15</span>
+      <a href="07-flex-wrap.html">07 flex-wrap →</a>
+    </nav>
+  </div>
+</body>
+</html>

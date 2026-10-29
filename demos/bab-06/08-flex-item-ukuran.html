@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 6 · 08 flex-item-ukuran — Flexbox untuk Web Layout</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: baris 768 px untuk dua kolom, baris 600 px untuk tiga kartu */
+  .demo .lorong {
+    display: flex;
+    gap: 24px;
+    width: 768px;
+    max-width: 100%;
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+  }
+  .demo .lorong-kartu {
+    display: flex;
+    gap: 24px;
+    width: 600px;
+    max-width: 100%;
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+  }
+  .demo .kolom {
+    box-sizing: border-box;
+    min-height: 56px;
+    padding: 10px 12px;
+    background: #fde68a;
+    border: 1px solid #b45309;
+    font-size: 13px;
+  }
+  .demo .kartu {
+    box-sizing: border-box;
+    min-height: 56px;
+    padding: 10px;
+    background: #fde68a;
+    border: 1px solid #b45309;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .kolom-diam {
+    flex-basis: 240px;
+    flex-grow: 0;
+  }
+
+  .kolom-konten {
+    flex-basis: 240px;
+    flex-grow: 1;
+  }
+
+  .kolom-samping {
+    flex-basis: 240px;
+    flex-grow: 2;
+  }
+
+  .kartu-tetap {
+    flex-basis: 250px;
+    flex-shrink: 0;
+  }
+
+  .kartu-menyusut {
+    flex-basis: 250px;
+    flex-shrink: 1;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 6 · Flexbox untuk Web Layout</strong> · 08 flex item ukuran</p>
+    <h1>Mengatur Ukuran Flex Item</h1>
+    <p>Tiga properti pertama di level anak mengurus ukuran: <code>flex-basis</code>, <code>flex-grow</code>, dan <code>flex-shrink</code>. Ketiganya bekerja berurutan — basis dipatok lebih dulu, baru kelebihan atau kekurangan ruang dibagikan. Semua angkanya proporsi, bukan piksel, kecuali basis itu sendiri.</p>
+
+    <h2><code>flex-basis</code> — ukuran awal di sepanjang main axis</h2>
+<pre><code class="language-css">.kolom-diam {
+  flex-basis: 240px;
+  flex-grow: 0;
+}</code></pre>
+    <p>Dua kolom dengan basis 240 px di dalam baris 768 px. Karena <code>flex-grow</code> nol, sisa ruang tidak diambil siapa pun dan menganggur di kanan. <code>flex-grow: 0</code> adalah nilai bawaannya.</p>
+    <div class="demo">
+      <div class="lorong">
+        <div class="kolom kolom-diam">Kolom konten</div>
+        <div class="kolom kolom-diam">Kolom samping</div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="240px + 24px + 240px = 504">Dua basis dan satu jarak memakai <strong>504 px</strong>.</p>
+    <p class="hitung" data-hitung="768px - 504 = 264">Sisa <strong>264 px</strong> menganggur selama grow nol.</p>
+
+    <h2><code>flex-grow</code> — porsi sisa ruang yang boleh diambil</h2>
+<pre><code class="language-css">.kolom-konten {
+  flex-basis: 240px;
+  flex-grow: 1;
+}
+
+.kolom-samping {
+  flex-basis: 240px;
+  flex-grow: 2;
+}</code></pre>
+    <p>Begitu grow diisi 1 dan 2, sisa 264 px itu dibagi tiga bagian: satu untuk kolom konten, dua untuk kolom samping. Yang berlipat dua hanya porsi sisanya, bukan lebar keseluruhan — basis sudah dipatok lebih dulu.</p>
+    <div class="demo">
+      <div class="lorong">
+        <div class="kolom kolom-konten">Kolom konten · grow 1</div>
+        <div class="kolom kolom-samping">Kolom samping · grow 2</div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="264 / 3 = 88">Sepertiga dari sisa ruang adalah <strong>88 px</strong>.</p>
+    <p class="hitung" data-hitung="240px + 88 = 328">Kolom konten menjadi <strong>328 px</strong>.</p>
+    <p class="hitung" data-hitung="240px + 176 = 416">Kolom samping menjadi <strong>416 px</strong> — dua kali porsi sisa, tetapi tidak dua kali lebar kolom konten.</p>
+    <p>Contoh di deck memakai wadah 1120 px dengan basis 240 px: sisa 624 px terbagi menjadi 208 px dan 416 px, sehingga kolomnya 448 px dan 656 px. Perbandingan yang sama, hanya beda lebar wadah.</p>
+
+    <h2><code>flex-shrink</code> — porsi penyusutan saat ruang kurang</h2>
+<pre><code class="language-css">.kartu-tetap {
+  flex-basis: 250px;
+  flex-shrink: 0;
+}</code></pre>
+    <p>Tiga kartu basis 250 px di dalam baris 600 px. Dengan <code>flex-shrink: 0</code>, kartu menolak menyusut: ukurannya tetap 250 px dan barisnya meluap ke kanan.</p>
+    <div class="demo">
+      <div class="lorong-kartu">
+        <div class="kartu kartu-tetap">Kartu 1</div>
+        <div class="kartu kartu-tetap">Kartu 2</div>
+        <div class="kartu kartu-tetap">Kartu 3</div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="250px*3 + 24px*2 = 798">Ketiga kartu meminta <strong>798 px</strong> dari baris 600 px.</p>
+    <p class="hitung" data-hitung="798 - 600 = 198">Kelebihan <strong>198 px</strong> itu tidak punya tempat, jadi barisnya meluap.</p>
+<pre><code class="language-css">.kartu-menyusut {
+  flex-basis: 250px;
+  flex-shrink: 1;
+}</code></pre>
+    <p>Dengan <code>flex-shrink: 1</code> — nilai bawaan — kelebihan itu dibagi rata ke ketiga kartu, dan semuanya kembali muat dalam satu baris.</p>
+    <div class="demo">
+      <div class="lorong-kartu">
+        <div class="kartu kartu-menyusut">Kartu 1</div>
+        <div class="kartu kartu-menyusut">Kartu 2</div>
+        <div class="kartu kartu-menyusut">Kartu 3</div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="198 / 3 = 66">Tiap kartu menyusut <strong>66 px</strong>.</p>
+    <p class="hitung" data-hitung="250 - 66 = 184">Lebar akhir tiap kartu <strong>184 px</strong>, dan 184 × 3 ditambah dua jarak 24 px tepat kembali 600 px.</p>
+
+    <table class="tabel">
+      <thead>
+        <tr><th>Properti</th><th>Yang diatur</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>flex-basis</code></td><td>ukuran awal di sepanjang main axis</td></tr>
+        <tr><td><code>flex-grow</code></td><td>porsi sisa ruang yang boleh diambil</td></tr>
+        <tr><td><code>flex-shrink</code></td><td>porsi penyusutan saat ruang kurang</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Inti pembelajaran:</strong> urutan berpikirnya selalu basis dulu, baru kelebihan atau kekurangan ruang dibagi menurut grow dan shrink. Karena itu dua kolom dengan grow 1 dan 2 tidak pernah menghasilkan perbandingan lebar 1 : 2.</p>
+    <nav class="nav">
+      <a href="07-flex-wrap.html">← 07 flex-wrap</a>
+      <span>08 / 15</span>
+      <a href="09-singkatan-flex.html">09 singkatan-flex →</a>
+    </nav>
+  </div>
+</body>
+</html>

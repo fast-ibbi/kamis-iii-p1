@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 6 · 12 pola-navigasi — Flexbox untuk Web Layout</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: dua lebar layar uji, 840 px dan 720 px */
+  .demo .panggung {
+    width: 840px;
+    max-width: 100%;
+  }
+  .demo .panggung-sempit {
+    width: 720px;
+    max-width: 100%;
+  }
+  .demo .site-nav {
+    background: #ffffff;
+    outline: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+  .demo .site-nav a { color: #1d4ed8; text-decoration: none; }
+  .demo .site-nav-merek {
+    box-sizing: border-box;
+    width: 120px;
+    font-weight: 600;
+  }
+  .demo .site-nav-link {
+    box-sizing: border-box;
+    width: 88px;
+  }
+  .demo .site-nav-keranjang {
+    box-sizing: border-box;
+    width: 140px;
+    background: #bbf7d0;
+    border-radius: 4px;
+    text-align: center;
+  }
+  .demo .site-nav-menu {
+    display: flex;
+    gap: 24px;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 24px;
+  }
+
+  .site-nav-kanan {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .site-nav-tiga {
+    justify-content: space-between;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 6 · Flexbox untuk Web Layout</strong> · 12 pola navigasi</p>
+    <h1>Pola 1: Navigasi Horizontal</h1>
+    <p>Wireframe baru meminta logo tetap di kiri, empat link pindah ke kanan, dan tombol Keranjang paling ujung. Penyelesaiannya bukan satu properti ajaib, melainkan satu keputusan struktur: wadah navigasi dibuat punya dua anak langsung saja.</p>
+
+    <h2>Struktur HTML-nya</h2>
+<pre><code class="language-html">&lt;nav class="site-nav"&gt;
+  &lt;a class="site-nav-merek" href="12-pola-navigasi.html"&gt;Tokosaya&lt;/a&gt;
+  &lt;div class="site-nav-kanan"&gt;
+    &lt;a class="site-nav-link" href="12-pola-navigasi.html"&gt;Beranda&lt;/a&gt;
+    &lt;a class="site-nav-link" href="12-pola-navigasi.html"&gt;Produk&lt;/a&gt;
+    &lt;a class="site-nav-link" href="12-pola-navigasi.html"&gt;Promo&lt;/a&gt;
+    &lt;a class="site-nav-link" href="12-pola-navigasi.html"&gt;Kontak&lt;/a&gt;
+    &lt;a class="site-nav-keranjang" href="12-pola-navigasi.html"&gt;Keranjang&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+    <p>Wadah <code>.site-nav</code> punya dua anak langsung: merek di kiri dan kelompok kanan. Menu dan keranjang dibungkus menjadi satu kelompok, sehingga keduanya bergerak bersama.</p>
+
+    <h2><code>.site-nav</code> dan <code>.site-nav-kanan</code></h2>
+<pre><code class="language-css">.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 24px;
+}
+
+.site-nav-kanan {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px;
+}</code></pre>
+    <p><code>space-between</code> bekerja paling pas dengan dua anak langsung: satu menempel di awal, satu di akhir. <code>align-items: center</code> membuat logo dan tombol sejajar tingginya, dan <code>flex-wrap</code> mengizinkan penekukan saat layar menyempit.</p>
+    <div class="demo">
+      <div class="panggung">
+        <nav class="site-nav">
+          <a class="site-nav-merek" href="12-pola-navigasi.html">Tokosaya</a>
+          <div class="site-nav-kanan">
+            <a class="site-nav-link" href="12-pola-navigasi.html">Beranda</a>
+            <a class="site-nav-link" href="12-pola-navigasi.html">Produk</a>
+            <a class="site-nav-link" href="12-pola-navigasi.html">Promo</a>
+            <a class="site-nav-link" href="12-pola-navigasi.html">Kontak</a>
+            <a class="site-nav-keranjang" href="12-pola-navigasi.html">Keranjang</a>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="120px + 16px + (88px*4 + 24px*4 + 140px) + 24px*2 = 772">Merek 120 px, kelompok kanan 588 px, satu jarak 16 px, dan padding kiri-kanan 48 px: seluruhnya <strong>772 px</strong>.</p>
+    <p class="hitung" data-hitung="840px - 772 = 68">Pada layar 840 px masih tersisa <strong>68 px</strong>, jadi semuanya muat dalam satu baris.</p>
+
+    <h2>Penekukan terjadi dua lapis</h2>
+    <p>Sekarang lebar layar uji diturunkan menjadi 720 px. Kelompok kanan tidak lagi muat di samping merek, jadi seluruh kelompok itu turun sebagai satu blok — bukan link satu per satu.</p>
+    <div class="demo">
+      <div class="panggung-sempit">
+        <nav class="site-nav">
+          <a class="site-nav-merek" href="12-pola-navigasi.html">Tokosaya</a>
+          <div class="site-nav-kanan">
+            <a class="site-nav-link" href="12-pola-navigasi.html">Beranda</a>
+            <a class="site-nav-link" href="12-pola-navigasi.html">Produk</a>
+            <a class="site-nav-link" href="12-pola-navigasi.html">Promo</a>
+            <a class="site-nav-link" href="12-pola-navigasi.html">Kontak</a>
+            <a class="site-nav-keranjang" href="12-pola-navigasi.html">Keranjang</a>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="720px - 24px*2 = 672">Pada layar 720 px hanya tersedia <strong>672 px</strong> setelah padding.</p>
+    <p class="hitung" data-hitung="772 - 720 = 52">Kebutuhan 772 px melebihi ruang yang ada sebesar <strong>52 px</strong>, jadi kelompok kanan turun ke baris kedua.</p>
+    <p>Lapisan kedua baru aktif kalau kelompok kanan sendiri sudah tidak muat: di dalamnya, empat link menekuk lebih dulu sebelum tombol keranjang ikut turun.</p>
+
+    <h2>Kenapa tidak tiga anak langsung?</h2>
+<pre><code class="language-css">.site-nav-tiga {
+  justify-content: space-between;
+}</code></pre>
+    <p>Kalau merek, kelompok menu, dan keranjang dibiarkan sebagai tiga anak langsung, <code>space-between</code> menyebar sisa ruang ke dua celah sekaligus. Keranjang berhenti sebelum tepi, dan baris kedua jadi pincang.</p>
+    <div class="demo">
+      <div class="panggung">
+        <nav class="site-nav site-nav-tiga">
+          <a class="site-nav-merek" href="12-pola-navigasi.html">Tokosaya</a>
+          <div class="site-nav-menu">
+            <a class="site-nav-link" href="12-pola-navigasi.html">Beranda</a>
+            <a class="site-nav-link" href="12-pola-navigasi.html">Produk</a>
+            <a class="site-nav-link" href="12-pola-navigasi.html">Promo</a>
+            <a class="site-nav-link" href="12-pola-navigasi.html">Kontak</a>
+          </div>
+          <a class="site-nav-keranjang" href="12-pola-navigasi.html">Keranjang</a>
+        </nav>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="840px - 24px*2 - (120px + (88px*4 + 24px*3) + 140px) = 108">Dengan tiga anak langsung, sisa ruangnya <strong>108 px</strong>.</p>
+    <p class="hitung" data-hitung="108 / 2 = 54">Terbagi ke dua celah, masing-masing <strong>54 px</strong>. Keranjang tidak lagi menempel di tepi kanan.</p>
+
+    <h2>Catatan pemakaian</h2>
+    <ul>
+      <li>Alternatif yang lebih ringkas: beri <code>margin-left: auto</code> pada kelompok kanan, tanpa <code>space-between</code>.</li>
+      <li>Menu hamburger membutuhkan JavaScript, jadi bab ini memilih penekukan yang murni CSS.</li>
+      <li>Kalau baris kedua terlihat terlalu rapat, tambahkan <code>row-gap</code> pada wadah.</li>
+      <li>Uji dengan menyusutkan jendela: yang turun lebih dulu harus seluruh kelompok kanan.</li>
+    </ul>
+
+    <p><strong>Inti pembelajaran:</strong> jumlah anak langsung menentukan arti <code>space-between</code>. Dengan dua anak, satu menempel di kiri dan satu di kanan; dengan tiga anak, ruang kosongnya menyebar ke tengah.</p>
+    <nav class="nav">
+      <a href="11-align-self-order.html">← 11 align-self-order</a>
+      <span>12 / 15</span>
+      <a href="13-pola-footer-media-object.html">13 pola-footer-media-object →</a>
+    </nav>
+  </div>
+</body>
+</html>

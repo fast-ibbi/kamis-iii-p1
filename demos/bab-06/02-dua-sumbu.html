@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 6 · 02 dua-sumbu — Flexbox untuk Web Layout</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: wadah 720 px berisi tiga butir 120 px, dan wadah kolom 480 px */
+  .demo .lorong-baris {
+    width: 720px;
+    max-width: 100%;
+    height: 160px;
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+  }
+  .demo .lorong-kolom {
+    width: 480px;
+    max-width: 100%;
+    height: 300px;
+    background: #ffffff;
+    border: 1px dashed #9ca3af;
+  }
+  .demo .butir {
+    box-sizing: border-box;
+    width: 120px;
+    padding: 8px 12px;
+    background: #fde68a;
+    border: 1px solid #b45309;
+    font-size: 14px;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .sumbu-baris {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .sumbu-kolom {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 6 · Flexbox untuk Web Layout</strong> · 02 dua sumbu</p>
+    <h1>Dua Sumbu Flexbox: Main Axis dan Cross Axis</h1>
+    <p>Flexbox bekerja pada satu jalur saja. Arah jalur itu disebut <em>main axis</em>, dan arah tegak lurusnya disebut <em>cross axis</em>. Halaman ini memakai wadah 720 px berisi tiga butir 120 px untuk memperlihatkan di mana kedua sumbu berada, lalu memutar arahnya.</p>
+
+    <h2><code>flex-direction: row</code> — main axis mendatar</h2>
+<pre><code class="language-css">.sumbu-baris {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}</code></pre>
+    <p>Pada <code>row</code>, main axis berjalan horizontal dari kiri ke kanan, sedangkan cross axis berjalan vertikal dari atas ke bawah. <code>justify-content</code> membagi sisa ruang di sepanjang main axis; <code>align-items</code> menyelaraskan butir di cross axis, di sini ke tengah tinggi wadah.</p>
+    <div class="demo">
+      <div class="lorong-baris sumbu-baris">
+        <div class="butir">Merek</div>
+        <div class="butir">Menu</div>
+        <div class="butir">Keranjang</div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="720px - 120px*3 = 360">Tiga butir memakai 120 × 3 = <strong>360 px</strong>; sisa <strong>360 px</strong> menjadi bahan <code>justify-content</code>.</p>
+    <p class="hitung" data-hitung="360 / 2 = 180">Dibagi ke dua celah: masing-masing <strong>180 px</strong>, sehingga butir pertama menempel tepi kiri dan butir terakhir menempel tepi kanan.</p>
+
+    <h2><code>flex-direction: column</code> — peran sumbu bertukar</h2>
+<pre><code class="language-css">.sumbu-kolom {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}</code></pre>
+    <p>Pada <code>column</code>, main axis vertikal dari atas ke bawah dan cross axis horizontal dari kiri ke kanan. Nama propertinya tidak berubah; hanya arah kerjanya yang pindah. <code>justify-content</code> kini membagi ruang secara vertikal, dan <code>align-items</code> menengahkan butir ke kiri-kanan.</p>
+    <div class="demo">
+      <div class="lorong-kolom sumbu-kolom">
+        <div class="butir">Merek</div>
+        <div class="butir">Menu</div>
+        <div class="butir">Keranjang</div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="480px - 120px = 360">Butir selebar 120 px di dalam wadah 480 px menyisakan <strong>360 px</strong> di cross axis.</p>
+    <p class="hitung" data-hitung="360 / 2 = 180"><code>align-items: center</code> membagi sisa itu dua sama besar: <strong>180 px</strong> di kiri dan 180 px di kanan tiap butir.</p>
+
+    <h2>Dua aturan yang tidak pernah bertukar</h2>
+    <p>Kalau arah kerjanya bertukar, apakah nama propertinya ikut bertukar? Tidak. Yang berpindah hanya pekerjaan, bukan pemiliknya.</p>
+    <table class="tabel">
+      <thead>
+        <tr><th><code>flex-direction</code></th><th>main axis</th><th>cross axis</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>row</code></td><td>horizontal, kiri ke kanan</td><td>vertikal, atas ke bawah</td></tr>
+        <tr><td><code>column</code></td><td>vertikal, atas ke bawah</td><td>horizontal, kiri ke kanan</td></tr>
+      </tbody>
+    </table>
+    <ul>
+      <li><code>justify-content</code> selalu mengurus main axis.</li>
+      <li><code>align-items</code> selalu mengurus cross axis.</li>
+      <li>Kesalahan paling sering adalah menukar keduanya saat <code>flex-direction</code> diganti.</li>
+    </ul>
+
+    <p><strong>Inti pembelajaran:</strong> sebelum menyentuh properti perataan, tentukan dulu arah jalurnya. Arah itu yang menentukan sumbu mana yang sedang diatur.</p>
+    <nav class="nav">
+      <a href="01-display-flex.html">← 01 display-flex</a>
+      <span>02 / 15</span>
+      <a href="03-flex-direction.html">03 flex-direction →</a>
+    </nav>
+  </div>
+</body>
+</html>
