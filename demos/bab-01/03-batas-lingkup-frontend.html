@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 1 · 03 batas lingkup frontend — Pengantar Frontend Development dan Web Design</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: dua kolom dengan garis tepi kiri sebagai penanda wilayah */
+  .demo .dua-kolom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .demo .kolom h3 { margin: 0 0 8px; font-size: 14px; }
+  .demo .kolom ul { margin: 0; padding-left: 18px; font-size: 14px; }
+  .demo .kolom p { margin: 0; font-size: 13.5px; color: #4b5563; }
+  .demo .kolom h3 + p { margin-bottom: 8px; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .kolom-bukan {
+    box-sizing: border-box;
+    padding: 12px;
+    border-left: 3px solid #b91c1c;
+    border-radius: 4px;
+    background: #fef2f2;
+  }
+
+  .kolom-frontend {
+    box-sizing: border-box;
+    padding: 12px;
+    border-left: 3px solid #1d4ed8;
+    border-radius: 4px;
+    background: #eef2ff;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 1 · Pengantar Frontend Development dan Web Design</strong> · 03 batas lingkup frontend</p>
+    <h1>Batas Lingkup: yang Bukan Frontend</h1>
+    <p>Buku ini adalah mata kuliah <strong>translasi desain</strong> — HTML dan CSS, tanpa JavaScript. Batas itu disengaja, dan batas yang jelas membuat pekerjaan yang di dalamnya jadi terlihat utuh.</p>
+
+    <h2>Uji cepat</h2>
+    <p>Apakah kebutuhan ini mengubah apa yang <strong>dilihat, dibaca, atau disentuh</strong> pengguna? Kalau iya, ia ada di dalam batas. Kalau yang berubah adalah data yang tersimpan atau aturan yang berjalan, ia ada di luar.</p>
+    <p>Tiga hal berikut bukan pekerjaan frontend pada mata kuliah ini:</p>
+    <ul>
+      <li>Interaksi dinamis seperti keranjang yang bertambah — mata kuliah pemrograman lanjutan</li>
+      <li>Data dan logika bisnis — wilayah backend</li>
+      <li>Basis data — wilayah backend</li>
+    </ul>
+
+    <h2>Dua kolom batas</h2>
+<pre><code class="language-css">.kolom-bukan {
+  box-sizing: border-box;
+  padding: 12px;
+  border-left: 3px solid #b91c1c;
+  border-radius: 4px;
+  background: #fef2f2;
+}
+
+.kolom-frontend {
+  box-sizing: border-box;
+  padding: 12px;
+  border-left: 3px solid #1d4ed8;
+  border-radius: 4px;
+  background: #eef2ff;
+}</code></pre>
+    <div class="demo">
+      <div class="dua-kolom">
+        <div class="kolom kolom-bukan">
+          <h3>Bukan frontend</h3>
+          <ul>
+            <li>Keranjang bertambah</li>
+            <li>Logika bisnis</li>
+            <li>Basis data</li>
+          </ul>
+        </div>
+        <div class="kolom kolom-frontend">
+          <h3>Tetap frontend</h3>
+          <ul>
+            <li>Kartu produk</li>
+            <li>Hero</li>
+            <li>Formulir kontak</li>
+            <li>Katalog</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <p>Keempat hal di kolom kanan tetap terpenuhi oleh halaman statis yang baik, tanpa satu baris JavaScript.</p>
+
+    <h2>Enam baris kebutuhan Tokosaya</h2>
+    <p>Tabel ini dikerjakan bersama kelas, bukan dibacakan: tutup dulu kolom "Kolom", minta mahasiswa menebak, baru buka jawabannya.</p>
+    <table class="tabel">
+      <thead>
+        <tr><th>Kebutuhan klien</th><th>Kolom</th><th>Alasan singkat</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Wujud kotak pencarian</td><td>Frontend</td><td>Bentuk, ikon, dan layoutnya</td></tr>
+        <tr><td>Menyaring ratusan produk</td><td>Backend</td><td>Aturan penyaringan di server</td></tr>
+        <tr><td>Kolom nama dan surel formulir</td><td>Frontend</td><td>Label dan susunan isian</td></tr>
+        <tr><td>Kirim isi ke halo@tokosaya.id</td><td>Backend</td><td>Pengiriman dan pencatatan</td></tr>
+        <tr><td>Stok berkurang pas tombol Beli</td><td>Backend</td><td>Penyimpanan dan aturan bisnis</td></tr>
+        <tr><td>Harga Rp650.000 pada kartu</td><td>Frontend</td><td>Penyajian data yang udah ada</td></tr>
+      </tbody>
+    </table>
+    <p>Baris terakhir biasanya memancing perdebatan. Harga datang sebagai data dari server, tetapi cara menulisnya di kartu adalah kerja frontend — di sinilah garis pemisahnya paling kabur bagi pemula.</p>
+
+    <h2>Bukan berarti JavaScript tidak penting</h2>
+    <p>JavaScript memang ada, hanya dibahas di mata kuliah lain. Yang perlu dibawa keluar dari sini: sebagian besar kebutuhan tampilan Tokosaya — kartu produk, hero, formulir kontak, katalog — cukup dengan halaman statis.</p>
+    <p><strong>Inti pembelajaran:</strong> batas lingkup bukan pembatasan kemampuan, melainkan cara membuat satu pekerjaan selesai dengan tuntas sebelum menambah alat baru.</p>
+    <nav class="nav">
+      <a href="02-frontend-dan-backend.html">← 02 frontend dan backend</a>
+      <span>03 / 14</span>
+      <a href="04-tiga-topi-tim.html">04 tiga topi tim →</a>
+    </nav>
+  </div>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 1 · 07 anatomi website — Pengantar Frontend Development dan Web Design</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: kotak website yang memuat halaman-halaman dan asetnya */
+  .demo .judul-kotak {
+    display: block;
+    margin-bottom: 8px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12.5px;
+    color: #4b5563;
+  }
+  .demo .isi-website {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .demo .halaman strong,
+  .demo .aset strong { display: block; font-size: 13.5px; }
+  .demo .halaman span,
+  .demo .aset span { color: #4b5563; }
+  .demo .aset { grid-column: 1 / -1; }
+  /* panggung: dua baris alamat untuk membandingkan alamat pendek dan alamat berberkas */
+  .demo .baris-alamat {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    padding: 8px 10px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 13.5px;
+  }
+  .demo .alamat-tulis {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13px;
+  }
+  .demo .tanda {
+    color: #6b7280;
+    font-size: 13px;
+  }
+  .demo .catatan {
+    margin: 6px 0 0;
+    font-size: 13px;
+    color: #4b5563;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .website {
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid #9ca3af;
+    border-radius: 8px;
+    background: #f8fafc;
+  }
+
+  .halaman {
+    box-sizing: border-box;
+    padding: 10px 12px;
+    background: #eef2ff;
+    border: 1px solid #c7d2fe;
+    border-radius: 6px;
+    font-size: 13.5px;
+  }
+
+  .aset {
+    box-sizing: border-box;
+    padding: 10px 12px;
+    background: #fffbeb;
+    border: 1px solid #fcd34d;
+    border-radius: 6px;
+    font-size: 13.5px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 1 · Pengantar Frontend Development dan Web Design</strong> · 07 anatomi website</p>
+    <h1>Anatomi Sebuah Website</h1>
+    <p>Empat pengertian yang membentuk satu bangunan. Tanpa keempatnya, "toko di internet" hanya kumpulan berkas yang tidak saling mengenal.</p>
+
+    <h2>Empat pengertian</h2>
+    <ul>
+      <li><strong>Halaman</strong> (<em>page</em>) — satu dokumen HTML yang menampilkan satu layar konten</li>
+      <li><strong>Website</strong> — sejumlah halaman yang saling terhubung lewat link</li>
+      <li><strong>Aset</strong> — gambar, file CSS, kadang font dan ikon</li>
+      <li><strong><code>index.html</code></strong> — file yang dibuka pas pengunjung cuma mengetik <code>tokosaya.id/</code></li>
+    </ul>
+
+    <h2>Satu website, dilihat dari dekat</h2>
+    <p>Satu <strong>Website</strong> Tokosaya berisi beberapa <strong>Halaman</strong> dan sekumpulan <strong>Aset</strong>. Satu aset seperti <code>style.css</code> dipakai bersama oleh semua halaman.</p>
+<pre><code class="language-css">.website {
+  box-sizing: border-box;
+  padding: 12px;
+  border: 1px solid #9ca3af;
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.halaman {
+  box-sizing: border-box;
+  padding: 10px 12px;
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  border-radius: 6px;
+  font-size: 13.5px;
+}
+
+.aset {
+  box-sizing: border-box;
+  padding: 10px 12px;
+  background: #fffbeb;
+  border: 1px solid #fcd34d;
+  border-radius: 6px;
+  font-size: 13.5px;
+}</code></pre>
+    <div class="demo">
+      <div class="website">
+        <span class="judul-kotak">Website Tokosaya</span>
+        <div class="isi-website">
+          <div class="halaman">
+            <strong>Halaman: index.html</strong>
+            <span>beranda — tampil saat alamat hanya <code>tokosaya.id/</code></span>
+          </div>
+          <div class="halaman">
+            <strong>Halaman: katalog.html</strong>
+            <span>daftar produk</span>
+          </div>
+          <div class="aset">
+            <strong>Aset</strong>
+            <span>style.css dan gambar produk</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p>Mahasiswa sering menyebut gambar sebagai halaman. Gambar adalah aset: ia tidak dibuka sendiri, melainkan dipanggil oleh halaman.</p>
+
+    <h2>Mengapa namanya <code>index.html</code></h2>
+    <p>Alamat tanpa nama file dianggap menunjuk halaman utama. Konvensi yang sama bekerja di komputer sendiri saat kita dobel klik <code>index.html</code>. Itulah sebabnya seluruh proyek buku ini memakai nama <code>index.html</code>, bukan <code>utama.html</code> atau <code>halaman1.html</code>.</p>
+    <div class="demo">
+      <div class="baris-alamat">
+        <span class="alamat-tulis">tokosaya.id/</span>
+        <span class="tanda">→ dibukakan</span>
+        <span class="alamat-tulis">index.html</span>
+      </div>
+      <div class="baris-alamat">
+        <span class="alamat-tulis">tokosaya.id/katalog.html</span>
+        <span class="tanda">→ dibukakan</span>
+        <span class="alamat-tulis">katalog.html</span>
+      </div>
+      <p class="catatan">Ganti <code>index.html</code> menjadi <code>utama.html</code>, dan alamat pendek <code>tokosaya.id/</code> tidak lagi punya halaman utama yang dituju.</p>
+    </div>
+
+    <h2>Ringkasan</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Istilah</th><th>Isi</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Halaman</td><td>Satu dokumen HTML, satu layar konten</td></tr>
+        <tr><td>Website</td><td>Sejumlah halaman yang saling terhubung lewat link</td></tr>
+        <tr><td>Aset</td><td>Gambar, file CSS, kadang font dan ikon</td></tr>
+        <tr><td><code>index.html</code></td><td>Halaman yang dituju alamat pendek <code>tokosaya.id/</code></td></tr>
+      </tbody>
+    </table>
+    <p><strong>Inti pembelajaran:</strong> website bukan satu berkas besar, melainkan halaman-halaman yang dihubungkan link dan dilayani bersama oleh aset yang sama.</p>
+    <nav class="nav">
+      <a href="06-design-ke-code.html">← 06 design ke code</a>
+      <span>07 / 14</span>
+      <a href="08-pola-folder-proyek.html">08 pola folder proyek →</a>
+    </nav>
+  </div>
+</body>
+</html>

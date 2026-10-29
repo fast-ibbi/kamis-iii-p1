@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 1 · 09 domain hosting url — Pengantar Frontend Development dan Web Design</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: tiga kotak alamat beserta label pemisahnya */
+  .demo .keterangan-bagian {
+    display: block;
+    margin-top: 6px;
+    color: #6b7280;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    font-size: 12.5px;
+  }
+  .demo .utuh {
+    box-sizing: border-box;
+    margin-top: 12px;
+    padding: 10px 12px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-left: 3px solid #1d4ed8;
+    border-radius: 6px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+  }
+  .demo .baris-berkas {
+    box-sizing: border-box;
+    margin-top: 10px;
+    padding: 10px 12px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 13.5px;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .alamat {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .bagian-alamat {
+    box-sizing: border-box;
+    padding: 8px 12px;
+    background: #ffffff;
+    border: 1px solid #c7d2fe;
+    border-radius: 6px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+  }
+
+  .pemisah {
+    color: #6b7280;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 1 · Pengantar Frontend Development dan Web Design</strong> · 09 domain hosting url</p>
+    <h1>Domain, Hosting, dan URL</h1>
+    <p>Tiga istilah yang sering tertukar dalam satu kalimat. Bedanya satu pertanyaan: mana yang berupa <strong>nama</strong>, mana yang berupa <strong>tempat</strong>?</p>
+
+    <h2>Tiga istilah</h2>
+    <ul>
+      <li><strong>Domain</strong> — nama alamat website, mis. <code>tokosaya.id</code>, disewa tahunan</li>
+      <li><strong>Hosting</strong> — layanan penyimpan file pada server yang selalu menyala</li>
+      <li><strong>Deployment</strong> — menyalin file ke server lalu mengaitkannya dengan domain</li>
+    </ul>
+    <p>Domain adalah nama, hosting adalah tempat file disimpan, dan keduanya disewa terpisah.</p>
+
+    <h2>Membaca satu alamat</h2>
+    <p>Alamat <code>https://tokosaya.id/katalog.html</code> dibaca dari kiri ke kanan lewat tiga kotak. Label panahnya adalah pemisah aslinya.</p>
+<pre><code class="language-css">.alamat {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.bagian-alamat {
+  box-sizing: border-box;
+  padding: 8px 12px;
+  background: #ffffff;
+  border: 1px solid #c7d2fe;
+  border-radius: 6px;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 13.5px;
+}
+
+.pemisah {
+  color: #6b7280;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 13.5px;
+}</code></pre>
+    <div class="demo">
+      <div class="alamat">
+        <span class="bagian-alamat">https<span class="keterangan-bagian">skema</span></span>
+        <span class="pemisah">://</span>
+        <span class="bagian-alamat">tokosaya.id<span class="keterangan-bagian">domain</span></span>
+        <span class="pemisah">/</span>
+        <span class="bagian-alamat">katalog.html<span class="keterangan-bagian">jalur file</span></span>
+      </div>
+      <p class="utuh">https://tokosaya.id/katalog.html</p>
+      <p>Rangkaiannya kembali utuh: satu garis miring sebelum jalur file, bukan dua. Garis miring pembuka jalur itu sudah menjadi label panah, jadi jangan menuliskannya lagi di depan <code>katalog.html</code>.</p>
+    </div>
+
+    <h2>Jalur relatif</h2>
+    <p>Link <code>&lt;a href="katalog.html"&gt;</code> memakai <strong>jalur relatif</strong>: dibaca dari folder halaman yang membukanya.</p>
+    <div class="demo">
+      <div class="baris-berkas"><code>index.html</code> dan <code>katalog.html</code> duduk di folder yang sama, jadi cukup menulis nama berkasnya.</div>
+    </div>
+    <p>Baris ini baru dipakai serius di Bab 2, saat link antarhalaman mulai ditulis.</p>
+
+    <h2>Belum perlu dibeli sekarang</h2>
+    <p>Untuk latihan bab ini, domain dan hosting belum dibutuhkan sama sekali: file dibuka langsung dari komputer sendiri. Konsepnya sama, cuma belum dipasang di internet.</p>
+    <p><strong>Inti pembelajaran:</strong> domain itu nama, hosting itu tempat. Alamat yang kita tulis di <code>href</code> adalah jalur file, bukan alamat lengkap.</p>
+    <nav class="nav">
+      <a href="08-pola-folder-proyek.html">← 08 pola folder proyek</a>
+      <span>09 / 14</span>
+      <a href="10-cara-browser-merender.html">10 cara browser merender →</a>
+    </nav>
+  </div>
+</body>
+</html>

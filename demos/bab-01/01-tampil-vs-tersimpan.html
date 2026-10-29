@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 1 · 01 tampil vs tersimpan — Pengantar Frontend Development dan Web Design</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: dua kolom sederhana untuk memisahkan yang tampil dan yang tersimpan */
+  .demo .dua-kolom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .demo .kolom {
+    box-sizing: border-box;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+  .demo .kolom-tampil { background: #eef2ff; border: 1px solid #c7d2fe; }
+  .demo .kolom-tersimpan { background: #fffbeb; border: 1px solid #fcd34d; }
+  .demo .kolom h3 { margin: 0 0 8px; font-size: 14px; }
+  .demo .kolom ul { margin: 0; padding-left: 18px; font-size: 14px; }
+  /* panggung: header 1120 px lebih lebar dari kolom isi, jadi digambar dengan zoom 0,8 */
+  .demo .panggung { zoom: 0.8; }
+  .demo .header { background: #eef2ff; }
+  .demo .logo,
+  .demo .pencarian,
+  .demo .hubungi {
+    box-sizing: border-box;
+    padding: 10px 12px;
+    background: #ffffff;
+    border: 1px solid #c7d2fe;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    width: 1120px;
+  }
+
+  .logo {
+    width: 200px;
+  }
+
+  .pencarian {
+    width: 400px;
+  }
+
+  .hubungi {
+    width: 200px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 1 · Pengantar Frontend Development dan Web Design</strong> · 01 tampil vs tersimpan</p>
+    <h1>Apa yang Harus Tampil, Apa yang Harus Tersimpan</h1>
+    <p>Dua pertanyaan ini yang memisahkan pekerjaan frontend dan backend. Kisah Tokosaya memperlihatkannya dengan jujur: pemilik toko berbicara tentang apa yang terlihat di layar, padahal di belakangnya ada banyak hal yang harus tersimpan.</p>
+
+    <h2>Klien berbicara bahasa kebutuhan</h2>
+    <p><strong>Tokosaya</strong> adalah toko online UMKM, berdiri 2019 di Jakarta, menjual aksesori dan elektronik komputer. Tagline-nya <strong>"Belanja Tepat, Kirim Cepat"</strong>. Selama bertahun-tahun penjualan lewat pesan singkat: pembeli menanyakan stok lewat chat, pemilik membalas satu per satu, pengiriman dicatat di buku. Usaha tetap jalan, tapi pemilik mulai kewalahan.</p>
+    <p><em>"Saya ingin toko saya ada di internet, orang bisa lihat produknya, dan bisa menghubungi saya."</em></p>
+    <ul>
+      <li>Nggak ada satu pun kata HTML, CSS, <em>server</em>, atau basis data dalam kalimat itu</li>
+      <li>Yang ia sebut hanya: bisa dilihat, bisa dicari, bisa dihubungi, tetap tepercaya</li>
+    </ul>
+    <p>Kalimat itu bukan tanda klien kurang paham. Justru itulah rumusan kebutuhan yang paling jujur — dan tugas kita menerjemahkannya.</p>
+
+    <h2>Dua kolom: tampil dan tersimpan</h2>
+    <p>Dari kisah Tokosaya, semua usulan pengunjung jatuh ke salah satu dari dua kolom ini.</p>
+<pre><code class="language-text">TAMPIL                    TERSIMPAN
+logo toko                 stok tiap produk
+kotak pencarian           pesanan yang masuk
+tombol Hubungi            catatan pengiriman</code></pre>
+    <div class="demo">
+      <div class="dua-kolom">
+        <div class="kolom kolom-tampil">
+          <h3>Tampil — dilihat, dibaca, diklik</h3>
+          <ul>
+            <li>Logo Tokosaya</li>
+            <li>Kotak pencarian</li>
+            <li>Tombol Hubungi</li>
+          </ul>
+        </div>
+        <div class="kolom kolom-tersimpan">
+          <h3>Tersimpan — diolah dan dijaga</h3>
+          <ul>
+            <li>Stok tiap produk</li>
+            <li>Pesanan yang masuk</li>
+            <li>Catatan pengiriman</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <p>Pertanyaan yang memisahkan keduanya: apakah kebutuhan ini mengubah apa yang dilihat, dibaca, atau disentuh pengguna? Kalau iya, ia pekerjaan frontend.</p>
+
+    <h2>Kalimat klien yang menjadi kotak terukur</h2>
+    <p>Kalimat yang tidak menyebut satu pun istilah teknis tetap bisa diterjemahkan menjadi tiga kotak yang bisa diukur: header 1120 px dengan gap 24 px berisi Logo Tokosaya 200 px, Kotak pencarian 400 px, dan Tombol Hubungi 200 px.</p>
+<pre><code class="language-css">.header {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  width: 1120px;
+}
+
+.logo {
+  width: 200px;
+}
+
+.pencarian {
+  width: 400px;
+}
+
+.hubungi {
+  width: 200px;
+}</code></pre>
+    <div class="demo">
+      <div class="panggung">
+        <div class="header">
+        <div class="logo">Logo Tokosaya</div>
+        <div class="pencarian">Kotak pencarian</div>
+          <div class="hubungi">Tombol Hubungi</div>
+        </div>
+      </div>
+    </div>
+    <p>Panggung di atas digambar dengan <code>zoom: 0.8</code> supaya header 1120 px muat di kolom
+    halaman ini; angka yang dibicarakan tetap 1120 px, bukan hasil perkecilannya.</p>
+    <p class="hitung" data-hitung="200px + 400px + 200px + 24px + 24px = 848">Tiga kotak ditambah dua celah dasar: <strong>848 px</strong>. Bukan kata "internet".</p>
+    <p class="hitung" data-hitung="1120px - 848 = 272">Sisa <strong>272 px</strong> dibagi dua oleh <code>justify-content: space-between</code>.</p>
+    <p class="hitung" data-hitung="272 / 2 = 136">Jadi tiap celah menerima tambahan <strong>136 px</strong>.</p>
+    <p class="hitung" data-hitung="24px + 136 = 160">Celah dasar 24 px ditambah 136 px menjadi <strong>160 px</strong> per celah — itulah yang terlihat pada render di atas.</p>
+    <p>Logonya menjawab "bisa dilihat", kotak pencarian menjawab "bisa dicari", tombol Hubungi menjawab "bisa dihubungi". Angka inilah yang nanti ditulis di CSS.</p>
+
+    <h2>Ringkasan</h2>
+    <ul>
+      <li>Klien berbicara kebutuhan, bukan teknologi; itu normal dan justru berguna.</li>
+      <li>Kolom <strong>tampil</strong> berisi yang dilihat, dibaca, dan diklik pengguna.</li>
+      <li>Kolom <strong>tersimpan</strong> berisi data yang diolah dan dijaga di server.</li>
+      <li>Kebutuhan yang samar tetap bisa diterjemahkan menjadi ukuran yang bisa ditulis.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> pertanyaan "tampil atau tersimpan" adalah pisau pemisah paling murah sebelum menggambar apa pun. Pada bab ini kita hanya menggarap kolom kiri.</p>
+    <nav class="nav">
+      <span>—</span>
+      <span>01 / 14</span>
+      <a href="02-frontend-dan-backend.html">02 frontend dan backend →</a>
+    </nav>
+  </div>
+</body>
+</html>

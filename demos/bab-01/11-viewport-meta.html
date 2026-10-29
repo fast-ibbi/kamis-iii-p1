@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 1 · 11 viewport meta — Pengantar Frontend Development dan Web Design</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: dua panel sebaris dengan label dan catatan di bawahnya */
+  .demo .dua-panel {
+    display: grid;
+    grid-template-columns: repeat(2, 360px);
+    gap: 16px;
+  }
+  .demo .panel h3 { margin: 0 0 6px; font-size: 14px; }
+  .demo .panel .catatan {
+    margin: 6px 0 0;
+    font-size: 12.5px;
+    color: #4b5563;
+  }
+  .demo .kanvas h4 { margin: 0 0 6px; font-size: 15px; }
+  .demo .kanvas p { margin: 0 0 6px; font-size: 13.5px; }
+  .demo .kanvas-lebar h4 { margin: 0 0 10px; font-size: 17px; }
+  .demo .kanvas-lebar p { margin: 0 0 10px; font-size: 15px; }
+  .demo .tanda-simulasi {
+    margin: 0 0 12px;
+    padding: 8px 12px;
+    background: #fffbeb;
+    border-left: 3px solid #b45309;
+    font-size: 13.5px;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .bingkai {
+    box-sizing: border-box;
+    width: 360px;
+    height: 240px;
+    overflow: hidden;
+    outline: 1px solid #9ca3af;
+    background: #ffffff;
+  }
+
+  .kanvas {
+    box-sizing: border-box;
+    width: 360px;
+    padding: 12px;
+    font-size: 13.5px;
+  }
+
+  .kanvas-lebar {
+    box-sizing: border-box;
+    width: 720px;
+    padding: 24px;
+    font-size: 13.5px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 1 · Pengantar Frontend Development dan Web Design</strong> · 11 viewport meta</p>
+    <h1><code>&lt;meta name="viewport"&gt;</code>: Halaman yang Mengikuti Lebar Layar</h1>
+    <p>Ini kesalahan paling mahal di praktikum: mahasiswa menghabiskan waktu mengutak-atik CSS padahal <code>meta viewport</code> nggak pernah ditulis. Baris ini bukan hiasan kepala dokumen, melainkan fondasi seluruh pekerjaan responsif di Bab 7 dan 13.</p>
+
+    <h2>Satu baris di kepala dokumen</h2>
+<pre><code class="language-html">&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</code></pre>
+    <p>Tanpa baris ini, halaman tetap tampil, tapi nggak mengikuti lebar layar perangkat — umumnya tampak besar dan perlu cubit-zoom. Browser mengasumsikan lebar meja standar karena tidak diberi tahu lebar perangkat yang sebenarnya.</p>
+
+    <h2>Dua panel: dengan dan tanpa meta viewport</h2>
+    <p class="tanda-simulasi"><strong>Kedua panel di bawah ini simulasi</strong>, bukan tangkapan layar perangkat sungguhan. Panel kiri meniru halaman yang lebarnya mengikuti layar 360 px; panel kanan meniru halaman yang isinya ditata selebar meja, sehingga hanya sebagian yang terlihat di layar sempit.</p>
+<pre><code class="language-css">.bingkai {
+  box-sizing: border-box;
+  width: 360px;
+  height: 240px;
+  overflow: hidden;
+  outline: 1px solid #9ca3af;
+  background: #ffffff;
+}
+
+.kanvas {
+  box-sizing: border-box;
+  width: 360px;
+  padding: 12px;
+  font-size: 13.5px;
+}
+
+.kanvas-lebar {
+  box-sizing: border-box;
+  width: 720px;
+  padding: 24px;
+  font-size: 13.5px;
+}</code></pre>
+    <div class="demo">
+      <div class="dua-panel">
+        <div class="panel">
+          <h3>Dengan <code>meta viewport</code></h3>
+          <div class="bingkai">
+            <div class="kanvas">
+              <h4>Keyboard Mekanis KX-210</h4>
+              <p>Rp650.000</p>
+              <p>Isi halaman mengalir mengikuti lebar layar: judul dan kartu produk turun ke bawah, tidak ada yang perlu dicubit.</p>
+            </div>
+          </div>
+          <p class="catatan">Lebar 360 px, seperti setelan device toolbar untuk HP tersempit.</p>
+        </div>
+        <div class="panel">
+          <h3>Tanpa <code>meta viewport</code></h3>
+          <div class="bingkai">
+            <div class="kanvas-lebar">
+              <h4>Keyboard Mekanis KX-210</h4>
+              <p>Rp650.000</p>
+              <p>Isi halaman ditata selebar meja, jadi layar sempit hanya menampilkan potongan kirinya. Pengunjung harus menggeser dan mencubit.</p>
+            </div>
+          </div>
+          <p class="catatan">Simulasi lebar meja standar: isinya tidak mengikuti lebar layar perangkat.</p>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="360px - 12px*2 = 336">Pada panel kiri, isi yang tersedia selebar <strong>336 px</strong> setelah padding 12 px kiri dan kanan.</p>
+    <p>Device toolbar disetel ke lebar 360 px — viewport HP tersempit yang dipakai pengunjung Tokosaya: content 360 × 640 px, tanpa padding dan tanpa border, jadi lebar total tetap 360 px. Yang berubah saat lebar viewport mengecil bukan hurufnya, melainkan jumlah kolomnya.</p>
+
+    <h2>Membaca gejala, bukan menebak</h2>
+    <p>Keluhan pengguna hampir selalu datang dalam bahasa antarmuka. Tugas kita menerjemahkannya menjadi daftar periksa yang bisa dilacak.</p>
+    <table class="tabel">
+      <thead>
+        <tr><th>Keluhan klien</th><th>Yang diperiksa</th><th>Di mana</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>"Tombolnya hilang pas dibuka dari HP"</td><td>Elemen benar ada di struktur?</td><td>Panel Elements</td></tr>
+        <tr><td>"Tulisannya menabrak logo"</td><td>Berapa lebar layar pengguna?</td><td>Device toolbar</td></tr>
+        <tr><td>"Masih tampil versi yang lama"</td><td>Halaman sudah dimuat ulang dengan F5?</td><td>Muat ulang</td></tr>
+      </tbody>
+    </table>
+    <p>Buka DevTools dengan <code>F12</code> atau klik kanan halaman lalu pilih <strong>Inspect</strong>. Kebiasaan QA yang murah: <em>simpan → muat ulang → periksa</em> setiap kali kode berubah.</p>
+
+    <h2>Ringkasan</h2>
+    <ul>
+      <li><code>meta viewport</code> memberi tahu browser lebar perangkat yang sebenarnya.</li>
+      <li>Tanpa baris itu, halaman tidak mengikuti lebar layar dan perlu cubit-zoom.</li>
+      <li>Device toolbar menguji lebar dari sekitar 360 px sampai layar meja.</li>
+      <li>Banyak "bug" pemula sebenarnya cuma file lama yang belum dimuat ulang.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> browser nggak menebak, browser membaca. Mulai setiap dokumen dari pola lengkap yang sudah berisi charset dan viewport, jangan menulis dokumen dari nol.</p>
+    <nav class="nav">
+      <a href="10-cara-browser-merender.html">← 10 cara browser merender</a>
+      <span>11 / 14</span>
+      <a href="12-kepala-dan-isi-dokumen.html">12 kepala dan isi dokumen →</a>
+    </nav>
+  </div>
+</body>
+</html>

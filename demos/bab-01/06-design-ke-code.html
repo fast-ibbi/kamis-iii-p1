@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 1 · 06 design ke code — Pengantar Frontend Development dan Web Design</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: empat wujud alur dan satu kartu produk berisi lencana */
+  .demo .wujud strong { display: block; margin-bottom: 4px; font-size: 14px; }
+  .demo .wujud span { color: #4b5563; }
+  .demo .kartu h3 { margin: 8px 0 4px; font-size: 15px; }
+  .demo .kartu .harga {
+    margin: 0;
+    color: #4f46e5;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .demo .banding {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .demo .lencana-lebar {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 122px;
+    height: 50px;
+    padding: 12px;
+    border: 1px solid #b45309;
+    border-radius: 999px;
+    background: #f59e0b;
+    color: #111827;
+    font-size: 13px;
+    line-height: 24px;
+    text-align: center;
+  }
+  .demo .catatan-lencana { margin: 6px 0 0; font-size: 13px; color: #4b5563; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .alur-wujud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .wujud {
+    box-sizing: border-box;
+    flex: 1 1 160px;
+    padding: 10px 12px;
+    background: #ffffff;
+    border: 1px solid #c7d2fe;
+    border-radius: 6px;
+    font-size: 13.5px;
+  }
+
+  .kartu {
+    box-sizing: border-box;
+    width: 260px;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: #ffffff;
+  }
+
+  .lencana {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 114px;
+    height: 42px;
+    padding: 8px;
+    border: 1px solid #b45309;
+    border-radius: 999px;
+    background: #f59e0b;
+    color: #111827;
+    font-size: 13px;
+    line-height: 24px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 1 · Pengantar Frontend Development dan Web Design</strong> · 06 design ke code</p>
+    <h1>Alur Design → Code</h1>
+    <p>Desain yang jelas membuat kode menemukan jalannya, bukan mencarinya sendiri. Alur empat wujud ini adalah alur kerja yang dilatih berulang di seluruh buku.</p>
+
+    <h2>Empat wujud berurutan</h2>
+    <ul>
+      <li><strong>Rancangan</strong> dari Figma — dibahas di Bab 14, dan di sana perannya membaca rancangan, bukan membuatnya dari nol</li>
+      <li><strong>Struktur</strong> — rancangan diuraikan menjadi elemen HTML</li>
+      <li><strong>Rupa</strong> — struktur diberi warna, ukuran, jarak, dan layout lewat CSS</li>
+      <li><strong>Komponen</strong> — kalau kebutuhan berulang, dipakai komponen siap pakai dari CSS framework</li>
+    </ul>
+<pre><code class="language-css">.alur-wujud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.wujud {
+  box-sizing: border-box;
+  flex: 1 1 160px;
+  padding: 10px 12px;
+  background: #ffffff;
+  border: 1px solid #c7d2fe;
+  border-radius: 6px;
+  font-size: 13.5px;
+}</code></pre>
+    <div class="demo">
+      <div class="alur-wujud">
+        <div class="wujud"><strong>1 · Rancangan</strong><span>Figma (Bab 14)</span></div>
+        <div class="wujud"><strong>2 · Struktur</strong><span>HTML</span></div>
+        <div class="wujud"><strong>3 · Rupa</strong><span>CSS</span></div>
+        <div class="wujud"><strong>4 · Komponen</strong><span>CSS framework</span></div>
+      </div>
+    </div>
+
+    <h2>Contoh kecil: lencana <em>Best Seller</em></h2>
+    <p>Rancangannya sederhana: lencana kecil berwarna <em>amber</em> di pojok kartu Keyboard Mekanis KX-210, teks gelap. Lalu diuraikan menjadi markup dan rupa.</p>
+<pre><code class="language-html">&lt;div class="kartu"&gt;
+  &lt;span class="lencana"&gt;Best Seller&lt;/span&gt;
+  &lt;h3&gt;Keyboard Mekanis KX-210&lt;/h3&gt;
+  &lt;p class="harga"&gt;Rp650.000&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+<pre><code class="language-css">.kartu {
+  box-sizing: border-box;
+  width: 260px;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.lencana {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 114px;
+  height: 42px;
+  padding: 8px;
+  border: 1px solid #b45309;
+  border-radius: 999px;
+  background: #f59e0b;
+  color: #111827;
+  font-size: 13px;
+  line-height: 24px;
+  text-align: center;
+}</code></pre>
+    <div class="demo">
+      <div class="banding">
+        <div class="kartu">
+          <span class="lencana">Best Seller</span>
+          <h3>Keyboard Mekanis KX-210</h3>
+          <p class="harga">Rp650.000</p>
+        </div>
+        <div>
+          <span class="lencana-lebar">Best Seller</span>
+          <p class="catatan-lencana">Versi padding 12 px, lebar total 122 px.</p>
+        </div>
+      </div>
+    </div>
+    <p class="hitung" data-hitung="114px - 8px - 8px - 1px - 1px = 96">Lencana pertama: lebar total <strong>114 px</strong>, jadi isinya <strong>96 px</strong> setelah padding 8 px kiri-kanan dan border 1 px kiri-kanan.</p>
+    <p class="hitung" data-hitung="42px - 8px - 8px - 1px - 1px = 24">Tingginya <strong>42 px</strong>, jadi isinya <strong>24 px</strong> — persis content 96 × 24 px pada rancangan.</p>
+    <p class="hitung" data-hitung="122px - 12px - 12px - 1px - 1px = 96">Kalau padding-nya jadi 12 px, lebarnya <strong>122 px</strong> dengan isi yang tetap 96 px.</p>
+    <p class="hitung" data-hitung="50px - 12px - 12px - 1px - 1px = 24">Tingginya ikut menjadi <strong>50 px</strong>. Padding dihitung dua kali, kiri dan kanan.</p>
+    <p>Di HTML teks lencana cuma satu baris di dalam kartu, di CSS ia diberi latar amber dan sudut membulat. Warna amber dan teks gelap itu urusan CSS, bukan HTML.</p>
+
+    <h2>Bootstrap kelak menyelesaikannya dengan satu kelas</h2>
+    <p>Bootstrap menyelesaikan lencana ini dengan satu kelas <code>badge</code>. Kalau begitu, kenapa belajar CSS dulu? Biar tahu apa yang kelas itu lakukan dan bisa menyesuaikannya kalau rancangan nggak mengikuti pola standar.</p>
+    <p><strong>Inti pembelajaran:</strong> rancangan → struktur → rupa → komponen. Setiap wujud punya pekerjaan sendiri, dan lencana sekecil ini pun tetap kotak yang punya pita padding dan border.</p>
+    <nav class="nav">
+      <a href="05-istilah-yang-tertukar.html">← 05 istilah yang tertukar</a>
+      <span>06 / 14</span>
+      <a href="07-anatomi-website.html">07 anatomi website →</a>
+    </nav>
+  </div>
+</body>
+</html>

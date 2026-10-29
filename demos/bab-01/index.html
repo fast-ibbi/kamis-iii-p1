@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo Bab 1 — Pengantar Frontend Development dan Web Design</title>
+<style>
+  :root { --ink: #111827; --muted: #6b7280; --accent: #1d4ed8; --border: #e5e7eb; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 48px 20px 64px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: var(--ink);
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 820px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .kepala a { color: var(--accent); text-decoration: none; }
+  h1 { margin: 0 0 10px; font-size: 28px; line-height: 1.25; }
+  .pengantar { margin: 0 0 32px; color: var(--muted); font-size: 16px; }
+  ol { margin: 0; padding: 0; list-style: none; counter-reset: demo; }
+  li {
+    counter-increment: demo;
+    border-top: 1px solid var(--border);
+    padding: 16px 0;
+  }
+  li a {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  li a::before {
+    content: counter(demo, decimal-leading-zero) "  ";
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  li p { margin: 4px 0 0; font-size: 15px; color: var(--muted); }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><a href="../index.html">← Semua bab</a> · Demo Bab 1</p>
+    <h1>Demo Bab 1 — Pengantar Frontend Development dan Web Design</h1>
+    <p class="pengantar">14 berkas contoh, satu berkas per konsep slide. Tiap berkas
+    menampilkan kode contoh beserta hasil yang benar-benar dirender, tanpa JavaScript.</p>
+    <ol>
+    <li>
+      <a href="01-tampil-vs-tersimpan.html">01 tampil vs tersimpan</a>
+      <p>Dua pertanyaan ini yang memisahkan pekerjaan frontend dan backend. Kisah Tokosaya memperlihatkannya dengan jujur: pemilik toko berbicara tentang apa yang terlihat di layar, pada…</p>
+    </li>
+    <li>
+      <a href="02-frontend-dan-backend.html">02 frontend dan backend</a>
+      <p>Frontend development adalah pekerjaan membangun bagian website yang dilihat, dibaca, dan diklik pengguna di browser. Front berarti sisi depan yang menghadap pengunjung. Backend …</p>
+    </li>
+    <li>
+      <a href="03-batas-lingkup-frontend.html">03 batas lingkup frontend</a>
+      <p>Buku ini adalah mata kuliah translasi desain — HTML dan CSS, tanpa JavaScript. Batas itu disengaja, dan batas yang jelas membuat pekerjaan yang di dalamnya jadi terlihat utuh.</p>
+    </li>
+    <li>
+      <a href="04-tiga-topi-tim.html">04 tiga topi tim</a>
+      <p>Di proyek kecil, satu orang memakai tiga topi berurutan. Tim kecil adalah situasi paling umum di proyek sistem informasi di UMKM dan lingkungan kampus, jadi tiga topi dalam satu…</p>
+    </li>
+    <li>
+      <a href="05-istilah-yang-tertukar.html">05 istilah yang tertukar</a>
+      <p>Istilah ini dipakai sehari-hari secara bergantian, termasuk oleh dosen lain, jadi perlu dikunci sekarang. Yang paling sering tercampur: web design, UI, dan UX.</p>
+    </li>
+    <li>
+      <a href="06-design-ke-code.html">06 design ke code</a>
+      <p>Desain yang jelas membuat kode menemukan jalannya, bukan mencarinya sendiri. Alur empat wujud ini adalah alur kerja yang dilatih berulang di seluruh buku.</p>
+    </li>
+    <li>
+      <a href="07-anatomi-website.html">07 anatomi website</a>
+      <p>Empat pengertian yang membentuk satu bangunan. Tanpa keempatnya, &quot;toko di internet&quot; hanya kumpulan berkas yang tidak saling mengenal.</p>
+    </li>
+    <li>
+      <a href="08-pola-folder-proyek.html">08 pola folder proyek</a>
+      <p>Kerapian folder bukan soal selera. Tiga kebiasaan di bawah ini yang membuat link tidak rontok dan perbaikan tidak perlu diulang di setiap halaman.</p>
+    </li>
+    <li>
+      <a href="09-domain-hosting-url.html">09 domain hosting url</a>
+      <p>Tiga istilah yang sering tertukar dalam satu kalimat. Bedanya satu pertanyaan: mana yang berupa nama, mana yang berupa tempat?</p>
+    </li>
+    <li>
+      <a href="10-cara-browser-merender.html">10 cara browser merender</a>
+      <p>Empat gerakan yang tidak bisa ditukar. Sebut berurutan dalam empat kata: diterima, disusun, diberi gaya, digambar.</p>
+    </li>
+    <li>
+      <a href="11-viewport-meta.html">11 viewport meta</a>
+      <p>Ini kesalahan paling mahal di praktikum: mahasiswa menghabiskan waktu mengutak-atik CSS padahal meta viewport nggak pernah ditulis. Baris ini bukan hiasan kepala dokumen, melain…</p>
+    </li>
+    <li>
+      <a href="12-kepala-dan-isi-dokumen.html">12 kepala dan isi dokumen</a>
+      <p>Dokumen HTML pertama punya dua bagian: kepala yang mengatur dirinya sendiri dan isi yang dibaca pengunjung. Pola kepalanya tidak pernah berubah sepanjang semester.</p>
+    </li>
+    <li>
+      <a href="13-empat-disiplin-struktur.html">13 empat disiplin struktur</a>
+      <p>Kedengarannya seperti detail kecil, tetapi keempatnya adalah fondasi aksesibilitas — dan diuji di Bab 8 dan Bab 16.</p>
+    </li>
+    <li>
+      <a href="14-tiga-rambu-kesalahan-pemula.html">14 tiga rambu kesalahan pemula</a>
+      <p>Ketiganya muncul lagi di bagian Troubleshooting pada praktikum, jadi cukup dikenal sekali di sini. Yang paling penting rambu pertama: kekuatan HTML justru pada kumpulan elemen b…</p>
+    </li>
+    </ol>
+  </div>
+</body>
+</html>

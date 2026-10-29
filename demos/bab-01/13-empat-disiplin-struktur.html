@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 1 · 13 empat disiplin struktur — Pengantar Frontend Development dan Web Design</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: lencana tingkat dan keterangan di samping tiap simpul */
+  .demo .tingkat {
+    display: inline-block;
+    margin-right: 4px;
+    padding: 1px 6px;
+    background: #eef2ff;
+    border-radius: 3px;
+    color: #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 11.5px;
+  }
+  .demo .ket-simpul { color: #6b7280; font-size: 12.5px; }
+  .demo .banding {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .demo .kartu-banding {
+    box-sizing: border-box;
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 13.5px;
+  }
+  .demo .kartu-banding strong { display: block; margin-bottom: 4px; font-size: 13px; }
+  .demo .kartu-benar { background: #ecfdf5; border: 1px solid #a7f3d0; }
+  .demo .kartu-salah { background: #fef2f2; border: 1px solid #fecaca; }
+  .demo .kartu-banding code { font-size: 12.5px; }
+  .demo .pohon-banding {
+    margin: 4px 0 0;
+    padding-left: 14px;
+    list-style: none;
+    border-left: 1px dashed #9ca3af;
+    font-size: 13px;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .pohon-struktur {
+    margin: 0;
+    padding-left: 18px;
+    list-style: none;
+    border-left: 1px dashed #9ca3af;
+  }
+
+  .simpul-struktur {
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 3px 9px;
+    background: #ffffff;
+    border: 1px solid #c7d2fe;
+    border-radius: 4px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12.5px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 1 · Pengantar Frontend Development dan Web Design</strong> · 13 empat disiplin struktur</p>
+    <h1>Empat Disiplin Struktur</h1>
+    <p>Kedengarannya seperti detail kecil, tetapi keempatnya adalah fondasi aksesibilitas — dan diuji di Bab 8 dan Bab 16.</p>
+
+    <h2>Empat disiplin</h2>
+    <ul>
+      <li>Satu dokumen, satu <code>&lt;h1&gt;</code> — judul terpenting halaman</li>
+      <li>Heading nggak melompat level: <code>h1</code> → <code>h2</code> → <code>h3</code>, bukan <code>h1</code> → <code>h3</code></li>
+      <li>Setiap gambar diberi <code>alt</code> berisi deskripsi singkat</li>
+      <li>Semua tag ditulis dengan huruf kecil</li>
+    </ul>
+
+    <h2>Pohon dokumen <code>profil-mahasiswa</code></h2>
+<pre><code class="language-css">.pohon-struktur {
+  margin: 0;
+  padding-left: 18px;
+  list-style: none;
+  border-left: 1px dashed #9ca3af;
+}
+
+.simpul-struktur {
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 3px 9px;
+  background: #ffffff;
+  border: 1px solid #c7d2fe;
+  border-radius: 4px;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 12.5px;
+}</code></pre>
+    <div class="demo">
+      <ul class="pohon-struktur">
+        <li>
+          <span class="simpul-struktur"><span class="tingkat">h1</span>Andi Pratama</span> <span class="ket-simpul">satu-satunya h1 di halaman</span>
+          <ul class="pohon-struktur">
+            <li>
+              <span class="simpul-struktur"><span class="tingkat">h2</span>Bidang Minat</span>
+              <ul class="pohon-struktur">
+                <li><span class="simpul-struktur"><span class="tingkat">li</span>Desain antarmuka web</span></li>
+                <li><span class="simpul-struktur"><span class="tingkat">li</span>Sistem informasi manajemen</span></li>
+              </ul>
+            </li>
+            <li>
+              <span class="simpul-struktur"><span class="tingkat">h2</span>Keterampilan</span>
+              <ul class="pohon-struktur">
+                <li><span class="simpul-struktur"><span class="tingkat">li</span>Menuliskan dokumen HTML dasar</span></li>
+                <li><span class="simpul-struktur"><span class="tingkat">li</span>Menata folder proyek</span></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <p>Satu <code>h1</code>, dua <code>h2</code>, empat <code>li</code>, tanpa lompatan level. Peta dokumen ini yang dibaca pembaca layar untuk berpindah antarbagian.</p>
+
+    <h2>Dua kesalahan yang tidak kelihatan di layar</h2>
+    <div class="demo">
+      <div class="banding">
+        <div class="kartu-banding kartu-benar">
+          <strong>Benar</strong>
+          <ul class="pohon-banding">
+            <li>h1 Andi Pratama</li>
+            <li>h2 Bidang Minat</li>
+            <li>h2 Keterampilan</li>
+          </ul>
+          <p>Urutan level utuh; <code>alt="Foto profil Andi Pratama"</code> berisi deskripsi.</p>
+        </div>
+        <div class="kartu-banding kartu-salah">
+          <strong>Rusak</strong>
+          <ul class="pohon-banding">
+            <li>h1 Andi Pratama</li>
+            <li>h3 Bidang Minat <span class="ket-simpul">— level h2 hilang</span></li>
+            <li>h3 Keterampilan</li>
+          </ul>
+          <p>Peta dokumen jadi bolong; <code>alt="foto-profil.png"</code> hanya mengulang nama berkas.</p>
+        </div>
+      </div>
+    </div>
+    <p>Kalau salah satu <code>h2</code> diganti <code>h3</code>, peta dokumen jadi bolong dan pembaca layar kehilangan urutan levelnya — walau mata kita nggak melihat bedanya. <code>alt</code> adalah satu-satunya teks yang dibacakan pembaca layar dan yang tampil saat gambar gagal dimuat.</p>
+
+    <h2>Dipakai sebagai daftar periksa</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Disiplin</th><th>Yang rusak kalau dilanggar</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Satu <code>h1</code> per dokumen</td><td>Halaman kehilangan satu judul terpenting</td></tr>
+        <tr><td>Heading tidak melompat level</td><td>Peta dokumen bolong bagi alat bantu</td></tr>
+        <tr><td><code>alt</code> berisi deskripsi</td><td>Gambar tanpa makna saat gagal dimuat atau dibacakan</td></tr>
+        <tr><td>Tag huruf kecil</td><td>Konsistensi penulisan yang murah untuk dijaga</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Inti pembelajaran:</strong> keempatnya dituliskan di papan sebagai daftar periksa, karena inilah rubrik penilaiannya. Yang paling sering salah: <code>alt</code> diisi nama berkas, bukan deskripsi.</p>
+    <nav class="nav">
+      <a href="12-kepala-dan-isi-dokumen.html">← 12 kepala dan isi dokumen</a>
+      <span>13 / 14</span>
+      <a href="14-tiga-rambu-kesalahan-pemula.html">14 tiga rambu kesalahan pemula →</a>
+    </nav>
+  </div>
+</body>
+</html>

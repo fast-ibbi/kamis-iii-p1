@@ -62,6 +62,7 @@ normal. Jangan biarkan mahasiswa menyimpulkan pemilik Tokosaya "kurang paham"; j
 kalimat itu adalah rumusan kebutuhan yang paling jujur. Tanyakan: "Apa yang berubah
 kalau kita menerima kalimat ini apa adanya sebagai spesifikasi?" (Jawaban: nggak ada
 yang bisa dikerjakan, karena kebutuhannya belum diterjemahkan.)
+Demo: demos/bab-01/01-tampil-vs-tersimpan.html — dua kolom tampil dan tersimpan, plus header 1120 px yang diterjemahkan menjadi angka.
 -->
 
 ---
@@ -151,6 +152,7 @@ kuliah translasi desain. Ingatkan bahwa sebagian besar kebutuhan tampilan Tokosa
 (kartu produk, hero, formulir kontak, katalog) cukup dengan halaman statis.
 Peringatan: jangan sampai mahasiswa menyimpulkan JavaScript nggak penting; ia cuma
 ada di mata kuliah lain.
+Demo: demos/bab-01/03-batas-lingkup-frontend.html — kolom bukan frontend dan tetap frontend, plus tabel enam baris kebutuhan Tokosaya.
 -->
 
 ---
@@ -183,6 +185,7 @@ mahasiswa menceritakan analogi itu dengan kalimatnya sendiri sebelum kamu lanjut
 Pertanyaan pemandu: "Di kafe, siapa yang berperan sebagai pengantar pesan?"
 (Jawaban: pelayan, yaitu permintaan dan respons antara browser dan server.)
 Peringatan: pelayan BUKAN backend; pelayan adalah penghubung keduanya.
+Demo: demos/bab-01/02-frontend-dan-backend.html — tumpukan tiga lapisan frontend dan dua ruang kafe–dapur yang berdampingan.
 -->
 
 ---
@@ -321,6 +324,7 @@ lingkungan kampus, jadi tiga topi dalam satu kepala bukan pengecualian melainkan
 normal. Buku ini melatih topi ketiga paling intens, tapi selalu dalam bingkai dua
 topi lainnya. Tanyakan: "Topi mana yang paling sering dilupakan mahasiswa pas
 mengerjakan tugas?" (Jawaban: analis, karena mereka cenderung langsung menulis kode.)
+Demo: demos/bab-01/04-tiga-topi-tim.html — tiga kartu Analis, Perancang, Implementer beserta keluarannya.
 -->
 
 ---
@@ -358,6 +362,7 @@ perlu dikunci sekarang. Pertanyaan pemandu: "Kasus 'sulit menemukan tombol konta
 itu masalah UI atau UX?" (Jawaban: keduanya, karena tombolnya ada tapi perjalanan
 menemukannya yang gagal.) Ingatkan bahwa HTML dan CSS bukan istilah desain,
 melainkan bahan bangun yang menghidupkan rancangan.
+Demo: demos/bab-01/05-istilah-yang-tertukar.html — satu model halaman yang dibaca sekaligus sebagai web design, UI, dan UX.
 -->
 
 ---
@@ -378,6 +383,7 @@ Peringatan: mahasiswa cenderung melewati langkah rancangan lalu mengarang tampil
 Empat wujudnya, sebut sambil menunjuk gambar. Rancangan dari Figma (Bab 14)
 diuraikan jadi struktur bahasa HTML, struktur diberi rupa warna, ukuran, jarak,
 layout, lalu kalau kebutuhan berulang, pakai komponen siap pakai dari CSS framework.
+Demo: demos/bab-01/06-design-ke-code.html — empat wujud alur dan lencana Best Seller berisi 96 × 24 px yang lebarnya jadi 114 px.
 -->
 
 ---
@@ -466,6 +472,7 @@ bekerja di komputer sendiri pas kita dobel klik index.html. Itulah sebabnya selu
 proyek buku ini memakai nama index.html, bukan utama.html atau halaman1.html.
 Tanyakan: "Apa jadinya folder tanpa index.html?" (Jawaban: alamat pendek itu tidak
 punya halaman utama yang bisa dikirim, jadi tidak ada yang bisa dibuka di alamat itu.)
+Demo: demos/bab-01/07-anatomi-website.html — kotak website berisi halaman dan aset, plus alamat pendek yang menunjuk index.html.
 -->
 
 ---
@@ -504,6 +511,7 @@ Pohon foldernya, tunjuk satu per satu: `index.html` — halaman beranda;
 `katalog.html` — daftar produk; `tentang.html`, `kontak.html` — profil toko dan
 formulir; `css/style.css` — satu file gaya bersama; `img/` — gambar produk dan logo
 berakhiran `.svg`.
+Demo: demos/bab-01/08-pola-folder-proyek.html — pohon folder sebagai daftar bersarang dan perbandingan nama kebab-case.
 -->
 
 ---
@@ -523,6 +531,7 @@ tempat?" Domain adalah nama, hosting adalah tempat file disimpan, dan keduanya d
 terpisah. Buat latihan bab ini, keduanya belum dibutuhkan sama sekali: file dibuka
 langsung dari komputer sendiri, konsepnya sama, cuma belum dipasang di internet. Baris
 terakhir penting buat Bab 2, pas link antarhalaman mulai ditulis.
+Demo: demos/bab-01/09-domain-hosting-url.html — alamat https://tokosaya.id/katalog.html dipecah tiga kotak beserta label panahnya.
 -->
 
 ---
@@ -557,6 +566,7 @@ mahasiswa mengulanginya lisan dalam empat kata: diterima, disusun, diberi gaya,
 digambar. Pemahaman umum menyebut pohon ini DOM; cukup pahami sebagai wujud struktur
 dokumen di dalam browser. Tanyakan: "Pada langkah mana warna tombol ditentukan?"
 (Jawaban: langkah tiga, pas aturan CSS dicocokkan ke elemen pohon.)
+Demo: demos/bab-01/10-cara-browser-merender.html — empat langkah render berurutan dan pohon dokumen yang dilihat panel Elements.
 -->
 
 ---
@@ -577,6 +587,7 @@ mengeksekusi, dan keduanya naik kelas jadi alat pengujian serius di Bab 7, 13, d
 15. Tekankan kalimat "browser membaca": ini fondasi seluruh mentalitas debugging yang
 akan dipakai sampai akhir semester. Peringatan: banyak "bug" pemula sebenarnya cuma
 file lama yang masih tampil karena halaman belum dimuat ulang.
+Demo: demos/bab-01/11-viewport-meta.html — dua panel simulasi: halaman dengan dan tanpa meta viewport pada lebar 360 px.
 -->
 
 ---
@@ -739,6 +750,7 @@ seru pada teks Indonesia nggak berubah jadi simbol aneh), kenapa viewport wajib
 (fondasi seluruh pekerjaan responsif Bab 7 dan 13), dan kenapa title penting
 (satu-satunya elemen head yang dilihat pengguna, muncul di tab dan riwayat).
 Peringatan: jangan menulis dokumen dari nol tanpa pola lengkap ini.
+Demo: demos/bab-01/12-kepala-dan-isi-dokumen.html — kepala dokumen berlabel alasan dan pohon isi lima keluarga elemen.
 -->
 
 ---
@@ -793,6 +805,7 @@ teks yang dibacakan pembaca layar dan yang tampil pas gambar gagal dimuat, sedan
 lompatan level heading merusak peta dokumen bagi alat bantu. Tuliskan keempatnya di
 papan sebagai daftar periksa, karena ini dipakai sebagai rubrik penilaian. Peringatan:
 mahasiswa cenderung menulis alt berisi nama file, bukan deskripsi.
+Demo: demos/bab-01/13-empat-disiplin-struktur.html — pohon h1–h2–li tanpa lompatan level, dibandingkan dengan versi yang rusak.
 -->
 
 ---
@@ -828,6 +841,7 @@ penting: kekuatan HTML justru pada kumpulan elemen baku yang pengertiannya disep
 seluruh browser, dan pelanggarannya nggak memberi pesan apa pun. Tanyakan: "Kenapa
 kesalahan tag lebih sulit dilacak daripada kesalahan CSS?" (Jawaban: karena nggak ada
 peringatan sama sekali, cuma tampilan yang bergeser.)
+Demo: demos/bab-01/14-tiga-rambu-kesalahan-pemula.html — tiga rambu beserta gejala yang muncul di layar.
 -->
 
 ---
@@ -876,6 +890,8 @@ di Tugas 1, jadi pastikan bentuk foldernya udah terbayang.
 3. HTML mengurus struktur, CSS mengurus rupa, framework menyediakan komponen siap pakai
 4. Bootstrap 5 baru dibahas di Bab 9, setelah dasar-dasarnya kuat
 5. Dua folder proyek: `tokosaya-css/` dan `tokosaya-bootstrap/`
+
+**Demo:** seluruh konsep bab ini bisa dicoba di [demos/bab-01/index.html](demos/bab-01/index.html).
 
 <!--
 Butir 4 adalah pertanyaan pilihan ganda nomor 8 di Evaluasi, jadi ulangi alasannya:

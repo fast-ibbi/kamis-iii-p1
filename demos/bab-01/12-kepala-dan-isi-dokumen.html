@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 1 · 12 kepala dan isi dokumen — Pengantar Frontend Development dan Web Design</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: satu baris tab tiruan dan baris-baris kepala dokumen berlabel */
+  .demo .tab-tiruan {
+    box-sizing: border-box;
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 8px 14px 8px 12px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-bottom: 3px solid #1d4ed8;
+    border-radius: 6px 6px 0 0;
+    font-size: 13.5px;
+  }
+  .demo .tab-tiruan span {
+    display: inline-block;
+    margin-right: 6px;
+    color: #6b7280;
+    font-size: 12px;
+  }
+  .demo .baris-head {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: baseline;
+    margin-bottom: 6px;
+    padding: 8px 10px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 13px;
+  }
+  .demo .baris-head code { font-size: 12.5px; }
+  .demo .ket-head {
+    color: #4b5563;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    font-size: 12.5px;
+  }
+  /* panggung: pohon isi halaman dengan label nama elemen */
+  .demo .pohon-isi {
+    margin: 0;
+    padding-left: 18px;
+    list-style: none;
+    border-left: 1px dashed #9ca3af;
+    font-size: 13.5px;
+  }
+  .demo .pohon-isi li { margin: 3px 0; }
+  .demo .simpul {
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 2px 8px;
+    background: #ffffff;
+    border: 1px solid #c7d2fe;
+    border-radius: 4px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12.5px;
+  }
+  .demo .simpul-utama { background: #eef2ff; font-weight: 600; }
+  .demo .ket-simpul { color: #6b7280; font-size: 12.5px; }
+
+  /* ============================================================
+     kode slide — bab ini tidak punya deklarasi CSS pelajaran;
+     semua contoh di badan halaman adalah markup HTML, jadi tidak
+     ada aturan yang perlu dicerminkan di sini.
+     ============================================================ */
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 1 · Pengantar Frontend Development dan Web Design</strong> · 12 kepala dan isi dokumen</p>
+    <h1>Kepala Dokumen dan Isi Halaman</h1>
+    <p>Dokumen HTML pertama punya dua bagian: kepala yang mengatur dirinya sendiri dan isi yang dibaca pengunjung. Pola kepalanya tidak pernah berubah sepanjang semester.</p>
+
+    <h2>Kepala dokumen: pola yang tidak pernah berubah</h2>
+    <p><code>profil-mahasiswa/index.html</code></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="id"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;title&gt;Profil Mahasiswa — Andi Pratama&lt;/title&gt;
+&lt;/head&gt;</code></pre>
+    <p>Deklarasi HTML5 · bahasa dokumen · pengodean · viewport · judul tab. Setiap baris punya satu alasan.</p>
+    <div class="demo">
+      <div class="tab-tiruan"><span>tab</span>Profil Mahasiswa — Andi Pratama</div>
+      <div class="baris-head">
+        <code>&lt;!DOCTYPE html&gt;</code>
+        <span class="ket-head">deklarasi HTML5</span>
+      </div>
+      <div class="baris-head">
+        <code>&lt;html lang="id"&gt;</code>
+        <span class="ket-head">bahasa dokumen</span>
+      </div>
+      <div class="baris-head">
+        <code>&lt;meta charset="utf-8"&gt;</code>
+        <span class="ket-head">pengodean — tanda petik dan tanda seru pada teks Indonesia tidak berubah jadi simbol aneh</span>
+      </div>
+      <div class="baris-head">
+        <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</code>
+        <span class="ket-head">viewport — fondasi seluruh pekerjaan responsif Bab 7 dan 13</span>
+      </div>
+      <div class="baris-head">
+        <code>&lt;title&gt;Profil Mahasiswa — Andi Pratama&lt;/title&gt;</code>
+        <span class="ket-head">judul tab — satu-satunya elemen head yang dilihat pengguna, muncul di tab dan riwayat</span>
+      </div>
+    </div>
+    <p>Ketik ulang baris ini di depan kelas, jangan tampilkan slide jadi. Dan jangan menulis dokumen dari nol tanpa pola lengkap ini.</p>
+
+    <h2>Isi halaman: lima keluarga elemen</h2>
+    <p><code>profil-mahasiswa/index.html</code> (lanjutan)</p>
+<pre><code class="language-html">&lt;body&gt;
+  &lt;h1&gt;Andi Pratama&lt;/h1&gt;
+  &lt;p&gt;&lt;img src="img/foto-profil.png" alt="Foto profil Andi Pratama"
+          width="160" height="160"&gt;&lt;/p&gt;
+  &lt;h2&gt;Bidang Minat&lt;/h2&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Desain antarmuka web&lt;/li&gt;
+    &lt;li&gt;Sistem informasi manajemen&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;h2&gt;Keterampilan&lt;/h2&gt;
+  &lt;ol&gt;
+    &lt;li&gt;Menuliskan dokumen HTML dasar&lt;/li&gt;
+    &lt;li&gt;Menata folder proyek&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/body&gt;</code></pre>
+    <div class="demo">
+      <ul class="pohon-isi">
+        <li>
+          <span class="simpul simpul-utama">h1</span> <span class="ket-simpul">Andi Pratama — judul terpenting halaman</span>
+          <ul class="pohon-isi">
+            <li><span class="simpul">p</span> <span class="ket-simpul">paragraf pembungkus gambar</span></li>
+            <li><span class="simpul">img</span> <span class="ket-simpul">foto-profil.png, alt berisi deskripsi, 160 × 160</span></li>
+            <li>
+              <span class="simpul">h2</span> <span class="ket-simpul">Bidang Minat</span>
+              <ul class="pohon-isi">
+                <li><span class="simpul">ul</span> <span class="ket-simpul">daftar tanpa urutan: Desain antarmuka web, Sistem informasi manajemen</span></li>
+              </ul>
+            </li>
+            <li>
+              <span class="simpul">h2</span> <span class="ket-simpul">Keterampilan</span>
+              <ul class="pohon-isi">
+                <li><span class="simpul">ol</span> <span class="ket-simpul">daftar berurutan: Menuliskan dokumen HTML dasar, Menata folder proyek</span></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <p>Yang diuji adalah pilihan elemen berdasarkan makna, bukan selera: <code>ul</code> untuk isi yang nggak mengenal urutan, <code>ol</code> untuk isi yang urutannya bermakna. Daftar berisi satu butir nggak bisa memperlihatkan urutan apa pun, jadi <code>ol</code> Keterampilan sengaja diberi dua butir.</p>
+
+    <h2>Ringkasan</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Bagian</th><th>Isi</th><th>Dilihat pengguna?</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>head</code></td><td>deklarasi, bahasa, charset, viewport, title</td><td>Hanya <code>title</code>, di tab dan riwayat</td></tr>
+        <tr><td><code>body</code></td><td>heading, paragraf, gambar, <code>ul</code>, <code>ol</code></td><td>Ya, seluruhnya</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Inti pembelajaran:</strong> kepala dokumen mengatur cara halaman dibaca, isi halaman mengatur apa yang dibaca. Keduanya ditulis sejak baris pertama, bukan ditambal belakangan.</p>
+    <nav class="nav">
+      <a href="11-viewport-meta.html">← 11 viewport meta</a>
+      <span>12 / 14</span>
+      <a href="13-empat-disiplin-struktur.html">13 empat disiplin struktur →</a>
+    </nav>
+  </div>
+</body>
+</html>

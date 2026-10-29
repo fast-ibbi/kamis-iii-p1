@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 1 · 14 tiga rambu kesalahan pemula — Pengantar Frontend Development dan Web Design</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: nomor rambu dan dua kotak pembanding */
+  .demo .nomor-rambu {
+    display: inline-block;
+    margin-right: 6px;
+    padding: 1px 7px;
+    background: #b45309;
+    border-radius: 3px;
+    color: #ffffff;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+  }
+  .demo .rambu p { margin: 0 0 4px; font-size: 13.5px; }
+  .demo .rambu p:last-child { margin-bottom: 0; }
+  .demo .rambu .akibat { color: #7c2d12; }
+  .demo .banding {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 10px;
+  }
+  .demo .kartu-banding {
+    box-sizing: border-box;
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 13.5px;
+  }
+  .demo .kartu-banding > strong { display: block; margin-bottom: 6px; font-size: 13px; }
+  .demo .kartu-salah { background: #fef2f2; border: 1px solid #fecaca; }
+  .demo .kartu-benar { background: #ecfdf5; border: 1px solid #a7f3d0; }
+  .demo .ket { color: #6b7280; font-size: 12.5px; }
+  .demo .tag-tak-dikenal { font-size: 13.5px; }
+  .demo .judul-asli { margin: 0; font-size: 15px; font-weight: 600; }
+  .demo .pohon-banding {
+    margin: 4px 0 0;
+    padding-left: 14px;
+    list-style: none;
+    border-left: 1px dashed #9ca3af;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12.5px;
+  }
+  .demo .pohon-banding li { margin: 2px 0; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .rambu {
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    padding: 12px;
+    border-left: 3px solid #b45309;
+    border-radius: 4px;
+    background: #fffbeb;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 1 · Pengantar Frontend Development dan Web Design</strong> · 14 tiga rambu kesalahan pemula</p>
+    <h1>Tiga Rambu Kesalahan Pemula</h1>
+    <p>Ketiganya muncul lagi di bagian <em>Troubleshooting</em> pada praktikum, jadi cukup dikenal sekali di sini. Yang paling penting rambu pertama: kekuatan HTML justru pada kumpulan elemen baku yang pengertiannya disepakati seluruh browser.</p>
+
+    <h2>Tiga rambu</h2>
+<pre><code class="language-css">.rambu {
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  padding: 12px;
+  border-left: 3px solid #b45309;
+  border-radius: 4px;
+  background: #fffbeb;
+}</code></pre>
+    <div class="demo">
+      <div class="rambu">
+        <p><span class="nomor-rambu">1</span><strong>Jangan mengarang tag sendiri.</strong> Tag tak dikenal diabaikan tanpa pesan kesalahan.</p>
+        <p class="akibat">Akibatnya: bagian halaman yang kamu banggakan bisa hilang tanpa satu pun peringatan.</p>
+      </div>
+      <div class="rambu">
+        <p><span class="nomor-rambu">2</span><strong>Jangan menutup dokumen setengah jadi.</strong> Struktur pohon bergeser tanpa gejala.</p>
+        <p class="akibat">Akibatnya: halaman tetap tampil, tetapi susunannya bukan yang kamu maksud.</p>
+      </div>
+      <div class="rambu">
+        <p><span class="nomor-rambu">3</span><strong>Simpan sebagai <code>.html</code> dengan pengodean UTF-8</strong> sejak penulisan pertama.</p>
+        <p class="akibat">Akibatnya: teks Indonesia bisa tampil sebagai kotak atau tanda tanya.</p>
+      </div>
+    </div>
+
+    <h2>Rambu 1 di layar</h2>
+    <p>Tag karangan tidak memicu galat apa pun. Isinya tetap muncul, tetapi tanpa makna dan tanpa gaya — dan itulah yang membuatnya sulit dilacak.</p>
+    <div class="demo">
+      <div class="banding">
+        <div class="kartu-banding kartu-salah">
+          <strong>Tag karangan</strong>
+          <p class="tag-tak-dikenal"><code>&lt;produk-unggulan&gt;</code> Keyboard Mekanis KX-210</p>
+          <p class="ket">Diabaikan tanpa pesan kesalahan; teksnya ikut mengalir sebagai teks biasa.</p>
+        </div>
+        <div class="kartu-banding kartu-benar">
+          <strong>Tag baku</strong>
+          <h3 class="judul-asli"><code>&lt;h2&gt;</code> Keyboard Mekanis KX-210</h3>
+          <p class="ket">Dikenali semua browser, punya makna, dan bisa diberi gaya.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Rambu 2 di layar</h2>
+    <p>Satu penutup yang terlupa sudah cukup memindahkan seluruh isi ke induk yang salah — tanpa satu pun gejala di layar.</p>
+    <div class="demo">
+      <div class="banding">
+        <div class="kartu-banding kartu-benar">
+          <strong>Pohon utuh</strong>
+          <ul class="pohon-banding">
+            <li>h1 Andi Pratama</li>
+            <li>h2 Keterampilan</li>
+            <li>&nbsp;&nbsp;ol</li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;li Menata folder proyek</li>
+          </ul>
+        </div>
+        <div class="kartu-banding kartu-salah">
+          <strong>Pohon bergeser</strong>
+          <ul class="pohon-banding">
+            <li>h1 Andi Pratama</li>
+            <li>h2 Keterampilan</li>
+            <li>&nbsp;&nbsp;ol</li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;li Menata folder proyek</li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ket">h2 Rambu berikutnya ikut masuk ke dalam daftar</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h2>Rambu 3 dan gejalanya</h2>
+    <p>Kalau teks Indonesia tampil sebagai kotak atau tanda tanya, periksa charset dan pengodean filenya.</p>
+    <table class="tabel">
+      <thead>
+        <tr><th>Gejala di layar</th><th>Yang diperiksa</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Bagian halaman hilang tanpa pesan</td><td>Tag karangan atau tag tak dikenal</td></tr>
+        <tr><td>Susunan halaman bergeser</td><td>Tag penutup yang terlupa</td></tr>
+        <tr><td>Teks tampil sebagai kotak atau tanda tanya</td><td><code>meta charset</code> dan pengodean berkas</td></tr>
+      </tbody>
+    </table>
+    <p>Pertanyaan yang sering muncul: kenapa kesalahan tag lebih sulit dilacak daripada kesalahan CSS? Karena pada HTML nggak ada peringatan sama sekali — cuma tampilan yang bergeser.</p>
+
+    <h2>Ringkasan</h2>
+    <ul>
+      <li>Pakai elemen baku; tag karangan diabaikan tanpa pesan.</li>
+      <li>Tutup setiap tag; pohon dokumen tidak memberi tahu saat ia bergeser.</li>
+      <li>Simpan sebagai <code>.html</code> ber-encoding UTF-8 sejak awal.</li>
+      <li>Mulai setiap dokumen dari pola lengkap yang berisi charset dan viewport.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> tiga rambu ini bukan aturan tambahan, melainkan cara membaca gejala. Ketiganya muncul lagi di <em>Troubleshooting</em> praktikum.</p>
+    <nav class="nav">
+      <a href="13-empat-disiplin-struktur.html">← 13 empat disiplin struktur</a>
+      <span>14 / 14</span>
+      <span>—</span>
+    </nav>
+  </div>
+</body>
+</html>

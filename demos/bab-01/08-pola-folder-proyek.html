@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 1 · 08 pola folder proyek — Pengantar Frontend Development dan Web Design</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: pohon folder sebagai daftar bersarang, tiap baris diberi keterangan */
+  .demo .ket {
+    color: #6b7280;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    font-size: 12.5px;
+  }
+  .demo .baris {
+    display: block;
+    margin: 3px 0;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+  }
+  .demo .baris-berkas { color: #1d4ed8; }
+  .demo .baris-folder { color: #111827; font-weight: 600; }
+  /* panggung: dua nama berkas yang dibandingkan */
+  .demo .banding-nama {
+    box-sizing: border-box;
+    margin-bottom: 8px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+  }
+  .demo .nama-aman { background: #ecfdf5; border-left: 3px solid #047857; }
+  .demo .nama-rawan { background: #fef2f2; border-left: 3px solid #b91c1c; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .pohon {
+    margin: 0;
+    padding-left: 18px;
+    list-style: none;
+    border-left: 1px dashed #9ca3af;
+  }
+
+  .pohon li {
+    box-sizing: border-box;
+    margin: 2px 0;
+    padding: 2px 0 2px 4px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 1 · Pengantar Frontend Development dan Web Design</strong> · 08 pola folder proyek</p>
+    <h1>Pola Folder Proyek Tokosaya</h1>
+    <p>Kerapian folder bukan soal selera. Tiga kebiasaan di bawah ini yang membuat link tidak rontok dan perbaikan tidak perlu diulang di setiap halaman.</p>
+
+    <h2>Pohon folder</h2>
+<pre><code class="language-text">folder proyek
+├── index.html      beranda
+├── katalog.html    daftar produk
+├── tentang.html    profil toko
+├── kontak.html     formulir
+├── css/
+│   └── style.css   satu file gaya bersama
+└── img/            gambar produk dan logo, berakhiran .svg</code></pre>
+<pre><code class="language-css">.pohon {
+  margin: 0;
+  padding-left: 18px;
+  list-style: none;
+  border-left: 1px dashed #9ca3af;
+}
+
+.pohon li {
+  box-sizing: border-box;
+  margin: 2px 0;
+  padding: 2px 0 2px 4px;
+}</code></pre>
+    <div class="demo">
+      <ul class="pohon">
+        <li>
+          <span class="baris baris-folder">folder proyek</span>
+          <ul class="pohon">
+            <li><span class="baris baris-berkas">index.html</span> <span class="ket">beranda</span></li>
+            <li><span class="baris baris-berkas">katalog.html</span> <span class="ket">daftar produk</span></li>
+            <li><span class="baris baris-berkas">tentang.html</span> <span class="ket">profil toko</span></li>
+            <li><span class="baris baris-berkas">kontak.html</span> <span class="ket">formulir</span></li>
+            <li>
+              <span class="baris baris-folder">css/</span>
+              <ul class="pohon">
+                <li><span class="baris baris-berkas">style.css</span> <span class="ket">satu file gaya bersama</span></li>
+              </ul>
+            </li>
+            <li>
+              <span class="baris baris-folder">img/</span>
+              <ul class="pohon">
+                <li><span class="ket">gambar produk dan logo, berakhiran .svg</span></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <h2>Tiga kebiasaan</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Kebiasaan</th><th>Alasannya</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Satu CSS bersama</td><td>Perbaikan di satu tempat menular ke semua halaman</td></tr>
+        <tr><td>Nama <em>kebab-case</em></td><td>Link tidak rontok karena perbedaan besar kecil huruf antar sistem operasi</td></tr>
+        <tr><td>Satu halaman satu file</td><td>Tidak ada dokumen raksasa yang sulit dibaca</td></tr>
+      </tbody>
+    </table>
+    <p>Ketiganya terlihat remeh, tetapi masing-masing menutup satu jenis kesalahan yang mahal.</p>
+
+    <h2>Kebab-case dalam praktik</h2>
+    <p>Nama berkas dan folder ditulis huruf kecil semua, dengan tanda hubung sebagai pemisah. Nama folder <code>profil-mahasiswa</code> dan berkas <code>foto-profil.png</code> pada bab ini mengikuti kebiasaan itu.</p>
+    <div class="demo">
+      <div class="banding-nama nama-aman">profil-mahasiswa/img/foto-profil.png <span class="ket">— aman</span></div>
+      <div class="banding-nama nama-rawan">Profil Mahasiswa/Img/Foto Profil.png <span class="ket">— spasi dan huruf kapital: sumber bug link paling umum</span></div>
+    </div>
+    <p>Spasi dan huruf kapital pada nama berkas adalah sumber bug link paling umum bagi pemula. Sarannya sama seperti saat praktikum: salin nama berkas, jangan mengetiknya dari ingatan.</p>
+
+    <h2>Ringkasan</h2>
+    <ul>
+      <li>Satu CSS bersama, dipakai semua halaman.</li>
+      <li>Nama <em>kebab-case</em>, tanpa spasi dan tanpa huruf kapital.</li>
+      <li>Satu halaman satu berkas, dengan <code>index.html</code> sebagai beranda.</li>
+      <li><code>css/</code> dan <code>img/</code> memisahkan gaya dan gambar dari halaman.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> pola folder adalah keputusan pertama yang menua paling lama — ia diwarisi setiap halaman berikutnya.</p>
+    <nav class="nav">
+      <a href="07-anatomi-website.html">← 07 anatomi website</a>
+      <span>08 / 14</span>
+      <a href="09-domain-hosting-url.html">09 domain hosting url →</a>
+    </nav>
+  </div>
+</body>
+</html>

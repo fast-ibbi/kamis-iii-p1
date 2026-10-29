@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 1 · 05 istilah yang tertukar — Pengantar Frontend Development dan Web Design</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: satu model halaman, tiap wilayah diberi nama istilahnya */
+  .demo .model h3 { margin: 0 0 8px; font-size: 13px; }
+  .demo .model p { margin: 0; font-size: 13.5px; color: #4b5563; }
+  .demo .bingkai-design h3 { color: #1d4ed8; }
+  .demo .bingkai-ui h3 { color: #111827; }
+  .demo .elemen-ui {
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 0 6px 6px 0;
+    padding: 6px 10px;
+    background: #fde68a;
+    border: 1px solid #b45309;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+  .demo .bahan {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 10px;
+  }
+  .demo .bahan-baris {
+    box-sizing: border-box;
+    padding: 10px 12px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 13.5px;
+  }
+  .demo .bahan-baris strong { display: block; font-size: 14px; }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .bingkai-design {
+    box-sizing: border-box;
+    padding: 14px;
+    border: 2px dashed #1d4ed8;
+    border-radius: 8px;
+    background: #eef2ff;
+  }
+
+  .bingkai-ui {
+    box-sizing: border-box;
+    margin-top: 10px;
+    padding: 12px;
+    border: 1px solid #9ca3af;
+    border-radius: 6px;
+    background: #ffffff;
+  }
+
+  .alur-ux {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .langkah-ux {
+    box-sizing: border-box;
+    flex: 1 1 0;
+    padding: 8px 10px;
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    border-radius: 999px;
+    font-size: 13px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 1 · Pengantar Frontend Development dan Web Design</strong> · 05 istilah yang tertukar</p>
+    <h1>Empat Istilah yang Sering Tertukar</h1>
+    <p>Istilah ini dipakai sehari-hari secara bergantian, termasuk oleh dosen lain, jadi perlu dikunci sekarang. Yang paling sering tercampur: <em>web design</em>, UI, dan UX.</p>
+
+    <h2>Lima baris pembatas</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Istilah</th><th>Lapisan</th><th>Satu kalimat pembatas</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Web design</td><td>Kerangka besar</td><td>Merancang tampilan dan pengalaman halaman</td></tr>
+        <tr><td>UI</td><td>Elemen yang disentuh</td><td>Tombol, kartu produk, ikon keranjang, formulir</td></tr>
+        <tr><td>UX</td><td>Pengalaman menyeluruh</td><td>Perjalanan pengguna menuju tujuannya</td></tr>
+        <tr><td>HTML</td><td>Struktur</td><td>Heading, paragraf, daftar, gambar, link</td></tr>
+        <tr><td>CSS</td><td>Rupa</td><td>Warna, huruf, jarak, layout</td></tr>
+      </tbody>
+    </table>
+    <p>UI adalah <em>tampaknya</em>, UX adalah <em>rasanya</em>, dan web design menyelaraskan keduanya.</p>
+
+    <h2>Satu model, tiga istilah</h2>
+    <p>Ketiganya bukan tiga halaman berbeda, melainkan tiga sudut pandang pada halaman yang sama. Bingkai putus-putus adalah web design, isi putih di dalamnya adalah UI, dan deretan bulat di bawah adalah UX.</p>
+<pre><code class="language-css">.bingkai-design {
+  box-sizing: border-box;
+  padding: 14px;
+  border: 2px dashed #1d4ed8;
+  border-radius: 8px;
+  background: #eef2ff;
+}
+
+.bingkai-ui {
+  box-sizing: border-box;
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid #9ca3af;
+  border-radius: 6px;
+  background: #ffffff;
+}
+
+.alur-ux {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.langkah-ux {
+  box-sizing: border-box;
+  flex: 1 1 0;
+  padding: 8px 10px;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  border-radius: 999px;
+  font-size: 13px;
+  text-align: center;
+}</code></pre>
+    <div class="demo">
+      <div class="model">
+        <div class="bingkai-design">
+          <h3>Web design — kerangka besar</h3>
+          <p>Merancang tampilan dan pengalaman halaman secara utuh.</p>
+          <div class="bingkai-ui">
+            <h3>UI — elemen yang disentuh</h3>
+            <span class="elemen-ui">Tombol</span>
+            <span class="elemen-ui">Kartu produk</span>
+            <span class="elemen-ui">Ikon keranjang</span>
+            <span class="elemen-ui">Formulir</span>
+          </div>
+          <div class="alur-ux">
+            <div class="langkah-ux">1 · menemukan</div>
+            <div class="langkah-ux">2 · memilih</div>
+            <div class="langkah-ux">3 · membeli</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>HTML dan CSS bukan istilah desain</h2>
+    <p>HTML dan CSS adalah bahan bangun yang menghidupkan rancangan. Keduanya punya lapisan sendiri yang jelas.</p>
+    <div class="demo">
+      <div class="bahan">
+        <div class="bahan-baris">
+          <strong>HTML — struktur</strong>
+          Heading, paragraf, daftar, gambar, link.
+        </div>
+        <div class="bahan-baris">
+          <strong>CSS — rupa</strong>
+          Warna, huruf, jarak, layout.
+        </div>
+      </div>
+    </div>
+
+    <h2>Satu kasus untuk diuji</h2>
+    <p>Kasus "sulit menemukan tombol kontak" itu masalah UI atau UX? Jawabannya keduanya: tombolnya ada, tetapi perjalanan menemukannya yang gagal.</p>
+    <p><strong>Inti pembelajaran:</strong> UI adalah tampaknya, UX adalah rasanya, web design menyelaraskan keduanya — dan HTML serta CSS yang membuat ketiganya benar-benar ada di layar.</p>
+    <nav class="nav">
+      <a href="04-tiga-topi-tim.html">← 04 tiga topi tim</a>
+      <span>05 / 14</span>
+      <a href="06-design-ke-code.html">06 design ke code →</a>
+    </nav>
+  </div>
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 1 · 02 frontend dan backend — Pengantar Frontend Development dan Web Design</title>
+<style>
+  /* ============================================================
+     kerangka demo — bukan bagian pelajaran
+     Ukuran, warna, dan pembungkus di bawah ini hanya panggung
+     agar deklarasi slide punya sesuatu untuk ditampilkan.
+     ============================================================ */
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    color: #111827;
+  }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+  .wrap { max-width: 960px; margin-inline: auto; }
+  .kepala {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .kepala strong { color: #111827; font-weight: 600; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.25; }
+  h2 { margin: 26px 0 6px; font-size: 17px; }
+  p { margin: 0 0 10px; font-size: 16px; }
+  ul, ol { margin: 0 0 10px; padding-left: 22px; font-size: 16px; }
+  li { margin: 2px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: #f6f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  pre code { font-size: inherit; }
+  .demo {
+    margin: 12px 0 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hitung {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+  }
+  .hitung strong { color: #1d4ed8; }
+  .tabel {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 15px;
+  }
+  .tabel th, .tabel td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; }
+  .tabel th { background: #f8fafc; font-weight: 600; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+  }
+  .nav a { color: #1d4ed8; text-decoration: none; }
+  .nav > span { color: #6b7280; }
+
+  /* panggung: tumpukan lapisan diberi warna berbeda agar urutannya terbaca */
+  .demo .lapisan-html { background: #eef2ff; border: 1px solid #c7d2fe; }
+  .demo .lapisan-css { background: #ecfdf5; border: 1px solid #a7f3d0; }
+  .demo .lapisan-framework { background: #fffbeb; border: 1px solid #fcd34d; }
+  .demo .lapisan-label {
+    display: block;
+    margin-bottom: 2px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12.5px;
+    color: #4b5563;
+  }
+  /* panggung: dua ruang berdampingan, masing-masing berisi contoh isinya */
+  .demo .ruang-kafe { background: #eef2ff; border: 1px solid #c7d2fe; }
+  .demo .ruang-dapur { background: #f8fafc; border: 1px solid #d1d5db; }
+  .demo .ruang h3 { margin: 0 0 8px; font-size: 14px; }
+  .demo .ruang p { margin: 0 0 6px; font-size: 13.5px; color: #4b5563; }
+  .demo .contoh-layar {
+    box-sizing: border-box;
+    padding: 10px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+  }
+  .demo .contoh-judul { margin: 0 0 6px; font-size: 15px; font-weight: 600; }
+  .demo .contoh-foto {
+    box-sizing: border-box;
+    height: 48px;
+    margin-bottom: 6px;
+    background: #fde68a;
+    border: 1px dashed #b45309;
+    border-radius: 4px;
+    font-size: 12.5px;
+    line-height: 48px;
+    text-align: center;
+  }
+  .demo .contoh-tombol {
+    display: inline-block;
+    padding: 4px 10px;
+    background: #1d4ed8;
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: 13px;
+  }
+  .demo .contoh-data {
+    box-sizing: border-box;
+    margin-bottom: 6px;
+    padding: 8px 10px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+  /* panggung: pelayan sebagai penghubung, bukan backend */
+  .demo .pelayan {
+    margin: 10px 0 0;
+    padding: 8px 12px;
+    background: #eef2ff;
+    border-left: 3px solid #1d4ed8;
+    font-size: 14px;
+  }
+
+  /* ============================================================
+     kode slide — deklarasi sama dengan blok kode di bawah
+     ============================================================ */
+  .tumpukan {
+    display: grid;
+    gap: 6px;
+    width: 420px;
+  }
+
+  .lapisan {
+    box-sizing: border-box;
+    padding: 10px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  .dua-ruang {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .ruang {
+    box-sizing: border-box;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kepala"><strong>Bab 1 · Pengantar Frontend Development dan Web Design</strong> · 02 frontend dan backend</p>
+    <h1>Frontend dan Backend: Ruang Kafe dan Dapur</h1>
+    <p><em>Frontend development</em> adalah pekerjaan membangun bagian website yang <strong>dilihat, dibaca, dan diklik</strong> pengguna di browser. <em>Front</em> berarti sisi depan yang menghadap pengunjung. Backend mengurus yang tidak dilihat pengunjung, tetapi tanpanya ruang depan cuma berisi pajangan.</p>
+
+    <h2>Tiga lapisan yang bertumpuk</h2>
+    <p>Tiga elemen di layar — judul besar di atas, foto produk di tengah, tombol di bawahnya — lahir dari tiga lapisan. HTML lapisan paling bawah mengurus struktur, CSS di atasnya memberi tampilan, dan CSS framework di puncak menyumbang komponen siap pakai.</p>
+<pre><code class="language-text">CSS framework   komponen siap pakai
+CSS             tampilan
+HTML            struktur</code></pre>
+<pre><code class="language-css">.tumpukan {
+  display: grid;
+  gap: 6px;
+  width: 420px;
+}
+
+.lapisan {
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+}</code></pre>
+    <div class="demo">
+      <div class="tumpukan">
+        <div class="lapisan lapisan-framework"><span class="lapisan-label">CSS framework</span>Komponen siap pakai — Bootstrap 5 masuk Bab 9</div>
+        <div class="lapisan lapisan-css"><span class="lapisan-label">CSS</span>Tampilan — warna, huruf, jarak, layout</div>
+        <div class="lapisan lapisan-html"><span class="lapisan-label">HTML</span>Struktur — heading, paragraf, daftar, gambar, link</div>
+      </div>
+    </div>
+    <p>Ketiganya ditempuh berurutan sepanjang semester: HTML dulu, CSS setelahnya, dan CSS framework baru di Bab 9.</p>
+
+    <h2>Dua ruang: kafe dan dapur</h2>
+    <p>Pengunjung nggak melihat dapur, tapi tanpanya ruang kafe cuma berisi furnitur kosong.</p>
+<pre><code class="language-css">.dua-ruang {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.ruang {
+  box-sizing: border-box;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 14px;
+}</code></pre>
+    <div class="demo">
+      <div class="dua-ruang">
+        <div class="ruang ruang-kafe">
+          <h3>Ruang kafe — frontend</h3>
+          <p>Dilihat dan disentuh pengunjung di browser.</p>
+          <div class="contoh-layar">
+            <p class="contoh-judul">Keyboard Mekanis KX-210</p>
+            <div class="contoh-foto">foto produk</div>
+            <span class="contoh-tombol">Beli</span>
+          </div>
+        </div>
+        <div class="ruang ruang-dapur">
+          <h3>Dapur — backend</h3>
+          <p>Bekerja di server, tidak terlihat pengunjung.</p>
+          <div class="contoh-data">Bahasa server</div>
+          <div class="contoh-data">Basis data</div>
+          <div class="contoh-data">Aturan bisnis</div>
+        </div>
+      </div>
+      <p class="pelayan"><strong>Pelayan</strong> adalah pengantar pesan antara browser dan server — permintaan dan respons. Pelayan bukan backend; ia penghubung keduanya.</p>
+    </div>
+
+    <h2>Lima baris pembanding</h2>
+    <table class="tabel">
+      <thead>
+        <tr><th>Yang dibandingkan</th><th>Frontend</th><th>Backend</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Tempat kerja</td><td>Browser pengguna</td><td>Server</td></tr>
+        <tr><td>Teknologi inti</td><td>HTML, CSS, framework antarmuka</td><td>Bahasa server dan basis data</td></tr>
+        <tr><td>Fokus yang diukur</td><td>Tampilan, responsif, aksesibilitas</td><td>Keandalan, keamanan, kinerja</td></tr>
+        <tr><td>Hasil yang terlihat</td><td>Kartu produk, tombol, formulir</td><td>Stok berkurang, pesanan tersimpan</td></tr>
+        <tr><td>Cara pengguna menilai</td><td>Rapi dan mudah</td><td>Cepat, akurat, nggak bocor</td></tr>
+      </tbody>
+    </table>
+    <p>Frontend mengurus penyajian dan interaksi di layar; backend mengurus penyimpanan data dan aturan bisnis. Keduanya beda jenis tantangan — frontend bukan bagian yang mudah, backend bukan bagian yang canggih.</p>
+
+    <h2>Ringkasan</h2>
+    <ul>
+      <li>Frontend adalah wilayah "segala sesuatu yang tampak di layar".</li>
+      <li>Tiga lapisan frontend: HTML, CSS, lalu CSS framework.</li>
+      <li>Backend bekerja di server dengan bahasa server dan basis data.</li>
+      <li>Pelayan pada analogi kafe adalah penghubung, bukan backend.</li>
+    </ul>
+    <p><strong>Inti pembelajaran:</strong> analogi ruang kafe dan dapur dipakai ulang di seluruh buku, jadi penting untuk mendarah daging lebih dulu sebelum masuk ke HTML.</p>
+    <nav class="nav">
+      <a href="01-tampil-vs-tersimpan.html">← 01 tampil vs tersimpan</a>
+      <span>02 / 14</span>
+      <a href="03-batas-lingkup-frontend.html">03 batas lingkup frontend →</a>
+    </nav>
+  </div>
+</body>
+</html>
