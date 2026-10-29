@@ -9,7 +9,9 @@
 //   2. salinan slides/assets ke dist/assets, supaya gambar diagram pada HTML tidak
 //      menunjuk berkas yang tidak ada (HTML Marp tidak menyalin gambar lokal);
 //   3. dist/index.html sebagai halaman daftar deck;
-//   4. dist/.nojekyll agar GitHub Pages tidak memproses hasil render.
+//   4. dist/.nojekyll agar GitHub Pages tidak memproses hasil render;
+//   5. salinan demos/ ke dist/demos, supaya tautan demo dari slide dan readme
+//      hidup di situs hasil publikasi.
 //
 // Dipanggil oleh `npm run build`; aman dijalankan ulang.
 
@@ -129,6 +131,14 @@ if (existsSync(join(SLIDES, 'assets'))) {
   console.log('ok   dist/assets/')
 }
 
+// Demo ditaut dari slide (demos/bab-NN/…) dan dari readme, jadi harus ikut
+// terbit bersama deck. Tautannya relatif terhadap halaman deck di dist/.
+const DEMOS = join(ROOT, 'demos')
+if (existsSync(DEMOS)) {
+  cpSync(DEMOS, join(DIST, 'demos'), { recursive: true })
+  console.log('ok   dist/demos/')
+}
+
 writeFileSync(join(DIST, '.nojekyll'), '')
 
 const cards = built
@@ -170,7 +180,7 @@ const index = `<!DOCTYPE html>
 <body>
 <main>
   <h1>Slide Kuliah</h1>
-  <p class="lead">Buka versi HTML untuk mengajar (tekan <code>p</code> untuk presenter view), atau PDF untuk handout.</p>
+  <p class="lead">Buka versi HTML untuk mengajar (tekan <code>p</code> untuk presenter view), atau PDF untuk handout. Demo tiap konsep ada di <a href="./demos/index.html">halaman demo</a>.</p>
 ${cards}
 </main>
 </body>
